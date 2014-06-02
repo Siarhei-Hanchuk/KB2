@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
                 lpView.leftMargin = 160 * x;
                 lpView.topMargin = 120 * y;
                 images[x][y] = new ImageView(this);
-                images[x][y].setImageResource(R.drawable.ic_launcher);
+                images[x][y].setImageResource(R.drawable.land);
                 images[x][y].setLayoutParams(lpView);
                 linLayout.addView(images[x][y]);
             }
