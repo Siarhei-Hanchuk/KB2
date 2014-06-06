@@ -7,11 +7,11 @@ public class World {
     private static World world=null;
 //    private Nave Onave;
 
-    public static World getInstance(){
-        if(world==null)
-            world=new World();
-        return world;
-    }
+//    public static World getInstance(){
+//        if(world==null)
+//            world=new World();
+//        return world;
+//    }
 
     private Country country[]=new Country[5];
 //    private int naveX;
@@ -39,7 +39,7 @@ public class World {
 		return naveC;
 	}*/
 
-    private World(){
+    public World(){
         country[0] = new Country1();
         country[1] = new Country2();
         country[2] = new Country3();

@@ -23,6 +23,14 @@ public class MapPoint {
         return land;
     }
 
+    public int getDrawable(){
+        if(this.obj == null) {
+            return land;
+        }else{
+            return obj.getID();
+        }
+    }
+
     public void setLand(int land) {
         this.land = land;
     }
