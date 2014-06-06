@@ -1,7 +1,7 @@
 package com.neschur.kb2.app.objs;
 
+import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.Country;
-import com.neschur.kb2.app.models.ObjID;
 
 public class Capitan extends Obj{
 
@@ -12,7 +12,7 @@ public class Capitan extends Obj{
 
 	@Override
 	public int getID() {
-		return ObjID.o_capitan;
+		return R.drawable.capitan;
 	}
 
 	@Override

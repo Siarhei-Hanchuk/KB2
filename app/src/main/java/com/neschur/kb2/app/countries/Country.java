@@ -1,7 +1,7 @@
 package com.neschur.kb2.app.countries;
 
+import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.models.MapPoint;
-import com.neschur.kb2.app.models.ObjID;
 import com.neschur.kb2.app.objs.City;
 import com.neschur.kb2.app.objs.GoldChest;
 import com.neschur.kb2.app.objs.GuidePost;
@@ -28,12 +28,12 @@ public abstract class Country {
     private void base(){
         for(int i=0;i<MAXC; i++){
             for(int j=0;j<MAXC; j++){
-                map[i][j].setLand(ObjID.l_water);
+                map[i][j].setLand(R.drawable.water);
             }
         }
         for(int i=5;i<MAXC-5; i++){
             for(int  j=5;j<MAXC-5; j++){
-                map[i][j].setLand(ObjID.l_land);
+                map[i][j].setLand(R.drawable.land);
             }
         }
         for(int  i=0;i<MAXC; i++){
@@ -49,20 +49,20 @@ public abstract class Country {
         int T2 = 0;
         switch (n) {
             case 2:
-                T1=ObjID.l_forest;
-                T2=ObjID.l_land;
+                T1=R.drawable.forest;
+                T2=R.drawable.land;
                 break;
             case 4:
-                T1=ObjID.l_stone;
-                T2=ObjID.l_land;
+                T1=R.drawable.stone;
+                T2=R.drawable.land;
                 break;
             case 3:
-                T1=ObjID.l_land;
-                T2=ObjID.l_water;
+                T1=R.drawable.land;
+                T2=R.drawable.water;
                 break;
             case 1:
-                T1=ObjID.l_water;
-                T2=ObjID.l_plot;
+                T1=R.drawable.water;
+                T2=R.drawable.plot;
                 break;
             default:
                 break;
@@ -84,9 +84,9 @@ public abstract class Country {
             x=rand(MAXC-1);
             y=rand(MAXC-1);
 
-            if(((map[x+1][y].getLand()==ObjID.l_water)||(map[x-1][y].getLand()==ObjID.l_water)
-                    ||(map[x][y+1].getLand()==ObjID.l_water)||(map[x][y-1].getLand()==ObjID.l_water))&&
-                    ((map[x][y].getLand()==ObjID.l_land)&&(map[x][y].getObj()==null))){
+            if(((map[x+1][y].getLand()==R.drawable.water)||(map[x-1][y].getLand()==R.drawable.water)
+                    ||(map[x][y+1].getLand()==R.drawable.water)||(map[x][y-1].getLand()==R.drawable.water))&&
+                    ((map[x][y].getLand()==R.drawable.land)&&(map[x][y].getObj()==null))){
                 map[x][y].setObj(new City(this,x,y));
                 map[x][y].setAddid(v);
                 v++;
@@ -101,7 +101,7 @@ public abstract class Country {
         while(c<5){
             y=rand(54)+5;
             x=rand(54)+5;
-            if((map[x][y].land==ObjID.l_land)||(map[x][y].land==ObjID.l_sand)){
+            if((map[x][y].land==R.drawable.land)||(map[x][y].land==R.drawable.sand)){
                 map[x][y].setObj(new GuidePost(this,x,y));
             }
             c++;
@@ -113,7 +113,7 @@ public abstract class Country {
         int r=0;
         for(int i=5;i<MAXC-5; i++){
             for(int j=5;j<MAXC-5; j++){
-                if(((map[i][j].land==ObjID.l_land)||(map[i][j].land==ObjID.l_sand))&&(map[i][j].obj==null)){
+                if(((map[i][j].land==R.drawable.land)||(map[i][j].land==R.drawable.sand))&&(map[i][j].obj==null)){
                     r=rand(t);
                     if(r==1){
                         map[i][j].setObj(new GoldChest(this,i,j));
@@ -131,13 +131,13 @@ public abstract class Country {
 		while(c<5){
 			x=rand(MAXC);
 			y=rand(MAXC);
-			if(((map[x][y].land==ObjID.l_land)&&(map[x-1][y].land==ObjID.l_land)&&(map[x+1][y].land==ObjID.l_land)&&(map[x][y+1].land==ObjID.l_land))&&
+			if(((map[x][y].land==R.drawable.land)&&(map[x-1][y].land==R.drawable.land)&&(map[x+1][y].land==R.drawable.land)&&(map[x][y+1].land==R.drawable.land))&&
 					((map[x][y].obj==0)&&(map[x-1][y].obj==0)&&(map[x+1][y].obj==0)&&(map[x][y+1].obj==0))){
-				map[x][y].obj=ObjID.o_castel_c;
-				map[x+1][y].obj=ObjID.o_castel_r;
-				map[x-1][y].obj=ObjID.o_castel_l;
+				map[x][y].obj=R.drawable.castel_c;
+				map[x+1][y].obj=R.drawable.castel_r;
+				map[x-1][y].obj=R.drawable.castel_l;
 				map[x][y].addid=c;
-				map[x][y+1].obj=ObjID.o_capitan;
+				map[x][y+1].obj=R.drawable.capitan;
 				map[x][y+1].addid=c;
 				capitan(c);
 				c++;
@@ -155,8 +155,8 @@ public abstract class Country {
 		while(c<20){
 			x=rand(56)+4;
 			y=rand(56)+4;
-			if(map[x][y].land==ObjID.l_land && map[x][y].obj==0){
-				map[x][y].obj=ObjID.o_capitan;
+			if(map[x][y].land==R.drawable.land && map[x][y].obj==0){
+				map[x][y].obj=R.drawable.capitan;
 				capitan(c);
 				c++;
 			}
@@ -174,7 +174,7 @@ public abstract class Country {
             q=rand(3);
             for(int o=-q-1;o<w+2;o++){
                 if(type==1){o2=o;}else{o1=o;}
-                map[x+o1][y+o2].land=ObjID.l_water;
+                map[x+o1][y+o2].land=R.drawable.water;
             }
             int e;int r;
             if(type==1){e=y;r=x;}else{e=x;r=y;}
@@ -215,7 +215,7 @@ public abstract class Country {
             for(int j=5;j<MAXC-5; j++){
                 r=rand(rnd);
                 if(r==1){
-                    if((map[i][j].land==ObjID.l_land)&&(map[i][j].obj==null)){
+                    if((map[i][j].land==R.drawable.land)&&(map[i][j].obj==null)){
                         map[i][j].land=land;
                     }
                 }
@@ -229,7 +229,7 @@ public abstract class Country {
         do{
             y=rand(54)+5;
             x=rand(54)+5;
-        }while(map[x][y].land!=ObjID.l_land && map[x][y].getObj()==null);
+        }while(map[x][y].land!=R.drawable.land && map[x][y].getObj()==null);
         map[x][y].setObj(new MapNext(this, x, y));
     }
 
@@ -245,7 +245,7 @@ public abstract class Country {
         cities();
         //new Capitan(this, 5, 10);
         new Magican(this, 5, 8);
-        ///map[5][10].land=ObjID.l_land;
+        ///map[5][10].land=R.drawable.land;
         //castels();
     }
 

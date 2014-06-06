@@ -1,6 +1,6 @@
 package com.neschur.kb2.app.countries;
 
-import com.neschur.kb2.app.models.ObjID;
+import com.neschur.kb2.app.R;
 
 public class Country3 extends Country{
 	public Country3()
@@ -9,7 +9,7 @@ public class Country3 extends Country{
 	    river(30);
 	    //cities();
 	    //castels(map,gw_c1_capitan);
-	    landscape(2, ObjID.l_forest);
+	    landscape(2, R.drawable.forest);
 	    //goldchest();
 	}
 }

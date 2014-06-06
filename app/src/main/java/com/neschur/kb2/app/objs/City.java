@@ -1,7 +1,7 @@
 package com.neschur.kb2.app.objs;
 
+import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.Country;
-import com.neschur.kb2.app.models.ObjID;
 
 public class City extends Obj {
 	private int workers[]=new int[4];
@@ -16,7 +16,7 @@ public class City extends Obj {
 
 	@Override
 	public int getID() {
-		return ObjID.o_city;
+		return R.drawable.city;
 	}
 
 	@Override

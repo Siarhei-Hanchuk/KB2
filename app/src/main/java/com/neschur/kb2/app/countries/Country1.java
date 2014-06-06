@@ -1,6 +1,6 @@
 package com.neschur.kb2.app.countries;
 
-import com.neschur.kb2.app.models.ObjID;
+import com.neschur.kb2.app.R;
 
 public class Country1 extends Country{
 	public Country1()
@@ -9,8 +9,8 @@ public class Country1 extends Country{
 	    river(30);
 	    river(20);
 	    river(40);
-	    landscape(7, ObjID.l_forest);
-	    landscape(20,ObjID.l_stone);
+	    landscape(7, R.drawable.forest);
+	    landscape(20,R.drawable.stone);
 	    mapnext();
 	    //landscape();
 	    //capitans();
@@ -19,7 +19,7 @@ public class Country1 extends Country{
 	    goldchest(40);
 	    army();
 	    //временное:
-	    //map[7][5].obj=ObjID.o_capitan;
+	    //map[7][5].obj=R.drawable.capitan;
 	    //map[7][5].addid=49;
 	    //capitan(49);
 	}
@@ -52,8 +52,8 @@ public class Country1 extends Country{
 	    while(v<10+51){
 	        x=rand(65);
 	        y=rand(65);
-	            if((map[x][y].obj==null)&&(map[x][y].land==ObjID.l_land)){
-	                map[x][y].obj=ObjID.o_army;
+	            if((map[x][y].obj==null)&&(map[x][y].land==R.drawable.land)){
+	                map[x][y].obj=R.drawable.army;
 	                map[x][y].addid=v;
 	                v++;
 	            }

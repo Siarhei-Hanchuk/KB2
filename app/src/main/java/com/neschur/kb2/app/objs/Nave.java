@@ -1,7 +1,7 @@
 package com.neschur.kb2.app.objs;
 
+import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.Country;
-import com.neschur.kb2.app.models.ObjID;
 
 public class Nave extends Obj{
 
@@ -11,7 +11,7 @@ public class Nave extends Obj{
 
 	@Override
 	public int getID() {
-		return ObjID.o_nave;
+		return R.drawable.nave;
 	}
 
 	@Override

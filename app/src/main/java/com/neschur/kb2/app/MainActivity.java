@@ -9,7 +9,7 @@ import android.widget.RelativeLayout;
 
 
 public class MainActivity extends Activity {
-    private ImageView[][] images;
+    private ImageView[][] images = new ImageView[6][5];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,8 +18,6 @@ public class MainActivity extends Activity {
         RelativeLayout.LayoutParams linLayoutParam = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
         setContentView(linLayout, linLayoutParam);
-
-        images = new ImageView[6][5];
 
         for(int x=0;x<6; x++) {
             for (int y = 0; y < 5; y++) {

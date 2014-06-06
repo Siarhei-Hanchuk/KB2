@@ -1,7 +1,7 @@
 package com.neschur.kb2.app.objs;
 
+import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.Country;
-import com.neschur.kb2.app.models.ObjID;
 
 public class GoldChest extends Obj{
 	private Integer gold=0;
@@ -13,7 +13,7 @@ public class GoldChest extends Obj{
 
 	@Override
 	public int getID() {
-		return ObjID.o_goldchest;
+		return R.drawable.goldchest;
 	}
 
 	@Override
