@@ -5,6 +5,7 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.World;
 import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.Player;
+import com.neschur.kb2.app.objs.Nave;
 
 /**
  * Created by siarhei on 6.6.14.
@@ -13,14 +14,16 @@ public class MainController {
     private MainActivity activity;
     private World world;
     private Player player;
+    private Nave nave;
+    private Boolean inNave;
 
     public MainController(MainActivity activity) {
         this.activity = activity;
     }
 
     public void start(){
-        this.world = new World();
-        this.player = new Player();
+        world = new World();
+        player = new Player();
 
         paint();
     }
@@ -87,9 +90,20 @@ public class MainController {
         MapPoint mp = world.getCountry(player.getCountry()).getMap(x + dx, y + dy);
 
         if(mp.obj==null) {
-            if (mp.land == R.drawable.land || mp.land == R.drawable.plot
-                    || mp.land == R.drawable.sand) {
-                player.move(x+dx, y+dy);
+            if (inNave){
+                if (mp.land == R.drawable.land || mp.land == R.drawable.sand) {
+                    inNave = false;
+                    player.move(x + dx, y + dy);
+                }
+                if (mp.land == R.drawable.water) {
+                    nave.move(x + dx, y + dy);
+                    player.move(x + dx, y + dy);
+                }
+            } else {
+                if (mp.land == R.drawable.land || mp.land == R.drawable.plot
+                        || mp.land == R.drawable.sand) {
+                    player.move(x + dx, y + dy);
+                }
             }
         }
 

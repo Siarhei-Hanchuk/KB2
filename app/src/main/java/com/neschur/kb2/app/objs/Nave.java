@@ -19,10 +19,9 @@ public class Nave extends Obj{
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
-	public void setXY(int x,int y){
+
+	public void move(int x,int y){
 		this.x=x;
 		this.y=y;
 	}
-
 }
