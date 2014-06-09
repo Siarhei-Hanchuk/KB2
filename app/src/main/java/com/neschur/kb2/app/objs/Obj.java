@@ -34,7 +34,6 @@ public abstract class Obj {
     }
 
     public abstract int getID();
-    public abstract int action();
     public /*abstract*/ void ncAction(){
 
     }

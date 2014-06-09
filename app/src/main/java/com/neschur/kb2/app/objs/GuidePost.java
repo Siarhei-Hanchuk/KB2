@@ -15,7 +15,6 @@ public class GuidePost extends Obj {
 		return R.drawable.guidepost;
 	}
 
-	@Override
 	public int action() {
 //		ScreenController.pushMenus(new MessageGuidePost());
 		return 0;

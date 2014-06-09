@@ -16,7 +16,6 @@ public class GoldChest extends Obj{
 		return R.drawable.goldchest;
 	}
 
-	@Override
 	public int action() {
 //		Menu menu=new MenuGold();
 //		menu.setAddition(gold);

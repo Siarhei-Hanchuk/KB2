@@ -14,7 +14,6 @@ public class MapNext extends Obj {
 		return R.drawable.map;
 	}
 
-	@Override
 	public int action() {
 //		Player.getInstance().upAvalCountry();
 //		ScreenController.pushMenus(new Message() {

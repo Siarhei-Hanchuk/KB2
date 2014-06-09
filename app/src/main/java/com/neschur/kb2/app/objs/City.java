@@ -19,7 +19,6 @@ public class City extends Obj {
 		return R.drawable.city;
 	}
 
-	@Override
 	public int action() {
 //		Menu m=new MenuCity();
 //		m.setAddition(this);

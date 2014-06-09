@@ -1,5 +1,7 @@
 package com.neschur.kb2.app.models;
 
+import com.neschur.kb2.app.objs.Nave;
+
 /**
  * Created by siarhei on 6.6.14.
  */
@@ -16,6 +18,7 @@ public class Player {
     private int useMagican=0;
     private int magic=0;
     private int avalCountry=10;
+    private Nave nave;
 
     private int X;
     private int Y;
@@ -58,6 +61,9 @@ public class Player {
     public void move(int x, int y){
         this.X = x;
         this.Y = y;
+        if(getNave() != null){
+            getNave().move(x, y);
+        }
     }
 
 //    public void move(int dx, int dy){
@@ -201,6 +207,14 @@ public class Player {
 
     public int getWorker(int id){
         return workers[id-1];
+    }
+
+    public Nave getNave() {
+        return nave;
+    }
+
+    public void setNave(Nave nave) {
+        this.nave = nave;
     }
 }
 

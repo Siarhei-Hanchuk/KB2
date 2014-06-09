@@ -15,7 +15,6 @@ public class Capitan extends Obj{
 		return R.drawable.capitan;
 	}
 
-	@Override
 	public int action() {
 //		ScreenController.pushMenus(new CapitanAsk());
 		return 0;

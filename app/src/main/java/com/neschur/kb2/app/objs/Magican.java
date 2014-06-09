@@ -14,7 +14,6 @@ public class Magican extends Obj{
 		return R.drawable.magican;
 	}
 
-	@Override
 	public int action() {
 //		ScreenController.pushMenus(new MagicanMenu());
 //		delete();
