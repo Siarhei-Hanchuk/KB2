@@ -2,7 +2,7 @@ package com.neschur.kb2.app.ui;
 
 import com.neschur.kb2.app.countries.World;
 import com.neschur.kb2.app.models.Player;
-import com.neschur.kb2.app.objs.City;
+import com.neschur.kb2.app.entities.City;
 
 public class CityMenu implements KMenu {
     private City city;

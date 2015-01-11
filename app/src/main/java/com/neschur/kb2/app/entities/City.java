@@ -1,9 +1,9 @@
-package com.neschur.kb2.app.objs;
+package com.neschur.kb2.app.entities;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.Country;
 
-public class City extends Obj {
+public class City extends Entity {
 	private int workers[]=new int[4];
 
 	public City(Country country, int x, int y) {

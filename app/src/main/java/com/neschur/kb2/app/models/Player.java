@@ -1,6 +1,6 @@
 package com.neschur.kb2.app.models;
 
-import com.neschur.kb2.app.objs.Nave;
+import com.neschur.kb2.app.entities.Nave;
 
 /**
  * Created by siarhei on 6.6.14.

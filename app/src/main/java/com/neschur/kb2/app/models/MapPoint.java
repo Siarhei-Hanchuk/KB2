@@ -1,22 +1,22 @@
 package com.neschur.kb2.app.models;
 
-import com.neschur.kb2.app.objs.Obj;
+import com.neschur.kb2.app.entities.Entity;
 
 /**
  * Created by siarhei on 2.6.14.
  */
 public class MapPoint {
     public int land;
-    public Obj obj;
+    public Entity entity;
     public int addid;
 
     public MapPoint() {
         land=-1;
-        obj=null;
+        entity =null;
     }
 
     public String toString(){
-        return ("Земля: "+land+" Обект: "+obj.toString()+" Id Объекта: "+addid);
+        return ("Земля: "+land+" Обект: "+ entity.toString()+" Id Объекта: "+addid);
     }
 
     public int getLand() {
@@ -24,10 +24,10 @@ public class MapPoint {
     }
 
     public int getDrawable(){
-        if(this.obj == null) {
+        if(this.entity == null) {
             return land;
         }else{
-            return obj.getID();
+            return entity.getID();
         }
     }
 
@@ -35,12 +35,12 @@ public class MapPoint {
         this.land = land;
     }
 
-    public Obj getObj() {
-        return obj;
+    public Entity getEntity() {
+        return entity;
     }
 
-    public void setObj(Obj obj) {
-        this.obj = obj;
+    public void setEntity(Entity entity) {
+        this.entity = entity;
     }
 
     public int getAddid() {

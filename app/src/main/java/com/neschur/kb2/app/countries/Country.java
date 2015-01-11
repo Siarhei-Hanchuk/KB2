@@ -2,11 +2,11 @@ package com.neschur.kb2.app.countries;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.models.MapPoint;
-import com.neschur.kb2.app.objs.City;
-import com.neschur.kb2.app.objs.GoldChest;
-import com.neschur.kb2.app.objs.GuidePost;
-import com.neschur.kb2.app.objs.Magican;
-import com.neschur.kb2.app.objs.MapNext;
+import com.neschur.kb2.app.entities.City;
+import com.neschur.kb2.app.entities.GoldChest;
+import com.neschur.kb2.app.entities.GuidePost;
+import com.neschur.kb2.app.entities.Magican;
+import com.neschur.kb2.app.entities.MapNext;
 
 import java.util.Random;
 
@@ -75,7 +75,7 @@ public abstract class Country {
     }
 
     protected void cities(){
-        map[6][5].setObj(new City(this,6,5));
+        map[6][5].setEntity(new City(this, 6, 5));
         map[6][5].setAddid(0);
         int v=1;
         int x;
@@ -86,8 +86,8 @@ public abstract class Country {
 
             if(((map[x+1][y].getLand()==R.drawable.water)||(map[x-1][y].getLand()==R.drawable.water)
                     ||(map[x][y+1].getLand()==R.drawable.water)||(map[x][y-1].getLand()==R.drawable.water))&&
-                    ((map[x][y].getLand()==R.drawable.land)&&(map[x][y].getObj()==null))){
-                map[x][y].setObj(new City(this,x,y));
+                    ((map[x][y].getLand()==R.drawable.land)&&(map[x][y].getEntity()==null))){
+                map[x][y].setEntity(new City(this, x, y));
                 map[x][y].setAddid(v);
                 v++;
             }
@@ -102,7 +102,7 @@ public abstract class Country {
             y=rand(54)+5;
             x=rand(54)+5;
             if((map[x][y].land==R.drawable.land)||(map[x][y].land==R.drawable.sand)){
-                map[x][y].setObj(new GuidePost(this,x,y));
+                map[x][y].setEntity(new GuidePost(this, x, y));
             }
             c++;
         }
@@ -113,10 +113,10 @@ public abstract class Country {
         int r=0;
         for(int i=5;i<MAXC-5; i++){
             for(int j=5;j<MAXC-5; j++){
-                if(((map[i][j].land==R.drawable.land)||(map[i][j].land==R.drawable.sand))&&(map[i][j].obj==null)){
+                if(((map[i][j].land==R.drawable.land)||(map[i][j].land==R.drawable.sand))&&(map[i][j].entity ==null)){
                     r=rand(t);
                     if(r==1){
-                        map[i][j].setObj(new GoldChest(this,i,j));
+                        map[i][j].setEntity(new GoldChest(this, i, j));
                         //c++;
                     }
                 }
@@ -215,7 +215,7 @@ public abstract class Country {
             for(int j=5;j<MAXC-5; j++){
                 r=rand(rnd);
                 if(r==1){
-                    if((map[i][j].land==R.drawable.land)&&(map[i][j].obj==null)){
+                    if((map[i][j].land==R.drawable.land)&&(map[i][j].entity ==null)){
                         map[i][j].land=land;
                     }
                 }
@@ -229,8 +229,8 @@ public abstract class Country {
         do{
             y=rand(54)+5;
             x=rand(54)+5;
-        }while(map[x][y].land!=R.drawable.land && map[x][y].getObj()==null);
-        map[x][y].setObj(new MapNext(this, x, y));
+        }while(map[x][y].land!=R.drawable.land && map[x][y].getEntity()==null);
+        map[x][y].setEntity(new MapNext(this, x, y));
     }
 
     public Country(){

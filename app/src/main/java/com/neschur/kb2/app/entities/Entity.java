@@ -1,4 +1,4 @@
-package com.neschur.kb2.app.objs;
+package com.neschur.kb2.app.entities;
 
 /**
  * Created by siarhei on 2.6.14.
@@ -6,20 +6,20 @@ package com.neschur.kb2.app.objs;
 
 import com.neschur.kb2.app.countries.Country;
 
-public abstract class Obj {
+public abstract class Entity {
     private Country country;
     protected int x;
     protected int y;
 
-    public Obj(Country country,int x, int y) {
-        country.getMap(x, y).setObj(this);
+    public Entity(Country country, int x, int y) {
+        country.getMap(x, y).setEntity(this);
         this.country=country;
         this.x=x;
         this.y=y;
     }
 
     public void delete(){
-        country.getMap(x, y).setObj(null);
+        country.getMap(x, y).setEntity(null);
     }
 
     public void step(int x,int y){
@@ -30,7 +30,7 @@ public abstract class Obj {
         delete();
         this.x=x;
         this.y=y;
-        country.getMap(x, y).setObj(this);
+        country.getMap(x, y).setEntity(this);
     }
 
     public abstract int getID();

@@ -1,9 +1,9 @@
-package com.neschur.kb2.app.objs;
+package com.neschur.kb2.app.entities;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.Country;
 
-public class Capitan extends Obj{
+public class Capitan extends Entity {
 
 	public Capitan(Country country, int x, int y) {
 		super(country, x, y);

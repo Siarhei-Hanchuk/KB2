@@ -1,4 +1,4 @@
-package com.neschur.kb2.app.objs;
+package com.neschur.kb2.app.entities;
 
 /**
  * Created by siarhei on 8.6.14.

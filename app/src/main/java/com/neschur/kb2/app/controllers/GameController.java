@@ -2,6 +2,9 @@ package com.neschur.kb2.app.controllers;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.World;
+import com.neschur.kb2.app.entities.City;
+import com.neschur.kb2.app.entities.Entity;
+import com.neschur.kb2.app.entities.Nave;
 import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.Player;
 import com.neschur.kb2.app.views.MainView;
@@ -38,7 +41,7 @@ public class GameController {
 
         MapPoint mp = world.getCountry(player.getCountry()).getMap(x + dx, y + dy);
 
-        if(mp.obj == null) {
+        if(mp.entity == null) {
             if (inNave){
                 System.out.println("a");
                 if (mp.land == R.drawable.land || mp.land == R.drawable.sand) {
@@ -58,18 +61,18 @@ public class GameController {
                 }
             }
         } else {
-//            actionWithObject(player, mp.obj);
+            actionWithObject(player, mp.entity);
         }
     }
 
-//    private void actionWithObject(Player player, Obj obj){
-//        if(obj instanceof Nave){
-//            player.setNave((Nave)obj);
-//            player.move(((Nave)obj).getX(), ((Nave)obj).getY());
-//        }
-//        if(obj instanceof City) {
-////            activity.paintMenu(new CityMenu((City)obj, world, player));
-//        }
-//    }
+    private void actionWithObject(Player player, Entity obj){
+        if(obj instanceof Nave){
+            player.setNave((Nave)obj);
+            player.move(((Nave)obj).getX(), ((Nave)obj).getY());
+        }
+        if(obj instanceof City) {
+//            activity.paintMenu(new CityMenu((City)obj, world, player));
+        }
+    }
 
 }
