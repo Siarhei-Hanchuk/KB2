@@ -22,12 +22,12 @@ public class City extends Entity {
 		return R.drawable.city;
 	}
 
-	public int action() {
-//		Menu m=new MenuCity();
-//		m.setAddition(this);
-//		ScreenController.pushMenus(m);
-		return 0;
-	}	
+//	public int action() {
+////		Menu m=new MenuCity();
+////		m.setAddition(this);
+////		ScreenController.pushMenus(m);
+//		return 0;
+//	}
 	
 	public int getWorkers(int i) {
 		return workers[i-1];

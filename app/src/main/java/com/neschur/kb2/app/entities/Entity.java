@@ -35,13 +35,13 @@ public abstract class Entity {
         country.getMap(x, y).setEntity(this);
     }
 
-    public Menu getMenu(GameController gameController){
-        return null;
-    }
+//    public Menu getMenu(GameController gameController){
+//        return null;
+//    }
 
     public abstract int getID();
-    public /*abstract*/ void ncAction(){
-
-    }
+//    public /*abstract*/ void ncAction(){
+//
+//    }
 }
 

@@ -5,7 +5,6 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.neschur.kb2.app.controllers.MainController;
 import com.neschur.kb2.app.controllers.MenuController;
 
 /**

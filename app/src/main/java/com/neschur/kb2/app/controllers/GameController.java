@@ -77,4 +77,9 @@ public class GameController {
     public void createNave(int x, int y) {
         nave = new Nave(world.getCountry(0), x, y);
     }
+
+    public void destroyNave() {
+        nave.destroy();
+        nave = null;
+    }
 }

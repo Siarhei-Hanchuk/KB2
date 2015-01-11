@@ -11,6 +11,10 @@ public class Nave extends Entity implements Action{
         this.country = country;
 	}
 
+    public void destroy() {
+        country.getMap(this.x,this.y).entity = null;
+    }
+
 	@Override
 	public int getID() {
 		return R.drawable.nave;

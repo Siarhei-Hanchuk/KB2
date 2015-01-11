@@ -41,7 +41,7 @@ public class MenuController implements Drawable{
 
         int i;
         for (i = 0; i < menu.getCount(); i++) {
-            canvas.drawText(menu.getItemDescr(i), 10,
+            canvas.drawText(menu.getItemDescription(i), 10,
                     MenuView.ITEM_SIZE + MenuView.ITEM_SIZE*i, paint);
         }
         canvas.drawText("Exit", 10,
@@ -60,7 +60,7 @@ public class MenuController implements Drawable{
 //        view.getHolder().lockCanvas();
     }
 
-    public void updateMenu(CityMenu menu) {
+    public void updateMenu(Menu menu) {
         this.menu = menu;
     }
 }

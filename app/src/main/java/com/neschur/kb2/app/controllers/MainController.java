@@ -60,11 +60,11 @@ public class MainController implements Drawable {
     }
 
     public void activateEntity(Entity entity) {
-        menuController.updateMenu(new CityMenu((City)entity, gameController));
-        MenuView view = menuController.getView();
-        android.widget.FrameLayout.LayoutParams params = new android.widget.FrameLayout.LayoutParams(400, 400);
-        view.setLayoutParams(params);
-        activity.setContentView(view);
+        if(entity instanceof City) {
+            menuController.updateMenu(((City) entity).getMenu(gameController));
+            MenuView view = menuController.getView();
+            activity.setContentView(view);
+        }
     }
 
     public void closeMenu() {

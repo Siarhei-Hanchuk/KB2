@@ -8,18 +8,16 @@ import com.neschur.kb2.app.entities.City;
 public class CityMenu implements Menu {
     private City city;
     private Player player;
-    private World world;
     private GameController gameController;
 
     public CityMenu(City city, GameController gameController){
         this.city = city;
         this.gameController = gameController;
-        this.world = gameController.getWorld();
         this.player = gameController.getPlayer();
     }
 
     @Override
-    public String getItemDescr(int i) {
+    public String getItemDescription(int i) {
         switch (i) {
             case 0:
                 return "Заключить контракт";
@@ -49,11 +47,10 @@ public class CityMenu implements Menu {
         switch (i) {
             case 1:
                 if (gameController.getNave()){
-//                    world.clearNave();
-
+                    gameController.destroyNave();
                 }else{
                     player.changeMoney(-500);
-                    gameController.createNave(4,5);
+                    gameController.createNave(4, 5);
                 }
                 return false;
             case 4:
@@ -78,14 +75,9 @@ public class CityMenu implements Menu {
         return 7;
     }
 
-    @Override
-    public void setAddition(Object data) {
-        city=(City)data;
-    }
-
 //    @Override
-//    public MenusType getType() {
-//        return MenusType.MENU;
+//    public void setAddition(Object data) {
+//        city=(City)data;
 //    }
 
 }

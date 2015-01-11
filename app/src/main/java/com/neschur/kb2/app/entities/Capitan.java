@@ -20,22 +20,22 @@ public class Capitan extends Entity {
 		return 0;
 	}
 	//Костыль
-	@Override
-	public void ncAction() {
-//		//System.out.println("NC");
-//		final Player pl=Player.getInstance();
-//		if(Math.abs(pl.getX()-x)+Math.abs(pl.getY()-y)<3){
-//			ScreenController.setKeyHook(new KeyHook() {
-//
-//				@Override
-//				public boolean exec(int key) {
-//					step(pl.getX()-x,pl.getY()-y);
-//					return false;
-//				}
-//			});
-//			//System.out.println("go");
-//
-//		}
-	}
+//	@Override
+//	public void ncAction() {
+////		//System.out.println("NC");
+////		final Player pl=Player.getInstance();
+////		if(Math.abs(pl.getX()-x)+Math.abs(pl.getY()-y)<3){
+////			ScreenController.setKeyHook(new KeyHook() {
+////
+////				@Override
+////				public boolean exec(int key) {
+////					step(pl.getX()-x,pl.getY()-y);
+////					return false;
+////				}
+////			});
+////			//System.out.println("go");
+////
+////		}
+//	}
 
 }
