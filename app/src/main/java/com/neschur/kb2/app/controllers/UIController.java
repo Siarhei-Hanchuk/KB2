@@ -1,77 +1,42 @@
 package com.neschur.kb2.app.controllers;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+
 import com.neschur.kb2.app.MainActivity;
-import com.neschur.kb2.app.R;
-import com.neschur.kb2.app.countries.World;
-import com.neschur.kb2.app.models.Player;
+
+import java.util.Random;
 
 /**
  * Created by siarhei on 8.6.14.
  */
 public class UIController {
     private MainActivity activity;
-    private World world;
-    private Player player;
+    private MainController mainController;
 
-    public UIController(MainActivity activity, Player player, World world) {
+    public UIController(MainActivity activity, MainController mainController) {
         this.activity = activity;
-        this.player = player;
-        this.world = world;
+        this.mainController = mainController;
     }
 
-    public void start(){
-        paint();
+    public void paint(Canvas canvas) {
+        paintField(canvas, mainController.getGameGrid());
     }
 
-    public void paint(){
-        int x = player.getX();
-        int y = player.getY();
-        int[][] screen = new int[6][5];
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                screen[i][j] = world.getCountry(player.getCountry()).getMap(x + (i - 2), y + (j - 2)).getDrawable();
+
+    public void paintField(Canvas canvas, GameGrid gameGrid){
+        int stepX = canvas.getWidth()/6;
+        int stepY = canvas.getHeight()/5;
+        for(int x=0;x<6; x++) {
+            for (int y = 0; y < 5; y++) {
+                Bitmap image = BitmapFactory.decodeResource(activity.getResources(), gameGrid.getBuyXY(x, y));
+                if(image!= null) {
+                    canvas.drawBitmap(image, x * stepX, y * stepY, null);
+                }
             }
         }
-        screen[2][2] = R.drawable.player;
-        makeStatus(screen);
 
-        activity.paint(screen);
     }
 
-    private void makeStatus(int[][] screen){
-        screen[5][0] = R.drawable.status_contract_0;
-
-        if(player.isWallkick())
-            screen[5][1] = R.drawable.status_wallkick_0;
-        else
-            screen[5][1] = R.drawable.status_wallkick_1;
-
-        screen[5][2] = R.drawable.status_magic_0;
-
-        int money = player.getMoney();
-        if(money < 2000)
-            screen[5][3]=R.drawable.status_money_0;
-        else if(money < 5000)
-            screen[5][3]=R.drawable.status_money_2000;
-        else if(money < 10000)
-            screen[5][3]=R.drawable.status_money_5000;
-        else if(money < 20000)
-            screen[5][3]=R.drawable.status_money_10000;
-        else if(money < 50000)
-            screen[5][3]=R.drawable.status_money_20000;
-        else if(money < 75000)
-            screen[5][3]=R.drawable.status_money_50000;
-        else if(money < 100000)
-            screen[5][3]=R.drawable.status_money_75000;
-        else if(money < 150000)
-            screen[5][3]=R.drawable.status_money_100000;
-        else if(money < 200000)
-            screen[5][3]=R.drawable.status_money_150000;
-        else if(money < 500000)
-            screen[5][3]=R.drawable.status_money_200000;
-        else
-            screen[5][3]=R.drawable.status_money_500000;
-
-        screen[5][4] = R.drawable.status_ancientmap_0;
-    }
 }

@@ -139,10 +139,10 @@ public class Player {
         this.innave = innave;
     }
 
-//    public void changeMoney(int d){
-//        money+=d;
+    public void changeMoney(int d){
+        money+=d;
 //        notifyStatusController();
-//    }
+    }
 
     public void changeAutho(int d){
         authority+=d;
@@ -167,10 +167,10 @@ public class Player {
         return wallkick;
     }
 
-//    public void setWallkick() {
-//        this.wallkick = true;
+    public void setWallkick() {
+        this.wallkick = true;
 //        notifyStatusController();
-//    }
+    }
 
     public int getUseMagican() {
         return useMagican;
