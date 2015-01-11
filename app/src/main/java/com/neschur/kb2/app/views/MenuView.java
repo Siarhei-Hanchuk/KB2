@@ -6,18 +6,21 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.neschur.kb2.app.controllers.MainController;
+import com.neschur.kb2.app.controllers.MenuController;
 
 /**
-* Created by siarhei on 1.7.14.
-*/
-public class MainView extends SurfaceView implements SurfaceHolder.Callback {
-    private DrawThread drawThread;
-    private MainController mainController;
+ * Created by siarhei on 11.1.15.
+ */
+public class MenuView extends SurfaceView implements SurfaceHolder.Callback {
+    public static final int ITEM_SIZE = 60;
 
-    public MainView(Context context, MainController mainController) {
+    private MenuController menuController;
+    private DrawThread drawThread;
+
+    public MenuView(Context context, MenuController menuController) {
         super(context);
         getHolder().addCallback(this);
-        this.mainController = mainController;
+        this.menuController = menuController;
     }
 
     @Override
@@ -27,7 +30,7 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        drawThread = new DrawThread (getHolder(), mainController);
+        drawThread = new DrawThread (getHolder(), menuController);
         drawThread.setRunning(true);
         drawThread.start();
     }
@@ -47,20 +50,9 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        double centerY = this.getHeight()/2;
-        double centerX = (this.getWidth()*5/6)/2;
-        if(event.getY() > centerY && event.getX() > centerX*0.5 && event.getX() < centerX*1.5){
-            mainController.touchDown();
-        }
-        if(event.getY() < centerY && event.getX() > centerX*0.5 && event.getX() < centerX*1.5){
-            mainController.touchUp();
-        }
-        if(event.getX() > centerX && event.getY() > centerY*0.5 && event.getY() < centerY*1.5){
-            mainController.touchRight();
-        }
-        if(event.getX() < centerX && event.getY() > centerY*0.5 && event.getY() < centerY*1.5){
-            mainController.touchLeft();
-        }
+        double y = event.getY();
+        int item = (int)y/ITEM_SIZE;
+        menuController.select(item);
         drawThread.refresh();
         return super.onTouchEvent(event);
     }

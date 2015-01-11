@@ -1,18 +1,21 @@
 package com.neschur.kb2.app.ui;
 
+import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.countries.World;
 import com.neschur.kb2.app.models.Player;
 import com.neschur.kb2.app.entities.City;
 
-public class CityMenu implements KMenu {
+public class CityMenu implements Menu {
     private City city;
     private Player player;
     private World world;
+    private GameController gameController;
 
-    public CityMenu(City city, World world, Player player){
+    public CityMenu(City city, GameController gameController){
         this.city = city;
-        this.world = world;
-        this.player = player;
+        this.gameController = gameController;
+        this.world = gameController.getWorld();
+        this.player = gameController.getPlayer();
     }
 
     @Override
@@ -21,7 +24,7 @@ public class CityMenu implements KMenu {
             case 0:
                 return "Заключить контракт";
             case 1:
-                if(player.isInnave())
+                if(gameController.getNave())
                     return "Продать корабль ($0)";
                 return "Купить корабль ($500)";
             case 2:
@@ -29,6 +32,8 @@ public class CityMenu implements KMenu {
             case 3:
                 return "#Переход к замку";
             case 4:
+                if(player.isWallkick())
+                    return "-";
                 return "Купить стенобитное орудие ($3000)";
             case 5:
                 return "Работники";
@@ -40,21 +45,21 @@ public class CityMenu implements KMenu {
     }
 
     @Override
-    public boolean proc(int i) {
-        Player pl = player;
+    public boolean select(int i) {
         switch (i) {
-//            case 2:
-//                if(world.getNave())
+            case 1:
+                if (gameController.getNave()){
 //                    world.clearNave();
-//                else{
-//                    pl.changeMoney(-500);
-//                    world.newNave(4,5);
-//                }
-//                return false;
-            case 5:
-                if(!pl.isWallkick()){
-                    pl.changeMoney(-3000);
-                    pl.setWallkick();
+
+                }else{
+                    player.changeMoney(-500);
+                    gameController.createNave(4,5);
+                }
+                return false;
+            case 4:
+                if(!player.isWallkick()){
+                    player.changeMoney(-3000);
+                    player.setWallkick();
                 }
                 return false;
 //            case 6:

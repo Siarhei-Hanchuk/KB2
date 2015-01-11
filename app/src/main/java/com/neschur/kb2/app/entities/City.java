@@ -1,7 +1,10 @@
 package com.neschur.kb2.app.entities;
 
 import com.neschur.kb2.app.R;
+import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.countries.Country;
+import com.neschur.kb2.app.ui.CityMenu;
+import com.neschur.kb2.app.ui.Menu;
 
 public class City extends Entity {
 	private int workers[]=new int[4];
@@ -29,4 +32,8 @@ public class City extends Entity {
 	public int getWorkers(int i) {
 		return workers[i-1];
 	}
+
+    public Menu getMenu(GameController gameController) {
+        return new CityMenu(this, gameController);
+    }
 }

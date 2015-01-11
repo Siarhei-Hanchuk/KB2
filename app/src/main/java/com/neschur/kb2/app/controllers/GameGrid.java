@@ -34,7 +34,11 @@ public class GameGrid {
                 screen[i][j] = world.getCountry(player.getCountry()).getMap(x + (i - 2), y + (j - 2)).getDrawable();
             }
         }
-        screen[2][2] = R.drawable.player;
+        if(player.inNave())
+            screen[2][2] = R.drawable.nave;
+        else
+            screen[2][2] = R.drawable.player;
+
         makeStatus(screen);
 
         return screen;
@@ -42,8 +46,8 @@ public class GameGrid {
 
     private void makeStatus(int[][] screen) {
         screen[5][0] = R.drawable.status_contract_0;
-
-        if (player.isWallkick())
+        System.out.println(player.isWallkick());
+        if (!player.isWallkick())
             screen[5][1] = R.drawable.status_wallkick_0;
         else
             screen[5][1] = R.drawable.status_wallkick_1;

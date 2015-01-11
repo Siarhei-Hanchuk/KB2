@@ -3,20 +3,18 @@ package com.neschur.kb2.app.views;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
-import com.neschur.kb2.app.controllers.MainController;
-
 /**
 * Created by siarhei on 1.7.14.
 */
 class DrawThread extends Thread {
     private boolean running = false;
-    private boolean refresh = false;
+    private boolean refresh = true;
     private SurfaceHolder surfaceHolder;
-    private MainController mainController;
+    private Drawable drawable;
 
-    public DrawThread(SurfaceHolder surfaceHolder, MainController mainController) {
+    public DrawThread(SurfaceHolder surfaceHolder, Drawable drawable) {
         this.surfaceHolder = surfaceHolder;
-        this.mainController = mainController;
+        this.drawable = drawable;
     }
 
     public void setRunning(boolean running) {
@@ -38,7 +36,7 @@ class DrawThread extends Thread {
                 canvas = surfaceHolder.lockCanvas(null);
                 if (canvas == null)
                     continue;
-                mainController.rePaint(canvas);
+                drawable.draw(canvas);
                 refresh = false;
             } finally {
                 if (canvas != null) {

@@ -30,8 +30,13 @@ public class UIController {
         int stepY = canvas.getHeight()/5;
         for(int x=0;x<6; x++) {
             for (int y = 0; y < 5; y++) {
-                Bitmap image = BitmapFactory.decodeResource(activity.getResources(), gameGrid.getBuyXY(x, y));
-                if(image!= null) {
+                Bitmap image = Bitmap.createScaledBitmap(
+                        BitmapFactory.decodeResource(
+                                activity.getResources(), gameGrid.getBuyXY(x, y)
+                        ),
+                        stepX, stepY, false
+                );
+                if (image != null) {
                     canvas.drawBitmap(image, x * stepX, y * stepY, null);
                 }
             }

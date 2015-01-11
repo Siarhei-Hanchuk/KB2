@@ -13,7 +13,7 @@ public class Player {
     private int workers[]=new int[3];
     private int money;
     private int authority;
-    private boolean innave;
+//    private boolean innave;
     private int country;
     private int useMagican=0;
     private int magic=0;
@@ -31,7 +31,7 @@ public class Player {
 
     public Player(){
         country=0;
-        setInnave(false);
+//        setInnave(false);
         X=5;
         Y=5;
         wallkick=false;
@@ -131,13 +131,13 @@ public class Player {
         return Y;
     }
 
-    public boolean isInnave() {
-        return innave;
-    }
-
-    public void setInnave(boolean innave) {
-        this.innave = innave;
-    }
+//    public boolean isInnave() {
+//        return innave;
+//    }
+//
+//    public void setInnave(boolean innave) {
+//        this.innave = innave;
+//    }
 
     public void changeMoney(int d){
         money+=d;
@@ -215,6 +215,10 @@ public class Player {
 
     public void setNave(Nave nave) {
         this.nave = nave;
+    }
+
+    public boolean inNave() {
+        return nave != null;
     }
 }
 

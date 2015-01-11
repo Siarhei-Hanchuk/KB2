@@ -13,12 +13,13 @@ import com.neschur.kb2.app.views.MainView;
  * Created by siarhei on 11.1.15.
  */
 public class GameController {
-    private MainView mainView;
     private World world;
     private Player player;
-    private Boolean inNave = false;
+    private Nave nave;
+    private MainController mainController;
 
-    public GameController() {
+    public GameController(MainController mainController) {
+        this.mainController = mainController;
         world = new World();
         player = new Player();
     }
@@ -34,7 +35,6 @@ public class GameController {
     public void move(int dx, int dy){
         int x = player.getX();
         int y = player.getY();
-        System.out.println(player.getX() + " " + player.getY());
         if(x + dx<2 || x + dx>62 || y + dy<2 || y + dy>62) {
             return;
         }
@@ -42,21 +42,17 @@ public class GameController {
         MapPoint mp = world.getCountry(player.getCountry()).getMap(x + dx, y + dy);
 
         if(mp.entity == null) {
-            if (inNave){
-                System.out.println("a");
+            if (player.inNave()){
                 if (mp.land == R.drawable.land || mp.land == R.drawable.sand) {
-                    inNave = false;
+                    player.setNave(null);
                     player.move(x + dx, y + dy);
                 }
                 if (mp.land == R.drawable.water) {
                     player.move(x + dx, y + dy);
                 }
             } else {
-                System.out.println("b");
-                System.out.println(mp.land);
                 if (mp.land == R.drawable.land || mp.land == R.drawable.plot
                         || mp.land == R.drawable.sand) {
-                    System.out.println("c");
                     player.move(x + dx, y + dy);
                 }
             }
@@ -65,14 +61,20 @@ public class GameController {
         }
     }
 
-    private void actionWithObject(Player player, Entity obj){
-        if(obj instanceof Nave){
-            player.setNave((Nave)obj);
-            player.move(((Nave)obj).getX(), ((Nave)obj).getY());
-        }
-        if(obj instanceof City) {
-//            activity.paintMenu(new CityMenu((City)obj, world, player));
+    private void actionWithObject(Player player, Entity entity){
+        if(entity instanceof Nave){
+            player.setNave((Nave)entity);
+            player.move(((Nave)entity).getX(), ((Nave)entity).getY());
+        } else {
+            mainController.activateEntity(entity);
         }
     }
 
+    public boolean getNave() {
+        return nave != null;
+    }
+
+    public void createNave(int x, int y) {
+        nave = new Nave(world.getCountry(0), x, y);
+    }
 }
