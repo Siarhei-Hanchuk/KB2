@@ -5,7 +5,7 @@ import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.GoldChest;
 import com.neschur.kb2.app.entities.GuidePost;
-import com.neschur.kb2.app.entities.Magican;
+import com.neschur.kb2.app.entities.Magician;
 import com.neschur.kb2.app.entities.MapNext;
 
 import java.util.Random;
@@ -244,7 +244,7 @@ public abstract class Country {
         guidepost();
         cities();
         //new Capitan(this, 5, 10);
-        new Magican(this, 5, 8);
+        new Magician(this, 5, 8);
         ///map[5][10].land=R.drawable.land;
         //castels();
     }
