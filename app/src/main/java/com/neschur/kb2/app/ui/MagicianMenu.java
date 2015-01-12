@@ -10,7 +10,7 @@ import com.neschur.kb2.app.entities.Entity;
  * Created by siarhei on 12.1.15.
  */
 public class MagicianMenu extends Menu {
-    final static int COUNT = 2;
+    final static int COUNT = 7;
 
     public MagicianMenu(Activity activity, Entity magician, GameController gameController) {
         super(activity, gameController);
@@ -33,6 +33,7 @@ public class MagicianMenu extends Menu {
         switch (i) {
             case 1:
                 player.upMagicPower();
+                player.upUsedMagicianCount();
                 return true;
         }
         return false;
@@ -40,6 +41,6 @@ public class MagicianMenu extends Menu {
 
     @Override
     public int getCount() {
-        return COUNT;
+        return Math.min(player.getUsedMagicianCount(), COUNT);
     }
 }

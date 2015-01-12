@@ -11,16 +11,11 @@ public class Country1 extends Country {
         landscape(7, R.drawable.forest);
         landscape(20, R.drawable.stone);
         mapNext();
-        //landscape();
         //capitans();
-        //castels(gw_c1_capitan);
+        //castels();
         //cities();
         goldChests(40);
         army();
-        //временное:
-        //map[7][5].obj=R.drawable.capitan;
-        //map[7][5].addid=49;
-        //capitan(49);
     }
 
     void city(int cid) {
