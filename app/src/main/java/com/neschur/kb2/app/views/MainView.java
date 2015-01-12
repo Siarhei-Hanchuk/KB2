@@ -8,8 +8,8 @@ import android.view.SurfaceView;
 import com.neschur.kb2.app.controllers.MainController;
 
 /**
-* Created by siarhei on 1.7.14.
-*/
+ * Created by siarhei on 1.7.14.
+ */
 public class MainView extends SurfaceView implements SurfaceHolder.Callback {
     private DrawThread drawThread;
     private MainController mainController;
@@ -27,7 +27,7 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        drawThread = new DrawThread (getHolder(), mainController);
+        drawThread = new DrawThread(getHolder(), mainController);
         drawThread.setRunning(true);
         drawThread.start();
     }
@@ -47,10 +47,10 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        double centerY = this.getHeight()/2;
-        double centerX = (this.getWidth()*5/6)/2;
-        if(event.getX() > this.getWidth()*5/6) {
-            int item = (int)event.getY()/(this.getHeight()/5);
+        double centerY = this.getHeight() / 2;
+        double centerX = (this.getWidth() * 5 / 6) / 2;
+        if (event.getX() > this.getWidth() * 5 / 6) {
+            int item = (int) event.getY() / (this.getHeight() / 5);
             mainController.touchMenu(item);
         } else {
             if (event.getY() > centerY && event.getX() > centerX * 0.5 && event.getX() < centerX * 1.5) {

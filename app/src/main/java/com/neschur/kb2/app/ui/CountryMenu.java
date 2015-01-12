@@ -9,7 +9,7 @@ import com.neschur.kb2.app.controllers.GameController;
  * Created by siarhei on 12.1.15.
  */
 public class CountryMenu extends Menu {
-    public CountryMenu(Activity activity,GameController gameController){
+    public CountryMenu(Activity activity, GameController gameController) {
         super(activity, gameController);
     }
 

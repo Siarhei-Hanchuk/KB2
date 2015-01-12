@@ -10,16 +10,16 @@ import com.neschur.kb2.app.ui.Menu;
 
 public class Magician extends Entity {
 
-	public Magician(Country country, int x, int y) {
-		super(country, x, y);
-	}
+    public Magician(Country country, int x, int y) {
+        super(country, x, y);
+    }
 
-	@Override
-	public int getID() {
-		return R.drawable.magican;
-	}
+    @Override
+    public int getID() {
+        return R.drawable.magican;
+    }
 
-    public Menu getMenu(Activity activity, GameController gameController){
+    public Menu getMenu(Activity activity, GameController gameController) {
         return new MagicianMenu(activity, this, gameController);
     }
 }

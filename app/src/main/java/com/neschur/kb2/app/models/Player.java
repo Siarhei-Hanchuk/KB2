@@ -9,26 +9,26 @@ import com.neschur.kb2.app.entities.Nave;
 
 public class Player {
     private boolean wallkick;
-    private int workers[]=new int[4];
+    private int workers[] = new int[4];
     private int money;
     private int authority;
     private Country country;
-    private int usedMagicianCount=0;
+    private int usedMagicianCount = 0;
     private int magicPower;
-    private int availableCountry=1;
+    private int availableCountry = 1;
     private Nave nave;
 
     private int X;
     private int Y;
 
-    private void easy(){
-        X=5;
-        Y=5;
-        wallkick=false;
-        money=20000;
-        authority=50;
+    private void easy() {
+        X = 5;
+        Y = 5;
+        wallkick = false;
+        money = 20000;
+        authority = 50;
         magicPower = 2;
-        for(int i=0;i<10;i++) {
+        for (int i = 0; i < 10; i++) {
             workers[0] = 4;
             workers[1] = 6;
             workers[2] = 0;
@@ -36,50 +36,50 @@ public class Player {
         }
     }
 
-    private void debug(){
+    private void debug() {
         availableCountry = 5;
     }
 
-    public Player(){
+    public Player() {
         easy();
         debug();
     }
 
-    public void move(int x, int y){
+    public void move(int x, int y) {
         this.X = x;
         this.Y = y;
-        if(getNave() != null){
+        if (getNave() != null) {
             getNave().move(x, y);
         }
     }
 
-    public void setCountry(Country country){
+    public void setCountry(Country country) {
         this.country = country;
     }
 
-    public void changeCountry(Country country){
+    public void changeCountry(Country country) {
         this.country = country;
         X = 2;
         Y = 2;
-        if(inNave()){
-            nave.move(2,2, country);
+        if (inNave()) {
+            nave.move(2, 2, country);
         }
     }
 
-    public Country getCountry(){
+    public Country getCountry() {
         return country;
     }
 
-    public int getX(){
+    public int getX() {
         return X;
     }
 
-    public int getY(){
+    public int getY() {
         return Y;
     }
 
-    public void changeMoney(int d){
-        money+=d;
+    public void changeMoney(int d) {
+        money += d;
     }
 
     public Integer getMoney() {
@@ -118,8 +118,8 @@ public class Player {
         return authority;
     }
 
-    public void changeAuthority(int d){
-        authority+=d;
+    public void changeAuthority(int d) {
+        authority += d;
     }
 
     public void upAvailableCountry() {

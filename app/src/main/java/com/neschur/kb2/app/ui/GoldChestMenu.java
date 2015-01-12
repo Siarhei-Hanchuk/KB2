@@ -14,9 +14,9 @@ public class GoldChestMenu extends Menu {
     final int COUNT = 2;
     private GoldChest chest;
 
-    public GoldChestMenu(Activity activity, Entity entity, GameController gameController){
+    public GoldChestMenu(Activity activity, Entity entity, GameController gameController) {
         super(activity, gameController);
-        this.chest = (GoldChest)entity;
+        this.chest = (GoldChest) entity;
     }
 
     public String getItemDescription(int i) {

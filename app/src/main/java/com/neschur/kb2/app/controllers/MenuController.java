@@ -12,7 +12,7 @@ import com.neschur.kb2.app.views.MenuView;
 /**
  * Created by siarhei on 11.1.15.
  */
-public class MenuController implements Drawable{
+public class MenuController implements Drawable {
     private MainActivity activity;
     private MainController mainController;
     private MenuView view;
@@ -30,7 +30,7 @@ public class MenuController implements Drawable{
     }
 
     public MenuView getView() {
-        if(view == null)
+        if (view == null)
             view = new MenuView(activity, this);
         return view;
     }
@@ -41,17 +41,17 @@ public class MenuController implements Drawable{
         int i;
         for (i = 0; i < menu.getCount(); i++) {
             canvas.drawText(menu.getItemDescription(i), 10,
-                    MenuView.ITEM_SIZE + MenuView.ITEM_SIZE*i, paint);
+                    MenuView.ITEM_SIZE + MenuView.ITEM_SIZE * i, paint);
         }
         canvas.drawText("Exit", 10,
-                MenuView.ITEM_SIZE + MenuView.ITEM_SIZE*i, paint);
+                MenuView.ITEM_SIZE + MenuView.ITEM_SIZE * i, paint);
     }
 
     public void select(int item) {
         boolean result = false;
-        if(item < menu.getCount())
+        if (item < menu.getCount())
             result = menu.select(item);
-        if(item == menu.getCount() || result)
+        if (item == menu.getCount() || result)
             mainController.closeMenu();
     }
 

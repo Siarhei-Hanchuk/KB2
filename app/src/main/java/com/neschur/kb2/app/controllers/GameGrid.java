@@ -34,7 +34,7 @@ public class GameGrid {
                 screen[i][j] = player.getCountry().getMap(x + (i - 2), y + (j - 2)).getDrawable();
             }
         }
-        if(player.inNave())
+        if (player.inNave())
             screen[2][2] = R.drawable.nave;
         else
             screen[2][2] = R.drawable.player;

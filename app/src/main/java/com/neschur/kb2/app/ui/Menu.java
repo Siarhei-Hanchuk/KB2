@@ -12,7 +12,7 @@ public abstract class Menu {
     protected Resources resources;
     protected Player player;
 
-    public Menu(Activity activity, GameController gameController){
+    public Menu(Activity activity, GameController gameController) {
         this.activity = activity;
         this.gameController = gameController;
         this.resources = activity.getResources();
@@ -20,6 +20,8 @@ public abstract class Menu {
     }
 
     public abstract int getCount();
+
     public abstract String getItemDescription(int i);
+
     public abstract boolean select(int i);
 }

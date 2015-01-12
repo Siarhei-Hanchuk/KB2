@@ -4,8 +4,8 @@ import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
 /**
-* Created by siarhei on 1.7.14.
-*/
+ * Created by siarhei on 1.7.14.
+ */
 class DrawThread extends Thread {
     private boolean running = false;
     private boolean refresh = true;
@@ -29,7 +29,7 @@ class DrawThread extends Thread {
     public void run() {
         Canvas canvas;
         while (running) {
-            if(!refresh)
+            if (!refresh)
                 continue;
             canvas = null;
             try {

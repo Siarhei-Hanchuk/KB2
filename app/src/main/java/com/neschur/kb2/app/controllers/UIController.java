@@ -23,10 +23,10 @@ public class UIController {
     }
 
 
-    public void paintField(Canvas canvas, GameGrid gameGrid){
-        int stepX = canvas.getWidth()/6;
-        int stepY = canvas.getHeight()/5;
-        for(int x=0;x<6; x++) {
+    public void paintField(Canvas canvas, GameGrid gameGrid) {
+        int stepX = canvas.getWidth() / 6;
+        int stepY = canvas.getHeight() / 5;
+        for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
                 Bitmap image = Bitmap.createScaledBitmap(
                         BitmapFactory.decodeResource(

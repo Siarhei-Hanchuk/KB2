@@ -5,16 +5,16 @@ import com.neschur.kb2.app.countries.Country;
 
 public class MapNext extends Entity {
 
-	public MapNext(Country country, int x, int y) {
-		super(country, x, y);
-	}
+    public MapNext(Country country, int x, int y) {
+        super(country, x, y);
+    }
 
-	@Override
-	public int getID() {
-		return R.drawable.map;
-	}
+    @Override
+    public int getID() {
+        return R.drawable.map;
+    }
 
-	public int action() {
+    public int action() {
 //		Player.getInstance().upAvalCountry();
 //		ScreenController.pushMenus(new Message() {
 //
@@ -30,7 +30,7 @@ public class MapNext extends Entity {
 //			}
 //		});
 //		delete();
-		return 0;
-	}
+        return 0;
+    }
 
 }

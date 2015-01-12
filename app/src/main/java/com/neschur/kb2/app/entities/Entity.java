@@ -17,29 +17,29 @@ public abstract class Entity {
 
     public Entity(Country country, int x, int y) {
         country.getMap(x, y).setEntity(this);
-        this.country=country;
-        this.x=x;
-        this.y=y;
+        this.country = country;
+        this.x = x;
+        this.y = y;
     }
 
     public abstract int getID();
 
-    public void destroy(){
+    public void destroy() {
         country.getMap(x, y).setEntity(null);
     }
 
-    public void step(int x,int y){
-        move(this.x+(int)Math.signum(x),this.y+(int)Math.signum(y));
+    public void step(int x, int y) {
+        move(this.x + (int) Math.signum(x), this.y + (int) Math.signum(y));
     }
 
-    public void move(int x,int y){
+    public void move(int x, int y) {
         destroy();
-        this.x=x;
-        this.y=y;
+        this.x = x;
+        this.y = y;
         country.getMap(x, y).setEntity(this);
     }
 
-    public Menu getMenu(Activity activity, GameController gameController){
+    public Menu getMenu(Activity activity, GameController gameController) {
         return null;
     }
 }

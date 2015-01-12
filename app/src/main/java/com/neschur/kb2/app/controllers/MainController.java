@@ -24,7 +24,7 @@ public class MainController implements Drawable {
         this.activity = activity;
     }
 
-    public void start(){
+    public void start() {
         menuController = new MenuController(activity, this);
         gameController = new GameController(this);
         uiController = new UIController(activity, this);
@@ -59,9 +59,9 @@ public class MainController implements Drawable {
     }
 
     public void touchMenu(int i) {
-        switch (i){
+        switch (i) {
             case 4:
-                if(gameController.getPlayer().inNave()) {
+                if (gameController.getPlayer().inNave()) {
                     menuController.updateMenu(new CountryMenu(activity, gameController));
                     MenuView view = menuController.getView();
                     activity.setContentView(view);
@@ -71,7 +71,7 @@ public class MainController implements Drawable {
 
     public void activateEntity(Entity entity) {
         Menu menu = entity.getMenu(activity, gameController);
-        if(menu != null) {
+        if (menu != null) {
             menuController.updateMenu(menu);
             MenuView view = menuController.getView();
             activity.setContentView(view);

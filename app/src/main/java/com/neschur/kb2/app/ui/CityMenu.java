@@ -10,9 +10,9 @@ public class CityMenu extends Menu {
     final int COUNT = 7;
     private City city;
 
-    public CityMenu(Activity activity, Entity city, GameController gameController){
+    public CityMenu(Activity activity, Entity city, GameController gameController) {
         super(activity, gameController);
-        this.city = (City)city;
+        this.city = (City) city;
     }
 
     @Override
@@ -21,7 +21,7 @@ public class CityMenu extends Menu {
             case 0:
                 return "Заключить контракт";
             case 1:
-                if(gameController.getNave())
+                if (gameController.getNave())
                     return "Продать корабль ($0)";
                 return "Купить корабль ($500)";
             case 2:
@@ -29,7 +29,7 @@ public class CityMenu extends Menu {
             case 3:
                 return "#Переход к замку";
             case 4:
-                if(player.isWallkick())
+                if (player.isWallkick())
                     return "-";
                 return "Купить стенобитное орудие ($3000)";
             case 5:
@@ -45,15 +45,15 @@ public class CityMenu extends Menu {
     public boolean select(int i) {
         switch (i) {
             case 1:
-                if (gameController.getNave()){
+                if (gameController.getNave()) {
                     gameController.destroyNave();
-                }else{
+                } else {
                     player.changeMoney(-500);
                     gameController.createNave(4, 5);
                 }
                 return false;
             case 4:
-                if(!player.isWallkick()){
+                if (!player.isWallkick()) {
                     player.changeMoney(-3000);
                     player.setWallkick();
                 }

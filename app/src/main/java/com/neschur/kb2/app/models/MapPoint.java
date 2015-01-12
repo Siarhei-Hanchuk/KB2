@@ -8,26 +8,20 @@ import com.neschur.kb2.app.entities.Entity;
 public class MapPoint {
     public int land;
     private Entity entity;
-//    public int addid;
 
     public MapPoint() {
-        land=-1;
-        entity =null;
-    }
-
-    public String toString(){
-//        return ("Земля: "+land+" Обект: "+ entity.toString()+" Id Объекта: "+addid);
-        return ("Земля: "+land+" Обект: "+ entity.toString());
+        land = -1;
+        entity = null;
     }
 
     public int getLand() {
         return land;
     }
 
-    public int getDrawable(){
-        if(this.entity == null) {
+    public int getDrawable() {
+        if (this.entity == null) {
             return land;
-        }else{
+        } else {
             return entity.getID();
         }
     }
@@ -43,12 +37,4 @@ public class MapPoint {
     public void setEntity(Entity entity) {
         this.entity = entity;
     }
-
-//    public int getAddid() {
-//        return addid;
-//    }
-//
-//    public void setAddid(int addid) {
-//        this.addid = addid;
-//    }
 }

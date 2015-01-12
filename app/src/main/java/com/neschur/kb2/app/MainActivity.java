@@ -18,7 +18,7 @@ public class MainActivity extends Activity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        mainController= new MainController(this);
+        mainController = new MainController(this);
         mainController.start();
     }
 }

@@ -29,7 +29,7 @@ public class MenuView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        drawThread = new DrawThread (getHolder(), menuController);
+        drawThread = new DrawThread(getHolder(), menuController);
         drawThread.setRunning(true);
         drawThread.start();
     }
@@ -50,7 +50,7 @@ public class MenuView extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         double y = event.getY();
-        int item = (int)y/ITEM_SIZE;
+        int item = (int) y / ITEM_SIZE;
         menuController.select(item);
         drawThread.refresh();
         return super.onTouchEvent(event);

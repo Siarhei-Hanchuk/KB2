@@ -31,17 +31,17 @@ public class GameController {
         return world;
     }
 
-    public void move(int dx, int dy){
+    public void move(int dx, int dy) {
         int x = player.getX();
         int y = player.getY();
-        if(x + dx<2 || x + dx>62 || y + dy<2 || y + dy>62) {
+        if (x + dx < 2 || x + dx > 62 || y + dy < 2 || y + dy > 62) {
             return;
         }
 
         MapPoint mp = player.getCountry().getMap(x + dx, y + dy);
 
-        if(mp.getEntity()== null) {
-            if (player.inNave()){
+        if (mp.getEntity() == null) {
+            if (player.inNave()) {
                 if (mp.land == R.drawable.land || mp.land == R.drawable.sand) {
                     player.setNave(null);
                     player.move(x + dx, y + dy);
@@ -60,10 +60,10 @@ public class GameController {
         }
     }
 
-    private void actionWithObject(Player player, Entity entity){
-        if(entity instanceof Nave){
-            player.setNave((Nave)entity);
-            player.move(((Nave)entity).getX(), ((Nave)entity).getY());
+    private void actionWithObject(Player player, Entity entity) {
+        if (entity instanceof Nave) {
+            player.setNave((Nave) entity);
+            player.move(((Nave) entity).getX(), ((Nave) entity).getY());
         } else {
             mainController.activateEntity(entity);
         }
