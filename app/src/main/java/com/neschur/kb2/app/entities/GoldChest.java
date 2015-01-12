@@ -1,7 +1,12 @@
 package com.neschur.kb2.app.entities;
 
+import android.app.Activity;
+
 import com.neschur.kb2.app.R;
+import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.countries.Country;
+import com.neschur.kb2.app.ui.GoldChestMenu;
+import com.neschur.kb2.app.ui.Menu;
 
 public class GoldChest extends Entity {
 	private Integer gold=0;
@@ -16,13 +21,16 @@ public class GoldChest extends Entity {
 		return R.drawable.goldchest;
 	}
 
-	public int action() {
-//		Menu menu=new MenuGold();
-//		menu.setAddition(gold);
-//		ScreenController.pushMenus(menu);
-//		delete();
-//		//Screen.update();
-		return 0;
-	}
-	
+    @Override
+    public Menu getMenu(Activity activity, GameController gameController) {
+        return new GoldChestMenu(activity, this, gameController);
+    }
+
+    public int getGold(){
+        return gold;
+    }
+
+    public int getAuthority(){
+        return (int)gold/50;
+    }
 }

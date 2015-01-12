@@ -39,7 +39,7 @@ public class GameController {
 
         MapPoint mp = world.getCountry(player.getCountry()).getMap(x + dx, y + dy);
 
-        if(mp.entity == null) {
+        if(mp.getEntity()== null) {
             if (player.inNave()){
                 if (mp.land == R.drawable.land || mp.land == R.drawable.sand) {
                     player.setNave(null);
@@ -55,7 +55,7 @@ public class GameController {
                 }
             }
         } else {
-            actionWithObject(player, mp.entity);
+            actionWithObject(player, mp.getEntity());
         }
     }
 

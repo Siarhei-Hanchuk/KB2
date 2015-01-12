@@ -7,8 +7,8 @@ import com.neschur.kb2.app.entities.Entity;
  */
 public class MapPoint {
     public int land;
-    public Entity entity;
-    public int addid;
+    private Entity entity;
+//    public int addid;
 
     public MapPoint() {
         land=-1;
@@ -16,7 +16,8 @@ public class MapPoint {
     }
 
     public String toString(){
-        return ("Земля: "+land+" Обект: "+ entity.toString()+" Id Объекта: "+addid);
+//        return ("Земля: "+land+" Обект: "+ entity.toString()+" Id Объекта: "+addid);
+        return ("Земля: "+land+" Обект: "+ entity.toString());
     }
 
     public int getLand() {
@@ -43,11 +44,11 @@ public class MapPoint {
         this.entity = entity;
     }
 
-    public int getAddid() {
-        return addid;
-    }
-
-    public void setAddid(int addid) {
-        this.addid = addid;
-    }
+//    public int getAddid() {
+//        return addid;
+//    }
+//
+//    public void setAddid(int addid) {
+//        this.addid = addid;
+//    }
 }

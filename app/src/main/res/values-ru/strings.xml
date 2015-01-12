@@ -2,4 +2,6 @@
 <resources>
     <string name="entity.menus.magician.item1">Купить работников</string>
     <string name="entity.menus.magician.item2">Купить волшебную силу</string>
+    <string name="entity.menus.goldchest.item1">Забрать золото(увеличить золотой запас)</string>
+    <string name="entity.menus.goldchest.item2">Раздать воинам(увеличить авторитет)</string>
 </resources>

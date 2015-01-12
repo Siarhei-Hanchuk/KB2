@@ -22,7 +22,9 @@ public abstract class Entity {
         this.y=y;
     }
 
-    public void delete(){
+    public abstract int getID();
+
+    public void destroy(){
         country.getMap(x, y).setEntity(null);
     }
 
@@ -31,7 +33,7 @@ public abstract class Entity {
     }
 
     public void move(int x,int y){
-        delete();
+        destroy();
         this.x=x;
         this.y=y;
         country.getMap(x, y).setEntity(this);
@@ -40,10 +42,5 @@ public abstract class Entity {
     public Menu getMenu(Activity activity, GameController gameController){
         return null;
     }
-
-    public abstract int getID();
-//    public /*abstract*/ void ncAction(){
-//
-//    }
 }
 

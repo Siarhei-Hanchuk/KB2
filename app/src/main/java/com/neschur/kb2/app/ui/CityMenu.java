@@ -10,12 +10,10 @@ import com.neschur.kb2.app.models.Player;
 public class CityMenu extends Menu {
     final int COUNT = 7;
     private City city;
-    private Player player;
 
     public CityMenu(Activity activity, Entity city, GameController gameController){
         super(activity, gameController);
         this.city = (City)city;
-        this.player = gameController.getPlayer();
     }
 
     @Override

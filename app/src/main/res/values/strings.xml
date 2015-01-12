@@ -3,4 +3,6 @@
     <string name="app_name" translatable="false">KB2</string>
     <string name="entity.menus.magician.item1">Buy workers</string>
     <string name="entity.menus.magician.item2">Buy magic force</string>
+    <string name="entity.menus.goldchest.item1">get gold</string>
+    <string name="entity.menus.goldchest.item2">get authority</string>
 </resources>

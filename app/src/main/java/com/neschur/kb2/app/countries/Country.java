@@ -39,7 +39,7 @@ public abstract class Country {
         for(int  i=0;i<MAXC; i++){
             for(int j=0;j<MAXC; j++){
                 //map[i][j].setObj(0);
-                map[i][j].setAddid(0);
+//                map[i][j].setAddid(0);
             }
         }
     }
@@ -76,7 +76,7 @@ public abstract class Country {
 
     protected void cities(){
         map[6][5].setEntity(new City(this, 6, 5));
-        map[6][5].setAddid(0);
+//        map[6][5].setAddid(0);
         int v=1;
         int x;
         int y;
@@ -88,7 +88,7 @@ public abstract class Country {
                     ||(map[x][y+1].getLand()==R.drawable.water)||(map[x][y-1].getLand()==R.drawable.water))&&
                     ((map[x][y].getLand()==R.drawable.land)&&(map[x][y].getEntity()==null))){
                 map[x][y].setEntity(new City(this, x, y));
-                map[x][y].setAddid(v);
+//                map[x][y].setAddid(v);
                 v++;
             }
         }
@@ -113,7 +113,7 @@ public abstract class Country {
         int r=0;
         for(int i=5;i<MAXC-5; i++){
             for(int j=5;j<MAXC-5; j++){
-                if(((map[i][j].land==R.drawable.land)||(map[i][j].land==R.drawable.sand))&&(map[i][j].entity ==null)){
+                if(((map[i][j].land==R.drawable.land)||(map[i][j].land==R.drawable.sand))&&(map[i][j].getEntity()==null)){
                     r=rand(t);
                     if(r==1){
                         map[i][j].setEntity(new GoldChest(this, i, j));
@@ -215,7 +215,7 @@ public abstract class Country {
             for(int j=5;j<MAXC-5; j++){
                 r=rand(rnd);
                 if(r==1){
-                    if((map[i][j].land==R.drawable.land)&&(map[i][j].entity ==null)){
+                    if((map[i][j].land==R.drawable.land)&&(map[i][j].getEntity() ==null)){
                         map[i][j].land=land;
                     }
                 }

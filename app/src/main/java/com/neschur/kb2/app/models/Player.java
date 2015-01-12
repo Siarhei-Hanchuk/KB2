@@ -102,13 +102,14 @@ public class Player {
         this.magicPower++;
     }
 
-//    public Integer getAuthority() {
-//        return authority;
-//    }
-//
-//    public void changeAuthority(int d){
-//        authority+=d;
-//    }
+    public Integer getAuthority() {
+        return authority;
+    }
+
+    public void changeAuthority(int d){
+        authority+=d;
+    }
+
 //    public int getUseMagican() {
 //        return useMagican;
 //    }
