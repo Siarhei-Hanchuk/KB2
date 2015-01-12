@@ -4,4 +4,9 @@
     <string name="entity.menus.magician.item2">Купить волшебную силу</string>
     <string name="entity.menus.goldchest.item1">Забрать золото(увеличить золотой запас)</string>
     <string name="entity.menus.goldchest.item2">Раздать воинам(увеличить авторитет)</string>
+    <string name="menus.country.item1">Равнолесье</string>
+    <string name="menus.country.item2">Заболотие</string>
+    <string name="menus.country.item3">Тайгания</string>
+    <string name="menus.country.item4">Альпия</string>
+    <string name="menus.country.item5">Сахария</string>
 </resources>

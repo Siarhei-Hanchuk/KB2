@@ -5,4 +5,9 @@
     <string name="entity.menus.magician.item2">Buy magic force</string>
     <string name="entity.menus.goldchest.item1">get gold</string>
     <string name="entity.menus.goldchest.item2">get authority</string>
+    <string name="menus.country.item1">country1</string>
+    <string name="menus.country.item2">country2</string>
+    <string name="menus.country.item3">country3</string>
+    <string name="menus.country.item4">country4</string>
+    <string name="menus.country.item5">country5</string>
 </resources>

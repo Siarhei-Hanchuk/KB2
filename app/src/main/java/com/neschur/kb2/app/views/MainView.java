@@ -49,17 +49,22 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback {
     public boolean onTouchEvent(MotionEvent event) {
         double centerY = this.getHeight()/2;
         double centerX = (this.getWidth()*5/6)/2;
-        if(event.getY() > centerY && event.getX() > centerX*0.5 && event.getX() < centerX*1.5){
-            mainController.touchDown();
-        }
-        if(event.getY() < centerY && event.getX() > centerX*0.5 && event.getX() < centerX*1.5){
-            mainController.touchUp();
-        }
-        if(event.getX() > centerX && event.getY() > centerY*0.5 && event.getY() < centerY*1.5){
-            mainController.touchRight();
-        }
-        if(event.getX() < centerX && event.getY() > centerY*0.5 && event.getY() < centerY*1.5){
-            mainController.touchLeft();
+        if(event.getX() > this.getWidth()*5/6) {
+            int item = (int)event.getY()/(this.getHeight()/5);
+            mainController.touchMenu(item);
+        } else {
+            if (event.getY() > centerY && event.getX() > centerX * 0.5 && event.getX() < centerX * 1.5) {
+                mainController.touchDown();
+            }
+            if (event.getY() < centerY && event.getX() > centerX * 0.5 && event.getX() < centerX * 1.5) {
+                mainController.touchUp();
+            }
+            if (event.getX() > centerX && event.getY() > centerY * 0.5 && event.getY() < centerY * 1.5) {
+                mainController.touchRight();
+            }
+            if (event.getX() < centerX && event.getY() > centerY * 0.5 && event.getY() < centerY * 1.5) {
+                mainController.touchLeft();
+            }
         }
         drawThread.refresh();
         return super.onTouchEvent(event);

@@ -20,6 +20,7 @@ public class GameController {
         this.mainController = mainController;
         world = new World();
         player = new Player();
+        player.setCountry(world.getCountry(0));
     }
 
     public Player getPlayer() {
@@ -37,7 +38,7 @@ public class GameController {
             return;
         }
 
-        MapPoint mp = world.getCountry(player.getCountry()).getMap(x + dx, y + dy);
+        MapPoint mp = player.getCountry().getMap(x + dx, y + dy);
 
         if(mp.getEntity()== null) {
             if (player.inNave()){

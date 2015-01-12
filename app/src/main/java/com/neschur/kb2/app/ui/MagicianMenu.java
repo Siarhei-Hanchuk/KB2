@@ -1,12 +1,10 @@
 package com.neschur.kb2.app.ui;
 
 import android.app.Activity;
-import android.content.res.Resources;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
-import com.neschur.kb2.app.models.Player;
 
 /**
  * Created by siarhei on 12.1.15.

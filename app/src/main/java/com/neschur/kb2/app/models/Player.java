@@ -1,5 +1,6 @@
 package com.neschur.kb2.app.models;
 
+import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.entities.Nave;
 
 /**
@@ -11,17 +12,16 @@ public class Player {
     private int workers[]=new int[4];
     private int money;
     private int authority;
-    private int country;
-//    private int useMagican=0;
+    private Country country;
+    private int usedMagicianCount=0;
     private int magicPower;
-//    private int avalCountry=10;
+    private int availableCountry=1;
     private Nave nave;
 
     private int X;
     private int Y;
 
     private void easy(){
-        country=0;
         X=5;
         Y=5;
         wallkick=false;
@@ -36,8 +36,13 @@ public class Player {
         }
     }
 
+    private void debug(){
+        availableCountry = 5;
+    }
+
     public Player(){
         easy();
+        debug();
     }
 
     public void move(int x, int y){
@@ -48,13 +53,20 @@ public class Player {
         }
     }
 
-    public void setCountry(int country){
+    public void setCountry(Country country){
+        this.country = country;
+    }
+
+    public void changeCountry(Country country){
         this.country = country;
         X = 2;
         Y = 2;
+        if(inNave()){
+            nave.move(2,2, country);
+        }
     }
 
-    public int getCountry(){
+    public Country getCountry(){
         return country;
     }
 
@@ -110,26 +122,22 @@ public class Player {
         authority+=d;
     }
 
-//    public int getUseMagican() {
-//        return useMagican;
-//    }
-//
-//    public void upUseMagican() {
-//        this.useMagican++;
-//    }
-//
-//    public void upAvalCountry() {
-//        this.setAvalCountry(this.getAvalCountry() + 1);
-//    }
-//
-//    public int getAvalCountry() {
-//        return avalCountry;
-//    }
-//
-//    public void setAvalCountry(int avalCountry) {
-//        this.avalCountry = avalCountry;
-//    }
+    public void upAvailableCountry() {
+        this.availableCountry++;
+    }
 
+    public int getAvailableCountry() {
+        return availableCountry;
+    }
+
+    public int getUsedMagicianCount() {
+        return usedMagicianCount;
+    }
+
+    public void upUsedMagicianCount() {
+        this.usedMagicianCount++;
+    }
+//
 //    public void upWorker(int id, int count){
 //        workers[id]+=count;
 //    }

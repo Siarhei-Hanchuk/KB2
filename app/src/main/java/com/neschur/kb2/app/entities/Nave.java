@@ -27,6 +27,12 @@ public class Nave extends Entity implements Action{
 		this.y=y;
 	}
 
+    public void move(int x,int y, Country country){
+        this.country.getMap(this.x,this.y).setEntity(null);
+        this.country = country;
+        move(x,y);
+    }
+
     public int getX(){
         return x;
     }

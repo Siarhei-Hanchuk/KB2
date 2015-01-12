@@ -31,7 +31,7 @@ public class GameGrid {
         int[][] screen = new int[6][5];
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
-                screen[i][j] = world.getCountry(player.getCountry()).getMap(x + (i - 2), y + (j - 2)).getDrawable();
+                screen[i][j] = player.getCountry().getMap(x + (i - 2), y + (j - 2)).getDrawable();
             }
         }
         if(player.inNave())

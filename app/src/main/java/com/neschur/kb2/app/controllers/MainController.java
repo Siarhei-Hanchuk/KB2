@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 
 import com.neschur.kb2.app.MainActivity;
 import com.neschur.kb2.app.entities.Entity;
+import com.neschur.kb2.app.ui.CountryMenu;
 import com.neschur.kb2.app.ui.Menu;
 import com.neschur.kb2.app.views.Drawable;
 import com.neschur.kb2.app.views.MainView;
@@ -55,6 +56,17 @@ public class MainController implements Drawable {
 
     public void touchLeft() {
         gameController.move(-1, 0);
+    }
+
+    public void touchMenu(int i) {
+        switch (i){
+            case 4:
+                if(gameController.getPlayer().inNave()) {
+                    menuController.updateMenu(new CountryMenu(activity, gameController));
+                    MenuView view = menuController.getView();
+                    activity.setContentView(view);
+                }
+        }
     }
 
     public void activateEntity(Entity entity) {

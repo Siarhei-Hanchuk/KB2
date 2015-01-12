@@ -5,7 +5,6 @@ import android.app.Activity;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Entity;
-import com.neschur.kb2.app.models.Player;
 
 public class CityMenu extends Menu {
     final int COUNT = 7;
