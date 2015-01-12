@@ -4,7 +4,7 @@ package com.neschur.kb2.app.countries;
  * Created by siarhei on 2.6.14.
  */
 public class World {
-    private static World world=null;
+    private static World world = null;
 //    private Nave Onave;
 
 //    public static World getInstance(){
@@ -13,7 +13,7 @@ public class World {
 //        return world;
 //    }
 
-    private Country country[]=new Country[5];
+    private Country country[] = new Country[5];
 //    private int naveX;
 //    private int naveY;
 //    //private int naveC;
@@ -36,10 +36,10 @@ public class World {
 //    }
 
 	/*public int getNaveC() {
-		return naveC;
+        return naveC;
 	}*/
 
-    public World(){
+    public World() {
         country[0] = new Country1();
         country[1] = new Country2();
         country[2] = new Country3();

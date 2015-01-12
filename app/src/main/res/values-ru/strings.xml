@@ -9,4 +9,6 @@
     <string name="menus.country.item3">Тайгания</string>
     <string name="menus.country.item4">Альпия</string>
     <string name="menus.country.item5">Сахария</string>
+    <string name="countries.country1">Равнолесье</string>
+    <string name="entity.mapNext.message">Вы нашли карту до новой страны</string>
 </resources>

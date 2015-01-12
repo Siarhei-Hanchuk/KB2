@@ -16,7 +16,7 @@ public abstract class Entity {
     protected int y;
 
     public Entity(Country country, int x, int y) {
-        country.getMap(x, y).setEntity(this);
+        country.getMapPoint(x, y).setEntity(this);
         this.country = country;
         this.x = x;
         this.y = y;
@@ -25,7 +25,7 @@ public abstract class Entity {
     public abstract int getID();
 
     public void destroy() {
-        country.getMap(x, y).setEntity(null);
+        country.getMapPoint(x, y).setEntity(null);
     }
 
     public void step(int x, int y) {
@@ -36,7 +36,7 @@ public abstract class Entity {
         destroy();
         this.x = x;
         this.y = y;
-        country.getMap(x, y).setEntity(this);
+        country.getMapPoint(x, y).setEntity(this);
     }
 
     public Menu getMenu(Activity activity, GameController gameController) {

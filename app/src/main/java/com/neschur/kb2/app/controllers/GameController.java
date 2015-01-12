@@ -38,7 +38,7 @@ public class GameController {
             return;
         }
 
-        MapPoint mp = player.getCountry().getMap(x + dx, y + dy);
+        MapPoint mp = player.getCountry().getMapPoint(x + dx, y + dy);
 
         if (mp.getEntity() == null) {
             if (player.inNave()) {

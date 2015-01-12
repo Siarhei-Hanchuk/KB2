@@ -1,5 +1,7 @@
 package com.neschur.kb2.app.entities;
 
+import android.app.Activity;
+
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.Country;
 
@@ -14,23 +16,7 @@ public class MapNext extends Entity {
         return R.drawable.map;
     }
 
-    public int action() {
-//		Player.getInstance().upAvalCountry();
-//		ScreenController.pushMenus(new Message() {
-//
-//			@Override
-//			public String getMessage() {
-//				Player.getInstance().upAvalCountry();
-//				return "Вы нашлик карту в новую страну";
-//			}
-//
-//			@Override
-//			public MenusType getType() {
-//				return MenusType.MESSAGE;
-//			}
-//		});
-//		delete();
-        return 0;
+    public String getMessage(Activity activity) {
+        return activity.getResources().getString(R.string.entity_mapNext_message);
     }
-
 }

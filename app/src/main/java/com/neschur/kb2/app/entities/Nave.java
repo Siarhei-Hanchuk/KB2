@@ -21,14 +21,14 @@ public class Nave extends Entity {
     }
 
     public void move(int x, int y) {
-        country.getMap(x, y).setEntity(this);
-        country.getMap(this.x, this.y).setEntity(null);
+        country.getMapPoint(x, y).setEntity(this);
+        country.getMapPoint(this.x, this.y).setEntity(null);
         this.x = x;
         this.y = y;
     }
 
     public void move(int x, int y, Country country) {
-        this.country.getMap(this.x, this.y).setEntity(null);
+        this.country.getMapPoint(this.x, this.y).setEntity(null);
         this.country = country;
         move(x, y);
     }
