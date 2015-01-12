@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">KB2</string>
     <string name="entity.menus.magician.item1">Купить работников</string>
     <string name="entity.menus.magician.item2">Купить волшебную силу</string>
 </resources>

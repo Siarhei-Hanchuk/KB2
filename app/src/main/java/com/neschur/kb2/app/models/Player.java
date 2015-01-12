@@ -13,26 +13,31 @@ public class Player {
     private int authority;
     private int country;
 //    private int useMagican=0;
-//    private int magic=0;
+    private int magicPower;
 //    private int avalCountry=10;
     private Nave nave;
 
     private int X;
     private int Y;
 
-    public Player(){
+    private void easy(){
         country=0;
         X=5;
         Y=5;
         wallkick=false;
         money=20000;
         authority=50;
+        magicPower = 2;
         for(int i=0;i<10;i++) {
             workers[0] = 4;
             workers[1] = 6;
             workers[2] = 0;
             workers[3] = 3;
         }
+    }
+
+    public Player(){
+        easy();
     }
 
     public void move(int x, int y){
@@ -89,6 +94,14 @@ public class Player {
         return nave != null;
     }
 
+    public int getMagicPower() {
+        return magicPower;
+    }
+
+    public void upMagicPower() {
+        this.magicPower++;
+    }
+
 //    public Integer getAuthority() {
 //        return authority;
 //    }
@@ -104,14 +117,6 @@ public class Player {
 //        this.useMagican++;
 //    }
 //
-//    public int getMagic() {
-//        return magic;
-//    }
-//
-//    public void upMagic() {
-//        this.magic++;
-//    }
-
 //    public void upAvalCountry() {
 //        this.setAvalCountry(this.getAvalCountry() + 1);
 //    }

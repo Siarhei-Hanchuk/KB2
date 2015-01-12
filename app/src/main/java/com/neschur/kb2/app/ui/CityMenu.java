@@ -76,10 +76,4 @@ public class CityMenu extends Menu {
     public int getCount() {
         return COUNT;
     }
-
-//    @Override
-//    public void setAddition(Object data) {
-//        city=(City)data;
-//    }
-
 }

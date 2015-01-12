@@ -48,11 +48,11 @@ public class MenuController implements Drawable{
     }
 
     public void select(int item) {
+        boolean result = false;
         if(item < menu.getCount())
-            menu.select(item);
-        else
-            if(item == menu.getCount())
-                mainController.closeMenu();
+            result = menu.select(item);
+        if(item == menu.getCount() || result)
+            mainController.closeMenu();
     }
 
     public void displayMenu(Menu menu) {
