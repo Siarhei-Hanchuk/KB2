@@ -90,4 +90,8 @@ public class MainController implements Drawable {
     public void closeMenu() {
         activity.setContentView(mainView);
     }
+
+    public GameController getGameController() {
+        return gameController;
+    }
 }

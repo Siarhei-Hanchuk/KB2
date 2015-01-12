@@ -78,8 +78,12 @@ public class Player {
         return Y;
     }
 
-    public void changeMoney(int d) {
-        money += d;
+    public boolean changeMoney(int d) {
+        if(money + d >= 0) {
+            money += d;
+            return true;
+        }
+        return false;
     }
 
     public Integer getMoney() {
@@ -137,13 +141,13 @@ public class Player {
     public void upUsedMagicianCount() {
         this.usedMagicianCount++;
     }
-//
-//    public void upWorker(int id, int count){
-//        workers[id]+=count;
-//    }
-//
-//    public int getWorker(int id){
-//        return workers[id];
-//    }
+
+    public void changeWorker(int id, int count){
+        workers[id]+=count;
+    }
+
+    public int getWorker(int id){
+        return workers[id];
+    }
 }
 

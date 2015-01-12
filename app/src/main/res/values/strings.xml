@@ -12,4 +12,16 @@
     <string name="menus.country.item5">country5</string>
     <string name="countries.country1">county1</string>
     <string name="entity.mapNext.message">new country</string>
+    <string name="entity.menus.city.item1">contract</string>
+    <string name="entity.menus.city.item2">Купить корабль</string>
+    <string name="entity.menus.city.item3">Спросить о замке</string>
+    <string name="entity.menus.city.item4">%волшебство%</string>
+    <string name="entity.menus.city.item5">Купить стенобитное орудие</string>
+    <string name="entity.menus.city.item6">Работники</string>
+    <string name="entity.menus.city.item7">Товар</string>
+    <string name="entity.menus.city.item2a">Продать корабль</string>
+    <string name="entity.menus.city.workers.item1">a</string>
+    <string name="entity.menus.city.workers.item2">b</string>
+    <string name="entity.menus.city.workers.item3">c</string>
+    <string name="entity.menus.city.workers.item4">d</string>
 </resources>

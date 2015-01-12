@@ -45,6 +45,8 @@ public class MenuController implements Drawable {
         }
         canvas.drawText("Exit", 10,
                 MenuView.ITEM_SIZE + MenuView.ITEM_SIZE * i, paint);
+        canvas.drawText("Money: " + mainController.getGameController().getPlayer().getMoney(), 700,
+                MenuView.ITEM_SIZE, paint);
     }
 
     public void select(int item) {

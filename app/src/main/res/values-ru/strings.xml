@@ -11,4 +11,16 @@
     <string name="menus.country.item5">Сахария</string>
     <string name="countries.country1">Равнолесье</string>
     <string name="entity.mapNext.message">Вы нашли карту до новой страны</string>
+    <string name="entity.menus.city.item1">Заключить контракт</string>
+    <string name="entity.menus.city.item7">Товар</string>
+    <string name="entity.menus.city.item6">Работники</string>
+    <string name="entity.menus.city.item5">Купить стенобитное орудие</string>
+    <string name="entity.menus.city.item4">%волшебство%</string>
+    <string name="entity.menus.city.item3">Спросить о замке</string>
+    <string name="entity.menus.city.item2">Купить корабль</string>
+    <string name="entity.menus.city.item2a">Продать корабль</string>
+    <string name="entity.menus.city.workers.item1">Плотники</string>
+    <string name="entity.menus.city.workers.item2">Лесорубы</string>
+    <string name="entity.menus.city.workers.item3">Землекопы</string>
+    <string name="entity.menus.city.workers.item4">Камнетёсы</string>
 </resources>

@@ -24,8 +24,11 @@ public class City extends Entity {
         return R.drawable.city;
     }
 
-    public int getWorkers(int i) {
-        return workers[i - 1];
+    public int getWorkers(int id) {
+        return workers[id];
+    }
+    public void changeWorkers(int id, int count) {
+        workers[id] += count;
     }
 
     public Menu getMenu(Activity activity, GameController gameController) {
