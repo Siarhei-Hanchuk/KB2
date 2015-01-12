@@ -1,5 +1,7 @@
 package com.neschur.kb2.app.entities;
 
+import android.app.Activity;
+
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.countries.Country;
@@ -22,18 +24,11 @@ public class City extends Entity {
 		return R.drawable.city;
 	}
 
-//	public int action() {
-////		Menu m=new MenuCity();
-////		m.setAddition(this);
-////		ScreenController.pushMenus(m);
-//		return 0;
-//	}
-	
 	public int getWorkers(int i) {
 		return workers[i-1];
 	}
 
-    public Menu getMenu(GameController gameController) {
-        return new CityMenu(this, gameController);
+    public Menu getMenu(Activity activity, GameController gameController){
+        return new CityMenu(activity, this, gameController);
     }
 }

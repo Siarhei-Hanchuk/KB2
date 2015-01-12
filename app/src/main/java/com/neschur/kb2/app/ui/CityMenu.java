@@ -1,18 +1,20 @@
 package com.neschur.kb2.app.ui;
 
-import com.neschur.kb2.app.controllers.GameController;
-import com.neschur.kb2.app.countries.World;
-import com.neschur.kb2.app.models.Player;
-import com.neschur.kb2.app.entities.City;
+import android.app.Activity;
 
-public class CityMenu implements Menu {
+import com.neschur.kb2.app.controllers.GameController;
+import com.neschur.kb2.app.entities.City;
+import com.neschur.kb2.app.entities.Entity;
+import com.neschur.kb2.app.models.Player;
+
+public class CityMenu extends Menu {
+    final int COUNT = 7;
     private City city;
     private Player player;
-    private GameController gameController;
 
-    public CityMenu(City city, GameController gameController){
-        this.city = city;
-        this.gameController = gameController;
+    public CityMenu(Activity activity, Entity city, GameController gameController){
+        super(activity, gameController);
+        this.city = (City)city;
         this.player = gameController.getPlayer();
     }
 
@@ -72,7 +74,7 @@ public class CityMenu implements Menu {
 
     @Override
     public int getCount() {
-        return 7;
+        return COUNT;
     }
 
 //    @Override

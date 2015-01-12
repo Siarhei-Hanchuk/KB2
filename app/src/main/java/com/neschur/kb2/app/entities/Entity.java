@@ -4,6 +4,8 @@ package com.neschur.kb2.app.entities;
  * Created by siarhei on 2.6.14.
  */
 
+import android.app.Activity;
+
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.ui.Menu;
@@ -35,9 +37,9 @@ public abstract class Entity {
         country.getMap(x, y).setEntity(this);
     }
 
-//    public Menu getMenu(GameController gameController){
-//        return null;
-//    }
+    public Menu getMenu(Activity activity, GameController gameController){
+        return null;
+    }
 
     public abstract int getID();
 //    public /*abstract*/ void ncAction(){

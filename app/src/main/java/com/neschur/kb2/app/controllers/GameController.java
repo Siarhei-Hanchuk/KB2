@@ -2,12 +2,10 @@ package com.neschur.kb2.app.controllers;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.World;
-import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Nave;
 import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.Player;
-import com.neschur.kb2.app.views.MainView;
 
 /**
  * Created by siarhei on 11.1.15.

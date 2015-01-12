@@ -5,7 +5,6 @@ import android.app.Activity;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.countries.Country;
-import com.neschur.kb2.app.ui.CityMenu;
 import com.neschur.kb2.app.ui.MagicianMenu;
 import com.neschur.kb2.app.ui.Menu;
 

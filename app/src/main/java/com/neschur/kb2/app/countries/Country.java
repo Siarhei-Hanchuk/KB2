@@ -1,12 +1,12 @@
 package com.neschur.kb2.app.countries;
 
 import com.neschur.kb2.app.R;
-import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.GoldChest;
 import com.neschur.kb2.app.entities.GuidePost;
 import com.neschur.kb2.app.entities.Magician;
 import com.neschur.kb2.app.entities.MapNext;
+import com.neschur.kb2.app.models.MapPoint;
 
 import java.util.Random;
 

@@ -3,12 +3,10 @@ package com.neschur.kb2.app.controllers;
 import android.graphics.Canvas;
 
 import com.neschur.kb2.app.MainActivity;
-import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Entity;
-import com.neschur.kb2.app.ui.CityMenu;
 import com.neschur.kb2.app.ui.Menu;
-import com.neschur.kb2.app.views.MainView;
 import com.neschur.kb2.app.views.Drawable;
+import com.neschur.kb2.app.views.MainView;
 import com.neschur.kb2.app.views.MenuView;
 
 /**
@@ -60,8 +58,9 @@ public class MainController implements Drawable {
     }
 
     public void activateEntity(Entity entity) {
-        if(entity instanceof City) {
-            menuController.updateMenu(((City) entity).getMenu(gameController));
+        Menu menu = entity.getMenu(activity, gameController);
+        if(menu != null) {
+            menuController.updateMenu(menu);
             MenuView view = menuController.getView();
             activity.setContentView(view);
         }

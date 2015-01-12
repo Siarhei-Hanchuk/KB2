@@ -6,8 +6,6 @@ import android.graphics.Canvas;
 
 import com.neschur.kb2.app.MainActivity;
 
-import java.util.Random;
-
 /**
  * Created by siarhei on 8.6.14.
  */
