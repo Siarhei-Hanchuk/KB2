@@ -55,10 +55,6 @@ public class MenuController implements Drawable {
             mainController.closeMenu();
     }
 
-    public void displayMenu(Menu menu) {
-//        view.getHolder().lockCanvas();
-    }
-
     public void updateMenu(Menu menu) {
         this.menu = menu;
     }

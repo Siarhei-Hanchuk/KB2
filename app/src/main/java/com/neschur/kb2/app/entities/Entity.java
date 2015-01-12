@@ -42,5 +42,8 @@ public abstract class Entity {
     public Menu getMenu(Activity activity, GameController gameController) {
         return null;
     }
+    public String getMessage(Activity activity) {
+        return null;
+    }
 }
 

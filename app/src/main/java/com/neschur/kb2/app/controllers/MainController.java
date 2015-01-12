@@ -9,6 +9,7 @@ import com.neschur.kb2.app.ui.Menu;
 import com.neschur.kb2.app.views.Drawable;
 import com.neschur.kb2.app.views.MainView;
 import com.neschur.kb2.app.views.MenuView;
+import com.neschur.kb2.app.views.MessageView;
 
 /**
  * Created by siarhei on 6.6.14.
@@ -18,6 +19,7 @@ public class MainController implements Drawable {
     private UIController uiController;
     private GameController gameController;
     private MenuController menuController;
+    private MessageController messageController;
     private MainView mainView;
 
     public MainController(MainActivity activity) {
@@ -26,6 +28,7 @@ public class MainController implements Drawable {
 
     public void start() {
         menuController = new MenuController(activity, this);
+        messageController = new MessageController(activity, this);
         gameController = new GameController(this);
         uiController = new UIController(activity, this);
         mainView = new MainView(activity, this);
@@ -71,9 +74,15 @@ public class MainController implements Drawable {
 
     public void activateEntity(Entity entity) {
         Menu menu = entity.getMenu(activity, gameController);
+        String message = entity.getMessage(activity);
         if (menu != null) {
             menuController.updateMenu(menu);
             MenuView view = menuController.getView();
+            activity.setContentView(view);
+        }
+        if(message != null) {
+            messageController.updateMessage(message);
+            MessageView view = messageController.getView();
             activity.setContentView(view);
         }
     }
