@@ -43,10 +43,10 @@ public class MenuController implements Drawable {
             canvas.drawText(menu.getItemDescription(i), 10,
                     MenuView.ITEM_SIZE + MenuView.ITEM_SIZE * i, paint);
         }
-        if(menu.withExit())
+        if (menu.withExit())
             canvas.drawText("Exit", 10,
                     MenuView.ITEM_SIZE + MenuView.ITEM_SIZE * i, paint);
-        if(menu.withMoney())
+        if (menu.withMoney())
             canvas.drawText("Money: " + mainController.getGameController().getPlayer().getMoney(), 700,
                     MenuView.ITEM_SIZE, paint);
     }
@@ -55,16 +55,14 @@ public class MenuController implements Drawable {
         boolean result = false;
         if (item < menu.getCount())
             result = menu.select(item);
-        if(menu.withExit()) {
+        if (menu.withExit()) {
             if (item == menu.getCount() || result)
                 if (menu.getMenuMode() > 0) {
-                    System.out.println("reset");
                     menu.resetMenuMode();
                 } else {
-                    System.out.println("close");
                     mainController.closeMenu();
                 }
-        }else{
+        } else {
             if (result)
                 mainController.closeMenu();
         }

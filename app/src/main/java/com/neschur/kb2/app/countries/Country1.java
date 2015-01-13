@@ -4,11 +4,11 @@ import com.neschur.kb2.app.R;
 
 public class Country1 extends Country {
 
-    protected int goldChestMax(){
+    protected int goldChestMax() {
         return 550;
     }
 
-    protected int goldChestMin(){
+    protected int goldChestMin() {
         return 220;
     }
 
@@ -29,7 +29,7 @@ public class Country1 extends Country {
 
     void city(int cid) {
         /*city_arr[cid].castleid=cid;
-	    city_arr[cid].magic=rand()%14;
+        city_arr[cid].magic=rand()%14;
 	    city_arr[cid].wforest=rand()%4+1;
 	    city_arr[cid].wland=rand()%4+1;
 	    city_arr[cid].wstone=rand()%3+1;

@@ -79,7 +79,7 @@ public class Player {
     }
 
     public boolean changeMoney(int d) {
-        if(money + d >= 0) {
+        if (money + d >= 0) {
             money += d;
             return true;
         }
@@ -142,11 +142,11 @@ public class Player {
         this.usedMagicianCount++;
     }
 
-    public void changeWorker(int id, int count){
-        workers[id]+=count;
+    public void changeWorker(int id, int count) {
+        workers[id] += count;
     }
 
-    public int getWorker(int id){
+    public int getWorker(int id) {
         return workers[id];
     }
 }

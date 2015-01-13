@@ -80,7 +80,7 @@ public class MainController implements Drawable {
             MenuView view = menuController.getView();
             activity.setContentView(view);
         }
-        if(message != null) {
+        if (message != null) {
             messageController.updateMessage(message);
             MessageView view = messageController.getView();
             activity.setContentView(view);

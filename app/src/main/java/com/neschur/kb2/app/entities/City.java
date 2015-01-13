@@ -27,6 +27,7 @@ public class City extends Entity {
     public int getWorkers(int id) {
         return workers[id];
     }
+
     public void changeWorkers(int id, int count) {
         workers[id] += count;
     }

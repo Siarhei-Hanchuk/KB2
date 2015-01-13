@@ -46,7 +46,6 @@ public class GameGrid {
 
     private void makeStatus(int[][] screen) {
         screen[5][0] = R.drawable.status_contract_0;
-        System.out.println(player.isWallkick());
         if (!player.isWallkick())
             screen[5][1] = R.drawable.status_wallkick_0;
         else

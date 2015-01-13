@@ -38,7 +38,7 @@ public class CityMenu extends Menu {
                     case 4:
                         if (player.isWallkick())
                             return "-";
-                        return resources.getString(R.string.entity_menus_city_item5) + "($" + PRICE_WALLKICK  + ")";
+                        return resources.getString(R.string.entity_menus_city_item5) + "($" + PRICE_WALLKICK + ")";
                     case 5:
                         return resources.getString(R.string.entity_menus_city_item6);
                     case 6:
@@ -61,10 +61,8 @@ public class CityMenu extends Menu {
 
     @Override
     public boolean select(int i) {
-        System.out.println("menuMode: " + menuMode);
         switch (menuMode) {
             case 0:
-                System.out.println("switch:" + i);
                 switch (i) {
                     case 1:
                         if (gameController.getNave()) {
@@ -87,8 +85,8 @@ public class CityMenu extends Menu {
                 }
                 return false;
             case 1:
-                if(city.getWorkers(i) > 0 ){
-                    if(player.changeMoney(-PRICE_WORKERS[i])){
+                if (city.getWorkers(i) > 0) {
+                    if (player.changeMoney(-PRICE_WORKERS[i])) {
                         player.changeWorker(i, 1);
                         city.changeWorkers(i, -1);
                     }
@@ -101,7 +99,6 @@ public class CityMenu extends Menu {
 
     @Override
     public int getCount() {
-        System.out.println("count mode^"+menuMode);
         switch (menuMode) {
             case 1:
                 return WORKERS_COUNT;
@@ -111,7 +108,7 @@ public class CityMenu extends Menu {
     }
 
     @Override
-    public int getMenuMode(){
+    public int getMenuMode() {
         return menuMode;
     }
 }

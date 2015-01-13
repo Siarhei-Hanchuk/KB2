@@ -4,11 +4,11 @@ import com.neschur.kb2.app.R;
 
 public class Country5 extends Country {
 
-    protected int goldChestMax(){
+    protected int goldChestMax() {
         return 6380;
     }
 
-    protected int goldChestMin(){
+    protected int goldChestMin() {
         return 2380;
     }
 
