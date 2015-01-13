@@ -98,12 +98,15 @@ public abstract class Country {
         }
     }
 
+    protected abstract int goldChestMin();
+    protected abstract int goldChestMax();
+
     protected void goldChests(int frequency) {
         for (int i = 5; i < MAX_MAP_SIZE - 5; i++) {
             for (int j = 5; j < MAX_MAP_SIZE - 5; j++) {
                 if (((map[i][j].land == R.drawable.land) || (map[i][j].land == R.drawable.sand)) && (map[i][j].getEntity() == null)) {;
                     if (rand(frequency) == 1) {
-                        map[i][j].setEntity(new GoldChest(this, i, j));
+                        map[i][j].setEntity(new GoldChest(this, i, j, goldChestMin(), goldChestMax()));
                     }
                 }
             }

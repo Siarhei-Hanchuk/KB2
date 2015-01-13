@@ -3,6 +3,15 @@ package com.neschur.kb2.app.countries;
 import com.neschur.kb2.app.R;
 
 public class Country1 extends Country {
+
+    protected int goldChestMax(){
+        return 550;
+    }
+
+    protected int goldChestMin(){
+        return 220;
+    }
+
     public Country1() {
         super();
         river(30);

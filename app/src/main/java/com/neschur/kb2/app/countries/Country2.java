@@ -4,6 +4,14 @@ import com.neschur.kb2.app.R;
 
 public class Country2 extends Country {
 
+    protected int goldChestMax(){
+        return 480;
+    }
+
+    protected int goldChestMin(){
+        return 1120;
+    }
+
     void gw_c2_capitan(int cid) {
     /*    world.capitans[cid].army[0].armid=a_peasant;
 	    world.capitans[cid].army[0].count=10;

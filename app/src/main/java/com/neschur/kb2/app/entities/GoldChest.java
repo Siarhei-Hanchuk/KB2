@@ -11,9 +11,9 @@ import com.neschur.kb2.app.ui.Menu;
 public class GoldChest extends Entity {
     private Integer gold = 0;
 
-    public GoldChest(Country country, int x, int y) {
+    public GoldChest(Country country, int x, int y, int min, int max) {
         super(country, x, y);
-        gold = (int) (33 * Math.random() + 22) * 10;
+        gold = (int) ((max - min) * Math.random() + min);
     }
 
     @Override

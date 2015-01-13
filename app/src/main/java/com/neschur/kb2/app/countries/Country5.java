@@ -3,6 +3,23 @@ package com.neschur.kb2.app.countries;
 import com.neschur.kb2.app.R;
 
 public class Country5 extends Country {
+
+    protected int goldChestMax(){
+        return 6380;
+    }
+
+    protected int goldChestMin(){
+        return 2380;
+    }
+
+    public Country5() {
+        sand_c5();
+        river(10);
+        //cities();
+        //stone_c5();
+        goldChests(100);
+    }
+
     void sand_c5() {
         for (int i = 6; i < 59; i++) {
             for (int j = 6; j < 11; j++) {
@@ -31,12 +48,4 @@ public class Country5 extends Country {
 	        }
 	    }
 	}*/
-
-    public Country5() {
-        sand_c5();
-        river(10);
-        //cities();
-        //stone_c5();
-        goldChests(100);
-    }
 }
