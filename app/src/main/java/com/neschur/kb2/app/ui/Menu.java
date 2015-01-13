@@ -11,6 +11,7 @@ public abstract class Menu {
     protected GameController gameController;
     protected Resources resources;
     protected Player player;
+    protected int menuMode = 0;
 
     public Menu(Activity activity, GameController gameController) {
         this.activity = activity;
@@ -24,4 +25,20 @@ public abstract class Menu {
     public abstract String getItemDescription(int i);
 
     public abstract boolean select(int i);
+
+    public int getMenuMode() {
+        return 0;
+    }
+
+    public void resetMenuMode() {
+        menuMode = 0;
+    }
+
+    public boolean withExit() {
+        return true;
+    }
+
+    public boolean withMoney() {
+        return true;
+    }
 }

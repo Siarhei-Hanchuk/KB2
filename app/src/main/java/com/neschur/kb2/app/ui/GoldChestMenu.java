@@ -46,4 +46,9 @@ public class GoldChestMenu extends Menu {
     public int getCount() {
         return COUNT;
     }
+
+    @Override
+    public boolean withMoney() {
+        return false;
+    }
 }
