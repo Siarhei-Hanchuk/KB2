@@ -3,6 +3,7 @@ package com.neschur.kb2.app.ui.menus;
 import android.app.Activity;
 import android.content.res.Resources;
 
+import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.models.Player;
 
@@ -42,11 +43,11 @@ public abstract class Menu {
         return true;
     }
 
-    protected String menuItem(int id, int price) {
-        return resources.getString(id) + "($" + price + ")";
+    protected String menuItem(String id, int price) {
+        return I18n.translate(id) + "($" + price + ")";
     }
 
-    protected String menuItem(int id) {
-        return resources.getString(id);
+    protected String menuItem(String id) {
+        return I18n.translate(id);
     }
 }

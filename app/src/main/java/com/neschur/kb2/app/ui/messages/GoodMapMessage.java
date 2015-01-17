@@ -2,6 +2,7 @@ package com.neschur.kb2.app.ui.messages;
 
 import android.content.res.Resources;
 
+import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
@@ -22,13 +23,7 @@ public class GoodMapMessage extends MapMessage {
 
     @Override
     public String getText() {
-        switch (mode) {
-            case 0:
-                return resources.getString(R.string.entity_goodMap_message1);
-            case 1:
-                return resources.getString(R.string.entity_goodMap_message2);
-        }
-        return null;
+        return I18n.translate("entity_goodMap_message1" + (mode + 1));
     }
 
     public void action() {

@@ -30,7 +30,7 @@ public class CityMenu extends Menu {
                     case 1:
                         if (gameController.getNave())
                             return resources.getString(R.string.entity_menus_city_item2a);
-                        return menuItem(R.string.entity_menus_city_item2, PRICE_NAVE);
+                        return menuItem("entity_menus_city_item2", PRICE_NAVE);
                     case 2:
                         return resources.getString(R.string.entity_menus_city_item3);
                     case 3:
@@ -38,23 +38,14 @@ public class CityMenu extends Menu {
                     case 4:
                         if (player.isWallkick())
                             return "-";
-                        return menuItem(R.string.entity_menus_city_item5, PRICE_WALLKICK);
+                        return menuItem("entity_menus_city_item5", PRICE_WALLKICK);
                     case 5:
                         return resources.getString(R.string.entity_menus_city_item6);
                     case 6:
                         return resources.getString(R.string.entity_menus_city_item7);
                 }
             case 1:
-                switch (i) {
-                    case 0:
-                        return menuItem(R.string.entity_menus_city_workers_item1, PRICE_WORKERS[0]) + ": " + city.getWorkers(0);
-                    case 1:
-                        return menuItem(R.string.entity_menus_city_workers_item2, PRICE_WORKERS[1]) + ": " + city.getWorkers(1);
-                    case 2:
-                        return menuItem(R.string.entity_menus_city_workers_item3, PRICE_WORKERS[2]) + ": " + city.getWorkers(2);
-                    case 3:
-                        return menuItem(R.string.entity_menus_city_workers_item4, PRICE_WORKERS[3]) + ": " + city.getWorkers(3);
-                }
+                return menuItem("entity_menus_city_workers_item" + (i + 1), PRICE_WORKERS[i]) + ": " + city.getWorkers(i);
         }
         return null;
     }

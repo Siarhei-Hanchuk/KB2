@@ -2,6 +2,7 @@ package com.neschur.kb2.app.ui.menus;
 
 import android.app.Activity;
 
+import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.GameController;
 
@@ -15,20 +16,7 @@ public class CountryMenu extends Menu {
 
     @Override
     public String getItemDescription(int i) {
-        switch (i) {
-            case 0:
-                return resources.getString(R.string.menus_country_item1);
-            case 1:
-                return resources.getString(R.string.menus_country_item2);
-            case 2:
-                return resources.getString(R.string.menus_country_item3);
-            case 3:
-                return resources.getString(R.string.menus_country_item4);
-            case 4:
-                return resources.getString(R.string.menus_country_item5);
-            default:
-                return null;
-        }
+        return I18n.translate("menus_country_item" + (i + 1));
     }
 
     @Override

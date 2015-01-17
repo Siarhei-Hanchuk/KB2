@@ -2,6 +2,7 @@ package com.neschur.kb2.app.ui.menus;
 
 import android.app.Activity;
 
+import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
@@ -20,14 +21,7 @@ public class GoldChestMenu extends Menu {
     }
 
     public String getItemDescription(int i) {
-        switch (i) {
-            case 0:
-                return resources.getString(R.string.entity_menus_goldchest_item1);
-            case 1:
-                return resources.getString(R.string.entity_menus_goldchest_item2);
-            default:
-                return null;
-        }
+        return I18n.translate("entity_menus_goldchest_item" + (i + 1));
     }
 
     @Override
