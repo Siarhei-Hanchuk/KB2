@@ -16,6 +16,7 @@ import java.util.Random;
 public abstract class Country {
     public final static int MAX_MAP_SIZE = 65;
     protected MapPoint[][] map;
+    protected int id;
 
     protected int rand(int n) {
         return Math.abs(new Random().nextInt()) % n;
@@ -240,7 +241,8 @@ public abstract class Country {
         map[x][y].setEntity(new MapNext(this, x, y));
     }
 
-    public Country() {
+    public Country(int id) {
+        this.id = id;
         map = new MapPoint[65][65];
         for (int i = 0; i < 65; i++) {
             for (int j = 0; j < 65; j++) {
@@ -252,6 +254,10 @@ public abstract class Country {
         guidePosts();
         cities();
         new Magician(this, 5, 8); //debug
+    }
+
+    public int getId() {
+        return id;
     }
 }
 

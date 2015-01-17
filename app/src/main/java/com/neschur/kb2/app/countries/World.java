@@ -40,11 +40,11 @@ public class World {
 	}*/
 
     public World() {
-        country[0] = new Country1();
-        country[1] = new Country2();
-        country[2] = new Country3();
-        country[3] = new Country4();
-        country[4] = new Country5();
+        country[0] = new Country1(0);
+        country[1] = new Country2(1);
+        country[2] = new Country3(2);
+        country[3] = new Country4(3);
+        country[4] = new Country5(4);
     }
 
 //    public boolean getNave(){

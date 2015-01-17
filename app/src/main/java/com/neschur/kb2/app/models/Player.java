@@ -13,7 +13,7 @@ public class Player {
     private int money;
     private int authority;
     private Country country;
-    private int usedMagicianCount = 0;
+    private int usedMagicianCount[] = {0,0,0,0,0};
     private int magicPower;
     private int availableCountry = 1;
     private Nave nave;
@@ -135,11 +135,11 @@ public class Player {
     }
 
     public int getUsedMagicianCount() {
-        return usedMagicianCount;
+        return usedMagicianCount[getCountry().getId()];
     }
 
     public void upUsedMagicianCount() {
-        this.usedMagicianCount++;
+        this.usedMagicianCount[getCountry().getId()]++;
     }
 
     public void changeWorker(int id, int count) {

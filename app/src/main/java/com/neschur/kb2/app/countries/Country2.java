@@ -37,7 +37,8 @@ public class Country2 extends Country {
 	    }*/
     }
 
-    public Country2() {
+    public Country2(int id) {
+        super(id);
         river(40);
         river(50);
         river(30);

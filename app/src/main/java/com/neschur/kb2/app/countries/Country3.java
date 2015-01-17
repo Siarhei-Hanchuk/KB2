@@ -12,7 +12,8 @@ public class Country3 extends Country {
         return 690;
     }
 
-    public Country3() {
+    public Country3(int id) {
+        super(id);
         river(40);
         river(30);
         //cities();
