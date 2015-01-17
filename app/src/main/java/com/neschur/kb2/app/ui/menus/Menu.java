@@ -43,7 +43,7 @@ public abstract class Menu {
     }
 
     protected String menuItem(int id, int price) {
-        return resources.getString(id) + "($" + price+ ")";
+        return resources.getString(id) + "($" + price + ")";
     }
 
     protected String menuItem(int id) {

@@ -25,13 +25,13 @@ public class MenuFactory {
     }
 
     public static Menu getMenu(Entity entity) {
-        if(entity instanceof City) {
+        if (entity instanceof City) {
             return new CityMenu(activity, entity, gameController);
         }
-        if(entity instanceof Magician) {
+        if (entity instanceof Magician) {
             return new MagicianMenu(activity, entity, gameController);
         }
-        if(entity instanceof GoldChest) {
+        if (entity instanceof GoldChest) {
             return new GoldChestMenu(activity, entity, gameController);
         }
         return null;

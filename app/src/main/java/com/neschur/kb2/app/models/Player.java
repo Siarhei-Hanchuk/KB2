@@ -13,7 +13,7 @@ public class Player {
     private int money;
     private int authority;
     private Country country;
-    private int usedMagicianCount[] = {0,0,0,0,0};
+    private int usedMagicianCount[] = {0, 0, 0, 0, 0};
     private int magicPower;
     private int availableCountry = 1;
     private Nave nave;
@@ -21,6 +21,11 @@ public class Player {
 
     private int X;
     private int Y;
+
+    public Player() {
+        easy();
+        debug();
+    }
 
     private void easy() {
         X = 5;
@@ -41,21 +46,12 @@ public class Player {
         availableCountry = 5;
     }
 
-    public Player() {
-        easy();
-        debug();
-    }
-
     public void move(int x, int y) {
         this.X = x;
         this.Y = y;
         if (getNave() != null) {
             getNave().move(x, y);
         }
-    }
-
-    public void setCountry(Country country) {
-        this.country = country;
     }
 
     public void changeCountry(Country country) {
@@ -69,6 +65,10 @@ public class Player {
 
     public Country getCountry() {
         return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
     public int getX() {
@@ -128,7 +128,7 @@ public class Player {
     }
 
     public void upAvailableCountry() {
-        if(availableCountry < 5)
+        if (availableCountry < 5)
             availableCountry++;
     }
 

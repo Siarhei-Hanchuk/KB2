@@ -51,10 +51,10 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback {
             int item = (int) event.getY() / (this.getHeight() / 5);
             mainController.touchMenu(item);
         } else {
-            int height_2_5 = this.getHeight() * 2/5;
-            int height_3_5 = this.getHeight() * 3/5;
-            int width_2_5 = this.getWidth() * 2/5;
-            int width_3_5 = this.getWidth() * 3/5;
+            int height_2_5 = this.getHeight() * 2 / 5;
+            int height_3_5 = this.getHeight() * 3 / 5;
+            int width_2_5 = this.getWidth() * 2 / 5;
+            int width_3_5 = this.getWidth() * 3 / 5;
             double y = event.getY();
             double x = event.getX();
             if (y > height_3_5) {

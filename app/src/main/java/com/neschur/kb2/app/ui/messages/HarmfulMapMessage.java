@@ -6,8 +6,6 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
 
-import java.util.Random;
-
 /**
  * Created by siarhei on 17.1.15.
  */
@@ -17,7 +15,7 @@ public class HarmfulMapMessage extends MapMessage {
     }
 
     @Override
-    protected int getCount(){
+    protected int getCount() {
         return 5;
     }
 
@@ -41,7 +39,7 @@ public class HarmfulMapMessage extends MapMessage {
     public void action() {
         switch (mode) {
             case 0:
-                for(int i=0; i<4; i++)
+                for (int i = 0; i < 4; i++)
                     player.changeWorker(i, -player.getWorker(i));
                 return;
             case 1:

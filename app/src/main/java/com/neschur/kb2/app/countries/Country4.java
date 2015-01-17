@@ -4,14 +4,6 @@ import com.neschur.kb2.app.R;
 
 public class Country4 extends Country {
 
-    protected int goldChestMax() {
-        return 2660;
-    }
-
-    protected int goldChestMin() {
-        return 930;
-    }
-
     public Country4(int id) {
         super(id);
         river(40);
@@ -19,5 +11,13 @@ public class Country4 extends Country {
         cities();
         landscape(2, R.drawable.stone);
         goldChests(40);
+    }
+
+    protected int goldChestMax() {
+        return 2660;
+    }
+
+    protected int goldChestMin() {
+        return 930;
     }
 }

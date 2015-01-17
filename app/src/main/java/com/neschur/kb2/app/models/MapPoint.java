@@ -18,16 +18,16 @@ public class MapPoint {
         return land;
     }
 
+    public void setLand(int land) {
+        this.land = land;
+    }
+
     public int getDrawable() {
         if (this.entity == null) {
             return land;
         } else {
             return entity.getID();
         }
-    }
-
-    public void setLand(int land) {
-        this.land = land;
     }
 
     public Entity getEntity() {

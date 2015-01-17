@@ -5,14 +5,6 @@ import com.neschur.kb2.app.entities.HarmfulMap;
 
 public class Country1 extends Country {
 
-    protected int goldChestMax() {
-        return 550;
-    }
-
-    protected int goldChestMin() {
-        return 220;
-    }
-
     public Country1(int id) {
         super(id);
         river(30);
@@ -28,6 +20,14 @@ public class Country1 extends Country {
         army();
 
         new HarmfulMap(this, 8, 5); //debug
+    }
+
+    protected int goldChestMax() {
+        return 550;
+    }
+
+    protected int goldChestMin() {
+        return 220;
     }
 
     void army() {

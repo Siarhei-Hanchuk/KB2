@@ -10,7 +10,7 @@ import java.util.Random;
 /**
  * Created by siarhei on 17.1.15.
  */
-public abstract class MapMessage extends Message{
+public abstract class MapMessage extends Message {
     protected int mode;
 
     public MapMessage(Entity entity, Resources resources, GameController gameController) {

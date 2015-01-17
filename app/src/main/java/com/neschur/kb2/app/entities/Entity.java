@@ -7,9 +7,9 @@ package com.neschur.kb2.app.entities;
 import com.neschur.kb2.app.countries.Country;
 
 public abstract class Entity {
-    private Country country;
     protected int x;
     protected int y;
+    private Country country;
 
     public Entity(Country country, int x, int y) {
         country.getMapPoint(x, y).setEntity(this);
