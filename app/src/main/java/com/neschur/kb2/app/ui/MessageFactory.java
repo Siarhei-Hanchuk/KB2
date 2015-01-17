@@ -2,12 +2,13 @@ package com.neschur.kb2.app.ui;
 
 import android.app.Activity;
 
-import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
-import com.neschur.kb2.app.entities.GuidePost;
 import com.neschur.kb2.app.entities.HarmfulMap;
 import com.neschur.kb2.app.entities.MapNext;
+import com.neschur.kb2.app.ui.messages.HarmfulMapMessage;
+import com.neschur.kb2.app.ui.messages.MapNextMessage;
+import com.neschur.kb2.app.ui.messages.Message;
 
 /**
  * Created by siarhei on 14.1.15.

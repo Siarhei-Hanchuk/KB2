@@ -4,12 +4,7 @@ package com.neschur.kb2.app.entities;
  * Created by siarhei on 2.6.14.
  */
 
-import android.app.Activity;
-
-import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.countries.Country;
-import com.neschur.kb2.app.models.Player;
-import com.neschur.kb2.app.ui.Menu;
 
 public abstract class Entity {
     private Country country;

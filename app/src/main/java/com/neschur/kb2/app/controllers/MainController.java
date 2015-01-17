@@ -4,11 +4,11 @@ import android.graphics.Canvas;
 
 import com.neschur.kb2.app.MainActivity;
 import com.neschur.kb2.app.entities.Entity;
-import com.neschur.kb2.app.ui.CountryMenu;
-import com.neschur.kb2.app.ui.Menu;
 import com.neschur.kb2.app.ui.MenuFactory;
-import com.neschur.kb2.app.ui.Message;
 import com.neschur.kb2.app.ui.MessageFactory;
+import com.neschur.kb2.app.ui.menus.CountryMenu;
+import com.neschur.kb2.app.ui.menus.Menu;
+import com.neschur.kb2.app.ui.messages.Message;
 import com.neschur.kb2.app.views.Drawable;
 import com.neschur.kb2.app.views.MainView;
 import com.neschur.kb2.app.views.MenuView;

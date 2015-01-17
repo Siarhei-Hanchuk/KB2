@@ -5,7 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 import com.neschur.kb2.app.MainActivity;
-import com.neschur.kb2.app.ui.Message;
+import com.neschur.kb2.app.ui.messages.Message;
 import com.neschur.kb2.app.views.Drawable;
 import com.neschur.kb2.app.views.MessageView;
 

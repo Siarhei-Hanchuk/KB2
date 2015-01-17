@@ -1,9 +1,8 @@
-package com.neschur.kb2.app.ui;
+package com.neschur.kb2.app.ui.menus;
 
 import android.app.Activity;
 import android.content.res.Resources;
 
-import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.models.Player;
 

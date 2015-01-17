@@ -5,7 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 import com.neschur.kb2.app.MainActivity;
-import com.neschur.kb2.app.ui.Menu;
+import com.neschur.kb2.app.ui.menus.Menu;
 import com.neschur.kb2.app.views.Drawable;
 import com.neschur.kb2.app.views.MenuView;
 

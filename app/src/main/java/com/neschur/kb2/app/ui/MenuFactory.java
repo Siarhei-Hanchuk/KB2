@@ -7,6 +7,10 @@ import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.GoldChest;
 import com.neschur.kb2.app.entities.Magician;
+import com.neschur.kb2.app.ui.menus.CityMenu;
+import com.neschur.kb2.app.ui.menus.GoldChestMenu;
+import com.neschur.kb2.app.ui.menus.MagicianMenu;
+import com.neschur.kb2.app.ui.menus.Menu;
 
 /**
  * Created by siarhei on 14.1.15.

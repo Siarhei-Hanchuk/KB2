@@ -1,4 +1,4 @@
-package com.neschur.kb2.app.ui;
+package com.neschur.kb2.app.ui.menus;
 
 import android.app.Activity;
 

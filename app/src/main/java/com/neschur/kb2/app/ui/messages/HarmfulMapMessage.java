@@ -1,11 +1,10 @@
-package com.neschur.kb2.app.ui;
+package com.neschur.kb2.app.ui.messages;
 
 import android.content.res.Resources;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
-import com.neschur.kb2.app.entities.Nave;
 
 import java.util.Random;
 
