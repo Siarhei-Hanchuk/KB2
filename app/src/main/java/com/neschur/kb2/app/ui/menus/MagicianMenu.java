@@ -26,15 +26,15 @@ public class MagicianMenu extends Menu {
             case 0:
                 switch (i) {
                     case 0:
-                        return menuItem(R.string.entity_menus_magician_item1, PRICE_WORKERS);
+                        return menuItem(R.string.entity_magician_menu_item1, PRICE_WORKERS);
                     case 1:
-                        return menuItem(R.string.entity_menus_magician_item2, PRICE_MAGIC_POWER);
+                        return menuItem(R.string.entity_magician_menu_item2, PRICE_MAGIC_POWER);
                     case 2:
-                        return menuItem(R.string.entity_menus_magician_item3, PRICE_MOVE_TO_COUNTRY);
+                        return menuItem(R.string.entity_magician_menu_item3, PRICE_MOVE_TO_COUNTRY);
                     case 3:
-                        return menuItem(R.string.entity_menus_magician_item4);
+                        return menuItem(R.string.entity_magician_menu_item4);
                     case 4:
-                        return menuItem(R.string.entity_menus_magician_item5, PRICE_TORNADO);
+                        return menuItem(R.string.entity_magician_menu_item5, PRICE_TORNADO);
                     case 5:
                         return "-";
                     default:

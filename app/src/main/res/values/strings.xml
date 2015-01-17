@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">KB2</string>
-    <string name="entity.menus.magician.item1">Buy workers</string>
-    <string name="entity.menus.magician.item2">Buy magic force</string>
     <string name="entity.menus.goldchest.item1">get gold</string>
     <string name="entity.menus.goldchest.item2">get authority</string>
     <string name="menus.country.item1">country1</string>
@@ -24,9 +22,6 @@
     <string name="entity.menus.city.workers.item2">b</string>
     <string name="entity.menus.city.workers.item3">c</string>
     <string name="entity.menus.city.workers.item4">d</string>
-    <string name="entity.menus.magician.item3">move to country</string>
-    <string name="entity.menus.magician.item4">Спросить о заклинании</string>
-    <string name="entity.menus.magician.item5">Дать смерчь</string>
     <string name="entity.harmfulMap.message1">Вы теряете работников</string>
     <string name="entity.harmfulMap.message2">Ваш корабль пошёл ко дну</string>
     <string name="entity.harmfulMap.message3">Ваша памяти стала вам изменять</string>
@@ -34,4 +29,21 @@
     <string name="entity.harmfulMap.message5">Ваш золотой запас уже не с вами</string>
     <string name="entity.goodMap.message1">Ваш авторитет в войсках растёт</string>
     <string name="entity.goodMap.message2">Найденная бумага очень нужна одному из Хозяев земель</string>
+    <string name="entity.guidePost.message1">Найди ритуальный камень.</string>
+    <string name="entity.guidePost.message2">Ку-ку.</string>
+    <string name="entity.guidePost.message3">Присядь, Рыцарь, Отдохни.</string>
+    <string name="entity.guidePost.message4">Нужно найти город</string>
+    <string name="entity.guidePost.message5">I am a fine statue!</string>
+    <string name="entity.guidePost.message6">Здешние города пусты.</string>
+    <string name="entity.guidePost.message7">Вы можете жить на проценты: АЛЛЕГРО быстрее инфляции.</string>
+    <string name="entity.guidePost.message8">Это гиблое место.</string>
+    <string name="entity.guidePost.message9">Отпусти животных из своего войска.</string>
+    <string name="entity.guidePost.message10">Здесь будет город-сад!</string>
+    <string name="entity.guidePost.message11">Здесь поиться Твой предшественник.</string>
+    <string name="entity.magician.menu.item1">Работники</string>
+    <string name="entity.magician.menu.item2">Волшебная сила</string>
+    <string name="entity.magician.menu.item3">Переместить на другой континент</string>
+    <string name="entity.magician.menu.item4">Спросить о заклинании</string>
+    <string name="entity.magician.menu.item5">Дать смерч</string>
+    <string name="entity.magician.menu.item6">---</string>
 </resources>

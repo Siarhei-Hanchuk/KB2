@@ -4,8 +4,10 @@ import android.app.Activity;
 
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
+import com.neschur.kb2.app.entities.GuidePost;
 import com.neschur.kb2.app.entities.HarmfulMap;
 import com.neschur.kb2.app.entities.MapNext;
+import com.neschur.kb2.app.ui.messages.GuidePostMessage;
 import com.neschur.kb2.app.ui.messages.HarmfulMapMessage;
 import com.neschur.kb2.app.ui.messages.Message;
 import com.neschur.kb2.app.ui.messages.NextMapMessage;
@@ -27,6 +29,8 @@ public class MessageFactory {
             return new NextMapMessage(entity, activity.getResources(), gameController);
         if (entity instanceof HarmfulMap)
             return new HarmfulMapMessage(entity, activity.getResources(), gameController);
+        if (entity instanceof GuidePost)
+            return new GuidePostMessage(entity, activity.getResources(), gameController);
         return null;
     }
 }

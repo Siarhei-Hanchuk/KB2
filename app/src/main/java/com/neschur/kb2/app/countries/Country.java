@@ -44,7 +44,7 @@ public abstract class Country {
     protected abstract int goldChestMax();
 
     protected int rand(int n) {
-        return Math.abs(random.nextInt()) % n;
+        return random.nextInt(n);
     }
 
     public MapPoint getMapPoint(int x, int y) {
