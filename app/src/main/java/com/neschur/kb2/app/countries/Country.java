@@ -1,6 +1,8 @@
 package com.neschur.kb2.app.countries;
 
 import com.neschur.kb2.app.R;
+import com.neschur.kb2.app.entities.Captain;
+import com.neschur.kb2.app.entities.Castle;
 import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.GoldChest;
 import com.neschur.kb2.app.entities.GuidePost;
@@ -68,7 +70,7 @@ public abstract class Country {
 
     protected void cities() {
         map[6][5].setEntity(new City(this, 6, 5));
-        int count = 2; // 1 default for debug
+        int count = 1;
         int x;
         int y;
         while (count < 5) {
@@ -189,70 +191,77 @@ public abstract class Country {
         map[x][y].setEntity(new MapNext(this, x, y));
     }
 
-//    private void castels() {
-//        int x = 0;
-//        int y = 0;
-//        int c = 0;
-//        while (c < 5) {
-//            x = rand(MAX_MAP_SIZE);
-//            y = rand(MAX_MAP_SIZE);
-//            if (((map[x][y].land == R.drawable.land) && (map[x - 1][y].land == R.drawable.land) && (map[x + 1][y].land == R.drawable.land) && (map[x][y + 1].land == R.drawable.land)) &&
-//                    ((map[x][y].obj == 0) && (map[x - 1][y].obj == 0) && (map[x + 1][y].obj == 0) && (map[x][y + 1].obj == 0))) {
-//                map[x][y].obj = R.drawable.castel_c;
-//                map[x + 1][y].obj = R.drawable.castel_r;
-//                map[x - 1][y].obj = R.drawable.castel_l;
-//                map[x][y].addid = c;
-//                map[x][y + 1].obj = R.drawable.capitan;
-//                map[x][y + 1].addid = c;
-//                capitan(c);
-//                c++;
-//            }
-//        }
-//    }
-//
-//    private void capitans() {
-//        int x;
-//        int y;
-//        int c = 5;
-//        while (c < 20) {
-//            x = rand(56) + 4;
-//            y = rand(56) + 4;
-//            if (map[x][y].land == R.drawable.land && map[x][y].obj == 0) {
-//                map[x][y].obj = R.drawable.capitan;
-//                capitan(c);
-//                c++;
-//            }
-//        }
-//    }
-//
-//    public boolean worker(int n, int x, int y) {
-//        int T1 = 0;
-//        int T2 = 0;
-//        switch (n) {
-//            case 2:
-//                T1 = R.drawable.forest;
-//                T2 = R.drawable.land;
-//                break;
-//            case 4:
-//                T1 = R.drawable.stone;
-//                T2 = R.drawable.land;
-//                break;
-//            case 3:
-//                T1 = R.drawable.land;
-//                T2 = R.drawable.water;
-//                break;
-//            case 1:
-//                T1 = R.drawable.water;
-//                T2 = R.drawable.plot;
-//                break;
-//            default:
-//                break;
-//        }
-//        if (map[x][y].land == T1) {
-//            map[x][y].land = T2;
-//            return true;
-//        }
-//        return false;
-//    }
+    private boolean tryPlaceCastle(int x, int y) {
+        if (((map[x][y].land == R.drawable.land) &&
+                (map[x - 1][y].land == R.drawable.land) &&
+                (map[x + 1][y].land == R.drawable.land) &&
+                (map[x][y + 1].land == R.drawable.land)) &&
+                ((map[x][y].getEntity() == null) &&
+                        (map[x - 1][y].getEntity() == null) &&
+                        (map[x + 1][y].getEntity() == null) &&
+                        (map[x][y + 1].getEntity() == null))) {
+            map[x][y].setEntity(new Castle(this, x, y, R.drawable.castle_c));
+            map[x + 1][y].setEntity(new Castle(this, x, y, R.drawable.castle_r));
+            map[x - 1][y].setEntity(new Castle(this, x, y, R.drawable.castle_l));
+            map[x][y + 1].setEntity(new Captain(this, x, y));
+            return true;
+        }
+        return false;
+    }
+
+    private void castles() {
+        int count = 0;
+        while (count < 5) {
+            if (tryPlaceCastle(rand(MAX_MAP_SIZE), rand(MAX_MAP_SIZE))) {
+                count++;
+            }
+        }
+    }
+
+    private boolean tryPlaceCaptain(int x, int y) {
+        if (map[x][y].land == R.drawable.land && map[x][y].getEntity() == null) {
+            map[x][y].setEntity(new Captain(this, x, y));
+            return true;
+        }
+        return false;
+    }
+
+    private void captains() {
+        int count = 5;
+        while (count < 20) {
+            if (tryPlaceCaptain(rand(MAX_MAP_SIZE), rand(MAX_MAP_SIZE)))
+                count++;
+        }
+    }
+
+    public boolean worker(int n, int x, int y) {
+        int oldType = 0;
+        int newType = 0;
+        switch (n) {
+            case 0:
+                oldType = R.drawable.water;
+                newType = R.drawable.plot;
+                break;
+            case 1:
+                oldType = R.drawable.forest;
+                newType = R.drawable.land;
+                break;
+            case 2:
+                oldType = R.drawable.land;
+                newType = R.drawable.water;
+                break;
+            case 3:
+                oldType = R.drawable.stone;
+                newType = R.drawable.land;
+                break;
+            default:
+                return false;
+        }
+        if (map[x][y].land == oldType) {
+            map[x][y].land = newType;
+            return true;
+        }
+        return false;
+    }
 }
 

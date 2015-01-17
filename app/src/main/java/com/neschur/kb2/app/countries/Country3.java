@@ -16,9 +16,8 @@ public class Country3 extends Country {
         super(id);
         river(40);
         river(30);
-        //cities();
-        //castels(map,gw_c1_capitan);
+        cities();
         landscape(2, R.drawable.forest);
-        //goldChests();
+        goldChests(40);
     }
 }

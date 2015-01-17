@@ -14,14 +14,14 @@ public class Country5 extends Country {
 
     public Country5(int id) {
         super(id);
-        sand_c5();
+        sand();
         river(10);
-        //cities();
-        //stone_c5();
+        cities();
+        stones();
         goldChests(100);
     }
 
-    void sand_c5() {
+    private void sand() {
         for (int i = 6; i < 59; i++) {
             for (int j = 6; j < 11; j++) {
                 map[i][j].land = R.drawable.sand;
@@ -36,17 +36,16 @@ public class Country5 extends Country {
         }
     }
 
-	/*void stone_c5()
-    {
-	    for(int i=11;i<MAX_MAP_SIZE-11;i++){
-	        for(int j=11;j<MAX_MAP_SIZE-11;j++){
-	            if((map[i][j].obj==0)&&(map[i][j].land==R.drawable.land)){
-	                int r=rand(30);
-	                if(r<16){
-	                    map[i][j].land=R.drawable.stone;
-	                }
-	            }
-	        }
-	    }
-	}*/
+    void stones() {
+        for (int i = 11; i < MAX_MAP_SIZE - 11; i++) {
+            for (int j = 11; j < MAX_MAP_SIZE - 11; j++) {
+                if ((map[i][j].getEntity() == null) && (map[i][j].land == R.drawable.land)) {
+                    int r = rand(30);
+                    if (r < 16) {
+                        map[i][j].land = R.drawable.stone;
+                    }
+                }
+            }
+        }
+    }
 }
