@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 import com.neschur.kb2.app.MainActivity;
+import com.neschur.kb2.app.ui.Message;
 import com.neschur.kb2.app.views.Drawable;
 import com.neschur.kb2.app.views.MessageView;
 
@@ -15,7 +16,7 @@ public class MessageController implements Drawable {
     private MainActivity activity;
     private MainController mainController;
     private MessageView view;
-    private String message;
+    private Message message;
     private Paint paint;
 
     public MessageController(MainActivity activity, MainController mainController) {
@@ -31,10 +32,10 @@ public class MessageController implements Drawable {
     public void draw(Canvas canvas) {
         canvas.drawColor(Color.BLACK);
 
-        canvas.drawText(message, 10, 100, paint);
+        canvas.drawText(message.getText(), 10, 100, paint);
     }
 
-    public void updateMessage(String message) {
+    public void updateMessage(Message message) {
         this.message = message;
     }
 
@@ -45,6 +46,7 @@ public class MessageController implements Drawable {
     }
 
     public void closeMessage() {
+        message.action();
         mainController.closeMenu();
     }
 }

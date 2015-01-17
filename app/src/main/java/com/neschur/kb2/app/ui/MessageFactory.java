@@ -3,6 +3,7 @@ package com.neschur.kb2.app.ui;
 import android.app.Activity;
 
 import com.neschur.kb2.app.R;
+import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.GuidePost;
 import com.neschur.kb2.app.entities.MapNext;
@@ -12,19 +13,16 @@ import com.neschur.kb2.app.entities.MapNext;
  */
 public class MessageFactory {
     private static Activity activity;
+    private static GameController gameController;
 
-    public static void create(Activity activity) {
+    public static void create(Activity activity, GameController gameController) {
         MessageFactory.activity = activity;
+        MessageFactory.gameController = gameController;
     }
 
-    public static String getMessage(Entity entity) {
-        Integer id = null;
+    public static Message getMessage(Entity entity) {
         if(entity instanceof MapNext)
-            id = R.string.entity_mapNext_message;
-//        if(entity instanceof GuidePost)
-//            id = R.string.entity_mapNext;
-        if(id != null)
-            return activity.getResources().getString(id);
+            return new MapNextMessage(activity.getResources(), gameController);
         return null;
     }
 }
