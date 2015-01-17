@@ -128,7 +128,8 @@ public class Player {
     }
 
     public void upAvailableCountry() {
-        this.availableCountry++;
+        if(availableCountry < 5)
+            availableCountry++;
     }
 
     public int getAvailableCountry() {
