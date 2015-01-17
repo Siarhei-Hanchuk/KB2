@@ -18,6 +18,8 @@ public class MainActivity extends Activity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+        I18n.create(getResources());
+
         mainController = new MainController(this);
         mainController.start();
     }
