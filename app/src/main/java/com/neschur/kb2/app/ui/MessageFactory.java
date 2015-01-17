@@ -23,9 +23,9 @@ public class MessageFactory {
 
     public static Message getMessage(Entity entity) {
         if(entity instanceof MapNext)
-            return new MapNextMessage(activity.getResources(), gameController);
+            return new MapNextMessage(entity, activity.getResources(), gameController);
         if(entity instanceof HarmfulMap)
-            return new HarmfulMapMessage(activity.getResources(), gameController);
+            return new HarmfulMapMessage(entity, activity.getResources(), gameController);
         return null;
     }
 }

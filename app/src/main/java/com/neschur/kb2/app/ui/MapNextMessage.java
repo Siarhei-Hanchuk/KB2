@@ -4,18 +4,20 @@ import android.content.res.Resources;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.GameController;
+import com.neschur.kb2.app.entities.Entity;
 
 /**
  * Created by siarhei on 17.1.15.
  */
 public class MapNextMessage extends Message {
-    public MapNextMessage(Resources resources, GameController gameController) {
-        super(resources, gameController);
+    public MapNextMessage(Entity entity, Resources resources, GameController gameController) {
+        super(entity, resources, gameController);
     }
 
     @Override
     public void action() {
         player.upAvailableCountry();
+        entity.destroy();
     }
 
     @Override

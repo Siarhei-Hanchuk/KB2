@@ -4,6 +4,7 @@ import android.content.res.Resources;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.GameController;
+import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Nave;
 
 import java.util.Random;
@@ -15,8 +16,8 @@ public class HarmfulMapMessage extends Message{
     private int mode;
     private final int COUNT = 5;
 
-    public HarmfulMapMessage(Resources resources, GameController gameController) {
-        super(resources, gameController);
+    public HarmfulMapMessage(Entity entity, Resources resources, GameController gameController) {
+        super(entity, resources, gameController);
         mode = Math.abs((new Random()).nextInt()) % COUNT;
     }
 
@@ -44,9 +45,9 @@ public class HarmfulMapMessage extends Message{
                     player.changeWorker(i, -player.getWorker(i));
                 return;
             case 1:
-                Nave nave = player.getNave();
-                if(nave != null)
-                    nave.destroy();
+                // TODO bad destroy
+                if (gameController.getNave())
+                    gameController.destroyNave();
                 return;
             case 2:
                 // TODO
@@ -58,5 +59,6 @@ public class HarmfulMapMessage extends Message{
                 player.changeMoney(-player.getMoney());
                 return;
         }
+        entity.destroy();
     }
 }
