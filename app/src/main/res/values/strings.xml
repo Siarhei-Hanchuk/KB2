@@ -27,4 +27,9 @@
     <string name="entity.menus.magician.item3">move to country</string>
     <string name="entity.menus.magician.item4">Спросить о заклинании</string>
     <string name="entity.menus.magician.item5">Дать смерчь</string>
+    <string name="entity.harmfulMap.message1">Вы теряете работников</string>
+    <string name="entity.harmfulMap.message2">Ваш корабль пошёл ко дну</string>
+    <string name="entity.harmfulMap.message3">Ваша памяти стала вам изменять</string>
+    <string name="entity.harmfulMap.message4">Вы теряете армию</string>
+    <string name="entity.harmfulMap.message5">Ваш золотой запас уже не с вами</string>
 </resources>

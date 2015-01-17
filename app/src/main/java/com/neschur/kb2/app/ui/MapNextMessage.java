@@ -11,10 +11,15 @@ import com.neschur.kb2.app.controllers.GameController;
 public class MapNextMessage extends Message {
     public MapNextMessage(Resources resources, GameController gameController) {
         super(resources, gameController);
-        message = resources.getString(R.string.entity_mapNext_message);
     }
 
+    @Override
     public void action() {
         player.upAvailableCountry();
+    }
+
+    @Override
+    public String getText() {
+        return resources.getString(R.string.entity_mapNext_message);
     }
 }

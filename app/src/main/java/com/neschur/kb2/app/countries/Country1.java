@@ -1,6 +1,7 @@
 package com.neschur.kb2.app.countries;
 
 import com.neschur.kb2.app.R;
+import com.neschur.kb2.app.entities.HarmfulMap;
 
 public class Country1 extends Country {
 
@@ -25,6 +26,8 @@ public class Country1 extends Country {
         //cities();
         goldChests(40);
         army();
+
+        new HarmfulMap(this, 8, 5);
     }
 
     void city(int cid) {

@@ -9,7 +9,6 @@ import com.neschur.kb2.app.models.Player;
  * Created by siarhei on 17.1.15.
  */
 public abstract class Message {
-    protected String message;
     protected Resources resources;
     protected Player player;
 
@@ -18,9 +17,6 @@ public abstract class Message {
         this.resources = resources;
     }
 
-    public String getText() {
-        return message;
-    }
-
+    public abstract String getText();
     public abstract void action();
 }
