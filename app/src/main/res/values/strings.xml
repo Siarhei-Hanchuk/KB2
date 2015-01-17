@@ -24,4 +24,7 @@
     <string name="entity.menus.city.workers.item2">b</string>
     <string name="entity.menus.city.workers.item3">c</string>
     <string name="entity.menus.city.workers.item4">d</string>
+    <string name="entity.menus.magician.item3">move to country</string>
+    <string name="entity.menus.magician.item4">Спросить о заклинании</string>
+    <string name="entity.menus.magician.item5">Дать смерчь</string>
 </resources>
