@@ -67,6 +67,22 @@ public class MainController implements Drawable {
         gameController.move(-1, 0);
     }
 
+    public void touchUpRight() {
+        gameController.move(+1, -1);
+    }
+
+    public void touchUpLeft() {
+        gameController.move(-1, -1);
+    }
+
+    public void touchDownRight() {
+        gameController.move(+1, +1);
+    }
+
+    public void touchDownLeft() {
+        gameController.move(-1, +1);
+    }
+
     public void touchMenu(int i) {
         switch (i) {
             case 4:
