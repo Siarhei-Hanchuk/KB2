@@ -21,16 +21,11 @@ public class GoldChest extends Entity {
         return R.drawable.goldchest;
     }
 
-    @Override
-    public Menu getMenu(Activity activity, GameController gameController) {
-        return new GoldChestMenu(activity, this, gameController);
-    }
-
     public int getGold() {
         return gold;
     }
 
     public int getAuthority() {
-        return (int) gold / 50;
+        return gold / 50;
     }
 }

@@ -18,8 +18,4 @@ public class Magician extends Entity {
     public int getID() {
         return R.drawable.magican;
     }
-
-    public Menu getMenu(Activity activity, GameController gameController) {
-        return new MagicianMenu(activity, this, gameController);
-    }
 }

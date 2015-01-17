@@ -31,8 +31,4 @@ public class City extends Entity {
     public void changeWorkers(int id, int count) {
         workers[id] += count;
     }
-
-    public Menu getMenu(Activity activity, GameController gameController) {
-        return new CityMenu(activity, this, gameController);
-    }
 }

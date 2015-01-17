@@ -38,13 +38,5 @@ public abstract class Entity {
         this.y = y;
         country.getMapPoint(x, y).setEntity(this);
     }
-
-    public Menu getMenu(Activity activity, GameController gameController) {
-        return null;
-    }
-
-    public String getMessage(Activity activity) {
-        return null;
-    }
 }
 

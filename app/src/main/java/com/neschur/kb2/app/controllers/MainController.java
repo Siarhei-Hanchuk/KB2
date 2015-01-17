@@ -6,6 +6,8 @@ import com.neschur.kb2.app.MainActivity;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.ui.CountryMenu;
 import com.neschur.kb2.app.ui.Menu;
+import com.neschur.kb2.app.ui.MenuFactory;
+import com.neschur.kb2.app.ui.MessageFactory;
 import com.neschur.kb2.app.views.Drawable;
 import com.neschur.kb2.app.views.MainView;
 import com.neschur.kb2.app.views.MenuView;
@@ -33,6 +35,9 @@ public class MainController implements Drawable {
         uiController = new UIController(activity, this);
         mainView = new MainView(activity, this);
         activity.setContentView(mainView);
+
+        MenuFactory.create(activity, gameController);
+        MessageFactory.create(activity);
     }
 
     public void draw(Canvas canvas) {
@@ -73,8 +78,8 @@ public class MainController implements Drawable {
     }
 
     public void activateEntity(Entity entity) {
-        Menu menu = entity.getMenu(activity, gameController);
-        String message = entity.getMessage(activity);
+        Menu menu = MenuFactory.getMenu(entity);
+        String message = MessageFactory.getMessage(entity);
         if (menu != null) {
             menuController.updateMenu(menu);
             MenuView view = menuController.getView();

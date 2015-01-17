@@ -15,8 +15,4 @@ public class MapNext extends Entity {
     public int getID() {
         return R.drawable.map;
     }
-
-    public String getMessage(Activity activity) {
-        return activity.getResources().getString(R.string.entity_mapNext_message);
-    }
 }
