@@ -32,4 +32,6 @@
     <string name="entity.harmfulMap.message3">Ваша памяти стала вам изменять</string>
     <string name="entity.harmfulMap.message4">Вы теряете армию</string>
     <string name="entity.harmfulMap.message5">Ваш золотой запас уже не с вами</string>
+    <string name="entity.goodMap.message1">Ваш авторитет в войсках растёт</string>
+    <string name="entity.goodMap.message2">Найденная бумага очень нужна одному из Хозяев земель</string>
 </resources>

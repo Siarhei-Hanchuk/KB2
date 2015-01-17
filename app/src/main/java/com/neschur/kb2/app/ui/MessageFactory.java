@@ -7,7 +7,7 @@ import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.HarmfulMap;
 import com.neschur.kb2.app.entities.MapNext;
 import com.neschur.kb2.app.ui.messages.HarmfulMapMessage;
-import com.neschur.kb2.app.ui.messages.MapNextMessage;
+import com.neschur.kb2.app.ui.messages.NextMapMessage;
 import com.neschur.kb2.app.ui.messages.Message;
 
 /**
@@ -24,7 +24,7 @@ public class MessageFactory {
 
     public static Message getMessage(Entity entity) {
         if(entity instanceof MapNext)
-            return new MapNextMessage(entity, activity.getResources(), gameController);
+            return new NextMapMessage(entity, activity.getResources(), gameController);
         if(entity instanceof HarmfulMap)
             return new HarmfulMapMessage(entity, activity.getResources(), gameController);
         return null;

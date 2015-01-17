@@ -11,13 +11,14 @@ import java.util.Random;
 /**
  * Created by siarhei on 17.1.15.
  */
-public class HarmfulMapMessage extends Message{
-    private int mode;
-    private final int COUNT = 5;
-
+public class HarmfulMapMessage extends MapMessage {
     public HarmfulMapMessage(Entity entity, Resources resources, GameController gameController) {
         super(entity, resources, gameController);
-        mode = Math.abs((new Random()).nextInt()) % COUNT;
+    }
+
+    @Override
+    protected int getCount(){
+        return 5;
     }
 
     @Override

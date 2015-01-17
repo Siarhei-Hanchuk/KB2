@@ -9,8 +9,8 @@ import com.neschur.kb2.app.entities.Entity;
 /**
  * Created by siarhei on 17.1.15.
  */
-public class MapNextMessage extends Message {
-    public MapNextMessage(Entity entity, Resources resources, GameController gameController) {
+public class NextMapMessage extends Message {
+    public NextMapMessage(Entity entity, Resources resources, GameController gameController) {
         super(entity, resources, gameController);
     }
 
