@@ -17,6 +17,7 @@ public class Player {
     private int magicPower;
     private int availableCountry = 1;
     private Nave nave;
+    private boolean importantDocs[] = {false, false, false, false, false};
 
     private int X;
     private int Y;
@@ -148,6 +149,14 @@ public class Player {
 
     public int getWorker(int id) {
         return workers[id];
+    }
+
+    public boolean getImportantDocs(int id) {
+        return importantDocs[id];
+    }
+
+    public void setImportantDocs(int id) {
+        this.importantDocs[id] = true;
     }
 }
 

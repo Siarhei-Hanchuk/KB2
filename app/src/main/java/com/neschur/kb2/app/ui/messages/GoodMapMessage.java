@@ -37,7 +37,7 @@ public class GoodMapMessage extends MapMessage {
                 player.changeAuthority(+player.getAuthority());
                 return;
             case 1:
-                // TODO
+                player.setImportantDocs((new Random()).nextInt() % 5);
                 return;
         }
         entity.destroy();
