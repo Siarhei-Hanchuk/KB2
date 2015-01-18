@@ -1,6 +1,7 @@
 package com.neschur.kb2.app.controllers;
 
 import android.graphics.Canvas;
+import android.view.View;
 
 import com.neschur.kb2.app.MainActivity;
 import com.neschur.kb2.app.entities.Entity;
@@ -11,6 +12,7 @@ import com.neschur.kb2.app.ui.menus.Menu;
 import com.neschur.kb2.app.ui.messages.Message;
 import com.neschur.kb2.app.views.Drawable;
 import com.neschur.kb2.app.views.MainView;
+import com.neschur.kb2.app.views.MapView;
 import com.neschur.kb2.app.views.MenuView;
 import com.neschur.kb2.app.views.MessageView;
 
@@ -85,12 +87,17 @@ public class MainController implements Drawable {
 
     public void touchMenu(int i) {
         switch (i) {
+            case 3:
+                View mapView = new MapView(activity, this);
+                activity.setContentView(mapView);
+                return;
             case 4:
                 if (gameController.getPlayer().inNave()) {
                     menuController.updateMenu(new CountryMenu(activity, gameController));
-                    MenuView view = menuController.getView();
-                    activity.setContentView(view);
+                    View menuView = menuController.getView();
+                    activity.setContentView(menuView );
                 }
+                return;
         }
     }
 

@@ -33,8 +33,8 @@ public class GameController {
     }
 
     public void moveEntities() {
-        Sorcerer sorcerer = player.getCountry().getSorcerer();
-        sorcerer.moveTo(player.getX(), player.getY());
+//        Sorcerer sorcerer = player.getCountry().getSorcerer();
+//        sorcerer.moveTo(player.getX(), player.getY());
     }
 
     public void move(int dx, int dy) {
