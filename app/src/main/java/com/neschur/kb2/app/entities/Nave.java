@@ -4,8 +4,6 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.Country;
 
 public class Nave extends Entity {
-    Country country;
-
     public Nave(Country country, int x, int y) {
         super(country, x, y);
         this.country = country;
@@ -16,21 +14,17 @@ public class Nave extends Entity {
         return R.drawable.nave;
     }
 
-    public void action() {
-
-    }
-
     public void move(int x, int y) {
-        country.getMapPoint(x, y).setEntity(this);
-        country.getMapPoint(this.x, this.y).setEntity(null);
-        this.x = x;
-        this.y = y;
+        move(x, y, null);
     }
 
     public void move(int x, int y, Country country) {
         this.country.getMapPoint(this.x, this.y).setEntity(null);
-        this.country = country;
-        move(x, y);
+        if (country != null)
+            this.country = country;
+        this.country.getMapPoint(x, y).setEntity(this);
+        this.x = x;
+        this.y = y;
     }
 
     public int getX() {

@@ -10,7 +10,7 @@ import com.neschur.kb2.app.countries.Country;
 public abstract class Entity {
     protected int x;
     protected int y;
-    private Country country;
+    protected Country country;
 
     public Entity(Country country, int x, int y) {
         country.getMapPoint(x, y).setEntity(this);
@@ -47,6 +47,14 @@ public abstract class Entity {
 
     public Country getCountry() {
         return country;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 }
 

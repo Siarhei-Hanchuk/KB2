@@ -1,9 +1,6 @@
 package com.neschur.kb2.app.countries;
 
 import com.neschur.kb2.app.R;
-import com.neschur.kb2.app.entities.ArmyShop;
-import com.neschur.kb2.app.entities.HarmfulMap;
-import com.neschur.kb2.app.models.MapPoint;
 
 public class Country1 extends Country {
 
@@ -15,9 +12,10 @@ public class Country1 extends Country {
         landscape(7, R.drawable.forest);
         landscape(20, R.drawable.stone);
 
-        mapNext();
         cities();
+        guidePosts();
         goldChests(40, 220, 550);
         army(10, 0);
+        mapNext();
     }
 }

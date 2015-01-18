@@ -59,8 +59,7 @@ public class CityMenu extends Menu {
                         if (gameController.getNave()) {
                             gameController.destroyNave();
                         } else {
-                            player.changeMoney(-PRICE_NAVE);
-                            gameController.createNave(4, 5);
+                            buyNave();
                         }
                         return false;
                     case 4:
@@ -86,6 +85,24 @@ public class CityMenu extends Menu {
             default:
                 return false;
         }
+    }
+
+    private void buyNave() {
+        player.changeMoney(-PRICE_NAVE);
+        boolean founded = false;
+        int x = -1;
+        int y = -1;
+        for (x = city.getX() - 1; x < city.getX() + 1; x++) {
+            for (y = city.getY() - 1; y < city.getY() + 1; y++) {
+                if (city.getCountry().getMapPoint(x,y).getLand() == R.drawable.water) {
+                    founded = true;
+                    break;
+                }
+            }
+            if (founded)
+                break;
+        }
+        gameController.createNave(x, y);
     }
 
     @Override

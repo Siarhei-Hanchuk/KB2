@@ -36,9 +36,6 @@ public abstract class Country {
         }
 
         base();
-        guidePosts();
-        cities();
-
 //        createSorcerer(5, 7);//debug
     }
 
@@ -80,7 +77,6 @@ public abstract class Country {
     }
 
     protected void cities() {
-        map[6][5].setEntity(new City(this, 6, 5));
         int count = 1;
         int x;
         int y;
