@@ -20,8 +20,7 @@ public class GameController {
     public GameController(MainController mainController) {
         this.mainController = mainController;
         world = new World();
-        player = new Player();
-        player.setCountry(world.getCountry(0));
+        player = new Player(world.getCountry(0));
     }
 
     public Player getPlayer() {

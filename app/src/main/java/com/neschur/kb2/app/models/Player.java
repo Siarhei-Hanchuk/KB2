@@ -20,18 +20,21 @@ public class Player {
     private Nave nave;
     private boolean importantDocs[] = {false, false, false, false, false};
     private int salary = 0;
+    private Memory memory;
+    private int x;
+    private int y;
 
-    private int X;
-    private int Y;
+    public Player(Country _country) {
+        memory = new Memory();
+        country = _country;
 
-    public Player() {
+        move(5, 5);
+
         easy();
         debug();
     }
 
     private void easy() {
-        X = 5;
-        Y = 5;
         wallkick = false;
         money = 20000;
         authority = 50;
@@ -51,20 +54,25 @@ public class Player {
     }
 
     public void move(int x, int y) {
-        this.X = x;
-        this.Y = y;
+        this.x = x;
+        this.y = y;
         if (getNave() != null) {
             getNave().move(x, y);
         }
+        memory.update(getCountry().getId(), x, y);
     }
 
     public void changeCountry(Country country) {
         this.country = country;
-        X = 2;
-        Y = 2;
+        x = 2;
+        y = 2;
         if (inNave()) {
             nave.move(2, 2, country);
         }
+    }
+
+    public Memory getMemory() {
+        return memory;
     }
 
     public Country getCountry() {
@@ -76,11 +84,11 @@ public class Player {
     }
 
     public int getX() {
-        return X;
+        return x;
     }
 
     public int getY() {
-        return Y;
+        return y;
     }
 
     public boolean changeMoney(int d) {

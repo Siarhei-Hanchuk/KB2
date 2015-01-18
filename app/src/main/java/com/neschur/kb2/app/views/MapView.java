@@ -12,6 +12,7 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.MainController;
 import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.models.MapPoint;
+import com.neschur.kb2.app.models.Player;
 
 /**
  * Created by siarhei on 18.1.15.
@@ -19,11 +20,13 @@ import com.neschur.kb2.app.models.MapPoint;
 public class MapView extends SurfaceView implements SurfaceHolder.Callback, Drawable {
     private MainController mainController;
     private DrawThread drawThread;
+    private Player player;
 
     public MapView(Context context, MainController mainController) {
         super(context);
         getHolder().addCallback(this);
         this.mainController = mainController;
+        this.player = mainController.getGameController().getPlayer();
     }
 
     @Override
@@ -60,10 +63,15 @@ public class MapView extends SurfaceView implements SurfaceHolder.Callback, Draw
 
     public void draw(Canvas canvas) {
         int pointSize = canvas.getHeight()/ Country.MAX_MAP_SIZE;
-        Country country = mainController.getGameController().getPlayer().getCountry();
+        Country country = player.getCountry();
+        boolean memory[][] = player.getMemory().getMap(country.getId());
+
         Paint paint = new Paint();
         for (int i = 0; i < Country.MAX_MAP_SIZE; i++) {
             for (int j = 0; j < Country.MAX_MAP_SIZE; j++) {
+                if (!memory[i][j])
+                    continue;
+
                 setMapPointColor(paint, country.getMapPoint(i, j));
 
                 canvas.drawRect(pointSize * i, pointSize * j,
