@@ -1,7 +1,35 @@
 package com.neschur.kb2.app.warriors;
 
+import java.util.Random;
+
 public class WarriorFactory {
-    static Warrior create(String id) {
+    private static String[] group0 = {"peasant", "aborigine", "boar", "woodgoblin", "skeleton"};
+    private static String[] group1 = {"elf", "dwarf", "zombie", "rknight", "gorilla"};
+    private static String[] group2 = {"cannibal", "ghost", "lion", "druid", "troll"};
+    private static String[] group3 = {"elephant", "snake", "vampire", "giant", "knight"};
+    private static String[] group4 = {"centaur", "dinosaur"};
+    private static String[] group5 = {"daemon", "cyclops", "dragon"};
+
+    public static Warrior createRandomFromGroup(int group) {
+        switch (group) {
+            case 0:
+                return create(group0[(new Random()).nextInt(5)]);
+            case 1:
+                return create(group1[(new Random()).nextInt(5)]);
+            case 2:
+                return create(group2[(new Random()).nextInt(5)]);
+            case 3:
+                return create(group3[(new Random()).nextInt(5)]);
+            case 4:
+                return create(group4[(new Random()).nextInt(2)]);
+            case 5:
+                return create(group5[(new Random()).nextInt(3)]);
+            default:
+                return null;
+        }
+    }
+
+    public static Warrior create(String id) {
         switch (id) {
             case "peasant":
                 return new Warrior(id, 2, 1, 1, false, false, 1000, 50);
@@ -21,6 +49,8 @@ public class WarriorFactory {
                 return new Warrior(id, 22, 6, 1, false, false, 200, 250);
             case "rknight":
                 return new Warrior(id, 25, 8, 1, false, false, 200, 300);
+            case "gorilla":// TODO
+                return new Warrior(id, 20, 8, 1, false, false, 111, 111);
             case "cannibal":
                 return new Warrior(id, 5, 2, 1, false, false, 0, 0);
             case "ghost":

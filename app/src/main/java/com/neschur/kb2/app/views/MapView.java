@@ -11,7 +11,6 @@ import android.view.SurfaceView;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.MainController;
 import com.neschur.kb2.app.countries.Country;
-import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.models.MapPoint;
 
 /**
@@ -109,7 +108,7 @@ public class MapView extends SurfaceView implements SurfaceHolder.Callback, Draw
 
     private void setMapPointColorForEntity(Paint paint, int entityId) {
         switch (entityId) {
-            case R.drawable.army:
+            case R.drawable.army_shop:
                 paint.setColor(Color.GRAY);
                 break;
             case R.drawable.capitan:

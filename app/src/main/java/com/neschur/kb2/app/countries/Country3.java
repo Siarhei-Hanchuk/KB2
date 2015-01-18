@@ -10,14 +10,6 @@ public class Country3 extends Country {
         river(30);
         cities();
         landscape(2, R.drawable.forest);
-        goldChests(40);
-    }
-
-    protected int goldChestMax() {
-        return 1970;
-    }
-
-    protected int goldChestMin() {
-        return 690;
+        goldChests(40, 690, 1970);
     }
 }

@@ -10,15 +10,7 @@ public class Country5 extends Country {
         river(10);
         cities();
         stones();
-        goldChests(100);
-    }
-
-    protected int goldChestMax() {
-        return 6380;
-    }
-
-    protected int goldChestMin() {
-        return 2380;
+        goldChests(100, 2380, 6380);
     }
 
     private void sand() {
@@ -36,7 +28,7 @@ public class Country5 extends Country {
         }
     }
 
-    void stones() {
+    private void stones() {
         for (int i = 11; i < MAX_MAP_SIZE - 11; i++) {
             for (int j = 11; j < MAX_MAP_SIZE - 11; j++) {
                 if ((map[i][j].getEntity() == null) && (map[i][j].land == R.drawable.land)) {

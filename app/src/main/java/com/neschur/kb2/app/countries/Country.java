@@ -1,6 +1,7 @@
 package com.neschur.kb2.app.countries;
 
 import com.neschur.kb2.app.R;
+import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Captain;
 import com.neschur.kb2.app.entities.Castle;
 import com.neschur.kb2.app.entities.City;
@@ -49,9 +50,9 @@ public abstract class Country {
         sorcerer = new Sorcerer(this, x, y);
     }
 
-    protected abstract int goldChestMin();
-
-    protected abstract int goldChestMax();
+    public Sorcerer getSorcerer() {
+        return sorcerer;
+    }
 
     protected int rand(int n) {
         return random.nextInt(n);
@@ -108,12 +109,12 @@ public abstract class Country {
         }
     }
 
-    protected void goldChests(int frequency) {
+    protected void goldChests(int frequency, int min, int max) {
         for (int i = 5; i < MAX_MAP_SIZE - 5; i++) {
             for (int j = 5; j < MAX_MAP_SIZE - 5; j++) {
                 if (((map[i][j].land == R.drawable.land) || (map[i][j].land == R.drawable.sand)) && (map[i][j].getEntity() == null)) {
                     if (rand(frequency) == 1) {
-                        map[i][j].setEntity(new GoldChest(this, i, j, goldChestMin(), goldChestMax()));
+                        map[i][j].setEntity(new GoldChest(this, i, j, min, max));
                     }
                 }
             }
@@ -274,8 +275,17 @@ public abstract class Country {
         return false;
     }
 
-    public Sorcerer getSorcerer() {
-        return sorcerer;
+    void army(int count, int group) {
+        int run = 0;
+        while(run < count){
+            int x = rand(65);
+            int y = rand(65);
+            MapPoint mp = getMapPoint(x, y);
+            if (mp.getEntity() == null && mp.getLand() == R.drawable.land){
+                mp.setEntity(new ArmyShop(this, x, y, group));
+                run++;
+            }
+        }
     }
 }
 
