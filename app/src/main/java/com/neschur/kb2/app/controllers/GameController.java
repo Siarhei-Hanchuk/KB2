@@ -4,6 +4,7 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.World;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Nave;
+import com.neschur.kb2.app.entities.Sorcerer;
 import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.Player;
 
@@ -31,12 +32,19 @@ public class GameController {
         return world;
     }
 
+    public void moveEntities() {
+        Sorcerer sorcerer = player.getCountry().getSorcerer();
+        sorcerer.moveTo(player.getX(), player.getY());
+    }
+
     public void move(int dx, int dy) {
         int x = player.getX();
         int y = player.getY();
         if (x + dx < 2 || x + dx > 62 || y + dy < 2 || y + dy > 62) {
             return;
         }
+
+        moveEntities();
 
         MapPoint mp = player.getCountry().getMapPoint(x + dx, y + dy);
 

@@ -8,6 +8,7 @@ import com.neschur.kb2.app.entities.GoldChest;
 import com.neschur.kb2.app.entities.GuidePost;
 import com.neschur.kb2.app.entities.Magician;
 import com.neschur.kb2.app.entities.MapNext;
+import com.neschur.kb2.app.entities.Sorcerer;
 import com.neschur.kb2.app.models.MapPoint;
 
 import java.util.Random;
@@ -20,6 +21,7 @@ public abstract class Country {
     protected MapPoint[][] map;
     protected int id;
     protected Random random;
+    private Sorcerer sorcerer;
 
     public Country(int id) {
         this.id = id;
@@ -36,7 +38,15 @@ public abstract class Country {
         guidePosts();
         cities();
 
-        new Magician(this, 5, 8); //debug
+//        createSorcerer(5, 7);//debug
+    }
+
+    public void createWizards() {
+        // TODO
+    }
+
+    private void createSorcerer(int x, int y){
+        sorcerer = new Sorcerer(this, x, y);
     }
 
     protected abstract int goldChestMin();
@@ -262,6 +272,10 @@ public abstract class Country {
             return true;
         }
         return false;
+    }
+
+    public Sorcerer getSorcerer() {
+        return sorcerer;
     }
 }
 

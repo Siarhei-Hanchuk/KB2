@@ -13,13 +13,12 @@ public class Country1 extends Country {
         landscape(7, R.drawable.forest);
         landscape(20, R.drawable.stone);
         mapNext();
-//        capitans();
-//        castels();
+
         cities();
         goldChests(40);
         army();
 
-        new HarmfulMap(this, 8, 5); //debug
+//        new HarmfulMap(this, 8, 5); //debug
     }
 
     protected int goldChestMax() {

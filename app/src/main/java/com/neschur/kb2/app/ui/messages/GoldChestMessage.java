@@ -38,7 +38,7 @@ public class GoldChestMessage extends Message {
     public void action() {
         switch (mode) {
             case 0:
-                player.changeSalary((gameController.getPlayer().getCountry().getId() + 1) * 500);
+                player.changeSalary((entity.getCountry().getId() + 1) * 500);
                 return;
             case 1:
                 player.upMagicMaxCount();

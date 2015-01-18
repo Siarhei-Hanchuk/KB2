@@ -8,11 +8,13 @@ import com.neschur.kb2.app.entities.GoldChest;
 import com.neschur.kb2.app.entities.GuidePost;
 import com.neschur.kb2.app.entities.HarmfulMap;
 import com.neschur.kb2.app.entities.MapNext;
+import com.neschur.kb2.app.entities.Sorcerer;
 import com.neschur.kb2.app.ui.messages.GoldChestMessage;
 import com.neschur.kb2.app.ui.messages.GuidePostMessage;
 import com.neschur.kb2.app.ui.messages.HarmfulMapMessage;
 import com.neschur.kb2.app.ui.messages.Message;
 import com.neschur.kb2.app.ui.messages.NextMapMessage;
+import com.neschur.kb2.app.ui.messages.SorcererMessage;
 
 /**
  * Created by siarhei on 14.1.15.
@@ -35,6 +37,8 @@ public class MessageFactory {
             return new GuidePostMessage(entity, activity.getResources(), gameController);
         if (entity instanceof GoldChest && ((GoldChest) entity).isBonus())
             return new GoldChestMessage(entity, activity.getResources(), gameController);
+        if (entity instanceof Sorcerer)
+            return new SorcererMessage(entity, activity.getResources(), gameController);
         return null;
     }
 }
