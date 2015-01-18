@@ -45,40 +45,40 @@ public class WarriorFactory {
                 return new Warrior(id, 18, 6, 2, false, true, 200, 200);
             case "dwarf":
                 return new Warrior(id, 20, 6, 1, false, false, 200, 200);
+            case "gorilla":
+                return new Warrior(id, 20, 6, 2, false, false, 200, 200);
             case "zombie":
                 return new Warrior(id, 22, 6, 1, false, false, 200, 250);
             case "rknight":
                 return new Warrior(id, 25, 8, 1, false, false, 200, 300);
-            case "gorilla":// TODO
-                return new Warrior(id, 20, 8, 1, false, false, 111, 111);
-            case "cannibal":
-                return new Warrior(id, 5, 2, 1, false, false, 0, 0);
-            case "ghost":
-                return new Warrior(id, 5, 2, 1, false, false, 0, 0);
-            case "lion":
-                return new Warrior(id, 5, 2, 1, false, false, 0, 0);
             case "druid":
-                return new Warrior(id, 5, 2, 1, false, false, 0, 0);
-            case "troll":
-                return new Warrior(id, 5, 2, 1, false, false, 0, 0);
-            case "elephant":
-                return new Warrior(id, 5, 2, 1, false, false, 0, 0);
+                return new Warrior(id, 60, 22, 3, false, true, 100, 500);
+            case "cannibal":
+                return new Warrior(id, 60, 30, 2, false, false, 100, 700);
+            case "ghost":
+                return new Warrior(id, 70, 15, 3, false, false, 100, 600);
+            case "lion":
+                return new Warrior(id, 70, 22, 4, false, false, 100, 800);
             case "snake":
                 return new Warrior(id, 70, 65, 1, false, false, 30, 1500);
+            case "troll":
+                return new Warrior(id, 100, 25, 1, false, false, 100, 1000);
             case "vampire":
                 return new Warrior(id, 110, 40, 1, true, false, 50, 2000);
             case "giant":
                 return new Warrior(id, 120, 45, 2, false, true, 50, 3000);
+            case "elephant":
+                return new Warrior(id, 130, 50, 1, false, false, 50, 2000);
             case "knight":
-                return new Warrior(id, 5, 2, 1, false, false, 0, 0);
+                return new Warrior(id, 150, 55, 1, false, false, 70, 3000);
             case "centaur":
-                return new Warrior(id, 5, 2, 1, false, false, 0, 0);
+                return new Warrior(id, 400, 200, 3, false, true, 30, 5000);
             case "dinosaur":
                 return new Warrior(id, 450, 200, 2, false, false, 50, 5000);
             case "daemon":
-                return new Warrior(id, 5, 2, 1, false, false, 0, 0);
+                return new Warrior(id, 500, 200, 1, true, false, 30, 7000);
             case "cyclops":
-                return new Warrior(id, 5, 2, 1, false, false, 0, 0);
+                return new Warrior(id, 600, 400, 2, false, false, 30, 8000);
             case "dragon":
                 return new Warrior(id, 1000, 250, 1, true, false, 30, 10000);
             default:
