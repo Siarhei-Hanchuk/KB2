@@ -45,4 +45,6 @@
     <string name="entity.magician.menu.item4">Спросить о заклинании</string>
     <string name="entity.magician.menu.item5">Дать смерч</string>
     <string name="entity.magician.menu.item6">---</string>
+    <string name="entity.goldChest.messages.salary">Недельная плата+</string>
+    <string name="entity.goldChest.messages.magickUp">Макс кол-во волшебств +1</string>
 </resources>

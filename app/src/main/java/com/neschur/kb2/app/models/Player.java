@@ -15,9 +15,11 @@ public class Player {
     private Country country;
     private int usedMagicianCount[] = {0, 0, 0, 0, 0};
     private int magicPower;
+    private int magicMaxCount;
     private int availableCountry = 1;
     private Nave nave;
     private boolean importantDocs[] = {false, false, false, false, false};
+    private int salary = 0;
 
     private int X;
     private int Y;
@@ -40,6 +42,8 @@ public class Player {
             workers[2] = 0;
             workers[3] = 3;
         }
+        salary = 500;
+        magicMaxCount = 4;
     }
 
     private void debug() {
@@ -158,6 +162,22 @@ public class Player {
 
     public void setImportantDocs(int id) {
         this.importantDocs[id] = true;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void changeSalary(int delta) {
+        this.salary += delta;
+    }
+
+    public int getMagicMaxCount() {
+        return magicMaxCount;
+    }
+
+    public void upMagicMaxCount() {
+        this.magicMaxCount += 1;
     }
 }
 

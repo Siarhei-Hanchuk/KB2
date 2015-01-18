@@ -31,7 +31,7 @@ public class MenuFactory {
         if (entity instanceof Magician) {
             return new MagicianMenu(activity, entity, gameController);
         }
-        if (entity instanceof GoldChest) {
+        if (entity instanceof GoldChest && !((GoldChest) entity).isBonus()) {
             return new GoldChestMenu(activity, entity, gameController);
         }
         return null;
