@@ -13,6 +13,8 @@ import com.neschur.kb2.app.models.Player;
  * Created by siarhei on 19.1.15.
  */
 public abstract class View extends SurfaceView implements SurfaceHolder.Callback, Drawable {
+    public static final int ITEM_SIZE = 60;
+
     protected ViewClosable closeCallback;
     protected GameController gameController;
     protected Player player;
@@ -25,7 +27,8 @@ public abstract class View extends SurfaceView implements SurfaceHolder.Callback
         this.closeCallback = closeCallback;
 
         this.gameController = gameController;
-        this.player = gameController.getPlayer();
+        if (gameController != null)
+            this.player = gameController.getPlayer();
 
         defaultPaint = new Paint();
         defaultPaint.setColor(Color.WHITE);

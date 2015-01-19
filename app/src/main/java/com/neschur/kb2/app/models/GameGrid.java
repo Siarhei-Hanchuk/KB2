@@ -1,6 +1,7 @@
-package com.neschur.kb2.app.controllers;
+package com.neschur.kb2.app.models;
 
 import com.neschur.kb2.app.R;
+import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.countries.World;
 import com.neschur.kb2.app.models.Player;
 

@@ -1,6 +1,9 @@
 package com.neschur.kb2.app.views;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.controllers.MainController;
@@ -59,5 +62,25 @@ public class MainView extends View {
         }
         drawThread.refresh();
         return super.onTouchEvent(event);
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+        int stepX = canvas.getWidth() / 6;
+        int stepY = canvas.getHeight() / 5;
+        for (int x = 0; x < 6; x++) {
+            for (int y = 0; y < 5; y++) {
+                Bitmap image = Bitmap.createScaledBitmap(
+                        BitmapFactory.decodeResource(
+                                getContext().getResources(),
+                                mainController.getGameGrid().getBuyXY(x, y)
+                        ),
+                        stepX, stepY, false
+                );
+                if (image != null) {
+                    canvas.drawBitmap(image, x * stepX, y * stepY, null);
+                }
+            }
+        }
     }
 }

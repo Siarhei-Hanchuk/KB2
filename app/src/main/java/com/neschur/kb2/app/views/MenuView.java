@@ -12,8 +12,6 @@ import com.neschur.kb2.app.ui.menus.Menu;
  * Created by siarhei on 11.1.15.
  */
 public class MenuView extends View {
-    public static final int ITEM_SIZE = 60;
-
     private Menu menu;
 
     public MenuView(Context context, Menu menu, GameController gameController, ViewClosable closeCallback) {
