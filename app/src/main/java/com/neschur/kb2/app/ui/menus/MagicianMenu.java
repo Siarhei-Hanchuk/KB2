@@ -2,7 +2,6 @@ package com.neschur.kb2.app.ui.menus;
 
 import android.app.Activity;
 
-import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
 

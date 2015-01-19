@@ -4,7 +4,6 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.World;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Nave;
-import com.neschur.kb2.app.entities.Sorcerer;
 import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.Player;
 

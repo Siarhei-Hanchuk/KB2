@@ -4,31 +4,25 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.neschur.kb2.app.R;
-import com.neschur.kb2.app.controllers.MainController;
-import com.neschur.kb2.app.countries.Country;
-import com.neschur.kb2.app.models.MapPoint;
-import com.neschur.kb2.app.models.Player;
 
 /**
  * Created by siarhei on 18.1.15.
  */
 public class ArmyShopView extends SurfaceView implements SurfaceHolder.Callback, Drawable {
-    private MainController mainController;
+    private ViewClosable closeCallback;
     private DrawThread drawThread;
-    private Player player;
+//    private Player player;
 
-    public ArmyShopView(Context context, MainController mainController) {
+    public ArmyShopView(Context context, ViewClosable closeCallback) {
         super(context);
         getHolder().addCallback(this);
-        this.mainController = mainController;
-        this.player = mainController.getGameController().getPlayer();
+        this.closeCallback = closeCallback;
+//        this.player = mainController.getGameController().getPlayer();
     }
 
     @Override
@@ -58,7 +52,7 @@ public class ArmyShopView extends SurfaceView implements SurfaceHolder.Callback,
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        mainController.closeMenu();
+        closeCallback.viewClose();
         drawThread.refresh();
         return super.onTouchEvent(event);
     }

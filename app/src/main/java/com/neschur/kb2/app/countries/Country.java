@@ -7,7 +7,6 @@ import com.neschur.kb2.app.entities.Castle;
 import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.GoldChest;
 import com.neschur.kb2.app.entities.GuidePost;
-import com.neschur.kb2.app.entities.Magician;
 import com.neschur.kb2.app.entities.MapNext;
 import com.neschur.kb2.app.entities.Sorcerer;
 import com.neschur.kb2.app.models.MapPoint;

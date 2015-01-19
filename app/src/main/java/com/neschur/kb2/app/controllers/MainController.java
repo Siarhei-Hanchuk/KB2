@@ -4,29 +4,22 @@ import android.graphics.Canvas;
 import android.view.View;
 
 import com.neschur.kb2.app.MainActivity;
-import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Entity;
-import com.neschur.kb2.app.ui.MenuFactory;
-import com.neschur.kb2.app.ui.MessageFactory;
+import com.neschur.kb2.app.ui.UiFactory;
 import com.neschur.kb2.app.ui.menus.CountryMenu;
-import com.neschur.kb2.app.ui.menus.Menu;
-import com.neschur.kb2.app.ui.messages.Message;
-import com.neschur.kb2.app.views.ArmyShopView;
 import com.neschur.kb2.app.views.Drawable;
 import com.neschur.kb2.app.views.MainView;
 import com.neschur.kb2.app.views.MapView;
 import com.neschur.kb2.app.views.MenuView;
-import com.neschur.kb2.app.views.MessageView;
+import com.neschur.kb2.app.views.ViewClosable;
 
 /**
  * Created by siarhei on 6.6.14.
  */
-public class MainController implements Drawable {
+public class MainController implements Drawable, ViewClosable {
     private MainActivity activity;
     private UIController uiController;
     private GameController gameController;
-    private MenuController menuController;
-    private MessageController messageController;
     private MainView mainView;
 
     public MainController(MainActivity activity) {
@@ -34,15 +27,12 @@ public class MainController implements Drawable {
     }
 
     public void start() {
-        menuController = new MenuController(activity, this);
-        messageController = new MessageController(activity, this);
         gameController = new GameController(this);
         uiController = new UIController(activity, this);
         mainView = new MainView(activity, this);
         activity.setContentView(mainView);
 
-        MenuFactory.create(activity, gameController);
-        MessageFactory.create(activity, gameController);
+        UiFactory.create(activity, this);
     }
 
     public void draw(Canvas canvas) {
@@ -95,37 +85,26 @@ public class MainController implements Drawable {
                 return;
             case 4:
                 if (gameController.getPlayer().inNave()) {
-                    menuController.updateMenu(new CountryMenu(activity, gameController));
-                    View menuView = menuController.getView();
-                    activity.setContentView(menuView );
+                    activity.setContentView(UiFactory.getMenuView());
                 }
                 return;
         }
     }
 
     public void activateEntity(Entity entity) {
-        Menu menu = MenuFactory.getMenu(entity);
-        Message message = MessageFactory.getMessage(entity);
-        View view = null;
-        if (menu != null) {
-            menuController.updateMenu(menu);
-            view = menuController.getView();
-        }
-        if (message != null) {
-            messageController.updateMessage(message);
-            view = messageController.getView();
-        }
-        if (entity instanceof ArmyShop) {
-            view = new ArmyShopView(activity, this);
-        }
-        activity.setContentView(view);
+        activity.setContentView(UiFactory.getViewForEntity(entity));
     }
 
-    public void closeMenu() {
+    private void resetView() {
         activity.setContentView(mainView);
     }
 
     public GameController getGameController() {
         return gameController;
+    }
+
+    @Override
+    public void viewClose() {
+        resetView();
     }
 }

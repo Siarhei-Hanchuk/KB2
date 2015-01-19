@@ -56,7 +56,7 @@ public class MapView extends SurfaceView implements SurfaceHolder.Callback, Draw
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        mainController.closeMenu();
+        mainController.viewClose();
         drawThread.refresh();
         return super.onTouchEvent(event);
     }
