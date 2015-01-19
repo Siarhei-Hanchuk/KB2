@@ -4,12 +4,14 @@ import android.graphics.Canvas;
 import android.view.View;
 
 import com.neschur.kb2.app.MainActivity;
+import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.ui.MenuFactory;
 import com.neschur.kb2.app.ui.MessageFactory;
 import com.neschur.kb2.app.ui.menus.CountryMenu;
 import com.neschur.kb2.app.ui.menus.Menu;
 import com.neschur.kb2.app.ui.messages.Message;
+import com.neschur.kb2.app.views.ArmyShopView;
 import com.neschur.kb2.app.views.Drawable;
 import com.neschur.kb2.app.views.MainView;
 import com.neschur.kb2.app.views.MapView;
@@ -104,16 +106,19 @@ public class MainController implements Drawable {
     public void activateEntity(Entity entity) {
         Menu menu = MenuFactory.getMenu(entity);
         Message message = MessageFactory.getMessage(entity);
+        View view = null;
         if (menu != null) {
             menuController.updateMenu(menu);
-            MenuView view = menuController.getView();
-            activity.setContentView(view);
+            view = menuController.getView();
         }
         if (message != null) {
             messageController.updateMessage(message);
-            MessageView view = messageController.getView();
-            activity.setContentView(view);
+            view = messageController.getView();
         }
+        if (entity instanceof ArmyShop) {
+            view = new ArmyShopView(activity, this);
+        }
+        activity.setContentView(view);
     }
 
     public void closeMenu() {
