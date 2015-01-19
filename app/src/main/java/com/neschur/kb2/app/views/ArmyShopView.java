@@ -6,18 +6,19 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
-import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.GameController;
+import com.neschur.kb2.app.entities.ArmyShop;
 
 /**
  * Created by siarhei on 18.1.15.
  */
 public class ArmyShopView extends View {
-    private ViewClosable closeCallback;
-    private DrawThread drawThread;
+    private ArmyShop shop;
 
-    public ArmyShopView(Context context, GameController gameController, ViewClosable closeCallback) {
+    public ArmyShopView(Context context, ArmyShop shop, GameController gameController, ViewClosable closeCallback) {
         super(context, gameController, closeCallback);
+
+        this.shop = shop;
     }
 
     @Override
@@ -30,10 +31,11 @@ public class ArmyShopView extends View {
     public void draw(Canvas canvas) {
         Bitmap image = Bitmap.createScaledBitmap(
                 BitmapFactory.decodeResource(
-                        getContext().getResources(), R.drawable.army_boar
+                        getContext().getResources(), shop.getWarrior().getId()
                 ),
                 getWidth() / 6, getHeight() / 5, false
         );
+
         canvas.drawBitmap(image, 0, 0, null);
     }
 }

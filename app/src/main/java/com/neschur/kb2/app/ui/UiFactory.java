@@ -43,7 +43,7 @@ public class UiFactory {
             view = new MessageView(activity, message, gameController, mainController);
         }
         if (entity instanceof ArmyShop) {
-            view = new ArmyShopView(activity, gameController, mainController);
+            view = new ArmyShopView(activity, (ArmyShop)entity, gameController, mainController);
         }
         return view;
     }

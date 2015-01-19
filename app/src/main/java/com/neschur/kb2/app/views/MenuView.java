@@ -3,7 +3,6 @@ package com.neschur.kb2.app.views;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.controllers.GameController;
@@ -16,16 +15,10 @@ public class MenuView extends View {
     public static final int ITEM_SIZE = 60;
 
     private Menu menu;
-    private Paint paint;
 
     public MenuView(Context context, Menu menu, GameController gameController, ViewClosable closeCallback) {
         super(context, gameController, closeCallback);
         this.menu = menu;
-
-        paint = new Paint();
-        paint.setColor(Color.WHITE);
-        paint.setStyle(Paint.Style.FILL);
-        paint.setTextSize(50);
     }
 
     @Override
@@ -60,14 +53,14 @@ public class MenuView extends View {
         int i;
         for (i = 0; i < menu.getCount(); i++) {
             canvas.drawText(menu.getItemDescription(i), 10,
-                    MenuView.ITEM_SIZE + MenuView.ITEM_SIZE * i, paint);
+                    MenuView.ITEM_SIZE + MenuView.ITEM_SIZE * i, defaultPaint);
         }
         if (menu.withExit())
             canvas.drawText("Exit", 10,
-                    MenuView.ITEM_SIZE + MenuView.ITEM_SIZE * i, paint);
+                    MenuView.ITEM_SIZE + MenuView.ITEM_SIZE * i, defaultPaint);
         if (menu.withMoney())
             canvas.drawText("Money: " + gameController.getPlayer().getMoney(), 700,
-                    MenuView.ITEM_SIZE, paint);
+                    MenuView.ITEM_SIZE, defaultPaint);
     }
 
 }

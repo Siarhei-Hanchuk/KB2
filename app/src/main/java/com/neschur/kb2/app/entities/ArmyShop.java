@@ -20,4 +20,8 @@ public class ArmyShop extends Entity {
     public int getID() {
         return R.drawable.army_shop;
     }
+
+    public Warrior getWarrior() {
+        return warrior;
+    }
 }

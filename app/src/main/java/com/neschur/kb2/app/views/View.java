@@ -1,6 +1,8 @@
 package com.neschur.kb2.app.views;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -13,8 +15,9 @@ import com.neschur.kb2.app.models.Player;
 public abstract class View extends SurfaceView implements SurfaceHolder.Callback, Drawable {
     protected ViewClosable closeCallback;
     protected GameController gameController;
-    protected DrawThread drawThread;
     protected Player player;
+    protected DrawThread drawThread;
+    protected Paint defaultPaint;
 
     public View(Context context, GameController gameController, ViewClosable closeCallback) {
         super(context);
@@ -23,6 +26,11 @@ public abstract class View extends SurfaceView implements SurfaceHolder.Callback
 
         this.gameController = gameController;
         this.player = gameController.getPlayer();
+
+        defaultPaint = new Paint();
+        defaultPaint.setColor(Color.WHITE);
+        defaultPaint.setStyle(Paint.Style.FILL);
+        defaultPaint.setTextSize(50);
     }
 
     @Override
