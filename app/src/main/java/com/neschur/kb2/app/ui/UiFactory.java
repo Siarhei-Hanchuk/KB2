@@ -15,9 +15,6 @@ import com.neschur.kb2.app.views.MapView;
 import com.neschur.kb2.app.views.MenuView;
 import com.neschur.kb2.app.views.MessageView;
 
-/**
- * Created by siarhei on 19.1.15.
- */
 public class UiFactory {
     private static Activity activity;
     private static GameController gameController;

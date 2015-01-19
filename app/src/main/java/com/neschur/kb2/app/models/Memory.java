@@ -2,9 +2,6 @@ package com.neschur.kb2.app.models;
 
 import com.neschur.kb2.app.countries.Country;
 
-/**
- * Created by siarhei on 18.1.15.
- */
 public class Memory {
     private boolean map[][][] = new boolean[5][Country.MAX_MAP_SIZE][Country.MAX_MAP_SIZE];
 

@@ -2,9 +2,6 @@ package com.neschur.kb2.app.models;
 
 import com.neschur.kb2.app.entities.Entity;
 
-/**
- * Created by siarhei on 2.6.14.
- */
 public class MapPoint {
     public int land;
     private Entity entity;

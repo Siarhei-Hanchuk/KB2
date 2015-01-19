@@ -7,9 +7,6 @@ import com.neschur.kb2.app.entities.Entity;
 
 import java.util.Random;
 
-/**
- * Created by siarhei on 17.1.15.
- */
 public abstract class MapMessage extends Message {
     protected int mode;
 

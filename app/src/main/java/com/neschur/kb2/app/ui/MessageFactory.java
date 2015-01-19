@@ -16,9 +16,6 @@ import com.neschur.kb2.app.ui.messages.Message;
 import com.neschur.kb2.app.ui.messages.NextMapMessage;
 import com.neschur.kb2.app.ui.messages.SorcererMessage;
 
-/**
- * Created by siarhei on 14.1.15.
- */
 public class MessageFactory {
     private static Activity activity;
     private static GameController gameController;

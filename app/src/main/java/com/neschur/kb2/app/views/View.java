@@ -9,9 +9,6 @@ import android.view.SurfaceView;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.models.Player;
 
-/**
- * Created by siarhei on 19.1.15.
- */
 public abstract class View extends SurfaceView implements SurfaceHolder.Callback, Drawable {
     public static final int ITEM_SIZE = 60;
 

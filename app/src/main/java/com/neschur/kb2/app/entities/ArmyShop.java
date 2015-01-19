@@ -5,9 +5,6 @@ import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.warriors.Warrior;
 import com.neschur.kb2.app.warriors.WarriorFactory;
 
-/**
- * Created by siarhei on 18.1.15.
- */
 public class ArmyShop extends Entity {
     private Warrior warrior;
 

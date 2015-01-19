@@ -1,8 +1,5 @@
 package com.neschur.kb2.app.countries;
 
-/**
- * Created by siarhei on 2.6.14.
- */
 public class World {
     private Country country[] = new Country[5];
 

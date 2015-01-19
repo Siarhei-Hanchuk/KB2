@@ -7,9 +7,6 @@ import com.neschur.kb2.app.ui.UiFactory;
 import com.neschur.kb2.app.views.MainView;
 import com.neschur.kb2.app.views.ViewClosable;
 
-/**
- * Created by siarhei on 6.6.14.
- */
 public class MainController implements ViewClosable {
     private MainActivity activity;
     private GameController gameController;

@@ -2,9 +2,6 @@ package com.neschur.kb2.app;
 
 import android.content.res.Resources;
 
-/**
- * Created by siarhei on 18.1.15.
- */
 public class I18n {
     private static Resources resources;
 

@@ -8,9 +8,6 @@ import com.neschur.kb2.app.entities.Entity;
 
 import java.util.Random;
 
-/**
- * Created by siarhei on 17.1.15.
- */
 public class GoodMapMessage extends MapMessage {
     public GoodMapMessage(Entity entity, Resources resources, GameController gameController) {
         super(entity, resources, gameController);

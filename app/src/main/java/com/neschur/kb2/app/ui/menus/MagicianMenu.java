@@ -5,9 +5,6 @@ import android.app.Activity;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
 
-/**
- * Created by siarhei on 12.1.15.
- */
 public class MagicianMenu extends Menu {
     private final int COUNT = 6;
     private final int PRICE_MAGIC_POWER = 5000;

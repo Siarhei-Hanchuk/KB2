@@ -12,6 +12,7 @@ public class Warrior {
 
     public Warrior(int id, int defence, int damage, int step, boolean fly, boolean shoot, int count, int cost) {
         super();
+        this.id = id;
         this.defence = defence;
         this.damage = damage;
         this.step = step;

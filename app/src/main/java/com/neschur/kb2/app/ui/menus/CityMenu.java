@@ -89,7 +89,6 @@ public class CityMenu extends Menu {
 
     private void buyNave() {
         player.changeMoney(-PRICE_NAVE);
-        boolean founded = false;
         int x;
         int y;
         for (x = city.getX() - 1; x < city.getX() + 1; x++) {

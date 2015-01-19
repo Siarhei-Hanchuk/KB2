@@ -6,9 +6,6 @@ import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.models.Player;
 
-/**
- * Created by siarhei on 17.1.15.
- */
 public abstract class Message {
     protected Resources resources;
     protected Player player;

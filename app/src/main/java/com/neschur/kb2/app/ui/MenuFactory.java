@@ -12,9 +12,6 @@ import com.neschur.kb2.app.ui.menus.GoldChestMenu;
 import com.neschur.kb2.app.ui.menus.MagicianMenu;
 import com.neschur.kb2.app.ui.menus.Menu;
 
-/**
- * Created by siarhei on 14.1.15.
- */
 public class MenuFactory {
     private static Activity activity;
     private static GameController gameController;

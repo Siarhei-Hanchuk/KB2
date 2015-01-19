@@ -13,9 +13,6 @@ import com.neschur.kb2.app.models.MapPoint;
 
 import java.util.Random;
 
-/**
- * Created by siarhei on 2.6.14.
- */
 public abstract class Country {
     public final static int MAX_MAP_SIZE = 65;
     protected MapPoint[][] map;
@@ -270,7 +267,7 @@ public abstract class Country {
         return false;
     }
 
-    void army(final int count, final int group) {
+    void army(int count, int group) {
         int run = 0;
         while (run < count) {
             int x = rand(65);

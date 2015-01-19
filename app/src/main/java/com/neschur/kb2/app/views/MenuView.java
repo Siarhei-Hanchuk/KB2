@@ -8,9 +8,6 @@ import android.view.MotionEvent;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.ui.menus.Menu;
 
-/**
- * Created by siarhei on 11.1.15.
- */
 public class MenuView extends View {
     private Menu menu;
 

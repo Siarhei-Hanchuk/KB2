@@ -3,10 +3,6 @@ package com.neschur.kb2.app.models;
 import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.entities.Nave;
 
-/**
- * Created by siarhei on 6.6.14.
- */
-
 public class Player {
     private boolean wallkick;
     private int workers[] = new int[4];

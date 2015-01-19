@@ -4,9 +4,6 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.countries.World;
 
-/**
- * Created by siarhei on 11.1.15.
- */
 public class GameGrid {
     private Player player;
     private World world;

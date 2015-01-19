@@ -1,9 +1,5 @@
 package com.neschur.kb2.app.entities;
 
-/**
- * Created by siarhei on 2.6.14.
- */
-
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.Country;
 

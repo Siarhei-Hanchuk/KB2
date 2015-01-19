@@ -8,9 +8,6 @@ import android.view.MotionEvent;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.ui.messages.Message;
 
-/**
- * Created by siarhei on 12.1.15.
- */
 public class MessageView extends View {
     private Message message;
 

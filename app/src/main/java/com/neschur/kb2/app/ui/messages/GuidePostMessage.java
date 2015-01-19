@@ -8,9 +8,6 @@ import com.neschur.kb2.app.entities.Entity;
 
 import java.util.Random;
 
-/**
- * Created by siarhei on 17.1.15.
- */
 public class GuidePostMessage extends Message {
     private static int COUNT = 12;
 

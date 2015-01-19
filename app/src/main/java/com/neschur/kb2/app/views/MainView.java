@@ -8,9 +8,6 @@ import android.view.MotionEvent;
 
 import com.neschur.kb2.app.controllers.MainController;
 
-/**
- * Created by siarhei on 1.7.14.
- */
 public class MainView extends View {
     private MainController mainController;
 

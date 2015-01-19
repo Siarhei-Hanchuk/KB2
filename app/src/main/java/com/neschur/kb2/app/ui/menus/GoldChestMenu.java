@@ -7,9 +7,6 @@ import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.GoldChest;
 
-/**
- * Created by siarhei on 12.1.15.
- */
 public class GoldChestMenu extends Menu {
     final int COUNT = 2;
     private GoldChest chest;

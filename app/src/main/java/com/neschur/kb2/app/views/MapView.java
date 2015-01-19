@@ -11,9 +11,6 @@ import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.models.MapPoint;
 
-/**
- * Created by siarhei on 18.1.15.
- */
 public class MapView extends View {
 
     public MapView(Context context, GameController gameController, ViewClosable closeCallback) {

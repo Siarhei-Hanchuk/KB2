@@ -8,9 +8,6 @@ import com.neschur.kb2.app.entities.Entity;
 
 import java.util.Random;
 
-/**
- * Created by siarhei on 18.1.15.
- */
 public class GoldChestMessage extends Message {
     private int mode;
 

@@ -9,9 +9,6 @@ import android.view.MotionEvent;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.ArmyShop;
 
-/**
- * Created by siarhei on 18.1.15.
- */
 public class ArmyShopView extends View {
     private ArmyShop shop;
 

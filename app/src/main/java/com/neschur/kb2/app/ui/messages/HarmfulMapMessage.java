@@ -6,9 +6,6 @@ import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
 
-/**
- * Created by siarhei on 17.1.15.
- */
 public class HarmfulMapMessage extends MapMessage {
     public HarmfulMapMessage(Entity entity, Resources resources, GameController gameController) {
         super(entity, resources, gameController);

@@ -7,9 +7,6 @@ import com.neschur.kb2.app.entities.Nave;
 import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.Player;
 
-/**
- * Created by siarhei on 11.1.15.
- */
 public class GameController {
     private World world;
     private Player player;

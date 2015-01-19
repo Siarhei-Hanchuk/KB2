@@ -3,9 +3,6 @@ package com.neschur.kb2.app.views;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
-/**
- * Created by siarhei on 1.7.14.
- */
 class DrawThread extends Thread {
     private boolean running = false;
     private boolean refresh = true;
