@@ -38,13 +38,13 @@ public class GoldChestMessage extends Message {
         switch (mode) {
             case 0:
                 player.changeSalary((entity.getCountry().getId() + 1) * 500);
-                return;
+                break;
             case 1:
                 player.upMagicMaxCount();
-                return;
+                break;
             case 2:
                 // TODO
-                return;
+                break;
         }
     }
 }

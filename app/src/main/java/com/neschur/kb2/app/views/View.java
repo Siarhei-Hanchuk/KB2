@@ -57,6 +57,7 @@ public abstract class View extends SurfaceView implements SurfaceHolder.Callback
                 drawThread.join();
                 retry = false;
             } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }

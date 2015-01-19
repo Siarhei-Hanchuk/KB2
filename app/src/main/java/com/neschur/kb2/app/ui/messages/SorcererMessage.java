@@ -15,8 +15,8 @@ public class SorcererMessage extends Message {
     }
 
     @Override
-    public String getText() {
-        return "IAAAAAAAAAAaaaaaaaaaaaaaaa";
+    public String getText() { // TODO
+        return "";
     }
 
     @Override

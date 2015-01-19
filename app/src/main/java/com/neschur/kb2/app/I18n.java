@@ -16,6 +16,7 @@ public class I18n {
         try {
             return resources.getString(R.string.class.getField(key).getInt(new R.string()));
         } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
         }
         return key;
     }

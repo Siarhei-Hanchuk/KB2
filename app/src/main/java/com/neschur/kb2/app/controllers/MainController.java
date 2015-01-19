@@ -69,12 +69,12 @@ public class MainController implements ViewClosable {
         switch (i) {
             case 3:
                 activity.setContentView(UiFactory.getMapView());
-                return;
+                break;
             case 4:
                 if (gameController.getPlayer().inNave()) {
                     activity.setContentView(UiFactory.getMenuView());
                 }
-                return;
+                break;
         }
     }
 

@@ -19,8 +19,8 @@ import java.util.Random;
 public abstract class Country {
     public final static int MAX_MAP_SIZE = 65;
     protected MapPoint[][] map;
-    protected int id;
-    protected Random random;
+    private  int id;
+    private Random random;
     private Sorcerer sorcerer;
 
     public Country(int id) {
@@ -241,8 +241,8 @@ public abstract class Country {
     }
 
     public boolean worker(int n, int x, int y) {
-        int oldType = 0;
-        int newType = 0;
+        int oldType;
+        int newType;
         switch (n) {
             case 0:
                 oldType = R.drawable.water;
@@ -270,7 +270,7 @@ public abstract class Country {
         return false;
     }
 
-    void army(int count, int group) {
+    void army(final int count, final int group) {
         int run = 0;
         while (run < count) {
             int x = rand(65);

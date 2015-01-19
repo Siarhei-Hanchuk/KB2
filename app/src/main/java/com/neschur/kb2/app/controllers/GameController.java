@@ -69,7 +69,7 @@ public class GameController {
     private void actionWithObject(Player player, Entity entity) {
         if (entity instanceof Nave) {
             player.setNave((Nave) entity);
-            player.move(((Nave) entity).getX(), ((Nave) entity).getY());
+            player.move(entity.getX(), entity.getY());
         } else {
             mainController.activateEntity(entity);
         }

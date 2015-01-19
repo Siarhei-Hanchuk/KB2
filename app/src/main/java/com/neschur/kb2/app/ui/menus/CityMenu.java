@@ -90,19 +90,17 @@ public class CityMenu extends Menu {
     private void buyNave() {
         player.changeMoney(-PRICE_NAVE);
         boolean founded = false;
-        int x = -1;
-        int y = -1;
+        int x;
+        int y;
         for (x = city.getX() - 1; x < city.getX() + 1; x++) {
             for (y = city.getY() - 1; y < city.getY() + 1; y++) {
                 if (city.getCountry().getMapPoint(x, y).getLand() == R.drawable.water) {
-                    founded = true;
-                    break;
+                    gameController.createNave(x, y);
+                    return;
                 }
             }
-            if (founded)
-                break;
         }
-        gameController.createNave(x, y);
+
     }
 
     @Override
