@@ -80,8 +80,7 @@ public class MainController implements Drawable, ViewClosable {
     public void touchMenu(int i) {
         switch (i) {
             case 3:
-                View mapView = new MapView(activity, this);
-                activity.setContentView(mapView);
+                activity.setContentView(UiFactory.getMapView());
                 return;
             case 4:
                 if (gameController.getPlayer().inNave()) {

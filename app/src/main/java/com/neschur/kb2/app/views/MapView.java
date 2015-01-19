@@ -5,58 +5,24 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.MotionEvent;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 
 import com.neschur.kb2.app.R;
-import com.neschur.kb2.app.controllers.MainController;
+import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.models.MapPoint;
-import com.neschur.kb2.app.models.Player;
 
 /**
  * Created by siarhei on 18.1.15.
  */
-public class MapView extends SurfaceView implements SurfaceHolder.Callback, Drawable {
-    private MainController mainController;
-    private DrawThread drawThread;
-    private Player player;
+public class MapView extends View {
 
-    public MapView(Context context, MainController mainController) {
-        super(context);
-        getHolder().addCallback(this);
-        this.mainController = mainController;
-        this.player = mainController.getGameController().getPlayer();
-    }
-
-    @Override
-    public void surfaceChanged(SurfaceHolder holder, int format, int width,
-                               int height) {
-    }
-
-    @Override
-    public void surfaceCreated(SurfaceHolder holder) {
-        drawThread = new DrawThread(getHolder(), this);
-        drawThread.setRunning(true);
-        drawThread.start();
-    }
-
-    @Override
-    public void surfaceDestroyed(SurfaceHolder holder) {
-        boolean retry = true;
-        drawThread.setRunning(false);
-        while (retry) {
-            try {
-                drawThread.join();
-                retry = false;
-            } catch (InterruptedException e) {
-            }
-        }
+    public MapView(Context context, GameController gameController, ViewClosable closeCallback) {
+        super(context, gameController, closeCallback);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        mainController.viewClose();
+        closeCallback.viewClose();
         drawThread.refresh();
         return super.onTouchEvent(event);
     }

@@ -5,8 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.MotionEvent;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.ui.menus.Menu;
@@ -14,51 +12,20 @@ import com.neschur.kb2.app.ui.menus.Menu;
 /**
  * Created by siarhei on 11.1.15.
  */
-public class MenuView extends SurfaceView implements SurfaceHolder.Callback, Drawable {
+public class MenuView extends View {
     public static final int ITEM_SIZE = 60;
 
     private Menu menu;
-    private DrawThread drawThread;
-    private GameController gameController;
     private Paint paint;
-    private ViewClosable closeCallback;
 
     public MenuView(Context context, Menu menu, GameController gameController, ViewClosable closeCallback) {
-        super(context);
-        this.gameController = gameController;
-        this.closeCallback = closeCallback;
-        getHolder().addCallback(this);
+        super(context, gameController, closeCallback);
         this.menu = menu;
 
         paint = new Paint();
         paint.setColor(Color.WHITE);
         paint.setStyle(Paint.Style.FILL);
         paint.setTextSize(50);
-    }
-
-    @Override
-    public void surfaceChanged(SurfaceHolder holder, int format, int width,
-                               int height) {
-    }
-
-    @Override
-    public void surfaceCreated(SurfaceHolder holder) {
-        drawThread = new DrawThread(getHolder(), this);
-        drawThread.setRunning(true);
-        drawThread.start();
-    }
-
-    @Override
-    public void surfaceDestroyed(SurfaceHolder holder) {
-        boolean retry = true;
-        drawThread.setRunning(false);
-        while (retry) {
-            try {
-                drawThread.join();
-                retry = false;
-            } catch (InterruptedException e) {
-            }
-        }
     }
 
     @Override
@@ -86,7 +53,6 @@ public class MenuView extends SurfaceView implements SurfaceHolder.Callback, Dra
                 closeCallback.viewClose();
         }
     }
-
 
     public void draw(Canvas canvas) {
         canvas.drawColor(Color.BLACK);
