@@ -37,5 +37,7 @@ public class ArmyShopView extends View {
         );
 
         canvas.drawBitmap(image, 0, 0, null);
+        canvas.drawText("Item1: " + "value", getWidth() / 6, getHeight() / 5, defaultPaint);
+        canvas.drawText("Item2: " + "value", getWidth() / 6, getHeight() / 5 + ITEM_SIZE, defaultPaint);
     }
 }

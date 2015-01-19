@@ -28,7 +28,7 @@ public class MapView extends View {
     }
 
     public void draw(Canvas canvas) {
-        int pointSize = canvas.getHeight()/ Country.MAX_MAP_SIZE;
+        int pointSize = canvas.getHeight() / Country.MAX_MAP_SIZE;
         Country country = player.getCountry();
         boolean memory[][] = player.getMemory().getMap(country.getId());
 
@@ -47,9 +47,9 @@ public class MapView extends View {
     }
 
     private void setMapPointColor(Paint paint, MapPoint mapPoint) {
-        if( mapPoint.getEntity() == null ){
+        if (mapPoint.getEntity() == null) {
             setMapPointColorForLand(paint, mapPoint.getLand());
-        }else{
+        } else {
             setMapPointColorForEntity(paint, mapPoint.getEntity().getID());
         }
     }

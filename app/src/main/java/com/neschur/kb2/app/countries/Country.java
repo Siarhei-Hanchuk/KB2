@@ -42,7 +42,7 @@ public abstract class Country {
         // TODO
     }
 
-    private void createSorcerer(int x, int y){
+    private void createSorcerer(int x, int y) {
         sorcerer = new Sorcerer(this, x, y);
     }
 
@@ -272,11 +272,11 @@ public abstract class Country {
 
     void army(int count, int group) {
         int run = 0;
-        while(run < count){
+        while (run < count) {
             int x = rand(65);
             int y = rand(65);
             MapPoint mp = getMapPoint(x, y);
-            if (mp.getEntity() == null && mp.getLand() == R.drawable.land){
+            if (mp.getEntity() == null && mp.getLand() == R.drawable.land) {
                 mp.setEntity(new ArmyShop(this, x, y, group));
                 run++;
             }

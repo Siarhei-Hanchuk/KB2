@@ -23,7 +23,7 @@ public class GoldChestMessage extends Message {
     public String getText() {
         switch (mode) {
             case 0:
-                return I18n.translate("entity_goldChest_messages_salary") ;
+                return I18n.translate("entity_goldChest_messages_salary");
             case 1:
                 return I18n.translate("entity_goldChest_messages_magickUp");
             case 2:

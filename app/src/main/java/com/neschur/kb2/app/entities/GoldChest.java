@@ -13,7 +13,7 @@ public class GoldChest extends Entity {
         super(country, x, y);
         gold = (int) ((max - min) * Math.random() + min);
         int rand = (new Random()).nextInt(10);
-        if ( rand == 0 )
+        if (rand == 0)
             bonus = true;
     }
 

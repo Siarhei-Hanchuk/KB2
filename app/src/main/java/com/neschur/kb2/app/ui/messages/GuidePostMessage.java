@@ -11,7 +11,7 @@ import java.util.Random;
 /**
  * Created by siarhei on 17.1.15.
  */
-public class GuidePostMessage extends Message{
+public class GuidePostMessage extends Message {
     private static int COUNT = 12;
 
     public GuidePostMessage(Entity entity, Resources resources, GameController gameController) {

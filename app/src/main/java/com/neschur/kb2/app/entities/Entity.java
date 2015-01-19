@@ -30,8 +30,8 @@ public abstract class Entity {
     }
 
     public void moveTo(int x, int y) {
-        int directionX = (int)Math.signum(x - this.x);
-        int directionY = (int)Math.signum(y - this.y);
+        int directionX = (int) Math.signum(x - this.x);
+        int directionY = (int) Math.signum(y - this.y);
         move(this.x + directionX, this.y + directionY);
     }
 

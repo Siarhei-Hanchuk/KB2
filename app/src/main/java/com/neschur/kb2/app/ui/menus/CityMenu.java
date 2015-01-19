@@ -94,7 +94,7 @@ public class CityMenu extends Menu {
         int y = -1;
         for (x = city.getX() - 1; x < city.getX() + 1; x++) {
             for (y = city.getY() - 1; y < city.getY() + 1; y++) {
-                if (city.getCountry().getMapPoint(x,y).getLand() == R.drawable.water) {
+                if (city.getCountry().getMapPoint(x, y).getLand() == R.drawable.water) {
                     founded = true;
                     break;
                 }
