@@ -3,10 +3,12 @@ package com.neschur.kb2.app.ui;
 import android.app.Activity;
 
 import com.neschur.kb2.app.controllers.GameController;
+import com.neschur.kb2.app.entities.Captain;
 import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.GoldChest;
 import com.neschur.kb2.app.entities.Magician;
+import com.neschur.kb2.app.ui.menus.CaptainMenu;
 import com.neschur.kb2.app.ui.menus.CityMenu;
 import com.neschur.kb2.app.ui.menus.GoldChestMenu;
 import com.neschur.kb2.app.ui.menus.MagicianMenu;
@@ -30,6 +32,9 @@ public class MenuFactory {
         }
         if (entity instanceof GoldChest && !((GoldChest) entity).isBonus()) {
             return new GoldChestMenu(activity, entity, gameController);
+        }
+        if (entity instanceof Captain) {
+            return new CaptainMenu(activity, entity, gameController);
         }
         return null;
     }

@@ -96,4 +96,8 @@ public class GameController {
             player.pushArmy(armyShop.getWarrior(), count);
         }
     }
+
+    public void activateBattle() {
+        mainController.activateBattle();
+    }
 }
