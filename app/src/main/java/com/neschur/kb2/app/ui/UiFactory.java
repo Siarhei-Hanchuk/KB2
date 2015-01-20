@@ -11,6 +11,7 @@ import com.neschur.kb2.app.ui.menus.CountryMenu;
 import com.neschur.kb2.app.ui.menus.Menu;
 import com.neschur.kb2.app.ui.messages.Message;
 import com.neschur.kb2.app.views.ArmyShopView;
+import com.neschur.kb2.app.views.ArmyView;
 import com.neschur.kb2.app.views.MapView;
 import com.neschur.kb2.app.views.MenuView;
 import com.neschur.kb2.app.views.MessageView;
@@ -52,5 +53,9 @@ public class UiFactory {
 
     public static View getMapView() {
         return new MapView(activity, gameController, mainController);
+    }
+
+    public static View getArmyView() {
+        return new ArmyView(activity, gameController, mainController);
     }
 }

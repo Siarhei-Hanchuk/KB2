@@ -64,6 +64,9 @@ public class MainController implements ViewClosable {
 
     public void touchMenu(int i) {
         switch (i) {
+            case 0:
+                activity.setContentView(UiFactory.getArmyView());
+                break;
             case 3:
                 activity.setContentView(UiFactory.getMapView());
                 break;

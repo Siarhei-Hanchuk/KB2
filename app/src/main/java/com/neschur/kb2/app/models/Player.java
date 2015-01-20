@@ -228,4 +228,8 @@ public class Player {
         }
         return count;
     }
+
+    public WarriorSquad getWarriorSquad(int n) {
+        return warriors[n];
+    }
 }
