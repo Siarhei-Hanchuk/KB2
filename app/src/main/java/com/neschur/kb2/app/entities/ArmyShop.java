@@ -7,10 +7,12 @@ import com.neschur.kb2.app.warriors.WarriorFactory;
 
 public class ArmyShop extends Entity {
     private Warrior warrior;
+    private int count;
 
     public ArmyShop(Country country, int x, int y, int group) {
         super(country, x, y);
         warrior = WarriorFactory.createRandomFromGroup(group);
+        this.count = warrior.getCostInShop();
     }
 
     @Override
@@ -20,5 +22,9 @@ public class ArmyShop extends Entity {
 
     public Warrior getWarrior() {
         return warrior;
+    }
+
+    public int getCount() {
+        return count;
     }
 }

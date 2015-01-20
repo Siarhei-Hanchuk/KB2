@@ -17,4 +17,8 @@ public class I18n {
         }
         return key;
     }
+
+    public static String translate(int key) {
+        return resources.getString(key);
+    }
 }

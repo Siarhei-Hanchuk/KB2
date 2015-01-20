@@ -47,4 +47,15 @@
     <string name="entity.magician.menu.item6">---</string>
     <string name="entity.goldChest.messages.salary">Недельная плата+</string>
     <string name="entity.goldChest.messages.magickUp">Макс кол-во волшебств +1</string>
+    <string name="army.names.gorilla">Гориллы</string>
+    <string name="army.ui.thereIs">Имеется</string>
+    <string name="army.ui.price">Стоимость</string>
+    <string name="army.ui.step">Движение</string>
+    <string name="army.ui.defense">Защита</string>
+    <string name="army.ui.damage">Удар</string>
+    <string name="army.ui.shoot">Стреляет?</string>
+    <string name="army.ui.fly">Летает?</string>
+    <string name="army.ui.afford">Вы можете нанять</string>
+    <string name="army.ui.howMany">Сколько?</string>
+    <string name="player.attrs.money">Деньги</string>
 </resources>

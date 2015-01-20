@@ -25,23 +25,6 @@ public class MenuView extends View {
         return super.onTouchEvent(event);
     }
 
-    public void select(int item) {
-        boolean result = false;
-        if (item < menu.getCount())
-            result = menu.select(item);
-        if (menu.withExit()) {
-            if (item == menu.getCount() || result)
-                if (menu.getMenuMode() > 0) {
-                    menu.resetMenuMode();
-                } else {
-                    closeCallback.viewClose();
-                }
-        } else {
-            if (result)
-                closeCallback.viewClose();
-        }
-    }
-
     public void draw(Canvas canvas) {
         canvas.drawColor(Color.BLACK);
 
@@ -56,6 +39,23 @@ public class MenuView extends View {
         if (menu.withMoney())
             canvas.drawText("Money: " + gameController.getPlayer().getMoney(), 700,
                     MenuView.ITEM_SIZE, defaultPaint);
+    }
+
+    private void select(int item) {
+        boolean result = false;
+        if (item < menu.getCount())
+            result = menu.select(item);
+        if (menu.withExit()) {
+            if (item == menu.getCount() || result)
+                if (menu.getMenuMode() > 0) {
+                    menu.resetMenuMode();
+                } else {
+                    closeCallback.viewClose();
+                }
+        } else {
+            if (result)
+                closeCallback.viewClose();
+        }
     }
 
 }
