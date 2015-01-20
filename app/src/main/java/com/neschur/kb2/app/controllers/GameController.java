@@ -2,6 +2,7 @@ package com.neschur.kb2.app.controllers;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.World;
+import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Nave;
 import com.neschur.kb2.app.models.MapPoint;
@@ -83,5 +84,13 @@ public class GameController {
     public void destroyNave() {
         nave.destroy();
         nave = null;
+    }
+
+    public void buyArmy(ArmyShop armyShop, int count) {
+        if (armyShop.getCount() >= count &&
+                player.armyAfford(armyShop.getWarrior()) >= count &&
+                player.getMoney() >= armyShop.getWarrior().getPriceInShop() * count) {
+
+        }
     }
 }

@@ -48,7 +48,16 @@
     <string name="entity.magician.menu.item6">---</string>
     <string name="entity.goldChest.messages.salary">salary</string>
     <string name="entity.goldChest.messages.magickUp">magickUp</string>
+    <string name="army.names.peasant">Крестьяне</string>
+    <string name="army.names.aborigine">Туземцы</string>
+    <string name="army.names.boar">Кабаны</string>
+    <string name="army.names.skeleton">Скелеты</string>
+    <string name="army.names.woodgoblin">Лешие</string>
+    <string name="army.names.elf">Эльфы</string>
+    <string name="army.names.dwarf">Карлики</string>
     <string name="army.names.gorilla">Гориллы</string>
+    <string name="army.names.zombie">Зомби</string>
+    <string name="army.names.rknight">Витязи</string>
     <string name="army.ui.thereIs">Имеется</string>
     <string name="army.ui.price">Стоимость</string>
     <string name="army.ui.step">Движение</string>
