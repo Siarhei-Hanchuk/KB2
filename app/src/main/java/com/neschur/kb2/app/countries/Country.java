@@ -10,6 +10,9 @@ import com.neschur.kb2.app.entities.GuidePost;
 import com.neschur.kb2.app.entities.MapNext;
 import com.neschur.kb2.app.entities.Sorcerer;
 import com.neschur.kb2.app.models.MapPoint;
+import com.neschur.kb2.app.warriors.Warrior;
+import com.neschur.kb2.app.warriors.WarriorFactory;
+import com.neschur.kb2.app.warriors.WarriorSquad;
 
 import java.util.Random;
 
@@ -33,6 +36,21 @@ public abstract class Country {
 
         base();
 //        createSorcerer(5, 7);//debug
+    }
+
+//    protected void createCaptain() {
+//        createCaptain(rand(MAX_MAP_SIZE), rand(MAX_MAP_SIZE));
+//    }
+
+    protected void createCaptain(int x, int y) {
+        Captain captain = new Captain(this, x, y);
+        int squadCount = rand(5);
+        int authority = 100 + rand(1000);
+        for (int i = 0; i < squadCount; i++) {
+            Warrior warrior = WarriorFactory.createRandomFromGroup(0);
+            WarriorSquad squad = new WarriorSquad(warrior, authority / warrior.getDamage());
+            captain.setSquad(i, squad);
+        }
     }
 
     public void createWizards() {

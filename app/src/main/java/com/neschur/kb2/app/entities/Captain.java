@@ -5,7 +5,8 @@ import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.warriors.WarriorSquad;
 
 public class Captain extends Entity {
-    private WarriorSquad warriorSquad[];
+    public static final int MAX_ARMY = 5;
+    private WarriorSquad[] warriors = new WarriorSquad[MAX_ARMY];
 
     public Captain(Country country, int x, int y) {
         super(country, x, y);
@@ -14,5 +15,9 @@ public class Captain extends Entity {
     @Override
     public int getID() {
         return R.drawable.capitan;
+    }
+
+    public void setSquad(int n, WarriorSquad squad) {
+        warriors[n] = squad;
     }
 }

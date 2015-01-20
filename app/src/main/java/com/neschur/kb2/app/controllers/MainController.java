@@ -5,6 +5,7 @@ import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.ui.UiFactory;
 import com.neschur.kb2.app.views.MainView;
+import com.neschur.kb2.app.views.View;
 import com.neschur.kb2.app.views.ViewClosable;
 
 public class MainController implements ViewClosable {
@@ -79,7 +80,9 @@ public class MainController implements ViewClosable {
     }
 
     public void activateEntity(Entity entity) {
-        activity.setContentView(UiFactory.getViewForEntity(entity));
+        View view = UiFactory.getViewForEntity(entity);
+        if( view != null )
+            activity.setContentView(view);
     }
 
     private void resetView() {

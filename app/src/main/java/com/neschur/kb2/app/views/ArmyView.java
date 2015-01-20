@@ -44,9 +44,9 @@ public class ArmyView extends View {
 
             canvas.drawBitmap(image, 0, imageHeight * i, null);
             canvas.drawText(I18n.translate("army_names_" + squad.getWarrior().getTextId()),
-                    imageWidth + 10, ITEM_SIZE, defaultPaint);
+                    imageWidth + 10, ITEM_SIZE + imageHeight * i, defaultPaint);
             canvas.drawText(Integer.toString(squad.getCount()),
-                    imageWidth * 2 + 10, ITEM_SIZE, defaultPaint);
+                    imageWidth * 2 + 10, ITEM_SIZE + imageHeight * i, defaultPaint);
         }
 
     }

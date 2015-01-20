@@ -1,7 +1,6 @@
 package com.neschur.kb2.app.ui;
 
 import android.app.Activity;
-import android.view.View;
 
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.controllers.MainController;
@@ -15,6 +14,7 @@ import com.neschur.kb2.app.views.ArmyView;
 import com.neschur.kb2.app.views.MapView;
 import com.neschur.kb2.app.views.MenuView;
 import com.neschur.kb2.app.views.MessageView;
+import com.neschur.kb2.app.views.View;
 
 public class UiFactory {
     private static Activity activity;
