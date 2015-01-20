@@ -29,7 +29,6 @@ public abstract class View extends SurfaceView implements SurfaceHolder.Callback
 
         defaultPaint = new Paint();
         defaultPaint.setColor(Color.WHITE);
-        defaultPaint.setStyle(Paint.Style.FILL);
         defaultPaint.setTextSize(50);
     }
 

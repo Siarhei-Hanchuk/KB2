@@ -2,8 +2,12 @@ package com.neschur.kb2.app.models;
 
 import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.entities.Nave;
+import com.neschur.kb2.app.warriors.Warrior;
+import com.neschur.kb2.app.warriors.WarriorSquad;
 
 public class Player {
+    public static final int MAX_ARMY = 10;
+
     private boolean wallkick;
     private int workers[] = new int[4];
     private int money;
@@ -19,6 +23,7 @@ public class Player {
     private Memory memory;
     private int x;
     private int y;
+    private WarriorSquad[] warriors = new WarriorSquad[MAX_ARMY]; // TODO - List
 
     public Player(Country _country) {
         memory = new Memory();
@@ -183,5 +188,44 @@ public class Player {
     public void upMagicMaxCount() {
         this.magicMaxCount += 1;
     }
-}
 
+    public WarriorSquad findWarriorSquad(Warrior warrior) {
+        for (int i = 0; i < MAX_ARMY; i++) {
+            if (warriors[i] != null &&
+                    warriors[i].getWarrior().getId() == warrior.getId()) {
+                return warriors[i];
+            }
+        }
+        return null;
+    }
+
+    public int armyAfford(Warrior warrior) {
+        WarriorSquad squad = findWarriorSquad(warrior);
+        return authority / warrior.getDefence() - ((squad != null) ? squad.getCount() : 0);
+    }
+
+    public void pushArmy(Warrior warrior, int count) {
+        WarriorSquad squad = findWarriorSquad(warrior);
+        if (squad == null) {
+            squad = new WarriorSquad(warrior, count);
+            int i = 0;
+            while (warriors[i] != null) {
+                i++;
+            }
+            warriors[i] = squad;
+        } else {
+            squad.changeCount(+count);
+        }
+
+    }
+
+    public int getWarriorSquadsCount() {
+        int count = 0;
+        for (int i = 0; i < MAX_ARMY; i++) {
+            if (warriors[i] != null) {
+                count++;
+            }
+        }
+        return count;
+    }
+}

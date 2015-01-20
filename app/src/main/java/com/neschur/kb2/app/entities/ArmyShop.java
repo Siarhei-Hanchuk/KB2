@@ -12,7 +12,7 @@ public class ArmyShop extends Entity {
     public ArmyShop(Country country, int x, int y, int group) {
         super(country, x, y);
         warrior = WarriorFactory.createRandomFromGroup(group);
-        this.count = warrior.getCostInShop();
+        this.count = warrior.getPriceInShop();
     }
 
     @Override
@@ -26,5 +26,13 @@ public class ArmyShop extends Entity {
 
     public int getCount() {
         return count;
+    }
+
+    public boolean pullArmy(int count) {
+        if (this.count - count >= 0) {
+            this.count -= count;
+            return true;
+        }
+        return false;
     }
 }

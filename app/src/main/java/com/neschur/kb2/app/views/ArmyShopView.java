@@ -35,21 +35,21 @@ public class ArmyShopView extends View {
                     event.getX() < getWidth() - buttonSize &&
                     event.getY() > getHeight() - buttonSize * 2 &&
                     event.getY() < getHeight() - buttonSize) {
-                gameController.buyArmy(1);
+                gameController.buyArmy(shop, 1);
             }
             if (event.getX() > getWidth() - buttonSize &&
                     event.getY() > getHeight() - buttonSize * 2 &&
                     event.getY() < getHeight() - buttonSize) {
-                gameController.buyArmy(10);
+                gameController.buyArmy(shop, 10);
             }
             if (event.getX() > getWidth() - buttonSize * 2 &&
                     event.getX() < getWidth() - buttonSize &&
                     event.getY() > getHeight() - buttonSize) {
-                gameController.buyArmy(100);
+                gameController.buyArmy(shop, 100);
             }
             if (event.getX() > getWidth() - buttonSize &&
                     event.getY() > getHeight() - buttonSize) {
-                gameController.buyArmy(1000);
+                gameController.buyArmy(shop, 1000);
             }
         }
         drawThread.refresh();
@@ -57,6 +57,7 @@ public class ArmyShopView extends View {
     }
 
     public void draw(Canvas canvas) {
+        canvas.drawColor(Color.BLACK);
         this.buttonSize = getHeight() / 5;
         int imageWidth = (getWidth() / 6) * 3/2;
         int imageHeight = (getHeight() / 5) * 3/2;

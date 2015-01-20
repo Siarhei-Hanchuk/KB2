@@ -89,8 +89,11 @@ public class GameController {
     public void buyArmy(ArmyShop armyShop, int count) {
         if (armyShop.getCount() >= count &&
                 player.armyAfford(armyShop.getWarrior()) >= count &&
-                player.getMoney() >= armyShop.getWarrior().getPriceInShop() * count) {
-
+                player.getMoney() >= armyShop.getWarrior().getPriceInShop() * count &&
+                player.getWarriorSquadsCount() < Player.MAX_ARMY) {
+            player.changeMoney(- armyShop.getWarrior().getPriceInShop() * count);
+            armyShop.pullArmy(count);
+            player.pushArmy(armyShop.getWarrior(), count);
         }
     }
 }

@@ -9,7 +9,7 @@ public class Warrior {
     private final boolean fly;
     private final boolean shoot;
     private final int countInShop;
-    private final int costInShop;
+    private final int priceInShop;
 
     public Warrior(String textId, int id, int defence, int damage, int step, boolean fly,
                    boolean shoot, int count, int cost) {
@@ -22,7 +22,7 @@ public class Warrior {
         this.fly = fly;
         this.shoot = shoot;
         this.countInShop = count;
-        this.costInShop = cost;
+        this.priceInShop = cost;
     }
 
     public String getTextId() {
@@ -33,8 +33,8 @@ public class Warrior {
         return id;
     }
 
-    public int getCostInShop() {
-        return costInShop;
+    public int getPriceInShop() {
+        return priceInShop;
     }
 
     public int getDefence() {
