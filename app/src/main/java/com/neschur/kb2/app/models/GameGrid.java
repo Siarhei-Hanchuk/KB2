@@ -6,11 +6,9 @@ import com.neschur.kb2.app.countries.World;
 
 public class GameGrid {
     private Player player;
-    private World world;
     private int[][] grid;
 
     public GameGrid(GameController gameController) {
-        world = gameController.getWorld();
         player = gameController.getPlayer();
     }
 

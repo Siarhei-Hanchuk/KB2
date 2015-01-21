@@ -2,15 +2,16 @@ package com.neschur.kb2.app.entities;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.Country;
+import com.neschur.kb2.app.models.Glade;
 
 public abstract class Entity {
     protected int x;
     protected int y;
-    protected Country country;
+    protected Glade glade;
 
-    public Entity(Country country, int x, int y) {
-        country.getMapPoint(x, y).setEntity(this);
-        this.country = country;
+    public Entity(Glade glade, int x, int y) {
+        glade.getMapPoint(x, y).setEntity(this);
+        this.glade = glade;
         this.x = x;
         this.y = y;
     }
@@ -18,7 +19,7 @@ public abstract class Entity {
     public abstract int getID();
 
     public void destroy() {
-        country.getMapPoint(x, y).setEntity(null);
+        glade.getMapPoint(x, y).setEntity(null);
     }
 
     public void step(int x, int y) {
@@ -32,17 +33,19 @@ public abstract class Entity {
     }
 
     public void move(int x, int y) {
-        if (getCountry().getMapPoint(x, y).getEntity() == null &&
-                getCountry().getMapPoint(x, y).getLand() == R.drawable.land) {
+        if (glade.getMapPoint(x, y).getEntity() == null &&
+                glade.getMapPoint(x, y).getLand() == R.drawable.land) {
             destroy();
             this.x = x;
             this.y = y;
-            getCountry().getMapPoint(x, y).setEntity(this);
+            glade.getMapPoint(x, y).setEntity(this);
         }
     }
 
     public Country getCountry() {
-        return country;
+        if (glade instanceof Country)
+            return (Country)glade;
+        return null;
     }
 
     public int getX() {

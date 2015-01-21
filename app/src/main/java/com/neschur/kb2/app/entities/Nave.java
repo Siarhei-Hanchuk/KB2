@@ -6,7 +6,6 @@ import com.neschur.kb2.app.countries.Country;
 public class Nave extends Entity {
     public Nave(Country country, int x, int y) {
         super(country, x, y);
-        this.country = country;
     }
 
     @Override
@@ -19,10 +18,10 @@ public class Nave extends Entity {
     }
 
     public void move(int x, int y, Country country) {
-        this.country.getMapPoint(this.x, this.y).setEntity(null);
+        this.glade.getMapPoint(this.x, this.y).setEntity(null);
         if (country != null)
-            this.country = country;
-        this.country.getMapPoint(x, y).setEntity(this);
+            this.glade = country;
+        this.glade.getMapPoint(x, y).setEntity(this);
         this.x = x;
         this.y = y;
     }
