@@ -46,16 +46,16 @@ public class GameController {
 
         if (mp.getEntity() == null) {
             if (player.inNave()) {
-                if (mp.land == R.drawable.land || mp.land == R.drawable.sand) {
+                if (mp.getLand() == R.drawable.land || mp.getLand() == R.drawable.sand) {
                     player.setNave(null);
                     player.move(x + dx, y + dy);
                 }
-                if (mp.land == R.drawable.water) {
+                if (mp.getLand() == R.drawable.water) {
                     player.move(x + dx, y + dy);
                 }
             } else {
-                if (mp.land == R.drawable.land || mp.land == R.drawable.plot
-                        || mp.land == R.drawable.sand) {
+                if (mp.getLand() == R.drawable.land || mp.getLand() == R.drawable.plot
+                        || mp.getLand() == R.drawable.sand) {
                     player.move(x + dx, y + dy);
                 }
             }

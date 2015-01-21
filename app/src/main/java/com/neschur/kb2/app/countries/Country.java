@@ -112,7 +112,7 @@ public abstract class Country {
         while (count < 5) {
             int y = rand(54) + 5;
             int x = rand(54) + 5;
-            if ((map[x][y].land == R.drawable.land) || (map[x][y].land == R.drawable.sand)) {
+            if ((map[x][y].getLand() == R.drawable.land) || (map[x][y].getLand() == R.drawable.sand)) {
                 map[x][y].setEntity(new GuidePost(this, x, y));
             }
             count++;
@@ -122,7 +122,7 @@ public abstract class Country {
     protected void goldChests(int frequency, int min, int max) {
         for (int i = 5; i < MAX_MAP_SIZE - 5; i++) {
             for (int j = 5; j < MAX_MAP_SIZE - 5; j++) {
-                if (((map[i][j].land == R.drawable.land) || (map[i][j].land == R.drawable.sand)) && (map[i][j].getEntity() == null)) {
+                if (((map[i][j].getLand() == R.drawable.land) || (map[i][j].getLand() == R.drawable.sand)) && (map[i][j].getEntity() == null)) {
                     if (rand(frequency) == 1) {
                         map[i][j].setEntity(new GoldChest(this, i, j, min, max));
                     }
@@ -139,9 +139,9 @@ public abstract class Country {
             width = rand(3);
             for (int coordinate = -width - 1; coordinate < +width + 1; coordinate++) {
                 if (type == 1) {
-                    map[x][y + coordinate].land = R.drawable.water;
+                    map[x][y + coordinate].setLand(R.drawable.water);
                 } else {
-                    map[x + coordinate][y].land = R.drawable.water;
+                    map[x + coordinate][y].setLand(R.drawable.water);
                 }
             }
             int center;
@@ -194,8 +194,8 @@ public abstract class Country {
         for (int i = 5; i < MAX_MAP_SIZE - 5; i++) {
             for (int j = 5; j < MAX_MAP_SIZE - 5; j++) {
                 if (rand(frequency) == 1) {
-                    if ((map[i][j].land == R.drawable.land) && (map[i][j].getEntity() == null)) {
-                        map[i][j].land = land;
+                    if ((map[i][j].getLand() == R.drawable.land) && (map[i][j].getEntity() == null)) {
+                        map[i][j].setLand(land);
                     }
                 }
             }
@@ -208,15 +208,15 @@ public abstract class Country {
         do {
             y = rand(54) + 5;
             x = rand(54) + 5;
-        } while (map[x][y].land != R.drawable.land && map[x][y].getEntity() == null);
+        } while (map[x][y].getLand() != R.drawable.land && map[x][y].getEntity() == null);
         map[x][y].setEntity(new MapNext(this, x, y));
     }
 
     private boolean tryPlaceCastle(int x, int y) {
-        if (((map[x][y].land == R.drawable.land) &&
-                (map[x - 1][y].land == R.drawable.land) &&
-                (map[x + 1][y].land == R.drawable.land) &&
-                (map[x][y + 1].land == R.drawable.land)) &&
+        if (((map[x][y].getLand() == R.drawable.land) &&
+                (map[x - 1][y].getLand() == R.drawable.land) &&
+                (map[x + 1][y].getLand() == R.drawable.land) &&
+                (map[x][y + 1].getLand() == R.drawable.land)) &&
                 ((map[x][y].getEntity() == null) &&
                         (map[x - 1][y].getEntity() == null) &&
                         (map[x + 1][y].getEntity() == null) &&
@@ -240,7 +240,7 @@ public abstract class Country {
     }
 
     private boolean tryPlaceCaptain(int x, int y) {
-        if (map[x][y].land == R.drawable.land && map[x][y].getEntity() == null) {
+        if (map[x][y].getLand() == R.drawable.land && map[x][y].getEntity() == null) {
             map[x][y].setEntity(new Captain(this, x, y));
             return true;
         }
@@ -278,8 +278,8 @@ public abstract class Country {
             default:
                 return false;
         }
-        if (map[x][y].land == oldType) {
-            map[x][y].land = newType;
+        if (map[x][y].getLand() == oldType) {
+            map[x][y].setLand(newType);
             return true;
         }
         return false;

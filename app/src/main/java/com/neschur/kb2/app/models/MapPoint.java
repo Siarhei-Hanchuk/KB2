@@ -3,7 +3,7 @@ package com.neschur.kb2.app.models;
 import com.neschur.kb2.app.entities.Entity;
 
 public class MapPoint {
-    public int land;
+    private int land;
     private Entity entity;
 
     public MapPoint() {
