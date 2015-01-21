@@ -4,6 +4,7 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.World;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Entity;
+import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.entities.Nave;
 import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.Player;
@@ -97,7 +98,7 @@ public class GameController {
         }
     }
 
-    public void activateBattle() {
-        mainController.activateBattle();
+    public void activateBattle(Fighting fighting) {
+        mainController.activateBattle(fighting);
     }
 }

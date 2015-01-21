@@ -67,13 +67,7 @@ public class MainView extends View {
         int stepY = canvas.getHeight() / 5;
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
-                Bitmap image = Bitmap.createScaledBitmap(
-                        BitmapFactory.decodeResource(
-                                getContext().getResources(),
-                                mainController.getGameGrid().getBuyXY(x, y)
-                        ),
-                        stepX, stepY, false
-                );
+                Bitmap image = oneImage(stepX, stepY, mainController.getGameGrid().getBuyXY(x, y));
                 if (image != null) {
                     canvas.drawBitmap(image, x * stepX, y * stepY, null);
                 }

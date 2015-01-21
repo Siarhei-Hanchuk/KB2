@@ -2,6 +2,7 @@ package com.neschur.kb2.app.controllers;
 
 import com.neschur.kb2.app.MainActivity;
 import com.neschur.kb2.app.entities.Entity;
+import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.ui.UiFactory;
 import com.neschur.kb2.app.views.BattleView;
@@ -92,8 +93,10 @@ public class MainController implements ViewClosable {
         switch (gameMode) {
             case 0:
                 activity.setContentView(mainView);
+                break;
             case 1:
                 activity.setContentView(battleView);
+                break;
         }
     }
 
@@ -106,9 +109,9 @@ public class MainController implements ViewClosable {
         resetView();
     }
 
-    public void activateBattle() {
+    public void activateBattle(Fighting fighting) {
         gameMode = 1;
-        BattleController battleController = new BattleController();
+        BattleController battleController = new BattleController(gameController.getPlayer(), fighting);
         battleView = new BattleView(activity, gameController, battleController, this);
     }
 }

@@ -1,6 +1,8 @@
 package com.neschur.kb2.app.views;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.SurfaceHolder;
@@ -56,5 +58,23 @@ public abstract class View extends SurfaceView implements SurfaceHolder.Callback
                 e.printStackTrace();
             }
         }
+    }
+
+    protected int stepX() {
+        return getWidth() / 6;
+    }
+
+    protected int stepY() {
+        return getHeight() / 5;
+    }
+
+    protected Bitmap oneImage(int width, int height, int id) {
+        return Bitmap.createScaledBitmap(
+                BitmapFactory.decodeResource(getContext().getResources(), id),
+                width, height, false);
+    }
+
+    protected Bitmap oneImage(int id) {
+        return oneImage(getWidth() / 6, getHeight() / 5, id);
     }
 }
