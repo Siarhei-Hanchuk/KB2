@@ -2,6 +2,7 @@ package com.neschur.kb2.app.models;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.GameController;
+import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.countries.World;
 
 public class GameGrid {
@@ -30,11 +31,16 @@ public class GameGrid {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 MapPoint mp = player.getCountry().getMapPoint(x + (i - 2), y + (j - 2));
-                if (mp.getDrawable() == R.drawable.forest) {
-                    grid[i][j] = getForest(x + (i - 2), y + (j - 2));
-                    background[i][j] = R.drawable.land;
+                if (mp.getEntity() != null) {
+                    grid[i][j] = mp.getEntity().getID();
                 } else {
-                    grid[i][j] = mp.getDrawable();
+                    grid[i][j] = -1;
+                }
+                if (mp.getLand() == R.drawable.forest) {
+                    background[i][j] = getForest(x + (i - 2), y + (j - 2));
+                } else if (mp.getLand() == R.drawable.water) {
+                    background[i][j] = getWater(x + (i - 2), y + (j - 2));
+                } else {
                     background[i][j] = mp.getLand();
                 }
             }
@@ -48,70 +54,90 @@ public class GameGrid {
     }
 
     private int getForest(int x, int y) {
+        return getComplexLandForest(x, y, "forest");
+    }
+
+    private int getWater(int x, int y) {
+        return getComplexLandForest(x, y, "water");
+    }
+
+    private int drawableReflection(String drawable) {
+        try {
+            return R.drawable.class.getField(drawable).getInt(new R.drawable());
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            return 0;
+        }
+    }
+
+    private int getComplexLandForest(int x, int y, String land) {
         MapPoint[][] mps = player.getCountry().getMapPoints();
-        int nForestCount = 0;
-        nForestCount = (mps[x - 1][y].getLand() == R.drawable.forest) ?
-                nForestCount + 1 : nForestCount;
-        nForestCount = (mps[x + 1][y].getLand() == R.drawable.forest) ?
-                nForestCount + 1 : nForestCount;
-        nForestCount = (mps[x][y - 1].getLand() == R.drawable.forest) ?
-                nForestCount + 1 : nForestCount;
-        nForestCount = (mps[x][y + 1].getLand() == R.drawable.forest) ?
-                nForestCount + 1 : nForestCount;
-        if(nForestCount == 0) {
-            return R.drawable.forest;
-        } else if (nForestCount == 4) {
-            return R.drawable.forest_4;
-        } else if (nForestCount == 1) {
-            if (mps[x - 1][y].getLand() == R.drawable.forest) {
-                return R.drawable.forest_1c;
+        int landID = drawableReflection(land);
+        int nLandCount = 0;
+        if(x > 0 && x < Country.MAX_MAP_SIZE && y > 0 && y < Country.MAX_MAP_SIZE) {
+            nLandCount = (mps[x - 1][y].getLand() == landID) ?
+                    nLandCount + 1 : nLandCount;
+            nLandCount = (mps[x + 1][y].getLand() == landID) ?
+                    nLandCount + 1 : nLandCount;
+            nLandCount = (mps[x][y - 1].getLand() == landID) ?
+                    nLandCount + 1 : nLandCount;
+            nLandCount = (mps[x][y + 1].getLand() == landID) ?
+                    nLandCount + 1 : nLandCount;
+        }
+        System.out.println(nLandCount);
+        if(nLandCount == 0) {
+            return landID ;
+        } else if (nLandCount == 4) {
+            return drawableReflection(land + "_4");
+        } else if (nLandCount == 1) {
+            if (mps[x - 1][y].getLand() == landID ) {
+                return drawableReflection(land + "_1c");
             }
-            if (mps[x + 1][y].getLand() == R.drawable.forest) {
-                return R.drawable.forest_1a;
+            if (mps[x + 1][y].getLand() == landID ) {
+                return drawableReflection(land + "_1a");
             }
-            if (mps[x][y - 1].getLand() == R.drawable.forest) {
-                return R.drawable.forest_1b;
+            if (mps[x][y - 1].getLand() == landID ) {
+                return drawableReflection(land + "_1b");
             }
-            if (mps[x][y + 1].getLand() == R.drawable.forest) {
-                return R.drawable.forest_1d;
+            if (mps[x][y + 1].getLand() == landID ) {
+                return drawableReflection(land + "_1d");
             }
-        } else if (nForestCount == 3) {
-            if (mps[x - 1][y].getLand() != R.drawable.forest) {
-                return R.drawable.forest_3d;
+        } else if (nLandCount == 3) {
+            if (mps[x - 1][y].getLand() != landID ) {
+                return drawableReflection(land + "_3d");
             }
-            if (mps[x + 1][y].getLand() != R.drawable.forest) {
-                return R.drawable.forest_3b;
+            if (mps[x + 1][y].getLand() != landID ) {
+                return drawableReflection(land + "_3b");
             }
-            if (mps[x][y - 1].getLand() != R.drawable.forest) {
-                return R.drawable.forest_3c;
+            if (mps[x][y - 1].getLand() != landID ) {
+                return drawableReflection(land + "_3c");
             }
-            if (mps[x][y + 1].getLand() != R.drawable.forest) {
-                return R.drawable.forest_3a;
+            if (mps[x][y + 1].getLand() != landID ) {
+                return drawableReflection(land + "_3a");
             }
-        } else if (nForestCount == 2) {
-            if (mps[x + 1][y].getLand() == R.drawable.forest &&
-                    mps[x][y - 1].getLand() == R.drawable.forest) {
-                return R.drawable.forest_2a;
+        } else if (nLandCount == 2) {
+            if (mps[x + 1][y].getLand() == landID  &&
+                    mps[x][y - 1].getLand() == landID ) {
+                return drawableReflection(land + "_2a");
             }
-            if (mps[x - 1][y].getLand() == R.drawable.forest &&
-                    mps[x][y - 1].getLand() == R.drawable.forest) {
-                return R.drawable.forest_2b;
+            if (mps[x - 1][y].getLand() == landID  &&
+                    mps[x][y - 1].getLand() == landID ) {
+                return drawableReflection(land + "_2b");
             }
-            if (mps[x - 1][y].getLand() == R.drawable.forest &&
-                    mps[x][y + 1].getLand() == R.drawable.forest) {
-                return R.drawable.forest_2c;
+            if (mps[x - 1][y].getLand() == landID  &&
+                    mps[x][y + 1].getLand() == landID ) {
+                return drawableReflection(land + "_2c");
             }
-            if (mps[x + 1][y].getLand() == R.drawable.forest &&
-                    mps[x][y + 1].getLand() == R.drawable.forest) {
-                return R.drawable.forest_2d;
+            if (mps[x + 1][y].getLand() == landID  &&
+                    mps[x][y + 1].getLand() == landID ) {
+                return drawableReflection(land + "_2d");
             }
-            if (mps[x - 1][y].getLand() == R.drawable.forest &&
-                    mps[x + 1][y].getLand() == R.drawable.forest) {
-                return R.drawable.forest_2f;
+            if (mps[x - 1][y].getLand() == landID  &&
+                    mps[x + 1][y].getLand() == landID ) {
+                return drawableReflection(land + "_2f");
             }
-            if (mps[x][y - 1].getLand() == R.drawable.forest &&
-                    mps[x][y + 1].getLand() == R.drawable.forest) {
-                return R.drawable.forest_2e;
+            if (mps[x][y - 1].getLand() == landID  &&
+                    mps[x][y + 1].getLand() == landID ) {
+                return drawableReflection(land + "_2e");
             }
         }
         return 0;

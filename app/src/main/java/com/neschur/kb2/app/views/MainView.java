@@ -72,18 +72,13 @@ public class MainView extends View {
                 if (x < 5) {
                     Bitmap background = imageCache.getImage(
                             grid.getBackgroundBuyXY(x, y));
-                    if (background == null) {
-                        background = imageCache.getImage(R.drawable.emo);
-                    }
                     canvas.drawBitmap(background, x * stepX(), y * stepY(), null);
                 }
-                Bitmap image = imageCache.getImage(
-                        grid.getImageBuyXY(x, y));
-
-                if (image == null) {
-                    image = imageCache.getImage(R.drawable.emo);
+                if (grid.getImageBuyXY(x, y) > -1) {
+                    Bitmap image = imageCache.getImage(
+                            grid.getImageBuyXY(x, y));
+                    canvas.drawBitmap(image, x * stepX(), y * stepY(), null);
                 }
-                canvas.drawBitmap(image, x * stepX(), y * stepY(), null);
             }
         }
     }
