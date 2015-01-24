@@ -14,7 +14,7 @@ public class Captain extends Entity implements Fighting{
 
     @Override
     public int getID() {
-        return R.drawable.capitan;
+        return R.drawable.captain;
     }
 
     public void setSquad(int n, WarriorSquad squad) {

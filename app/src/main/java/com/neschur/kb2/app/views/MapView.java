@@ -82,7 +82,7 @@ public class MapView extends View {
             case R.drawable.army_shop:
                 paint.setColor(Color.GRAY);
                 break;
-            case R.drawable.capitan:
+            case R.drawable.captain:
                 paint.setColor(Color.CYAN);
                 break;
             case R.drawable.city:
