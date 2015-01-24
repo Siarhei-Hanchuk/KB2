@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.MainController;
+import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.ui.ImageCache;
 
 public class MainView extends View {
@@ -64,19 +65,20 @@ public class MainView extends View {
 
     @Override
     public void draw(Canvas canvas) {
+        GameGrid grid = mainController.getGameGrid();
         imageCache = ImageCache.getInstance(getResources(), stepX(), stepY());;
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
                 if (x < 5) {
                     Bitmap background = imageCache.getImage(
-                            mainController.getGameGrid().getBackgroundBuyXY(x, y));
+                            grid.getBackgroundBuyXY(x, y));
                     if (background == null) {
                         background = imageCache.getImage(R.drawable.emo);
                     }
                     canvas.drawBitmap(background, x * stepX(), y * stepY(), null);
                 }
                 Bitmap image = imageCache.getImage(
-                        mainController.getGameGrid().getImageBuyXY(x, y));
+                        grid.getImageBuyXY(x, y));
 
                 if (image == null) {
                     image = imageCache.getImage(R.drawable.emo);

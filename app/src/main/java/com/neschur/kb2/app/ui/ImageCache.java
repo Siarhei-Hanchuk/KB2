@@ -4,6 +4,8 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import com.neschur.kb2.app.R;
+
 import java.util.HashMap;
 
 /**
@@ -36,6 +38,9 @@ public class ImageCache {
     public Bitmap getImage(int id) {
         Bitmap image = cache.get(id);
         if (image == null) {
+            image = BitmapFactory.decodeResource(resources, id);
+            if (image == null && id != R.drawable.emo)
+                return getImage(R.drawable.emo);
             image = Bitmap.createScaledBitmap(
                     BitmapFactory.decodeResource(resources, id),
                     width, height, false);

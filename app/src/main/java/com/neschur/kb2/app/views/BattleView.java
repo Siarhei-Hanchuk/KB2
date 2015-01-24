@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
+import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.BattleController;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.models.BattleField;
@@ -27,8 +28,10 @@ public class BattleView extends View {
         int field[][] = battleController.getIdsField();
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
-                Bitmap image = imageCache.getImage(field[x][y]);
-                canvas.drawBitmap(image, x * stepX(), y * stepY(), null);
+                canvas.drawBitmap(imageCache.getImage(R.drawable.land),
+                        x * stepX(), y * stepY(), null);
+                canvas.drawBitmap(imageCache.getImage(field[x][y]),
+                x * stepX(), y * stepY(), null);
             }
         }
     }

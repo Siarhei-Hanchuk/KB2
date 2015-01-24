@@ -30,8 +30,13 @@ public class GameGrid {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 MapPoint mp = player.getCountry().getMapPoint(x + (i - 2), y + (j - 2));
-                grid[i][j] = mp.getDrawable();
-                background[i][j] = mp.getLand();
+                if (mp.getDrawable() == R.drawable.forest) {
+                    grid[i][j] = getForest(x + (i - 2), y + (j - 2));
+                    background[i][j] = R.drawable.land;
+                } else {
+                    grid[i][j] = mp.getDrawable();
+                    background[i][j] = mp.getLand();
+                }
             }
         }
         if (player.inNave())
@@ -40,6 +45,76 @@ public class GameGrid {
             grid[2][2] = R.drawable.player;
 
         makeStatus();
+    }
+
+    private int getForest(int x, int y) {
+        MapPoint[][] mps = player.getCountry().getMapPoints();
+        int nForestCount = 0;
+        nForestCount = (mps[x - 1][y].getLand() == R.drawable.forest) ?
+                nForestCount + 1 : nForestCount;
+        nForestCount = (mps[x + 1][y].getLand() == R.drawable.forest) ?
+                nForestCount + 1 : nForestCount;
+        nForestCount = (mps[x][y - 1].getLand() == R.drawable.forest) ?
+                nForestCount + 1 : nForestCount;
+        nForestCount = (mps[x][y + 1].getLand() == R.drawable.forest) ?
+                nForestCount + 1 : nForestCount;
+        if(nForestCount == 0) {
+            return R.drawable.forest;
+        } else if (nForestCount == 4) {
+            return R.drawable.forest_4;
+        } else if (nForestCount == 1) {
+            if (mps[x - 1][y].getLand() == R.drawable.forest) {
+                return R.drawable.forest_1c;
+            }
+            if (mps[x + 1][y].getLand() == R.drawable.forest) {
+                return R.drawable.forest_1a;
+            }
+            if (mps[x][y - 1].getLand() == R.drawable.forest) {
+                return R.drawable.forest_1b;
+            }
+            if (mps[x][y + 1].getLand() == R.drawable.forest) {
+                return R.drawable.forest_1d;
+            }
+        } else if (nForestCount == 3) {
+            if (mps[x - 1][y].getLand() != R.drawable.forest) {
+                return R.drawable.forest_3d;
+            }
+            if (mps[x + 1][y].getLand() != R.drawable.forest) {
+                return R.drawable.forest_3b;
+            }
+            if (mps[x][y - 1].getLand() != R.drawable.forest) {
+                return R.drawable.forest_3c;
+            }
+            if (mps[x][y + 1].getLand() != R.drawable.forest) {
+                return R.drawable.forest_3a;
+            }
+        } else if (nForestCount == 2) {
+            if (mps[x + 1][y].getLand() == R.drawable.forest &&
+                    mps[x][y - 1].getLand() == R.drawable.forest) {
+                return R.drawable.forest_2a;
+            }
+            if (mps[x - 1][y].getLand() == R.drawable.forest &&
+                    mps[x][y - 1].getLand() == R.drawable.forest) {
+                return R.drawable.forest_2b;
+            }
+            if (mps[x - 1][y].getLand() == R.drawable.forest &&
+                    mps[x][y + 1].getLand() == R.drawable.forest) {
+                return R.drawable.forest_2c;
+            }
+            if (mps[x + 1][y].getLand() == R.drawable.forest &&
+                    mps[x][y + 1].getLand() == R.drawable.forest) {
+                return R.drawable.forest_2d;
+            }
+            if (mps[x - 1][y].getLand() == R.drawable.forest &&
+                    mps[x + 1][y].getLand() == R.drawable.forest) {
+                return R.drawable.forest_2f;
+            }
+            if (mps[x][y - 1].getLand() == R.drawable.forest &&
+                    mps[x][y + 1].getLand() == R.drawable.forest) {
+                return R.drawable.forest_2e;
+            }
+        }
+        return 0;
     }
 
     private void makeStatus() {

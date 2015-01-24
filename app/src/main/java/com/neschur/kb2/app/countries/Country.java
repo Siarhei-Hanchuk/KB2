@@ -74,6 +74,10 @@ public abstract class Country implements Glade {
         return map[x][y];
     }
 
+    public MapPoint[][] getMapPoints() {
+        return map;
+    }
+
     public int getId() {
         return id;
     }
