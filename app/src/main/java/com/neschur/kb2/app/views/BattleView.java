@@ -8,6 +8,7 @@ import com.neschur.kb2.app.controllers.BattleController;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.models.BattleField;
 import com.neschur.kb2.app.models.MapPoint;
+import com.neschur.kb2.app.ui.ImageCache;
 
 /**
  * Created by siarhei on 20.1.15.
@@ -22,10 +23,11 @@ public class BattleView extends View {
     }
 
     public void draw(Canvas canvas) {
+        ImageCache imageCache = ImageCache.getInstance(getResources(), stepX(), stepY());
         int field[][] = battleController.getIdsField();
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
-                Bitmap image = oneImage(field[x][y]);
+                Bitmap image = imageCache.getImage(field[x][y]);
                 canvas.drawBitmap(image, x * stepX(), y * stepY(), null);
             }
         }

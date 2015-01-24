@@ -2,11 +2,7 @@ package com.neschur.kb2.app.views;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.PaintFlagsDrawFilter;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.R;
@@ -71,7 +67,17 @@ public class MainView extends View {
         imageCache = ImageCache.getInstance(getResources(), stepX(), stepY());;
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
-                Bitmap image = imageCache.getImage(mainController.getGameGrid().getBuyXY(x, y));
+                if (x < 5) {
+                    Bitmap background = imageCache.getImage(
+                            mainController.getGameGrid().getBackgroundBuyXY(x, y));
+                    if (background == null) {
+                        background = imageCache.getImage(R.drawable.emo);
+                    }
+                    canvas.drawBitmap(background, x * stepX(), y * stepY(), null);
+                }
+                Bitmap image = imageCache.getImage(
+                        mainController.getGameGrid().getImageBuyXY(x, y));
+
                 if (image == null) {
                     image = imageCache.getImage(R.drawable.emo);
                 }

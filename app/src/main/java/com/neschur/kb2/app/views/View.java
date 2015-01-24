@@ -74,14 +74,4 @@ public abstract class View extends SurfaceView implements SurfaceHolder.Callback
     protected int stepY() {
         return (int)(82 * getScale());
     }
-
-    protected Bitmap oneImage(int width, int height, int id) {
-        return Bitmap.createScaledBitmap(
-                BitmapFactory.decodeResource(getContext().getResources(), id),
-                width, height, false);
-    }
-
-    protected Bitmap oneImage(int id) {
-        return oneImage(getWidth() / 6, getHeight() / 5, id);
-    }
 }
