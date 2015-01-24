@@ -4,9 +4,14 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PaintFlagsDrawFilter;
 import android.view.MotionEvent;
 
+import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.MainController;
+import com.neschur.kb2.app.ui.ImageCache;
 
 public class MainView extends View {
     private MainController mainController;
@@ -63,14 +68,14 @@ public class MainView extends View {
 
     @Override
     public void draw(Canvas canvas) {
-        int stepX = canvas.getWidth() / 6;
-        int stepY = canvas.getHeight() / 5;
+        imageCache = ImageCache.getInstance(getResources(), stepX(), stepY());;
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
-                Bitmap image = oneImage(stepX, stepY, mainController.getGameGrid().getBuyXY(x, y));
-                if (image != null) {
-                    canvas.drawBitmap(image, x * stepX, y * stepY, null);
+                Bitmap image = imageCache.getImage(mainController.getGameGrid().getBuyXY(x, y));
+                if (image == null) {
+                    image = imageCache.getImage(R.drawable.emo);
                 }
+                canvas.drawBitmap(image, x * stepX(), y * stepY(), null);
             }
         }
     }

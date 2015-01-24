@@ -10,6 +10,7 @@ import android.view.SurfaceView;
 
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.models.Player;
+import com.neschur.kb2.app.ui.ImageCache;
 
 public abstract class View extends SurfaceView implements SurfaceHolder.Callback, Drawable {
     public static final int ITEM_SIZE = 60;
@@ -19,6 +20,7 @@ public abstract class View extends SurfaceView implements SurfaceHolder.Callback
     protected Player player;
     protected DrawThread drawThread;
     protected Paint defaultPaint;
+    protected ImageCache imageCache;
 
     public View(Context context, GameController gameController, ViewClosable closeCallback) {
         super(context);
@@ -59,13 +61,18 @@ public abstract class View extends SurfaceView implements SurfaceHolder.Callback
             }
         }
     }
+    protected double getScale() {
+        double scaleX = (double)getWidth()/(96*6);
+        double scaleY = (double)getHeight()/(82*5);
+        return (scaleX > scaleY) ? scaleY : scaleX;
+    }
 
     protected int stepX() {
-        return getWidth() / 6;
+        return (int)(96 * getScale());
     }
 
     protected int stepY() {
-        return getHeight() / 5;
+        return (int)(82 * getScale());
     }
 
     protected Bitmap oneImage(int width, int height, int id) {
