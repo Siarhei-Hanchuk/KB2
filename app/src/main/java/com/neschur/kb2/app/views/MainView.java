@@ -23,14 +23,14 @@ public class MainView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (event.getX() > this.getWidth() * 5 / 6) {
-            int item = (int) event.getY() / (this.getHeight() / 5);
+        if (event.getX() > this.stepX() * 5) {
+            int item = (int) event.getY() / stepY();
             mainController.touchMenu(item);
         } else {
-            int height_2_5 = this.getHeight() * 2 / 5;
-            int height_3_5 = this.getHeight() * 3 / 5;
-            int width_2_5 = this.getWidth() * 2 / 5;
-            int width_3_5 = this.getWidth() * 3 / 5;
+            int height_2_5 = stepY() * 2;
+            int height_3_5 = stepY() * 3;
+            int width_2_5 = stepX() * 2;
+            int width_3_5 = stepX() * 3;
             double y = event.getY();
             double x = event.getX();
             if (y > height_3_5) {
