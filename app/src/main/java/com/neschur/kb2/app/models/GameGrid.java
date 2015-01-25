@@ -36,10 +36,11 @@ public class GameGrid {
                 } else {
                     grid[i][j] = -1;
                 }
-                if (mp.getLand() == R.drawable.forest) {
-                    background[i][j] = getForest(x + (i - 2), y + (j - 2));
-                } else if (mp.getLand() == R.drawable.water) {
-                    background[i][j] = getWater(x + (i - 2), y + (j - 2));
+                if (mp.getLand() == R.drawable.forest ||
+                        mp.getLand() == R.drawable.water ||
+                        mp.getLand() == R.drawable.sand ||
+                        mp.getLand() == R.drawable.stone) {
+                    background[i][j] = getComplexLand(x + (i - 2), y + (j - 2), mp.getLand());
                 } else {
                     background[i][j] = mp.getLand();
                 }
@@ -53,14 +54,6 @@ public class GameGrid {
         makeStatus();
     }
 
-    private int getForest(int x, int y) {
-        return getComplexLandForest(x, y, "forest");
-    }
-
-    private int getWater(int x, int y) {
-        return getComplexLandForest(x, y, "water");
-    }
-
     private int drawableReflection(String drawable) {
         try {
             return R.drawable.class.getField(drawable).getInt(new R.drawable());
@@ -69,74 +62,88 @@ public class GameGrid {
         }
     }
 
-    private int getComplexLandForest(int x, int y, String land) {
-        MapPoint[][] mps = player.getCountry().getMapPoints();
-        int landID = drawableReflection(land);
-        int nLandCount = 0;
-        if(x > 0 && x < Country.MAX_MAP_SIZE && y > 0 && y < Country.MAX_MAP_SIZE) {
-            nLandCount = (mps[x - 1][y].getLand() == landID) ?
-                    nLandCount + 1 : nLandCount;
-            nLandCount = (mps[x + 1][y].getLand() == landID) ?
-                    nLandCount + 1 : nLandCount;
-            nLandCount = (mps[x][y - 1].getLand() == landID) ?
-                    nLandCount + 1 : nLandCount;
-            nLandCount = (mps[x][y + 1].getLand() == landID) ?
-                    nLandCount + 1 : nLandCount;
+    private int getComplexLand(int x, int y, int landId) {
+        if (landId == R.drawable.forest) {
+            return getComplexLand(x, y, "forest");
+        } else if (landId == R.drawable.water) {
+            return getComplexLand(x, y, "water");
+        } else if (landId == R.drawable.sand) {
+            return getComplexLand(x, y, "sand");
+        } else if (landId == R.drawable.stone) {
+            return getComplexLand(x, y, "stone");
         }
-        System.out.println(nLandCount);
+        return 0;
+    }
+
+    private int getComplexLand(int x, int y, String land) {
+        MapPoint[][] mps = player.getCountry().getMapPoints();
+        int landId = drawableReflection(land);
+        int nLandCount = 0;
+        if(x > 0 && x < Country.MAX_MAP_SIZE - 1 && y > 0 && y < Country.MAX_MAP_SIZE - 1) {
+            nLandCount = (mps[x - 1][y].getLand() == landId) ?
+                    nLandCount + 1 : nLandCount;
+            nLandCount = (mps[x + 1][y].getLand() == landId) ?
+                    nLandCount + 1 : nLandCount;
+            nLandCount = (mps[x][y - 1].getLand() == landId) ?
+                    nLandCount + 1 : nLandCount;
+            nLandCount = (mps[x][y + 1].getLand() == landId) ?
+                    nLandCount + 1 : nLandCount;
+        } else {
+            nLandCount = 4;
+        }
         if(nLandCount == 0) {
-            return landID ;
+            return drawableReflection(land + "_0");
         } else if (nLandCount == 4) {
-            return drawableReflection(land + "_4");
+            return landId;
         } else if (nLandCount == 1) {
-            if (mps[x - 1][y].getLand() == landID ) {
+            if (mps[x - 1][y].getLand() == landId ) {
                 return drawableReflection(land + "_1c");
             }
-            if (mps[x + 1][y].getLand() == landID ) {
+            if (mps[x + 1][y].getLand() == landId ) {
                 return drawableReflection(land + "_1a");
             }
-            if (mps[x][y - 1].getLand() == landID ) {
+            if (mps[x][y - 1].getLand() == landId ) {
                 return drawableReflection(land + "_1b");
             }
-            if (mps[x][y + 1].getLand() == landID ) {
+            if (mps[x][y + 1].getLand() == landId ) {
                 return drawableReflection(land + "_1d");
             }
         } else if (nLandCount == 3) {
-            if (mps[x - 1][y].getLand() != landID ) {
+            if (mps[x - 1][y].getLand() != landId ) {
                 return drawableReflection(land + "_3d");
             }
-            if (mps[x + 1][y].getLand() != landID ) {
+            if (mps[x + 1][y].getLand() != landId ) {
                 return drawableReflection(land + "_3b");
             }
-            if (mps[x][y - 1].getLand() != landID ) {
+            if (mps[x][y - 1].getLand() != landId ) {
                 return drawableReflection(land + "_3c");
             }
-            if (mps[x][y + 1].getLand() != landID ) {
+            if (mps[x][y + 1].getLand() != landId ) {
                 return drawableReflection(land + "_3a");
             }
         } else if (nLandCount == 2) {
-            if (mps[x + 1][y].getLand() == landID  &&
-                    mps[x][y - 1].getLand() == landID ) {
+            if (mps[x + 1][y].getLand() == landId  &&
+                    mps[x][y - 1].getLand() == landId ) {
                 return drawableReflection(land + "_2a");
             }
-            if (mps[x - 1][y].getLand() == landID  &&
-                    mps[x][y - 1].getLand() == landID ) {
+            if (mps[x - 1][y].getLand() == landId  &&
+                    mps[x][y - 1].getLand() == landId ) {
                 return drawableReflection(land + "_2b");
             }
-            if (mps[x - 1][y].getLand() == landID  &&
-                    mps[x][y + 1].getLand() == landID ) {
+            if (mps[x - 1][y].getLand() == landId  &&
+                    mps[x][y + 1].getLand() == landId ) {
                 return drawableReflection(land + "_2c");
             }
-            if (mps[x + 1][y].getLand() == landID  &&
-                    mps[x][y + 1].getLand() == landID ) {
+            if (mps[x + 1][y].getLand() == landId  &&
+                    mps[x][y + 1].getLand() == landId ) {
                 return drawableReflection(land + "_2d");
             }
-            if (mps[x - 1][y].getLand() == landID  &&
-                    mps[x + 1][y].getLand() == landID ) {
+            if (mps[x - 1][y].getLand() == landId  &&
+                    mps[x + 1][y].getLand() == landId ) {
                 return drawableReflection(land + "_2f");
             }
-            if (mps[x][y - 1].getLand() == landID  &&
-                    mps[x][y + 1].getLand() == landID ) {
+            if (mps[x][y - 1].getLand() == landId  &&
+                    mps[x][y + 1].getLand() == landId ) {
                 return drawableReflection(land + "_2e");
             }
         }
