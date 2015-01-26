@@ -35,12 +35,16 @@ public class MainController implements ViewClosable {
         gameController = new GameController(this, GameController.MODE_GAME);
         mainView = new MainView(activity, this);
         activity.setContentView(mainView);
+        gameMode = 0;
     }
 
     public void newTraining() {
         gameController = new GameController(this, GameController.MODE_TRAINING);
         mainView = new MainView(activity, this);
         activity.setContentView(mainView);
+        gameMode = 0;
+
+        gameController.getPlayer().getMemory().showAll();
     }
 
     public boolean isCurrentGame() {
