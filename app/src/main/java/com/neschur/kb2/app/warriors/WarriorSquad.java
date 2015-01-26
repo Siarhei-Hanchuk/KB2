@@ -1,6 +1,8 @@
 package com.neschur.kb2.app.warriors;
 
-public class WarriorSquad {
+import java.io.Serializable;
+
+public class WarriorSquad implements Serializable {
     private final Warrior warrior;
     private int count;
 

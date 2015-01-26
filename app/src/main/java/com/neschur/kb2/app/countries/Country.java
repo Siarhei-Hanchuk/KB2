@@ -15,9 +15,10 @@ import com.neschur.kb2.app.warriors.Warrior;
 import com.neschur.kb2.app.warriors.WarriorFactory;
 import com.neschur.kb2.app.warriors.WarriorSquad;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public abstract class Country implements Glade {
+public abstract class Country implements Glade, Serializable {
     public final static int MAX_MAP_SIZE = 65;
     protected MapPoint[][] map;
     protected int id;

@@ -5,7 +5,9 @@ import com.neschur.kb2.app.entities.Nave;
 import com.neschur.kb2.app.warriors.Warrior;
 import com.neschur.kb2.app.warriors.WarriorSquad;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
     public static final int MAX_ARMY = 10;
 
     private boolean wallkick;

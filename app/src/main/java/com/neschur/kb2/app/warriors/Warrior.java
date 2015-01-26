@@ -1,6 +1,8 @@
 package com.neschur.kb2.app.warriors;
 
-public class Warrior {
+import java.io.Serializable;
+
+public class Warrior implements Serializable {
     private final String textId;
     private final int id;
     private final int defence;

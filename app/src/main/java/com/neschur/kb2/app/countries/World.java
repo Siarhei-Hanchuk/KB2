@@ -1,6 +1,8 @@
 package com.neschur.kb2.app.countries;
 
-public class World {
+import java.io.Serializable;
+
+public class World implements Serializable {
     private Country[] country;
 
     public World() {

@@ -2,7 +2,9 @@ package com.neschur.kb2.app.models;
 
 import com.neschur.kb2.app.countries.Country;
 
-public class Memory {
+import java.io.Serializable;
+
+public class Memory implements Serializable {
     private boolean map[][][] = new boolean[5][Country.MAX_MAP_SIZE][Country.MAX_MAP_SIZE];
 
     public Memory() {

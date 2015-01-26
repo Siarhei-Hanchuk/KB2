@@ -2,7 +2,9 @@ package com.neschur.kb2.app.models;
 
 import com.neschur.kb2.app.entities.Entity;
 
-public class MapPoint {
+import java.io.Serializable;
+
+public class MapPoint implements Serializable {
     private int land;
     private Entity entity;
 

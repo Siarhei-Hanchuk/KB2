@@ -1,6 +1,7 @@
 package com.neschur.kb2.app.controllers;
 
 import com.neschur.kb2.app.MainActivity;
+import com.neschur.kb2.app.Storage;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.models.GameGrid;

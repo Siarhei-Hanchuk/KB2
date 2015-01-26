@@ -9,14 +9,16 @@ import com.neschur.kb2.app.entities.Nave;
 import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.Player;
 
-public class GameController {
+import java.io.Serializable;
+
+public class GameController implements Serializable{
     public static final int MODE_GAME = 1;
     public static final int MODE_TRAINING = 2;
 
     private World world;
     private Player player;
     private Nave nave;
-    private MainController mainController;
+    transient private MainController mainController;
 
     public GameController(MainController mainController, int mode) {
         this.mainController = mainController;
