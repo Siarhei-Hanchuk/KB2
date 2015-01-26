@@ -2,6 +2,7 @@ package com.neschur.kb2.app.views;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.support.annotation.NonNull;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.BattleController;
@@ -17,7 +18,7 @@ public class BattleView extends View {
         this.battleController = battleController;
     }
 
-    public void draw(Canvas canvas) {
+    public void draw(@NonNull Canvas canvas) {
         ImageCache imageCache = ImageCache.getInstance(getResources(), stepX(), stepY());
         int field[][] = battleController.getIdsField();
         for (int x = 0; x < 6; x++) {

@@ -3,6 +3,7 @@ package com.neschur.kb2.app.views;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.controllers.MainController;
@@ -20,7 +21,7 @@ public class MainView extends View {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(@NonNull MotionEvent event) {
         int x = (int) event.getX() - xOffset;
         int y = (int) event.getY() - yOffset;
         if (x > this.stepX() * 5) {
@@ -75,7 +76,7 @@ public class MainView extends View {
     }
 
     @Override
-    public void draw(Canvas canvas) {
+    public void draw(@NonNull Canvas canvas) {
         GameGrid grid = mainController.getGameGrid();
         imageCache = ImageCache.getInstance(getResources(), stepX(), stepY());
         calcOffsets();

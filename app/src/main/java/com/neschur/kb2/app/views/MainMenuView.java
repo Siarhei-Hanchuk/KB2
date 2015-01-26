@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.I18n;
@@ -19,7 +20,7 @@ public class MainMenuView extends View {
         this.mainController = mainController;
     }
 
-    public void draw(Canvas canvas) {
+    public void draw(@NonNull Canvas canvas) {
         Paint paint = getDefaultPaint();
         canvas.drawColor(Color.BLACK);
 
@@ -49,7 +50,7 @@ public class MainMenuView extends View {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(@NonNull MotionEvent event) {
         if (event.getX() < getWidth() / 2) {
             if (event.getY() < menuItemHeight()) {
                 if (mainController.isCurrentGame()) {

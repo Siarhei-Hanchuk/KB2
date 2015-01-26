@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.controllers.GameController;
@@ -18,7 +19,7 @@ public class MenuView extends View {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(@NonNull MotionEvent event) {
         double y = event.getY();
         int item = (int) y / menuItemHeight();
         select(item);
@@ -26,7 +27,7 @@ public class MenuView extends View {
         return super.onTouchEvent(event);
     }
 
-    public void draw(Canvas canvas) {
+    public void draw(@NonNull Canvas canvas) {
         Paint paint = getDefaultPaint();
         canvas.drawColor(Color.BLACK);
 
