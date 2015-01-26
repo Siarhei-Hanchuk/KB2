@@ -20,12 +20,11 @@ import java.util.Random;
 public abstract class Country implements Glade {
     public final static int MAX_MAP_SIZE = 65;
     protected MapPoint[][] map;
-    private  int id;
+    protected int id;
     private Random random;
     private Sorcerer sorcerer;
 
-    public Country(int id) {
-        this.id = id;
+    public Country() {
         this.random = new Random();
 
         map = new MapPoint[65][65];

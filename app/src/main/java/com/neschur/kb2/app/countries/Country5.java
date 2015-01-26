@@ -4,8 +4,8 @@ import com.neschur.kb2.app.R;
 
 public class Country5 extends Country {
 
-    public Country5(final int id) {
-        super(id);
+    public Country5() {
+        this.id = 4;
         sand();
         river(10);
         cities();
