@@ -60,6 +60,9 @@ public class ArmyShopView extends View {
 
     public void draw(@NonNull Canvas canvas) {
         Paint paint = getDefaultPaint();
+        Paint smallFont = new Paint(paint);
+        smallFont.setTextSize(textHeight()/2);
+
         canvas.drawColor(Color.BLACK);
 
         this.buttonSize = getHeight() / 5;
@@ -88,18 +91,18 @@ public class ArmyShopView extends View {
         canvas.drawText(I18n.translate("army_names_" + warrior.getTextId()),
                 imageWidth + 10, menuItemHeight(), paint);
         canvas.drawText(I18n.translate(R.string.army_ui_thereIs) + ": " + shop.getCount(),
-                imageWidth + 10, menuItemHeight() * 3, paint);
+                imageWidth + 10, (int)(menuItemHeight() * 1.5), smallFont);
         canvas.drawText(I18n.translate(R.string.army_ui_price) + ": " + warrior.getPriceInShop(),
-                imageWidth + 10, menuItemHeight() * 4, paint);
+                imageWidth + 10, menuItemHeight() * 2, smallFont);
         canvas.drawText(I18n.translate(R.string.player_attrs_money) + ": " + player.getMoney(),
-                getWidth() - imageWidth * 2, menuItemHeight(), paint);
+                getWidth() - imageWidth * 2, menuItemHeight() * 2, paint);
 
         canvas.drawText(I18n.translate(R.string.army_ui_afford) + ": " + player.armyAfford(warrior),
-                getWidth() - buttonSize * 5,
-                getHeight() - buttonSize * 2 - 10 - menuItemHeight(), paint);
+                getWidth() - buttonSize * 3,
+                getHeight() - buttonSize * 2 - 10 - menuItemHeight(), smallFont);
         canvas.drawText(I18n.translate(R.string.army_ui_howMany),
                 getWidth() - buttonSize * 2,
-                getHeight() - buttonSize * 2 - 10, paint);
+                getHeight() - buttonSize * 2 - 10, smallFont);
         paint.setColor(Color.GRAY);
         canvas.drawRect(getWidth() - buttonSize * 2, getHeight() - buttonSize * 2,
                 getWidth(), getHeight(), paint);
@@ -124,15 +127,15 @@ public class ArmyShopView extends View {
         paint.setColor(Color.WHITE);
         canvas.drawText("1",
                 getWidth() - buttonSize - buttonSize / 2,
-                getHeight() - buttonSize - buttonSize / 2, paint);
+                getHeight() - buttonSize - buttonSize / 2, smallFont);
         canvas.drawText("10",
                 getWidth() - buttonSize / 1.5f,
-                getHeight() - buttonSize - buttonSize / 2, paint);
+                getHeight() - buttonSize - buttonSize / 2, smallFont);
         canvas.drawText("100",
                 getWidth() - buttonSize - buttonSize / 1.2f,
-                getHeight() - buttonSize / 2, paint);
+                getHeight() - buttonSize / 2, smallFont);
         canvas.drawText("1000",
                 getWidth() - buttonSize / 1.12f,
-                getHeight() - buttonSize / 2, paint);
+                getHeight() - buttonSize / 2, smallFont);
     }
 }
