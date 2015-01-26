@@ -20,13 +20,15 @@ public class BattleView extends View {
 
     public void draw(@NonNull Canvas canvas) {
         ImageCache imageCache = ImageCache.getInstance(getResources(), stepX(), stepY());
+        calcOffsets();
+
         int field[][] = battleController.getIdsField();
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
                 canvas.drawBitmap(imageCache.getImage(R.drawable.land),
-                        x * stepX(), y * stepY(), null);
+                        xOffset + x * stepX(), yOffset + y * stepY(), null);
                 canvas.drawBitmap(imageCache.getImage(field[x][y]),
-                        x * stepX(), y * stepY(), null);
+                        xOffset + x * stepX(), yOffset + y * stepY(), null);
             }
         }
     }

@@ -12,8 +12,6 @@ import com.neschur.kb2.app.ui.ImageCache;
 
 public class MainView extends View {
     private MainController mainController;
-    private int xOffset = 0;
-    private int yOffset = 0;
 
     public MainView(Context context, MainController mainController) {
         super(context, null, null);
@@ -63,16 +61,6 @@ public class MainView extends View {
         }
         drawThread.refresh();
         return super.onTouchEvent(event);
-    }
-
-    public void calcOffsets() {
-        double scaleX = (double) getWidth() / (96 * 6);
-        double scaleY = (double) getHeight() / (82 * 5);
-        if (scaleX > scaleY) {
-            xOffset = (getWidth() - stepX() * 6) / 2;
-        } else {
-            yOffset = (getHeight() - stepX() * 5) / 2;
-        }
     }
 
     @Override

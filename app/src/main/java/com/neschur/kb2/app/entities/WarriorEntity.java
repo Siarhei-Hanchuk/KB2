@@ -5,10 +5,12 @@ import com.neschur.kb2.app.warriors.Warrior;
 
 public class WarriorEntity extends Entity {
     private Warrior warrior;
+    private boolean friendly;
 
-    public WarriorEntity(Glade glade, int x, int y, Warrior warrior) {
+    public WarriorEntity(Glade glade, int x, int y, Warrior warrior, boolean friendly) {
         super(glade, x, y);
         this.warrior = warrior;
+        this.friendly = true;
     }
 
     @Override

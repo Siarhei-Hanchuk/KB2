@@ -29,10 +29,13 @@ public class BattleField implements Glade {
     }
 
     private void prepareArmy() {
+        System.out.println(player);
+        System.out.println(fighting);
         for (int i = 0; i < 5; i++) {
             if (player.getWarriorSquad(i) != null)
-                map[0][i].setEntity(new WarriorEntity(this, 0, i,
-                        player.getWarriorSquad(i).getWarrior()));
+                new WarriorEntity(this, 0, i, player.getWarriorSquad(i).getWarrior(), true);
+            if (fighting.getWarriorSquad(i) != null)
+                new WarriorEntity(this, 5, i, fighting.getWarriorSquad(i).getWarrior(), false);
         }
     }
 }

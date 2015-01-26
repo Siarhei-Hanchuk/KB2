@@ -92,7 +92,7 @@ public class ArmyShopView extends View {
         canvas.drawText(I18n.translate(R.string.army_ui_price) + ": " + warrior.getPriceInShop(),
                 imageWidth + 10, menuItemHeight() * 4, paint);
         canvas.drawText(I18n.translate(R.string.player_attrs_money) + ": " + player.getMoney(),
-                getWidth() - imageWidth * 2, menuItemHeight() * 2, paint);
+                getWidth() - imageWidth * 2, menuItemHeight(), paint);
 
         canvas.drawText(I18n.translate(R.string.army_ui_afford) + ": " + player.armyAfford(warrior),
                 getWidth() - buttonSize * 5,

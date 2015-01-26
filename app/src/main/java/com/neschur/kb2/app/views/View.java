@@ -16,6 +16,8 @@ public abstract class View extends SurfaceView implements SurfaceHolder.Callback
     protected Player player;
     protected DrawThread drawThread;
     protected ImageCache imageCache;
+    protected int xOffset = 0;
+    protected int yOffset = 0;
 
     public View(Context context, GameController gameController, ViewClosable closeCallback) {
         super(context);
@@ -68,7 +70,7 @@ public abstract class View extends SurfaceView implements SurfaceHolder.Callback
     }
 
     protected int textHeight() {
-        return (int) (menuItemHeight() * 0.9);
+        return (int) (menuItemHeight() * 0.8);
     }
 
     protected int menuItemHeight() {
@@ -80,5 +82,15 @@ public abstract class View extends SurfaceView implements SurfaceHolder.Callback
         defaultPaint.setColor(Color.WHITE);
         defaultPaint.setTextSize(textHeight());
         return defaultPaint;
+    }
+
+    protected void calcOffsets() {
+        double scaleX = (double) getWidth() / (96 * 6);
+        double scaleY = (double) getHeight() / (82 * 5);
+        if (scaleX > scaleY) {
+            xOffset = (getWidth() - stepX() * 6) / 2;
+        } else {
+            yOffset = (getHeight() - stepX() * 5) / 2;
+        }
     }
 }

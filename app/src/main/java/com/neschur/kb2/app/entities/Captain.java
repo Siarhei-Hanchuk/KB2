@@ -23,6 +23,6 @@ public class Captain extends Entity implements Fighting {
 
     @Override
     public WarriorSquad getWarriorSquad(int n) {
-        return null;
+        return warriors[n];
     }
 }
