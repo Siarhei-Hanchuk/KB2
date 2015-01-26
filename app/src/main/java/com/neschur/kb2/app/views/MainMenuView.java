@@ -15,6 +15,7 @@ import com.neschur.kb2.app.controllers.MainController;
  */
 public class MainMenuView extends View {
     private MainController mainController;
+    private boolean saved = false;
 
     public MainMenuView(Context context, MainController mainController) {
         super(context, null, mainController);
@@ -25,18 +26,28 @@ public class MainMenuView extends View {
         canvas.drawColor(Color.BLACK);
 
         if (mainController.isCurrentGame()) {
-            canvas.drawText(I18n.translate(R.string.mainMenu_resume), 0, 1 * ITEM_SIZE, defaultPaint);
+            canvas.drawText(I18n.translate(R.string.mainMenu_resume),
+                    0, 1 * ITEM_SIZE, defaultPaint);
         }
-
-        canvas.drawText(I18n.translate(R.string.mainMenu_new_game), 0, 3 * ITEM_SIZE, defaultPaint);
-
-        canvas.drawText(I18n.translate(R.string.mainMenu_training), 0, 5 * ITEM_SIZE, defaultPaint);
-
-        canvas.drawText(I18n.translate(R.string.mainMenu_load_game), 0, 7 * ITEM_SIZE, defaultPaint);
-
-        canvas.drawText(I18n.translate(R.string.mainMenu_save_game), 0, 9 * ITEM_SIZE, defaultPaint);
-
-        canvas.drawText(I18n.translate(R.string.mainMenu_exit), 0, 11 * ITEM_SIZE, defaultPaint);
+        canvas.drawText(I18n.translate(R.string.mainMenu_new_game),
+                0, 3 * ITEM_SIZE, defaultPaint);
+        canvas.drawText(I18n.translate(R.string.mainMenu_training),
+                0, 5 * ITEM_SIZE, defaultPaint);
+        canvas.drawText(I18n.translate(R.string.mainMenu_load_game),
+                0, 7 * ITEM_SIZE, defaultPaint);
+        if (mainController.isCurrentGame()) {
+            if (!saved) {
+                canvas.drawText(I18n.translate(R.string.mainMenu_save_game),
+                        0, 9 * ITEM_SIZE, defaultPaint);
+            } else {
+                canvas.drawText(I18n.translate(R.string.mainMenu_save_game) + " - " +
+                                I18n.translate(R.string.mainMenu_save_game_saved),
+                        0, 9 * ITEM_SIZE, defaultPaint);
+                saved = false;
+            }
+        }
+        canvas.drawText(I18n.translate(R.string.mainMenu_exit),
+                0, 11 * ITEM_SIZE, defaultPaint);
     }
 
     @Override
@@ -49,9 +60,12 @@ public class MainMenuView extends View {
             } else if (event.getY() < ITEM_SIZE * 6) {
                 mainController.newTraining();
             } else if (event.getY() < ITEM_SIZE * 8) {
-
+                mainController.loadGame();
+                drawThread.refresh();
             } else if (event.getY() < ITEM_SIZE * 10) {
-
+                mainController.saveGame();
+                drawThread.refresh();
+                saved = true;
             } else if (event.getY() < ITEM_SIZE * 12) {
                 mainController.exit();
             }

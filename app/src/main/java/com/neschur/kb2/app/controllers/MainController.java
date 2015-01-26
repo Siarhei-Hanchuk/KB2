@@ -141,4 +141,17 @@ public class MainController implements ViewClosable {
         activity.finish();
         System.exit(0);
     }
+
+    public void saveGame() {
+        Storage storage = new Storage(activity);
+        storage.saveGame(gameController, "save1");
+    }
+
+    public void loadGame() {
+        Storage storage = new Storage(activity);
+        gameController = storage.loadGame("save1");
+        gameController.setMainController(this);
+        mainView = new MainView(activity, this);
+        activity.setContentView(mainView);
+    }
 }

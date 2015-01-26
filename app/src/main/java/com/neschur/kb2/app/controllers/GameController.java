@@ -110,4 +110,8 @@ public class GameController implements Serializable{
     public void activateBattle(Fighting fighting) {
         mainController.activateBattle(fighting);
     }
+
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+    }
 }

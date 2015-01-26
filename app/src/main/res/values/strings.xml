@@ -74,4 +74,5 @@
     <string name="mainMenu.load_game">Load game</string>
     <string name="mainMenu.exit">Exit</string>
     <string name="mainMenu.save_game">Save game</string>
+    <string name="mainMenu.save_game.saved">Saved</string>
 </resources>

@@ -26,12 +26,12 @@ public class Storage {
         prefs = activity.getSharedPreferences("main", Context.MODE_PRIVATE);
     }
 
-    public boolean saveGame(GameController game){
-        return saveObject("save1", game);
+    public boolean saveGame(GameController game, String key){
+        return saveObject(key, game);
     }
 
-    public GameController loadGame(){
-        return (GameController)loadObject("save1");
+    public GameController loadGame(String key){
+        return (GameController)loadObject(key);
     }
 
     private boolean saveObject(String key, Object object) {
