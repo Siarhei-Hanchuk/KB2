@@ -1,19 +1,13 @@
 package com.neschur.kb2.app.views;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.BattleController;
 import com.neschur.kb2.app.controllers.GameController;
-import com.neschur.kb2.app.models.BattleField;
-import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.ui.ImageCache;
 
-/**
- * Created by siarhei on 20.1.15.
- */
 public class BattleView extends View {
     private BattleController battleController;
 
@@ -31,7 +25,7 @@ public class BattleView extends View {
                 canvas.drawBitmap(imageCache.getImage(R.drawable.land),
                         x * stepX(), y * stepY(), null);
                 canvas.drawBitmap(imageCache.getImage(field[x][y]),
-                x * stepX(), y * stepY(), null);
+                        x * stepX(), y * stepY(), null);
             }
         }
     }

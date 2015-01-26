@@ -6,14 +6,12 @@ import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Captain;
 import com.neschur.kb2.app.entities.Entity;
 
-/**
- * Created by siarhei on 20.1.15.
- */
-public class CaptainMenu extends Menu{
+public class CaptainMenu extends Menu {
     private Captain captain;
+
     public CaptainMenu(Activity activity, Entity entity, GameController gameController) {
         super(activity, gameController);
-        this.captain = (Captain)entity;
+        this.captain = (Captain) entity;
     }
 
     @Override

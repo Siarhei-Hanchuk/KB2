@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
-import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.MainController;
 import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.ui.ImageCache;
@@ -22,8 +21,8 @@ public class MainView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        int x = (int)event.getX() - xOffset;
-        int y = (int)event.getY() - yOffset;
+        int x = (int) event.getX() - xOffset;
+        int y = (int) event.getY() - yOffset;
         if (x > this.stepX() * 5) {
             int item = y / stepY();
             mainController.touchMenu(item);
@@ -66,8 +65,8 @@ public class MainView extends View {
     }
 
     public void calcOffsets() {
-        double scaleX = (double)getWidth()/(96*6);
-        double scaleY = (double)getHeight()/(82*5);
+        double scaleX = (double) getWidth() / (96 * 6);
+        double scaleY = (double) getHeight() / (82 * 5);
         if (scaleX > scaleY) {
             xOffset = (getWidth() - stepX() * 6) / 2;
         } else {
@@ -78,7 +77,7 @@ public class MainView extends View {
     @Override
     public void draw(Canvas canvas) {
         GameGrid grid = mainController.getGameGrid();
-        imageCache = ImageCache.getInstance(getResources(), stepX(), stepY());;
+        imageCache = ImageCache.getInstance(getResources(), stepX(), stepY());
         calcOffsets();
 
         for (int x = 0; x < 6; x++) {

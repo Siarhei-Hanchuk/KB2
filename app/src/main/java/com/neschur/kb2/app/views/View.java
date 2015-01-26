@@ -1,8 +1,6 @@
 package com.neschur.kb2.app.views;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.SurfaceHolder;
@@ -54,26 +52,27 @@ public abstract class View extends SurfaceView implements SurfaceHolder.Callback
             }
         }
     }
+
     protected double getScale() {
-        double scaleX = (double)getWidth()/(96*6);
-        double scaleY = (double)getHeight()/(82*5);
+        double scaleX = (double) getWidth() / (96 * 6);
+        double scaleY = (double) getHeight() / (82 * 5);
         return (scaleX > scaleY) ? scaleY : scaleX;
     }
 
     protected int stepX() {
-        return (int)(96 * getScale());
+        return (int) (96 * getScale());
     }
 
     protected int stepY() {
-        return (int)(82 * getScale());
+        return (int) (82 * getScale());
     }
 
     protected int textHeight() {
-        return (int)(menuItemHeight() * 0.9);
+        return (int) (menuItemHeight() * 0.9);
     }
 
     protected int menuItemHeight() {
-        return (int)(getHeight() / 8.0);
+        return (int) (getHeight() / 8.0);
     }
 
     protected Paint getDefaultPaint() {

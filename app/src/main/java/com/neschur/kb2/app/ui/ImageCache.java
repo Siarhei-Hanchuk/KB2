@@ -8,14 +8,11 @@ import com.neschur.kb2.app.R;
 
 import java.util.HashMap;
 
-/**
- * Created by siarhei on 23.01.15.
- */
 public class ImageCache {
     private static ImageCache self;
-    private Resources resources;
     private final int width;
     private final int height;
+    private Resources resources;
     private HashMap<Integer, Bitmap> cache = new HashMap<>();
 
     private ImageCache(Resources resources, int width, int height) {

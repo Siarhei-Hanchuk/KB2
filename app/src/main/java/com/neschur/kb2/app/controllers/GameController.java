@@ -11,7 +11,7 @@ import com.neschur.kb2.app.models.Player;
 
 import java.io.Serializable;
 
-public class GameController implements Serializable{
+public class GameController implements Serializable {
     public static final int MODE_GAME = 1;
     public static final int MODE_TRAINING = 2;
 
@@ -22,10 +22,10 @@ public class GameController implements Serializable{
 
     public GameController(MainController mainController, int mode) {
         this.mainController = mainController;
-        if (mode ==  MODE_GAME) {
+        if (mode == MODE_GAME) {
             world = new World();
             player = new Player(world.getCountry(0), Player.MODE_GAME);
-        } else if (mode ==  MODE_TRAINING) {
+        } else if (mode == MODE_TRAINING) {
             world = new World(true);
             player = new Player(world.getCountry(0), Player.MODE_TRAINING);
         }
@@ -103,7 +103,7 @@ public class GameController implements Serializable{
                 player.armyAfford(armyShop.getWarrior()) >= count &&
                 player.getMoney() >= armyShop.getWarrior().getPriceInShop() * count &&
                 player.getWarriorSquadsCount() < Player.MAX_ARMY) {
-            player.changeMoney(- armyShop.getWarrior().getPriceInShop() * count);
+            player.changeMoney(-armyShop.getWarrior().getPriceInShop() * count);
             armyShop.pullArmy(count);
             player.pushArmy(armyShop.getWarrior(), count);
         }

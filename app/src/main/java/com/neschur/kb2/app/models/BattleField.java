@@ -4,9 +4,6 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.entities.WarriorEntity;
 
-/**
- * Created by siarhei on 21.01.15.
- */
 public class BattleField implements Glade {
     private MapPoint[][] map = new MapPoint[6][5];
     private Player player;

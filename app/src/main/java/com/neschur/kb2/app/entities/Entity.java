@@ -46,7 +46,7 @@ public abstract class Entity implements Serializable {
 
     public Country getCountry() {
         if (glade instanceof Country)
-            return (Country)glade;
+            return (Country) glade;
         return null;
     }
 

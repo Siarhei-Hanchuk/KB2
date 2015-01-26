@@ -44,7 +44,7 @@ public class MainController implements ViewClosable {
     }
 
     public boolean isCurrentGame() {
-        return (gameController != null) ? true : false;
+        return gameController != null;
     }
 
     public GameGrid getGameGrid() {
@@ -103,7 +103,7 @@ public class MainController implements ViewClosable {
 
     public void activateEntity(Entity entity) {
         View view = UiFactory.getViewForEntity(entity);
-        if( view != null )
+        if (view != null)
             activity.setContentView(view);
     }
 

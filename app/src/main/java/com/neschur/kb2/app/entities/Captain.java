@@ -4,7 +4,7 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.warriors.WarriorSquad;
 
-public class Captain extends Entity implements Fighting{
+public class Captain extends Entity implements Fighting {
     public static final int MAX_ARMY = 5;
     private WarriorSquad[] warriors = new WarriorSquad[MAX_ARMY];
 

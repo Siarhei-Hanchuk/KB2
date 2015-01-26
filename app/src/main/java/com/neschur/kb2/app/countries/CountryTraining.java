@@ -3,10 +3,7 @@ package com.neschur.kb2.app.countries;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.City;
 
-/**
- * Created by siarhei on 25.01.15.
- */
-public class CountryTraining extends Country{
+public class CountryTraining extends Country {
     public CountryTraining() {
         this.id = 0;
 

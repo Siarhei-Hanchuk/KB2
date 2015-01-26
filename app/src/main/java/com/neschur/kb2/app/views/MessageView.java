@@ -3,7 +3,6 @@ package com.neschur.kb2.app.views;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.controllers.GameController;

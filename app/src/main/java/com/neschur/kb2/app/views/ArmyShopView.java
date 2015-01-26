@@ -62,8 +62,8 @@ public class ArmyShopView extends View {
         canvas.drawColor(Color.BLACK);
 
         this.buttonSize = getHeight() / 5;
-        int imageWidth = (getWidth() / 6) * 3/2;
-        int imageHeight = (getHeight() / 5) * 3/2;
+        int imageWidth = (getWidth() / 6) * 3 / 2;
+        int imageHeight = (getHeight() / 5) * 3 / 2;
         int buttonBorderSize = 5;
         Bitmap image = Bitmap.createScaledBitmap(
                 BitmapFactory.decodeResource(
@@ -74,7 +74,7 @@ public class ArmyShopView extends View {
 
         canvas.drawBitmap(image, 0, 0, null);
         canvas.drawText(I18n.translate(R.string.army_ui_step) + ": " + warrior.getStep(),
-                0, imageHeight + menuItemHeight() * 1, paint);
+                0, imageHeight + menuItemHeight(), paint);
         canvas.drawText(I18n.translate(R.string.army_ui_defense) + ": " + warrior.getDefence(),
                 0, imageHeight + menuItemHeight() * 2, paint);
         canvas.drawText(I18n.translate(R.string.army_ui_damage) + ": " + warrior.getDamage(),
@@ -85,7 +85,7 @@ public class ArmyShopView extends View {
                 0, imageHeight + menuItemHeight() * 5, paint);
 
         canvas.drawText(I18n.translate("army_names_" + warrior.getTextId()),
-                imageWidth + 10, menuItemHeight() * 1, paint);
+                imageWidth + 10, menuItemHeight(), paint);
         canvas.drawText(I18n.translate(R.string.army_ui_thereIs) + ": " + shop.getCount(),
                 imageWidth + 10, menuItemHeight() * 3, paint);
         canvas.drawText(I18n.translate(R.string.army_ui_price) + ": " + warrior.getPriceInShop(),
@@ -116,7 +116,7 @@ public class ArmyShopView extends View {
                 getWidth() - buttonBorderSize,
                 getHeight() - buttonSize - buttonBorderSize, paint);
         canvas.drawRect(getWidth() - buttonSize * 2 + buttonBorderSize,
-                getHeight() - buttonSize  + buttonBorderSize,
+                getHeight() - buttonSize + buttonBorderSize,
                 getWidth() - buttonSize - buttonBorderSize,
                 getHeight() - buttonBorderSize, paint);
 

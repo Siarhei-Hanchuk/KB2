@@ -1,8 +1,6 @@
 package com.neschur.kb2.app.countries;
 
 import com.neschur.kb2.app.R;
-import com.neschur.kb2.app.entities.ArmyShop;
-import com.neschur.kb2.app.entities.City;
 
 public class Country1 extends Country {
 

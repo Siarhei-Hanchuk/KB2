@@ -8,12 +8,8 @@ import android.view.MotionEvent;
 
 import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.R;
-import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.controllers.MainController;
 
-/**
- * Created by siarhei on 25.01.15.
- */
 public class MainMenuView extends View {
     private MainController mainController;
     private boolean saved = false;
@@ -29,7 +25,7 @@ public class MainMenuView extends View {
 
         if (mainController.isCurrentGame()) {
             canvas.drawText(I18n.translate(R.string.mainMenu_resume),
-                    0, 1 * menuItemHeight(), paint);
+                    0, menuItemHeight(), paint);
         }
         canvas.drawText(I18n.translate(R.string.mainMenu_new_game),
                 0, 2 * menuItemHeight(), paint);
@@ -55,7 +51,7 @@ public class MainMenuView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getX() < getWidth() / 2) {
-            if (event.getY() < menuItemHeight() * 1) {
+            if (event.getY() < menuItemHeight()) {
                 if (mainController.isCurrentGame()) {
                     mainController.viewClose();
                 }

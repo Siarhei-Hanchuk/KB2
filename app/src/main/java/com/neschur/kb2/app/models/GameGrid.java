@@ -3,7 +3,6 @@ package com.neschur.kb2.app.models;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.countries.Country;
-import com.neschur.kb2.app.countries.World;
 
 public class GameGrid {
     private Player player;
@@ -21,6 +20,7 @@ public class GameGrid {
     public int getImageBuyXY(int x, int y) {
         return grid[x][y];
     }
+
     public int getBackgroundBuyXY(int x, int y) {
         return background[x][y];
     }
@@ -79,7 +79,7 @@ public class GameGrid {
         MapPoint[][] mps = player.getCountry().getMapPoints();
         int landId = drawableReflection(land);
         int nLandCount = 0;
-        if(x > 0 && x < Country.MAX_MAP_SIZE - 1 && y > 0 && y < Country.MAX_MAP_SIZE - 1) {
+        if (x > 0 && x < Country.MAX_MAP_SIZE - 1 && y > 0 && y < Country.MAX_MAP_SIZE - 1) {
             nLandCount = (mps[x - 1][y].getLand() == landId) ?
                     nLandCount + 1 : nLandCount;
             nLandCount = (mps[x + 1][y].getLand() == landId) ?
@@ -91,59 +91,59 @@ public class GameGrid {
         } else {
             nLandCount = 4;
         }
-        if(nLandCount == 0) {
+        if (nLandCount == 0) {
             return drawableReflection(land + "_0");
         } else if (nLandCount == 4) {
             return landId;
         } else if (nLandCount == 1) {
-            if (mps[x - 1][y].getLand() == landId ) {
+            if (mps[x - 1][y].getLand() == landId) {
                 return drawableReflection(land + "_1c");
             }
-            if (mps[x + 1][y].getLand() == landId ) {
+            if (mps[x + 1][y].getLand() == landId) {
                 return drawableReflection(land + "_1a");
             }
-            if (mps[x][y - 1].getLand() == landId ) {
+            if (mps[x][y - 1].getLand() == landId) {
                 return drawableReflection(land + "_1b");
             }
-            if (mps[x][y + 1].getLand() == landId ) {
+            if (mps[x][y + 1].getLand() == landId) {
                 return drawableReflection(land + "_1d");
             }
         } else if (nLandCount == 3) {
-            if (mps[x - 1][y].getLand() != landId ) {
+            if (mps[x - 1][y].getLand() != landId) {
                 return drawableReflection(land + "_3d");
             }
-            if (mps[x + 1][y].getLand() != landId ) {
+            if (mps[x + 1][y].getLand() != landId) {
                 return drawableReflection(land + "_3b");
             }
-            if (mps[x][y - 1].getLand() != landId ) {
+            if (mps[x][y - 1].getLand() != landId) {
                 return drawableReflection(land + "_3c");
             }
-            if (mps[x][y + 1].getLand() != landId ) {
+            if (mps[x][y + 1].getLand() != landId) {
                 return drawableReflection(land + "_3a");
             }
         } else if (nLandCount == 2) {
-            if (mps[x + 1][y].getLand() == landId  &&
-                    mps[x][y - 1].getLand() == landId ) {
+            if (mps[x + 1][y].getLand() == landId &&
+                    mps[x][y - 1].getLand() == landId) {
                 return drawableReflection(land + "_2a");
             }
-            if (mps[x - 1][y].getLand() == landId  &&
-                    mps[x][y - 1].getLand() == landId ) {
+            if (mps[x - 1][y].getLand() == landId &&
+                    mps[x][y - 1].getLand() == landId) {
                 return drawableReflection(land + "_2b");
             }
-            if (mps[x - 1][y].getLand() == landId  &&
-                    mps[x][y + 1].getLand() == landId ) {
+            if (mps[x - 1][y].getLand() == landId &&
+                    mps[x][y + 1].getLand() == landId) {
                 return drawableReflection(land + "_2c");
             }
-            if (mps[x + 1][y].getLand() == landId  &&
-                    mps[x][y + 1].getLand() == landId ) {
+            if (mps[x + 1][y].getLand() == landId &&
+                    mps[x][y + 1].getLand() == landId) {
                 return drawableReflection(land + "_2d");
             }
-            if (mps[x - 1][y].getLand() == landId  &&
-                    mps[x + 1][y].getLand() == landId ) {
+            if (mps[x - 1][y].getLand() == landId &&
+                    mps[x + 1][y].getLand() == landId) {
                 return drawableReflection(land + "_2f");
             }
-            if (mps[x][y - 1].getLand() == landId  &&
-                    mps[x][y + 1].getLand() == landId ) {
+            if (mps[x][y - 1].getLand() == landId &&
+                    mps[x][y + 1].getLand() == landId) {
                 return drawableReflection(land + "_2e");
             }
         }

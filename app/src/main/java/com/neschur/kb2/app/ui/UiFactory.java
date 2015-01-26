@@ -56,7 +56,7 @@ public class UiFactory {
     public static View getArmyView() {
         return new ArmyView(activity, getGameController(), mainController);
     }
-    
+
     private static GameController getGameController() {
         return mainController.getGameController();
     }

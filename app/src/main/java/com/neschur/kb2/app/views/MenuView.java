@@ -40,7 +40,7 @@ public class MenuView extends View {
                     menuItemHeight() + menuItemHeight() * i, paint);
         if (menu.withMoney())
             canvas.drawText("Money: " + gameController.getPlayer().getMoney(),
-                    (int)(getWidth()*0.5),
+                    (int) (getWidth() * 0.5),
                     menuItemHeight() + menuItemHeight() * i, paint);
     }
 
