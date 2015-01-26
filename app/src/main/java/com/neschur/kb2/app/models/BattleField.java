@@ -28,6 +28,10 @@ public class BattleField implements Glade {
         return map[x][y];
     }
 
+    public MapPoint[][] getMapPoints() {
+        return map;
+    }
+
     private void prepareArmy() {
         System.out.println(player);
         System.out.println(fighting);

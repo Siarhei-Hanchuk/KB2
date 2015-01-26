@@ -17,4 +17,8 @@ public class WarriorEntity extends Entity {
     public int getID() {
         return warrior.getId();
     }
+
+    public boolean isFriendly() {
+        return friendly;
+    }
 }

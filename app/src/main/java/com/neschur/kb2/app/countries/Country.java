@@ -45,7 +45,7 @@ public abstract class Country implements Glade, Serializable {
 
     protected void createCaptain(int x, int y) {
         Captain captain = new Captain(this, x, y);
-        int squadCount = rand(5);
+        int squadCount = rand(5) + 1;
         int authority = 100 + rand(1000);
         for (int i = 0; i < squadCount; i++) {
             Warrior warrior = WarriorFactory.createRandomFromGroup(0);
