@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.I18n;
@@ -57,7 +58,9 @@ public class ArmyShopView extends View {
     }
 
     public void draw(Canvas canvas) {
+        Paint paint = getDefaultPaint();
         canvas.drawColor(Color.BLACK);
+
         this.buttonSize = getHeight() / 5;
         int imageWidth = (getWidth() / 6) * 3/2;
         int imageHeight = (getHeight() / 5) * 3/2;
@@ -71,64 +74,64 @@ public class ArmyShopView extends View {
 
         canvas.drawBitmap(image, 0, 0, null);
         canvas.drawText(I18n.translate(R.string.army_ui_step) + ": " + warrior.getStep(),
-                0, imageHeight + ITEM_SIZE * 1, defaultPaint);
+                0, imageHeight + menuItemHeight() * 1, paint);
         canvas.drawText(I18n.translate(R.string.army_ui_defense) + ": " + warrior.getDefence(),
-                0, imageHeight + ITEM_SIZE * 2, defaultPaint);
+                0, imageHeight + menuItemHeight() * 2, paint);
         canvas.drawText(I18n.translate(R.string.army_ui_damage) + ": " + warrior.getDamage(),
-                0, imageHeight + ITEM_SIZE * 3, defaultPaint);
+                0, imageHeight + menuItemHeight() * 3, paint);
         canvas.drawText(I18n.translate(R.string.army_ui_fly) + ": " + warrior.isFly(),
-                0, imageHeight + ITEM_SIZE * 4, defaultPaint);
+                0, imageHeight + menuItemHeight() * 4, paint);
         canvas.drawText(I18n.translate(R.string.army_ui_shoot) + ": " + warrior.isShoot(),
-                0, imageHeight + ITEM_SIZE * 5, defaultPaint);
+                0, imageHeight + menuItemHeight() * 5, paint);
 
         canvas.drawText(I18n.translate("army_names_" + warrior.getTextId()),
-                imageWidth + 10, ITEM_SIZE * 1, defaultPaint);
+                imageWidth + 10, menuItemHeight() * 1, paint);
         canvas.drawText(I18n.translate(R.string.army_ui_thereIs) + ": " + shop.getCount(),
-                imageWidth + 10, ITEM_SIZE * 3, defaultPaint);
+                imageWidth + 10, menuItemHeight() * 3, paint);
         canvas.drawText(I18n.translate(R.string.army_ui_price) + ": " + warrior.getPriceInShop(),
-                imageWidth + 10, ITEM_SIZE * 4, defaultPaint);
+                imageWidth + 10, menuItemHeight() * 4, paint);
         canvas.drawText(I18n.translate(R.string.player_attrs_money) + ": " + player.getMoney(),
-                getWidth() - imageWidth * 2, ITEM_SIZE * 2, defaultPaint);
+                getWidth() - imageWidth * 2, menuItemHeight() * 2, paint);
 
         canvas.drawText(I18n.translate(R.string.army_ui_afford) + ": " + player.armyAfford(warrior),
                 getWidth() - buttonSize * 5,
-                getHeight() - buttonSize * 2 - 10 - ITEM_SIZE, defaultPaint);
+                getHeight() - buttonSize * 2 - 10 - menuItemHeight(), paint);
         canvas.drawText(I18n.translate(R.string.army_ui_howMany),
                 getWidth() - buttonSize * 2,
-                getHeight() - buttonSize * 2 - 10, defaultPaint);
-        defaultPaint.setColor(Color.GRAY);
+                getHeight() - buttonSize * 2 - 10, paint);
+        paint.setColor(Color.GRAY);
         canvas.drawRect(getWidth() - buttonSize * 2, getHeight() - buttonSize * 2,
-                getWidth(), getHeight(), defaultPaint);
-        defaultPaint.setColor(Color.BLACK);
+                getWidth(), getHeight(), paint);
+        paint.setColor(Color.BLACK);
         canvas.drawRect(getWidth() - buttonSize + buttonBorderSize,
                 getHeight() - buttonSize + buttonBorderSize,
                 getWidth() - buttonBorderSize,
-                getHeight() - buttonBorderSize, defaultPaint);
+                getHeight() - buttonBorderSize, paint);
         canvas.drawRect(getWidth() - buttonSize * 2 + buttonBorderSize,
                 getHeight() - buttonSize * 2 + buttonBorderSize,
                 getWidth() - buttonSize - buttonBorderSize,
-                getHeight() - buttonSize - buttonBorderSize, defaultPaint);
+                getHeight() - buttonSize - buttonBorderSize, paint);
         canvas.drawRect(getWidth() - buttonSize + buttonBorderSize,
                 getHeight() - buttonSize * 2 + buttonBorderSize,
                 getWidth() - buttonBorderSize,
-                getHeight() - buttonSize - buttonBorderSize, defaultPaint);
+                getHeight() - buttonSize - buttonBorderSize, paint);
         canvas.drawRect(getWidth() - buttonSize * 2 + buttonBorderSize,
                 getHeight() - buttonSize  + buttonBorderSize,
                 getWidth() - buttonSize - buttonBorderSize,
-                getHeight() - buttonBorderSize, defaultPaint);
+                getHeight() - buttonBorderSize, paint);
 
-        defaultPaint.setColor(Color.WHITE);
+        paint.setColor(Color.WHITE);
         canvas.drawText("1",
                 getWidth() - buttonSize - buttonSize / 2,
-                getHeight() - buttonSize - buttonSize / 2, defaultPaint);
+                getHeight() - buttonSize - buttonSize / 2, paint);
         canvas.drawText("10",
                 getWidth() - buttonSize / 1.5f,
-                getHeight() - buttonSize - buttonSize / 2, defaultPaint);
+                getHeight() - buttonSize - buttonSize / 2, paint);
         canvas.drawText("100",
                 getWidth() - buttonSize - buttonSize / 1.2f,
-                getHeight() - buttonSize / 2, defaultPaint);
+                getHeight() - buttonSize / 2, paint);
         canvas.drawText("1000",
                 getWidth() - buttonSize / 1.12f,
-                getHeight() - buttonSize / 2, defaultPaint);
+                getHeight() - buttonSize / 2, paint);
     }
 }

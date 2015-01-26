@@ -13,13 +13,10 @@ import com.neschur.kb2.app.models.Player;
 import com.neschur.kb2.app.ui.ImageCache;
 
 public abstract class View extends SurfaceView implements SurfaceHolder.Callback, Drawable {
-    public static final int ITEM_SIZE = 60;
-
     protected ViewClosable closeCallback;
     protected GameController gameController;
     protected Player player;
     protected DrawThread drawThread;
-    protected Paint defaultPaint;
     protected ImageCache imageCache;
 
     public View(Context context, GameController gameController, ViewClosable closeCallback) {
@@ -30,10 +27,6 @@ public abstract class View extends SurfaceView implements SurfaceHolder.Callback
         this.gameController = gameController;
         if (gameController != null)
             this.player = gameController.getPlayer();
-
-        defaultPaint = new Paint();
-        defaultPaint.setColor(Color.WHITE);
-        defaultPaint.setTextSize(50);
     }
 
     @Override
@@ -73,5 +66,20 @@ public abstract class View extends SurfaceView implements SurfaceHolder.Callback
 
     protected int stepY() {
         return (int)(82 * getScale());
+    }
+
+    protected int textHeight() {
+        return (int)(menuItemHeight() * 0.9);
+    }
+
+    protected int menuItemHeight() {
+        return (int)(getHeight() / 8.0);
+    }
+
+    protected Paint getDefaultPaint() {
+        Paint defaultPaint = new Paint();
+        defaultPaint.setColor(Color.WHITE);
+        defaultPaint.setTextSize(textHeight());
+        return defaultPaint;
     }
 }

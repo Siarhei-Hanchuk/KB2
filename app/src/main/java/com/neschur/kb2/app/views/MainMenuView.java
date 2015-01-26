@@ -3,6 +3,7 @@ package com.neschur.kb2.app.views;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.I18n;
@@ -23,50 +24,55 @@ public class MainMenuView extends View {
     }
 
     public void draw(Canvas canvas) {
+        Paint paint = getDefaultPaint();
         canvas.drawColor(Color.BLACK);
 
         if (mainController.isCurrentGame()) {
             canvas.drawText(I18n.translate(R.string.mainMenu_resume),
-                    0, 1 * ITEM_SIZE, defaultPaint);
+                    0, 1 * menuItemHeight(), paint);
         }
         canvas.drawText(I18n.translate(R.string.mainMenu_new_game),
-                0, 3 * ITEM_SIZE, defaultPaint);
+                0, 2 * menuItemHeight(), paint);
         canvas.drawText(I18n.translate(R.string.mainMenu_training),
-                0, 5 * ITEM_SIZE, defaultPaint);
+                0, 3 * menuItemHeight(), paint);
         canvas.drawText(I18n.translate(R.string.mainMenu_load_game),
-                0, 7 * ITEM_SIZE, defaultPaint);
+                0, 4 * menuItemHeight(), paint);
         if (mainController.isCurrentGame()) {
             if (!saved) {
                 canvas.drawText(I18n.translate(R.string.mainMenu_save_game),
-                        0, 9 * ITEM_SIZE, defaultPaint);
+                        0, 5 * menuItemHeight(), paint);
             } else {
                 canvas.drawText(I18n.translate(R.string.mainMenu_save_game) + " - " +
                                 I18n.translate(R.string.mainMenu_save_game_saved),
-                        0, 9 * ITEM_SIZE, defaultPaint);
+                        0, 5 * menuItemHeight(), paint);
                 saved = false;
             }
         }
         canvas.drawText(I18n.translate(R.string.mainMenu_exit),
-                0, 11 * ITEM_SIZE, defaultPaint);
+                0, 6 * menuItemHeight(), paint);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getX() < getWidth() / 2) {
-            if (event.getY() < ITEM_SIZE * 2) {
-                mainController.viewClose();
-            } else if (event.getY() < ITEM_SIZE * 4) {
+            if (event.getY() < menuItemHeight() * 1) {
+                if (mainController.isCurrentGame()) {
+                    mainController.viewClose();
+                }
+            } else if (event.getY() < menuItemHeight() * 2) {
                 mainController.newGame();
-            } else if (event.getY() < ITEM_SIZE * 6) {
+            } else if (event.getY() < menuItemHeight() * 3) {
                 mainController.newTraining();
-            } else if (event.getY() < ITEM_SIZE * 8) {
+            } else if (event.getY() < menuItemHeight() * 4) {
                 mainController.loadGame();
                 drawThread.refresh();
-            } else if (event.getY() < ITEM_SIZE * 10) {
-                mainController.saveGame();
-                drawThread.refresh();
-                saved = true;
-            } else if (event.getY() < ITEM_SIZE * 12) {
+            } else if (event.getY() < menuItemHeight() * 5) {
+                if (mainController.isCurrentGame()) {
+                    mainController.saveGame();
+                    drawThread.refresh();
+                    saved = true;
+                }
+            } else if (event.getY() < menuItemHeight() * 6) {
                 mainController.exit();
             }
 

@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.I18n;
@@ -28,7 +29,9 @@ public class ArmyView extends View {
     }
 
     public void draw(Canvas canvas) {
+        Paint paint = getDefaultPaint();
         canvas.drawColor(Color.BLACK);
+
         int imageWidth = (getWidth() / 6);
         int imageHeight = (getHeight() / 5);
         for (int i = 0; i < 5; i++) {
@@ -44,9 +47,9 @@ public class ArmyView extends View {
 
             canvas.drawBitmap(image, 0, imageHeight * i, null);
             canvas.drawText(I18n.translate("army_names_" + squad.getWarrior().getTextId()),
-                    imageWidth + 10, ITEM_SIZE + imageHeight * i, defaultPaint);
+                    imageWidth + 10, menuItemHeight() + imageHeight * i, paint);
             canvas.drawText(Integer.toString(squad.getCount()),
-                    imageWidth * 2 + 10, ITEM_SIZE + imageHeight * i, defaultPaint);
+                    imageWidth * 2 + 10, menuItemHeight() + imageHeight * i, paint);
         }
 
     }

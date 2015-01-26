@@ -3,6 +3,7 @@ package com.neschur.kb2.app.views;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.controllers.GameController;
@@ -26,7 +27,7 @@ public class MessageView extends View {
     public void draw(Canvas canvas) {
         canvas.drawColor(Color.BLACK);
 
-        canvas.drawText(message.getText(), 10, 100, defaultPaint);
+        canvas.drawText(message.getText(), 10, 100, getDefaultPaint());
     }
 
     public void closeMessage() {

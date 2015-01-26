@@ -3,6 +3,7 @@ package com.neschur.kb2.app.views;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.controllers.GameController;
@@ -19,26 +20,27 @@ public class MenuView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         double y = event.getY();
-        int item = (int) y / ITEM_SIZE;
+        int item = (int) y / menuItemHeight();
         select(item);
         drawThread.refresh();
         return super.onTouchEvent(event);
     }
 
     public void draw(Canvas canvas) {
+        Paint paint = getDefaultPaint();
         canvas.drawColor(Color.BLACK);
 
         int i;
         for (i = 0; i < menu.getCount(); i++) {
             canvas.drawText(menu.getItemDescription(i), 10,
-                    MenuView.ITEM_SIZE + MenuView.ITEM_SIZE * i, defaultPaint);
+                    menuItemHeight() + menuItemHeight() * i, paint);
         }
         if (menu.withExit())
             canvas.drawText("Exit", 10,
-                    MenuView.ITEM_SIZE + MenuView.ITEM_SIZE * i, defaultPaint);
+                    menuItemHeight() + menuItemHeight() * i, paint);
         if (menu.withMoney())
             canvas.drawText("Money: " + gameController.getPlayer().getMoney(), 700,
-                    MenuView.ITEM_SIZE, defaultPaint);
+                    menuItemHeight(), paint);
     }
 
     private void select(int item) {
