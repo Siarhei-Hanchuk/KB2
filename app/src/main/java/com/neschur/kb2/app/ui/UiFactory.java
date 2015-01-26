@@ -18,16 +18,14 @@ import com.neschur.kb2.app.views.View;
 
 public class UiFactory {
     private static Activity activity;
-    private static GameController gameController;
     private static MainController mainController;
 
     public static void create(Activity activity, MainController mainController) {
         UiFactory.activity = activity;
-        UiFactory.gameController = mainController.getGameController();
         UiFactory.mainController = mainController;
 
-        MenuFactory.create(activity, gameController);
-        MessageFactory.create(activity, gameController);
+        MenuFactory.create(activity, mainController);
+        MessageFactory.create(activity, mainController);
     }
 
     public static View getViewForEntity(Entity entity) {
@@ -35,27 +33,31 @@ public class UiFactory {
         Message message = MessageFactory.getMessage(entity);
         View view = null;
         if (menu != null) {
-            view = new MenuView(activity, menu, gameController, mainController);
+            view = new MenuView(activity, menu, getGameController(), mainController);
         }
         if (message != null) {
-            view = new MessageView(activity, message, gameController, mainController);
+            view = new MessageView(activity, message, getGameController(), mainController);
         }
         if (entity instanceof ArmyShop) {
-            view = new ArmyShopView(activity, (ArmyShop) entity, gameController, mainController);
+            view = new ArmyShopView(activity, (ArmyShop) entity, getGameController(), mainController);
         }
         return view;
     }
 
     public static View getMenuView() {
         return new MenuView(activity,
-                new CountryMenu(activity, gameController), gameController, mainController);
+                new CountryMenu(activity, getGameController()), getGameController(), mainController);
     }
 
     public static View getMapView() {
-        return new MapView(activity, gameController, mainController);
+        return new MapView(activity, getGameController(), mainController);
     }
 
     public static View getArmyView() {
-        return new ArmyView(activity, gameController, mainController);
+        return new ArmyView(activity, getGameController(), mainController);
+    }
+    
+    private static GameController getGameController() {
+        return mainController.getGameController();
     }
 }
