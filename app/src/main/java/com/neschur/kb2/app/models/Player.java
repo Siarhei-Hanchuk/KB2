@@ -235,4 +235,12 @@ public class Player implements Serializable {
     public WarriorSquad getWarriorSquad(int n) {
         return warriors[n];
     }
+
+    public boolean noArmy() {
+        for (int i = 0; i < MAX_ARMY; i++) {
+            if (warriors[i] != null)
+                return false;
+        }
+        return true;
+    }
 }

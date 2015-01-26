@@ -6,7 +6,9 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
+import android.view.MotionEvent;
 
+import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.BattleController;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.WarriorEntity;
@@ -15,11 +17,26 @@ import com.neschur.kb2.app.ui.ImageCache;
 
 public class BattleView extends View {
     private BattleController battleController;
+    private int selectedX = -1;
+    private int selectedY = -1;
 
     public BattleView(Context context, GameController gameController,
                       BattleController battleController, ViewClosable closeCallback) {
         super(context, gameController, closeCallback);
         this.battleController = battleController;
+    }
+
+    @Override
+    public boolean onTouchEvent(@NonNull MotionEvent event) {
+        calcOffsets();
+        int x = (int)((event.getX() - xOffset) / stepX());
+        int y = (int)((event.getY() - yOffset) / stepY());
+        battleController.select(x, y);
+        selectedX = x;
+        selectedY = y;
+        drawThread.refresh();
+
+        return super.onTouchEvent(event);
     }
 
     public void draw(@NonNull Canvas canvas) {
@@ -40,6 +57,13 @@ public class BattleView extends View {
                     canvas.drawBitmap(image, xOffset + x * stepX(), yOffset + y * stepY(), null);
                 }
             }
+        }
+
+        if (selectedX >= 0 && selectedY >= 0) {
+            canvas.drawBitmap(imageCache.getImage(R.drawable.battle),
+                    xOffset + selectedX * stepX(),
+                    yOffset + selectedY * stepY(),
+                    null);
         }
     }
 
