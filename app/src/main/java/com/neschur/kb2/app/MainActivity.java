@@ -23,4 +23,9 @@ public class MainActivity extends Activity {
         mainController = new MainController(this);
         mainController.start();
     }
+
+    @Override
+    public void onBackPressed() {
+        mainController.activateMainMenu();
+    }
 }

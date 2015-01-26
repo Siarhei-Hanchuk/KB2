@@ -68,4 +68,10 @@
     <string name="army.ui.afford">Вы можете нанять</string>
     <string name="army.ui.howMany">Сколько?</string>
     <string name="player.attrs.money">Деньги</string>
+    <string name="mainMenu.resume">Resume</string>
+    <string name="mainMenu.new_game">New game</string>
+    <string name="mainMenu.training">Training</string>
+    <string name="mainMenu.load_game">Load game</string>
+    <string name="mainMenu.exit">Exit</string>
+    <string name="mainMenu.save_game">Save game</string>
 </resources>

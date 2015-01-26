@@ -6,6 +6,7 @@ import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.ui.UiFactory;
 import com.neschur.kb2.app.views.BattleView;
+import com.neschur.kb2.app.views.MainMenuView;
 import com.neschur.kb2.app.views.MainView;
 import com.neschur.kb2.app.views.View;
 import com.neschur.kb2.app.views.ViewClosable;
@@ -14,6 +15,7 @@ public class MainController implements ViewClosable {
     private MainActivity activity;
     private GameController gameController;
     private MainView mainView;
+    private MainMenuView mainMenuView;
     private BattleView battleView;
     private int gameMode = 0;
 
@@ -22,11 +24,26 @@ public class MainController implements ViewClosable {
     }
 
     public void start() {
-        gameController = new GameController(this);
-        mainView = new MainView(activity, this);
-        activity.setContentView(mainView);
+        mainMenuView = new MainMenuView(activity, this);
+        activity.setContentView(mainMenuView);
 
         UiFactory.create(activity, this);
+    }
+
+    public void newGame() {
+        gameController = new GameController(this, GameController.MODE_GAME);
+        mainView = new MainView(activity, this);
+        activity.setContentView(mainView);
+    }
+
+    public void newTraining() {
+        gameController = new GameController(this, GameController.MODE_TRAINING);
+        mainView = new MainView(activity, this);
+        activity.setContentView(mainView);
+    }
+
+    public boolean isCurrentGame() {
+        return (gameController != null) ? true : false;
     }
 
     public GameGrid getGameGrid() {
@@ -113,5 +130,14 @@ public class MainController implements ViewClosable {
         gameMode = 1;
         BattleController battleController = new BattleController(gameController.getPlayer(), fighting);
         battleView = new BattleView(activity, gameController, battleController, this);
+    }
+
+    public void activateMainMenu() {
+        activity.setContentView(mainMenuView);
+    }
+
+    public void exit() {
+        activity.finish();
+        System.exit(0);
     }
 }

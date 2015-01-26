@@ -10,14 +10,21 @@ import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.Player;
 
 public class GameController {
+    public static final int MODE_GAME = 1;
+    public static final int MODE_TRAINING = 2;
+
     private World world;
     private Player player;
     private Nave nave;
     private MainController mainController;
 
-    public GameController(MainController mainController) {
+    public GameController(MainController mainController, int mode) {
         this.mainController = mainController;
-        world = new World();
+        if (mode ==  MODE_GAME) {
+            world = new World();
+        } else if (mode ==  MODE_TRAINING) {
+            world = new World(true);
+        }
         player = new Player(world.getCountry(0));
     }
 
