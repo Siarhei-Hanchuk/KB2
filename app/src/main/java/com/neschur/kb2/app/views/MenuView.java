@@ -39,8 +39,9 @@ public class MenuView extends View {
             canvas.drawText("Exit", 10,
                     menuItemHeight() + menuItemHeight() * i, paint);
         if (menu.withMoney())
-            canvas.drawText("Money: " + gameController.getPlayer().getMoney(), 700,
-                    menuItemHeight(), paint);
+            canvas.drawText("Money: " + gameController.getPlayer().getMoney(),
+                    (int)(getWidth()*0.5),
+                    menuItemHeight() + menuItemHeight() * i, paint);
     }
 
     private void select(int item) {

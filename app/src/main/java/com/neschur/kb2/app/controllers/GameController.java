@@ -24,10 +24,12 @@ public class GameController implements Serializable{
         this.mainController = mainController;
         if (mode ==  MODE_GAME) {
             world = new World();
+            player = new Player(world.getCountry(0), Player.MODE_GAME);
         } else if (mode ==  MODE_TRAINING) {
             world = new World(true);
+            player = new Player(world.getCountry(0), Player.MODE_TRAINING);
         }
-        player = new Player(world.getCountry(0));
+
     }
 
     public Player getPlayer() {

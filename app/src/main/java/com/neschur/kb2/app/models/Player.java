@@ -1,6 +1,7 @@
 package com.neschur.kb2.app.models;
 
 import com.neschur.kb2.app.countries.Country;
+import com.neschur.kb2.app.countries.World;
 import com.neschur.kb2.app.entities.Nave;
 import com.neschur.kb2.app.warriors.Warrior;
 import com.neschur.kb2.app.warriors.WarriorSquad;
@@ -9,6 +10,8 @@ import java.io.Serializable;
 
 public class Player implements Serializable {
     public static final int MAX_ARMY = 10;
+    public static final int MODE_GAME = 1;
+    public static final int MODE_TRAINING = 2;
 
     private boolean wallkick;
     private int workers[] = new int[4];
@@ -27,14 +30,17 @@ public class Player implements Serializable {
     private int y;
     private WarriorSquad[] warriors = new WarriorSquad[MAX_ARMY]; // TODO - List
 
-    public Player(Country _country) {
+    public Player(Country _country, int mode) {
         memory = new Memory();
         country = _country;
 
         move(5, 5);
 
         easy();
-        debug();
+
+        if (mode ==  MODE_TRAINING) {
+            availableCountry = 5;
+        }
     }
 
     private void easy() {
@@ -52,9 +58,6 @@ public class Player implements Serializable {
         magicMaxCount = 4;
     }
 
-    private void debug() {
-        availableCountry = 5;
-    }
 
     public void move(int x, int y) {
         this.x = x;
