@@ -25,9 +25,4 @@ public class CountryMenu extends Menu {
     public int getCount() {
         return player.getAvailableCountry();
     }
-
-    @Override
-    public boolean withMoney() {
-        return false;
-    }
 }

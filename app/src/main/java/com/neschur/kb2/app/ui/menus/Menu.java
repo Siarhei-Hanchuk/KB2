@@ -40,7 +40,7 @@ public abstract class Menu {
     }
 
     public boolean withMoney() {
-        return true;
+        return false;
     }
 
     protected String menuItem(String id, int price) {

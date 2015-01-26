@@ -75,4 +75,8 @@ public class MagicianMenu extends Menu {
     public boolean withExit() {
         return false;
     }
+
+    public boolean withMoney() {
+        return true;
+    }
 }

@@ -116,4 +116,8 @@ public class CityMenu extends Menu {
     public int getMenuMode() {
         return menuMode;
     }
+
+    public boolean withMoney() {
+        return true;
+    }
 }
