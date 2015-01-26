@@ -74,4 +74,5 @@
     <string name="mainMenu.training">Тренировка</string>
     <string name="mainMenu.save_game">Сохранить игру</string>
     <string name="mainMenu.save_game.saved">Cохранено</string>
+    <string name="entity.capitan.noArmy">Без войска драться? Насмешил!</string>
 </resources>
