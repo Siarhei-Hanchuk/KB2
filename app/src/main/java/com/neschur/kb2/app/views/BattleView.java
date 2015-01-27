@@ -13,6 +13,7 @@ import com.neschur.kb2.app.controllers.BattleController;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.WarriorEntity;
 import com.neschur.kb2.app.models.MapPoint;
+import com.neschur.kb2.app.models.MapPointBattle;
 import com.neschur.kb2.app.ui.ImageCache;
 
 public class BattleView extends View {
@@ -43,11 +44,14 @@ public class BattleView extends View {
         ImageCache imageCache = ImageCache.getInstance(getResources(), stepX(), stepY());
         calcOffsets();
 
-        MapPoint[][] map = battleController.getMap();
+        MapPointBattle[][] map = battleController.getMap();
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
                 canvas.drawBitmap(imageCache.getImage(map[x][y].getLand()),
                         xOffset + x * stepX(), yOffset + y * stepY(), null);
+                if (map[x][y].isMove())
+                    canvas.drawBitmap(imageCache.getImage(R.drawable.battle_move),
+                            xOffset + x * stepX(), yOffset + y * stepY(), null);
                 WarriorEntity warrior = (WarriorEntity)map[x][y].getEntity();
                 if (map[x][y].getEntity() != null) {
                     Bitmap image = imageCache.getImage(map[x][y].getEntity().getID());
@@ -60,7 +64,7 @@ public class BattleView extends View {
         }
 
         if (selectedX >= 0 && selectedY >= 0) {
-            canvas.drawBitmap(imageCache.getImage(R.drawable.battle),
+            canvas.drawBitmap(imageCache.getImage(R.drawable.battle_select),
                     xOffset + selectedX * stepX(),
                     yOffset + selectedY * stepY(),
                     null);
