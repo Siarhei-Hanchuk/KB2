@@ -1,6 +1,7 @@
 package com.neschur.kb2.app.models;
 
 import com.neschur.kb2.app.R;
+import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.entities.WarriorEntity;
 import com.neschur.kb2.app.warriors.Warrior;
@@ -9,6 +10,9 @@ public class BattleField implements Glade {
     private MapPointBattle[][] map = new MapPointBattle[6][5];
     private Player player;
     private Fighting fighting;
+    private WarriorEntity selected;
+    private int selectedX = -1;
+    private int selectedY = -1;
 
     public BattleField(Player player, Fighting fighting) {
         this.player = player;
@@ -45,15 +49,45 @@ public class BattleField implements Glade {
     }
 
     public void select(int x, int y) {
-        if(map[x][y].getEntity()!= null && ((WarriorEntity)map[x][y].getEntity()).isFriendly()) {
+        if(selected != null) {
+            if(map[x][y].isMove()) {
+                if (map[x][y].getLand() == R.drawable.land && map[x][y].getEntity() == null) {
+                    selected.move(x, y);
+                    selected.reduceStep(Math.max(Math.abs(selectedX - x), Math.abs(selectedY - y)));
+                    selectedX = x;
+                    selectedY = y;
+                    if (selected.getStep() > 0) {
+                        moveArea(x, y, selected.getStep());
+                    } else {
+                        clearMoveArea();
+                        selected = null;
+                        selectedX = -1;
+                        selectedY = -1;
+                    }
+                }
+            }
+        } else if(map[x][y].getEntity()!= null &&
+                ((WarriorEntity)map[x][y].getEntity()).isFriendly() &&
+                ((WarriorEntity)map[x][y].getEntity()).getStep() > 0) {
+            selected = (WarriorEntity)map[x][y].getEntity();
+            selectedX = x;
+            selectedY = y;
             Warrior war = ((WarriorEntity) map[x][y].getEntity()).getWarrior();
-            int step = war.getStep();
-            moveArea(x, y, step);
+            moveArea(x, y, war.getStep());
         }
     }
 
     private void moveArea(int x, int y, int step){
+        clearMoveArea();
         snake(x, y, step);
+    }
+
+    private void clearMoveArea() {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 5; j++) {
+                map[i][j].setMove(false);
+            }
+        }
     }
 
     private void snake(int x, int y, int step) {
@@ -69,5 +103,13 @@ public class BattleField implements Glade {
         snake(x - 1, y - 1, step);
         snake(x - 1, y + 1, step);
         snake(x + 1, y - 1, step);
+    }
+
+    public int getSelectedX() {
+        return selectedX;
+    }
+
+    public int getSelectedY() {
+        return selectedY;
     }
 }

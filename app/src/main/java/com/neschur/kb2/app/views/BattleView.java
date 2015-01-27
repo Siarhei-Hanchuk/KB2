@@ -18,8 +18,6 @@ import com.neschur.kb2.app.ui.ImageCache;
 
 public class BattleView extends View {
     private BattleController battleController;
-    private int selectedX = -1;
-    private int selectedY = -1;
 
     public BattleView(Context context, GameController gameController,
                       BattleController battleController, ViewClosable closeCallback) {
@@ -33,8 +31,6 @@ public class BattleView extends View {
         int x = (int)((event.getX() - xOffset) / stepX());
         int y = (int)((event.getY() - yOffset) / stepY());
         battleController.select(x, y);
-        selectedX = x;
-        selectedY = y;
         drawThread.refresh();
 
         return super.onTouchEvent(event);
@@ -63,10 +59,10 @@ public class BattleView extends View {
             }
         }
 
-        if (selectedX >= 0 && selectedY >= 0) {
+        if (battleController.getSelectedX() >= 0 && battleController.getSelectedY() >= 0) {
             canvas.drawBitmap(imageCache.getImage(R.drawable.battle_select),
-                    xOffset + selectedX * stepX(),
-                    yOffset + selectedY * stepY(),
+                    xOffset + battleController.getSelectedX() * stepX(),
+                    yOffset + battleController.getSelectedY() * stepY(),
                     null);
         }
     }

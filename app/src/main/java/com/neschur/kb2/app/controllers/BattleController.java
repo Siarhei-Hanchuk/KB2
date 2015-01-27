@@ -27,4 +27,12 @@ public class BattleController {
 //    public MapPoint[][] getMap() {
 //        return battleField.getMapPoint();
 //    }
+
+    public int getSelectedX() {
+        return battleField.getSelectedX();
+    }
+
+    public int getSelectedY() {
+        return battleField.getSelectedY();
+    }
 }
