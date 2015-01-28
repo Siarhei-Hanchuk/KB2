@@ -7,12 +7,8 @@ import com.neschur.kb2.app.models.Player;
 
 public class BattleController {
     private BattleField battleField;
-//    private Player player;
-//    private Fighting fighting;
 
     public BattleController(Player player, Fighting fighting) {
-//        this.player = player;
-//        this.fighting = fighting;
         this.battleField = new BattleField(player, fighting);
     }
 
@@ -23,10 +19,6 @@ public class BattleController {
     public void select(int x, int y) {
         battleField.select(x, y);
     }
-
-//    public MapPoint[][] getMap() {
-//        return battleField.getMapPoint();
-//    }
 
     public int getSelectedX() {
         return battleField.getSelectedX();

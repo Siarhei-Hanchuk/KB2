@@ -15,7 +15,6 @@ public abstract class View extends SurfaceView implements SurfaceHolder.Callback
     protected GameController gameController;
     protected Player player;
     protected DrawThread drawThread;
-    protected ImageCache imageCache;
     protected int xOffset = 0;
     protected int yOffset = 0;
 
@@ -69,6 +68,14 @@ public abstract class View extends SurfaceView implements SurfaceHolder.Callback
         return (int) (82 * getScale());
     }
 
+    protected int stepX(int x) {
+        return ((int) (96 * getScale())) * x + xOffset;
+    }
+
+    protected int stepY(int y) {
+        return ((int) (82 * getScale())) * y + yOffset;
+    }
+
     protected int textHeight() {
         return (int) (menuItemHeight() * 0.8);
     }
@@ -92,5 +99,9 @@ public abstract class View extends SurfaceView implements SurfaceHolder.Callback
         } else {
             yOffset = (getHeight() - stepX() * 5) / 2;
         }
+    }
+
+    protected ImageCache getImageCache() {
+        return ImageCache.getInstance(getResources(), stepX(), stepY());
     }
 }

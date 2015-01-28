@@ -14,12 +14,12 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.BattleController;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.WarriorEntity;
-import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.MapPointBattle;
-import com.neschur.kb2.app.ui.ImageCache;
 
 public class BattleView extends View {
     private BattleController battleController;
+    private Paint countPaint;
+    private Paint countPaintBg;
 
     public BattleView(Context context, GameController gameController,
                       BattleController battleController, ViewClosable closeCallback) {
@@ -30,8 +30,8 @@ public class BattleView extends View {
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
         calcOffsets();
-        int x = (int)((event.getX() - xOffset) / stepX());
-        int y = (int)((event.getY() - yOffset) / stepY());
+        int x = (int) ((event.getX() - xOffset) / stepX());
+        int y = (int) ((event.getY() - yOffset) / stepY());
         battleController.select(x, y);
         drawThread.refresh();
 
@@ -39,53 +39,71 @@ public class BattleView extends View {
     }
 
     public void draw(@NonNull Canvas canvas) {
-        ImageCache imageCache = ImageCache.getInstance(getResources(), stepX(), stepY());
         calcOffsets();
-        Paint countPaint = getDefaultPaint();
-        countPaint.setTextSize(textHeight() / 3);
-        Paint countPaintBg = getDefaultPaint();
-        countPaintBg.setColor(Color.BLACK);
+
+        drawLand(canvas);
 
         MapPointBattle[][] map = battleController.getMap();
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
-                canvas.drawBitmap(imageCache.getImage(map[x][y].getLand()),
-                        xOffset + x * stepX(), yOffset + y * stepY(), null);
                 if (map[x][y].isMove())
-                    if (map[x][y].getEntity() != null) {
-                        if (!map[x][y].getEntity().isFriendly())
-                            canvas.drawBitmap(imageCache.getImage(R.drawable.battle_attack),
-                                    xOffset + x * stepX(), yOffset + y * stepY(), null);
-                    } else {
-                        canvas.drawBitmap(imageCache.getImage(R.drawable.battle_move),
-                                xOffset + x * stepX(), yOffset + y * stepY(), null);
-                    }
-                WarriorEntity warrior = map[x][y].getEntity();
+                    drawMoveCircle(canvas, x, y);
                 if (map[x][y].getEntity() != null) {
-                    Bitmap image = imageCache.getImage(map[x][y].getEntity().getID());
-                    if (!warrior.isFriendly()) {
-                        image = flipImage(image);
-                    }
-                    canvas.drawBitmap(image, xOffset + x * stepX(), yOffset + y * stepY(), null);
-                    canvas.drawRect(xOffset + x * stepX(),
-                            yOffset + y * stepY() + stepY() - textHeight() / 3,
-                            xOffset + x * stepX() +
-                                    countPaint.measureText(
-                                            Integer.toString(warrior.getCount())) + 4,
-                            yOffset + y * stepY() + stepY(),
-                            countPaintBg);
-                    canvas.drawText(Integer.toString(warrior.getCount()),
-                            xOffset + x * stepX() + 2,
-                            yOffset + y * stepY() + stepY() - 2,
-                            countPaint);
+                    drawWarrior(canvas, x, y);
                 }
             }
         }
 
+        drawSelected(canvas);
+    }
+
+    private void drawLand(Canvas canvas) {
+        for (int x = 0; x < 6; x++) {
+            for (int y = 0; y < 5; y++) {
+                canvas.drawBitmap(getImageCache().getImage(getMap()[x][y].getLand()),
+                        stepX(x), stepY(y), null);
+            }
+        }
+    }
+
+    private void drawMoveCircle(Canvas canvas, int x, int y) {
+        MapPointBattle point = getMap()[x][y];
+        if (point.getEntity() != null) {
+            if (!point.getEntity().isFriendly())
+                canvas.drawBitmap(getImageCache().getImage(R.drawable.battle_attack),
+                        stepX(x), stepY(y), null);
+        } else {
+            canvas.drawBitmap(getImageCache().getImage(R.drawable.battle_move),
+                    stepX(x), stepY(y), null);
+        }
+    }
+
+    private void drawWarrior(Canvas canvas, int x, int y) {
+        MapPointBattle point = getMap()[x][y];
+        WarriorEntity warrior = point.getEntity();
+        Bitmap image = getImageCache().getImage(point.getEntity().getID());
+        if (!warrior.isFriendly()) {
+            image = flipImage(image);
+        }
+        canvas.drawBitmap(image, stepX(x), stepY(y), null);
+        canvas.drawRect(stepX(x),
+                stepY(y) + stepY() - textHeight() / 3,
+                stepX(x) +
+                        getCountPaint().measureText(
+                                Integer.toString(warrior.getCount())) + 4,
+                stepY(y) + stepY(),
+                getCountPaintBg());
+        canvas.drawText(Integer.toString(warrior.getCount()),
+                stepX(x) + 2,
+                stepY(y) + stepY() - 2,
+                getCountPaint());
+    }
+
+    private void drawSelected(@NonNull Canvas canvas) {
         if (battleController.getSelectedX() >= 0 && battleController.getSelectedY() >= 0) {
-            canvas.drawBitmap(imageCache.getImage(R.drawable.battle_select),
-                    xOffset + battleController.getSelectedX() * stepX(),
-                    yOffset + battleController.getSelectedY() * stepY(),
+            canvas.drawBitmap(getImageCache().getImage(R.drawable.battle_select),
+                    stepX(battleController.getSelectedX()),
+                    stepY(battleController.getSelectedY()),
                     null);
         }
     }
@@ -96,5 +114,25 @@ public class BattleView extends View {
         Bitmap dst = Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), m, false);
         dst.setDensity(DisplayMetrics.DENSITY_DEFAULT);
         return dst;
+    }
+
+    private MapPointBattle[][] getMap() {
+        return battleController.getMap();
+    }
+
+    private Paint getCountPaint() {
+        if (countPaint == null) {
+            countPaint = getDefaultPaint();
+            countPaint.setTextSize(textHeight() / 3);
+        }
+        return countPaint;
+    }
+
+    private Paint getCountPaintBg() {
+        if (countPaintBg == null) {
+            countPaintBg = getDefaultPaint();
+            countPaintBg.setColor(Color.BLACK);
+        }
+        return countPaintBg;
     }
 }

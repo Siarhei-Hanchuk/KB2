@@ -66,7 +66,7 @@ public class MainView extends View {
     @Override
     public void draw(@NonNull Canvas canvas) {
         GameGrid grid = mainController.getGameGrid();
-        imageCache = ImageCache.getInstance(getResources(), stepX(), stepY());
+        ImageCache imageCache = ImageCache.getInstance(getResources(), stepX(), stepY());
         calcOffsets();
 
         for (int x = 0; x < 6; x++) {
