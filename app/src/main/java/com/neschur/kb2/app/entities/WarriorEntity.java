@@ -50,6 +50,8 @@ public class WarriorEntity extends Entity {
     public void takeAttack(int damage) {
         defence -= damage;
         count = defence / warrior.getDefence();
+        if (count < 0)
+            destroy();
     }
 
     public int getCount() {

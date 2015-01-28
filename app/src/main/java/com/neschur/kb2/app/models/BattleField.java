@@ -10,11 +10,13 @@ public class BattleField implements Glade {
     private Fighting fighting;
     private WarriorEntity selected;
     private BattleAi ai;
+    private BattleFinishing battleFinishing;
 
-    public BattleField(Player player, Fighting fighting) {
+    public BattleField(Player player, Fighting fighting, BattleFinishing battleFinishing) {
         this.player = player;
         this.fighting = fighting;
         this.ai = new BattleAi();
+        this.battleFinishing = battleFinishing;
 
         prepareField();
         prepareArmy();
@@ -187,12 +189,25 @@ public class BattleField implements Glade {
     }
 
     private void newPhase() {
+        int friendlyCount = 0;
+        int enemyCount = 0;
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
-                if (isEntity(x, y) && isFriendly(x, y)) {
-                    map[x][y].getEntity().resetStep();
+                if (isEntity(x, y)) {
+                    if (isFriendly(x, y)) {
+                        friendlyCount++;
+                        map[x][y].getEntity().resetStep();
+                    } else {
+                        enemyCount++;
+                    }
                 }
             }
+        }
+        if (friendlyCount == 0) {
+            battleFinishing.battleFinish(false);
+        }
+        if (enemyCount == 0) {
+            battleFinishing.battleFinish(true);
         }
     }
 }

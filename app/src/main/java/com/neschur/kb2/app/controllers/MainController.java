@@ -4,6 +4,7 @@ import com.neschur.kb2.app.MainActivity;
 import com.neschur.kb2.app.Storage;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
+import com.neschur.kb2.app.models.BattleFinishing;
 import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.ui.UiFactory;
 import com.neschur.kb2.app.views.BattleView;
@@ -12,7 +13,7 @@ import com.neschur.kb2.app.views.MainView;
 import com.neschur.kb2.app.views.View;
 import com.neschur.kb2.app.views.ViewClosable;
 
-public class MainController implements ViewClosable {
+public class MainController implements ViewClosable, BattleFinishing {
     private MainActivity activity;
     private GameController gameController;
     private MainView mainView;
@@ -133,7 +134,7 @@ public class MainController implements ViewClosable {
 
     public void activateBattle(Fighting fighting) {
         gameMode = 1;
-        BattleController battleController = new BattleController(gameController.getPlayer(), fighting);
+        BattleController battleController = new BattleController(this, gameController.getPlayer(), fighting);
         battleView = new BattleView(activity, gameController, battleController, this);
     }
 
@@ -157,5 +158,11 @@ public class MainController implements ViewClosable {
         gameController.setMainController(this);
         mainView = new MainView(activity, this);
         activity.setContentView(mainView);
+    }
+
+    @Override
+    public void battleFinish(boolean win) {
+        gameMode = 0;
+        resetView();
     }
 }
