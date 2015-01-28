@@ -13,7 +13,7 @@ public class BattleAi {
         this.map = map;
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
-                if (!isFriendly(x, y))
+                if (isEntity(x, y) && !isFriendly(x, y))
                     step(map[x][y].getEntity());
             }
         }
@@ -22,7 +22,10 @@ public class BattleAi {
     private void step(WarriorEntity war) {
         if (war.isShoot()) {
             WarriorEntity attacked = findUserWar(true);
-
+            System.out.println(attacked);
+            if (attacked == null)
+                attacked = findUserWar(false);
+            System.out.println(attacked);
             if (attacked != null)
                 war.attack(attacked);
         }
@@ -32,12 +35,12 @@ public class BattleAi {
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
                 if (shoot) {
-                    if (isFriendly(x, y) && map[x][y].getEntity().isShoot()) {
+                    if (isEntity(x, y) && isFriendly(x, y) && map[x][y].getEntity().isShoot()) {
                         return map[x][y].getEntity();
                     }
                 }
                 else {
-                    if (isFriendly(x, y)) {
+                    if (isEntity(x, y) && isFriendly(x, y)) {
                         return map[x][y].getEntity();
                     }
                 }
@@ -46,7 +49,11 @@ public class BattleAi {
         return null;
     }
 
+    private boolean isEntity(int x, int y) {
+        return map[x][y].getEntity() != null;
+    }
+
     private boolean isFriendly(int x, int y) {
-        return map[x][y].getEntity() != null && map[x][y].getEntity().isFriendly();
+        return map[x][y].getEntity().isFriendly();
     }
 }
