@@ -25,17 +25,29 @@ public class BattleAi {
                 if (war.isShoot()) {
                     war.attack(attacked);
                 } else {
-                    boolean moved = moveWarTo(war, attacked.getX(), attacked.getY());
-                    if (moved)
+                    if (teleportWarTo(war, attacked.getX(), attacked.getY()))
                         war.attack(attacked);
                 }
         } else {
             WarriorEntity attacked = findNearestUserWar(war);
-
+            if (attacked != null) {
+                while (war.getStep() > 0) {
+                    moveWarTo(war, attacked.getX(), attacked.getY());
+                    if (distance(war, attacked.getX(), attacked.getY()) == 1) {
+                        war.attack(attacked);
+                    }
+                }
+            }
         }
     }
 
-    private boolean moveWarTo(WarriorEntity war, int x, int y) {
+    private void moveWarTo(WarriorEntity war, int x, int y) {
+        System.out.println("moveTo");
+        war.moveTo(x, y);
+        war.reduceStep(1);
+    }
+
+    private boolean teleportWarTo(WarriorEntity war, int x, int y) {
         for (int i = (x - 1 < 0) ? 0 : x - 1; i <= ((x + 1 < 6) ? x + 1 : 6); i++) {
             for (int j = (y - 1 < 0) ? 0 : y - 1; j <= ((y + 1 < 5) ? y + 1 : 5); j++) {
                 if (isLand(i, j) && !isEntity(i, j)) {
@@ -68,11 +80,11 @@ public class BattleAi {
         WarriorEntity dst = null;
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 5; j++) {
-                if(isEntity(i, j) && !isFriendly(i, j)) {
+                if(isEntity(i, j) && isFriendly(i, j)) {
                     int d = distance(war, i, j);
                     if (d < distance) {
                         distance = d;
-                        war = map[i][j].getEntity();
+                        dst = map[i][j].getEntity();
                     }
                 }
             }

@@ -213,9 +213,9 @@ public class BattleField implements Glade {
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
                 if (isEntity(x, y)) {
+                    map[x][y].getEntity().resetStep();
                     if (isFriendly(x, y)) {
                         friendlyCount++;
-                        map[x][y].getEntity().resetStep();
                     } else {
                         enemyCount++;
                     }
