@@ -29,6 +29,9 @@ public class BattleAi {
                     if (moved)
                         war.attack(attacked);
                 }
+        } else {
+            WarriorEntity attacked = findNearestUserWar(war);
+
         }
     }
 
@@ -60,6 +63,23 @@ public class BattleAi {
         return null;
     }
 
+    private WarriorEntity findNearestUserWar(WarriorEntity war) {
+        int distance = 99;
+        WarriorEntity dst = null;
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 5; j++) {
+                if(isEntity(i, j) && !isFriendly(i, j)) {
+                    int d = distance(war, i, j);
+                    if (d < distance) {
+                        distance = d;
+                        war = map[i][j].getEntity();
+                    }
+                }
+            }
+        }
+        return dst;
+    }
+
     private boolean isEntity(int x, int y) {
         return map[x][y].getEntity() != null;
     }
@@ -70,5 +90,9 @@ public class BattleAi {
 
     private boolean isLand(int x, int y) {
         return map[x][y].getLand() == R.drawable.land;
+    }
+
+    private int distance(WarriorEntity selected, int x, int y) {
+        return Math.max(Math.abs(selected.getX() - x), Math.abs(selected.getY() - y));
     }
 }
