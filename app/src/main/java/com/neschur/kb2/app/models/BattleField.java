@@ -106,10 +106,12 @@ public class BattleField implements Glade {
 
     private void moveArea(int x, int y, WarriorEntity war) {
         clearMoveArea();
-        snake(x, y, war.getStep());
-        if (war.isShoot()) {
+        if (war.isFly())
+            moveAreaFly();
+        else
+            snake(x, y, war.getStep());
+        if (war.isShoot())
             shotGoals();
-        }
     }
 
     private void clearMoveArea() {
@@ -130,19 +132,36 @@ public class BattleField implements Glade {
         }
     }
 
+    private void moveAreaFly() {
+        for (int x = 0; x < 6; x++) {
+            for (int y = 0; y < 5; y++) {
+                if (isLand(x, y) || (isEntity(x, y) && !isFriendly(x, y))) {
+                    map[x][y].setMove(true);
+                }
+            }
+        }
+    }
+
     private void snake(int x, int y, int step) {
-        if (step < 0 || x < 0 || x > 5 || y < 0 || y > 4)
+        snake(x, y, step, true);
+    }
+
+    private void snake(int x, int y, int step, boolean ignoreEntity) {
+        if (step < 0 || x < 0 || x > 5 || y < 0 || y > 4 ||
+                !isLand(x, y))
             return;
         step--;
         map[x][y].setMove(true);
-        snake(x + 1, y, step);
-        snake(x - 1, y, step);
-        snake(x, y + 1, step);
-        snake(x, y - 1, step);
-        snake(x + 1, y + 1, step);
-        snake(x - 1, y - 1, step);
-        snake(x - 1, y + 1, step);
-        snake(x + 1, y - 1, step);
+        if(!isEntity(x, y) || ignoreEntity) {
+            snake(x + 1, y, step, false);
+            snake(x - 1, y, step, false);
+            snake(x, y + 1, step, false);
+            snake(x, y - 1, step, false);
+            snake(x + 1, y + 1, step, false);
+            snake(x - 1, y - 1, step, false);
+            snake(x - 1, y + 1, step, false);
+            snake(x + 1, y - 1, step, false);
+        }
     }
 
     public int getSelectedX() {
