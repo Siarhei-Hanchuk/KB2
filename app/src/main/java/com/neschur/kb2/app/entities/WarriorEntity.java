@@ -68,4 +68,8 @@ public class WarriorEntity extends Entity {
         else
             this.step = warrior.getStep();
     }
+
+    public boolean isFly() {
+        return warrior.isFly();
+    }
 }
