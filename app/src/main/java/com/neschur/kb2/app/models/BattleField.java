@@ -9,10 +9,12 @@ public class BattleField implements Glade {
     private Player player;
     private Fighting fighting;
     private WarriorEntity selected;
+    private BattleAi ai;
 
     public BattleField(Player player, Fighting fighting) {
         this.player = player;
         this.fighting = fighting;
+        this.ai = new BattleAi();
 
         prepareField();
         prepareArmy();
@@ -64,7 +66,7 @@ public class BattleField implements Glade {
     }
 
     private void move(int x, int y) {
-        if (map[x][y].getLand() == R.drawable.land && !isEntity(x, y)) {
+        if (isLand(x, y) && !isEntity(x, y)) {
             selected.reduceStep(distance(selected, x, y));
             selected.move(x, y);
             if (selected.getStep() > 0) {
@@ -76,6 +78,8 @@ public class BattleField implements Glade {
         } else {
             attack(x, y);
         }
+
+        tryFinishPhase();
     }
 
     private void attack(int x, int y) {
@@ -167,5 +171,28 @@ public class BattleField implements Glade {
 
     private int distance(WarriorEntity selected, int x, int y) {
         return Math.max(Math.abs(selected.getX() - x), Math.abs(selected.getY() - y));
+    }
+
+    private void tryFinishPhase() {
+        for (int x = 0; x < 6; x++) {
+            for (int y = 0; y < 5; y++) {
+                if (isEntity(x, y) && isFriendly(x, y)) {
+                    if (map[x][y].getEntity().getStep() > 0)
+                        return;
+                }
+            }
+        }
+        ai.move(map);
+        newPhase();
+    }
+
+    private void newPhase() {
+        for (int x = 0; x < 6; x++) {
+            for (int y = 0; y < 5; y++) {
+                if (isEntity(x, y) && isFriendly(x, y)) {
+                    map[x][y].getEntity().resetStep();
+                }
+            }
+        }
     }
 }

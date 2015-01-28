@@ -36,9 +36,9 @@ public class WarriorFactory {
             case "peasant":
                 return new Warrior(id, R.drawable.army_peasant, 2, 1, 1, false, false, 1000, 50);
             case "aborigine":
-                return new Warrior(id, R.drawable.army_aborigine, 5, 2, 1, false, true, 500, 60);
+                return new Warrior(id, R.drawable.army_aborigine, 5, 2, 2, false, true, 500, 60);
             case "boar":
-                return new Warrior(id, R.drawable.army_boar, 7, 2, 2, false, false, 500, 75);
+                return new Warrior(id, R.drawable.army_boar, 7, 2, 3, false, false, 500, 75);
             case "skeleton":
                 return new Warrior(id, R.drawable.army_skeleton, 8, 2, 2, false, false, 500, 85);
             case "woodgoblin":

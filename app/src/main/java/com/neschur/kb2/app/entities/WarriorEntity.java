@@ -16,11 +16,8 @@ public class WarriorEntity extends Entity {
         this.warrior = warrior;
         this.count = count;
         this.friendly = friendly;
-        if (warrior.isFly())
-            this.step = 6;
-        else
-            this.step = warrior.getStep();
         this.defence = warrior.getDefence() * count;
+        resetStep();
     }
 
     @Override
@@ -61,5 +58,12 @@ public class WarriorEntity extends Entity {
 
     public boolean isShoot() {
         return warrior.isShoot();
+    }
+
+    public void resetStep() {
+        if (warrior.isFly())
+            this.step = 6;
+        else
+            this.step = warrior.getStep();
     }
 }
