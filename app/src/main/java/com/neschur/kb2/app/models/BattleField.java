@@ -1,7 +1,6 @@
 package com.neschur.kb2.app.models;
 
 import com.neschur.kb2.app.R;
-import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.entities.WarriorEntity;
 import com.neschur.kb2.app.warriors.Warrior;
@@ -38,13 +37,17 @@ public class BattleField implements Glade {
     }
 
     private void prepareArmy() {
-        System.out.println(player);
-        System.out.println(fighting);
         for (int i = 0; i < 5; i++) {
             if (player.getWarriorSquad(i) != null)
-                new WarriorEntity(this, 0, i, player.getWarriorSquad(i), true);
+                new WarriorEntity(this, 0, i,
+                        player.getWarriorSquad(i).getWarrior(),
+                        player.getWarriorSquad(i).getCount(),
+                        true);
             if (fighting.getWarriorSquad(i) != null)
-                new WarriorEntity(this, 5, i, fighting.getWarriorSquad(i), false);
+                new WarriorEntity(this, 5, i,
+                        fighting.getWarriorSquad(i).getWarrior(),
+                        fighting.getWarriorSquad(i).getCount(),
+                        false);
         }
     }
 
@@ -64,15 +67,19 @@ public class BattleField implements Glade {
                         selectedX = -1;
                         selectedY = -1;
                     }
+                } else if (map[x][y].getEntity() != null && !map[x][y].getEntity().isFriendly()){
+                    if (Math.max(Math.abs(selectedX - x), Math.abs(selectedY - y)) == 1){
+
+                    }
                 }
             }
         } else if(map[x][y].getEntity()!= null &&
-                ((WarriorEntity)map[x][y].getEntity()).isFriendly() &&
-                ((WarriorEntity)map[x][y].getEntity()).getStep() > 0) {
-            selected = (WarriorEntity)map[x][y].getEntity();
+                map[x][y].getEntity().isFriendly() &&
+                map[x][y].getEntity().getStep() > 0) {
+            selected = map[x][y].getEntity();
             selectedX = x;
             selectedY = y;
-            Warrior war = ((WarriorEntity) map[x][y].getEntity()).getWarrior();
+            WarriorEntity war = map[x][y].getEntity();
             moveArea(x, y, war.getStep());
         }
     }
