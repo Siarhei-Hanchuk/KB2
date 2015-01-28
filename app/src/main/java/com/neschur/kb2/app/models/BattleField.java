@@ -60,16 +60,22 @@ public class BattleField implements Glade {
                     selectedX = x;
                     selectedY = y;
                     if (selected.getStep() > 0) {
-                        moveArea(x, y, selected.getStep());
+                        moveArea(x, y, selected);
                     } else {
                         clearMoveArea();
                         selected = null;
                         selectedX = -1;
                         selectedY = -1;
                     }
-                } else if (map[x][y].getEntity() != null && !map[x][y].getEntity().isFriendly()){
-                    if (Math.max(Math.abs(selectedX - x), Math.abs(selectedY - y)) == 1){
-
+                } else {
+                    if (map[x][y].getEntity() != null && !map[x][y].getEntity().isFriendly()) {
+                        if (Math.max(Math.abs(selectedX - x), Math.abs(selectedY - y)) == 1 || selected.isShoot()) {
+                            selected.attack(map[x][y].getEntity());
+                            clearMoveArea();
+                            selected = null;
+                            selectedX = -1;
+                            selectedY = -1;
+                        }
                     }
                 }
             }
@@ -80,13 +86,27 @@ public class BattleField implements Glade {
             selectedX = x;
             selectedY = y;
             WarriorEntity war = map[x][y].getEntity();
-            moveArea(x, y, war.getStep());
+            moveArea(x, y, war);
         }
     }
 
-    private void moveArea(int x, int y, int step){
+    private void shotGoals() {
+        for (int x = 0; x < 6; x++) {
+            for (int y = 0; y < 5; y++) {
+                if (map[x][y].getEntity() != null && !map[x][y].getEntity().isFriendly()) {
+                    map[x][y].setMove(true);
+                }
+
+            }
+        }
+    }
+
+    private void moveArea(int x, int y, WarriorEntity war){
         clearMoveArea();
-        snake(x, y, step);
+        snake(x, y, war.getStep());
+        if (war.isShoot()) {
+            shotGoals();
+        }
     }
 
     private void clearMoveArea() {

@@ -52,8 +52,14 @@ public class BattleView extends View {
                 canvas.drawBitmap(imageCache.getImage(map[x][y].getLand()),
                         xOffset + x * stepX(), yOffset + y * stepY(), null);
                 if (map[x][y].isMove())
-                    canvas.drawBitmap(imageCache.getImage(R.drawable.battle_move),
-                            xOffset + x * stepX(), yOffset + y * stepY(), null);
+                    if (map[x][y].getEntity() != null) {
+                        if (!map[x][y].getEntity().isFriendly())
+                            canvas.drawBitmap(imageCache.getImage(R.drawable.battle_attack),
+                                    xOffset + x * stepX(), yOffset + y * stepY(), null);
+                    } else {
+                        canvas.drawBitmap(imageCache.getImage(R.drawable.battle_move),
+                                xOffset + x * stepX(), yOffset + y * stepY(), null);
+                    }
                 WarriorEntity warrior = map[x][y].getEntity();
                 if (map[x][y].getEntity() != null) {
                     Bitmap image = imageCache.getImage(map[x][y].getEntity().getID());

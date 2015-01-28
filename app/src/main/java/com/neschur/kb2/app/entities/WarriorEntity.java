@@ -9,16 +9,18 @@ public class WarriorEntity extends Entity {
     private boolean friendly;
     private int step;
     private int count;
+    private int defence;
 
     public WarriorEntity(Glade glade, int x, int y, Warrior warrior, int count, boolean friendly) {
         super(glade, x, y);
         this.warrior = warrior;
         this.count = count;
-        this.friendly = true;
+        this.friendly = friendly;
         if (warrior.isFly())
             this.step = 6;
         else
             this.step = warrior.getStep();
+        this.defence = warrior.getDefence() * count;
     }
 
     @Override
@@ -41,5 +43,23 @@ public class WarriorEntity extends Entity {
     public void reduceStep(int step) {
         if (!warrior.isFly())
             this.step -= step;
+    }
+
+    public void attack(WarriorEntity warrior) {
+        warrior.takeAttack(this.warrior.getDamage() * count);
+        step = 0;
+    }
+
+    public void takeAttack(int damage) {
+        defence -= damage;
+        count = defence / warrior.getDefence();
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public boolean isShoot() {
+        return warrior.isShoot();
     }
 }
