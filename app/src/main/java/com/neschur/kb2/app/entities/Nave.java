@@ -13,8 +13,9 @@ public class Nave extends Entity {
         return R.drawable.nave;
     }
 
-    public void move(int x, int y) {
+    public boolean move(int x, int y) {
         move(x, y, null);
+        return true;
     }
 
     public void move(int x, int y, Country country) {

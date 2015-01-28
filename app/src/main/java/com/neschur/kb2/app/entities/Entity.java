@@ -31,17 +31,26 @@ public abstract class Entity implements Serializable {
     public void moveTo(int x, int y) {
         int directionX = (int) Math.signum(x - this.x);
         int directionY = (int) Math.signum(y - this.y);
-        move(this.x + directionX, this.y + directionY);
+        if(!move(this.x + directionX, this.y + directionY)) {
+            if ( directionX == 0)
+                if(!move(this.x + 1, this.y + directionY))
+                    move(this.x - 1, this.y + directionY);
+            if ( directionX == 1)
+                if(!move(this.x + directionX, this.y + 1))
+                    move(this.x + directionX, this.y - 1);
+        }
     }
 
-    public void move(int x, int y) {
+    public boolean move(int x, int y) {
         if (glade.getMapPoint(x, y).getEntity() == null &&
                 glade.getMapPoint(x, y).getLand() == R.drawable.land) {
             destroy();
             this.x = x;
             this.y = y;
             glade.getMapPoint(x, y).setEntity(this);
+            return true;
         }
+        return false;
     }
 
     public Country getCountry() {

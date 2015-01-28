@@ -33,7 +33,7 @@ public class BattleAi {
             if (attacked != null) {
                 while (war.getStep() > 0) {
                     moveWarTo(war, attacked.getX(), attacked.getY());
-                    if (distance(war, attacked.getX(), attacked.getY()) == 1) {
+                    if (distance(war, attacked.getX(), attacked.getY()) == 1 && war.getStep() > 0) {
                         war.attack(attacked);
                     }
                 }
@@ -42,7 +42,6 @@ public class BattleAi {
     }
 
     private void moveWarTo(WarriorEntity war, int x, int y) {
-        System.out.println("moveTo");
         war.moveTo(x, y);
         war.reduceStep(1);
     }
