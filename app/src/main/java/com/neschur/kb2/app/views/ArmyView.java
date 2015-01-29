@@ -29,8 +29,8 @@ public class ArmyView extends View {
         Paint paint = getDefaultPaint();
         canvas.drawColor(Color.BLACK);
 
-        int imageWidth = (getWidth() / 6);
-        int imageHeight = (getHeight() / 5);
+        int imageWidth = stepX();
+        int imageHeight = stepY();
         for (int i = 0; i < 5; i++) {
             WarriorSquad squad = player.getWarriorSquad(i);
             if (squad == null)

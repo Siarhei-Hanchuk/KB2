@@ -5,9 +5,12 @@ import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.countries.Country;
 
 public class GameGrid {
+    public static final int STEP_X = 6;
+    public static final int STEP_Y = 5;
+
     private Player player;
-    private int[][] background = new int[5][5];
-    private int[][] grid = new int[6][5];
+    private int[][] background = new int[STEP_Y][STEP_Y];
+    private int[][] grid = new int[STEP_X][STEP_Y];
 
     public GameGrid(GameController gameController) {
         player = gameController.getPlayer();
@@ -28,8 +31,8 @@ public class GameGrid {
     private void generate() {
         int x = player.getX();
         int y = player.getY();
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
+        for (int i = 0; i < STEP_Y; i++) {
+            for (int j = 0; j < STEP_Y; j++) {
                 MapPoint mp = player.getCountry().getMapPoint(x + (i - 2), y + (j - 2));
                 if (mp.getEntity() != null) {
                     grid[i][j] = mp.getEntity().getID();

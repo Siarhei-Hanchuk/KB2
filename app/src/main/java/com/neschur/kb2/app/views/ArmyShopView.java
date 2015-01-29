@@ -66,8 +66,8 @@ public class ArmyShopView extends View {
         canvas.drawColor(Color.BLACK);
 
         this.buttonSize = getHeight() / 5;
-        int imageWidth = (getWidth() / 6) * 3 / 2;
-        int imageHeight = (getHeight() / 5) * 3 / 2;
+        int imageWidth = stepX();//(getWidth() / 6) * 3 / 2;
+        int imageHeight = stepY();//(getHeight() / 5) * 3 / 2;
         int buttonBorderSize = 5;
         Bitmap image = Bitmap.createScaledBitmap(
                 BitmapFactory.decodeResource(

@@ -7,10 +7,14 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.neschur.kb2.app.controllers.GameController;
+import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.models.Player;
 import com.neschur.kb2.app.ui.ImageCache;
 
 public abstract class View extends SurfaceView implements SurfaceHolder.Callback, Drawable {
+    public static final int IMAGE_WIDTH = 96;
+    public static final int IMAGE_HEIGHT = 82;
+
     protected ViewClosable closeCallback;
     protected GameController gameController;
     protected Player player;
@@ -55,25 +59,25 @@ public abstract class View extends SurfaceView implements SurfaceHolder.Callback
     }
 
     protected double getScale() {
-        double scaleX = (double) getWidth() / (96 * 6);
-        double scaleY = (double) getHeight() / (82 * 5);
+        double scaleX = (double) getWidth() / (IMAGE_WIDTH * GameGrid.STEP_X);
+        double scaleY = (double) getHeight() / (IMAGE_HEIGHT * GameGrid.STEP_Y);
         return (scaleX > scaleY) ? scaleY : scaleX;
     }
 
     protected int stepX() {
-        return (int) (96 * getScale());
+        return (int) (IMAGE_WIDTH * getScale());
     }
 
     protected int stepY() {
-        return (int) (82 * getScale());
+        return (int) (IMAGE_HEIGHT * getScale());
     }
 
     protected int stepX(int x) {
-        return ((int) (96 * getScale())) * x + xOffset;
+        return ((int) (IMAGE_WIDTH * getScale())) * x + xOffset;
     }
 
     protected int stepY(int y) {
-        return ((int) (82 * getScale())) * y + yOffset;
+        return ((int) (IMAGE_HEIGHT * getScale())) * y + yOffset;
     }
 
     protected int textHeight() {
@@ -92,12 +96,12 @@ public abstract class View extends SurfaceView implements SurfaceHolder.Callback
     }
 
     protected void calcOffsets() {
-        double scaleX = (double) getWidth() / (96 * 6);
-        double scaleY = (double) getHeight() / (82 * 5);
+        double scaleX = (double) getWidth() / (IMAGE_WIDTH * GameGrid.STEP_X);
+        double scaleY = (double) getHeight() / (IMAGE_HEIGHT * GameGrid.STEP_Y);
         if (scaleX > scaleY) {
-            xOffset = (getWidth() - stepX() * 6) / 2;
+            xOffset = (getWidth() - stepX() * GameGrid.STEP_X) / 2;
         } else {
-            yOffset = (getHeight() - stepX() * 5) / 2;
+            yOffset = (getHeight() - stepX() * GameGrid.STEP_Y) / 2;
         }
     }
 

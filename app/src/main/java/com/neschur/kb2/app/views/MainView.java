@@ -69,8 +69,8 @@ public class MainView extends View {
         ImageCache imageCache = ImageCache.getInstance(getResources(), stepX(), stepY());
         calcOffsets();
 
-        for (int x = 0; x < 6; x++) {
-            for (int y = 0; y < 5; y++) {
+        for (int x = 0; x < GameGrid.STEP_X; x++) {
+            for (int y = 0; y < GameGrid.STEP_Y; y++) {
                 if (x < 5) {
                     Bitmap background = imageCache.getImage(
                             grid.getBackgroundBuyXY(x, y));
