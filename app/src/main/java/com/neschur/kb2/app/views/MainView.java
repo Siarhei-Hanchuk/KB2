@@ -23,7 +23,7 @@ public class MainView extends View {
         int x = (int) event.getX() - xOffset;
         int y = (int) event.getY() - yOffset;
         if (x > this.stepX() * 5) {
-            int item = y / stepY();
+            int item = (y / stepY()) + 5 * (x/stepX() - 5);
             mainController.touchMenu(item);
         } else {
             int height_2_5 = stepY() * 2;

@@ -100,9 +100,11 @@ public class MainController implements ViewClosable, BattleFinishing {
                 break;
             case 4:
                 if (gameController.getPlayer().inNave()) {
-                    activity.setContentView(UiFactory.getMenuView());
+                    activity.setContentView(UiFactory.getCountryMenuView());
                 }
                 break;
+            case 5:
+                activity.setContentView(UiFactory.getWorkersMenuView());
         }
     }
 

@@ -28,7 +28,7 @@ public class CaptainMenu extends Menu {
     @Override
     public String getItemDescription(int i) {
         if (player.noArmy()) {
-            return I18n.translate(R.string.entity_capitan_noArmy);
+            return I18n.translate(R.string.entity_captain_noArmy);
         } else {
             switch (i) {
                 case 0:

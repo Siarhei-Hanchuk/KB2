@@ -5,7 +5,7 @@ import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.countries.Country;
 
 public class GameGrid {
-    public static final int STEP_X = 6;
+    public static final int STEP_X = 7;
     public static final int STEP_Y = 5;
 
     private Player player;
@@ -187,6 +187,12 @@ public class GameGrid {
             grid[5][3] = R.drawable.status_money_500000;
 
         grid[5][4] = R.drawable.status_ancientmap_0;
+
+        grid[6][0] = R.drawable.workers;
+        grid[6][1] = R.drawable.map;
+        grid[6][2] = R.drawable.map;
+        grid[6][3] = R.drawable.map;
+        grid[6][4] = R.drawable.map;
 
     }
 

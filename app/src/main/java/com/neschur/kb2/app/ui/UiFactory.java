@@ -8,6 +8,7 @@ import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.ui.menus.CountryMenu;
 import com.neschur.kb2.app.ui.menus.Menu;
+import com.neschur.kb2.app.ui.menus.WorkersMenu;
 import com.neschur.kb2.app.ui.messages.Message;
 import com.neschur.kb2.app.views.ArmyShopView;
 import com.neschur.kb2.app.views.ArmyView;
@@ -44,10 +45,16 @@ public class UiFactory {
         return view;
     }
 
-    public static View getMenuView() {
+    public static View getCountryMenuView() {
         return new MenuView(activity,
                 new CountryMenu(activity, getGameController()), getGameController(), mainController);
     }
+
+    public static View getWorkersMenuView() {
+        return new MenuView(activity,
+                new WorkersMenu(activity, getGameController()), getGameController(), mainController);
+    }
+
 
     public static View getMapView() {
         return new MapView(activity, getGameController(), mainController);

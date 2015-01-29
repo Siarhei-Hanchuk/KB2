@@ -15,19 +15,26 @@ public class GameController implements Serializable {
     public static final int MODE_GAME = 1;
     public static final int MODE_TRAINING = 2;
 
+    transient private MainController mainController;
+
     private World world;
     private Player player;
     private Nave nave;
-    transient private MainController mainController;
+    private int weeks;
+    private int days = 0;
+    private int currentWorker = -1;
+
 
     public GameController(MainController mainController, int mode) {
         this.mainController = mainController;
         if (mode == MODE_GAME) {
             world = new World();
             player = new Player(world.getCountry(0), Player.MODE_GAME);
+            weeks = 200;
         } else if (mode == MODE_TRAINING) {
             world = new World(true);
             player = new Player(world.getCountry(0), Player.MODE_TRAINING);
+            weeks = 600;
         }
 
     }
@@ -45,6 +52,15 @@ public class GameController implements Serializable {
 //        sorcerer.moveTo(player.getX(), player.getY());
     }
 
+    public void weekUpdate() {
+        if (days > 0) {
+            days--;
+        } else {
+            days = 200;
+            weeks--;
+        }
+    }
+
     public void move(int dx, int dy) {
         int x = player.getX();
         int y = player.getY();
@@ -53,11 +69,26 @@ public class GameController implements Serializable {
         }
 
         moveEntities();
+        weekUpdate();
 
         MapPoint mp = player.getCountry().getMapPoint(x + dx, y + dy);
 
         if (mp.getEntity() == null) {
-            if (player.inNave()) {
+            if (currentWorker > -1 && mp.getEntity() == null) {
+                if (currentWorker == 0 && mp.getLand() == R.drawable.water) {
+                    mp.setLand(R.drawable.plot);
+                }
+                if (currentWorker == 1 && mp.getLand() == R.drawable.forest) {
+                    mp.setLand(R.drawable.land);
+                }
+                if (currentWorker == 2 && mp.getLand() == R.drawable.land) {
+                    mp.setLand(R.drawable.water);
+                }
+                if (currentWorker == 3 && mp.getLand() == R.drawable.stone) {
+                    mp.setLand(R.drawable.land);
+                }
+                currentWorker = -1;
+            } else if (player.inNave()) {
                 if (mp.getLand() == R.drawable.land || mp.getLand() == R.drawable.sand) {
                     player.setNave(null);
                     player.move(x + dx, y + dy);
@@ -115,5 +146,12 @@ public class GameController implements Serializable {
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
+    }
+
+    public void selectWorker(int n) {
+        if (player.getWorker(n) > 0) {
+            currentWorker = n;
+            player.changeWorker(n, -1);
+        }
     }
 }
