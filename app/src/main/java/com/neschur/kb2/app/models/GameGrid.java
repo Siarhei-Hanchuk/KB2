@@ -5,12 +5,13 @@ import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.countries.Country;
 
 public class GameGrid {
-    public static final int STEP_X = 7;
+    public static final int STEP_X = 6;
     public static final int STEP_Y = 5;
 
     private Player player;
     private int[][] background = new int[STEP_Y][STEP_Y];
     private int[][] grid = new int[STEP_X][STEP_Y];
+    private int mode = 0;
 
     public GameGrid(GameController gameController) {
         player = gameController.getPlayer();
@@ -154,11 +155,25 @@ public class GameGrid {
     }
 
     private void makeStatus() {
+        switch (mode) {
+            case 0:
+                makeStatus0();
+                break;
+            case 1:
+                makeStatus1();
+                break;
+            case 2:
+                makeStatus2();
+                break;
+            case 3:
+                makeStatus3();
+                break;
+        }
+    }
+
+    private void makeStatus0() {
         grid[5][0] = R.drawable.status_contract_0;
-        if (!player.isWallkick())
-            grid[5][1] = R.drawable.status_wallkick_0;
-        else
-            grid[5][1] = R.drawable.status_wallkick_1;
+        grid[5][1] = R.drawable.status_workers;
 
         grid[5][2] = R.drawable.status_magic_0;
 
@@ -187,13 +202,37 @@ public class GameGrid {
             grid[5][3] = R.drawable.status_money_500000;
 
         grid[5][4] = R.drawable.status_ancientmap_0;
-
-        grid[6][0] = R.drawable.workers;
-        grid[6][1] = R.drawable.map;
-        grid[6][2] = R.drawable.map;
-        grid[6][3] = R.drawable.map;
-        grid[6][4] = R.drawable.map;
-
     }
 
+    public void makeStatus1() {
+        grid[5][0] = R.drawable.status_army;
+        grid[5][1] = R.drawable.status_week;
+        grid[5][2] = R.drawable.status_contract_0;
+        grid[5][3] = R.drawable.guidepost;
+        grid[5][4] = R.drawable.status_week;
+    }
+
+    public void makeStatus2() {
+        grid[5][0] = R.drawable.status_magic;
+        grid[5][1] = R.drawable.guidepost;
+        grid[5][2] = R.drawable.guidepost;
+        grid[5][3] = R.drawable.guidepost;
+        grid[5][4] = R.drawable.status_week;
+    }
+
+    public void makeStatus3() {
+        grid[5][0] = R.drawable.status_map;
+        grid[5][1] = R.drawable.status_countries;
+        grid[5][2] = R.drawable.status_week;
+        grid[5][3] = -1;
+        grid[5][4] = -1;
+    }
+
+    public int getMode() {
+        return mode;
+    }
+
+    public void setMode(int mode) {
+        this.mode = mode;
+    }
 }

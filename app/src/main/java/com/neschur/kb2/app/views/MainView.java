@@ -3,6 +3,7 @@ package com.neschur.kb2.app.views;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
@@ -23,7 +24,7 @@ public class MainView extends View {
         int x = (int) event.getX() - xOffset;
         int y = (int) event.getY() - yOffset;
         if (x > this.stepX() * 5) {
-            int item = (y / stepY()) + 5 * (x/stepX() - 5);
+            int item = (y / stepY());// + 5 * (x/stepX() - 5);
             mainController.touchMenu(item);
         } else {
             int height_2_5 = stepY() * 2;
@@ -65,6 +66,7 @@ public class MainView extends View {
 
     @Override
     public void draw(@NonNull Canvas canvas) {
+        canvas.drawColor(Color.BLACK);
         GameGrid grid = mainController.getGameGrid();
         ImageCache imageCache = ImageCache.getInstance(getResources(), stepX(), stepY());
         calcOffsets();

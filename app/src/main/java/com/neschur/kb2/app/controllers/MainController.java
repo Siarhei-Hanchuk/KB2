@@ -20,6 +20,7 @@ public class MainController implements ViewClosable, BattleFinishing {
     private MainMenuView mainMenuView;
     private BattleView battleView;
     private int gameMode = 0;
+    private GameGrid gameGrid;
 
     public MainController(MainActivity activity) {
         this.activity = activity;
@@ -53,7 +54,8 @@ public class MainController implements ViewClosable, BattleFinishing {
     }
 
     public GameGrid getGameGrid() {
-        GameGrid gameGrid = new GameGrid(gameController);
+        if (gameGrid == null)
+            gameGrid = new GameGrid(gameController);
         gameGrid.update();
         return gameGrid;
     }
@@ -91,20 +93,56 @@ public class MainController implements ViewClosable, BattleFinishing {
     }
 
     public void touchMenu(int i) {
-        switch (i) {
+        GameGrid grid = getGameGrid();
+        switch (grid.getMode()) {
             case 0:
-                activity.setContentView(UiFactory.getArmyView());
-                break;
-            case 3:
-                activity.setContentView(UiFactory.getMapView());
-                break;
-            case 4:
-                if (gameController.getPlayer().inNave()) {
-                    activity.setContentView(UiFactory.getCountryMenuView());
+                switch (i) {
+                    case 0:
+                        grid.setMode(1);
+                        break;
+                    case 1:
+                        activity.setContentView(UiFactory.getWorkersMenuView());
+                        break;
+                    case 2:
+                        grid.setMode(2);
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        grid.setMode(3);
+                        break;
                 }
                 break;
-            case 5:
-                activity.setContentView(UiFactory.getWorkersMenuView());
+            case 1:
+                switch (i) {
+                    case 0:
+                        activity.setContentView(UiFactory.getArmyView());
+                        grid.setMode(0);
+                        break;
+                    case 4:
+                        grid.setMode(0);
+                        break;
+                }
+            case 2:
+                switch (i) {
+                    case 4:
+                        grid.setMode(0);
+                        break;
+                }
+            case 3:
+                switch (i) {
+                    case 0:
+                        activity.setContentView(UiFactory.getMapView());
+                        break;
+                    case 1:
+                        if (gameController.getPlayer().inNave()) {
+                            activity.setContentView(UiFactory.getCountryMenuView());
+                        }
+                        break;
+                    case 2:
+                        grid.setMode(0);
+                        break;
+                }
         }
     }
 
