@@ -2,11 +2,12 @@ package com.neschur.kb2.app.entities;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.Country;
+import com.neschur.kb2.app.models.MapPoint;
 
 public class GuidePost extends Entity {
 
-    public GuidePost(Country country, int x, int y) {
-        super(country, x, y);
+    public GuidePost(MapPoint point) {
+        super(point);
     }
 
     @Override

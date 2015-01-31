@@ -7,10 +7,10 @@ class CountryTraining extends Country {
     public CountryTraining() {
         this.id = 0;
 
-        new ArmyShop(this, 5, 8, 0);
-        new ArmyShop(this, 5, 9, 0);
-        new ArmyShop(this, 5, 10, 0);
-        new City(this, 6, 5);
+        new ArmyShop(getMapPoint(5, 8), 0);
+        new ArmyShop(getMapPoint(5, 9), 0);
+        new ArmyShop(getMapPoint(5, 10), 0);
+        new City(getMapPoint(6, 5));
         createCaptain(8, 5);
     }
 }

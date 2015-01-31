@@ -10,8 +10,8 @@ public class MapPointBattle extends MapPoint {
     private boolean move = false;
     private WarriorEntity entity;
 
-    public MapPointBattle(int x, int y) {
-        super(x, y);
+    public MapPointBattle(Glade glade, int x, int y) {
+        super(glade, x, y);
     }
 
     public boolean isMove() {

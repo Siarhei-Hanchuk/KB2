@@ -2,12 +2,13 @@ package com.neschur.kb2.app.entities;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.Country;
+import com.neschur.kb2.app.models.MapPoint;
 
 public class City extends Entity {
     private int workers[] = new int[4];
 
-    public City(Country country, int x, int y) {
-        super(country, x, y);
+    public City(MapPoint point) {
+        super(point);
         workers[0] = 4;
         workers[1] = 5;
         workers[2] = 6;

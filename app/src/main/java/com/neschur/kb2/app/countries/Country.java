@@ -32,7 +32,7 @@ public abstract class Country implements Glade, Serializable {
         map = new MapPoint[65][65];
         for (int i = 0; i < 65; i++) {
             for (int j = 0; j < 65; j++) {
-                map[i][j] = new MapPoint(i, j);
+                map[i][j] = new MapPoint(this, i, j);
             }
         }
 
@@ -45,7 +45,7 @@ public abstract class Country implements Glade, Serializable {
 //    }
 
     protected void createCaptain(int x, int y) {
-        Captain captain = new Captain(this, x, y);
+        Captain captain = new Captain(getMapPoint(x, y));
         int squadCount = rand(5) + 1;
         int authority = 100 + rand(1000);
         for (int i = 0; i < squadCount; i++) {
@@ -60,7 +60,7 @@ public abstract class Country implements Glade, Serializable {
     }
 
     private void createSorcerer(int x, int y) {
-        sorcerer = new Sorcerer(this, x, y);
+        sorcerer = new Sorcerer(getMapPoint(x, y));
     }
 
     public Sorcerer getSorcerer() {
@@ -110,7 +110,7 @@ public abstract class Country implements Glade, Serializable {
                     || (map[x][y - 1].getLand() == R.drawable.water))
                     && ((map[x][y].getLand() == R.drawable.land)
                     && (map[x][y].getEntity() == null))) {
-                map[x][y].setEntity(new City(this, x, y));
+                map[x][y].setEntity(new City(getMapPoint(x, y)));
                 count++;
             }
         }
@@ -123,7 +123,7 @@ public abstract class Country implements Glade, Serializable {
             int x = rand(54) + 5;
             if ((map[x][y].getLand() == R.drawable.land)
                     || (map[x][y].getLand() == R.drawable.sand)) {
-                map[x][y].setEntity(new GuidePost(this, x, y));
+                map[x][y].setEntity(new GuidePost(getMapPoint(x, y)));
             }
             count++;
         }
@@ -136,7 +136,7 @@ public abstract class Country implements Glade, Serializable {
                         || (map[i][j].getLand() == R.drawable.sand))
                         && (map[i][j].getEntity() == null)) {
                     if (rand(frequency) == 1) {
-                        map[i][j].setEntity(new GoldChest(i, j, mode));
+                        map[i][j].setEntity(new GoldChest(getMapPoint(i, j), mode));
                     }
                 }
             }
@@ -222,7 +222,7 @@ public abstract class Country implements Glade, Serializable {
             y = rand(54) + 5;
             x = rand(54) + 5;
         } while (map[x][y].getLand() != R.drawable.land && map[x][y].getEntity() == null);
-        map[x][y].setEntity(new MapNext(this, x, y));
+        map[x][y].setEntity(new MapNext(getMapPoint(x, y)));
     }
 
     private boolean tryPlaceCastle(int x, int y) {
@@ -234,10 +234,10 @@ public abstract class Country implements Glade, Serializable {
                         (map[x - 1][y].getEntity() == null) &&
                         (map[x + 1][y].getEntity() == null) &&
                         (map[x][y + 1].getEntity() == null))) {
-            map[x][y].setEntity(new Castle(this, x, y, R.drawable.castle_c));
-            map[x + 1][y].setEntity(new Castle(this, x, y, R.drawable.castle_r));
-            map[x - 1][y].setEntity(new Castle(this, x, y, R.drawable.castle_l));
-            map[x][y + 1].setEntity(new Captain(this, x, y));
+            map[x][y].setEntity(new Castle(getMapPoint(x, y), R.drawable.castle_c));
+            map[x + 1][y].setEntity(new Castle(getMapPoint(x, y), R.drawable.castle_r));
+            map[x - 1][y].setEntity(new Castle(getMapPoint(x, y), R.drawable.castle_l));
+            map[x][y + 1].setEntity(new Captain(getMapPoint(x, y)));
             return true;
         }
         return false;
@@ -254,7 +254,7 @@ public abstract class Country implements Glade, Serializable {
 
     private boolean tryPlaceCaptain(int x, int y) {
         if (map[x][y].getLand() == R.drawable.land && map[x][y].getEntity() == null) {
-            map[x][y].setEntity(new Captain(this, x, y));
+            map[x][y].setEntity(new Captain(getMapPoint(x, y)));
             return true;
         }
         return false;
@@ -275,7 +275,7 @@ public abstract class Country implements Glade, Serializable {
             int y = rand(65);
             MapPoint mp = getMapPoint(x, y);
             if (mp.getEntity() == null && mp.getLand() == R.drawable.land) {
-                mp.setEntity(new ArmyShop(this, x, y, group));
+                mp.setEntity(new ArmyShop(getMapPoint(x, y), group));
                 run++;
             }
         }

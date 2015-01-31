@@ -28,7 +28,6 @@ public class BattleField implements Glade {
         return map[x][y];
     }
 
-    @Override
     public MapPointBattle[][] getMapPoints() {
         return map;
     }
@@ -37,7 +36,7 @@ public class BattleField implements Glade {
     public void prepareField() {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 5; j++) {
-                map[i][j] = new MapPointBattle(i ,j);
+                map[i][j] = new MapPointBattle(this, i ,j);
                 map[i][j].setLand(R.drawable.land);
             }
         }
@@ -46,12 +45,12 @@ public class BattleField implements Glade {
     private void prepareArmy() {
         for (int i = 0; i < 5; i++) {
             if (player.getWarriorSquad(i) != null)
-                new WarriorEntity(this, 0, i,
+                new WarriorEntity(getMapPoint(0, i),
                         player.getWarriorSquad(i).getWarrior(),
                         player.getWarriorSquad(i).getCount(),
                         true);
             if (fighting.getWarriorSquad(i) != null)
-                new WarriorEntity(this, 5, i,
+                new WarriorEntity(getMapPoint(5, i),
                         fighting.getWarriorSquad(i).getWarrior(),
                         fighting.getWarriorSquad(i).getCount(),
                         false);

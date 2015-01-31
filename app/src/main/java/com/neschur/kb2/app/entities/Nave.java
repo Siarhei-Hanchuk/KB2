@@ -2,10 +2,11 @@ package com.neschur.kb2.app.entities;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.Country;
+import com.neschur.kb2.app.models.MapPoint;
 
 public class Nave extends Entity {
-    public Nave(Country country, int x, int y) {
-        super(country, x, y);
+    public Nave(MapPoint point) {
+        super(point);
     }
 
     @Override
@@ -19,11 +20,8 @@ public class Nave extends Entity {
     }
 
     public void move(int x, int y, Country country) {
-        this.glade.getMapPoint(this.x, this.y).setEntity(null);
-        if (country != null)
-            this.glade = country;
-        this.glade.getMapPoint(x, y).setEntity(this);
-        this.x = x;
-        this.y = y;
+        point.setEntity(null);
+        point = country.getMapPoint(x, y);
+        point.setEntity(this);
     }
 }

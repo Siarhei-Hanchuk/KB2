@@ -121,7 +121,7 @@ public class GameController implements Serializable {
     }
 
     public void createNave(int x, int y) {
-        nave = new Nave(world.getCountry(0), x, y);
+        nave = new Nave(world.getCountry(0).getMapPoint(x, y));
     }
 
     public void destroyNave() {

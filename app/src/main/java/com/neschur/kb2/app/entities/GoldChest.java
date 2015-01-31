@@ -1,6 +1,7 @@
 package com.neschur.kb2.app.entities;
 
 import com.neschur.kb2.app.R;
+import com.neschur.kb2.app.models.MapPoint;
 
 import java.util.Random;
 
@@ -8,8 +9,8 @@ public class GoldChest extends Entity {
     private int wealth;
     private boolean bonus = false;
 
-    public GoldChest(int x, int y, int wealth) {
-        super(null, x, y);
+    public GoldChest(MapPoint point, int wealth) {
+        super(point);
         this.wealth = wealth;
         int rand = (new Random()).nextInt(10);
         if (rand == 0)
