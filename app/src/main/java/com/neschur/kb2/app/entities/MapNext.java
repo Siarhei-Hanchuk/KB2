@@ -4,7 +4,7 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.models.MapPoint;
 
-public class MapNext extends Entity {
+public class MapNext extends EntityImpl {
 
     public MapNext(MapPoint point) {
         super(point);

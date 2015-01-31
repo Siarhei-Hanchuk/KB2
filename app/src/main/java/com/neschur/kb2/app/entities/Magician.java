@@ -4,7 +4,7 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.models.MapPoint;
 
-public class Magician extends Entity {
+public class Magician extends EntityImpl {
 
     public Magician(MapPoint point) {
         super(point);

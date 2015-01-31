@@ -4,7 +4,7 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.models.MapPoint;
 
-public class City extends Entity {
+public class City extends EntityImpl {
     private int workers[] = new int[4];
 
     public City(MapPoint point) {

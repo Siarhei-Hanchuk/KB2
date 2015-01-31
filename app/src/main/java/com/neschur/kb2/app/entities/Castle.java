@@ -3,7 +3,7 @@ package com.neschur.kb2.app.entities;
 import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.models.MapPoint;
 
-public class Castle extends Entity {
+public class Castle extends EntityImpl {
     private int id;
 
     public Castle(MapPoint point, int id) {

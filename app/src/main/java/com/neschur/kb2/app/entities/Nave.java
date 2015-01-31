@@ -4,7 +4,7 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.models.MapPoint;
 
-public class Nave extends Entity {
+public class Nave extends EntityImpl {
     public Nave(MapPoint point) {
         super(point);
     }

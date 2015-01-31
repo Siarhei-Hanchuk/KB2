@@ -5,7 +5,7 @@ import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.warriors.Warrior;
 import com.neschur.kb2.app.warriors.WarriorSquad;
 
-public class WarriorEntity extends Entity {
+public class WarriorEntity extends EntityImpl {
     private Warrior warrior;
     private boolean friendly;
     private int step;

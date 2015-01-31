@@ -6,7 +6,7 @@ import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.warriors.Warrior;
 import com.neschur.kb2.app.warriors.WarriorFactory;
 
-public class ArmyShop extends Entity {
+public class ArmyShop extends EntityImpl {
     private Warrior warrior;
     private int count;
 

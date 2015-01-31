@@ -5,7 +5,7 @@ import com.neschur.kb2.app.models.MapPoint;
 
 import java.util.Random;
 
-public class GoldChest extends Entity {
+public class GoldChest extends EntityImpl {
     private int wealth;
     private boolean bonus = false;
 
