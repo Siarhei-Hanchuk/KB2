@@ -26,16 +26,16 @@ public class MenuFactory {
 
     public static Menu getMenu(Entity entity) {
         if (entity instanceof City) {
-            return new CityMenu(activity, entity, getGameController());
+            return new CityMenu(entity, getGameController());
         }
         if (entity instanceof Magician) {
-            return new MagicianMenu(activity, entity, getGameController());
+            return new MagicianMenu(entity, getGameController());
         }
         if (entity instanceof GoldChest && !((GoldChest) entity).isBonus()) {
-            return new GoldChestMenu(activity, entity, getGameController());
+            return new GoldChestMenu(entity, getGameController());
         }
         if (entity instanceof Captain) {
-            return new CaptainMenu(activity, entity, getGameController());
+            return new CaptainMenu(entity, getGameController());
         }
         return null;
     }

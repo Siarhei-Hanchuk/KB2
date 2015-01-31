@@ -1,7 +1,5 @@
 package com.neschur.kb2.app.ui.menus;
 
-import android.app.Activity;
-
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
 
@@ -12,8 +10,8 @@ public class MagicianMenu extends Menu {
     private final int PRICE_MOVE_TO_COUNTRY = 5000;
     private final int PRICE_TORNADO = 1000;
 
-    public MagicianMenu(Activity activity, Entity magician, GameController gameController) {
-        super(activity, gameController);
+    public MagicianMenu(Entity magician, GameController gameController) {
+        super(gameController);
     }
 
     @Override

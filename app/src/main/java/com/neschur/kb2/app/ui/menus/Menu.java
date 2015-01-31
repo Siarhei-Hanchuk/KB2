@@ -1,23 +1,16 @@
 package com.neschur.kb2.app.ui.menus;
 
-import android.app.Activity;
-import android.content.res.Resources;
-
 import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.models.Player;
 
 public abstract class Menu {
-    protected Activity activity;
     protected GameController gameController;
-    protected Resources resources;
     protected Player player;
     protected int menuMode = 0;
 
-    public Menu(Activity activity, GameController gameController) {
-        this.activity = activity;
+    public Menu(GameController gameController) {
         this.gameController = gameController;
-        this.resources = activity.getResources();
         this.player = gameController.getPlayer();
     }
 

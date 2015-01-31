@@ -1,13 +1,11 @@
 package com.neschur.kb2.app.ui.menus;
 
-import android.app.Activity;
-
 import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.controllers.GameController;
 
 public class WorkersMenu extends Menu {
-    public WorkersMenu(Activity activity, GameController gameController) {
-        super(activity, gameController);
+    public WorkersMenu(GameController gameController) {
+        super(gameController);
     }
 
     @Override

@@ -1,7 +1,5 @@
 package com.neschur.kb2.app.ui.menus;
 
-import android.app.Activity;
-
 import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
@@ -11,8 +9,8 @@ public class GoldChestMenu extends Menu {
     final int COUNT = 2;
     private GoldChest chest;
 
-    public GoldChestMenu(Activity activity, Entity entity, GameController gameController) {
-        super(activity, gameController);
+    public GoldChestMenu(Entity entity, GameController gameController) {
+        super(gameController);
         this.chest = (GoldChest) entity;
     }
 

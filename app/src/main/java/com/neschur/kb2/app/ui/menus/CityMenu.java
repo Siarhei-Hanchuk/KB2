@@ -1,7 +1,6 @@
 package com.neschur.kb2.app.ui.menus;
 
-import android.app.Activity;
-
+import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.City;
@@ -15,8 +14,8 @@ public class CityMenu extends Menu {
     private final int PRICE_WALLKICK = 3000;
     private City city;
 
-    public CityMenu(Activity activity, Entity city, GameController gameController) {
-        super(activity, gameController);
+    public CityMenu(Entity city, GameController gameController) {
+        super(gameController);
         this.city = (City) city;
     }
 
@@ -26,23 +25,23 @@ public class CityMenu extends Menu {
             case 0:
                 switch (i) {
                     case 0:
-                        return resources.getString(R.string.entity_menus_city_item1);
+                        return I18n.translate(R.string.entity_menus_city_item1);
                     case 1:
                         if (gameController.getNave())
-                            return resources.getString(R.string.entity_menus_city_item2a);
+                            return I18n.translate(R.string.entity_menus_city_item2a);
                         return menuItem("entity_menus_city_item2", PRICE_NAVE);
                     case 2:
-                        return resources.getString(R.string.entity_menus_city_item3);
+                        return I18n.translate(R.string.entity_menus_city_item3);
                     case 3:
-                        return resources.getString(R.string.entity_menus_city_item4);
+                        return I18n.translate(R.string.entity_menus_city_item4);
                     case 4:
                         if (player.isWallkick())
                             return "-";
                         return menuItem("entity_menus_city_item5", PRICE_WALLKICK);
                     case 5:
-                        return resources.getString(R.string.entity_menus_city_item6);
+                        return I18n.translate(R.string.entity_menus_city_item6);
                     case 6:
-                        return resources.getString(R.string.entity_menus_city_item7);
+                        return I18n.translate(R.string.entity_menus_city_item7);
                 }
             case 1:
                 return menuItem("entity_menus_city_workers_item" + (i + 1), PRICE_WORKERS[i]) + ": " + city.getWorkers(i);

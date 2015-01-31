@@ -47,12 +47,12 @@ public class UiFactory {
 
     public static View getCountryMenuView() {
         return new MenuView(activity,
-                new CountryMenu(activity, getGameController()), getGameController(), mainController);
+                new CountryMenu(getGameController()), getGameController(), mainController);
     }
 
     public static View getWorkersMenuView() {
         return new MenuView(activity,
-                new WorkersMenu(activity, getGameController()), getGameController(), mainController);
+                new WorkersMenu(getGameController()), getGameController(), mainController);
     }
 
 
