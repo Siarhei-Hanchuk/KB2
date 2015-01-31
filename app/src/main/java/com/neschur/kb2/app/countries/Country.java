@@ -5,6 +5,7 @@ import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Captain;
 import com.neschur.kb2.app.entities.Castle;
 import com.neschur.kb2.app.entities.City;
+import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.GoldChest;
 import com.neschur.kb2.app.entities.GuidePost;
 import com.neschur.kb2.app.entities.MapNext;
@@ -278,6 +279,18 @@ public abstract class Country implements Glade, Serializable {
                 run++;
             }
         }
+    }
+
+    public boolean isEntity(int x, int y) {
+        return map[x][y].getEntity() != null;
+    }
+
+    public boolean isLand(int x, int y) {
+        return map[x][y].getLand() == R.drawable.land;
+    }
+
+    public Entity getEntity(int x, int y) {
+        return map[x][y].getEntity();
     }
 }
 

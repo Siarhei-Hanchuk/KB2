@@ -1,6 +1,7 @@
 package com.neschur.kb2.app.models;
 
 import com.neschur.kb2.app.R;
+import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.entities.WarriorEntity;
 
@@ -15,7 +16,7 @@ public class BattleField implements Glade {
     public BattleField(Player player, Fighting fighting, BattleFinishing battleFinishing) {
         this.player = player;
         this.fighting = fighting;
-        this.ai = new BattleAi();
+        this.ai = new BattleAi(this);
         this.battleFinishing = battleFinishing;
 
         prepareField();
@@ -178,16 +179,20 @@ public class BattleField implements Glade {
             return -1;
     }
 
-    private boolean isEntity(int x, int y) {
+    public boolean isEntity(int x, int y) {
         return map[x][y].getEntity() != null;
     }
 
-    private boolean isFriendly(int x, int y) {
+    public boolean isFriendly(int x, int y) {
         return map[x][y].getEntity().isFriendly();
     }
 
-    private boolean isLand(int x, int y) {
+    public boolean isLand(int x, int y) {
         return map[x][y].getLand() == R.drawable.land;
+    }
+
+    public WarriorEntity getEntity(int x, int y) {
+        return map[x][y].getEntity();
     }
 
     private int distance(WarriorEntity selected, int x, int y) {
@@ -203,7 +208,7 @@ public class BattleField implements Glade {
                 }
             }
         }
-        ai.move(map);
+        ai.move();
         newPhase();
     }
 
