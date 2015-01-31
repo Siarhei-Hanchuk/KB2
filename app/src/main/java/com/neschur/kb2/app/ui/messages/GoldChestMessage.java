@@ -12,8 +12,8 @@ import java.util.Random;
 public class GoldChestMessage extends Message {
     private int mode;
 
-    public GoldChestMessage(Entity entity, Resources resources, GameController gameController) {
-        super(entity, resources, gameController);
+    public GoldChestMessage(Entity entity, GameController gameController) {
+        super(entity, gameController);
         mode = (new Random()).nextInt(3);
     }
 

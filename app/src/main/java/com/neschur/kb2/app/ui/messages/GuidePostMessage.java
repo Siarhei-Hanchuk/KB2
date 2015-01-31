@@ -11,8 +11,8 @@ import java.util.Random;
 public class GuidePostMessage extends Message {
     private static int COUNT = 12;
 
-    public GuidePostMessage(Entity entity, Resources resources, GameController gameController) {
-        super(entity, resources, gameController);
+    public GuidePostMessage(Entity entity, GameController gameController) {
+        super(entity, gameController);
     }
 
     @Override

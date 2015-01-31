@@ -10,8 +10,8 @@ import java.util.Random;
 public abstract class MapMessage extends Message {
     protected int mode;
 
-    public MapMessage(Entity entity, Resources resources, GameController gameController) {
-        super(entity, resources, gameController);
+    public MapMessage(Entity entity, GameController gameController) {
+        super(entity, gameController);
         mode = Math.abs((new Random()).nextInt()) % getCount();
     }
 

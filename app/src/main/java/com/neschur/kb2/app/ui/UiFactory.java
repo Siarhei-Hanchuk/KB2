@@ -26,7 +26,7 @@ public class UiFactory {
         UiFactory.mainController = mainController;
 
         MenuFactory.create(activity, mainController);
-        MessageFactory.create(activity, mainController);
+        MessageFactory.create(mainController);
     }
 
     public static View getViewForEntity(Entity entity) {

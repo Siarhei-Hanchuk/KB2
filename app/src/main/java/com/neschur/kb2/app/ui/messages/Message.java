@@ -7,15 +7,13 @@ import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.models.Player;
 
 public abstract class Message {
-    protected Resources resources;
     protected Player player;
     protected Entity entity;
     protected GameController gameController;
 
-    public Message(Entity entity, Resources resources, GameController gameController) {
+    public Message(Entity entity, GameController gameController) {
         this.player = gameController.getPlayer();
         this.gameController = gameController;
-        this.resources = resources;
         this.entity = entity;
     }
 

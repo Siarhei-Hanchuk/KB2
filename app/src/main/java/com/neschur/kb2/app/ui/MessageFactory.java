@@ -18,25 +18,23 @@ import com.neschur.kb2.app.ui.messages.NextMapMessage;
 import com.neschur.kb2.app.ui.messages.SorcererMessage;
 
 public class MessageFactory {
-    private static Activity activity;
     private static MainController mainController;
 
-    public static void create(Activity activity, MainController mainController) {
-        MessageFactory.activity = activity;
+    public static void create(MainController mainController) {
         MessageFactory.mainController = mainController;
     }
 
     public static Message getMessage(Entity entity) {
         if (entity instanceof MapNext)
-            return new NextMapMessage(entity, activity.getResources(), getGameController());
+            return new NextMapMessage(entity, getGameController());
         if (entity instanceof HarmfulMap)
-            return new HarmfulMapMessage(entity, activity.getResources(), getGameController());
+            return new HarmfulMapMessage(entity, getGameController());
         if (entity instanceof GuidePost)
-            return new GuidePostMessage(entity, activity.getResources(), getGameController());
+            return new GuidePostMessage(entity, getGameController());
         if (entity instanceof GoldChest && ((GoldChest) entity).isBonus())
-            return new GoldChestMessage(entity, activity.getResources(), getGameController());
+            return new GoldChestMessage(entity, getGameController());
         if (entity instanceof Sorcerer)
-            return new SorcererMessage(entity, activity.getResources(), getGameController());
+            return new SorcererMessage(entity, getGameController());
         return null;
     }
 

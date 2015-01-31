@@ -7,8 +7,8 @@ import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
 
 public class HarmfulMapMessage extends MapMessage {
-    public HarmfulMapMessage(Entity entity, Resources resources, GameController gameController) {
-        super(entity, resources, gameController);
+    public HarmfulMapMessage(Entity entity, GameController gameController) {
+        super(entity, gameController);
     }
 
     @Override

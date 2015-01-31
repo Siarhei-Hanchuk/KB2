@@ -9,8 +9,8 @@ import com.neschur.kb2.app.entities.Entity;
 import java.util.Random;
 
 public class GoodMapMessage extends MapMessage {
-    public GoodMapMessage(Entity entity, Resources resources, GameController gameController) {
-        super(entity, resources, gameController);
+    public GoodMapMessage(Entity entity, GameController gameController) {
+        super(entity, gameController);
     }
 
     protected int getCount() {

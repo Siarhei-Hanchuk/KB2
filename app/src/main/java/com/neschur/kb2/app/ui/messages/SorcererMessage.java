@@ -7,8 +7,8 @@ import com.neschur.kb2.app.entities.Entity;
 
 public class SorcererMessage extends Message {
 
-    public SorcererMessage(Entity entity, Resources resources, GameController gameController) {
-        super(entity, resources, gameController);
+    public SorcererMessage(Entity entity, GameController gameController) {
+        super(entity, gameController);
     }
 
     @Override
