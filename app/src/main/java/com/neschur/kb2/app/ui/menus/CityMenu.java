@@ -14,7 +14,7 @@ public class CityMenu extends Menu {
     private final int PRICE_WALLKICK = 3000;
     private City city;
 
-    public CityMenu(Entity city, GameController gameController) {
+    CityMenu(Entity city, GameController gameController) {
         super(gameController);
         this.city = (City) city;
     }

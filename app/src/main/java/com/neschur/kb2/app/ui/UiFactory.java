@@ -6,10 +6,10 @@ import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.controllers.MainController;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Entity;
-import com.neschur.kb2.app.ui.menus.CountryMenu;
 import com.neschur.kb2.app.ui.menus.Menu;
-import com.neschur.kb2.app.ui.menus.WorkersMenu;
+import com.neschur.kb2.app.ui.menus.MenuFactory;
 import com.neschur.kb2.app.ui.messages.Message;
+import com.neschur.kb2.app.ui.messages.MessageFactory;
 import com.neschur.kb2.app.views.ArmyShopView;
 import com.neschur.kb2.app.views.ArmyView;
 import com.neschur.kb2.app.views.MapView;
@@ -25,7 +25,7 @@ public class UiFactory {
         UiFactory.activity = activity;
         UiFactory.mainController = mainController;
 
-        MenuFactory.create(activity, mainController);
+        MenuFactory.create(mainController);
         MessageFactory.create(mainController);
     }
 
@@ -47,12 +47,12 @@ public class UiFactory {
 
     public static View getCountryMenuView() {
         return new MenuView(activity,
-                new CountryMenu(getGameController()), getGameController(), mainController);
+                MenuFactory.getCountryMenu(), getGameController(), mainController);
     }
 
     public static View getWorkersMenuView() {
         return new MenuView(activity,
-                new WorkersMenu(getGameController()), getGameController(), mainController);
+                MenuFactory.getWorkersMenu(), getGameController(), mainController);
     }
 
 

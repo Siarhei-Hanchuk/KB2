@@ -1,6 +1,4 @@
-package com.neschur.kb2.app.ui;
-
-import android.app.Activity;
+package com.neschur.kb2.app.ui.messages;
 
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.controllers.MainController;
@@ -10,12 +8,6 @@ import com.neschur.kb2.app.entities.GuidePost;
 import com.neschur.kb2.app.entities.HarmfulMap;
 import com.neschur.kb2.app.entities.MapNext;
 import com.neschur.kb2.app.entities.Sorcerer;
-import com.neschur.kb2.app.ui.messages.GoldChestMessage;
-import com.neschur.kb2.app.ui.messages.GuidePostMessage;
-import com.neschur.kb2.app.ui.messages.HarmfulMapMessage;
-import com.neschur.kb2.app.ui.messages.Message;
-import com.neschur.kb2.app.ui.messages.NextMapMessage;
-import com.neschur.kb2.app.ui.messages.SorcererMessage;
 
 public class MessageFactory {
     private static MainController mainController;

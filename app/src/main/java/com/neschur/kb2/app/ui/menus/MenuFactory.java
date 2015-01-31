@@ -1,6 +1,4 @@
-package com.neschur.kb2.app.ui;
-
-import android.app.Activity;
+package com.neschur.kb2.app.ui.menus;
 
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.controllers.MainController;
@@ -9,18 +7,11 @@ import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.GoldChest;
 import com.neschur.kb2.app.entities.Magician;
-import com.neschur.kb2.app.ui.menus.CaptainMenu;
-import com.neschur.kb2.app.ui.menus.CityMenu;
-import com.neschur.kb2.app.ui.menus.GoldChestMenu;
-import com.neschur.kb2.app.ui.menus.MagicianMenu;
-import com.neschur.kb2.app.ui.menus.Menu;
 
 public class MenuFactory {
-    private static Activity activity;
     private static MainController mainController;
 
-    public static void create(Activity activity, MainController mainController) {
-        MenuFactory.activity = activity;
+    public static void create(MainController mainController) {
         MenuFactory.mainController = mainController;
     }
 
@@ -38,6 +29,14 @@ public class MenuFactory {
             return new CaptainMenu(entity, getGameController());
         }
         return null;
+    }
+
+    public static Menu getWorkersMenu() {
+        return new WorkersMenu(getGameController());
+    }
+
+    public static Menu getCountryMenu() {
+        return new CountryMenu(getGameController());
     }
 
     private static GameController getGameController() {

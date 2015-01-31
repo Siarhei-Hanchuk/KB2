@@ -1,7 +1,5 @@
 package com.neschur.kb2.app.ui.messages;
 
-import android.content.res.Resources;
-
 import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
@@ -12,7 +10,7 @@ import java.util.Random;
 public class GoldChestMessage extends Message {
     private int mode;
 
-    public GoldChestMessage(Entity entity, GameController gameController) {
+    GoldChestMessage(Entity entity, GameController gameController) {
         super(entity, gameController);
         mode = (new Random()).nextInt(3);
     }

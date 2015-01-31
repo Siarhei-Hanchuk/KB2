@@ -10,7 +10,7 @@ public class MagicianMenu extends Menu {
     private final int PRICE_MOVE_TO_COUNTRY = 5000;
     private final int PRICE_TORNADO = 1000;
 
-    public MagicianMenu(Entity magician, GameController gameController) {
+    MagicianMenu(Entity magician, GameController gameController) {
         super(gameController);
     }
 

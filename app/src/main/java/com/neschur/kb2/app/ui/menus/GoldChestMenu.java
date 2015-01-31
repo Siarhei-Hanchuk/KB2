@@ -9,7 +9,7 @@ public class GoldChestMenu extends Menu {
     final int COUNT = 2;
     private GoldChest chest;
 
-    public GoldChestMenu(Entity entity, GameController gameController) {
+    GoldChestMenu(Entity entity, GameController gameController) {
         super(gameController);
         this.chest = (GoldChest) entity;
     }

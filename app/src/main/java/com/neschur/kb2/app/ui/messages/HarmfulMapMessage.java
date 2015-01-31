@@ -1,13 +1,11 @@
 package com.neschur.kb2.app.ui.messages;
 
-import android.content.res.Resources;
-
 import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
 
 public class HarmfulMapMessage extends MapMessage {
-    public HarmfulMapMessage(Entity entity, GameController gameController) {
+    HarmfulMapMessage(Entity entity, GameController gameController) {
         super(entity, gameController);
     }
 

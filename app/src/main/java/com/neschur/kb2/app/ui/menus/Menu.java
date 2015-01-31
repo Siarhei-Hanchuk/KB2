@@ -9,7 +9,7 @@ public abstract class Menu {
     protected Player player;
     protected int menuMode = 0;
 
-    public Menu(GameController gameController) {
+    Menu(GameController gameController) {
         this.gameController = gameController;
         this.player = gameController.getPlayer();
     }

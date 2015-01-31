@@ -9,7 +9,7 @@ import com.neschur.kb2.app.entities.Entity;
 public class CaptainMenu extends Menu {
     private Captain captain;
 
-    public CaptainMenu(Entity entity, GameController gameController) {
+    CaptainMenu(Entity entity, GameController gameController) {
         super(gameController);
         this.captain = (Captain) entity;
     }

@@ -4,7 +4,7 @@ import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.controllers.GameController;
 
 public class WorkersMenu extends Menu {
-    public WorkersMenu(GameController gameController) {
+    WorkersMenu(GameController gameController) {
         super(gameController);
     }
 
