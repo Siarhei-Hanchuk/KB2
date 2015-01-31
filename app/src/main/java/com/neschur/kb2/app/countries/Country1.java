@@ -2,7 +2,7 @@ package com.neschur.kb2.app.countries;
 
 import com.neschur.kb2.app.R;
 
-public class Country1 extends Country {
+class Country1 extends Country {
 
     public Country1() {
         this.id = 0;

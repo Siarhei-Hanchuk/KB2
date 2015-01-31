@@ -10,8 +10,8 @@ public class ImageCache {
     private static ImageCache self;
     private final int width;
     private final int height;
-    private Resources resources;
-    private HashMap<Integer, Bitmap> cache = new HashMap<>();
+    private final Resources resources;
+    private final HashMap<Integer, Bitmap> cache = new HashMap<>();
 
     private ImageCache(Resources resources, int width, int height) {
         this.resources = resources;

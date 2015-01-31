@@ -20,9 +20,9 @@ import java.util.Random;
 
 public abstract class Country implements Glade, Serializable {
     public final static int MAX_MAP_SIZE = 65;
-    protected MapPoint[][] map;
+    protected final MapPoint[][] map;
     protected int id;
-    private Random random;
+    private final Random random;
     private Sorcerer sorcerer;
 
     public Country() {
@@ -103,9 +103,12 @@ public abstract class Country implements Glade, Serializable {
             x = rand(MAX_MAP_SIZE - 1);
             y = rand(MAX_MAP_SIZE - 1);
 
-            if (((map[x + 1][y].getLand() == R.drawable.water) || (map[x - 1][y].getLand() == R.drawable.water)
-                    || (map[x][y + 1].getLand() == R.drawable.water) || (map[x][y - 1].getLand() == R.drawable.water)) &&
-                    ((map[x][y].getLand() == R.drawable.land) && (map[x][y].getEntity() == null))) {
+            if (((map[x + 1][y].getLand() == R.drawable.water)
+                    || (map[x - 1][y].getLand() == R.drawable.water)
+                    || (map[x][y + 1].getLand() == R.drawable.water)
+                    || (map[x][y - 1].getLand() == R.drawable.water))
+                    && ((map[x][y].getLand() == R.drawable.land)
+                    && (map[x][y].getEntity() == null))) {
                 map[x][y].setEntity(new City(this, x, y));
                 count++;
             }
@@ -117,7 +120,8 @@ public abstract class Country implements Glade, Serializable {
         while (count < 5) {
             int y = rand(54) + 5;
             int x = rand(54) + 5;
-            if ((map[x][y].getLand() == R.drawable.land) || (map[x][y].getLand() == R.drawable.sand)) {
+            if ((map[x][y].getLand() == R.drawable.land)
+                    || (map[x][y].getLand() == R.drawable.sand)) {
                 map[x][y].setEntity(new GuidePost(this, x, y));
             }
             count++;
@@ -127,7 +131,9 @@ public abstract class Country implements Glade, Serializable {
     protected void goldChests(int frequency, int mode) {
         for (int i = 5; i < MAX_MAP_SIZE - 5; i++) {
             for (int j = 5; j < MAX_MAP_SIZE - 5; j++) {
-                if (((map[i][j].getLand() == R.drawable.land) || (map[i][j].getLand() == R.drawable.sand)) && (map[i][j].getEntity() == null)) {
+                if (((map[i][j].getLand() == R.drawable.land)
+                        || (map[i][j].getLand() == R.drawable.sand))
+                        && (map[i][j].getEntity() == null)) {
                     if (rand(frequency) == 1) {
                         map[i][j].setEntity(new GoldChest(i, j, mode));
                     }
@@ -199,7 +205,8 @@ public abstract class Country implements Glade, Serializable {
         for (int i = 5; i < MAX_MAP_SIZE - 5; i++) {
             for (int j = 5; j < MAX_MAP_SIZE - 5; j++) {
                 if (rand(frequency) == 1) {
-                    if ((map[i][j].getLand() == R.drawable.land) && (map[i][j].getEntity() == null)) {
+                    if ((map[i][j].getLand() == R.drawable.land)
+                            && (map[i][j].getEntity() == null)) {
                         map[i][j].setLand(land);
                     }
                 }
@@ -258,36 +265,6 @@ public abstract class Country implements Glade, Serializable {
             if (tryPlaceCaptain(rand(MAX_MAP_SIZE), rand(MAX_MAP_SIZE)))
                 count++;
         }
-    }
-
-    public boolean worker(int n, int x, int y) {
-        int oldType;
-        int newType;
-        switch (n) {
-            case 0:
-                oldType = R.drawable.water;
-                newType = R.drawable.plot;
-                break;
-            case 1:
-                oldType = R.drawable.forest;
-                newType = R.drawable.land;
-                break;
-            case 2:
-                oldType = R.drawable.land;
-                newType = R.drawable.water;
-                break;
-            case 3:
-                oldType = R.drawable.stone;
-                newType = R.drawable.land;
-                break;
-            default:
-                return false;
-        }
-        if (map[x][y].getLand() == oldType) {
-            map[x][y].setLand(newType);
-            return true;
-        }
-        return false;
     }
 
     void army(int count, int group) {
