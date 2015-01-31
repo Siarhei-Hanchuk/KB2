@@ -10,6 +10,6 @@ public class Country4 extends Country {
         river(30);
         cities();
         landscape(2, R.drawable.stone);
-        goldChests(40, 930, 2660);
+        goldChests(40, getId());
     }
 }

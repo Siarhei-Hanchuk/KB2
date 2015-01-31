@@ -124,12 +124,12 @@ public abstract class Country implements Glade, Serializable {
         }
     }
 
-    protected void goldChests(int frequency, int min, int max) {
+    protected void goldChests(int frequency, int mode) {
         for (int i = 5; i < MAX_MAP_SIZE - 5; i++) {
             for (int j = 5; j < MAX_MAP_SIZE - 5; j++) {
                 if (((map[i][j].getLand() == R.drawable.land) || (map[i][j].getLand() == R.drawable.sand)) && (map[i][j].getEntity() == null)) {
                     if (rand(frequency) == 1) {
-                        map[i][j].setEntity(new GoldChest(this, i, j, min, max));
+                        map[i][j].setEntity(new GoldChest(i, j, mode));
                     }
                 }
             }

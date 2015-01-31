@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
+import com.neschur.kb2.app.entities.GoldChest;
 
 import java.util.Random;
 
@@ -34,7 +35,7 @@ public class GoldChestMessage extends Message {
     public void action() {
         switch (mode) {
             case 0:
-                player.changeSalary((entity.getCountry().getId() + 1) * 500);
+                player.changeSalary(((GoldChest)entity).getSalary());
                 break;
             case 1:
                 player.upMagicMaxCount();

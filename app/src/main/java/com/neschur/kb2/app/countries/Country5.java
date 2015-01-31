@@ -10,7 +10,7 @@ public class Country5 extends Country {
         river(10);
         cities();
         stones();
-        goldChests(100, 2380, 6380);
+        goldChests(100, getId());
     }
 
     private void sand() {
