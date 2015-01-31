@@ -79,4 +79,11 @@
     <string name="workers.item2">Лесорубы</string>
     <string name="workers.item3">Землекопы</string>
     <string name="workers.item4">Камнетёсы</string>
+    <string name="magic.hiking_magic1">Остановка времени</string>
+    <string name="magic.hiking_magic2">СМИ-И-ИРНО</string>
+    <string name="magic.hiking_magic3">Переход к замку</string>
+    <string name="magic.hiking_magic4">Переход к городу</string>
+    <string name="magic.hiking_magic5">Дать армию</string>
+    <string name="magic.hiking_magic6">Квариавторитет</string>
+    <string name="magic.hiking_magic7">Дать волшебство</string>
 </resources>

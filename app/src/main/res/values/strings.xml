@@ -80,4 +80,11 @@
     <string name="workers.item2">Лесорубы</string>
     <string name="workers.item3">Землекопы</string>
     <string name="workers.item4">Камнетёсы</string>
+    <string name="magic.hiking_magic1">Магия1</string>
+    <string name="magic.hiking_magic2">Магия2</string>
+    <string name="magic.hiking_magic3">Магия3</string>
+    <string name="magic.hiking_magic4">Магия4</string>
+    <string name="magic.hiking_magic5">Магия5</string>
+    <string name="magic.hiking_magic6">Магия6</string>
+    <string name="magic.hiking_magic7">Магия7</string>
 </resources>

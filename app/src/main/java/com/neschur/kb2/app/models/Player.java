@@ -27,6 +27,7 @@ public class Player implements Serializable {
     private Memory memory;
     private int x;
     private int y;
+    private Magics magics = new Magics();
 
     public Player(Country _country, int mode) {
         memory = new Memory();
@@ -242,5 +243,9 @@ public class Player implements Serializable {
                 return false;
         }
         return true;
+    }
+
+    public Magics getMagics() {
+        return magics;
     }
 }

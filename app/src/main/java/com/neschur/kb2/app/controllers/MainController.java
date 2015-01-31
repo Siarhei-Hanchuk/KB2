@@ -120,12 +120,18 @@ public class MainController implements ViewClosable, BattleFinishing, MainViewTo
                         grid.setMode(0);
                         break;
                 }
+                break;
             case 2:
                 switch (i) {
+                    case 0:
+                        activity.setContentView(uiFactory.getMagicView());
+                        grid.setMode(0);
+                        break;
                     case 4:
                         grid.setMode(0);
                         break;
                 }
+                break;
             case 3:
                 switch (i) {
                     case 0:
@@ -140,6 +146,7 @@ public class MainController implements ViewClosable, BattleFinishing, MainViewTo
                         grid.setMode(0);
                         break;
                 }
+                break;
         }
     }
 

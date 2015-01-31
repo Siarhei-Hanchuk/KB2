@@ -209,7 +209,7 @@ public class GameGrid {
         grid[5][1] = R.drawable.status_week;
         grid[5][2] = R.drawable.status_contract_0;
         grid[5][3] = R.drawable.guidepost;
-        grid[5][4] = R.drawable.status_week;
+        grid[5][4] = R.drawable.status_back;
     }
 
     public void makeStatus2() {
@@ -217,13 +217,13 @@ public class GameGrid {
         grid[5][1] = R.drawable.guidepost;
         grid[5][2] = R.drawable.guidepost;
         grid[5][3] = R.drawable.guidepost;
-        grid[5][4] = R.drawable.status_week;
+        grid[5][4] = R.drawable.status_back;
     }
 
     public void makeStatus3() {
         grid[5][0] = R.drawable.status_map;
         grid[5][1] = R.drawable.status_countries;
-        grid[5][2] = R.drawable.status_week;
+        grid[5][2] = R.drawable.status_back;
         grid[5][3] = -1;
         grid[5][4] = -1;
     }

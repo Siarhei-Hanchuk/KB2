@@ -27,6 +27,7 @@ public class MapView extends View {
         return super.onTouchEvent(event);
     }
 
+    @Override
     public void draw(@NonNull Canvas canvas) {
         int pointSize = canvas.getHeight() / Country.MAX_MAP_SIZE;
         Country country = player.getCountry();

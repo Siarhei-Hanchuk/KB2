@@ -12,6 +12,7 @@ import com.neschur.kb2.app.ui.messages.Message;
 import com.neschur.kb2.app.ui.messages.MessageFactory;
 import com.neschur.kb2.app.views.ArmyShopView;
 import com.neschur.kb2.app.views.ArmyView;
+import com.neschur.kb2.app.views.MagicView;
 import com.neschur.kb2.app.views.MapView;
 import com.neschur.kb2.app.views.MenuView;
 import com.neschur.kb2.app.views.MessageView;
@@ -65,6 +66,10 @@ public class UiFactory {
 
     public View getArmyView() {
         return new ArmyView(activity, getPlayer(), mainController);
+    }
+
+    public View getMagicView() {
+        return new MagicView(activity, getPlayer().getMagics(), mainController);
     }
 
     private Player getPlayer() {
