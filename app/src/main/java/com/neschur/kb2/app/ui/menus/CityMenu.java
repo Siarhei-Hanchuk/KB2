@@ -7,12 +7,10 @@ import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Entity;
 
 public class CityMenu extends Menu {
-    private final int COUNT = 7;
-    private final int WORKERS_COUNT = 4;
     private final int[] PRICE_WORKERS = {500, 500, 800, 800};
     private final int PRICE_NAVE = 500;
     private final int PRICE_WALLKICK = 3000;
-    private City city;
+    private final City city;
 
     CityMenu(Entity city, GameController gameController) {
         super(gameController);
@@ -105,9 +103,9 @@ public class CityMenu extends Menu {
     public int getCount() {
         switch (menuMode) {
             case 1:
-                return WORKERS_COUNT;
+                return 4;
             default:
-                return COUNT;
+                return 7;
         }
     }
 

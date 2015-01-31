@@ -5,9 +5,9 @@ import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.models.Player;
 
 public abstract class Menu {
-    protected GameController gameController;
-    protected Player player;
-    protected int menuMode = 0;
+    final GameController gameController;
+    final Player player;
+    int menuMode = 0;
 
     Menu(GameController gameController) {
         this.gameController = gameController;
@@ -36,11 +36,11 @@ public abstract class Menu {
         return false;
     }
 
-    protected String menuItem(String id, int price) {
+    String menuItem(String id, int price) {
         return I18n.translate(id) + "($" + price + ")";
     }
 
-    protected String menuItem(String id) {
+    String menuItem(String id) {
         return I18n.translate(id);
     }
 }

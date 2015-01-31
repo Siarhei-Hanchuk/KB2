@@ -9,7 +9,7 @@ import android.view.SurfaceView;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.models.Player;
-import com.neschur.kb2.app.ui.ImageCache;
+import com.neschur.kb2.app.ImageCache;
 
 public abstract class View extends SurfaceView implements SurfaceHolder.Callback, Drawable {
     public static final int IMAGE_WIDTH = 96;

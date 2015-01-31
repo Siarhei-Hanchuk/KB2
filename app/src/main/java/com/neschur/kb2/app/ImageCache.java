@@ -1,10 +1,8 @@
-package com.neschur.kb2.app.ui;
+package com.neschur.kb2.app;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-
-import com.neschur.kb2.app.R;
 
 import java.util.HashMap;
 

@@ -18,10 +18,10 @@ import com.neschur.kb2.app.views.MessageView;
 import com.neschur.kb2.app.views.View;
 
 public class UiFactory {
-    private Activity activity;
-    private MainController mainController;
-    private MenuFactory menuFactory;
-    private MessageFactory messageFactory;
+    private final Activity activity;
+    private final MainController mainController;
+    private final MenuFactory menuFactory;
+    private final MessageFactory messageFactory;
 
     public UiFactory(Activity activity, MainController mainController) {
         this.activity = activity;

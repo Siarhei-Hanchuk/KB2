@@ -10,7 +10,7 @@ import com.neschur.kb2.app.entities.MapNext;
 import com.neschur.kb2.app.entities.Sorcerer;
 
 public class MessageFactory {
-    private MainController mainController;
+    private final MainController mainController;
 
     public MessageFactory (MainController mainController) {
         this.mainController = mainController;

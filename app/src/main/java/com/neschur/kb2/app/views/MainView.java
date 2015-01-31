@@ -9,7 +9,7 @@ import android.view.MotionEvent;
 
 import com.neschur.kb2.app.controllers.MainController;
 import com.neschur.kb2.app.models.GameGrid;
-import com.neschur.kb2.app.ui.ImageCache;
+import com.neschur.kb2.app.ImageCache;
 
 public class MainView extends View {
     private MainController mainController;

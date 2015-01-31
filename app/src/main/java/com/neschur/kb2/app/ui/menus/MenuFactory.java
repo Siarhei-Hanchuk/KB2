@@ -9,7 +9,7 @@ import com.neschur.kb2.app.entities.GoldChest;
 import com.neschur.kb2.app.entities.Magician;
 
 public class MenuFactory {
-    private MainController mainController;
+    private final MainController mainController;
 
     public MenuFactory(MainController mainController) {
         this.mainController = mainController;

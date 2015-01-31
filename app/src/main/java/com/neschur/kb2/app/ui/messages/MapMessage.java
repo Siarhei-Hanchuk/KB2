@@ -5,13 +5,12 @@ import com.neschur.kb2.app.entities.Entity;
 
 import java.util.Random;
 
-public abstract class MapMessage extends Message {
-    protected int mode;
+abstract class MapMessage extends Message {
+    final int mode = Math.abs((new Random()).nextInt()) % getCount();
 
     MapMessage(Entity entity, GameController gameController) {
         super(entity, gameController);
-        mode = Math.abs((new Random()).nextInt()) % getCount();
     }
 
-    protected abstract int getCount();
+    abstract int getCount();
 }

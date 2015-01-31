@@ -6,8 +6,7 @@ import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.GoldChest;
 
 public class GoldChestMenu extends Menu {
-    final int COUNT = 2;
-    private GoldChest chest;
+    private final GoldChest chest;
 
     GoldChestMenu(Entity entity, GameController gameController) {
         super(gameController);
@@ -32,6 +31,6 @@ public class GoldChestMenu extends Menu {
 
     @Override
     public int getCount() {
-        return COUNT;
+        return 2;
     }
 }

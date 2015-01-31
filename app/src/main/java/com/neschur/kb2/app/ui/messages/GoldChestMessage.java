@@ -8,7 +8,7 @@ import com.neschur.kb2.app.entities.GoldChest;
 import java.util.Random;
 
 public class GoldChestMessage extends Message {
-    private int mode;
+    private final int mode;
 
     GoldChestMessage(Entity entity, GameController gameController) {
         super(entity, gameController);
