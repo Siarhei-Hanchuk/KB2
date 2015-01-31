@@ -21,7 +21,6 @@ public class MainActivity extends Activity {
         I18n.setResources(getResources());
 
         mainController = new MainController(this);
-        mainController.start();
     }
 
     @Override

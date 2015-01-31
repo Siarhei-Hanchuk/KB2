@@ -4,8 +4,8 @@ import com.neschur.kb2.app.MainActivity;
 import com.neschur.kb2.app.Storage;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
-import com.neschur.kb2.app.models.battle.BattleFinishing;
 import com.neschur.kb2.app.models.GameGrid;
+import com.neschur.kb2.app.models.battle.BattleFinishing;
 import com.neschur.kb2.app.ui.UiFactory;
 import com.neschur.kb2.app.views.BattleView;
 import com.neschur.kb2.app.views.MainMenuView;
@@ -13,7 +13,7 @@ import com.neschur.kb2.app.views.MainView;
 import com.neschur.kb2.app.views.View;
 import com.neschur.kb2.app.views.ViewClosable;
 
-public class MainController implements ViewClosable, BattleFinishing {
+public class MainController implements ViewClosable, BattleFinishing, MainViewTouch {
     private MainActivity activity;
     private GameController gameController;
     private MainView mainView;
@@ -23,11 +23,8 @@ public class MainController implements ViewClosable, BattleFinishing {
     private GameGrid gameGrid;
     private UiFactory uiFactory;
 
-    public MainController(MainActivity activity) {
-        this.activity = activity;
-    }
-
-    public void start() {
+    public MainController(MainActivity _activity) {
+        activity = _activity;
         mainMenuView = new MainMenuView(activity, this);
         activity.setContentView(mainMenuView);
 
@@ -36,14 +33,14 @@ public class MainController implements ViewClosable, BattleFinishing {
 
     public void newGame() {
         gameController = new GameController(this, GameController.MODE_GAME);
-        mainView = new MainView(activity, this);
+        mainView = new MainView(activity, this, getGameGrid());
         activity.setContentView(mainView);
         gameMode = 0;
     }
 
     public void newTraining() {
         gameController = new GameController(this, GameController.MODE_TRAINING);
-        mainView = new MainView(activity, this);
+        mainView = new MainView(activity, this, getGameGrid());
         activity.setContentView(mainView);
         gameMode = 0;
 
@@ -176,7 +173,7 @@ public class MainController implements ViewClosable, BattleFinishing {
     public void activateBattle(Fighting fighting) {
         gameMode = 1;
         BattleController battleController = new BattleController(this, gameController.getPlayer(), fighting);
-        battleView = new BattleView(activity, gameController, battleController, this);
+        battleView = new BattleView(activity, battleController, this);
     }
 
     public void activateMainMenu() {
@@ -197,7 +194,7 @@ public class MainController implements ViewClosable, BattleFinishing {
         Storage storage = new Storage(activity);
         gameController = storage.loadGame("save1");
         gameController.setMainController(this);
-        mainView = new MainView(activity, this);
+        mainView = new MainView(activity, this, getGameGrid());
         activity.setContentView(mainView);
     }
 

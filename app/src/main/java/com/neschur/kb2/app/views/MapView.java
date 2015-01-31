@@ -8,14 +8,16 @@ import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.R;
-import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.models.MapPoint;
+import com.neschur.kb2.app.models.Player;
 
 public class MapView extends View {
+    private Player player;
 
-    public MapView(Context context, GameController gameController, ViewClosable closeCallback) {
-        super(context, gameController, closeCallback);
+    public MapView(Context context, Player player, ViewClosable closeCallback) {
+        super(context, closeCallback);
+        this.player = player;
     }
 
     @Override

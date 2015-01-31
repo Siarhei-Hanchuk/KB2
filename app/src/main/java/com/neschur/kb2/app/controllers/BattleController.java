@@ -1,10 +1,10 @@
 package com.neschur.kb2.app.controllers;
 
 import com.neschur.kb2.app.entities.Fighting;
+import com.neschur.kb2.app.models.Player;
 import com.neschur.kb2.app.models.battle.BattleField;
 import com.neschur.kb2.app.models.battle.BattleFinishing;
 import com.neschur.kb2.app.models.battle.MapPointBattle;
-import com.neschur.kb2.app.models.Player;
 
 public class BattleController implements BattleFinishing {
     private BattleField battleField;

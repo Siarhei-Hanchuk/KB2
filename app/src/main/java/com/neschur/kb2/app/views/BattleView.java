@@ -12,18 +12,17 @@ import android.view.MotionEvent;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.BattleController;
-import com.neschur.kb2.app.controllers.GameController;
-import com.neschur.kb2.app.models.battle.WarriorEntity;
 import com.neschur.kb2.app.models.battle.MapPointBattle;
+import com.neschur.kb2.app.models.battle.WarriorEntity;
 
 public class BattleView extends View {
     private BattleController battleController;
     private Paint countPaint;
     private Paint countPaintBg;
 
-    public BattleView(Context context, GameController gameController,
+    public BattleView(Context context,
                       BattleController battleController, ViewClosable closeCallback) {
-        super(context, gameController, closeCallback);
+        super(context, closeCallback);
         this.battleController = battleController;
     }
 

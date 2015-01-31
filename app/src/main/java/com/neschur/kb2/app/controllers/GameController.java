@@ -3,7 +3,6 @@ package com.neschur.kb2.app.controllers;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.World;
 import com.neschur.kb2.app.entities.ArmyShop;
-import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.entities.Nave;
 import com.neschur.kb2.app.models.MapPoint;
@@ -11,7 +10,7 @@ import com.neschur.kb2.app.models.Player;
 
 import java.io.Serializable;
 
-public class GameController implements Serializable {
+public class GameController implements Serializable, ArmyBuyer {
     public static final int MODE_GAME = 1;
     public static final int MODE_TRAINING = 2;
 
@@ -23,7 +22,6 @@ public class GameController implements Serializable {
     private int weeks;
     private int days = 0;
     private int currentWorker = -1;
-
 
     public GameController(MainController mainController, int mode) {
         this.mainController = mainController;

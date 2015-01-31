@@ -10,12 +10,15 @@ import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.I18n;
-import com.neschur.kb2.app.controllers.GameController;
+import com.neschur.kb2.app.models.Player;
 import com.neschur.kb2.app.warriors.WarriorSquad;
 
 public class ArmyView extends View {
-    public ArmyView(Context context, GameController gameController, ViewClosable closeCallback) {
-        super(context, gameController, closeCallback);
+    private Player player;
+
+    public ArmyView(Context context, Player player, ViewClosable closeCallback) {
+        super(context, closeCallback);
+        this.player = player;
     }
 
     @Override

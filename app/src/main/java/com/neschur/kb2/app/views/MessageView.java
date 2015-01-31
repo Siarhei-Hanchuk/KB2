@@ -6,14 +6,13 @@ import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
-import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.ui.messages.Message;
 
 public class MessageView extends View {
     private Message message;
 
-    public MessageView(Context context, Message message, GameController gameController, ViewClosable closeCallback) {
-        super(context, gameController, closeCallback);
+    public MessageView(Context context, Message message, ViewClosable closeCallback) {
+        super(context, closeCallback);
         this.message = message;
     }
 

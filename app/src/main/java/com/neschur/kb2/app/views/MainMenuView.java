@@ -16,7 +16,7 @@ public class MainMenuView extends View {
     private boolean saved = false;
 
     public MainMenuView(Context context, MainController mainController) {
-        super(context, null, mainController);
+        super(context, mainController);
         this.mainController = mainController;
     }
 

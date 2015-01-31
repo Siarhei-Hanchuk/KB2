@@ -6,30 +6,22 @@ import android.graphics.Paint;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.neschur.kb2.app.controllers.GameController;
-import com.neschur.kb2.app.models.GameGrid;
-import com.neschur.kb2.app.models.Player;
 import com.neschur.kb2.app.ImageCache;
+import com.neschur.kb2.app.models.GameGrid;
 
 public abstract class View extends SurfaceView implements SurfaceHolder.Callback, Drawable {
     public static final int IMAGE_WIDTH = 96;
     public static final int IMAGE_HEIGHT = 82;
 
     protected ViewClosable closeCallback;
-    protected GameController gameController;
-    protected Player player;
     protected DrawThread drawThread;
     protected int xOffset = 0;
     protected int yOffset = 0;
 
-    public View(Context context, GameController gameController, ViewClosable closeCallback) {
+    public View(Context context, ViewClosable closeCallback) {
         super(context);
         getHolder().addCallback(this);
         this.closeCallback = closeCallback;
-
-        this.gameController = gameController;
-        if (gameController != null)
-            this.player = gameController.getPlayer();
     }
 
     @Override

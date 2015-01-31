@@ -1,8 +1,6 @@
 package com.neschur.kb2.app.models.battle;
 
-import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.entities.Entity;
-import com.neschur.kb2.app.entities.EntityImpl;
 import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.warriors.Warrior;
 

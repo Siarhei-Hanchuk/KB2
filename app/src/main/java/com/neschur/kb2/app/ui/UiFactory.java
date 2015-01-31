@@ -2,10 +2,10 @@ package com.neschur.kb2.app.ui;
 
 import android.app.Activity;
 
-import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.controllers.MainController;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Entity;
+import com.neschur.kb2.app.models.Player;
 import com.neschur.kb2.app.ui.menus.Menu;
 import com.neschur.kb2.app.ui.menus.MenuFactory;
 import com.neschur.kb2.app.ui.messages.Message;
@@ -36,37 +36,38 @@ public class UiFactory {
         Message message = messageFactory.getMessage(entity);
         View view = null;
         if (menu != null) {
-            view = new MenuView(activity, menu, getGameController(), mainController);
+            view = new MenuView(activity, menu, mainController);
         }
         if (message != null) {
-            view = new MessageView(activity, message, getGameController(), mainController);
+            view = new MessageView(activity, message, mainController);
         }
         if (entity instanceof ArmyShop) {
-            view = new ArmyShopView(activity, (ArmyShop) entity, getGameController(), mainController);
+            view = new ArmyShopView(activity, (ArmyShop) entity, getPlayer(),
+                    mainController.getGameController(), mainController);
         }
         return view;
     }
 
     public View getCountryMenuView() {
         return new MenuView(activity,
-                menuFactory.getCountryMenu(), getGameController(), mainController);
+                menuFactory.getCountryMenu(), mainController);
     }
 
     public View getWorkersMenuView() {
         return new MenuView(activity,
-                menuFactory.getWorkersMenu(), getGameController(), mainController);
+                menuFactory.getWorkersMenu(), mainController);
     }
 
 
     public View getMapView() {
-        return new MapView(activity, getGameController(), mainController);
+        return new MapView(activity, getPlayer(), mainController);
     }
 
     public View getArmyView() {
-        return new ArmyView(activity, getGameController(), mainController);
+        return new ArmyView(activity, getPlayer(), mainController);
     }
 
-    private GameController getGameController() {
-        return mainController.getGameController();
+    private Player getPlayer() {
+        return mainController.getGameController().getPlayer();
     }
 }

@@ -7,16 +7,18 @@ import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
-import com.neschur.kb2.app.controllers.MainController;
-import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.ImageCache;
+import com.neschur.kb2.app.controllers.MainViewTouch;
+import com.neschur.kb2.app.models.GameGrid;
 
 public class MainView extends View {
-    private MainController mainController;
+    private MainViewTouch mainController;
+    private GameGrid grid;
 
-    public MainView(Context context, MainController mainController) {
-        super(context, null, null);
+    public MainView(Context context, MainViewTouch mainController, GameGrid grid) {
+        super(context, null);
         this.mainController = mainController;
+        this.grid = grid;
     }
 
     @Override
@@ -67,7 +69,6 @@ public class MainView extends View {
     @Override
     public void draw(@NonNull Canvas canvas) {
         canvas.drawColor(Color.BLACK);
-        GameGrid grid = mainController.getGameGrid();
         ImageCache imageCache = ImageCache.getInstance(getResources(), stepX(), stepY());
         calcOffsets();
 

@@ -7,14 +7,13 @@ import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
-import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.ui.menus.Menu;
 
 public class MenuView extends View {
     private Menu menu;
 
-    public MenuView(Context context, Menu menu, GameController gameController, ViewClosable closeCallback) {
-        super(context, gameController, closeCallback);
+    public MenuView(Context context, Menu menu, ViewClosable closeCallback) {
+        super(context, closeCallback);
         this.menu = menu;
     }
 
@@ -40,7 +39,7 @@ public class MenuView extends View {
             canvas.drawText("Exit", 10,
                     menuItemHeight() + menuItemHeight() * i, paint);
         if (menu.withMoney())
-            canvas.drawText("Money: " + gameController.getPlayer().getMoney(),
+            canvas.drawText("Money: " + 0,//gameController.getPlayer().getMoney(),
                     (int) (getWidth() * 0.5),
                     menuItemHeight() + menuItemHeight() * i, paint);
     }
