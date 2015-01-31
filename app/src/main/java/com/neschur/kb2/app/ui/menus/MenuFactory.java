@@ -9,13 +9,13 @@ import com.neschur.kb2.app.entities.GoldChest;
 import com.neschur.kb2.app.entities.Magician;
 
 public class MenuFactory {
-    private static MainController mainController;
+    private MainController mainController;
 
-    public static void create(MainController mainController) {
-        MenuFactory.mainController = mainController;
+    public MenuFactory(MainController mainController) {
+        this.mainController = mainController;
     }
 
-    public static Menu getMenu(Entity entity) {
+    public Menu getMenu(Entity entity) {
         if (entity instanceof City) {
             return new CityMenu(entity, getGameController());
         }
@@ -31,15 +31,15 @@ public class MenuFactory {
         return null;
     }
 
-    public static Menu getWorkersMenu() {
+    public Menu getWorkersMenu() {
         return new WorkersMenu(getGameController());
     }
 
-    public static Menu getCountryMenu() {
+    public Menu getCountryMenu() {
         return new CountryMenu(getGameController());
     }
 
-    private static GameController getGameController() {
+    private GameController getGameController() {
         return mainController.getGameController();
     }
 }

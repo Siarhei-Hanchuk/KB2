@@ -10,13 +10,13 @@ import com.neschur.kb2.app.entities.MapNext;
 import com.neschur.kb2.app.entities.Sorcerer;
 
 public class MessageFactory {
-    private static MainController mainController;
+    private MainController mainController;
 
-    public static void create(MainController mainController) {
-        MessageFactory.mainController = mainController;
+    public MessageFactory (MainController mainController) {
+        this.mainController = mainController;
     }
 
-    public static Message getMessage(Entity entity) {
+    public Message getMessage(Entity entity) {
         if (entity instanceof MapNext)
             return new NextMapMessage(entity, getGameController());
         if (entity instanceof HarmfulMap)
@@ -30,7 +30,7 @@ public class MessageFactory {
         return null;
     }
 
-    private static GameController getGameController() {
+    private GameController getGameController() {
         return mainController.getGameController();
     }
 }

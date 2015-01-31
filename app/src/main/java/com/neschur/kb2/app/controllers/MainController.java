@@ -21,6 +21,7 @@ public class MainController implements ViewClosable, BattleFinishing {
     private BattleView battleView;
     private int gameMode = 0;
     private GameGrid gameGrid;
+    private UiFactory uiFactory;
 
     public MainController(MainActivity activity) {
         this.activity = activity;
@@ -30,7 +31,7 @@ public class MainController implements ViewClosable, BattleFinishing {
         mainMenuView = new MainMenuView(activity, this);
         activity.setContentView(mainMenuView);
 
-        UiFactory.create(activity, this);
+        uiFactory = new UiFactory(activity, this);
     }
 
     public void newGame() {
@@ -101,7 +102,7 @@ public class MainController implements ViewClosable, BattleFinishing {
                         grid.setMode(1);
                         break;
                     case 1:
-                        activity.setContentView(UiFactory.getWorkersMenuView());
+                        activity.setContentView(uiFactory.getWorkersMenuView());
                         break;
                     case 2:
                         grid.setMode(2);
@@ -116,7 +117,7 @@ public class MainController implements ViewClosable, BattleFinishing {
             case 1:
                 switch (i) {
                     case 0:
-                        activity.setContentView(UiFactory.getArmyView());
+                        activity.setContentView(uiFactory.getArmyView());
                         grid.setMode(0);
                         break;
                     case 4:
@@ -132,11 +133,11 @@ public class MainController implements ViewClosable, BattleFinishing {
             case 3:
                 switch (i) {
                     case 0:
-                        activity.setContentView(UiFactory.getMapView());
+                        activity.setContentView(uiFactory.getMapView());
                         break;
                     case 1:
                         if (gameController.getPlayer().inNave()) {
-                            activity.setContentView(UiFactory.getCountryMenuView());
+                            activity.setContentView(uiFactory.getCountryMenuView());
                         }
                         break;
                     case 2:
@@ -147,7 +148,7 @@ public class MainController implements ViewClosable, BattleFinishing {
     }
 
     public void activateEntity(Entity entity) {
-        View view = UiFactory.getViewForEntity(entity);
+        View view = uiFactory.getViewForEntity(entity);
         if (view != null)
             activity.setContentView(view);
     }

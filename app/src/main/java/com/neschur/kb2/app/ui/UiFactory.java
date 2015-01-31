@@ -18,20 +18,22 @@ import com.neschur.kb2.app.views.MessageView;
 import com.neschur.kb2.app.views.View;
 
 public class UiFactory {
-    private static Activity activity;
-    private static MainController mainController;
+    private Activity activity;
+    private MainController mainController;
+    private MenuFactory menuFactory;
+    private MessageFactory messageFactory;
 
-    public static void create(Activity activity, MainController mainController) {
-        UiFactory.activity = activity;
-        UiFactory.mainController = mainController;
+    public UiFactory(Activity activity, MainController mainController) {
+        this.activity = activity;
+        this.mainController = mainController;
 
-        MenuFactory.create(mainController);
-        MessageFactory.create(mainController);
+        this.menuFactory = new MenuFactory(mainController);
+        this.messageFactory = new MessageFactory(mainController);
     }
 
-    public static View getViewForEntity(Entity entity) {
-        Menu menu = MenuFactory.getMenu(entity);
-        Message message = MessageFactory.getMessage(entity);
+    public View getViewForEntity(Entity entity) {
+        Menu menu = menuFactory .getMenu(entity);
+        Message message = messageFactory.getMessage(entity);
         View view = null;
         if (menu != null) {
             view = new MenuView(activity, menu, getGameController(), mainController);
@@ -45,26 +47,26 @@ public class UiFactory {
         return view;
     }
 
-    public static View getCountryMenuView() {
+    public View getCountryMenuView() {
         return new MenuView(activity,
-                MenuFactory.getCountryMenu(), getGameController(), mainController);
+                menuFactory.getCountryMenu(), getGameController(), mainController);
     }
 
-    public static View getWorkersMenuView() {
+    public View getWorkersMenuView() {
         return new MenuView(activity,
-                MenuFactory.getWorkersMenu(), getGameController(), mainController);
+                menuFactory.getWorkersMenu(), getGameController(), mainController);
     }
 
 
-    public static View getMapView() {
+    public View getMapView() {
         return new MapView(activity, getGameController(), mainController);
     }
 
-    public static View getArmyView() {
+    public View getArmyView() {
         return new ArmyView(activity, getGameController(), mainController);
     }
 
-    private static GameController getGameController() {
+    private GameController getGameController() {
         return mainController.getGameController();
     }
 }
