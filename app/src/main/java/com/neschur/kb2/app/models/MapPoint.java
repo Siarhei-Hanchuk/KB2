@@ -1,5 +1,6 @@
 package com.neschur.kb2.app.models;
 
+import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.entities.Entity;
 
 import java.io.Serializable;
@@ -53,5 +54,13 @@ public class MapPoint implements Serializable {
 
     public int getX() {
         return x;
+    }
+
+    public boolean isLand() {
+        return land == R.drawable.land;
+    }
+
+    public boolean isEntity() {
+        return entity != null;
     }
 }

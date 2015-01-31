@@ -1,7 +1,7 @@
 package com.neschur.kb2.app.models;
 
+import com.neschur.kb2.app.Mover;
 import com.neschur.kb2.app.R;
-import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.entities.WarriorEntity;
 
@@ -12,12 +12,14 @@ public class BattleField implements Glade {
     private WarriorEntity selected;
     private BattleAi ai;
     private BattleFinishing battleFinishing;
+    private Mover mover;
 
     public BattleField(Player player, Fighting fighting, BattleFinishing battleFinishing) {
         this.player = player;
         this.fighting = fighting;
         this.ai = new BattleAi(this);
         this.battleFinishing = battleFinishing;
+        this.mover = new Mover(this);
 
         prepareField();
         prepareArmy();
@@ -70,7 +72,7 @@ public class BattleField implements Glade {
     private void move(int x, int y) {
         if (isLand(x, y) && !isEntity(x, y)) {
             selected.reduceStep(distance(selected, x, y));
-            selected.move(x, y);
+            mover.teleport(selected, getMapPoint(x, y));
             if (selected.getStep() > 0) {
                 moveArea(x, y, selected);
             } else {

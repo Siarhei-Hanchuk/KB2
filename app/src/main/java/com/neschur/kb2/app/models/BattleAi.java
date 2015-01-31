@@ -38,7 +38,7 @@ public class BattleAi {
             WarriorEntity attacked = findNearestUserWar(war);
             if (attacked != null) {
                 while (war.getStep() > 0) {
-                    moveWarTo(war, attacked.getX(), attacked.getY());
+                    moveWarTo(war, attacked.getMapPoint());
                     if (distance(war, attacked.getX(), attacked.getY()) == 1 && war.getStep() > 0) {
                         war.attack(attacked);
                     }
@@ -47,15 +47,15 @@ public class BattleAi {
         }
     }
 
-    private void moveWarTo(WarriorEntity war, int x, int y) {
-        war.moveTo(x, y);
+    private void moveWarTo(WarriorEntity war, MapPoint to) {
+        mover.moveTo(war, to);
         war.reduceStep(1);
     }
 
     private boolean teleportWarTo(WarriorEntity war, int x, int y) {
         for (int i = (x - 1 < 0) ? 0 : x - 1; i <= ((x + 1 < 6) ? x + 1 : 6); i++) {
             for (int j = (y - 1 < 0) ? 0 : y - 1; j <= ((y + 1 < 5) ? y + 1 : 5); j++) {
-                mover.teleport(war, bf.getMapPoint(war.getX(), war.getY()), bf.getMapPoint(i,j));
+                mover.teleport(war, bf.getMapPoint(i,j));
             }
         }
         return false;
