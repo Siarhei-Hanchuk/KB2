@@ -13,7 +13,7 @@ import com.neschur.kb2.app.views.MainView;
 import com.neschur.kb2.app.views.View;
 import com.neschur.kb2.app.views.ViewClosable;
 
-public class MainController implements ViewClosable, BattleFinishing, MainViewTouch {
+public class MainController implements ViewClosable, BattleFinishing, MainViewTouchReciver {
     private MainActivity activity;
     private GameController gameController;
     private MainView mainView;
@@ -54,7 +54,6 @@ public class MainController implements ViewClosable, BattleFinishing, MainViewTo
     public GameGrid getGameGrid() {
         if (gameGrid == null)
             gameGrid = new GameGrid(gameController);
-        gameGrid.update();
         return gameGrid;
     }
 

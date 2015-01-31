@@ -41,13 +41,15 @@ public class BattleView extends View {
         calcOffsets();
 
         drawLand(canvas);
-
+        System.out.println("draw -1");
         MapPointBattle[][] map = battleController.getMap();
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
+                System.out.println("draw0");
                 if (map[x][y].isMove())
                     drawMoveCircle(canvas, x, y);
                 if (map[x][y].getEntity() != null) {
+                    System.out.println("draw");
                     drawWarrior(canvas, x, y);
                 }
             }

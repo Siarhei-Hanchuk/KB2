@@ -8,14 +8,14 @@ import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.ImageCache;
-import com.neschur.kb2.app.controllers.MainViewTouch;
+import com.neschur.kb2.app.controllers.MainViewTouchReciver;
 import com.neschur.kb2.app.models.GameGrid;
 
 public class MainView extends View {
-    private MainViewTouch mainController;
+    private MainViewTouchReciver mainController;
     private GameGrid grid;
 
-    public MainView(Context context, MainViewTouch mainController, GameGrid grid) {
+    public MainView(Context context, MainViewTouchReciver mainController, GameGrid grid) {
         super(context, null);
         this.mainController = mainController;
         this.grid = grid;
@@ -68,6 +68,7 @@ public class MainView extends View {
 
     @Override
     public void draw(@NonNull Canvas canvas) {
+        grid.update();
         canvas.drawColor(Color.BLACK);
         ImageCache imageCache = ImageCache.getInstance(getResources(), stepX(), stepY());
         calcOffsets();

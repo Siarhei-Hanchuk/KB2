@@ -4,7 +4,7 @@ import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.warriors.Warrior;
 
-public class WarriorEntity implements Entity {
+public class WarriorEntity implements Entity, Warrior {
     private MapPoint point;
     private Warrior warrior;
     private boolean friendly;
@@ -13,6 +13,7 @@ public class WarriorEntity implements Entity {
     private int defence;
 
     public WarriorEntity(MapPoint point, Warrior warrior, int count, boolean friendly) {
+        point.setEntity(this);
         this.point = point;
         this.warrior = warrior;
         this.count = count;
@@ -36,14 +37,51 @@ public class WarriorEntity implements Entity {
         return point;
     }
 
+    @Override
+    public String getTextId() {
+        return warrior.getTextId();
+    }
+
+    @Override
+    public int getId() {
+        return warrior.getId();
+    }
+
+    @Override
+    public int getPriceInShop() {
+        return -1;
+    }
+
+    @Override
+    public int getCountInShop() {
+        return -1;
+    }
+
+    @Override
+    public int getDefence() {
+        return warrior.getDefence();
+    }
+
+    @Override
+    public int getDamage() {
+        return warrior.getDamage();
+    }
+
+    @Override
+    public boolean isShoot() {
+        return warrior.isShoot();
+    }
+
+    @Override
+    public boolean isFly() {
+        return warrior.isFly();
+    }
+
     public boolean isFriendly() {
         return friendly;
     }
 
-    public Warrior getWarrior() {
-        return warrior;
-    }
-
+    @Override
     public int getStep() {
         return step;
     }
@@ -69,18 +107,12 @@ public class WarriorEntity implements Entity {
         return count;
     }
 
-    public boolean isShoot() {
-        return warrior.isShoot();
-    }
-
     public void resetStep() {
-        if (warrior.isFly())
+        if (isFly())
             this.step = 6;
         else
-            this.step = warrior.getStep();
+            this.step = getStep();
     }
 
-    public boolean isFly() {
-        return warrior.isFly();
-    }
+
 }
