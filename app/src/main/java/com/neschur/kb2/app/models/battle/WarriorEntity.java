@@ -1,11 +1,13 @@
-package com.neschur.kb2.app.entities;
+package com.neschur.kb2.app.models.battle;
 
-import com.neschur.kb2.app.models.Glade;
+import com.neschur.kb2.app.countries.Country;
+import com.neschur.kb2.app.entities.Entity;
+import com.neschur.kb2.app.entities.EntityImpl;
 import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.warriors.Warrior;
-import com.neschur.kb2.app.warriors.WarriorSquad;
 
-public class WarriorEntity extends EntityImpl {
+public class WarriorEntity implements Entity {
+    private MapPoint point;
     private Warrior warrior;
     private boolean friendly;
     private int step;
@@ -13,7 +15,7 @@ public class WarriorEntity extends EntityImpl {
     private int defence;
 
     public WarriorEntity(MapPoint point, Warrior warrior, int count, boolean friendly) {
-        super(point);
+        this.point = point;
         this.warrior = warrior;
         this.count = count;
         this.friendly = friendly;
@@ -24,6 +26,16 @@ public class WarriorEntity extends EntityImpl {
     @Override
     public int getID() {
         return warrior.getId();
+    }
+
+    @Override
+    public void destroy() {
+        point.setEntity(null);
+    }
+
+    @Override
+    public MapPoint getMapPoint() {
+        return point;
     }
 
     public boolean isFriendly() {

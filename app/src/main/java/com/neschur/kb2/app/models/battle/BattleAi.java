@@ -1,8 +1,7 @@
-package com.neschur.kb2.app.models;
+package com.neschur.kb2.app.models.battle;
 
 import com.neschur.kb2.app.Mover;
-import com.neschur.kb2.app.R;
-import com.neschur.kb2.app.entities.WarriorEntity;
+import com.neschur.kb2.app.models.MapPoint;
 
 public class BattleAi {
     private BattleField bf;
@@ -24,23 +23,23 @@ public class BattleAi {
 
     private void step(WarriorEntity war) {
         if (war.isShoot() || war.isFly()) {
-            WarriorEntity attacked = findUserWar(true);
-            if (attacked == null)
-                attacked = findUserWar(false);
-            if (attacked != null)
+            MapPoint attackedPoint = findUserWar(true);
+            if (attackedPoint == null)
+                attackedPoint = findUserWar(false);
+            if (attackedPoint != null)
                 if (war.isShoot()) {
-                    war.attack(attacked);
+                    war.attack((WarriorEntity)attackedPoint.getEntity());
                 } else {
-                    if (teleportWarTo(war, attacked.getX(), attacked.getY()))
-                        war.attack(attacked);
+                    if (teleportWarTo(war, attackedPoint.getX(), attackedPoint.getY()))
+                        war.attack((WarriorEntity)attackedPoint.getEntity());
                 }
         } else {
-            WarriorEntity attacked = findNearestUserWar(war);
-            if (attacked != null) {
+            MapPoint attackedPoint = findNearestUserWar(war);
+            if (attackedPoint != null) {
                 while (war.getStep() > 0) {
-                    moveWarTo(war, attacked.getMapPoint());
-                    if (distance(war, attacked.getX(), attacked.getY()) == 1 && war.getStep() > 0) {
-                        war.attack(attacked);
+                    moveWarTo(war, attackedPoint);
+                    if (distance(war, attackedPoint) == 1 && war.getStep() > 0) {
+                        war.attack((WarriorEntity)attackedPoint.getEntity());
                     }
                 }
             }
@@ -61,15 +60,15 @@ public class BattleAi {
         return false;
     }
 
-    private WarriorEntity findUserWar(boolean shoot) {
+    private MapPoint  findUserWar(boolean shoot) {
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
                 if (bf.isEntity(x, y) && bf.isFriendly(x, y)) {
                     if (shoot) {
                         if (bf.getEntity(x, y).isShoot())
-                            return bf.getEntity(x, y);
+                            return bf.getMapPoint(x, y);
                     } else {
-                        return bf.getEntity(x, y);
+                        return bf.getMapPoint(x, y);
                     }
                 }
             }
@@ -77,16 +76,16 @@ public class BattleAi {
         return null;
     }
 
-    private WarriorEntity findNearestUserWar(WarriorEntity war) {
+    private MapPoint findNearestUserWar(WarriorEntity war) {
         int distance = 99;
-        WarriorEntity dst = null;
+        MapPoint dst = null;
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 5; j++) {
                 if(bf.isEntity(i, j) && bf.isFriendly(i, j)) {
-                    int d = distance(war, i, j);
+                    int d = distance(war, bf.getMapPoint(i, j));
                     if (d < distance) {
                         distance = d;
-                        dst = bf.getEntity(i, j);
+                        dst = bf.getMapPoint(i, j);
                     }
                 }
             }
@@ -94,7 +93,8 @@ public class BattleAi {
         return dst;
     }
 
-    private int distance(WarriorEntity selected, int x, int y) {
-        return Math.max(Math.abs(selected.getX() - x), Math.abs(selected.getY() - y));
+    private int distance(WarriorEntity selected, MapPoint point) {
+        return Math.max(Math.abs(selected.getMapPoint().getX() - point.getX()),
+                Math.abs(selected.getMapPoint().getY() - point.getY()));
     }
 }

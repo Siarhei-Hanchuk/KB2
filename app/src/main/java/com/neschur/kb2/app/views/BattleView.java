@@ -13,8 +13,8 @@ import android.view.MotionEvent;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.BattleController;
 import com.neschur.kb2.app.controllers.GameController;
-import com.neschur.kb2.app.entities.WarriorEntity;
-import com.neschur.kb2.app.models.MapPointBattle;
+import com.neschur.kb2.app.models.battle.WarriorEntity;
+import com.neschur.kb2.app.models.battle.MapPointBattle;
 
 public class BattleView extends View {
     private BattleController battleController;

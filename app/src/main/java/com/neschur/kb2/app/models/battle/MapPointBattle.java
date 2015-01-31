@@ -1,7 +1,8 @@
-package com.neschur.kb2.app.models;
+package com.neschur.kb2.app.models.battle;
 
 import com.neschur.kb2.app.entities.Entity;
-import com.neschur.kb2.app.entities.WarriorEntity;
+import com.neschur.kb2.app.models.Glade;
+import com.neschur.kb2.app.models.MapPoint;
 
 /**
  * Created by siarhei on 27.01.15.

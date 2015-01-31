@@ -22,8 +22,8 @@ public class Mover {
     }
 
     public void moveTo(Entity entity, MapPoint to) {
-        int x = entity.getX();
-        int y = entity.getY();
+        int x = entity.getMapPoint().getX();
+        int y = entity.getMapPoint().getY();
         int directionX = (int) Math.signum(x - to.getX());
         int directionY = (int) Math.signum(y - to.getY());
         if (!teleport(entity, glade.getMapPoint(to.getX() + directionX, to.getY() + directionY))) {

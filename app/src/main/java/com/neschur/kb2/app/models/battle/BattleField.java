@@ -1,9 +1,11 @@
-package com.neschur.kb2.app.models;
+package com.neschur.kb2.app.models.battle;
 
 import com.neschur.kb2.app.Mover;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.entities.Fighting;
-import com.neschur.kb2.app.entities.WarriorEntity;
+import com.neschur.kb2.app.models.Glade;
+import com.neschur.kb2.app.models.MapPoint;
+import com.neschur.kb2.app.models.Player;
 
 public class BattleField implements Glade {
     private MapPointBattle[][] map = new MapPointBattle[6][5];
@@ -168,14 +170,14 @@ public class BattleField implements Glade {
 
     public int getSelectedX() {
         if (selected != null)
-            return selected.getX();
+            return selected.getMapPoint().getX();
         else
             return -1;
     }
 
     public int getSelectedY() {
         if (selected != null)
-            return selected.getY();
+            return selected.getMapPoint().getY();
         else
             return -1;
     }
@@ -197,7 +199,8 @@ public class BattleField implements Glade {
     }
 
     private int distance(WarriorEntity selected, int x, int y) {
-        return Math.max(Math.abs(selected.getX() - x), Math.abs(selected.getY() - y));
+        return Math.max(Math.abs(selected.getMapPoint().getX() - x),
+                Math.abs(selected.getMapPoint().getY() - y));
     }
 
     private void tryFinishPhase() {

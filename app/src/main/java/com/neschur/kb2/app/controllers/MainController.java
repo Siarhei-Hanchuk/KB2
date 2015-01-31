@@ -4,7 +4,7 @@ import com.neschur.kb2.app.MainActivity;
 import com.neschur.kb2.app.Storage;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
-import com.neschur.kb2.app.models.BattleFinishing;
+import com.neschur.kb2.app.models.battle.BattleFinishing;
 import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.ui.UiFactory;
 import com.neschur.kb2.app.views.BattleView;
