@@ -7,8 +7,12 @@ import java.io.Serializable;
 public class MapPoint implements Serializable {
     private int land;
     private Entity entity;
+    private int x;
+    private int y;
 
-    public MapPoint() {
+    public MapPoint(int x, int y) {
+        this.x = x;
+        this.y = y;
         land = -1;
         entity = null;
     }
@@ -35,5 +39,13 @@ public class MapPoint implements Serializable {
 
     public void setEntity(Entity entity) {
         this.entity = entity;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getX() {
+        return x;
     }
 }

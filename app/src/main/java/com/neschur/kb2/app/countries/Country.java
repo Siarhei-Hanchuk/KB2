@@ -31,7 +31,7 @@ public abstract class Country implements Glade, Serializable {
         map = new MapPoint[65][65];
         for (int i = 0; i < 65; i++) {
             for (int j = 0; j < 65; j++) {
-                map[i][j] = new MapPoint();
+                map[i][j] = new MapPoint(i, j);
             }
         }
 

@@ -36,7 +36,7 @@ public class BattleField implements Glade {
     public void prepareField() {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 5; j++) {
-                map[i][j] = new MapPointBattle();
+                map[i][j] = new MapPointBattle(i ,j);
                 map[i][j].setLand(R.drawable.land);
             }
         }

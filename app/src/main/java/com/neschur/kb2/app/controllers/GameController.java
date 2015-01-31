@@ -103,16 +103,16 @@ public class GameController implements Serializable {
                 }
             }
         } else {
-            actionWithObject(player, mp.getEntity());
+            actionWithObject(player, mp);
         }
     }
 
-    private void actionWithObject(Player player, Entity entity) {
-        if (entity instanceof Nave) {
-            player.setNave((Nave) entity);
-            player.move(entity.getX(), entity.getY());
+    private void actionWithObject(Player player, MapPoint mp) {
+        if (mp.getEntity() instanceof Nave) {
+            player.setNave((Nave) mp.getEntity());
+            player.move(mp.getX(), mp.getY());
         } else {
-            mainController.activateEntity(entity);
+            mainController.activateEntity(mp.getEntity());
         }
     }
 
