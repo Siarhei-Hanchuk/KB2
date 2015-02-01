@@ -70,14 +70,14 @@ public class ViewFactory {
     }
 
     private static MenuFactory getMenuFactory(GameOwner controller) {
-        if(menuFactory == null) {
+        if (menuFactory == null) {
             menuFactory = new MenuFactory(controller);
         }
         return menuFactory;
     }
 
     private static MessageFactory getMessageFactory(GameOwner controller) {
-        if(messageFactory == null) {
+        if (messageFactory == null) {
             messageFactory = new MessageFactory(controller);
         }
         return messageFactory;

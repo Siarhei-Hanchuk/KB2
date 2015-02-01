@@ -46,7 +46,7 @@ public class CaptainMenu extends Menu {
             switch (i) {
                 case 0:
                     game.activateBattle(captain);
-                    return true;
+                    return false;
                 case 1:
                     return true;
             }

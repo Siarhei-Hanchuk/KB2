@@ -13,8 +13,8 @@ import com.neschur.kb2.app.views.ViewFactory;
 
 public class MainViewControllerImpl extends ApplicationController implements MainViewController,
         ActivateCallback {
-    private GameGrid gameGrid;
     private final SurfaceView view;
+    private GameGrid gameGrid;
 
     public MainViewControllerImpl(Activity activity) {
         super(activity);
@@ -57,6 +57,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
 
     @Override
     public void activateBattle(Fighting fighting) {
+        setContentView(ViewFactory.getWorkersMenuView(this));
         new BattleControllerImpl(activity, this, fighting);
     }
 

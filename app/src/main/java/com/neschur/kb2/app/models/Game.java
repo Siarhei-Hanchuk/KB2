@@ -31,7 +31,6 @@ public class Game implements Serializable {
         } else if (mode == MODE_TRAINING) {
             weeks = 600;
         }
-
     }
 
     public Player getPlayer() {
@@ -137,10 +136,6 @@ public class Game implements Serializable {
 
     public void activateBattle(Fighting fighting) {
         mainController.activateBattle(fighting);
-    }
-
-    public void setActivateCallback(ActivateCallback mainController) {
-        this.mainController = mainController;
     }
 
     public void selectWorker(int n) {

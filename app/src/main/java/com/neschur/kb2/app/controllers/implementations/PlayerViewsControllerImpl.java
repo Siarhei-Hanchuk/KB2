@@ -1,7 +1,6 @@
 package com.neschur.kb2.app.controllers.implementations;
 
 import android.app.Activity;
-import android.view.SurfaceView;
 
 import com.neschur.kb2.app.controllers.ApplicationController;
 import com.neschur.kb2.app.controllers.ArmyShopViewController;
@@ -17,7 +16,7 @@ public class PlayerViewsControllerImpl extends ApplicationController
         implements PlayerViewsController, MagicViewController, ArmyShopViewController {
     public PlayerViewsControllerImpl(Activity activity, Object viewType) {
         super(activity);
-        if (viewType instanceof String ) {
+        if (viewType instanceof String) {
             switch ((String) viewType) {
                 case "magic":
                     setContentView(ViewFactory.getMagicView(this));
@@ -30,7 +29,7 @@ public class PlayerViewsControllerImpl extends ApplicationController
                     break;
             }
         } else {
-            setContentView(ViewFactory.getViewForEntity(this, (Entity)viewType));
+            setContentView(ViewFactory.getViewForEntity(this, (Entity) viewType));
         }
     }
 

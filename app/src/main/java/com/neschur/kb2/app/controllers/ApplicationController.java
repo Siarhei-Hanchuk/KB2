@@ -18,10 +18,6 @@ public abstract class ApplicationController implements ViewController, GameOwner
         activity.setContentView(view);
     }
 
-    protected void setGameController(Game game) {
-        ApplicationController.game = game;
-    }
-
     @Override
     public Context getContext() {
         return activity;
@@ -30,5 +26,9 @@ public abstract class ApplicationController implements ViewController, GameOwner
     @Override
     public Game getGameController() {
         return game;
+    }
+
+    protected void setGameController(Game game) {
+        ApplicationController.game = game;
     }
 }
