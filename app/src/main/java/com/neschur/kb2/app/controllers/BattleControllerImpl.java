@@ -1,18 +1,26 @@
 package com.neschur.kb2.app.controllers;
 
+import android.app.Activity;
+import android.content.Context;
+import android.view.Surface;
+import android.view.SurfaceView;
+
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.models.Player;
 import com.neschur.kb2.app.models.battle.BattleField;
 import com.neschur.kb2.app.models.battle.BattleFinishing;
 import com.neschur.kb2.app.models.battle.MapPointBattle;
+import com.neschur.kb2.app.views.ViewFactory;
 
-public class BattleControllerImpl implements BattleController, BattleFinishing {
+public class BattleControllerImpl extends ApplicationController implements BattleController {
     private BattleField battleField;
-    private BattleFinishing mainController;
+    private MainController mainController;
 
-    public BattleControllerImpl(BattleFinishing mainController, Player player, Fighting fighting) {
-        this.battleField = new BattleField(player, fighting, this);
+    public BattleControllerImpl(Activity activity, MainController mainController, Fighting fighting) {
+        super(activity);
+        this.battleField = new BattleField(mainController.getPlayer(), fighting, this);
         this.mainController = mainController;
+        SurfaceView battleView = ViewFactory.getBattleView(this);
     }
 
     public MapPointBattle[][] getMap() {
@@ -34,5 +42,15 @@ public class BattleControllerImpl implements BattleController, BattleFinishing {
     @Override
     public void battleFinish(boolean win) {
         mainController.battleFinish(win);
+    }
+
+    @Override
+    public void viewClose() {
+
+    }
+
+    @Override
+    public Context getContext() {
+        return null;
     }
 }

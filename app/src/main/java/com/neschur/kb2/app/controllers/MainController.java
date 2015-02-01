@@ -1,32 +1,28 @@
 package com.neschur.kb2.app.controllers;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.SurfaceView;
 
-import com.neschur.kb2.app.MainActivity;
 import com.neschur.kb2.app.Storage;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.models.Player;
-import com.neschur.kb2.app.models.battle.BattleFinishing;
 import com.neschur.kb2.app.views.ViewFactory;
 import com.neschur.kb2.app.warriors.WarriorFactory;
 
-public class MainController implements BattleFinishing, MainViewController, PlayerViewsController,
-        ArmyShopViewController, MagicViewController  {
-    private MainActivity activity;
+public class MainController extends ApplicationController implements MainViewController,
+        PlayerViewsController, ArmyShopViewController, MagicViewController, MainMenuController {
     private GameController gameController;
     private SurfaceView mainView;
     private SurfaceView mainMenuView;
-    private SurfaceView battleView;
-    private int gameMode = 0;
     private GameGrid gameGrid;
     private ViewFactory viewFactory;
 
-    public MainController(MainActivity _activity) {
-        activity = _activity;
+    public MainController(Activity activity) {
+        super(activity);
         viewFactory = new ViewFactory(this);
 
         mainMenuView = viewFactory.getMainMenuView();
@@ -36,15 +32,13 @@ public class MainController implements BattleFinishing, MainViewController, Play
     public void newGame() {
         gameController = new GameController(this, GameController.MODE_GAME);
         mainView = viewFactory.getMainView();
-        activity.setContentView(mainView);
-        gameMode = 0;
+        setContentView(mainView);
     }
 
     public void newTraining() {
         gameController = new GameController(this, GameController.MODE_TRAINING);
         mainView = viewFactory.getMainView();
-        activity.setContentView(mainView);
-        gameMode = 0;
+        setContentView(mainView);
 
         gameController.getPlayer().getMemory().showAll();
     }
@@ -111,7 +105,7 @@ public class MainController implements BattleFinishing, MainViewController, Play
                         grid.setMode(1);
                         break;
                     case 1:
-                        activity.setContentView(viewFactory.getWorkersMenuView());
+                        setContentView(viewFactory.getWorkersMenuView());
                         break;
                     case 2:
                         grid.setMode(2);
@@ -126,7 +120,7 @@ public class MainController implements BattleFinishing, MainViewController, Play
             case 1:
                 switch (i) {
                     case 0:
-                        activity.setContentView(viewFactory.getArmyView());
+                        setContentView(viewFactory.getArmyView());
                         grid.setMode(0);
                         break;
                     case 4:
@@ -137,7 +131,7 @@ public class MainController implements BattleFinishing, MainViewController, Play
             case 2:
                 switch (i) {
                     case 0:
-                        activity.setContentView(viewFactory.getMagicView());
+                        setContentView(viewFactory.getMagicView());
                         grid.setMode(0);
                         break;
                     case 4:
@@ -148,11 +142,11 @@ public class MainController implements BattleFinishing, MainViewController, Play
             case 3:
                 switch (i) {
                     case 0:
-                        activity.setContentView(viewFactory.getMapView());
+                        setContentView(viewFactory.getMapView());
                         break;
                     case 1:
                         if (gameController.getPlayer().inNave()) {
-                            activity.setContentView(viewFactory.getCountryMenuView());
+                            setContentView(viewFactory.getCountryMenuView());
                         }
                         break;
                     case 2:
@@ -166,18 +160,11 @@ public class MainController implements BattleFinishing, MainViewController, Play
     public void activateEntity(Entity entity) {
         SurfaceView view = viewFactory.getViewForEntity(entity);
         if (view != null)
-            activity.setContentView(view);
+            setContentView(view);
     }
 
     private void resetView() {
-        switch (gameMode) {
-            case 0:
-                activity.setContentView(mainView);
-                break;
-            case 1:
-                activity.setContentView(battleView);
-                break;
-        }
+        setContentView(mainView);
     }
 
     public GameController getGameController() {
@@ -190,13 +177,11 @@ public class MainController implements BattleFinishing, MainViewController, Play
     }
 
     public void activateBattle(Fighting fighting) {
-        gameMode = 1;
-        BattleControllerImpl battleController = new BattleControllerImpl(this, gameController.getPlayer(), fighting);
-        battleView = viewFactory.getBattleView(battleController);
+        new BattleControllerImpl(activity, this, fighting);
     }
 
     public void activateMainMenu() {
-        activity.setContentView(mainMenuView);
+        setContentView(mainMenuView);
     }
 
     public void exit() {
@@ -214,18 +199,7 @@ public class MainController implements BattleFinishing, MainViewController, Play
         gameController = storage.loadGame("save1");
         gameController.setMainController(this);
         mainView = viewFactory.getMainView();
-        activity.setContentView(mainView);
-    }
-
-    @Override
-    public void battleFinish(boolean win) {
-        gameMode = 0;
-        resetView();
-    }
-
-    @Override
-    public Context getContext() {
-        return activity;
+        setContentView(mainView);
     }
 
     @Override
@@ -241,5 +215,9 @@ public class MainController implements BattleFinishing, MainViewController, Play
     @Override
     public void takeArmy(String id) {
         getPlayer().pushArmy(WarriorFactory.create(id), 1);
+    }
+
+    public void battleFinish(boolean win) {
+
     }
 }

@@ -2,6 +2,7 @@ package com.neschur.kb2.app.models.battle;
 
 import com.neschur.kb2.app.Mover;
 import com.neschur.kb2.app.R;
+import com.neschur.kb2.app.controllers.BattleController;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.models.Glade;
 import com.neschur.kb2.app.models.MapPoint;
@@ -13,10 +14,10 @@ public class BattleField implements Glade {
     private Fighting fighting;
     private WarriorEntity selected;
     private BattleAi ai;
-    private BattleFinishing battleFinishing;
+    private BattleController battleFinishing;
     private Mover mover;
 
-    public BattleField(Player player, Fighting fighting, BattleFinishing battleFinishing) {
+    public BattleField(Player player, Fighting fighting, BattleController battleFinishing) {
         this.player = player;
         this.fighting = fighting;
         this.ai = new BattleAi(this);

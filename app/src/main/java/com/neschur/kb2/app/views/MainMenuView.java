@@ -9,12 +9,13 @@ import android.view.MotionEvent;
 import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.MainController;
+import com.neschur.kb2.app.controllers.MainMenuController;
 
 class MainMenuView extends View {
-    private final MainController mainController;
+    private final MainMenuController mainController;
     private boolean saved = false;
 
-    public MainMenuView(MainController mainController) {
+    public MainMenuView(MainMenuController mainController) {
         super(mainController);
         this.mainController = mainController;
     }
