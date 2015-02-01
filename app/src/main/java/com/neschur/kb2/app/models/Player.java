@@ -248,4 +248,8 @@ public class Player implements Serializable {
     public Magics getMagics() {
         return magics;
     }
+
+    public MapPoint getMapPoint() {
+        return getCountry().getMapPoint(getX(), getY());
+    }
 }

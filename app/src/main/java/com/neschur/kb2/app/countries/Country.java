@@ -37,7 +37,7 @@ public abstract class Country implements Glade, Serializable {
         }
 
         base();
-//        createSorcerer(5, 7);//debug
+        sorcerer = new Sorcerer(getMapPoint(6, 12));
     }
 
 //    protected void createCaptain() {

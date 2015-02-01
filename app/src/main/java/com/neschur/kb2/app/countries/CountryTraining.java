@@ -12,5 +12,6 @@ class CountryTraining extends Country {
         new ArmyShop(getMapPoint(5, 10), 0);
         new City(getMapPoint(6, 5));
         createCaptain(8, 5);
+
     }
 }

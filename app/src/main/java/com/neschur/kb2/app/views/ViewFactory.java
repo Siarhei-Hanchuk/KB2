@@ -24,7 +24,7 @@ public class ViewFactory {
     }
 
     public SurfaceView getViewForEntity(Entity entity) {
-        Menu menu = menuFactory .getMenu(entity);
+        Menu menu = menuFactory.getMenu(entity);
         Message message = messageFactory.getMessage(entity);
         View view = null;
         if (menu != null) {
