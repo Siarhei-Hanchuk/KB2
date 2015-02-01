@@ -20,7 +20,7 @@ public class BattleView extends View {
     private Paint countPaint;
     private Paint countPaintBg;
 
-    public BattleView(BattleController battleController, ViewController viewController) {
+    public BattleView(ViewController viewController, BattleController battleController) {
         super(viewController);
         this.battleController = battleController;
     }

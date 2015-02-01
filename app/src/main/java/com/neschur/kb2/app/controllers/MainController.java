@@ -9,7 +9,7 @@ import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.models.Player;
 import com.neschur.kb2.app.models.battle.BattleFinishing;
-import com.neschur.kb2.app.ui.UiFactory;
+import com.neschur.kb2.app.views.ViewFactory;
 import com.neschur.kb2.app.views.BattleView;
 import com.neschur.kb2.app.views.MainMenuView;
 import com.neschur.kb2.app.views.MainView;
@@ -23,14 +23,14 @@ public class MainController implements BattleFinishing, MainViewController, Play
     private BattleView battleView;
     private int gameMode = 0;
     private GameGrid gameGrid;
-    private UiFactory uiFactory;
+    private ViewFactory viewFactory;
 
     public MainController(MainActivity _activity) {
         activity = _activity;
         mainMenuView = new MainMenuView(this);
         activity.setContentView(mainMenuView);
 
-        uiFactory = new UiFactory(activity, this);
+        viewFactory = new ViewFactory(this);
     }
 
     public void newGame() {
@@ -100,7 +100,7 @@ public class MainController implements BattleFinishing, MainViewController, Play
                         grid.setMode(1);
                         break;
                     case 1:
-                        activity.setContentView(uiFactory.getWorkersMenuView());
+                        activity.setContentView(viewFactory.getWorkersMenuView());
                         break;
                     case 2:
                         grid.setMode(2);
@@ -115,7 +115,7 @@ public class MainController implements BattleFinishing, MainViewController, Play
             case 1:
                 switch (i) {
                     case 0:
-                        activity.setContentView(uiFactory.getArmyView());
+                        activity.setContentView(viewFactory.getArmyView());
                         grid.setMode(0);
                         break;
                     case 4:
@@ -126,7 +126,7 @@ public class MainController implements BattleFinishing, MainViewController, Play
             case 2:
                 switch (i) {
                     case 0:
-                        activity.setContentView(uiFactory.getMagicView());
+                        activity.setContentView(viewFactory.getMagicView());
                         grid.setMode(0);
                         break;
                     case 4:
@@ -137,11 +137,11 @@ public class MainController implements BattleFinishing, MainViewController, Play
             case 3:
                 switch (i) {
                     case 0:
-                        activity.setContentView(uiFactory.getMapView());
+                        activity.setContentView(viewFactory.getMapView());
                         break;
                     case 1:
                         if (gameController.getPlayer().inNave()) {
-                            activity.setContentView(uiFactory.getCountryMenuView());
+                            activity.setContentView(viewFactory.getCountryMenuView());
                         }
                         break;
                     case 2:
@@ -153,7 +153,7 @@ public class MainController implements BattleFinishing, MainViewController, Play
     }
 
     public void activateEntity(Entity entity) {
-        View view = uiFactory.getViewForEntity(entity);
+        View view = viewFactory.getViewForEntity(entity);
         if (view != null)
             activity.setContentView(view);
     }
@@ -181,7 +181,7 @@ public class MainController implements BattleFinishing, MainViewController, Play
     public void activateBattle(Fighting fighting) {
         gameMode = 1;
         BattleControllerImpl battleController = new BattleControllerImpl(this, gameController.getPlayer(), fighting);
-        battleView = new BattleView(battleController, this);
+        battleView = new BattleView(this, battleController);
     }
 
     public void activateMainMenu() {

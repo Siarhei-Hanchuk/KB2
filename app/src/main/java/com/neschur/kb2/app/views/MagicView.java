@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.ImageCache;
 import com.neschur.kb2.app.R;
+import com.neschur.kb2.app.controllers.PlayerViewsController;
 import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.models.Magics;
@@ -21,9 +22,9 @@ public class MagicView extends View {
     private int mode = 0;
     private final HashMap<Integer, Integer> armyIdCache = new HashMap<>();
 
-    public MagicView(Context context, Magics magics, ViewController viewController) {
-        super(viewController);
-        this.magics = magics;
+    public MagicView(PlayerViewsController playerViewsController) {
+        super(playerViewsController);
+        this.magics = playerViewsController.getPlayer().getMagics();
     }
 
     @Override

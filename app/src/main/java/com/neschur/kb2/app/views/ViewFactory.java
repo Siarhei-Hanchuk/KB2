@@ -1,11 +1,8 @@
-package com.neschur.kb2.app.ui;
-
-import android.app.Activity;
+package com.neschur.kb2.app.views;
 
 import com.neschur.kb2.app.controllers.MainController;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Entity;
-import com.neschur.kb2.app.models.Player;
 import com.neschur.kb2.app.ui.menus.Menu;
 import com.neschur.kb2.app.ui.menus.MenuFactory;
 import com.neschur.kb2.app.ui.messages.Message;
@@ -18,14 +15,12 @@ import com.neschur.kb2.app.views.MenuView;
 import com.neschur.kb2.app.views.MessageView;
 import com.neschur.kb2.app.views.View;
 
-public class UiFactory {
-    private final Activity activity;
+public class ViewFactory {
     private final MainController mainController;
     private final MenuFactory menuFactory;
     private final MessageFactory messageFactory;
 
-    public UiFactory(Activity activity, MainController mainController) {
-        this.activity = activity;
+    public ViewFactory(MainController mainController) {
         this.mainController = mainController;
 
         this.menuFactory = new MenuFactory(mainController);
@@ -43,8 +38,8 @@ public class UiFactory {
             view = new MessageView(mainController, message);
         }
         if (entity instanceof ArmyShop) {
-            view = new ArmyShopView(activity, (ArmyShop) entity, getPlayer(),
-                    mainController.getGameController(), mainController);
+            view = new ArmyShopView(mainController, (ArmyShop) entity,
+                    mainController.getGameController());
         }
         return view;
     }
@@ -67,10 +62,6 @@ public class UiFactory {
     }
 
     public View getMagicView() {
-        return new MagicView(activity, getPlayer().getMagics(), mainController);
-    }
-
-    private Player getPlayer() {
-        return mainController.getGameController().getPlayer();
+        return new MagicView(mainController);
     }
 }

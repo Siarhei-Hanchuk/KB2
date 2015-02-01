@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.ArmyBuyer;
+import com.neschur.kb2.app.controllers.PlayerViewsController;
 import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.models.Player;
@@ -24,12 +25,12 @@ public class ArmyShopView extends View {
     private int buttonSize;
     private ArmyBuyer armyBuyer;
 
-    public ArmyShopView(Context context, ArmyShop shop, Player player, ArmyBuyer armyBuyer,
-                        ViewController viewController) {
-        super(viewController);
+    public ArmyShopView(PlayerViewsController playerViewsController,
+                        ArmyShop shop, ArmyBuyer armyBuyer) {
+        super(playerViewsController);
 
         this.shop = shop;
-        this.player = player;
+        this.player = playerViewsController.getPlayer();
         this.warrior = shop.getWarrior();
         this.armyBuyer = armyBuyer;
     }
