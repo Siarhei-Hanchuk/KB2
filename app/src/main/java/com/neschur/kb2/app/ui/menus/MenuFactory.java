@@ -1,6 +1,6 @@
 package com.neschur.kb2.app.ui.menus;
 
-import com.neschur.kb2.app.controllers.GameControllerOwner;
+import com.neschur.kb2.app.controllers.GameOwner;
 import com.neschur.kb2.app.entities.Captain;
 import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Entity;
@@ -8,9 +8,9 @@ import com.neschur.kb2.app.entities.GoldChest;
 import com.neschur.kb2.app.entities.Magician;
 
 public class MenuFactory {
-    private final GameControllerOwner controller;
+    private final GameOwner controller;
 
-    public MenuFactory(GameControllerOwner controller) {
+    public MenuFactory(GameOwner controller) {
         this.controller = controller;
     }
 

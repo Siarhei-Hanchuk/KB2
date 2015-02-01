@@ -6,16 +6,20 @@ import android.view.SurfaceView;
 
 import com.neschur.kb2.app.models.Game;
 
-public abstract class ApplicationController implements ViewController, GameControllerOwner {
+public abstract class ApplicationController implements ViewController, GameOwner {
     private static Game game;
-    protected Activity activity;
+    protected final Activity activity;
 
-    public ApplicationController(Activity activity) {
+    protected ApplicationController(Activity activity) {
         this.activity = activity;
     }
 
-    public void setContentView(SurfaceView view) {
+    protected void setContentView(SurfaceView view) {
         activity.setContentView(view);
+    }
+
+    protected void setGameController(Game game) {
+        ApplicationController.game = game;
     }
 
     @Override
@@ -26,14 +30,5 @@ public abstract class ApplicationController implements ViewController, GameContr
     @Override
     public Game getGameController() {
         return game;
-    }
-
-//    protected ViewFactory getViewFactory() {
-//        return new ViewFactory(null);
-//    }
-//
-
-    protected void setGameController(Game game) {
-        ApplicationController.game = game;
     }
 }

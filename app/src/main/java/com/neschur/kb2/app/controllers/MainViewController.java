@@ -1,6 +1,5 @@
 package com.neschur.kb2.app.controllers;
 
-import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.models.GameGrid;
 
 public interface MainViewController extends ViewController {
@@ -23,6 +22,4 @@ public interface MainViewController extends ViewController {
     public void touchRight();
 
     public void touchLeft();
-
-    public void activateEntity(Entity entity);
 }

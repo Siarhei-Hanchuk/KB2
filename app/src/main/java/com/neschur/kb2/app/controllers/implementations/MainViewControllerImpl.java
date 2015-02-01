@@ -1,8 +1,11 @@
-package com.neschur.kb2.app.controllers;
+package com.neschur.kb2.app.controllers.implementations;
 
 import android.app.Activity;
 import android.view.SurfaceView;
 
+import com.neschur.kb2.app.controllers.ActivateCallback;
+import com.neschur.kb2.app.controllers.ApplicationController;
+import com.neschur.kb2.app.controllers.MainViewController;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.models.GameGrid;
@@ -11,7 +14,7 @@ import com.neschur.kb2.app.views.ViewFactory;
 public class MainViewControllerImpl extends ApplicationController implements MainViewController,
         ActivateCallback {
     private GameGrid gameGrid;
-    private SurfaceView view;
+    private final SurfaceView view;
 
     public MainViewControllerImpl(Activity activity) {
         super(activity);
@@ -49,12 +52,12 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
 
     @Override
     public void activateEntity(Entity entity) {
-
+        new PlayerViewsControllerImpl(activity, entity);
     }
 
     @Override
     public void activateBattle(Fighting fighting) {
-
+        new BattleControllerImpl(activity, this, fighting);
     }
 
     @Override
@@ -128,7 +131,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
                         break;
                     case 1:
                         if (getGameController().getPlayer().inNave()) {
-                            setContentView((new ViewFactory(this)).getCountryMenuView());
+                            setContentView(ViewFactory.getCountryMenuView(this));
                         }
                         break;
                     case 2:

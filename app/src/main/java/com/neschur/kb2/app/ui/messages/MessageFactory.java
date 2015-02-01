@@ -1,6 +1,6 @@
 package com.neschur.kb2.app.ui.messages;
 
-import com.neschur.kb2.app.controllers.GameControllerOwner;
+import com.neschur.kb2.app.controllers.GameOwner;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.GoldChest;
 import com.neschur.kb2.app.entities.GuidePost;
@@ -9,9 +9,9 @@ import com.neschur.kb2.app.entities.MapNext;
 import com.neschur.kb2.app.entities.Sorcerer;
 
 public class MessageFactory {
-    private final GameControllerOwner controller;
+    private final GameOwner controller;
 
-    public MessageFactory(GameControllerOwner mainController) {
+    public MessageFactory(GameOwner mainController) {
         this.controller = mainController;
     }
 

@@ -1,8 +1,10 @@
-package com.neschur.kb2.app.controllers;
+package com.neschur.kb2.app.controllers.implementations;
 
 import android.app.Activity;
 
 import com.neschur.kb2.app.Storage;
+import com.neschur.kb2.app.controllers.ApplicationController;
+import com.neschur.kb2.app.controllers.MainMenuController;
 import com.neschur.kb2.app.models.Game;
 import com.neschur.kb2.app.views.ViewFactory;
 

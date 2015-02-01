@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.neschur.kb2.app.controllers.MainMenuControllerImpl;
+import com.neschur.kb2.app.controllers.implementations.MainMenuControllerImpl;
 
 public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {

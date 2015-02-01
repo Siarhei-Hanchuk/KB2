@@ -4,6 +4,7 @@ import android.view.SurfaceView;
 
 import com.neschur.kb2.app.controllers.ArmyShopViewController;
 import com.neschur.kb2.app.controllers.BattleController;
+import com.neschur.kb2.app.controllers.GameOwner;
 import com.neschur.kb2.app.controllers.MagicViewController;
 import com.neschur.kb2.app.controllers.MainMenuController;
 import com.neschur.kb2.app.controllers.MainViewController;
@@ -17,19 +18,11 @@ import com.neschur.kb2.app.ui.messages.Message;
 import com.neschur.kb2.app.ui.messages.MessageFactory;
 
 public class ViewFactory {
-    private ViewController controller;
-    private MenuFactory menuFactory;
-    private MessageFactory messageFactory;
-
-    public ViewFactory(ViewController controller) {
-        this.controller = controller;
-
-        this.menuFactory = new MenuFactory(controller);
-        this.messageFactory = new MessageFactory(controller);
-    }
+    private static MenuFactory menuFactory;
+    private static MessageFactory messageFactory;
 
     public static SurfaceView getWorkersMenuView(ViewController controller) {
-        return new MenuView(controller, (new MenuFactory(controller)).getWorkersMenu());
+        return new MenuView(controller, getMenuFactory(controller).getWorkersMenu());
     }
 
     public static SurfaceView getMapView(PlayerViewsController controller) {
@@ -56,9 +49,13 @@ public class ViewFactory {
         return new BattleView(controller);
     }
 
-    public SurfaceView getViewForEntity(Entity entity) {
-        Menu menu = menuFactory.getMenu(entity);
-        Message message = messageFactory.getMessage(entity);
+    public static SurfaceView getCountryMenuView(ViewController controller) {
+        return new MenuView(controller, getMenuFactory(controller).getCountryMenu());
+    }
+
+    public static SurfaceView getViewForEntity(ViewController controller, Entity entity) {
+        Menu menu = getMenuFactory(controller).getMenu(entity);
+        Message message = getMessageFactory(controller).getMessage(entity);
         View view = null;
         if (menu != null) {
             view = new MenuView(controller, menu);
@@ -72,7 +69,17 @@ public class ViewFactory {
         return view;
     }
 
-    public SurfaceView getCountryMenuView() {
-        return new MenuView(controller, menuFactory.getCountryMenu());
+    private static MenuFactory getMenuFactory(GameOwner controller) {
+        if(menuFactory == null) {
+            menuFactory = new MenuFactory(controller);
+        }
+        return menuFactory;
+    }
+
+    private static MessageFactory getMessageFactory(GameOwner controller) {
+        if(messageFactory == null) {
+            messageFactory = new MessageFactory(controller);
+        }
+        return messageFactory;
     }
 }
