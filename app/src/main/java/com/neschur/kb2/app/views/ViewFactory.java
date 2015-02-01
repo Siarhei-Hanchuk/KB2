@@ -1,5 +1,6 @@
 package com.neschur.kb2.app.views;
 
+import com.neschur.kb2.app.controllers.BattleController;
 import com.neschur.kb2.app.controllers.MainController;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Entity;
@@ -63,5 +64,17 @@ public class ViewFactory {
 
     public View getMagicView() {
         return new MagicView(mainController);
+    }
+
+    public View getMainMenuView() {
+        return new MainMenuView(mainController);
+    }
+
+    public View getMainView() {
+        return new MainView(mainController);
+    }
+
+    public View getBattleView(BattleController battleController) {
+        return new BattleView(mainController, battleController);
     }
 }

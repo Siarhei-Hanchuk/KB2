@@ -10,39 +10,36 @@ import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.models.Player;
 import com.neschur.kb2.app.models.battle.BattleFinishing;
 import com.neschur.kb2.app.views.ViewFactory;
-import com.neschur.kb2.app.views.BattleView;
-import com.neschur.kb2.app.views.MainMenuView;
-import com.neschur.kb2.app.views.MainView;
 import com.neschur.kb2.app.views.View;
 
 public class MainController implements BattleFinishing, MainViewController, PlayerViewsController {
     private MainActivity activity;
     private GameController gameController;
-    private MainView mainView;
-    private MainMenuView mainMenuView;
-    private BattleView battleView;
+    private View mainView;
+    private View mainMenuView;
+    private View battleView;
     private int gameMode = 0;
     private GameGrid gameGrid;
     private ViewFactory viewFactory;
 
     public MainController(MainActivity _activity) {
         activity = _activity;
-        mainMenuView = new MainMenuView(this);
-        activity.setContentView(mainMenuView);
-
         viewFactory = new ViewFactory(this);
+
+        mainMenuView = viewFactory.getMainMenuView();
+        activity.setContentView(mainMenuView);
     }
 
     public void newGame() {
         gameController = new GameController(this, GameController.MODE_GAME);
-        mainView = new MainView(this);
+        mainView = viewFactory.getMainView();
         activity.setContentView(mainView);
         gameMode = 0;
     }
 
     public void newTraining() {
         gameController = new GameController(this, GameController.MODE_TRAINING);
-        mainView = new MainView(this);
+        mainView = viewFactory.getMainView();
         activity.setContentView(mainView);
         gameMode = 0;
 
@@ -181,7 +178,7 @@ public class MainController implements BattleFinishing, MainViewController, Play
     public void activateBattle(Fighting fighting) {
         gameMode = 1;
         BattleControllerImpl battleController = new BattleControllerImpl(this, gameController.getPlayer(), fighting);
-        battleView = new BattleView(this, battleController);
+        battleView = viewFactory.getBattleView(battleController);
     }
 
     public void activateMainMenu() {
@@ -202,7 +199,7 @@ public class MainController implements BattleFinishing, MainViewController, Play
         Storage storage = new Storage(activity);
         gameController = storage.loadGame("save1");
         gameController.setMainController(this);
-        mainView = new MainView(this);
+        mainView = viewFactory.getMainView();
         activity.setContentView(mainView);
     }
 

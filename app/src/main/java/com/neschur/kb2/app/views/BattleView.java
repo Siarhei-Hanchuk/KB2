@@ -15,7 +15,7 @@ import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.models.battle.MapPointBattle;
 import com.neschur.kb2.app.models.battle.WarriorEntity;
 
-public class BattleView extends View {
+class BattleView extends View {
     private BattleController battleController;
     private Paint countPaint;
     private Paint countPaintBg;

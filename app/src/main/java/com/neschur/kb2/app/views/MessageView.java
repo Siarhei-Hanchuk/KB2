@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.ui.messages.Message;
 
-public class MessageView extends View {
+class MessageView extends View {
     private Message message;
 
     public MessageView(ViewController viewController, Message message) {

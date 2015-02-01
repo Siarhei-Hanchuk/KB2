@@ -10,7 +10,7 @@ import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.MainController;
 
-public class MainMenuView extends View {
+class MainMenuView extends View {
     private MainController mainController;
     private boolean saved = false;
 

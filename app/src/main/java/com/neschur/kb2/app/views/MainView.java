@@ -10,7 +10,7 @@ import com.neschur.kb2.app.ImageCache;
 import com.neschur.kb2.app.controllers.MainViewController;
 import com.neschur.kb2.app.models.GameGrid;
 
-public class MainView extends View {
+class MainView extends View {
     public MainViewController mainViewController;
 
     public MainView(MainViewController mainViewController) {

@@ -12,7 +12,7 @@ import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.Player;
 
-public class MapView extends View {
+class MapView extends View {
     private Player player;
 
     public MapView(PlayerViewsController playerViewsController) {
