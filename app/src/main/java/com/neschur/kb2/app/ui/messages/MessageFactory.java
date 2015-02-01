@@ -2,6 +2,7 @@ package com.neschur.kb2.app.ui.messages;
 
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.controllers.MainController;
+import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.GoldChest;
 import com.neschur.kb2.app.entities.GuidePost;
@@ -10,9 +11,9 @@ import com.neschur.kb2.app.entities.MapNext;
 import com.neschur.kb2.app.entities.Sorcerer;
 
 public class MessageFactory {
-    private final MainController mainController;
+    private final ViewController mainController;
 
-    public MessageFactory (MainController mainController) {
+    public MessageFactory (ViewController mainController) {
         this.mainController = mainController;
     }
 

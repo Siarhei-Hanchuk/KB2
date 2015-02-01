@@ -5,4 +5,6 @@ import android.content.Context;
 public interface ViewController {
     public void viewClose();
     public Context getContext();
+
+    public GameController getGameController();
 }

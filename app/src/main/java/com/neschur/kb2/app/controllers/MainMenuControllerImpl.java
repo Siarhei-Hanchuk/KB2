@@ -24,13 +24,13 @@ public class MainMenuControllerImpl extends ApplicationController implements Mai
     @Override
     public void newGame() {
         setGameController(new GameController(mainController, GameController.MODE_GAME));
-        setMainView(ViewFactory.getMainView(mainController));
+        setMainView(ViewFactory.getMainView(new MainViewControllerImpl(activity)));
     }
 
     @Override
     public void newTraining() {
         setGameController(new GameController(mainController, GameController.MODE_TRAINING));
-        setMainView(ViewFactory.getMainView(mainController));
+        setMainView(ViewFactory.getMainView(new MainViewControllerImpl(activity)));
     }
 
     @Override
@@ -38,7 +38,7 @@ public class MainMenuControllerImpl extends ApplicationController implements Mai
         Storage storage = new Storage(activity);
         GameController gameController = storage.loadGame("save1");
         mainController.setGameController(gameController);
-        SurfaceView mainView = ViewFactory.getMainView(mainController);
+        SurfaceView mainView = ViewFactory.getMainView(new MainViewControllerImpl(activity));
         setMainView(mainView);
     }
 
@@ -56,15 +56,7 @@ public class MainMenuControllerImpl extends ApplicationController implements Mai
 
     @Override
     public void viewClose() {
-        setContentView(ViewFactory.getMainView(mainController));
-    }
-
-    private GameController getGameController() {
-        return mainController.getGameController();
-    }
-
-    private void setGameController(GameController gameController) {
-        mainController.setGameController(gameController);
+        setContentView(ViewFactory.getMainView(new MainViewControllerImpl(activity)));
     }
 
     private void setMainView(SurfaceView view) {

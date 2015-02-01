@@ -41,16 +41,11 @@ public class BattleControllerImpl extends ApplicationController implements Battl
 
     @Override
     public void battleFinish(boolean win) {
-        mainController.battleFinish(win);
+
     }
 
     @Override
     public void viewClose() {
 
-    }
-
-    @Override
-    public Context getContext() {
-        return null;
     }
 }

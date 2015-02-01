@@ -32,6 +32,7 @@ public class GameController implements Serializable {
         } else if (mode == MODE_TRAINING) {
             weeks = 600;
         }
+
     }
 
     public Player getPlayer() {
