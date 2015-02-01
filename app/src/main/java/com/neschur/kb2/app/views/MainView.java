@@ -11,7 +11,7 @@ import com.neschur.kb2.app.controllers.MainViewController;
 import com.neschur.kb2.app.models.GameGrid;
 
 class MainView extends View {
-    private MainViewController mainViewController;
+    private final MainViewController mainViewController;
 
     public MainView(MainViewController mainViewController) {
         super(mainViewController);
@@ -23,7 +23,7 @@ class MainView extends View {
         int x = (int) event.getX() - xOffset;
         int y = (int) event.getY() - yOffset;
         if (x > this.stepX() * 5) {
-            int item = (y / stepY());// + 5 * (x/stepX() - 5);
+            int item = (y / stepY());
             mainViewController.touchMenu(item);
         } else {
             int height_2_5 = stepY() * 2;

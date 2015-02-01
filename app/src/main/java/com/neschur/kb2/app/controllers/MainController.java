@@ -52,44 +52,55 @@ public class MainController implements BattleFinishing, MainViewController, Play
         return gameController != null;
     }
 
+    @Override
     public GameGrid getGameGrid() {
         if (gameGrid == null)
             gameGrid = new GameGrid(gameController);
+        gameGrid.update();
         return gameGrid;
     }
 
+    @Override
     public void touchDown() {
         gameController.move(0, +1);
     }
 
+    @Override
     public void touchUp() {
         gameController.move(0, -1);
     }
 
+    @Override
     public void touchRight() {
         gameController.move(+1, 0);
     }
 
+    @Override
     public void touchLeft() {
         gameController.move(-1, 0);
     }
 
+    @Override
     public void touchUpRight() {
         gameController.move(+1, -1);
     }
 
+    @Override
     public void touchUpLeft() {
         gameController.move(-1, -1);
     }
 
+    @Override
     public void touchDownRight() {
         gameController.move(+1, +1);
     }
 
+    @Override
     public void touchDownLeft() {
         gameController.move(-1, +1);
     }
 
+    @Override
     public void touchMenu(int i) {
         GameGrid grid = getGameGrid();
         switch (grid.getMode()) {
@@ -216,7 +227,7 @@ public class MainController implements BattleFinishing, MainViewController, Play
         return activity;
     }
 
-
+    @Override
     public Player getPlayer() {
         return gameController.getPlayer();
     }
