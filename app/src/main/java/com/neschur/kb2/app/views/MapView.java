@@ -13,7 +13,7 @@ import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.Player;
 
 class MapView extends View {
-    private Player player;
+    private final Player player;
 
     public MapView(PlayerViewsController playerViewsController) {
         super(playerViewsController);

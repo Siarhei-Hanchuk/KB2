@@ -6,8 +6,8 @@ import android.view.SurfaceHolder;
 class DrawThread extends Thread {
     private boolean running = false;
     private boolean refresh = true;
-    private SurfaceHolder surfaceHolder;
-    private Drawable drawable;
+    private final SurfaceHolder surfaceHolder;
+    private final Drawable drawable;
 
     public DrawThread(SurfaceHolder surfaceHolder, Drawable drawable) {
         this.surfaceHolder = surfaceHolder;

@@ -11,7 +11,7 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.MainController;
 
 class MainMenuView extends View {
-    private MainController mainController;
+    private final MainController mainController;
     private boolean saved = false;
 
     public MainMenuView(MainController mainController) {

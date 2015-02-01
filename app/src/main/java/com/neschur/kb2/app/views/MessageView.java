@@ -9,7 +9,7 @@ import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.ui.messages.Message;
 
 class MessageView extends View {
-    private Message message;
+    private final Message message;
 
     public MessageView(ViewController viewController, Message message) {
         super(viewController);
@@ -29,7 +29,7 @@ class MessageView extends View {
         canvas.drawText(message.getText(), 10, 100, getDefaultPaint());
     }
 
-    public void closeMessage() {
+    private void closeMessage() {
         message.action();
         viewController.viewClose();
     }

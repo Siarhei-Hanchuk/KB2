@@ -11,10 +11,11 @@ import com.neschur.kb2.app.controllers.MainViewController;
 import com.neschur.kb2.app.models.GameGrid;
 
 class MainView extends View {
-    public MainViewController mainViewController;
+    private MainViewController mainViewController;
 
     public MainView(MainViewController mainViewController) {
         super(mainViewController);
+        this.mainViewController = mainViewController;
     }
 
     @Override

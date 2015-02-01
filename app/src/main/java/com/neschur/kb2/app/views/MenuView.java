@@ -10,7 +10,7 @@ import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.ui.menus.Menu;
 
 class MenuView extends View {
-    private Menu menu;
+    private final Menu menu;
 
     public MenuView(ViewController viewController, Menu menu) {
         super(viewController);

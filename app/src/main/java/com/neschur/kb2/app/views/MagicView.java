@@ -16,7 +16,7 @@ import com.neschur.kb2.app.warriors.WarriorFactory;
 import java.util.HashMap;
 
 class MagicView extends View {
-    private Magics magics;
+    private final Magics magics;
     private int mode = 0;
     private final HashMap<Integer, Integer> armyIdCache = new HashMap<>();
 

@@ -10,15 +10,15 @@ import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.models.GameGrid;
 
 abstract class View extends SurfaceView implements SurfaceHolder.Callback, Drawable {
-    public static final int IMAGE_WIDTH = 96;
-    public static final int IMAGE_HEIGHT = 82;
+    private static final int IMAGE_WIDTH = 96;
+    private static final int IMAGE_HEIGHT = 82;
 
-    protected ViewController viewController;
-    protected DrawThread drawThread;
-    protected int xOffset = 0;
-    protected int yOffset = 0;
+    final ViewController viewController;
+    DrawThread drawThread;
+    int xOffset = 0;
+    int yOffset = 0;
 
-    public View(ViewController viewController) {
+    View(ViewController viewController) {
         super(viewController.getContext());
         getHolder().addCallback(this);
         this.viewController = viewController;
@@ -50,44 +50,44 @@ abstract class View extends SurfaceView implements SurfaceHolder.Callback, Drawa
         }
     }
 
-    protected double getScale() {
+    double getScale() {
         double scaleX = (double) getWidth() / (IMAGE_WIDTH * GameGrid.STEP_X);
         double scaleY = (double) getHeight() / (IMAGE_HEIGHT * GameGrid.STEP_Y);
         return (scaleX > scaleY) ? scaleY : scaleX;
     }
 
-    protected int stepX() {
+    int stepX() {
         return (int) (IMAGE_WIDTH * getScale());
     }
 
-    protected int stepY() {
+    int stepY() {
         return (int) (IMAGE_HEIGHT * getScale());
     }
 
-    protected int stepX(int x) {
+    int stepX(int x) {
         return ((int) (IMAGE_WIDTH * getScale())) * x + xOffset;
     }
 
-    protected int stepY(int y) {
+    int stepY(int y) {
         return ((int) (IMAGE_HEIGHT * getScale())) * y + yOffset;
     }
 
-    protected int textHeight() {
+    int textHeight() {
         return (int) (menuItemHeight() * 0.8);
     }
 
-    protected int menuItemHeight() {
+    int menuItemHeight() {
         return (int) (getHeight() / 8.0);
     }
 
-    protected Paint getDefaultPaint() {
+    Paint getDefaultPaint() {
         Paint defaultPaint = new Paint();
         defaultPaint.setColor(Color.WHITE);
         defaultPaint.setTextSize(textHeight());
         return defaultPaint;
     }
 
-    protected void calcOffsets() {
+    void calcOffsets() {
         double scaleX = (double) getWidth() / (IMAGE_WIDTH * GameGrid.STEP_X);
         double scaleY = (double) getHeight() / (IMAGE_HEIGHT * GameGrid.STEP_Y);
         if (scaleX > scaleY) {
@@ -97,7 +97,7 @@ abstract class View extends SurfaceView implements SurfaceHolder.Callback, Drawa
         }
     }
 
-    protected ImageCache getImageCache() {
+    ImageCache getImageCache() {
         return ImageCache.getInstance(getResources(), stepX(), stepY());
     }
 }
