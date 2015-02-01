@@ -11,6 +11,7 @@ public class GoodMapMessage extends MapMessage {
         super(entity, game);
     }
 
+    @Override
     protected int getCount() {
         return 2;
     }
@@ -20,6 +21,7 @@ public class GoodMapMessage extends MapMessage {
         return I18n.translate("entity_goodMap_message1" + (mode + 1));
     }
 
+    @Override
     public void action() {
         switch (mode) {
             case 0:

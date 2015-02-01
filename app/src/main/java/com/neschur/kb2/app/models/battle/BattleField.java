@@ -182,6 +182,7 @@ public class BattleField implements Glade {
             return -1;
     }
 
+    @Override
     public boolean isEntity(int x, int y) {
         return map[x][y].getEntity() != null;
     }
@@ -190,10 +191,12 @@ public class BattleField implements Glade {
         return map[x][y].getEntity().isFriendly();
     }
 
+    @Override
     public boolean isLand(int x, int y) {
         return map[x][y].getLand() == R.drawable.land;
     }
 
+    @Override
     public WarriorEntity getEntity(int x, int y) {
         return map[x][y].getEntity();
     }

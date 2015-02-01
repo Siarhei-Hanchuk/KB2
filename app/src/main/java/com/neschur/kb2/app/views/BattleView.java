@@ -35,6 +35,7 @@ class BattleView extends View {
         return super.onTouchEvent(event);
     }
 
+    @Override
     public void draw(@NonNull Canvas canvas) {
         calcOffsets();
 

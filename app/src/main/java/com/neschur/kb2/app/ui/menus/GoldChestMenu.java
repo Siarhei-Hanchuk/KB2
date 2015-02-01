@@ -13,6 +13,7 @@ public class GoldChestMenu extends Menu {
         this.chest = (GoldChest) entity;
     }
 
+    @Override
     public String getItemDescription(int i) {
         return I18n.translate("entity_menus_goldchest_item" + (i + 1));
     }

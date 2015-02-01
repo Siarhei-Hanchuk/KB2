@@ -71,6 +71,7 @@ public abstract class Country implements Glade, Serializable {
         return random.nextInt(n);
     }
 
+    @Override
     public MapPoint getMapPoint(int x, int y) {
         return map[x][y];
     }
@@ -281,14 +282,17 @@ public abstract class Country implements Glade, Serializable {
         }
     }
 
+    @Override
     public boolean isEntity(int x, int y) {
         return map[x][y].getEntity() != null;
     }
 
+    @Override
     public boolean isLand(int x, int y) {
         return map[x][y].getLand() == R.drawable.land;
     }
 
+    @Override
     public Entity getEntity(int x, int y) {
         return map[x][y].getEntity();
     }

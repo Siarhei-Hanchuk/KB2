@@ -27,38 +27,47 @@ class WarriorImpl implements Warrior, Serializable {
         this.priceInShop = cost;
     }
 
+    @Override
     public String getTextId() {
         return textId;
     }
 
+    @Override
     public int getId() {
         return id;
     }
 
+    @Override
     public int getPriceInShop() {
         return priceInShop;
     }
 
+    @Override
     public int getDefence() {
         return defence;
     }
 
+    @Override
     public int getDamage() {
         return damage;
     }
 
+    @Override
     public int getStep() {
         return step;
     }
 
+    @Override
     public boolean isFly() {
         return fly;
     }
 
+    @Override
     public boolean isShoot() {
         return shoot;
     }
 
+    @Override
     public int getCountInShop() {
         return countInShop;
     }

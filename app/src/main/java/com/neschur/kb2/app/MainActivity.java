@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import com.neschur.kb2.app.controllers.implementations.MainMenuControllerImpl;
 
 public class MainActivity extends Activity {
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 

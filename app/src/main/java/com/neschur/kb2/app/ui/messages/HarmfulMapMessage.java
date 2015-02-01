@@ -19,6 +19,7 @@ public class HarmfulMapMessage extends MapMessage {
         return I18n.translate("entity_harmfulMap_message" + (mode + 1));
     }
 
+    @Override
     public void action() {
         switch (mode) {
             case 0:

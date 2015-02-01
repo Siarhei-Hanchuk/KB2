@@ -19,18 +19,22 @@ public class BattleControllerImpl extends ApplicationController implements Battl
         setContentView(ViewFactory.getBattleView(this));
     }
 
+    @Override
     public MapPointBattle[][] getMap() {
         return battleField.getMapPoints();
     }
 
+    @Override
     public void select(int x, int y) {
         battleField.select(x, y);
     }
 
+    @Override
     public int getSelectedX() {
         return battleField.getSelectedX();
     }
 
+    @Override
     public int getSelectedY() {
         return battleField.getSelectedY();
     }

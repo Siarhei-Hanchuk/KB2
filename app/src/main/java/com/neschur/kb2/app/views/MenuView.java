@@ -26,6 +26,7 @@ class MenuView extends View {
         return super.onTouchEvent(event);
     }
 
+    @Override
     public void draw(@NonNull Canvas canvas) {
         Paint paint = getDefaultPaint();
         canvas.drawColor(Color.BLACK);

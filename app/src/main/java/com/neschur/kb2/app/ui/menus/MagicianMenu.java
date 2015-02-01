@@ -102,6 +102,7 @@ public class MagicianMenu extends Menu {
         return false;
     }
 
+    @Override
     public boolean withMoney() {
         return true;
     }

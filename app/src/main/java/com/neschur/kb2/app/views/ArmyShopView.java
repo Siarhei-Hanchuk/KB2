@@ -64,6 +64,7 @@ class ArmyShopView extends View {
         return super.onTouchEvent(event);
     }
 
+    @Override
     public void draw(@NonNull Canvas canvas) {
         Paint paint = getDefaultPaint();
         Paint smallFont = new Paint(paint);
