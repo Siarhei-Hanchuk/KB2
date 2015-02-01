@@ -10,10 +10,13 @@ public abstract class EntityImpl implements Entity, Serializable {
 
     public EntityImpl(MapPoint point) {
         point.setEntity(this);
+        this.point = point;
     }
 
+    @Override
     public abstract int getID();
 
+    @Override
     public void destroy() {
         point.setEntity(null);
     }
@@ -32,7 +35,13 @@ public abstract class EntityImpl implements Entity, Serializable {
         return point.getY();
     }
 
+    @Override
     public MapPoint getMapPoint() {
         return point;
+    }
+
+    @Override
+    public void setMapPoint(MapPoint point) {
+        this.point = point;
     }
 }

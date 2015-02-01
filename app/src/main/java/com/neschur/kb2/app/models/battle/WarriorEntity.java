@@ -38,6 +38,11 @@ public class WarriorEntity implements Entity, Warrior {
     }
 
     @Override
+    public void setMapPoint(MapPoint point) {
+        this.point = point;
+    }
+
+    @Override
     public String getTextId() {
         return warrior.getTextId();
     }

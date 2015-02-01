@@ -6,4 +6,5 @@ public interface Entity {
     public int getID();
     public void destroy();
     public MapPoint getMapPoint();
+    public void setMapPoint(MapPoint point);
 }
