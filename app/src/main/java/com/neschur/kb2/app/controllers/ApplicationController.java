@@ -11,12 +11,12 @@ public abstract class ApplicationController implements ViewController{
         this.activity = activity;
     }
 
+    public void setContentView(SurfaceView view) {
+        activity.setContentView(view);
+    }
+
     @Override
     public Context getContext() {
         return activity;
-    }
-
-    public void setContentView(SurfaceView view) {
-        activity.setContentView(view);
     }
 }

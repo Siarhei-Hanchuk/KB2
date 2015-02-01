@@ -4,6 +4,7 @@ import android.view.SurfaceView;
 
 import com.neschur.kb2.app.controllers.BattleController;
 import com.neschur.kb2.app.controllers.MainController;
+import com.neschur.kb2.app.controllers.MainMenuController;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.ui.menus.Menu;
@@ -60,12 +61,12 @@ public class ViewFactory {
         return new MagicView(mainController);
     }
 
-    public SurfaceView getMainMenuView() {
-        return new MainMenuView(mainController);
+    public static SurfaceView getMainMenuView(MainMenuController controller) {
+        return new MainMenuView(controller);
     }
 
-    public SurfaceView getMainView() {
-        return new MainView(mainController);
+    public static SurfaceView getMainView(MainController controller) {
+        return new MainView(controller);
     }
 
     public static SurfaceView getBattleView(BattleController battleController) {

@@ -1,10 +1,8 @@
 package com.neschur.kb2.app.controllers;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.SurfaceView;
 
-import com.neschur.kb2.app.Storage;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
@@ -14,37 +12,19 @@ import com.neschur.kb2.app.views.ViewFactory;
 import com.neschur.kb2.app.warriors.WarriorFactory;
 
 public class MainController extends ApplicationController implements MainViewController,
-        PlayerViewsController, ArmyShopViewController, MagicViewController, MainMenuController {
+        PlayerViewsController, ArmyShopViewController, MagicViewController {
     private GameController gameController;
     private SurfaceView mainView;
-    private SurfaceView mainMenuView;
+//    private SurfaceView mainMenuView;
     private GameGrid gameGrid;
     private ViewFactory viewFactory;
+    private ViewController currentController;
 
     public MainController(Activity activity) {
         super(activity);
+
+        currentController = new MainMenuControllerImpl(activity, this);
         viewFactory = new ViewFactory(this);
-
-        mainMenuView = viewFactory.getMainMenuView();
-        activity.setContentView(mainMenuView);
-    }
-
-    public void newGame() {
-        gameController = new GameController(this, GameController.MODE_GAME);
-        mainView = viewFactory.getMainView();
-        setContentView(mainView);
-    }
-
-    public void newTraining() {
-        gameController = new GameController(this, GameController.MODE_TRAINING);
-        mainView = viewFactory.getMainView();
-        setContentView(mainView);
-
-        gameController.getPlayer().getMemory().showAll();
-    }
-
-    public boolean isCurrentGame() {
-        return gameController != null;
     }
 
     @Override
@@ -171,6 +151,12 @@ public class MainController extends ApplicationController implements MainViewCon
         return gameController;
     }
 
+    public void setGameController(GameController gameController) {
+        this.gameController = gameController;
+        gameController.setMainController(this);
+        gameGrid = null;
+    }
+
     @Override
     public void viewClose() {
         resetView();
@@ -181,26 +167,10 @@ public class MainController extends ApplicationController implements MainViewCon
     }
 
     public void activateMainMenu() {
-        setContentView(mainMenuView);
+        if (!(currentController instanceof MainController))
+            currentController = new MainMenuControllerImpl(activity, this);
     }
 
-    public void exit() {
-        activity.finish();
-        System.exit(0);
-    }
-
-    public void saveGame() {
-        Storage storage = new Storage(activity);
-        storage.saveGame(gameController, "save1");
-    }
-
-    public void loadGame() {
-        Storage storage = new Storage(activity);
-        gameController = storage.loadGame("save1");
-        gameController.setMainController(this);
-        mainView = viewFactory.getMainView();
-        setContentView(mainView);
-    }
 
     @Override
     public Player getPlayer() {
@@ -219,5 +189,10 @@ public class MainController extends ApplicationController implements MainViewCon
 
     public void battleFinish(boolean win) {
 
+    }
+
+    public void setMainView(SurfaceView view) {
+        mainView = view;
+        setContentView(view);
     }
 }
