@@ -11,6 +11,7 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.Player;
+import com.neschur.kb2.app.views.interfaces.ViewClosable;
 
 public class MapView extends View {
     private Player player;

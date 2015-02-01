@@ -14,6 +14,7 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.ArmyBuyer;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.models.Player;
+import com.neschur.kb2.app.views.interfaces.ViewClosable;
 import com.neschur.kb2.app.warriors.Warrior;
 
 public class ArmyShopView extends View {

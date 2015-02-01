@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.ui.messages.Message;
+import com.neschur.kb2.app.views.interfaces.ViewClosable;
 
 public class MessageView extends View {
     private Message message;

@@ -1,5 +1,7 @@
 package com.neschur.kb2.app.controllers;
 
+import android.content.Context;
+
 import com.neschur.kb2.app.MainActivity;
 import com.neschur.kb2.app.Storage;
 import com.neschur.kb2.app.entities.Entity;
@@ -11,9 +13,9 @@ import com.neschur.kb2.app.views.BattleView;
 import com.neschur.kb2.app.views.MainMenuView;
 import com.neschur.kb2.app.views.MainView;
 import com.neschur.kb2.app.views.View;
-import com.neschur.kb2.app.views.ViewClosable;
+import com.neschur.kb2.app.views.interfaces.ViewController;
 
-public class MainController implements ViewClosable, BattleFinishing, MainViewTouchReciver {
+public class MainController implements BattleFinishing, ViewController {
     private MainActivity activity;
     private GameController gameController;
     private MainView mainView;
@@ -33,14 +35,14 @@ public class MainController implements ViewClosable, BattleFinishing, MainViewTo
 
     public void newGame() {
         gameController = new GameController(this, GameController.MODE_GAME);
-        mainView = new MainView(activity, this, getGameGrid());
+        mainView = new MainView(this);
         activity.setContentView(mainView);
         gameMode = 0;
     }
 
     public void newTraining() {
         gameController = new GameController(this, GameController.MODE_TRAINING);
-        mainView = new MainView(activity, this, getGameGrid());
+        mainView = new MainView(this);
         activity.setContentView(mainView);
         gameMode = 0;
 
@@ -200,7 +202,7 @@ public class MainController implements ViewClosable, BattleFinishing, MainViewTo
         Storage storage = new Storage(activity);
         gameController = storage.loadGame("save1");
         gameController.setMainController(this);
-        mainView = new MainView(activity, this, getGameGrid());
+        mainView = new MainView(this);
         activity.setContentView(mainView);
     }
 
@@ -208,5 +210,10 @@ public class MainController implements ViewClosable, BattleFinishing, MainViewTo
     public void battleFinish(boolean win) {
         gameMode = 0;
         resetView();
+    }
+
+    @Override
+    public Context getContext() {
+        return activity;
     }
 }

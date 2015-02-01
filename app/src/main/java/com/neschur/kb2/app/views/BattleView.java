@@ -14,6 +14,7 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.BattleController;
 import com.neschur.kb2.app.models.battle.MapPointBattle;
 import com.neschur.kb2.app.models.battle.WarriorEntity;
+import com.neschur.kb2.app.views.interfaces.ViewClosable;
 
 public class BattleView extends View {
     private BattleController battleController;

@@ -4,6 +4,9 @@ import com.neschur.kb2.app.R;
 
 import java.util.Random;
 
+import com.android.internal.util.*;
+
+
 public class WarriorFactory {
     private static String[] group0 = {"peasant", "aborigine", "boar", "woodgoblin", "skeleton"};
     private static String[] group1 = {"elf", "dwarf", "zombie", "rknight", "gorilla"};
@@ -86,5 +89,26 @@ public class WarriorFactory {
             default:
                 return null;
         }
+    }
+
+    public static String[] getAllArmyTextIds() {
+        return join(group0, group1, group2, group3, group4, group5);
+    }
+
+    private static String[] join(String[]... params) {
+        int size = 0;
+        for (String[] array : params) {
+            size += array.length;
+        }
+
+        String[] result = new String[size];
+
+        int j = 0;
+        for (String[] array : params) {
+            for (String s : array) {
+                result[j++] = s;
+            }
+        }
+        return result;
     }
 }

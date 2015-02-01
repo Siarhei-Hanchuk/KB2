@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.ui.menus.Menu;
+import com.neschur.kb2.app.views.interfaces.ViewClosable;
 
 public class MenuView extends View {
     private Menu menu;

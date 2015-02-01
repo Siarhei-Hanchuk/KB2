@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 
 import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.models.Player;
+import com.neschur.kb2.app.views.interfaces.ViewClosable;
 import com.neschur.kb2.app.warriors.WarriorSquad;
 
 public class ArmyView extends View {
