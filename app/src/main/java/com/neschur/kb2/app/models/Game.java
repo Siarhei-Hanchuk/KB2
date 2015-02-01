@@ -13,10 +13,10 @@ public class Game implements Serializable {
     public static final int MODE_TRAINING = Player.MODE_TRAINING;
     public static final int MODE_GAME = Player.MODE_GAME;
 
-    transient private ActivateCallback mainController;
+    final transient private ActivateCallback mainController;
 
-    private World world;
-    private Player player;
+    private final World world;
+    private final Player player;
     private Nave nave;
     private int weeks;
     private int days = 0;

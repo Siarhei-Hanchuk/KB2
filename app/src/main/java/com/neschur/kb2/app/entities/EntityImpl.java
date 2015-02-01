@@ -6,9 +6,9 @@ import com.neschur.kb2.app.models.MapPoint;
 import java.io.Serializable;
 
 public abstract class EntityImpl implements Entity, Serializable {
-    protected MapPoint point;
+    MapPoint point;
 
-    public EntityImpl(MapPoint point) {
+    EntityImpl(MapPoint point) {
         point.setEntity(this);
         this.point = point;
     }

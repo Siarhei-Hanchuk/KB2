@@ -6,13 +6,13 @@ import com.neschur.kb2.app.warriors.Warrior;
 import com.neschur.kb2.app.warriors.WarriorFactory;
 
 public class ArmyShop extends EntityImpl {
-    private Warrior warrior;
+    private final Warrior warrior;
     private int count;
 
     public ArmyShop(MapPoint point, int group) {
         super(point);
         warrior = WarriorFactory.createRandomFromGroup(group);
-        this.count = warrior.getPriceInShop();
+        this.count = warrior.getCountInShop();
     }
 
     @Override

@@ -9,9 +9,11 @@ public class MagicianMenu extends Menu {
     private final int PRICE_WORKERS = 1000;
     private final int PRICE_MOVE_TO_COUNTRY = 5000;
     private final int PRICE_TORNADO = 10000;
+    private final Entity magician;
 
     MagicianMenu(Entity magician, Game game) {
         super(game);
+        this.magician = magician;
     }
 
     @Override
@@ -55,22 +57,28 @@ public class MagicianMenu extends Menu {
                             player.upMagicPower();
                             player.upUsedMagicianCount();
                         }
+                        magician.destroy();
                         return true;
                     case 2:
                         if (player.changeMoney(-PRICE_MOVE_TO_COUNTRY)) {
                             menuMode = 2;
                             player.upUsedMagicianCount();
                         }
+                        magician.destroy();
+                        return true;
                     case 4:
                         if (player.changeMoney(-PRICE_TORNADO)) {
                             player.changeTornado(+1);
                             player.upUsedMagicianCount();
                         }
+                        magician.destroy();
+                        return true;
                 }
             case 1:
                 player.changeMoney(-PRICE_WORKERS);
                 player.changeWorker(i, +player.getMagicPower());
                 player.upUsedMagicianCount();
+                magician.destroy();
                 return true;
         }
         return false;

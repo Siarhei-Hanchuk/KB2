@@ -5,7 +5,7 @@ import com.neschur.kb2.app.entities.Entity;
 import java.io.Serializable;
 
 public class Mover implements Serializable {
-    private Glade glade;
+    private final Glade glade;
 
     public Mover(Glade glade) {
         this.glade = glade;

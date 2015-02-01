@@ -5,8 +5,8 @@ import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.warriors.Warrior;
 
 public class WarriorEntity implements Entity, Warrior {
+    private final Warrior warrior;
     private MapPoint point;
-    private Warrior warrior;
     private boolean friendly;
     private int step;
     private int count;

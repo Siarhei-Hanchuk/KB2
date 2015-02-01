@@ -6,11 +6,11 @@ import com.neschur.kb2.app.entities.Entity;
 import java.io.Serializable;
 
 public class MapPoint implements Serializable {
+    private final Glade glade;
+    private final int x;
+    private final int y;
     private int land;
     private Entity entity;
-    private Glade glade;
-    private int x;
-    private int y;
 
     public MapPoint(Glade glade, int x, int y) {
         this.glade = glade;
@@ -22,14 +22,6 @@ public class MapPoint implements Serializable {
 
     public int getLand() {
         return land;
-    }
-
-    public int getDrawable() {
-        if (this.entity == null) {
-            return land;
-        } else {
-            return entity.getID();
-        }
     }
 
     public Entity getEntity() {

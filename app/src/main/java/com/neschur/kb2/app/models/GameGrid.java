@@ -6,9 +6,9 @@ import com.neschur.kb2.app.countries.Country;
 public class GameGrid {
     public static final int STEP_X = 6;
     public static final int STEP_Y = 5;
-    private int[][] background = new int[STEP_Y][STEP_Y];
-    private int[][] grid = new int[STEP_X][STEP_Y];
-    private Player player;
+    private final int[][] background = new int[STEP_Y][STEP_Y];
+    private final int[][] grid = new int[STEP_X][STEP_Y];
+    private final Player player;
     private int mode = 0;
 
     public GameGrid(Game game) {
@@ -202,7 +202,7 @@ public class GameGrid {
         grid[5][4] = R.drawable.status_ancientmap_0;
     }
 
-    public void makeStatus1() {
+    private void makeStatus1() {
         grid[5][0] = R.drawable.status_army;
         grid[5][1] = R.drawable.status_week;
         grid[5][2] = R.drawable.status_contract_0;
@@ -210,7 +210,7 @@ public class GameGrid {
         grid[5][4] = R.drawable.status_back;
     }
 
-    public void makeStatus2() {
+    private void makeStatus2() {
         grid[5][0] = R.drawable.status_magic;
         grid[5][1] = R.drawable.guidepost;
         grid[5][2] = R.drawable.guidepost;
@@ -218,7 +218,7 @@ public class GameGrid {
         grid[5][4] = R.drawable.status_back;
     }
 
-    public void makeStatus3() {
+    private void makeStatus3() {
         grid[5][0] = R.drawable.status_map;
         grid[5][1] = R.drawable.status_countries;
         grid[5][2] = R.drawable.status_back;

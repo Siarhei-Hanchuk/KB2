@@ -5,7 +5,7 @@ import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.Mover;
 
 public class Sorcerer extends EntityImpl implements Moving {
-    private Mover mover;
+    private final Mover mover;
 
     public Sorcerer(MapPoint point) {
         super(point);

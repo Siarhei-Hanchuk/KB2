@@ -5,12 +5,12 @@ import com.neschur.kb2.app.R;
 import java.util.Random;
 
 public class WarriorFactory {
-    private static String[] group0 = {"peasant", "aborigine", "boar", "woodgoblin", "skeleton"};
-    private static String[] group1 = {"elf", "dwarf", "zombie", "rknight", "gorilla"};
-    private static String[] group2 = {"cannibal", "ghost", "lion", "druid", "troll"};
-    private static String[] group3 = {"elephant", "snake", "vampire", "giant", "knight"};
-    private static String[] group4 = {"centaur", "dinosaur"};
-    private static String[] group5 = {"daemon", "cyclops", "dragon"};
+    private static final String[] group0 = {"peasant", "aborigine", "boar", "woodgoblin", "skeleton"};
+    private static final String[] group1 = {"elf", "dwarf", "zombie", "rknight", "gorilla"};
+    private static final String[] group2 = {"cannibal", "ghost", "lion", "druid", "troll"};
+    private static final String[] group3 = {"elephant", "snake", "vampire", "giant", "knight"};
+    private static final String[] group4 = {"centaur", "dinosaur"};
+    private static final String[] group5 = {"daemon", "cyclops", "dragon"};
 
     public static WarriorImpl createRandomFromGroup(int group) {
         switch (group) {

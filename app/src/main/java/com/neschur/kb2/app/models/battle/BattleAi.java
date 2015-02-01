@@ -4,8 +4,8 @@ import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.Mover;
 
 public class BattleAi {
-    private BattleField bf;
-    private Mover mover;
+    private final BattleField bf;
+    private final Mover mover;
 
     public BattleAi(BattleField bf) {
         this.bf = bf;

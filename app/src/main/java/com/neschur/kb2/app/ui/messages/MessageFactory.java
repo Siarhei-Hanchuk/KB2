@@ -30,6 +30,6 @@ public class MessageFactory {
     }
 
     public Message getBattleMessage(boolean result) {
-        return new BattleFinishMessage(null, controller.getGameController(), result);
+        return new BattleFinishMessage(controller.getGameController(), result);
     }
 }

@@ -1,7 +1,6 @@
 package com.neschur.kb2.app.controllers.implementations;
 
 import android.app.Activity;
-import android.view.SurfaceView;
 
 import com.neschur.kb2.app.controllers.ApplicationController;
 import com.neschur.kb2.app.controllers.BattleController;
@@ -13,13 +12,11 @@ import com.neschur.kb2.app.views.ViewFactory;
 
 public class BattleControllerImpl extends ApplicationController implements BattleController {
     private final BattleField battleField;
-    private final SurfaceView battleView;
 
     public BattleControllerImpl(Activity activity, ViewController controller, Fighting fighting) {
         super(activity);
         this.battleField = new BattleField(controller.getGameController().getPlayer(), fighting, this);
-        battleView = ViewFactory.getBattleView(this);
-        setContentView(battleView);
+        setContentView(ViewFactory.getBattleView(this));
     }
 
     public MapPointBattle[][] getMap() {

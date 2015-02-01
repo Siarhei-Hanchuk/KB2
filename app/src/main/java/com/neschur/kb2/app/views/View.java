@@ -50,7 +50,7 @@ abstract class View extends SurfaceView implements SurfaceHolder.Callback, Drawa
         }
     }
 
-    double getScale() {
+    private double getScale() {
         double scaleX = (double) getWidth() / (IMAGE_WIDTH * GameGrid.STEP_X);
         double scaleY = (double) getHeight() / (IMAGE_HEIGHT * GameGrid.STEP_Y);
         return (scaleX > scaleY) ? scaleY : scaleX;

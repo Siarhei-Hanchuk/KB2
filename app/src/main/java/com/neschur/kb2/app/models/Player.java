@@ -9,25 +9,25 @@ import java.io.Serializable;
 
 public class Player implements Serializable {
     public static final int MAX_ARMY = 10;
-    private WarriorSquad[] warriors = new WarriorSquad[MAX_ARMY]; // TODO - List
+    private final WarriorSquad[] warriors = new WarriorSquad[MAX_ARMY]; // TODO - List
     public static final int MODE_TRAINING = 0;
     public static final int MODE_GAME = 1;
+    private final int[] workers = new int[4];
+    private final int[] usedMagicianCount = {0, 0, 0, 0, 0};
+    private final boolean[] importantDocs = {false, false, false, false, false};
+    private final Memory memory;
+    private final Magics magics = new Magics();
     private boolean wallkick;
-    private int workers[] = new int[4];
     private int money;
     private int authority;
     private Country country;
-    private int usedMagicianCount[] = {0, 0, 0, 0, 0};
     private int magicPower;
     private int magicMaxCount;
     private int availableCountry = 1;
     private Nave nave;
-    private boolean importantDocs[] = {false, false, false, false, false};
     private int salary = 0;
-    private Memory memory;
     private int x;
     private int y;
-    private Magics magics = new Magics();
     private int tornado = 0;
 
     public Player(Country _country, int mode) {
@@ -117,7 +117,7 @@ public class Player implements Serializable {
         this.wallkick = true;
     }
 
-    public Nave getNave() {
+    private Nave getNave() {
         return nave;
     }
 
@@ -194,7 +194,7 @@ public class Player implements Serializable {
         this.magicMaxCount += 1;
     }
 
-    public WarriorSquad findWarriorSquad(Warrior warrior) {
+    private WarriorSquad findWarriorSquad(Warrior warrior) {
         for (int i = 0; i < MAX_ARMY; i++) {
             if (warriors[i] != null &&
                     warriors[i].getWarrior().getId() == warrior.getId()) {

@@ -2,16 +2,14 @@ package com.neschur.kb2.app.ui.messages;
 
 import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.R;
-import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.models.Game;
 
-import java.util.Random;
-
 public class BattleFinishMessage extends Message {
-    private boolean result;
+    private final boolean result;
 
-    BattleFinishMessage(Entity entity, Game game, boolean result) {
-        super(entity, game);
+    BattleFinishMessage(Game game, boolean result) {
+        super(null, game);
+        this.result = result;
     }
 
     @Override
