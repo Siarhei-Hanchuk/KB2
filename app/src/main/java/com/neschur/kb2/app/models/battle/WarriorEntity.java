@@ -116,7 +116,7 @@ public class WarriorEntity implements Entity, Warrior {
         if (isFly())
             this.step = 6;
         else
-            this.step = getStep();
+            this.step = warrior.getStep();
     }
 
 

@@ -37,7 +37,6 @@ class MagicView extends View {
         } else if (mode == 1) {
             int x = (int) event.getX() / stepX() + 1;
             int y = (int) event.getY() / stepY() + 1;
-            System.out.println(armyIdCache.get(x*y));
         }
         drawThread.refresh();
         return super.onTouchEvent(event);

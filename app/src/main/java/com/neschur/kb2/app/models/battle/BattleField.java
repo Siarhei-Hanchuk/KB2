@@ -103,8 +103,7 @@ public class BattleField implements Glade {
                 map[x][y].getEntity().isFriendly() &&
                 map[x][y].getEntity().getStep() > 0) {
             selected = map[x][y].getEntity();
-            WarriorEntity war = map[x][y].getEntity();
-            moveArea(x, y, war);
+            moveArea(x, y, selected);
         }
     }
 
