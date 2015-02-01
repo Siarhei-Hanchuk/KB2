@@ -54,7 +54,9 @@ public class BattleAi {
     private boolean teleportWarTo(WarriorEntity war, int x, int y) {
         for (int i = (x - 1 < 0) ? 0 : x - 1; i <= ((x + 1 < 6) ? x + 1 : 6); i++) {
             for (int j = (y - 1 < 0) ? 0 : y - 1; j <= ((y + 1 < 5) ? y + 1 : 5); j++) {
-                mover.teleport(war, bf.getMapPoint(i,j));
+                if(mover.teleport(war, bf.getMapPoint(i,j))) {
+                    return true;
+                }
             }
         }
         return false;

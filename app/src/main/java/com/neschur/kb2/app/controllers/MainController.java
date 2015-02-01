@@ -12,9 +12,10 @@ import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.models.Player;
 import com.neschur.kb2.app.models.battle.BattleFinishing;
 import com.neschur.kb2.app.views.ViewFactory;
+import com.neschur.kb2.app.warriors.WarriorFactory;
 
 public class MainController implements BattleFinishing, MainViewController, PlayerViewsController,
-        ArmyShopViewController  {
+        ArmyShopViewController, MagicViewController  {
     private MainActivity activity;
     private GameController gameController;
     private SurfaceView mainView;
@@ -235,5 +236,10 @@ public class MainController implements BattleFinishing, MainViewController, Play
     @Override
     public void buyArmy(ArmyShop shop, int count) {
         gameController.buyArmy(shop, count);
+    }
+
+    @Override
+    public void takeArmy(String id) {
+        getPlayer().pushArmy(WarriorFactory.create(id), 1);
     }
 }

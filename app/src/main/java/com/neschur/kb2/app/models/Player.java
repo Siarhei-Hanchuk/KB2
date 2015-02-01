@@ -10,8 +10,8 @@ import java.io.Serializable;
 public class Player implements Serializable {
     public static final int MAX_ARMY = 10;
     private WarriorSquad[] warriors = new WarriorSquad[MAX_ARMY]; // TODO - List
+    public static final int MODE_TRAINING = 0;
     public static final int MODE_GAME = 1;
-    public static final int MODE_TRAINING = 2;
     private boolean wallkick;
     private int workers[] = new int[4];
     private int money;
@@ -28,6 +28,7 @@ public class Player implements Serializable {
     private int x;
     private int y;
     private Magics magics = new Magics();
+    private int tornado = 0;
 
     public Player(Country _country, int mode) {
         memory = new Memory();
@@ -251,5 +252,13 @@ public class Player implements Serializable {
 
     public MapPoint getMapPoint() {
         return getCountry().getMapPoint(getX(), getY());
+    }
+
+    public int getTornado() {
+        return tornado;
+    }
+
+    public void changeTornado(int d) {
+        this.tornado += d;
     }
 }

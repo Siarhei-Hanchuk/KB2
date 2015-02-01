@@ -1,5 +1,6 @@
 package com.neschur.kb2.app.ui.menus;
 
+import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
 
@@ -7,7 +8,7 @@ public class MagicianMenu extends Menu {
     private final int PRICE_MAGIC_POWER = 5000;
     private final int PRICE_WORKERS = 1000;
     private final int PRICE_MOVE_TO_COUNTRY = 5000;
-    private final int PRICE_TORNADO = 1000;
+    private final int PRICE_TORNADO = 10000;
 
     MagicianMenu(Entity magician, GameController gameController) {
         super(gameController);
@@ -35,6 +36,8 @@ public class MagicianMenu extends Menu {
                 }
             case 1:
                 return menuItem("entity_menus_city_workers_item" + (i + 1));
+            case 2:
+                return I18n.translate("countries_country" + (i - 1));
         }
         return null;
     }
@@ -53,6 +56,16 @@ public class MagicianMenu extends Menu {
                             player.upUsedMagicianCount();
                         }
                         return true;
+                    case 2:
+                        if (player.changeMoney(-PRICE_MOVE_TO_COUNTRY)) {
+                            menuMode = 2;
+                            player.upUsedMagicianCount();
+                        }
+                    case 4:
+                        if (player.changeMoney(-PRICE_TORNADO)) {
+                            player.changeTornado(+1);
+                            player.upUsedMagicianCount();
+                        }
                 }
             case 1:
                 player.changeMoney(-PRICE_WORKERS);
@@ -65,7 +78,15 @@ public class MagicianMenu extends Menu {
 
     @Override
     public int getCount() {
-        return Math.min(player.getUsedMagicianCount() + 1, 6);
+        switch (menuMode) {
+            case 0:
+                return Math.min(player.getUsedMagicianCount() + 1, 6);
+            case 1:
+                return 4;
+            case 2:
+                return 5;
+        }
+        return 0;
     }
 
     @Override

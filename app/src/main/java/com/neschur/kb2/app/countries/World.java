@@ -5,15 +5,14 @@ import java.io.Serializable;
 public class World implements Serializable {
     private Country[] country;
 
-    public World() {
-        defaultWorld();
-    }
-
-    public World(boolean training) {
-        if (training) {
-            trainingWorld();
-        } else {
-            defaultWorld();
+    public World(int mode) {
+        switch (mode) {
+            case 0:
+                trainingWorld();
+                break;
+            case 1:
+                defaultWorld();
+                break;
         }
     }
 

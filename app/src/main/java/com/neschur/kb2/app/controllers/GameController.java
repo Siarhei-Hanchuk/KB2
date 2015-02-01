@@ -11,8 +11,8 @@ import com.neschur.kb2.app.models.Player;
 import java.io.Serializable;
 
 public class GameController implements Serializable {
-    public static final int MODE_GAME = 1;
-    public static final int MODE_TRAINING = 2;
+    public static final int MODE_TRAINING = Player.MODE_TRAINING;
+    public static final int MODE_GAME = Player.MODE_GAME;
 
     transient private MainController mainController;
 
@@ -25,16 +25,13 @@ public class GameController implements Serializable {
 
     public GameController(MainController mainController, int mode) {
         this.mainController = mainController;
+        world = new World(mode);
+        player = new Player(world.getCountry(0), mode);
         if (mode == MODE_GAME) {
-            world = new World();
-            player = new Player(world.getCountry(0), Player.MODE_GAME);
             weeks = 200;
         } else if (mode == MODE_TRAINING) {
-            world = new World(true);
-            player = new Player(world.getCountry(0), Player.MODE_TRAINING);
             weeks = 600;
         }
-
     }
 
     public Player getPlayer() {
