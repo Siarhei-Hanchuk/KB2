@@ -11,8 +11,7 @@ import android.view.MotionEvent;
 
 import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.R;
-import com.neschur.kb2.app.controllers.ArmyBuyer;
-import com.neschur.kb2.app.controllers.PlayerViewsController;
+import com.neschur.kb2.app.controllers.ArmyShopViewController;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.models.Player;
 import com.neschur.kb2.app.warriors.Warrior;
@@ -22,17 +21,16 @@ class ArmyShopView extends View {
     private final ArmyShop shop;
     private final Player player;
     private final Warrior warrior;
-    private final ArmyBuyer armyBuyer;
+    private final ArmyShopViewController armyShopViewController;
     private int buttonSize;
 
-    public ArmyShopView(PlayerViewsController playerViewsController,
-                        ArmyShop shop, ArmyBuyer armyBuyer) {
-        super(playerViewsController);
+    public ArmyShopView(ArmyShopViewController armyShopViewController, ArmyShop shop) {
+        super(armyShopViewController);
 
         this.shop = shop;
-        this.player = playerViewsController.getPlayer();
+        this.player = armyShopViewController.getPlayer();
         this.warrior = shop.getWarrior();
-        this.armyBuyer = armyBuyer;
+        this.armyShopViewController = armyShopViewController;
     }
 
     @Override
@@ -45,21 +43,21 @@ class ArmyShopView extends View {
                     event.getX() < getWidth() - buttonSize &&
                     event.getY() > getHeight() - buttonSize * 2 &&
                     event.getY() < getHeight() - buttonSize) {
-                armyBuyer.buyArmy(shop, 1);
+                armyShopViewController.buyArmy(shop, 1);
             }
             if (event.getX() > getWidth() - buttonSize &&
                     event.getY() > getHeight() - buttonSize * 2 &&
                     event.getY() < getHeight() - buttonSize) {
-                armyBuyer.buyArmy(shop, 10);
+                armyShopViewController.buyArmy(shop, 10);
             }
             if (event.getX() > getWidth() - buttonSize * 2 &&
                     event.getX() < getWidth() - buttonSize &&
                     event.getY() > getHeight() - buttonSize) {
-                armyBuyer.buyArmy(shop, 100);
+                armyShopViewController.buyArmy(shop, 100);
             }
             if (event.getX() > getWidth() - buttonSize &&
                     event.getY() > getHeight() - buttonSize) {
-                armyBuyer.buyArmy(shop, 1000);
+                armyShopViewController.buyArmy(shop, 1000);
             }
         }
         drawThread.refresh();

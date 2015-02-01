@@ -34,8 +34,7 @@ public class ViewFactory {
             view = new MessageView(mainController, message);
         }
         if (entity instanceof ArmyShop) {
-            view = new ArmyShopView(mainController, (ArmyShop) entity,
-                    mainController.getGameController());
+            view = new ArmyShopView(mainController, (ArmyShop) entity);
         }
         return view;
     }

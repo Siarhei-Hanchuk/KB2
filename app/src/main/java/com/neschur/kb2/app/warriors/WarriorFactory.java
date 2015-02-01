@@ -4,9 +4,6 @@ import com.neschur.kb2.app.R;
 
 import java.util.Random;
 
-import com.android.internal.util.*;
-
-
 public class WarriorFactory {
     private static String[] group0 = {"peasant", "aborigine", "boar", "woodgoblin", "skeleton"};
     private static String[] group1 = {"elf", "dwarf", "zombie", "rknight", "gorilla"};

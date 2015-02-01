@@ -4,9 +4,6 @@ import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.models.Glade;
 import com.neschur.kb2.app.models.MapPoint;
 
-/**
- * Created by siarhei on 27.01.15.
- */
 public class MapPointBattle extends MapPoint {
     private boolean move = false;
     private WarriorEntity entity;

@@ -10,7 +10,7 @@ import com.neschur.kb2.app.models.Player;
 
 import java.io.Serializable;
 
-public class GameController implements Serializable, ArmyBuyer {
+public class GameController implements Serializable {
     public static final int MODE_GAME = 1;
     public static final int MODE_TRAINING = 2;
 
@@ -72,7 +72,7 @@ public class GameController implements Serializable, ArmyBuyer {
         MapPoint mp = player.getCountry().getMapPoint(x + dx, y + dy);
 
         if (mp.getEntity() == null) {
-            if (currentWorker > -1 && mp.getEntity() == null) {
+            if (currentWorker > -1) {
                 if (currentWorker == 0 && mp.getLand() == R.drawable.water) {
                     mp.setLand(R.drawable.plot);
                 }

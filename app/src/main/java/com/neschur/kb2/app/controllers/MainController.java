@@ -5,6 +5,7 @@ import android.view.SurfaceView;
 
 import com.neschur.kb2.app.MainActivity;
 import com.neschur.kb2.app.Storage;
+import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.models.GameGrid;
@@ -12,7 +13,8 @@ import com.neschur.kb2.app.models.Player;
 import com.neschur.kb2.app.models.battle.BattleFinishing;
 import com.neschur.kb2.app.views.ViewFactory;
 
-public class MainController implements BattleFinishing, MainViewController, PlayerViewsController {
+public class MainController implements BattleFinishing, MainViewController, PlayerViewsController,
+        ArmyShopViewController  {
     private MainActivity activity;
     private GameController gameController;
     private SurfaceView mainView;
@@ -217,5 +219,10 @@ public class MainController implements BattleFinishing, MainViewController, Play
 
     public Player getPlayer() {
         return gameController.getPlayer();
+    }
+
+    @Override
+    public void buyArmy(ArmyShop shop, int count) {
+        gameController.buyArmy(shop, count);
     }
 }
