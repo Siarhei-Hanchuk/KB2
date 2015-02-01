@@ -12,9 +12,9 @@ import android.view.MotionEvent;
 import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.ArmyBuyer;
+import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.models.Player;
-import com.neschur.kb2.app.views.interfaces.ViewClosable;
 import com.neschur.kb2.app.warriors.Warrior;
 
 public class ArmyShopView extends View {
@@ -25,8 +25,8 @@ public class ArmyShopView extends View {
     private ArmyBuyer armyBuyer;
 
     public ArmyShopView(Context context, ArmyShop shop, Player player, ArmyBuyer armyBuyer,
-                        ViewClosable closeCallback) {
-        super(context, closeCallback);
+                        ViewController viewController) {
+        super(viewController);
 
         this.shop = shop;
         this.player = player;
@@ -38,7 +38,7 @@ public class ArmyShopView extends View {
     public boolean onTouchEvent(@NonNull MotionEvent event) {
         if (event.getX() < getWidth() - buttonSize * 2 ||
                 event.getY() < getHeight() - buttonSize * 2) {
-            closeCallback.viewClose();
+            viewController.viewClose();
         } else {
             if (event.getX() > getWidth() - buttonSize * 2 &&
                     event.getX() < getWidth() - buttonSize &&

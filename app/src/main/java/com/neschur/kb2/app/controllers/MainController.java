@@ -7,15 +7,15 @@ import com.neschur.kb2.app.Storage;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.models.GameGrid;
+import com.neschur.kb2.app.models.Player;
 import com.neschur.kb2.app.models.battle.BattleFinishing;
 import com.neschur.kb2.app.ui.UiFactory;
 import com.neschur.kb2.app.views.BattleView;
 import com.neschur.kb2.app.views.MainMenuView;
 import com.neschur.kb2.app.views.MainView;
 import com.neschur.kb2.app.views.View;
-import com.neschur.kb2.app.views.interfaces.ViewController;
 
-public class MainController implements BattleFinishing, ViewController {
+public class MainController implements BattleFinishing, MainViewController, PlayerViewsController {
     private MainActivity activity;
     private GameController gameController;
     private MainView mainView;
@@ -27,7 +27,7 @@ public class MainController implements BattleFinishing, ViewController {
 
     public MainController(MainActivity _activity) {
         activity = _activity;
-        mainMenuView = new MainMenuView(activity, this);
+        mainMenuView = new MainMenuView(this);
         activity.setContentView(mainMenuView);
 
         uiFactory = new UiFactory(activity, this);
@@ -180,8 +180,8 @@ public class MainController implements BattleFinishing, ViewController {
 
     public void activateBattle(Fighting fighting) {
         gameMode = 1;
-        BattleController battleController = new BattleController(this, gameController.getPlayer(), fighting);
-        battleView = new BattleView(activity, battleController, this);
+        BattleControllerImpl battleController = new BattleControllerImpl(this, gameController.getPlayer(), fighting);
+        battleView = new BattleView(battleController, this);
     }
 
     public void activateMainMenu() {
@@ -215,5 +215,10 @@ public class MainController implements BattleFinishing, ViewController {
     @Override
     public Context getContext() {
         return activity;
+    }
+
+
+    public Player getPlayer() {
+        return gameController.getPlayer();
     }
 }

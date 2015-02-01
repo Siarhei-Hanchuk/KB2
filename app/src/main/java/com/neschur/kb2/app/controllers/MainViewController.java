@@ -1,6 +1,10 @@
-package com.neschur.kb2.app.views.interfaces;
+package com.neschur.kb2.app.controllers;
 
-public interface MainViewTouchReceiver {
+import com.neschur.kb2.app.models.GameGrid;
+
+public interface MainViewController extends ViewController {
+    public GameGrid getGameGrid();
+
     public void touchMenu(int item);
     public void touchUp();
     public void touchUpLeft();

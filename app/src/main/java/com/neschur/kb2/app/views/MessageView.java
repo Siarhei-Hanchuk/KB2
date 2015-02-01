@@ -1,19 +1,18 @@
 package com.neschur.kb2.app.views;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
+import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.ui.messages.Message;
-import com.neschur.kb2.app.views.interfaces.ViewClosable;
 
 public class MessageView extends View {
     private Message message;
 
-    public MessageView(Context context, Message message, ViewClosable closeCallback) {
-        super(context, closeCallback);
+    public MessageView(ViewController viewController, Message message) {
+        super(viewController);
         this.message = message;
     }
 
@@ -32,7 +31,7 @@ public class MessageView extends View {
 
     public void closeMessage() {
         message.action();
-        closeCallback.viewClose();
+        viewController.viewClose();
     }
 }
 

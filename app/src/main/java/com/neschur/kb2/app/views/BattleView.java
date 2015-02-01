@@ -1,6 +1,5 @@
 package com.neschur.kb2.app.views;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -12,18 +11,17 @@ import android.view.MotionEvent;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.BattleController;
+import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.models.battle.MapPointBattle;
 import com.neschur.kb2.app.models.battle.WarriorEntity;
-import com.neschur.kb2.app.views.interfaces.ViewClosable;
 
 public class BattleView extends View {
     private BattleController battleController;
     private Paint countPaint;
     private Paint countPaintBg;
 
-    public BattleView(Context context,
-                      BattleController battleController, ViewClosable closeCallback) {
-        super(context, closeCallback);
+    public BattleView(BattleController battleController, ViewController viewController) {
+        super(viewController);
         this.battleController = battleController;
     }
 

@@ -1,6 +1,5 @@
 package com.neschur.kb2.app.views;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -8,22 +7,22 @@ import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.R;
+import com.neschur.kb2.app.controllers.PlayerViewsController;
 import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.Player;
-import com.neschur.kb2.app.views.interfaces.ViewClosable;
 
 public class MapView extends View {
     private Player player;
 
-    public MapView(Context context, Player player, ViewClosable closeCallback) {
-        super(context, closeCallback);
-        this.player = player;
+    public MapView(PlayerViewsController playerViewsController) {
+        super(playerViewsController);
+        this.player = playerViewsController.getPlayer();
     }
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
-        closeCallback.viewClose();
+        viewController.viewClose();
         drawThread.refresh();
         return super.onTouchEvent(event);
     }

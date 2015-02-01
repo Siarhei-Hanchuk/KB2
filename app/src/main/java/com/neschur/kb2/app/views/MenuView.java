@@ -1,20 +1,19 @@
 package com.neschur.kb2.app.views;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
+import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.ui.menus.Menu;
-import com.neschur.kb2.app.views.interfaces.ViewClosable;
 
 public class MenuView extends View {
     private Menu menu;
 
-    public MenuView(Context context, Menu menu, ViewClosable closeCallback) {
-        super(context, closeCallback);
+    public MenuView(ViewController viewController, Menu menu) {
+        super(viewController);
         this.menu = menu;
     }
 
@@ -54,11 +53,11 @@ public class MenuView extends View {
                 if (menu.getMenuMode() > 0) {
                     menu.resetMenuMode();
                 } else {
-                    closeCallback.viewClose();
+                    viewController.viewClose();
                 }
         } else {
             if (result)
-                closeCallback.viewClose();
+                viewController.viewClose();
         }
     }
 

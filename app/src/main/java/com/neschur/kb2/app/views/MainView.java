@@ -7,15 +7,14 @@ import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.ImageCache;
+import com.neschur.kb2.app.controllers.MainViewController;
 import com.neschur.kb2.app.models.GameGrid;
-import com.neschur.kb2.app.views.interfaces.ViewController;
 
 public class MainView extends View {
-    private ViewController viewController;
+    public MainViewController mainViewController;
 
-    public MainView(ViewController viewController) {
-        super(viewController.getContext(), null);
-        this.viewController = viewController;
+    public MainView(MainViewController mainViewController) {
+        super(mainViewController);
     }
 
     @Override
@@ -24,7 +23,7 @@ public class MainView extends View {
         int y = (int) event.getY() - yOffset;
         if (x > this.stepX() * 5) {
             int item = (y / stepY());// + 5 * (x/stepX() - 5);
-            viewController.touchMenu(item);
+            mainViewController.touchMenu(item);
         } else {
             int height_2_5 = stepY() * 2;
             int height_3_5 = stepY() * 3;
@@ -32,31 +31,31 @@ public class MainView extends View {
             int width_3_5 = stepX() * 3;
             if (y > height_3_5) {
                 if (x > width_2_5 && x < width_3_5) {
-                    viewController.touchDown();
+                    mainViewController.touchDown();
                 }
                 if (x < width_2_5) {
-                    viewController.touchDownLeft();
+                    mainViewController.touchDownLeft();
                 }
                 if (x > width_3_5) {
-                    viewController.touchDownRight();
+                    mainViewController.touchDownRight();
                 }
             }
             if (y < height_2_5) {
                 if (x > width_2_5 && x < width_3_5) {
-                    viewController.touchUp();
+                    mainViewController.touchUp();
                 }
                 if (x < width_2_5) {
-                    viewController.touchUpLeft();
+                    mainViewController.touchUpLeft();
                 }
                 if (x > width_3_5) {
-                    viewController.touchUpRight();
+                    mainViewController.touchUpRight();
                 }
             }
             if (x > width_3_5 && y > height_2_5 && y < height_3_5) {
-                viewController.touchRight();
+                mainViewController.touchRight();
             }
             if (x < width_2_5 && y > height_2_5 && y < height_3_5) {
-                viewController.touchLeft();
+                mainViewController.touchLeft();
             }
         }
         drawThread.refresh();
@@ -65,7 +64,7 @@ public class MainView extends View {
 
     @Override
     public void draw(@NonNull Canvas canvas) {
-        GameGrid grid = viewController.getGameGrid();
+        GameGrid grid = mainViewController.getGameGrid();
         canvas.drawColor(Color.BLACK);
         ImageCache imageCache = ImageCache.getInstance(getResources(), stepX(), stepY());
         calcOffsets();

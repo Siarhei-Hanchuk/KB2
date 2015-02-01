@@ -37,10 +37,10 @@ public class UiFactory {
         Message message = messageFactory.getMessage(entity);
         View view = null;
         if (menu != null) {
-            view = new MenuView(activity, menu, mainController);
+            view = new MenuView(mainController, menu);
         }
         if (message != null) {
-            view = new MessageView(activity, message, mainController);
+            view = new MessageView(mainController, message);
         }
         if (entity instanceof ArmyShop) {
             view = new ArmyShopView(activity, (ArmyShop) entity, getPlayer(),
@@ -50,22 +50,20 @@ public class UiFactory {
     }
 
     public View getCountryMenuView() {
-        return new MenuView(activity,
-                menuFactory.getCountryMenu(), mainController);
+        return new MenuView(mainController, menuFactory.getCountryMenu());
     }
 
     public View getWorkersMenuView() {
-        return new MenuView(activity,
-                menuFactory.getWorkersMenu(), mainController);
+        return new MenuView(mainController, menuFactory.getWorkersMenu());
     }
 
 
     public View getMapView() {
-        return new MapView(activity, getPlayer(), mainController);
+        return new MapView(mainController);
     }
 
     public View getArmyView() {
-        return new ArmyView(activity, getPlayer(), mainController);
+        return new ArmyView(mainController);
     }
 
     public View getMagicView() {

@@ -9,9 +9,9 @@ import android.view.MotionEvent;
 import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.ImageCache;
 import com.neschur.kb2.app.R;
+import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.models.Magics;
-import com.neschur.kb2.app.views.interfaces.ViewClosable;
 import com.neschur.kb2.app.warriors.WarriorFactory;
 
 import java.util.HashMap;
@@ -21,8 +21,8 @@ public class MagicView extends View {
     private int mode = 0;
     private final HashMap<Integer, Integer> armyIdCache = new HashMap<>();
 
-    public MagicView(Context context, Magics magics, ViewClosable closeCallback) {
-        super(context, closeCallback);
+    public MagicView(Context context, Magics magics, ViewController viewController) {
+        super(viewController);
         this.magics = magics;
     }
 
@@ -33,7 +33,7 @@ public class MagicView extends View {
             if (item == 4) {
                 mode = 1;
             } else {
-                closeCallback.viewClose();
+                viewController.viewClose();
             }
         } else if (mode == 1) {
             int x = (int) event.getX() / stepX() + 1;

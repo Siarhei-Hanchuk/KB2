@@ -1,6 +1,5 @@
 package com.neschur.kb2.app.views;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -10,21 +9,21 @@ import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.I18n;
+import com.neschur.kb2.app.controllers.PlayerViewsController;
 import com.neschur.kb2.app.models.Player;
-import com.neschur.kb2.app.views.interfaces.ViewClosable;
 import com.neschur.kb2.app.warriors.WarriorSquad;
 
 public class ArmyView extends View {
     private Player player;
 
-    public ArmyView(Context context, Player player, ViewClosable closeCallback) {
-        super(context, closeCallback);
-        this.player = player;
+    public ArmyView(PlayerViewsController playerViewsController) {
+        super(playerViewsController);
+        this.player = playerViewsController.getPlayer();
     }
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
-        closeCallback.viewClose();
+        viewController.viewClose();
         drawThread.refresh();
         return super.onTouchEvent(event);
     }
