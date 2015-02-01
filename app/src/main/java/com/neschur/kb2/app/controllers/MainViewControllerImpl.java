@@ -1,6 +1,7 @@
 package com.neschur.kb2.app.controllers;
 
 import android.app.Activity;
+import android.view.SurfaceView;
 
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
@@ -10,10 +11,12 @@ import com.neschur.kb2.app.views.ViewFactory;
 public class MainViewControllerImpl extends ApplicationController implements MainViewController,
         ActivateCallback {
     private GameGrid gameGrid;
+    private SurfaceView view;
 
     public MainViewControllerImpl(Activity activity) {
         super(activity);
-        setContentView(ViewFactory.getMainView(this));
+        view = ViewFactory.getMainView(this);
+        setContentView(view);
     }
 
     @Override
@@ -84,7 +87,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
                         grid.setMode(1);
                         break;
                     case 1:
-                        setContentView((new ViewFactory(this)).getWorkersMenuView());
+                        setContentView(ViewFactory.getWorkersMenuView(this));
                         break;
                     case 2:
                         grid.setMode(2);
@@ -99,7 +102,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
             case 1:
                 switch (i) {
                     case 0:
-//                        setContentView(ViewFactory.getArmyView(this));
+                        new PlayerViewsControllerImpl(activity, "army");
                         grid.setMode(0);
                         break;
                     case 4:
@@ -110,7 +113,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
             case 2:
                 switch (i) {
                     case 0:
-//                        setContentView(ViewFactory.getMagicView(this));
+                        new PlayerViewsControllerImpl(activity, "magic");
                         grid.setMode(0);
                         break;
                     case 4:
@@ -121,7 +124,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
             case 3:
                 switch (i) {
                     case 0:
-//                        setContentView((new ViewFactory(this)).getMapView());
+                        new PlayerViewsControllerImpl(activity, "map");
                         break;
                     case 1:
                         if (getGameController().getPlayer().inNave()) {
@@ -138,6 +141,6 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
 
     @Override
     public void viewClose() {
-
+        setContentView(view);
     }
 }

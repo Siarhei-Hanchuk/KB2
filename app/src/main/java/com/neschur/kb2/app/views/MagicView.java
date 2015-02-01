@@ -40,6 +40,7 @@ class MagicView extends View {
             int x = (int) event.getX() / stepX() + 1;
             int y = (int) event.getY() / stepY() + 1;
             magicViewController.takeArmy(armyIdCache.get(x*y));
+            viewController.viewClose();
         }
         drawThread.refresh();
         return super.onTouchEvent(event);

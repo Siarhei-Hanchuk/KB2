@@ -10,12 +10,11 @@ import com.neschur.kb2.app.views.ViewFactory;
 
 public class BattleControllerImpl extends ApplicationController implements BattleController {
     private BattleField battleField;
-    private MainController mainController;
+//    private MainController mainController;
 
-    public BattleControllerImpl(Activity activity, MainController mainController, Fighting fighting) {
+    public BattleControllerImpl(Activity activity, GameControllerOwner controller, Fighting fighting) {
         super(activity);
-        this.battleField = new BattleField(mainController.getPlayer(), fighting, this);
-        this.mainController = mainController;
+        this.battleField = new BattleField(controller.getGameController().getPlayer(), fighting, this);
         SurfaceView battleView = ViewFactory.getBattleView(this);
     }
 

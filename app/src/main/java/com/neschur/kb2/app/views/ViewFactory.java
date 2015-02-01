@@ -48,10 +48,9 @@ public class ViewFactory {
         return new MenuView(controller, menuFactory.getCountryMenu());
     }
 
-    public SurfaceView getWorkersMenuView() {
-        return new MenuView(controller, menuFactory.getWorkersMenu());
+    public static SurfaceView getWorkersMenuView(ViewController controller) {
+        return new MenuView(controller, (new MenuFactory(controller)).getWorkersMenu());
     }
-
 
     public static SurfaceView getMapView(PlayerViewsController controller) {
         return new MapView(controller);
