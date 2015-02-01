@@ -1,6 +1,6 @@
 package com.neschur.kb2.app.entities;
 
-import com.neschur.kb2.app.Mover;
+import com.neschur.kb2.app.models.Mover;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.models.MapPoint;
 

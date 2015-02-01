@@ -1,6 +1,8 @@
 package com.neschur.kb2.app.models;
 
-public class Magics {
+import java.io.Serializable;
+
+public class Magics implements Serializable {
     private int[] magics = {0, 0, 0, 0, 0, 0, 0};
 
     public int getMagic(int n) {

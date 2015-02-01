@@ -1,10 +1,12 @@
-package com.neschur.kb2.app;
+package com.neschur.kb2.app.models;
 
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.models.Glade;
 import com.neschur.kb2.app.models.MapPoint;
 
-public class Mover {
+import java.io.Serializable;
+
+public class Mover implements Serializable {
     private Glade glade;
 
     public Mover(Glade glade) {
