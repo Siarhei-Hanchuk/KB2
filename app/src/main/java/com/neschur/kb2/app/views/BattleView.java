@@ -11,7 +11,6 @@ import android.view.MotionEvent;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.BattleController;
-import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.models.battle.MapPointBattle;
 import com.neschur.kb2.app.models.battle.WarriorEntity;
 

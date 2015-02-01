@@ -1,8 +1,6 @@
 package com.neschur.kb2.app.ui.messages;
 
-import com.neschur.kb2.app.controllers.GameController;
-import com.neschur.kb2.app.controllers.MainController;
-import com.neschur.kb2.app.controllers.ViewController;
+import com.neschur.kb2.app.controllers.GameControllerOwner;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.GoldChest;
 import com.neschur.kb2.app.entities.GuidePost;
@@ -11,27 +9,23 @@ import com.neschur.kb2.app.entities.MapNext;
 import com.neschur.kb2.app.entities.Sorcerer;
 
 public class MessageFactory {
-    private final ViewController mainController;
+    private final GameControllerOwner controller;
 
-    public MessageFactory (ViewController mainController) {
-        this.mainController = mainController;
+    public MessageFactory (GameControllerOwner mainController) {
+        this.controller = mainController;
     }
 
     public Message getMessage(Entity entity) {
         if (entity instanceof MapNext)
-            return new NextMapMessage(entity, getGameController());
+            return new NextMapMessage(entity, controller.getGameController());
         if (entity instanceof HarmfulMap)
-            return new HarmfulMapMessage(entity, getGameController());
+            return new HarmfulMapMessage(entity, controller.getGameController());
         if (entity instanceof GuidePost)
-            return new GuidePostMessage(entity, getGameController());
+            return new GuidePostMessage(entity, controller.getGameController());
         if (entity instanceof GoldChest && ((GoldChest) entity).isBonus())
-            return new GoldChestMessage(entity, getGameController());
+            return new GoldChestMessage(entity, controller.getGameController());
         if (entity instanceof Sorcerer)
-            return new SorcererMessage(entity, getGameController());
+            return new SorcererMessage(entity, controller.getGameController());
         return null;
-    }
-
-    private GameController getGameController() {
-        return mainController.getGameController();
     }
 }

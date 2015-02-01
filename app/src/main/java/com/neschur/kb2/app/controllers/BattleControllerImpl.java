@@ -1,14 +1,10 @@
 package com.neschur.kb2.app.controllers;
 
 import android.app.Activity;
-import android.content.Context;
-import android.view.Surface;
 import android.view.SurfaceView;
 
 import com.neschur.kb2.app.entities.Fighting;
-import com.neschur.kb2.app.models.Player;
 import com.neschur.kb2.app.models.battle.BattleField;
-import com.neschur.kb2.app.models.battle.BattleFinishing;
 import com.neschur.kb2.app.models.battle.MapPointBattle;
 import com.neschur.kb2.app.views.ViewFactory;
 

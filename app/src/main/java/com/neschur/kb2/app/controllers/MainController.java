@@ -6,15 +6,15 @@ import android.view.SurfaceView;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
-//import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.models.Player;
 import com.neschur.kb2.app.views.ViewFactory;
 import com.neschur.kb2.app.warriors.WarriorFactory;
 
+//import com.neschur.kb2.app.models.GameGrid;
+
 public class MainController extends ApplicationController implements
         PlayerViewsController, ArmyShopViewController, MagicViewController {
     private SurfaceView mainView;
-//    private GameGrid gameGrid;
     private ViewFactory viewFactory;
     private ViewController currentController;
 
