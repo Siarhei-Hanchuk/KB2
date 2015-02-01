@@ -1,6 +1,7 @@
 package com.neschur.kb2.app.controllers;
 
 import android.content.Context;
+import android.view.SurfaceView;
 
 import com.neschur.kb2.app.MainActivity;
 import com.neschur.kb2.app.Storage;
@@ -10,14 +11,13 @@ import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.models.Player;
 import com.neschur.kb2.app.models.battle.BattleFinishing;
 import com.neschur.kb2.app.views.ViewFactory;
-import com.neschur.kb2.app.views.View;
 
 public class MainController implements BattleFinishing, MainViewController, PlayerViewsController {
     private MainActivity activity;
     private GameController gameController;
-    private View mainView;
-    private View mainMenuView;
-    private View battleView;
+    private SurfaceView mainView;
+    private SurfaceView mainMenuView;
+    private SurfaceView battleView;
     private int gameMode = 0;
     private GameGrid gameGrid;
     private ViewFactory viewFactory;
@@ -150,7 +150,7 @@ public class MainController implements BattleFinishing, MainViewController, Play
     }
 
     public void activateEntity(Entity entity) {
-        View view = viewFactory.getViewForEntity(entity);
+        SurfaceView view = viewFactory.getViewForEntity(entity);
         if (view != null)
             activity.setContentView(view);
     }

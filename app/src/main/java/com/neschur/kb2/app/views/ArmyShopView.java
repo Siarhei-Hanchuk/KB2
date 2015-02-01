@@ -1,6 +1,5 @@
 package com.neschur.kb2.app.views;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -13,7 +12,6 @@ import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.ArmyBuyer;
 import com.neschur.kb2.app.controllers.PlayerViewsController;
-import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.models.Player;
 import com.neschur.kb2.app.warriors.Warrior;

@@ -1,5 +1,7 @@
 package com.neschur.kb2.app.views;
 
+import android.view.SurfaceView;
+
 import com.neschur.kb2.app.controllers.BattleController;
 import com.neschur.kb2.app.controllers.MainController;
 import com.neschur.kb2.app.entities.ArmyShop;
@@ -8,13 +10,6 @@ import com.neschur.kb2.app.ui.menus.Menu;
 import com.neschur.kb2.app.ui.menus.MenuFactory;
 import com.neschur.kb2.app.ui.messages.Message;
 import com.neschur.kb2.app.ui.messages.MessageFactory;
-import com.neschur.kb2.app.views.ArmyShopView;
-import com.neschur.kb2.app.views.ArmyView;
-import com.neschur.kb2.app.views.MagicView;
-import com.neschur.kb2.app.views.MapView;
-import com.neschur.kb2.app.views.MenuView;
-import com.neschur.kb2.app.views.MessageView;
-import com.neschur.kb2.app.views.View;
 
 public class ViewFactory {
     private final MainController mainController;
@@ -28,7 +23,7 @@ public class ViewFactory {
         this.messageFactory = new MessageFactory(mainController);
     }
 
-    public View getViewForEntity(Entity entity) {
+    public SurfaceView getViewForEntity(Entity entity) {
         Menu menu = menuFactory .getMenu(entity);
         Message message = messageFactory.getMessage(entity);
         View view = null;
@@ -45,36 +40,36 @@ public class ViewFactory {
         return view;
     }
 
-    public View getCountryMenuView() {
+    public SurfaceView getCountryMenuView() {
         return new MenuView(mainController, menuFactory.getCountryMenu());
     }
 
-    public View getWorkersMenuView() {
+    public SurfaceView getWorkersMenuView() {
         return new MenuView(mainController, menuFactory.getWorkersMenu());
     }
 
 
-    public View getMapView() {
+    public SurfaceView getMapView() {
         return new MapView(mainController);
     }
 
-    public View getArmyView() {
+    public SurfaceView getArmyView() {
         return new ArmyView(mainController);
     }
 
-    public View getMagicView() {
+    public SurfaceView getMagicView() {
         return new MagicView(mainController);
     }
 
-    public View getMainMenuView() {
+    public SurfaceView getMainMenuView() {
         return new MainMenuView(mainController);
     }
 
-    public View getMainView() {
+    public SurfaceView getMainView() {
         return new MainView(mainController);
     }
 
-    public View getBattleView(BattleController battleController) {
+    public SurfaceView getBattleView(BattleController battleController) {
         return new BattleView(mainController, battleController);
     }
 }
