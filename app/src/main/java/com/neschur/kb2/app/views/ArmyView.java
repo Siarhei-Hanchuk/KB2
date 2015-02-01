@@ -1,6 +1,5 @@
 package com.neschur.kb2.app.views;
 
-import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -14,7 +13,6 @@ import com.neschur.kb2.app.controllers.PlayerViewsController;
 import com.neschur.kb2.app.models.Player;
 import com.neschur.kb2.app.warriors.WarriorSquad;
 
-@SuppressLint("ViewConstructor")
 class ArmyView extends View {
     private final Player player;
 
