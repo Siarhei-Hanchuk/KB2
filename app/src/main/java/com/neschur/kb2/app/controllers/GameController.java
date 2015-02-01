@@ -14,7 +14,7 @@ public class GameController implements Serializable {
     public static final int MODE_TRAINING = Player.MODE_TRAINING;
     public static final int MODE_GAME = Player.MODE_GAME;
 
-    transient private MainController mainController;
+    transient private ActivateCallback mainController;
 
     private World world;
     private Player player;
@@ -23,7 +23,7 @@ public class GameController implements Serializable {
     private int days = 0;
     private int currentWorker = -1;
 
-    public GameController(MainController mainController, int mode) {
+    public GameController(ActivateCallback mainController, int mode) {
         this.mainController = mainController;
         world = new World(mode);
         player = new Player(world.getCountry(0), mode);
@@ -140,7 +140,7 @@ public class GameController implements Serializable {
         mainController.activateBattle(fighting);
     }
 
-    public void setMainController(MainController mainController) {
+    public void setActivateCallback(ActivateCallback mainController) {
         this.mainController = mainController;
     }
 

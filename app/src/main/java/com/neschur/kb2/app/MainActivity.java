@@ -7,10 +7,9 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.neschur.kb2.app.controllers.MainController;
+import com.neschur.kb2.app.controllers.MainMenuControllerImpl;
 
 public class MainActivity extends Activity {
-    private MainController mainController;
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -20,11 +19,11 @@ public class MainActivity extends Activity {
 
         I18n.setResources(getResources());
 
-        mainController = new MainController(this);
+        new MainMenuControllerImpl(this);
     }
 
     @Override
     public void onBackPressed() {
-        mainController.activateMainMenu();
+        new MainMenuControllerImpl(this);
     }
 }

@@ -7,12 +7,8 @@ import com.neschur.kb2.app.Storage;
 import com.neschur.kb2.app.views.ViewFactory;
 
 public class MainMenuControllerImpl extends ApplicationController implements MainMenuController{
-    private MainController mainController;
-
-    public MainMenuControllerImpl(Activity activity, MainController mainController) {
+    public MainMenuControllerImpl(Activity activity) {
         super(activity);
-        this.mainController = mainController;
-
         setContentView(ViewFactory.getMainMenuView(this));
     }
 
@@ -23,23 +19,21 @@ public class MainMenuControllerImpl extends ApplicationController implements Mai
 
     @Override
     public void newGame() {
-        setGameController(new GameController(mainController, GameController.MODE_GAME));
-        setMainView(ViewFactory.getMainView(new MainViewControllerImpl(activity)));
+        setGameController(new GameController(new MainViewControllerImpl(activity), 1));
+
     }
 
     @Override
     public void newTraining() {
-        setGameController(new GameController(mainController, GameController.MODE_TRAINING));
-        setMainView(ViewFactory.getMainView(new MainViewControllerImpl(activity)));
+        setGameController(new GameController(new MainViewControllerImpl(activity), 0));
     }
 
     @Override
     public void loadGame() {
         Storage storage = new Storage(activity);
         GameController gameController = storage.loadGame("save1");
-        mainController.setGameController(gameController);
-        SurfaceView mainView = ViewFactory.getMainView(new MainViewControllerImpl(activity));
-        setMainView(mainView);
+        setGameController(gameController);
+        new MainViewControllerImpl(activity);
     }
 
     @Override
@@ -57,9 +51,5 @@ public class MainMenuControllerImpl extends ApplicationController implements Mai
     @Override
     public void viewClose() {
         setContentView(ViewFactory.getMainView(new MainViewControllerImpl(activity)));
-    }
-
-    private void setMainView(SurfaceView view) {
-        mainController.setMainView(view);
     }
 }

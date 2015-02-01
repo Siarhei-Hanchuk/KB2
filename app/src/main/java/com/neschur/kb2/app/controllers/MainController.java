@@ -10,10 +10,8 @@ import com.neschur.kb2.app.models.Player;
 import com.neschur.kb2.app.views.ViewFactory;
 import com.neschur.kb2.app.warriors.WarriorFactory;
 
-//import com.neschur.kb2.app.models.GameGrid;
-
 public class MainController extends ApplicationController implements
-        PlayerViewsController, ArmyShopViewController, MagicViewController {
+        PlayerViewsController, ArmyShopViewController, MagicViewController, ActivateCallback {
     private SurfaceView mainView;
     private ViewFactory viewFactory;
     private ViewController currentController;
@@ -21,7 +19,7 @@ public class MainController extends ApplicationController implements
     public MainController(Activity activity) {
         super(activity);
 
-        currentController = new MainMenuControllerImpl(activity, this);
+        currentController = new MainMenuControllerImpl(activity);
         viewFactory = new ViewFactory(this);
     }
 
@@ -42,7 +40,7 @@ public class MainController extends ApplicationController implements
 
     public void activateMainMenu() {
         if (!(currentController instanceof MainController))
-            currentController = new MainMenuControllerImpl(activity, this);
+            currentController = new MainMenuControllerImpl(activity);
     }
 
 

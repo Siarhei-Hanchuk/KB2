@@ -2,10 +2,14 @@ package com.neschur.kb2.app.views;
 
 import android.view.SurfaceView;
 
+import com.neschur.kb2.app.controllers.ArmyShopViewController;
 import com.neschur.kb2.app.controllers.BattleController;
+import com.neschur.kb2.app.controllers.MagicViewController;
 import com.neschur.kb2.app.controllers.MainMenuController;
 import com.neschur.kb2.app.controllers.MainViewController;
+import com.neschur.kb2.app.controllers.PlayerViewsController;
 import com.neschur.kb2.app.controllers.ViewController;
+import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.ui.menus.Menu;
 import com.neschur.kb2.app.ui.menus.MenuFactory;
@@ -34,9 +38,9 @@ public class ViewFactory {
         if (message != null) {
             view = new MessageView(controller, message);
         }
-//        if (entity instanceof ArmyShop) {
-//            view = new ArmyShopView(controller, (ArmyShop) entity);
-//        }
+        if (entity instanceof ArmyShop) {
+            view = new ArmyShopView((ArmyShopViewController)controller, (ArmyShop) entity);
+        }
         return view;
     }
 
@@ -49,16 +53,16 @@ public class ViewFactory {
     }
 
 
-    public SurfaceView getMapView() {
-        return null;//new MapView(mainController);
+    public static SurfaceView getMapView(PlayerViewsController controller) {
+        return new MapView(controller);
     }
 
-    public SurfaceView getArmyView() {
-        return null;//new ArmyView(mainController);
+    public static SurfaceView getArmyView(PlayerViewsController controller) {
+        return new ArmyView(controller);
     }
 
-    public SurfaceView getMagicView() {
-        return null;//new MagicView(mainController);
+    public static SurfaceView getMagicView(MagicViewController controller) {
+        return new MagicView(controller);
     }
 
     public static SurfaceView getMainMenuView(MainMenuController controller) {
