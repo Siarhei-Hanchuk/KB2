@@ -28,4 +28,8 @@ public class MessageFactory {
             return new SorcererMessage(entity, controller.getGameController());
         return null;
     }
+
+    public Message getBattleMessage(boolean result) {
+        return new BattleFinishMessage(null, controller.getGameController(), result);
+    }
 }

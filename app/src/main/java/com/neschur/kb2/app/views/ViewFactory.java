@@ -69,6 +69,10 @@ public class ViewFactory {
         return view;
     }
 
+    public static SurfaceView getViewBattleMessageView(ViewController controller, boolean result) {
+        return new MessageView(controller, getMessageFactory(controller).getBattleMessage(result));
+    }
+
     private static MenuFactory getMenuFactory(GameOwner controller) {
         if (menuFactory == null) {
             menuFactory = new MenuFactory(controller);

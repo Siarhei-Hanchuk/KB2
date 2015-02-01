@@ -12,12 +12,13 @@ import com.neschur.kb2.app.models.battle.MapPointBattle;
 import com.neschur.kb2.app.views.ViewFactory;
 
 public class BattleControllerImpl extends ApplicationController implements BattleController {
-    private BattleField battleField;
+    private final BattleField battleField;
+    private final SurfaceView battleView;
 
     public BattleControllerImpl(Activity activity, ViewController controller, Fighting fighting) {
         super(activity);
         this.battleField = new BattleField(controller.getGameController().getPlayer(), fighting, this);
-        SurfaceView battleView = ViewFactory.getBattleView(this);
+        battleView = ViewFactory.getBattleView(this);
         setContentView(battleView);
     }
 
@@ -39,11 +40,11 @@ public class BattleControllerImpl extends ApplicationController implements Battl
 
     @Override
     public void battleFinish(boolean win) {
-
+        setContentView(ViewFactory.getViewBattleMessageView(this, win));
     }
 
     @Override
     public void viewClose() {
-
+        new MainViewControllerImpl(activity);
     }
 }

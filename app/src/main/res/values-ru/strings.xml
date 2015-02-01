@@ -86,4 +86,6 @@
     <string name="magic.hiking_magic5">Дать армию</string>
     <string name="magic.hiking_magic6">Квариавторитет</string>
     <string name="magic.hiking_magic7">Дать волшебство</string>
+    <string name="battle.finish.win">Вы победили</string>
+    <string name="battle.finish.fail">Вы проиграли</string>
 </resources>
