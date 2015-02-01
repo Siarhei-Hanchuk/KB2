@@ -1,7 +1,7 @@
 package com.neschur.kb2.app.models.battle;
 
-import com.neschur.kb2.app.models.Mover;
 import com.neschur.kb2.app.models.MapPoint;
+import com.neschur.kb2.app.models.Mover;
 
 public class BattleAi {
     private BattleField bf;
@@ -28,10 +28,10 @@ public class BattleAi {
                 attackedPoint = findUserWar(false);
             if (attackedPoint != null)
                 if (war.isShoot()) {
-                    war.attack((WarriorEntity)attackedPoint.getEntity());
+                    war.attack((WarriorEntity) attackedPoint.getEntity());
                 } else {
                     if (teleportWarTo(war, attackedPoint.getX(), attackedPoint.getY()))
-                        war.attack((WarriorEntity)attackedPoint.getEntity());
+                        war.attack((WarriorEntity) attackedPoint.getEntity());
                 }
         } else {
             MapPoint attackedPoint = findNearestUserWar(war);
@@ -39,7 +39,7 @@ public class BattleAi {
                 while (war.getStep() > 0) {
                     moveWarTo(war, attackedPoint);
                     if (distance(war, attackedPoint) == 1 && war.getStep() > 0) {
-                        war.attack((WarriorEntity)attackedPoint.getEntity());
+                        war.attack((WarriorEntity) attackedPoint.getEntity());
                     }
                 }
             }
@@ -54,7 +54,7 @@ public class BattleAi {
     private boolean teleportWarTo(WarriorEntity war, int x, int y) {
         for (int i = (x - 1 < 0) ? 0 : x - 1; i <= ((x + 1 < 6) ? x + 1 : 6); i++) {
             for (int j = (y - 1 < 0) ? 0 : y - 1; j <= ((y + 1 < 5) ? y + 1 : 5); j++) {
-                if(mover.teleport(war, bf.getMapPoint(i,j))) {
+                if (mover.teleport(war, bf.getMapPoint(i, j))) {
                     return true;
                 }
             }
@@ -62,7 +62,7 @@ public class BattleAi {
         return false;
     }
 
-    private MapPoint  findUserWar(boolean shoot) {
+    private MapPoint findUserWar(boolean shoot) {
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
                 if (bf.isEntity(x, y) && bf.isFriendly(x, y)) {
@@ -83,7 +83,7 @@ public class BattleAi {
         MapPoint dst = null;
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 5; j++) {
-                if(bf.isEntity(i, j) && bf.isFriendly(i, j)) {
+                if (bf.isEntity(i, j) && bf.isFriendly(i, j)) {
                     int d = distance(war, bf.getMapPoint(i, j));
                     if (d < distance) {
                         distance = d;

@@ -2,15 +2,15 @@ package com.neschur.kb2.app.ui.menus;
 
 import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.R;
-import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Captain;
 import com.neschur.kb2.app.entities.Entity;
+import com.neschur.kb2.app.models.Game;
 
 public class CaptainMenu extends Menu {
     private final Captain captain;
 
-    CaptainMenu(Entity entity, GameController gameController) {
-        super(gameController);
+    CaptainMenu(Entity entity, Game game) {
+        super(game);
         this.captain = (Captain) entity;
     }
 
@@ -45,7 +45,7 @@ public class CaptainMenu extends Menu {
         } else {
             switch (i) {
                 case 0:
-                    gameController.activateBattle(captain);
+                    game.activateBattle(captain);
                     return true;
                 case 1:
                     return true;

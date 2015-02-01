@@ -1,8 +1,8 @@
 package com.neschur.kb2.app.entities;
 
-import com.neschur.kb2.app.models.Mover;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.models.MapPoint;
+import com.neschur.kb2.app.models.Mover;
 
 public class Sorcerer extends EntityImpl implements Moving {
     private Mover mover;

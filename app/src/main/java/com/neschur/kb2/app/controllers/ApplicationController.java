@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.SurfaceView;
 
+import com.neschur.kb2.app.models.Game;
+
 public abstract class ApplicationController implements ViewController, GameControllerOwner {
+    private static Game game;
     protected Activity activity;
-    private static GameController gameController;
 
     public ApplicationController(Activity activity) {
         this.activity = activity;
@@ -22,8 +24,8 @@ public abstract class ApplicationController implements ViewController, GameContr
     }
 
     @Override
-    public GameController getGameController() {
-        return gameController;
+    public Game getGameController() {
+        return game;
     }
 
 //    protected ViewFactory getViewFactory() {
@@ -31,7 +33,7 @@ public abstract class ApplicationController implements ViewController, GameContr
 //    }
 //
 
-    protected void setGameController(GameController gameController) {
-        ApplicationController.gameController = gameController;
+    protected void setGameController(Game game) {
+        ApplicationController.game = game;
     }
 }

@@ -1,11 +1,11 @@
 package com.neschur.kb2.app.ui.menus;
 
 import com.neschur.kb2.app.I18n;
-import com.neschur.kb2.app.controllers.GameController;
+import com.neschur.kb2.app.models.Game;
 
 public class WorkersMenu extends Menu {
-    WorkersMenu(GameController gameController) {
-        super(gameController);
+    WorkersMenu(Game game) {
+        super(game);
     }
 
     @Override
@@ -20,7 +20,7 @@ public class WorkersMenu extends Menu {
 
     @Override
     public boolean select(int i) {
-        gameController.selectWorker(i);
+        game.selectWorker(i);
         return true;
     }
 }

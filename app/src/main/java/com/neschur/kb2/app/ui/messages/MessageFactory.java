@@ -11,7 +11,7 @@ import com.neschur.kb2.app.entities.Sorcerer;
 public class MessageFactory {
     private final GameControllerOwner controller;
 
-    public MessageFactory (GameControllerOwner mainController) {
+    public MessageFactory(GameControllerOwner mainController) {
         this.controller = mainController;
     }
 

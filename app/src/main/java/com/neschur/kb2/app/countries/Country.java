@@ -22,8 +22,8 @@ import java.util.Random;
 public abstract class Country implements Glade, Serializable {
     public final static int MAX_MAP_SIZE = 65;
     protected final MapPoint[][] map;
-    protected int id;
     private final Random random;
+    protected int id;
     private Sorcerer sorcerer;
 
     public Country() {

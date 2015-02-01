@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Base64;
 
-import com.neschur.kb2.app.controllers.GameController;
+import com.neschur.kb2.app.models.Game;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -20,12 +20,12 @@ public class Storage {
         prefs = activity.getSharedPreferences("main", Context.MODE_PRIVATE);
     }
 
-    public boolean saveGame(GameController game, String key) {
+    public boolean saveGame(Game game, String key) {
         return saveObject(key, game);
     }
 
-    public GameController loadGame(String key) {
-        return (GameController) loadObject(key);
+    public Game loadGame(String key) {
+        return (Game) loadObject(key);
     }
 
     private boolean saveObject(String key, Object object) {

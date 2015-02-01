@@ -1,20 +1,18 @@
 package com.neschur.kb2.app.models;
 
 import com.neschur.kb2.app.R;
-import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.countries.Country;
 
 public class GameGrid {
     public static final int STEP_X = 6;
     public static final int STEP_Y = 5;
-
-    private Player player;
     private int[][] background = new int[STEP_Y][STEP_Y];
     private int[][] grid = new int[STEP_X][STEP_Y];
+    private Player player;
     private int mode = 0;
 
-    public GameGrid(GameController gameController) {
-        player = gameController.getPlayer();
+    public GameGrid(Game game) {
+        player = game.getPlayer();
     }
 
     public void update() {

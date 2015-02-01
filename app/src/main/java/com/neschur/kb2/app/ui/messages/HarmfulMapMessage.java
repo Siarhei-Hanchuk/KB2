@@ -1,12 +1,12 @@
 package com.neschur.kb2.app.ui.messages;
 
 import com.neschur.kb2.app.I18n;
-import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
+import com.neschur.kb2.app.models.Game;
 
 public class HarmfulMapMessage extends MapMessage {
-    HarmfulMapMessage(Entity entity, GameController gameController) {
-        super(entity, gameController);
+    HarmfulMapMessage(Entity entity, Game game) {
+        super(entity, game);
     }
 
     @Override
@@ -27,8 +27,8 @@ public class HarmfulMapMessage extends MapMessage {
                 return;
             case 1:
                 // TODO bad destroy
-                if (gameController.getNave())
-                    gameController.destroyNave();
+                if (game.getNave())
+                    game.destroyNave();
                 return;
             case 2:
                 // TODO

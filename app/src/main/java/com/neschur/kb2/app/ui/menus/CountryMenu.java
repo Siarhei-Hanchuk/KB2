@@ -1,11 +1,11 @@
 package com.neschur.kb2.app.ui.menus;
 
 import com.neschur.kb2.app.I18n;
-import com.neschur.kb2.app.controllers.GameController;
+import com.neschur.kb2.app.models.Game;
 
 public class CountryMenu extends Menu {
-    CountryMenu(GameController gameController) {
-        super(gameController);
+    CountryMenu(Game game) {
+        super(game);
     }
 
     @Override
@@ -15,7 +15,7 @@ public class CountryMenu extends Menu {
 
     @Override
     public boolean select(int i) {
-        player.changeCountry(gameController.getWorld().getCountry(i));
+        player.changeCountry(game.getWorld().getCountry(i));
         return true;
     }
 

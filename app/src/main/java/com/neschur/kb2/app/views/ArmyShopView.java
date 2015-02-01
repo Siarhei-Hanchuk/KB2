@@ -67,7 +67,7 @@ class ArmyShopView extends View {
     public void draw(@NonNull Canvas canvas) {
         Paint paint = getDefaultPaint();
         Paint smallFont = new Paint(paint);
-        smallFont.setTextSize(textHeight()/2);
+        smallFont.setTextSize(textHeight() / 2);
 
         canvas.drawColor(Color.BLACK);
 
@@ -97,7 +97,7 @@ class ArmyShopView extends View {
         canvas.drawText(I18n.translate("army_names_" + warrior.getTextId()),
                 imageWidth + 10, menuItemHeight(), paint);
         canvas.drawText(I18n.translate(R.string.army_ui_thereIs) + ": " + shop.getCount(),
-                imageWidth + 10, (int)(menuItemHeight() * 1.5), smallFont);
+                imageWidth + 10, (int) (menuItemHeight() * 1.5), smallFont);
         canvas.drawText(I18n.translate(R.string.army_ui_price) + ": " + warrior.getPriceInShop(),
                 imageWidth + 10, menuItemHeight() * 2, smallFont);
         canvas.drawText(I18n.translate(R.string.player_attrs_money) + ": " + player.getMoney(),

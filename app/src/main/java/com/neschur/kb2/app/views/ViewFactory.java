@@ -28,26 +28,6 @@ public class ViewFactory {
         this.messageFactory = new MessageFactory(controller);
     }
 
-    public SurfaceView getViewForEntity(Entity entity) {
-        Menu menu = menuFactory.getMenu(entity);
-        Message message = messageFactory.getMessage(entity);
-        View view = null;
-        if (menu != null) {
-            view = new MenuView(controller, menu);
-        }
-        if (message != null) {
-            view = new MessageView(controller, message);
-        }
-        if (entity instanceof ArmyShop) {
-            view = new ArmyShopView((ArmyShopViewController)controller, (ArmyShop) entity);
-        }
-        return view;
-    }
-
-    public SurfaceView getCountryMenuView() {
-        return new MenuView(controller, menuFactory.getCountryMenu());
-    }
-
     public static SurfaceView getWorkersMenuView(ViewController controller) {
         return new MenuView(controller, (new MenuFactory(controller)).getWorkersMenu());
     }
@@ -74,5 +54,25 @@ public class ViewFactory {
 
     public static SurfaceView getBattleView(BattleController controller) {
         return new BattleView(controller);
+    }
+
+    public SurfaceView getViewForEntity(Entity entity) {
+        Menu menu = menuFactory.getMenu(entity);
+        Message message = messageFactory.getMessage(entity);
+        View view = null;
+        if (menu != null) {
+            view = new MenuView(controller, menu);
+        }
+        if (message != null) {
+            view = new MessageView(controller, message);
+        }
+        if (entity instanceof ArmyShop) {
+            view = new ArmyShopView((ArmyShopViewController) controller, (ArmyShop) entity);
+        }
+        return view;
+    }
+
+    public SurfaceView getCountryMenuView() {
+        return new MenuView(controller, menuFactory.getCountryMenu());
     }
 }

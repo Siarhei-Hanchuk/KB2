@@ -1,11 +1,11 @@
 package com.neschur.kb2.app.models.battle;
 
-import com.neschur.kb2.app.models.Mover;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.BattleController;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.models.Glade;
 import com.neschur.kb2.app.models.MapPoint;
+import com.neschur.kb2.app.models.Mover;
 import com.neschur.kb2.app.models.Player;
 
 public class BattleField implements Glade {
@@ -41,7 +41,7 @@ public class BattleField implements Glade {
     public void prepareField() {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 5; j++) {
-                map[i][j] = new MapPointBattle(this, i ,j);
+                map[i][j] = new MapPointBattle(this, i, j);
                 map[i][j].setLand(R.drawable.land);
             }
         }
@@ -156,7 +156,7 @@ public class BattleField implements Glade {
             return;
         step--;
         map[x][y].setMove(true);
-        if(!isEntity(x, y) || ignoreEntity) {
+        if (!isEntity(x, y) || ignoreEntity) {
             snake(x + 1, y, step, false);
             snake(x - 1, y, step, false);
             snake(x, y + 1, step, false);

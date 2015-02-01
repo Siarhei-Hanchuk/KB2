@@ -17,8 +17,8 @@ import java.util.HashMap;
 
 class MagicView extends View {
     private final Magics magics;
-    private int mode = 0;
     private final HashMap<Integer, String> armyIdCache = new HashMap<>();
+    private int mode = 0;
     private MagicViewController magicViewController;
 
     public MagicView(MagicViewController magicViewController) {
@@ -39,7 +39,7 @@ class MagicView extends View {
         } else if (mode == 1) {
             int x = (int) event.getX() / stepX() + 1;
             int y = (int) event.getY() / stepY() + 1;
-            magicViewController.takeArmy(armyIdCache.get(x*y));
+            magicViewController.takeArmy(armyIdCache.get(x * y));
             viewController.viewClose();
         }
         drawThread.refresh();

@@ -1,15 +1,15 @@
 package com.neschur.kb2.app.ui.menus;
 
 import com.neschur.kb2.app.I18n;
-import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.GoldChest;
+import com.neschur.kb2.app.models.Game;
 
 public class GoldChestMenu extends Menu {
     private final GoldChest chest;
 
-    GoldChestMenu(Entity entity, GameController gameController) {
-        super(gameController);
+    GoldChestMenu(Entity entity, Game game) {
+        super(game);
         this.chest = (GoldChest) entity;
     }
 

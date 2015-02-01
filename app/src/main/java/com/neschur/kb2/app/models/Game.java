@@ -1,16 +1,15 @@
-package com.neschur.kb2.app.controllers;
+package com.neschur.kb2.app.models;
 
 import com.neschur.kb2.app.R;
+import com.neschur.kb2.app.controllers.ActivateCallback;
 import com.neschur.kb2.app.countries.World;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.entities.Nave;
-import com.neschur.kb2.app.models.MapPoint;
-import com.neschur.kb2.app.models.Player;
 
 import java.io.Serializable;
 
-public class GameController implements Serializable {
+public class Game implements Serializable {
     public static final int MODE_TRAINING = Player.MODE_TRAINING;
     public static final int MODE_GAME = Player.MODE_GAME;
 
@@ -23,7 +22,7 @@ public class GameController implements Serializable {
     private int days = 0;
     private int currentWorker = -1;
 
-    public GameController(ActivateCallback mainController, int mode) {
+    public Game(ActivateCallback mainController, int mode) {
         this.mainController = mainController;
         world = new World(mode);
         player = new Player(world.getCountry(0), mode);

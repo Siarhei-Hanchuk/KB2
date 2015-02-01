@@ -2,9 +2,9 @@ package com.neschur.kb2.app.ui.menus;
 
 import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.R;
-import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Entity;
+import com.neschur.kb2.app.models.Game;
 
 public class CityMenu extends Menu {
     private final int[] PRICE_WORKERS = {500, 500, 800, 800};
@@ -12,8 +12,8 @@ public class CityMenu extends Menu {
     private final int PRICE_WALLKICK = 3000;
     private final City city;
 
-    CityMenu(Entity city, GameController gameController) {
-        super(gameController);
+    CityMenu(Entity city, Game game) {
+        super(game);
         this.city = (City) city;
     }
 
@@ -25,7 +25,7 @@ public class CityMenu extends Menu {
                     case 0:
                         return I18n.translate(R.string.entity_menus_city_item1);
                     case 1:
-                        if (gameController.getNave())
+                        if (game.getNave())
                             return I18n.translate(R.string.entity_menus_city_item2a);
                         return menuItem("entity_menus_city_item2", PRICE_NAVE);
                     case 2:
@@ -53,8 +53,8 @@ public class CityMenu extends Menu {
             case 0:
                 switch (i) {
                     case 1:
-                        if (gameController.getNave()) {
-                            gameController.destroyNave();
+                        if (game.getNave()) {
+                            game.destroyNave();
                         } else {
                             buyNave();
                         }
@@ -91,7 +91,7 @@ public class CityMenu extends Menu {
         for (x = city.getX() - 1; x <= city.getX() + 1; x++) {
             for (y = city.getY() - 1; y <= city.getY() + 1; y++) {
                 if (city.getCountry().getMapPoint(x, y).getLand() == R.drawable.water) {
-                    gameController.createNave(x, y);
+                    game.createNave(x, y);
                     return;
                 }
             }

@@ -2,12 +2,12 @@ package com.neschur.kb2.app.ui.messages;
 
 import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.R;
-import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
+import com.neschur.kb2.app.models.Game;
 
 public class NextMapMessage extends Message {
-    NextMapMessage(Entity entity, GameController gameController) {
-        super(entity, gameController);
+    NextMapMessage(Entity entity, Game game) {
+        super(entity, game);
     }
 
     @Override

@@ -1,17 +1,17 @@
 package com.neschur.kb2.app.ui.menus;
 
 import com.neschur.kb2.app.I18n;
-import com.neschur.kb2.app.controllers.GameController;
+import com.neschur.kb2.app.models.Game;
 import com.neschur.kb2.app.models.Player;
 
 public abstract class Menu {
-    final GameController gameController;
+    final Game game;
     final Player player;
     int menuMode = 0;
 
-    Menu(GameController gameController) {
-        this.gameController = gameController;
-        this.player = gameController.getPlayer();
+    Menu(Game game) {
+        this.game = game;
+        this.player = game.getPlayer();
     }
 
     public abstract int getCount();

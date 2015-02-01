@@ -1,14 +1,14 @@
 package com.neschur.kb2.app.ui.messages;
 
 import com.neschur.kb2.app.I18n;
-import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
+import com.neschur.kb2.app.models.Game;
 
 import java.util.Random;
 
 public class GoodMapMessage extends MapMessage {
-    GoodMapMessage(Entity entity, GameController gameController) {
-        super(entity, gameController);
+    GoodMapMessage(Entity entity, Game game) {
+        super(entity, game);
     }
 
     protected int getCount() {

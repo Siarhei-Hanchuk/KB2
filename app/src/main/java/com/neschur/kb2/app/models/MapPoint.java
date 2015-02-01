@@ -24,10 +24,6 @@ public class MapPoint implements Serializable {
         return land;
     }
 
-    public void setLand(int land) {
-        this.land = land;
-    }
-
     public int getDrawable() {
         if (this.entity == null) {
             return land;
@@ -38,10 +34,6 @@ public class MapPoint implements Serializable {
 
     public Entity getEntity() {
         return entity;
-    }
-
-    public void setEntity(Entity entity) {
-        this.entity = entity;
     }
 
     public Glade getGlade() {
@@ -60,7 +52,15 @@ public class MapPoint implements Serializable {
         return land == R.drawable.land;
     }
 
+    public void setLand(int land) {
+        this.land = land;
+    }
+
     public boolean isEntity() {
         return entity != null;
+    }
+
+    public void setEntity(Entity entity) {
+        this.entity = entity;
     }
 }

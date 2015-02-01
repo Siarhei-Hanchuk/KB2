@@ -1,8 +1,6 @@
 package com.neschur.kb2.app.models;
 
 import com.neschur.kb2.app.entities.Entity;
-import com.neschur.kb2.app.models.Glade;
-import com.neschur.kb2.app.models.MapPoint;
 
 import java.io.Serializable;
 

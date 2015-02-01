@@ -1,17 +1,17 @@
 package com.neschur.kb2.app.ui.messages;
 
 import com.neschur.kb2.app.I18n;
-import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.GoldChest;
+import com.neschur.kb2.app.models.Game;
 
 import java.util.Random;
 
 public class GoldChestMessage extends Message {
     private final int mode;
 
-    GoldChestMessage(Entity entity, GameController gameController) {
-        super(entity, gameController);
+    GoldChestMessage(Entity entity, Game game) {
+        super(entity, game);
         mode = (new Random()).nextInt(3);
     }
 
@@ -33,7 +33,7 @@ public class GoldChestMessage extends Message {
     public void action() {
         switch (mode) {
             case 0:
-                player.changeSalary(((GoldChest)entity).getSalary());
+                player.changeSalary(((GoldChest) entity).getSalary());
                 break;
             case 1:
                 player.upMagicMaxCount();

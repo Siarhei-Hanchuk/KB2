@@ -1,12 +1,12 @@
 package com.neschur.kb2.app.ui.messages;
 
-import com.neschur.kb2.app.controllers.GameController;
 import com.neschur.kb2.app.entities.Entity;
+import com.neschur.kb2.app.models.Game;
 
 public class SorcererMessage extends Message {
 
-    SorcererMessage(Entity entity, GameController gameController) {
-        super(entity, gameController);
+    SorcererMessage(Entity entity, Game game) {
+        super(entity, game);
     }
 
     @Override

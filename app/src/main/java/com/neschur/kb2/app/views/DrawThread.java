@@ -4,10 +4,10 @@ import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
 class DrawThread extends Thread {
-    private boolean running = false;
-    private boolean refresh = true;
     private final SurfaceHolder surfaceHolder;
     private final Drawable drawable;
+    private boolean running = false;
+    private boolean refresh = true;
 
     public DrawThread(SurfaceHolder surfaceHolder, Drawable drawable) {
         this.surfaceHolder = surfaceHolder;

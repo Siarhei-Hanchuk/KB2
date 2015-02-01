@@ -27,6 +27,6 @@ public class MapPointBattle extends MapPoint {
 
     @Override
     public void setEntity(Entity entity) {
-        this.entity = (WarriorEntity)entity;
+        this.entity = (WarriorEntity) entity;
     }
 }
