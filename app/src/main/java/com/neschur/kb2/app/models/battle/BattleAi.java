@@ -49,10 +49,10 @@ public class BattleAi {
             MapPoint attackedPoint = findNearestUserWar(war);
             if (attackedPoint != null) {
                 while (war.getStep() > 0) {
-                    moveWarTo(war, attackedPoint);
                     if (distance(war, attackedPoint) == 1 && war.getStep() > 0) {
                         war.attack((WarriorEntity) attackedPoint.getEntity());
                     }
+                    moveWarTo(war, attackedPoint);
                 }
             }
         }
