@@ -1,7 +1,5 @@
 package com.neschur.kb2.app.controllers.implementations;
 
-import android.app.Activity;
-
 import com.neschur.kb2.app.controllers.ApplicationController;
 import com.neschur.kb2.app.controllers.BattleController;
 import com.neschur.kb2.app.controllers.ViewController;
@@ -15,8 +13,7 @@ public class BattleControllerImpl extends ApplicationController implements Battl
     private final BattleField battleField;
     private final BattleView battleView;
 
-    public BattleControllerImpl(Activity activity, ViewController controller, Fighting fighting) {
-        super(activity);
+    public BattleControllerImpl(ViewController controller, Fighting fighting) {
         this.battleField = new BattleField(controller.getGame().getPlayer(), fighting, this);
         battleView = ViewFactory.getBattleView(this);
         setContentView(battleView);
@@ -55,6 +52,6 @@ public class BattleControllerImpl extends ApplicationController implements Battl
 
     @Override
     public void viewClose() {
-        new MainViewControllerImpl(activity);
+        new MainViewControllerImpl();
     }
 }

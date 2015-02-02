@@ -1,7 +1,5 @@
 package com.neschur.kb2.app.controllers.implementations;
 
-import android.app.Activity;
-
 import com.neschur.kb2.app.controllers.ApplicationController;
 import com.neschur.kb2.app.controllers.ArmyShopViewController;
 import com.neschur.kb2.app.controllers.MagicViewController;
@@ -16,8 +14,7 @@ import com.neschur.kb2.app.warriors.WarriorFactory;
 public class PlayerViewsControllerImpl extends ApplicationController
         implements PlayerViewsController, MagicViewController, ArmyShopViewController {
     private View view;
-    public PlayerViewsControllerImpl(Activity activity, Object viewType) {
-        super(activity);
+    public PlayerViewsControllerImpl(Object viewType) {
         if (viewType instanceof String) {
             switch ((String) viewType) {
                 case "magic":
@@ -43,7 +40,7 @@ public class PlayerViewsControllerImpl extends ApplicationController
 
     @Override
     public void viewClose() {
-        new MainViewControllerImpl(activity);
+        new MainViewControllerImpl();
     }
 
     @Override

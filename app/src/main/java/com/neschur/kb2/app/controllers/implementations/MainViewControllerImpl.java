@@ -1,7 +1,5 @@
 package com.neschur.kb2.app.controllers.implementations;
 
-import android.app.Activity;
-
 import com.neschur.kb2.app.controllers.ActivateCallback;
 import com.neschur.kb2.app.controllers.ApplicationController;
 import com.neschur.kb2.app.controllers.MainViewController;
@@ -16,8 +14,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
     private final View view;
     private GameGrid gameGrid;
 
-    public MainViewControllerImpl(Activity activity) {
-        super(activity);
+    public MainViewControllerImpl() {
         view = ViewFactory.getMainView(this);
         setContentView(view);
     }
@@ -32,13 +29,13 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
 
     @Override
     public void activateEntity(Entity entity) {
-        new PlayerViewsControllerImpl(activity, entity);
+        new PlayerViewsControllerImpl(entity);
     }
 
     @Override
     public void activateBattle(Fighting fighting) {
         setContentView(ViewFactory.getWorkersMenuView(this));
-        new BattleControllerImpl(activity, this, fighting);
+        new BattleControllerImpl(this, fighting);
     }
 
     @Override
@@ -109,7 +106,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
             case 1:
                 switch (i) {
                     case 0:
-                        new PlayerViewsControllerImpl(activity, "army");
+                        new PlayerViewsControllerImpl("army");
                         grid.setMode(0);
                         break;
                     case 4:
@@ -121,7 +118,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
             case 2:
                 switch (i) {
                     case 0:
-                        new PlayerViewsControllerImpl(activity, "magic");
+                        new PlayerViewsControllerImpl("magic");
                         grid.setMode(0);
                         break;
                     case 4:
@@ -133,7 +130,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
             case 3:
                 switch (i) {
                     case 0:
-                        new PlayerViewsControllerImpl(activity, "map");
+                        new PlayerViewsControllerImpl("map");
                         break;
                     case 1:
                         if (getGame().getPlayer().inNave()) {

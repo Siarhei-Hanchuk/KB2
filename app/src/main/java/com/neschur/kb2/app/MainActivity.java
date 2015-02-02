@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.neschur.kb2.app.controllers.ApplicationController;
 import com.neschur.kb2.app.controllers.implementations.MainMenuControllerImpl;
+import com.neschur.kb2.app.platforms.AndroidAppControllerImpl;
+import com.neschur.kb2.app.platforms.AndroidStorage;
 
 public class MainActivity extends Activity {
     @Override
@@ -18,12 +21,12 @@ public class MainActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         I18n.setResources(getResources());
-
-        new MainMenuControllerImpl(this);
+        ApplicationController.initApp(new AndroidAppControllerImpl(this), new AndroidStorage(this));
+        new MainMenuControllerImpl();
     }
 
     @Override
     public void onBackPressed() {
-        new MainMenuControllerImpl(this);
+        new MainMenuControllerImpl();
     }
 }

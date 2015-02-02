@@ -19,7 +19,7 @@ public abstract class View extends SurfaceView implements SurfaceHolder.Callback
     int yOffset = 0;
 
     View(ViewController viewController) {
-        super(viewController.getContext());
+        super(null);
         getHolder().addCallback(this);
         this.viewController = viewController;
     }

@@ -1,26 +1,17 @@
 package com.neschur.kb2.app.controllers;
 
-import android.app.Activity;
-import android.content.Context;
-import android.view.SurfaceView;
-
+import com.neschur.kb2.app.Storage;
 import com.neschur.kb2.app.models.Game;
+import com.neschur.kb2.app.views.View;
 
 public abstract class ApplicationController implements ViewController, GameOwner {
     private static Game game;
-    protected final Activity activity;
+    private static AppControllerImpl appControllerImpl;
+    private static Storage storage;
 
-    protected ApplicationController(Activity activity) {
-        this.activity = activity;
-    }
-
-    protected void setContentView(SurfaceView view) {
-        activity.setContentView(view);
-    }
-
-    @Override
-    public Context getContext() {
-        return activity;
+    public static void initApp(AppControllerImpl _appControllerImpl, Storage _storage) {
+        appControllerImpl = _appControllerImpl;
+        storage = _storage;
     }
 
     @Override
@@ -30,5 +21,17 @@ public abstract class ApplicationController implements ViewController, GameOwner
 
     protected void setGame(Game game) {
         ApplicationController.game = game;
+    }
+
+    protected void setContentView(View view) {
+        appControllerImpl.setContentView(view);
+    }
+
+    protected Storage getStorage() {
+        return storage;
+    }
+
+    public void exit() {
+        appControllerImpl.exit();
     }
 }
