@@ -14,14 +14,14 @@ public class BattleField implements Glade {
     private Fighting fighting;
     private WarriorEntity selected;
     private BattleAi ai;
-    private BattleController battleFinishing;
+    private BattleController battleController;
     private Mover mover;
 
-    public BattleField(Player player, Fighting fighting, BattleController battleFinishing) {
+    public BattleField(Player player, Fighting fighting, BattleController battleController) {
         this.player = player;
         this.fighting = fighting;
         this.ai = new BattleAi(this);
-        this.battleFinishing = battleFinishing;
+        this.battleController = battleController;
         this.mover = new Mover(this);
 
         prepareField();
@@ -215,8 +215,14 @@ public class BattleField implements Glade {
                 }
             }
         }
-        ai.move();
+        aiControl();
         newPhase();
+    }
+
+    private void aiControl() {
+        while(!ai.isFinished()) {
+            ai.move();
+        }
     }
 
     private void newPhase() {
@@ -235,10 +241,10 @@ public class BattleField implements Glade {
             }
         }
         if (friendlyCount == 0) {
-            battleFinishing.battleFinish(false);
+            battleController.battleFinish(false);
         }
         if (enemyCount == 0) {
-            battleFinishing.battleFinish(true);
+            battleController.battleFinish(true);
         }
     }
 }
