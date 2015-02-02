@@ -1,5 +1,6 @@
 package com.neschur.kb2.app.controllers;
 
+import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.Storage;
 import com.neschur.kb2.app.models.Game;
 import com.neschur.kb2.app.views.View;
@@ -10,10 +11,12 @@ public abstract class ApplicationController implements ViewController, GameOwner
     private static Storage storage;
     private static ViewFactory viewFactory;
     private static Game game;
+    private static I18n i18n;
 
     public static void initApp(PlatformController _platformController) {
         platformController = _platformController;
         storage = _platformController.getStorage();
+        i18n = _platformController.getI18n();
     }
 
     protected ViewFactory getViewFactory() {
@@ -41,5 +44,9 @@ public abstract class ApplicationController implements ViewController, GameOwner
 
     public void exit() {
         platformController.exit();
+    }
+
+    public I18n i18n() {
+        return i18n;
     }
 }

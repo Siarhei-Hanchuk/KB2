@@ -11,8 +11,8 @@ public class MagicianMenu extends Menu {
     private final int PRICE_TORNADO = 10000;
     private final Entity magician;
 
-    MagicianMenu(Entity magician, Game game) {
-        super(game);
+    MagicianMenu(Entity magician, Game game, I18n i18n) {
+        super(game, i18n);
         this.magician = magician;
     }
 
@@ -39,7 +39,7 @@ public class MagicianMenu extends Menu {
             case 1:
                 return menuItem("entity_menus_city_workers_item" + (i + 1));
             case 2:
-                return I18n.translate("countries_country" + (i - 1));
+                return i18n.translate("countries_country" + (i - 1));
         }
         return null;
     }

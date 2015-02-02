@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.platforms.android.ImageCache;
@@ -18,11 +19,13 @@ public abstract class View extends SurfaceView implements SurfaceHolder.Callback
     DrawThread drawThread;
     int xOffset = 0;
     int yOffset = 0;
+    final I18n i18n;
 
     View(Context context, ViewController viewController) {
         super(context);
         getHolder().addCallback(this);
         this.viewController = viewController;
+        this.i18n = viewController.i18n();
     }
 
     @Override

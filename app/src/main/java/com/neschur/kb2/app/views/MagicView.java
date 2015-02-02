@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
-import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.MagicViewController;
 import com.neschur.kb2.app.models.GameGrid;
@@ -52,7 +51,7 @@ class MagicView extends View {
         canvas.drawColor(Color.BLACK);
         if (mode != 1) {
             for (int i = 1; i < 8; i++) {
-                canvas.drawText(I18n.translate("magic_hiking_magic" + i) + ": "
+                canvas.drawText(i18n.translate("magic_hiking_magic" + i) + ": "
                                 + magics.getMagic(i - 1),
                         0, i * menuItemHeight(), getDefaultPaint());
             }

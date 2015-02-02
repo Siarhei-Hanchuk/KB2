@@ -10,8 +10,8 @@ import java.util.Random;
 public class GoldChestMessage extends Message {
     private final int mode;
 
-    GoldChestMessage(Entity entity, Game game) {
-        super(entity, game);
+    GoldChestMessage(Entity entity, Game game, I18n i18n) {
+        super(entity, game, i18n);
         mode = (new Random()).nextInt(3);
     }
 
@@ -19,9 +19,9 @@ public class GoldChestMessage extends Message {
     public String getText() {
         switch (mode) {
             case 0:
-                return I18n.translate("entity_goldChest_messages_salary");
+                return i18n.translate("entity_goldChest_messages_salary");
             case 1:
-                return I18n.translate("entity_goldChest_messages_magickUp");
+                return i18n.translate("entity_goldChest_messages_magickUp");
             case 2:
                 // TODO
                 return "-";

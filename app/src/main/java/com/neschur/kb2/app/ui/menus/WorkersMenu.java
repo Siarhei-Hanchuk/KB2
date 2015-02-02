@@ -4,8 +4,8 @@ import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.models.Game;
 
 public class WorkersMenu extends Menu {
-    WorkersMenu(Game game) {
-        super(game);
+    WorkersMenu(Game game, I18n i18n) {
+        super(game, i18n);
     }
 
     @Override
@@ -15,7 +15,7 @@ public class WorkersMenu extends Menu {
 
     @Override
     public String getItemDescription(int i) {
-        return I18n.translate("workers_item" + (i + 1)) + ": " + player.getWorker(i);
+        return i18n.translate("workers_item" + (i + 1)) + ": " + player.getWorker(i);
     }
 
     @Override

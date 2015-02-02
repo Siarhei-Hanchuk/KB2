@@ -12,8 +12,8 @@ public class CityMenu extends Menu {
     private final int PRICE_WALLKICK = 3000;
     private final City city;
 
-    CityMenu(Entity city, Game game) {
-        super(game);
+    CityMenu(Entity city, Game game, I18n i18n) {
+        super(game, i18n);
         this.city = (City) city;
     }
 
@@ -23,23 +23,23 @@ public class CityMenu extends Menu {
             case 0:
                 switch (i) {
                     case 0:
-                        return I18n.translate(R.string.entity_menus_city_item1);
+                        return i18n.translate(R.string.entity_menus_city_item1);
                     case 1:
                         if (game.getNave())
-                            return I18n.translate(R.string.entity_menus_city_item2a);
+                            return i18n.translate(R.string.entity_menus_city_item2a);
                         return menuItem("entity_menus_city_item2", PRICE_NAVE);
                     case 2:
-                        return I18n.translate(R.string.entity_menus_city_item3);
+                        return i18n.translate(R.string.entity_menus_city_item3);
                     case 3:
-                        return I18n.translate(R.string.entity_menus_city_item4);
+                        return i18n.translate(R.string.entity_menus_city_item4);
                     case 4:
                         if (player.isWallkick())
                             return "-";
                         return menuItem("entity_menus_city_item5", PRICE_WALLKICK);
                     case 5:
-                        return I18n.translate(R.string.entity_menus_city_item6);
+                        return i18n.translate(R.string.entity_menus_city_item6);
                     case 6:
-                        return I18n.translate(R.string.entity_menus_city_item7);
+                        return i18n.translate(R.string.entity_menus_city_item7);
                 }
             case 1:
                 return menuItem("entity_menus_city_workers_item" + (i + 1), PRICE_WORKERS[i]) + ": " + city.getWorkers(i);

@@ -5,8 +5,8 @@ import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.models.Game;
 
 public class HarmfulMapMessage extends MapMessage {
-    HarmfulMapMessage(Entity entity, Game game) {
-        super(entity, game);
+    HarmfulMapMessage(Entity entity, Game game, I18n i18n) {
+        super(entity, game, i18n);
     }
 
     @Override
@@ -16,7 +16,7 @@ public class HarmfulMapMessage extends MapMessage {
 
     @Override
     public String getText() {
-        return I18n.translate("entity_harmfulMap_message" + (mode + 1));
+        return i18n.translate("entity_harmfulMap_message" + (mode + 1));
     }
 
     @Override

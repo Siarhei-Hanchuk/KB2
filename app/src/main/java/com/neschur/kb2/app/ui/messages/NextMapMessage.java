@@ -6,8 +6,8 @@ import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.models.Game;
 
 public class NextMapMessage extends Message {
-    NextMapMessage(Entity entity, Game game) {
-        super(entity, game);
+    NextMapMessage(Entity entity, Game game, I18n i18n) {
+        super(entity, game, i18n);
     }
 
     @Override
@@ -18,6 +18,6 @@ public class NextMapMessage extends Message {
 
     @Override
     public String getText() {
-        return I18n.translate(R.string.entity_mapNext_message);
+        return i18n.translate(R.string.entity_mapNext_message);
     }
 }

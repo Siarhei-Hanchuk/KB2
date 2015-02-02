@@ -16,25 +16,25 @@ public class MenuFactory {
 
     public Menu getMenu(Entity entity) {
         if (entity instanceof City) {
-            return new CityMenu(entity, gameOwner.getGame());
+            return new CityMenu(entity, gameOwner.getGame(), gameOwner.i18n());
         }
         if (entity instanceof Magician) {
-            return new MagicianMenu(entity, gameOwner.getGame());
+            return new MagicianMenu(entity, gameOwner.getGame(), gameOwner.i18n());
         }
         if (entity instanceof GoldChest && !((GoldChest) entity).isBonus()) {
-            return new GoldChestMenu(entity, gameOwner.getGame());
+            return new GoldChestMenu(entity, gameOwner.getGame(), gameOwner.i18n());
         }
         if (entity instanceof Captain) {
-            return new CaptainMenu(entity, gameOwner.getGame());
+            return new CaptainMenu(entity, gameOwner.getGame(), gameOwner.i18n());
         }
         return null;
     }
 
     public Menu getWorkersMenu() {
-        return new WorkersMenu(gameOwner.getGame());
+        return new WorkersMenu(gameOwner.getGame(), gameOwner.i18n());
     }
 
     public Menu getCountryMenu() {
-        return new CountryMenu(gameOwner.getGame());
+        return new CountryMenu(gameOwner.getGame(), gameOwner.i18n());
     }
 }

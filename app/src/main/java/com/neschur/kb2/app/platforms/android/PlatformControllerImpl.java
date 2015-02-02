@@ -2,6 +2,7 @@ package com.neschur.kb2.app.platforms.android;
 
 import android.app.Activity;
 
+import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.Storage;
 import com.neschur.kb2.app.controllers.GameOwner;
 import com.neschur.kb2.app.controllers.PlatformController;
@@ -23,6 +24,11 @@ public class PlatformControllerImpl implements PlatformController {
     @Override
     public ViewFactory getViewFactory(GameOwner gameOwner) {
         return new ViewFactory(activity, gameOwner);
+    }
+
+    @Override
+    public I18n getI18n() {
+        return new I18nImpl(activity.getResources());
     }
 
     @Override

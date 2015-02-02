@@ -7,8 +7,8 @@ import com.neschur.kb2.app.models.Game;
 import java.util.Random;
 
 public class GoodMapMessage extends MapMessage {
-    GoodMapMessage(Entity entity, Game game) {
-        super(entity, game);
+    GoodMapMessage(Entity entity, Game game, I18n i18n) {
+        super(entity, game, i18n);
     }
 
     @Override
@@ -18,7 +18,7 @@ public class GoodMapMessage extends MapMessage {
 
     @Override
     public String getText() {
-        return I18n.translate("entity_goodMap_message1" + (mode + 1));
+        return i18n.translate("entity_goodMap_message1" + (mode + 1));
     }
 
     @Override

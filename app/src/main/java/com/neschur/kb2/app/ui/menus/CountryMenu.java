@@ -4,13 +4,13 @@ import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.models.Game;
 
 public class CountryMenu extends Menu {
-    CountryMenu(Game game) {
-        super(game);
+    CountryMenu(Game game, I18n i18n) {
+        super(game, i18n);
     }
 
     @Override
     public String getItemDescription(int i) {
-        return I18n.translate("menus_country_item" + (i + 1));
+        return i18n.translate("menus_country_item" + (i + 1));
     }
 
     @Override

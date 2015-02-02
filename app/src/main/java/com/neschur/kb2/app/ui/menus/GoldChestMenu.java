@@ -8,14 +8,14 @@ import com.neschur.kb2.app.models.Game;
 public class GoldChestMenu extends Menu {
     private final GoldChest chest;
 
-    GoldChestMenu(Entity entity, Game game) {
-        super(game);
+    GoldChestMenu(Entity entity, Game game, I18n i18n) {
+        super(game, i18n);
         this.chest = (GoldChest) entity;
     }
 
     @Override
     public String getItemDescription(int i) {
-        return I18n.translate("entity_menus_goldchest_item" + (i + 1));
+        return i18n.translate("entity_menus_goldchest_item" + (i + 1));
     }
 
     @Override

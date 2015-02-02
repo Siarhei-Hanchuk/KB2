@@ -7,8 +7,8 @@ import com.neschur.kb2.app.models.Game;
 public class BattleFinishMessage extends Message {
     private final boolean result;
 
-    BattleFinishMessage(Game game, boolean result) {
-        super(null, game);
+    BattleFinishMessage(Game game, boolean result, I18n i18n) {
+        super(null, game, i18n);
         this.result = result;
     }
 
@@ -20,9 +20,9 @@ public class BattleFinishMessage extends Message {
     @Override
     public String getText() {
         if (result) {
-            return I18n.translate(R.string.battle_finish_win);
+            return i18n.translate(R.string.battle_finish_win);
         } else {
-            return I18n.translate(R.string.battle_finish_fail);
+            return i18n.translate(R.string.battle_finish_fail);
         }
     }
 }

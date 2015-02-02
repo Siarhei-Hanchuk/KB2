@@ -5,12 +5,14 @@ import com.neschur.kb2.app.models.Game;
 import com.neschur.kb2.app.models.Player;
 
 public abstract class Menu {
+    final I18n i18n;
     final Game game;
     final Player player;
     int menuMode = 0;
 
-    Menu(Game game) {
+    Menu(Game game, I18n i18n) {
         this.game = game;
+        this.i18n = i18n;
         this.player = game.getPlayer();
     }
 
@@ -37,10 +39,10 @@ public abstract class Menu {
     }
 
     String menuItem(String id, int price) {
-        return I18n.translate(id) + "($" + price + ")";
+        return i18n.translate(id) + "($" + price + ")";
     }
 
     String menuItem(String id) {
-        return I18n.translate(id);
+        return i18n.translate(id);
     }
 }

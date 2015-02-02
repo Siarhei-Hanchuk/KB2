@@ -7,7 +7,6 @@ import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
-import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.MainMenuController;
 
@@ -26,27 +25,27 @@ class MainMenuView extends View {
         canvas.drawColor(Color.BLACK);
 
         if (mainController.isCurrentGame()) {
-            canvas.drawText(I18n.translate(R.string.mainMenu_resume),
+            canvas.drawText(i18n.translate(R.string.mainMenu_resume),
                     0, menuItemHeight(), paint);
         }
-        canvas.drawText(I18n.translate(R.string.mainMenu_new_game),
+        canvas.drawText(i18n.translate(R.string.mainMenu_new_game),
                 0, 2 * menuItemHeight(), paint);
-        canvas.drawText(I18n.translate(R.string.mainMenu_training),
+        canvas.drawText(i18n.translate(R.string.mainMenu_training),
                 0, 3 * menuItemHeight(), paint);
-        canvas.drawText(I18n.translate(R.string.mainMenu_load_game),
+        canvas.drawText(i18n.translate(R.string.mainMenu_load_game),
                 0, 4 * menuItemHeight(), paint);
         if (mainController.isCurrentGame()) {
             if (!saved) {
-                canvas.drawText(I18n.translate(R.string.mainMenu_save_game),
+                canvas.drawText(i18n.translate(R.string.mainMenu_save_game),
                         0, 5 * menuItemHeight(), paint);
             } else {
-                canvas.drawText(I18n.translate(R.string.mainMenu_save_game) + " - " +
-                                I18n.translate(R.string.mainMenu_save_game_saved),
+                canvas.drawText(i18n.translate(R.string.mainMenu_save_game) + " - " +
+                                i18n.translate(R.string.mainMenu_save_game_saved),
                         0, 5 * menuItemHeight(), paint);
                 saved = false;
             }
         }
-        canvas.drawText(I18n.translate(R.string.mainMenu_exit),
+        canvas.drawText(i18n.translate(R.string.mainMenu_exit),
                 0, 6 * menuItemHeight(), paint);
     }
 

@@ -9,8 +9,8 @@ import com.neschur.kb2.app.models.Game;
 public class CaptainMenu extends Menu {
     private final Captain captain;
 
-    CaptainMenu(Entity entity, Game game) {
-        super(game);
+    CaptainMenu(Entity entity, Game game, I18n i18n) {
+        super(game, i18n);
         this.captain = (Captain) entity;
     }
 
@@ -26,7 +26,7 @@ public class CaptainMenu extends Menu {
     @Override
     public String getItemDescription(int i) {
         if (player.noArmy()) {
-            return I18n.translate(R.string.entity_captain_noArmy);
+            return i18n.translate(R.string.entity_captain_noArmy);
         } else {
             switch (i) {
                 case 0:
