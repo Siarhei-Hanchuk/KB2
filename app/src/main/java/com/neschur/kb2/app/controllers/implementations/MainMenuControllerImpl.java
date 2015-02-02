@@ -16,32 +16,32 @@ public class MainMenuControllerImpl extends ApplicationController implements Mai
 
     @Override
     public boolean isCurrentGame() {
-        return getGameController() != null;
+        return getGame() != null;
     }
 
     @Override
     public void newGame() {
-        setGameController(new Game(new MainViewControllerImpl(activity), 1));
+        setGame(new Game(new MainViewControllerImpl(activity), 1));
 
     }
 
     @Override
     public void newTraining() {
-        setGameController(new Game(new MainViewControllerImpl(activity), 0));
+        setGame(new Game(new MainViewControllerImpl(activity), 0));
     }
 
     @Override
     public void loadGame() {
         Storage storage = new Storage(activity);
         Game game = storage.loadGame("save1");
-        setGameController(game);
+        setGame(game);
         new MainViewControllerImpl(activity);
     }
 
     @Override
     public void saveGame() {
         Storage storage = new Storage(activity);
-        storage.saveGame(getGameController(), "save1");
+        storage.saveGame(getGame(), "save1");
     }
 
     @Override

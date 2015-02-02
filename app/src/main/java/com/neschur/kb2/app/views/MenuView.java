@@ -22,7 +22,6 @@ class MenuView extends View {
         double y = event.getY();
         int item = (int) y / menuItemHeight();
         select(item);
-        drawThread.refresh();
         return super.onTouchEvent(event);
     }
 
@@ -40,19 +39,22 @@ class MenuView extends View {
             canvas.drawText("Exit", 10,
                     menuItemHeight() + menuItemHeight() * i, paint);
         if (menu.withMoney())
-            canvas.drawText("Money: " + 0,//gameController.getPlayer().getMoney(),
+            canvas.drawText("Money: " + viewController.getGame().getPlayer().getMoney(),
                     (int) (getWidth() * 0.5),
                     menuItemHeight() + menuItemHeight() * i, paint);
     }
 
     private void select(int item) {
         boolean result = false;
-        if (item < menu.getCount())
+        if (item < menu.getCount()) {
             result = menu.select(item);
+            refresh();
+        }
         if (menu.withExit()) {
             if (item == menu.getCount() || result)
                 if (menu.getMenuMode() > 0) {
                     menu.resetMenuMode();
+                    refresh();
                 } else {
                     viewController.viewClose();
                 }

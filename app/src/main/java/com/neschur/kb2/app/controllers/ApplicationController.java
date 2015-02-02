@@ -24,11 +24,11 @@ public abstract class ApplicationController implements ViewController, GameOwner
     }
 
     @Override
-    public Game getGameController() {
+    public Game getGame() {
         return game;
     }
 
-    protected void setGameController(Game game) {
+    protected void setGame(Game game) {
         ApplicationController.game = game;
     }
 }

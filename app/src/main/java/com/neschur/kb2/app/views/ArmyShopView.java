@@ -58,7 +58,6 @@ class ArmyShopView extends View {
                 armyShopViewController.buyArmy(shop, 1000);
             }
         }
-        drawThread.refresh();
         return super.onTouchEvent(event);
     }
 

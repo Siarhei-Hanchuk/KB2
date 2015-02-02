@@ -24,7 +24,6 @@ class ArmyView extends View {
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
         viewController.viewClose();
-        drawThread.refresh();
         return super.onTouchEvent(event);
     }
 

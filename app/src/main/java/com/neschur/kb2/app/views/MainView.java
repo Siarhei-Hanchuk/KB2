@@ -59,7 +59,6 @@ class MainView extends View {
                 mainViewController.touchLeft();
             }
         }
-        drawThread.refresh();
         return super.onTouchEvent(event);
     }
 

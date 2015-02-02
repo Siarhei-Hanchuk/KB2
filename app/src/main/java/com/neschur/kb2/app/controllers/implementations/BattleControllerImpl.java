@@ -17,7 +17,7 @@ public class BattleControllerImpl extends ApplicationController implements Battl
 
     public BattleControllerImpl(Activity activity, ViewController controller, Fighting fighting) {
         super(activity);
-        this.battleField = new BattleField(controller.getGameController().getPlayer(), fighting, this);
+        this.battleField = new BattleField(controller.getGame().getPlayer(), fighting, this);
         battleView = ViewFactory.getBattleView(this);
         setContentView(battleView);
     }
@@ -30,6 +30,7 @@ public class BattleControllerImpl extends ApplicationController implements Battl
     @Override
     public void select(int x, int y) {
         battleField.select(x, y);
+        updateView();
     }
 
     @Override

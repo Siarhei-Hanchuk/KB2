@@ -20,7 +20,10 @@ public class Nave extends EntityImpl {
 
     public void move(int x, int y, Country country) {
         point.setEntity(null);
-        point = country.getMapPoint(x, y);
+        if (country != null)
+            point = country.getMapPoint(x, y);
+        else
+            point = getCountry().getMapPoint(x, y);
         point.setEntity(this);
     }
 }

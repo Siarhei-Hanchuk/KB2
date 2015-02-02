@@ -30,7 +30,6 @@ public class BattleView extends View {
         int x = (int) ((event.getX() - xOffset) / stepX());
         int y = (int) ((event.getY() - yOffset) / stepY());
         battleController.select(x, y);
-        drawThread.refresh();
 
         return super.onTouchEvent(event);
     }

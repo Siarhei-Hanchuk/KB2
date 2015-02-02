@@ -33,6 +33,7 @@ class MagicView extends View {
             int item = (int) event.getY() / menuItemHeight();
             if (item == 4) {
                 mode = 1;
+                refresh();
             } else {
                 viewController.viewClose();
             }
@@ -42,7 +43,6 @@ class MagicView extends View {
             magicViewController.takeArmy(armyIdCache.get(x * y));
             viewController.viewClose();
         }
-        drawThread.refresh();
         return super.onTouchEvent(event);
     }
 

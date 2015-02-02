@@ -1,7 +1,6 @@
 package com.neschur.kb2.app.controllers.implementations;
 
 import android.app.Activity;
-import android.view.SurfaceView;
 
 import com.neschur.kb2.app.controllers.ActivateCallback;
 import com.neschur.kb2.app.controllers.ApplicationController;
@@ -9,11 +8,12 @@ import com.neschur.kb2.app.controllers.MainViewController;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.models.GameGrid;
+import com.neschur.kb2.app.views.View;
 import com.neschur.kb2.app.views.ViewFactory;
 
 public class MainViewControllerImpl extends ApplicationController implements MainViewController,
         ActivateCallback {
-    private final SurfaceView view;
+    private final View view;
     private GameGrid gameGrid;
 
     public MainViewControllerImpl(Activity activity) {
@@ -25,29 +25,9 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
     @Override
     public GameGrid getGameGrid() {
         if (gameGrid == null)
-            gameGrid = new GameGrid(getGameController());
+            gameGrid = new GameGrid(getGame());
         gameGrid.update();
         return gameGrid;
-    }
-
-    @Override
-    public void touchDown() {
-        getGameController().move(0, +1);
-    }
-
-    @Override
-    public void touchUp() {
-        getGameController().move(0, -1);
-    }
-
-    @Override
-    public void touchRight() {
-        getGameController().move(+1, 0);
-    }
-
-    @Override
-    public void touchLeft() {
-        getGameController().move(-1, 0);
     }
 
     @Override
@@ -62,23 +42,43 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
     }
 
     @Override
+    public void touchDown() {
+        playerMove(0, +1);
+    }
+
+    @Override
+    public void touchUp() {
+        playerMove(0, -1);
+    }
+
+    @Override
+    public void touchRight() {
+        playerMove(+1, 0);
+    }
+
+    @Override
+    public void touchLeft() {
+        playerMove(-1, 0);
+    }
+
+    @Override
     public void touchUpRight() {
-        getGameController().move(+1, -1);
+        playerMove(+1, -1);
     }
 
     @Override
     public void touchUpLeft() {
-        getGameController().move(-1, -1);
+        playerMove(-1, -1);
     }
 
     @Override
     public void touchDownRight() {
-        getGameController().move(+1, +1);
+        playerMove(+1, +1);
     }
 
     @Override
     public void touchDownLeft() {
-        getGameController().move(-1, +1);
+        playerMove(-1, +1);
     }
 
     @Override
@@ -89,17 +89,20 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
                 switch (i) {
                     case 0:
                         grid.setMode(1);
+                        view.refresh();
                         break;
                     case 1:
                         setContentView(ViewFactory.getWorkersMenuView(this));
                         break;
                     case 2:
                         grid.setMode(2);
+                        view.refresh();
                         break;
                     case 3:
                         break;
                     case 4:
                         grid.setMode(3);
+                        view.refresh();
                         break;
                 }
                 break;
@@ -111,6 +114,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
                         break;
                     case 4:
                         grid.setMode(0);
+                        view.refresh();
                         break;
                 }
                 break;
@@ -122,6 +126,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
                         break;
                     case 4:
                         grid.setMode(0);
+                        view.refresh();
                         break;
                 }
                 break;
@@ -131,12 +136,13 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
                         new PlayerViewsControllerImpl(activity, "map");
                         break;
                     case 1:
-                        if (getGameController().getPlayer().inNave()) {
+                        if (getGame().getPlayer().inNave()) {
                             setContentView(ViewFactory.getCountryMenuView(this));
                         }
                         break;
                     case 2:
                         grid.setMode(0);
+                        view.refresh();
                         break;
                 }
                 break;
@@ -146,5 +152,10 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
     @Override
     public void viewClose() {
         setContentView(view);
+    }
+
+    private void playerMove(int dx, int dy) {
+        if (getGame().move(dx, dy))
+            view.refresh();
     }
 }

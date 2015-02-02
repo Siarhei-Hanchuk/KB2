@@ -9,33 +9,36 @@ import com.neschur.kb2.app.controllers.PlayerViewsController;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.models.Player;
+import com.neschur.kb2.app.views.View;
 import com.neschur.kb2.app.views.ViewFactory;
 import com.neschur.kb2.app.warriors.WarriorFactory;
 
 public class PlayerViewsControllerImpl extends ApplicationController
         implements PlayerViewsController, MagicViewController, ArmyShopViewController {
+    private View view;
     public PlayerViewsControllerImpl(Activity activity, Object viewType) {
         super(activity);
         if (viewType instanceof String) {
             switch ((String) viewType) {
                 case "magic":
-                    setContentView(ViewFactory.getMagicView(this));
+                    view = ViewFactory.getMagicView(this);
                     break;
                 case "army":
-                    setContentView(ViewFactory.getArmyView(this));
+                    view = ViewFactory.getArmyView(this);
                     break;
                 case "map":
-                    setContentView(ViewFactory.getMapView(this));
+                    view = ViewFactory.getMapView(this);
                     break;
             }
         } else {
-            setContentView(ViewFactory.getViewForEntity(this, (Entity) viewType));
+            view = ViewFactory.getViewForEntity(this, (Entity) viewType);
         }
+        setContentView(view);
     }
 
     @Override
     public Player getPlayer() {
-        return getGameController().getPlayer();
+        return getGame().getPlayer();
     }
 
     @Override
@@ -50,6 +53,7 @@ public class PlayerViewsControllerImpl extends ApplicationController
 
     @Override
     public void buyArmy(ArmyShop shop, int count) {
-        getGameController().buyArmy(shop, count);
+        getGame().buyArmy(shop, count);
+        view.refresh();
     }
 }

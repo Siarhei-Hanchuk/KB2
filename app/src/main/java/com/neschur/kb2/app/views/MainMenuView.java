@@ -62,11 +62,9 @@ class MainMenuView extends View {
                 mainController.newTraining();
             } else if (event.getY() < menuItemHeight() * 4) {
                 mainController.loadGame();
-                drawThread.refresh();
             } else if (event.getY() < menuItemHeight() * 5) {
                 if (mainController.isCurrentGame()) {
                     mainController.saveGame();
-                    drawThread.refresh();
                     saved = true;
                 }
             } else if (event.getY() < menuItemHeight() * 6) {

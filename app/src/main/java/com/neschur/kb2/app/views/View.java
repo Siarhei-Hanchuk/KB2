@@ -9,7 +9,7 @@ import com.neschur.kb2.app.ImageCache;
 import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.models.GameGrid;
 
-abstract class View extends SurfaceView implements SurfaceHolder.Callback, Drawable {
+public abstract class View extends SurfaceView implements SurfaceHolder.Callback, Drawable {
     private static final int IMAGE_WIDTH = 96;
     private static final int IMAGE_HEIGHT = 82;
 
@@ -48,6 +48,10 @@ abstract class View extends SurfaceView implements SurfaceHolder.Callback, Drawa
                 e.printStackTrace();
             }
         }
+    }
+
+    public void refresh() {
+        drawThread.refresh();
     }
 
     private double getScale() {

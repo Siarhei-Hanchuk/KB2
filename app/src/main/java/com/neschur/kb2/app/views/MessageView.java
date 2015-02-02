@@ -19,7 +19,6 @@ class MessageView extends View {
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
         closeMessage();
-        drawThread.refresh();
         return super.onTouchEvent(event);
     }
 

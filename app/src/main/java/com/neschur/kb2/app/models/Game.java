@@ -55,11 +55,11 @@ public class Game implements Serializable {
         }
     }
 
-    public void move(int dx, int dy) {
+    public boolean move(int dx, int dy) {
         int x = player.getX();
         int y = player.getY();
         if (x + dx < 2 || x + dx > 62 || y + dy < 2 || y + dy > 62) {
-            return;
+            return false;
         }
 
         moveEntities();
@@ -99,6 +99,7 @@ public class Game implements Serializable {
         } else {
             actionWithObject(player, mp);
         }
+        return true;
     }
 
     private void actionWithObject(Player player, MapPoint mp) {

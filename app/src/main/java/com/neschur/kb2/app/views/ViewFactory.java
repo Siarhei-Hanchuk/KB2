@@ -1,7 +1,5 @@
 package com.neschur.kb2.app.views;
 
-import android.view.SurfaceView;
-
 import com.neschur.kb2.app.controllers.ArmyShopViewController;
 import com.neschur.kb2.app.controllers.BattleController;
 import com.neschur.kb2.app.controllers.GameOwner;
@@ -21,27 +19,27 @@ public class ViewFactory {
     private static MenuFactory menuFactory;
     private static MessageFactory messageFactory;
 
-    public static SurfaceView getWorkersMenuView(ViewController controller) {
+    public static View getWorkersMenuView(ViewController controller) {
         return new MenuView(controller, getMenuFactory(controller).getWorkersMenu());
     }
 
-    public static SurfaceView getMapView(PlayerViewsController controller) {
+    public static View getMapView(PlayerViewsController controller) {
         return new MapView(controller);
     }
 
-    public static SurfaceView getArmyView(PlayerViewsController controller) {
+    public static View getArmyView(PlayerViewsController controller) {
         return new ArmyView(controller);
     }
 
-    public static SurfaceView getMagicView(MagicViewController controller) {
+    public static View getMagicView(MagicViewController controller) {
         return new MagicView(controller);
     }
 
-    public static SurfaceView getMainMenuView(MainMenuController controller) {
+    public static View getMainMenuView(MainMenuController controller) {
         return new MainMenuView(controller);
     }
 
-    public static SurfaceView getMainView(MainViewController controller) {
+    public static View getMainView(MainViewController controller) {
         return new MainView(controller);
     }
 
@@ -49,11 +47,11 @@ public class ViewFactory {
         return new BattleView(controller);
     }
 
-    public static SurfaceView getCountryMenuView(ViewController controller) {
+    public static View getCountryMenuView(ViewController controller) {
         return new MenuView(controller, getMenuFactory(controller).getCountryMenu());
     }
 
-    public static SurfaceView getViewForEntity(ViewController controller, Entity entity) {
+    public static View getViewForEntity(ViewController controller, Entity entity) {
         Menu menu = getMenuFactory(controller).getMenu(entity);
         Message message = getMessageFactory(controller).getMessage(entity);
         View view = null;
@@ -69,7 +67,7 @@ public class ViewFactory {
         return view;
     }
 
-    public static SurfaceView getViewBattleMessageView(ViewController controller, boolean result) {
+    public static View getViewBattleMessageView(ViewController controller, boolean result) {
         return new MessageView(controller, getMessageFactory(controller).getBattleMessage(result));
     }
 

@@ -17,19 +17,19 @@ public class MessageFactory {
 
     public Message getMessage(Entity entity) {
         if (entity instanceof MapNext)
-            return new NextMapMessage(entity, controller.getGameController());
+            return new NextMapMessage(entity, controller.getGame());
         if (entity instanceof HarmfulMap)
-            return new HarmfulMapMessage(entity, controller.getGameController());
+            return new HarmfulMapMessage(entity, controller.getGame());
         if (entity instanceof GuidePost)
-            return new GuidePostMessage(entity, controller.getGameController());
+            return new GuidePostMessage(entity, controller.getGame());
         if (entity instanceof GoldChest && ((GoldChest) entity).isBonus())
-            return new GoldChestMessage(entity, controller.getGameController());
+            return new GoldChestMessage(entity, controller.getGame());
         if (entity instanceof Sorcerer)
-            return new SorcererMessage(entity, controller.getGameController());
+            return new SorcererMessage(entity, controller.getGame());
         return null;
     }
 
     public Message getBattleMessage(boolean result) {
-        return new BattleFinishMessage(controller.getGameController(), result);
+        return new BattleFinishMessage(controller.getGame(), result);
     }
 }
