@@ -12,4 +12,6 @@ public interface BattleController extends ViewController {
     public int getSelectedY();
 
     public void battleFinish(boolean win);
+
+    public void updateView();
 }

@@ -14,7 +14,7 @@ import com.neschur.kb2.app.controllers.BattleController;
 import com.neschur.kb2.app.models.battle.MapPointBattle;
 import com.neschur.kb2.app.models.battle.WarriorEntity;
 
-class BattleView extends View {
+public class BattleView extends View {
     private final BattleController battleController;
     private Paint countPaint;
     private Paint countPaintBg;
@@ -53,6 +53,10 @@ class BattleView extends View {
         }
 
         drawSelected(canvas);
+    }
+
+    public void refresh() {
+        drawThread.refresh();
     }
 
     private void drawLand(Canvas canvas) {

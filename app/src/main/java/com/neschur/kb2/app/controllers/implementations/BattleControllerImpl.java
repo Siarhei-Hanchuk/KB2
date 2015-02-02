@@ -8,15 +8,18 @@ import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.models.battle.BattleField;
 import com.neschur.kb2.app.models.battle.MapPointBattle;
+import com.neschur.kb2.app.views.BattleView;
 import com.neschur.kb2.app.views.ViewFactory;
 
 public class BattleControllerImpl extends ApplicationController implements BattleController {
     private final BattleField battleField;
+    private final BattleView battleView;
 
     public BattleControllerImpl(Activity activity, ViewController controller, Fighting fighting) {
         super(activity);
         this.battleField = new BattleField(controller.getGameController().getPlayer(), fighting, this);
-        setContentView(ViewFactory.getBattleView(this));
+        battleView = ViewFactory.getBattleView(this);
+        setContentView(battleView);
     }
 
     @Override
@@ -42,6 +45,11 @@ public class BattleControllerImpl extends ApplicationController implements Battl
     @Override
     public void battleFinish(boolean win) {
         setContentView(ViewFactory.getViewBattleMessageView(this, win));
+    }
+
+    @Override
+    public void updateView() {
+        battleView.refresh();
     }
 
     @Override

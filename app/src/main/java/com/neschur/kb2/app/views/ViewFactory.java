@@ -45,7 +45,7 @@ public class ViewFactory {
         return new MainView(controller);
     }
 
-    public static SurfaceView getBattleView(BattleController controller) {
+    public static BattleView getBattleView(BattleController controller) {
         return new BattleView(controller);
     }
 
