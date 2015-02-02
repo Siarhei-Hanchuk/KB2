@@ -1,4 +1,4 @@
-package com.neschur.kb2.app.platforms;
+package com.neschur.kb2.app.platforms.android;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,10 +14,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class AndroidStorage implements Storage {
+public class StorageImpl implements Storage {
     private SharedPreferences prefs;
 
-    public AndroidStorage(Activity activity) {
+    public StorageImpl(Activity activity) {
         prefs = activity.getSharedPreferences("main", Context.MODE_PRIVATE);
     }
 

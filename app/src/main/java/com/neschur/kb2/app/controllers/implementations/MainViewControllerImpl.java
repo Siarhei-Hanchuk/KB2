@@ -7,7 +7,6 @@ import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.views.View;
-import com.neschur.kb2.app.views.ViewFactory;
 
 public class MainViewControllerImpl extends ApplicationController implements MainViewController,
         ActivateCallback {
@@ -15,7 +14,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
     private GameGrid gameGrid;
 
     public MainViewControllerImpl() {
-        view = ViewFactory.getMainView(this);
+        view = getViewFactory().getMainView(this);
         setContentView(view);
     }
 
@@ -34,7 +33,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
 
     @Override
     public void activateBattle(Fighting fighting) {
-        setContentView(ViewFactory.getWorkersMenuView(this));
+        setContentView(getViewFactory().getWorkersMenuView(this));
         new BattleControllerImpl(this, fighting);
     }
 
@@ -89,7 +88,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
                         view.refresh();
                         break;
                     case 1:
-                        setContentView(ViewFactory.getWorkersMenuView(this));
+                        setContentView(getViewFactory().getWorkersMenuView(this));
                         break;
                     case 2:
                         grid.setMode(2);
@@ -134,7 +133,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
                         break;
                     case 1:
                         if (getGame().getPlayer().inNave()) {
-                            setContentView(ViewFactory.getCountryMenuView(this));
+                            setContentView(getViewFactory().getCountryMenuView(this));
                         }
                         break;
                     case 2:

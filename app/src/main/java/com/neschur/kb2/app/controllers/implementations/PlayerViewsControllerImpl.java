@@ -8,7 +8,6 @@ import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.models.Player;
 import com.neschur.kb2.app.views.View;
-import com.neschur.kb2.app.views.ViewFactory;
 import com.neschur.kb2.app.warriors.WarriorFactory;
 
 public class PlayerViewsControllerImpl extends ApplicationController
@@ -18,17 +17,17 @@ public class PlayerViewsControllerImpl extends ApplicationController
         if (viewType instanceof String) {
             switch ((String) viewType) {
                 case "magic":
-                    view = ViewFactory.getMagicView(this);
+                    view = getViewFactory().getMagicView(this);
                     break;
                 case "army":
-                    view = ViewFactory.getArmyView(this);
+                    view = getViewFactory().getArmyView(this);
                     break;
                 case "map":
-                    view = ViewFactory.getMapView(this);
+                    view = getViewFactory().getMapView(this);
                     break;
             }
         } else {
-            view = ViewFactory.getViewForEntity(this, (Entity) viewType);
+            view = getViewFactory().getViewForEntity(this, (Entity) viewType);
         }
         setContentView(view);
     }

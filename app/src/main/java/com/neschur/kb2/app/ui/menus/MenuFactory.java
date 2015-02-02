@@ -8,33 +8,33 @@ import com.neschur.kb2.app.entities.GoldChest;
 import com.neschur.kb2.app.entities.Magician;
 
 public class MenuFactory {
-    private final GameOwner controller;
+    private final GameOwner gameOwner;
 
-    public MenuFactory(GameOwner controller) {
-        this.controller = controller;
+    public MenuFactory(GameOwner gameOwner) {
+        this.gameOwner = gameOwner;
     }
 
     public Menu getMenu(Entity entity) {
         if (entity instanceof City) {
-            return new CityMenu(entity, controller.getGame());
+            return new CityMenu(entity, gameOwner.getGame());
         }
         if (entity instanceof Magician) {
-            return new MagicianMenu(entity, controller.getGame());
+            return new MagicianMenu(entity, gameOwner.getGame());
         }
         if (entity instanceof GoldChest && !((GoldChest) entity).isBonus()) {
-            return new GoldChestMenu(entity, controller.getGame());
+            return new GoldChestMenu(entity, gameOwner.getGame());
         }
         if (entity instanceof Captain) {
-            return new CaptainMenu(entity, controller.getGame());
+            return new CaptainMenu(entity, gameOwner.getGame());
         }
         return null;
     }
 
     public Menu getWorkersMenu() {
-        return new WorkersMenu(controller.getGame());
+        return new WorkersMenu(gameOwner.getGame());
     }
 
     public Menu getCountryMenu() {
-        return new CountryMenu(controller.getGame());
+        return new CountryMenu(gameOwner.getGame());
     }
 }

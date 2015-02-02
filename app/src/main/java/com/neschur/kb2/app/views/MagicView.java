@@ -1,12 +1,13 @@
 package com.neschur.kb2.app.views;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.I18n;
-import com.neschur.kb2.app.ImageCache;
+import com.neschur.kb2.app.platforms.android.ImageCache;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.MagicViewController;
 import com.neschur.kb2.app.models.GameGrid;
@@ -21,8 +22,8 @@ class MagicView extends View {
     private int mode = 0;
     private MagicViewController magicViewController;
 
-    public MagicView(MagicViewController magicViewController) {
-        super(magicViewController);
+    public MagicView(Context context, MagicViewController magicViewController) {
+        super(context, magicViewController);
         this.magics = magicViewController.getPlayer().getMagics();
         this.magicViewController = magicViewController;
     }

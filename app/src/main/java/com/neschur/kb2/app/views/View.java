@@ -1,11 +1,12 @@
 package com.neschur.kb2.app.views;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.neschur.kb2.app.ImageCache;
+import com.neschur.kb2.app.platforms.android.ImageCache;
 import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.models.GameGrid;
 
@@ -18,8 +19,8 @@ public abstract class View extends SurfaceView implements SurfaceHolder.Callback
     int xOffset = 0;
     int yOffset = 0;
 
-    View(ViewController viewController) {
-        super(null);
+    View(Context context, ViewController viewController) {
+        super(context);
         getHolder().addCallback(this);
         this.viewController = viewController;
     }

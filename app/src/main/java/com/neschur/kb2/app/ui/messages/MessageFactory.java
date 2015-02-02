@@ -9,27 +9,27 @@ import com.neschur.kb2.app.entities.MapNext;
 import com.neschur.kb2.app.entities.Sorcerer;
 
 public class MessageFactory {
-    private final GameOwner controller;
+    private final GameOwner gameOwner;
 
-    public MessageFactory(GameOwner mainController) {
-        this.controller = mainController;
+    public MessageFactory(GameOwner gameOwner) {
+        this.gameOwner = gameOwner;
     }
 
     public Message getMessage(Entity entity) {
         if (entity instanceof MapNext)
-            return new NextMapMessage(entity, controller.getGame());
+            return new NextMapMessage(entity, gameOwner.getGame());
         if (entity instanceof HarmfulMap)
-            return new HarmfulMapMessage(entity, controller.getGame());
+            return new HarmfulMapMessage(entity, gameOwner.getGame());
         if (entity instanceof GuidePost)
-            return new GuidePostMessage(entity, controller.getGame());
+            return new GuidePostMessage(entity, gameOwner.getGame());
         if (entity instanceof GoldChest && ((GoldChest) entity).isBonus())
-            return new GoldChestMessage(entity, controller.getGame());
+            return new GoldChestMessage(entity, gameOwner.getGame());
         if (entity instanceof Sorcerer)
-            return new SorcererMessage(entity, controller.getGame());
+            return new SorcererMessage(entity, gameOwner.getGame());
         return null;
     }
 
     public Message getBattleMessage(boolean result) {
-        return new BattleFinishMessage(controller.getGame(), result);
+        return new BattleFinishMessage(gameOwner.getGame(), result);
     }
 }

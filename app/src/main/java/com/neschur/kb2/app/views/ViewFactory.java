@@ -1,5 +1,7 @@
 package com.neschur.kb2.app.views;
 
+import android.content.Context;
+
 import com.neschur.kb2.app.controllers.ArmyShopViewController;
 import com.neschur.kb2.app.controllers.BattleController;
 import com.neschur.kb2.app.controllers.GameOwner;
@@ -16,72 +18,67 @@ import com.neschur.kb2.app.ui.messages.Message;
 import com.neschur.kb2.app.ui.messages.MessageFactory;
 
 public class ViewFactory {
-    private static MenuFactory menuFactory;
-    private static MessageFactory messageFactory;
+    private MenuFactory menuFactory;
+    private MessageFactory messageFactory;
+    private GameOwner gameOwner;
+    private Context context;
 
-    public static View getWorkersMenuView(ViewController controller) {
-        return new MenuView(controller, getMenuFactory(controller).getWorkersMenu());
+    public ViewFactory(Context context, GameOwner gameOwner) {
+        this.context = context;
+        this.gameOwner = gameOwner;
+        menuFactory = new MenuFactory(gameOwner);
+        messageFactory = new MessageFactory(gameOwner);
     }
 
-    public static View getMapView(PlayerViewsController controller) {
-        return new MapView(controller);
+    public View getWorkersMenuView(ViewController controller) {
+        return new MenuView(context, controller, menuFactory.getWorkersMenu());
     }
 
-    public static View getArmyView(PlayerViewsController controller) {
-        return new ArmyView(controller);
+    public View getMapView(PlayerViewsController controller) {
+        return new MapView(context, controller);
     }
 
-    public static View getMagicView(MagicViewController controller) {
-        return new MagicView(controller);
+    public View getArmyView(PlayerViewsController controller) {
+        return new ArmyView(context, controller);
     }
 
-    public static View getMainMenuView(MainMenuController controller) {
-        return new MainMenuView(controller);
+    public View getMagicView(MagicViewController controller) {
+        return new MagicView(context, controller);
     }
 
-    public static View getMainView(MainViewController controller) {
-        return new MainView(controller);
+    public View getMainMenuView(MainMenuController controller) {
+        return new MainMenuView(context, controller);
     }
 
-    public static BattleView getBattleView(BattleController controller) {
-        return new BattleView(controller);
+    public View getMainView(MainViewController controller) {
+        return new MainView(context, controller);
     }
 
-    public static View getCountryMenuView(ViewController controller) {
-        return new MenuView(controller, getMenuFactory(controller).getCountryMenu());
+    public BattleView getBattleView(BattleController controller) {
+        return new BattleView(context, controller);
     }
 
-    public static View getViewForEntity(ViewController controller, Entity entity) {
-        Menu menu = getMenuFactory(controller).getMenu(entity);
-        Message message = getMessageFactory(controller).getMessage(entity);
+    public View getCountryMenuView(ViewController controller) {
+        return new MenuView(context, controller, menuFactory.getCountryMenu());
+    }
+
+    public View getViewForEntity(ViewController controller, Entity entity) {
+        Menu menu = menuFactory.getMenu(entity);
+        Message message = messageFactory.getMessage(entity);
         View view = null;
         if (menu != null) {
-            view = new MenuView(controller, menu);
+            view = new MenuView(context, controller, menu);
         }
         if (message != null) {
-            view = new MessageView(controller, message);
+            view = new MessageView(context, controller, message);
         }
         if (entity instanceof ArmyShop) {
-            view = new ArmyShopView((ArmyShopViewController) controller, (ArmyShop) entity);
+            view = new ArmyShopView(context, (ArmyShopViewController) controller, (ArmyShop) entity);
         }
         return view;
     }
 
-    public static View getViewBattleMessageView(ViewController controller, boolean result) {
-        return new MessageView(controller, getMessageFactory(controller).getBattleMessage(result));
-    }
-
-    private static MenuFactory getMenuFactory(GameOwner controller) {
-        if (menuFactory == null) {
-            menuFactory = new MenuFactory(controller);
-        }
-        return menuFactory;
-    }
-
-    private static MessageFactory getMessageFactory(GameOwner controller) {
-        if (messageFactory == null) {
-            messageFactory = new MessageFactory(controller);
-        }
-        return messageFactory;
+    public View getViewBattleMessageView(ViewController controller, boolean result) {
+        return new MessageView(context, controller, messageFactory.getBattleMessage(result));
     }
 }

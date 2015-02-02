@@ -1,5 +1,6 @@
 package com.neschur.kb2.app.views;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -19,8 +20,8 @@ public class BattleView extends View {
     private Paint countPaint;
     private Paint countPaintBg;
 
-    public BattleView(BattleController battleController) {
-        super(battleController);
+    public BattleView(Context context, BattleController battleController) {
+        super(context, battleController);
         this.battleController = battleController;
     }
 

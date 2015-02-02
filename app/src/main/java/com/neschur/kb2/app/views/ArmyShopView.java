@@ -1,5 +1,6 @@
 package com.neschur.kb2.app.views;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -22,8 +23,8 @@ class ArmyShopView extends View {
     private final ArmyShopViewController armyShopViewController;
     private int buttonSize;
 
-    public ArmyShopView(ArmyShopViewController armyShopViewController, ArmyShop shop) {
-        super(armyShopViewController);
+    public ArmyShopView(Context context, ArmyShopViewController armyShopViewController, ArmyShop shop) {
+        super(context, armyShopViewController);
 
         this.shop = shop;
         this.player = armyShopViewController.getPlayer();

@@ -1,5 +1,6 @@
 package com.neschur.kb2.app.views;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -14,8 +15,8 @@ class MainMenuView extends View {
     private final MainMenuController mainController;
     private boolean saved = false;
 
-    public MainMenuView(MainMenuController mainController) {
-        super(mainController);
+    public MainMenuView(Context context, MainMenuController mainController) {
+        super(context, mainController);
         this.mainController = mainController;
     }
 

@@ -3,15 +3,23 @@ package com.neschur.kb2.app.controllers;
 import com.neschur.kb2.app.Storage;
 import com.neschur.kb2.app.models.Game;
 import com.neschur.kb2.app.views.View;
+import com.neschur.kb2.app.views.ViewFactory;
 
 public abstract class ApplicationController implements ViewController, GameOwner {
-    private static Game game;
-    private static AppControllerImpl appControllerImpl;
+    private static PlatformController platformController;
     private static Storage storage;
+    private static ViewFactory viewFactory;
+    private static Game game;
 
-    public static void initApp(AppControllerImpl _appControllerImpl, Storage _storage) {
-        appControllerImpl = _appControllerImpl;
-        storage = _storage;
+    public static void initApp(PlatformController _platformController) {
+        platformController = _platformController;
+        storage = _platformController.getStorage();
+    }
+
+    protected ViewFactory getViewFactory() {
+        if (viewFactory == null)
+            viewFactory = platformController.getViewFactory(this);
+        return viewFactory;
     }
 
     @Override
@@ -24,7 +32,7 @@ public abstract class ApplicationController implements ViewController, GameOwner
     }
 
     protected void setContentView(View view) {
-        appControllerImpl.setContentView(view);
+        platformController.setContentView(view);
     }
 
     protected Storage getStorage() {
@@ -32,6 +40,6 @@ public abstract class ApplicationController implements ViewController, GameOwner
     }
 
     public void exit() {
-        appControllerImpl.exit();
+        platformController.exit();
     }
 }

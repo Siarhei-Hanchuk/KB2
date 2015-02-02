@@ -1,5 +1,6 @@
 package com.neschur.kb2.app.views;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
@@ -11,8 +12,8 @@ import com.neschur.kb2.app.ui.messages.Message;
 class MessageView extends View {
     private final Message message;
 
-    public MessageView(ViewController viewController, Message message) {
-        super(viewController);
+    public MessageView(Context context, ViewController viewController, Message message) {
+        super(context, viewController);
         this.message = message;
     }
 

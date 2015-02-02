@@ -1,5 +1,6 @@
 package com.neschur.kb2.app.views;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -12,8 +13,8 @@ import com.neschur.kb2.app.ui.menus.Menu;
 class MenuView extends View {
     private final Menu menu;
 
-    public MenuView(ViewController viewController, Menu menu) {
-        super(viewController);
+    public MenuView(Context context, ViewController viewController, Menu menu) {
+        super(context, viewController);
         this.menu = menu;
     }
 

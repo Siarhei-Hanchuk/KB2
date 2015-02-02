@@ -1,20 +1,21 @@
 package com.neschur.kb2.app.views;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
-import com.neschur.kb2.app.ImageCache;
+import com.neschur.kb2.app.platforms.android.ImageCache;
 import com.neschur.kb2.app.controllers.MainViewController;
 import com.neschur.kb2.app.models.GameGrid;
 
 class MainView extends View {
     private final MainViewController mainViewController;
 
-    public MainView(MainViewController mainViewController) {
-        super(mainViewController);
+    public MainView(Context context, MainViewController mainViewController) {
+        super(context, mainViewController);
         this.mainViewController = mainViewController;
     }
 

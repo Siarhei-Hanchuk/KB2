@@ -3,11 +3,10 @@ package com.neschur.kb2.app.controllers.implementations;
 import com.neschur.kb2.app.controllers.ApplicationController;
 import com.neschur.kb2.app.controllers.MainMenuController;
 import com.neschur.kb2.app.models.Game;
-import com.neschur.kb2.app.views.ViewFactory;
 
 public class MainMenuControllerImpl extends ApplicationController implements MainMenuController {
     public MainMenuControllerImpl() {
-        setContentView(ViewFactory.getMainMenuView(this));
+        setContentView(getViewFactory().getMainMenuView(this));
     }
 
     @Override
@@ -40,6 +39,6 @@ public class MainMenuControllerImpl extends ApplicationController implements Mai
 
     @Override
     public void viewClose() {
-        setContentView(ViewFactory.getMainView(new MainViewControllerImpl()));
+        setContentView(getViewFactory().getMainView(new MainViewControllerImpl()));
     }
 }

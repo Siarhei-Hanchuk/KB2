@@ -1,5 +1,6 @@
 package com.neschur.kb2.app.views;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -15,8 +16,8 @@ import com.neschur.kb2.app.models.Player;
 class MapView extends View {
     private final Player player;
 
-    public MapView(PlayerViewsController playerViewsController) {
-        super(playerViewsController);
+    public MapView(Context context, PlayerViewsController playerViewsController) {
+        super(context, playerViewsController);
         this.player = playerViewsController.getPlayer();
     }
 

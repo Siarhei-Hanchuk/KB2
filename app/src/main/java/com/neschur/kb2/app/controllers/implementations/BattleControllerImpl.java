@@ -7,7 +7,6 @@ import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.models.battle.BattleField;
 import com.neschur.kb2.app.models.battle.MapPointBattle;
 import com.neschur.kb2.app.views.BattleView;
-import com.neschur.kb2.app.views.ViewFactory;
 
 public class BattleControllerImpl extends ApplicationController implements BattleController {
     private final BattleField battleField;
@@ -15,7 +14,7 @@ public class BattleControllerImpl extends ApplicationController implements Battl
 
     public BattleControllerImpl(ViewController controller, Fighting fighting) {
         this.battleField = new BattleField(controller.getGame().getPlayer(), fighting, this);
-        battleView = ViewFactory.getBattleView(this);
+        battleView = getViewFactory().getBattleView(this);
         setContentView(battleView);
     }
 
@@ -42,7 +41,7 @@ public class BattleControllerImpl extends ApplicationController implements Battl
 
     @Override
     public void battleFinish(boolean win) {
-        setContentView(ViewFactory.getViewBattleMessageView(this, win));
+        setContentView(getViewFactory().getViewBattleMessageView(this, win));
     }
 
     @Override
