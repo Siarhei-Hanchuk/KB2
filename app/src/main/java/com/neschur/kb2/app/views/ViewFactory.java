@@ -18,14 +18,12 @@ import com.neschur.kb2.app.ui.messages.Message;
 import com.neschur.kb2.app.ui.messages.MessageFactory;
 
 public class ViewFactory {
-    private MenuFactory menuFactory;
-    private MessageFactory messageFactory;
-    private GameOwner gameOwner;
-    private Context context;
+    private final MenuFactory menuFactory;
+    private final MessageFactory messageFactory;
+    private final Context context;
 
     public ViewFactory(Context context, GameOwner gameOwner) {
         this.context = context;
-        this.gameOwner = gameOwner;
         menuFactory = new MenuFactory(gameOwner);
         messageFactory = new MessageFactory(gameOwner);
     }

@@ -6,7 +6,10 @@ import com.neschur.kb2.app.views.ViewFactory;
 
 public interface PlatformController {
     Storage getStorage();
+
     ViewFactory getViewFactory(GameOwner gameOwner);
+
     public void setContentView(View view);
+
     public void exit();
 }

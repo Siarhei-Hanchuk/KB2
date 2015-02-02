@@ -13,6 +13,7 @@ import com.neschur.kb2.app.warriors.WarriorFactory;
 public class PlayerViewsControllerImpl extends ApplicationController
         implements PlayerViewsController, MagicViewController, ArmyShopViewController {
     private View view;
+
     public PlayerViewsControllerImpl(Object viewType) {
         if (viewType instanceof String) {
             switch ((String) viewType) {

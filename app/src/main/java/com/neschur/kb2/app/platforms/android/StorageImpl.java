@@ -15,7 +15,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class StorageImpl implements Storage {
-    private SharedPreferences prefs;
+    private final SharedPreferences prefs;
 
     public StorageImpl(Activity activity) {
         prefs = activity.getSharedPreferences("main", Context.MODE_PRIVATE);

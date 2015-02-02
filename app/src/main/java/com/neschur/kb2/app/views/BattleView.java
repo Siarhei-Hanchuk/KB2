@@ -55,6 +55,7 @@ public class BattleView extends View {
         drawSelected(canvas);
     }
 
+    @Override
     public void refresh() {
         drawThread.refresh();
     }

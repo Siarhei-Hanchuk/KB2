@@ -221,7 +221,7 @@ public class BattleField implements Glade {
 
     private void aiControl() {
         ai.start();
-        while(!ai.isFinished() && friendlyCount() > 0) {
+        while (!ai.isFinished() && friendlyCount() > 0) {
             ai.move();
         }
     }

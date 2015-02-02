@@ -7,11 +7,11 @@ import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.I18n;
-import com.neschur.kb2.app.platforms.android.ImageCache;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.MagicViewController;
 import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.models.Magics;
+import com.neschur.kb2.app.platforms.android.ImageCache;
 import com.neschur.kb2.app.warriors.WarriorFactory;
 
 import java.util.HashMap;
