@@ -1,7 +1,8 @@
-package com.neschur.kb2.app.views;
+package com.neschur.kb2.app.platforms.android.views;
 
 import android.content.Context;
 
+import com.neschur.kb2.app.ViewFactory;
 import com.neschur.kb2.app.controllers.ArmyShopViewController;
 import com.neschur.kb2.app.controllers.BattleController;
 import com.neschur.kb2.app.controllers.GameOwner;
@@ -17,12 +18,12 @@ import com.neschur.kb2.app.ui.menus.MenuFactory;
 import com.neschur.kb2.app.ui.messages.Message;
 import com.neschur.kb2.app.ui.messages.MessageFactory;
 
-public class ViewFactory {
+public class ViewFactoryImpl implements ViewFactory {
     private final MenuFactory menuFactory;
     private final MessageFactory messageFactory;
     private final Context context;
 
-    public ViewFactory(Context context, GameOwner gameOwner) {
+    public ViewFactoryImpl(Context context, GameOwner gameOwner) {
         this.context = context;
         menuFactory = new MenuFactory(gameOwner);
         messageFactory = new MessageFactory(gameOwner);

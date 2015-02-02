@@ -6,7 +6,7 @@ import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.models.battle.BattleField;
 import com.neschur.kb2.app.models.battle.MapPointBattle;
-import com.neschur.kb2.app.views.BattleView;
+import com.neschur.kb2.app.platforms.android.views.BattleView;
 
 public class BattleControllerImpl extends ApplicationController implements BattleController {
     private final BattleField battleField;

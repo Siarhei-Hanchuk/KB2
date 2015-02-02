@@ -1,4 +1,4 @@
-package com.neschur.kb2.app.views;
+package com.neschur.kb2.app.platforms.android.views;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -10,7 +10,6 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.MagicViewController;
 import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.models.Magics;
-import com.neschur.kb2.app.platforms.android.ImageCache;
 import com.neschur.kb2.app.warriors.WarriorFactory;
 
 import java.util.HashMap;

@@ -1,0 +1,34 @@
+package com.neschur.kb2.app;
+
+import com.neschur.kb2.app.controllers.BattleController;
+import com.neschur.kb2.app.controllers.MagicViewController;
+import com.neschur.kb2.app.controllers.MainMenuController;
+import com.neschur.kb2.app.controllers.MainViewController;
+import com.neschur.kb2.app.controllers.PlayerViewsController;
+import com.neschur.kb2.app.controllers.ViewController;
+import com.neschur.kb2.app.entities.Entity;
+import com.neschur.kb2.app.platforms.android.views.BattleView;
+import com.neschur.kb2.app.platforms.android.views.View;
+
+public interface ViewFactory {
+    public View getWorkersMenuView(ViewController controller);
+
+    public View getMapView(PlayerViewsController controller);
+
+    public View getArmyView(PlayerViewsController controller);
+
+    public View getMagicView(MagicViewController controller);
+
+    public View getMainMenuView(MainMenuController controller);
+
+    public View getMainView(MainViewController controller);
+
+    public BattleView getBattleView(BattleController controller);
+
+    public View getCountryMenuView(ViewController controller);
+
+    public View getViewForEntity(ViewController controller, Entity entity);
+
+    public View getViewBattleMessageView(ViewController controller, boolean result);
+
+}

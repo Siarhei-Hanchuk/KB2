@@ -14,10 +14,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class StorageImpl implements Storage {
+class StorageImpl implements Storage {
     private final SharedPreferences prefs;
 
-    public StorageImpl(Activity activity) {
+    StorageImpl(Activity activity) {
         prefs = activity.getSharedPreferences("main", Context.MODE_PRIVATE);
     }
 

@@ -1,4 +1,4 @@
-package com.neschur.kb2.app.views;
+package com.neschur.kb2.app.platforms.android.views;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -9,17 +9,16 @@ import android.view.SurfaceView;
 import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.models.GameGrid;
-import com.neschur.kb2.app.platforms.android.ImageCache;
 
 public abstract class View extends SurfaceView implements SurfaceHolder.Callback, Drawable {
     private static final int IMAGE_WIDTH = 96;
     private static final int IMAGE_HEIGHT = 82;
 
     final ViewController viewController;
+    final I18n i18n;
     DrawThread drawThread;
     int xOffset = 0;
     int yOffset = 0;
-    final I18n i18n;
 
     View(Context context, ViewController viewController) {
         super(context);

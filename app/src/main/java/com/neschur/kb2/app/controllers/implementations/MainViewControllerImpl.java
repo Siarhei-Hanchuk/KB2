@@ -6,7 +6,7 @@ import com.neschur.kb2.app.controllers.MainViewController;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.models.GameGrid;
-import com.neschur.kb2.app.views.View;
+import com.neschur.kb2.app.platforms.android.views.View;
 
 public class MainViewControllerImpl extends ApplicationController implements MainViewController,
         ActivateCallback {

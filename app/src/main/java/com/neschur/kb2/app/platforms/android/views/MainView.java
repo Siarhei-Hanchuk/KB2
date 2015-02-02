@@ -1,4 +1,4 @@
-package com.neschur.kb2.app.views;
+package com.neschur.kb2.app.platforms.android.views;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -9,7 +9,6 @@ import android.view.MotionEvent;
 
 import com.neschur.kb2.app.controllers.MainViewController;
 import com.neschur.kb2.app.models.GameGrid;
-import com.neschur.kb2.app.platforms.android.ImageCache;
 
 class MainView extends View {
     private final MainViewController mainViewController;

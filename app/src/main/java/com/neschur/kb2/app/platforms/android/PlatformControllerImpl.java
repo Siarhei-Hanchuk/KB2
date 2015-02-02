@@ -4,15 +4,16 @@ import android.app.Activity;
 
 import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.Storage;
+import com.neschur.kb2.app.ViewFactory;
 import com.neschur.kb2.app.controllers.GameOwner;
 import com.neschur.kb2.app.controllers.PlatformController;
-import com.neschur.kb2.app.views.View;
-import com.neschur.kb2.app.views.ViewFactory;
+import com.neschur.kb2.app.platforms.android.views.View;
+import com.neschur.kb2.app.platforms.android.views.ViewFactoryImpl;
 
-public class PlatformControllerImpl implements PlatformController {
-    private Activity activity;
+class PlatformControllerImpl implements PlatformController {
+    private final Activity activity;
 
-    public PlatformControllerImpl(Activity _activity) {
+    PlatformControllerImpl(Activity _activity) {
         activity = _activity;
     }
 
@@ -23,7 +24,7 @@ public class PlatformControllerImpl implements PlatformController {
 
     @Override
     public ViewFactory getViewFactory(GameOwner gameOwner) {
-        return new ViewFactory(activity, gameOwner);
+        return new ViewFactoryImpl(activity, gameOwner);
     }
 
     @Override

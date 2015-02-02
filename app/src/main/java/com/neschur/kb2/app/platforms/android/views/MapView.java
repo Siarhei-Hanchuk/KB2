@@ -1,4 +1,4 @@
-package com.neschur.kb2.app.views;
+package com.neschur.kb2.app.platforms.android.views;
 
 import android.content.Context;
 import android.graphics.Canvas;

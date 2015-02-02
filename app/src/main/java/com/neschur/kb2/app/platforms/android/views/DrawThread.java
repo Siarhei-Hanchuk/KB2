@@ -1,4 +1,4 @@
-package com.neschur.kb2.app.views;
+package com.neschur.kb2.app.platforms.android.views;
 
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
