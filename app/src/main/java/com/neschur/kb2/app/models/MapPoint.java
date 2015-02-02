@@ -41,7 +41,7 @@ public class MapPoint implements Serializable {
     }
 
     public boolean isLand() {
-        return land == R.drawable.land;
+        return getLand() == R.drawable.land;
     }
 
     public void setLand(int land) {
@@ -49,7 +49,7 @@ public class MapPoint implements Serializable {
     }
 
     public boolean isEntity() {
-        return entity != null;
+        return getEntity() != null;
     }
 
     public void setEntity(Entity entity) {

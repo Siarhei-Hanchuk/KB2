@@ -13,7 +13,7 @@ public class Mover implements Serializable {
 
     public boolean teleport(Entity entity, MapPoint to) {
         MapPoint from = entity.getMapPoint();
-        if (from.isLand() && !to.isEntity()) {
+        if (to.isLand() && !to.isEntity()) {
             from.setEntity(null);
             to.setEntity(entity);
             entity.setMapPoint(to);
