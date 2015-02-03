@@ -10,7 +10,7 @@ import android.view.MotionEvent;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.MainMenuController;
 
-class MainMenuView extends View {
+class MainMenuView extends ViewImpl {
     private final MainMenuController mainController;
     private boolean saved = false;
 

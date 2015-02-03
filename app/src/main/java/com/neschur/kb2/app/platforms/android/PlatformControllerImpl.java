@@ -4,10 +4,11 @@ import android.app.Activity;
 
 import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.Storage;
+import com.neschur.kb2.app.View;
 import com.neschur.kb2.app.ViewFactory;
 import com.neschur.kb2.app.controllers.GameOwner;
 import com.neschur.kb2.app.controllers.PlatformController;
-import com.neschur.kb2.app.platforms.android.views.View;
+import com.neschur.kb2.app.platforms.android.views.ViewImpl;
 import com.neschur.kb2.app.platforms.android.views.ViewFactoryImpl;
 
 class PlatformControllerImpl implements PlatformController {
@@ -34,7 +35,7 @@ class PlatformControllerImpl implements PlatformController {
 
     @Override
     public void setContentView(View view) {
-        activity.setContentView(view);
+        activity.setContentView((ViewImpl)view);
     }
 
     @Override

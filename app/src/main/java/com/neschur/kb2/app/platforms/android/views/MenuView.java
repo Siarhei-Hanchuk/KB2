@@ -10,7 +10,7 @@ import android.view.MotionEvent;
 import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.ui.menus.Menu;
 
-class MenuView extends View {
+class MenuView extends ViewImpl {
     private final Menu menu;
 
     public MenuView(Context context, ViewController viewController, Menu menu) {

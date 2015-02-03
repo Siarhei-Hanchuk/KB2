@@ -10,7 +10,7 @@ import android.view.MotionEvent;
 import com.neschur.kb2.app.controllers.MainViewController;
 import com.neschur.kb2.app.models.GameGrid;
 
-class MainView extends View {
+class MainView extends ViewImpl {
     private final MainViewController mainViewController;
 
     public MainView(Context context, MainViewController mainViewController) {

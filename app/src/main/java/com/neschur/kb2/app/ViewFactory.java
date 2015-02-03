@@ -7,8 +7,7 @@ import com.neschur.kb2.app.controllers.MainViewController;
 import com.neschur.kb2.app.controllers.PlayerViewsController;
 import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.entities.Entity;
-import com.neschur.kb2.app.platforms.android.views.BattleView;
-import com.neschur.kb2.app.platforms.android.views.View;
+import com.neschur.kb2.app.View;
 
 public interface ViewFactory {
     public View getWorkersMenuView(ViewController controller);
@@ -23,7 +22,7 @@ public interface ViewFactory {
 
     public View getMainView(MainViewController controller);
 
-    public BattleView getBattleView(BattleController controller);
+    public View getBattleView(BattleController controller);
 
     public View getCountryMenuView(ViewController controller);
 

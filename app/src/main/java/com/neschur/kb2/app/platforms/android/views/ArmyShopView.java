@@ -15,7 +15,7 @@ import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.models.Player;
 import com.neschur.kb2.app.warriors.Warrior;
 
-class ArmyShopView extends View {
+class ArmyShopView extends ViewImpl {
     private final ArmyShop shop;
     private final Player player;
     private final Warrior warrior;

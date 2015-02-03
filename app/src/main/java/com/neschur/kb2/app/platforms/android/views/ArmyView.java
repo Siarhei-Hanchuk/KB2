@@ -13,7 +13,7 @@ import com.neschur.kb2.app.controllers.PlayerViewsController;
 import com.neschur.kb2.app.models.Player;
 import com.neschur.kb2.app.warriors.WarriorSquad;
 
-class ArmyView extends View {
+class ArmyView extends ViewImpl {
     private final Player player;
 
     public ArmyView(Context context, PlayerViewsController playerViewsController) {

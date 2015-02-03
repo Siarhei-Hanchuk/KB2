@@ -7,10 +7,11 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.neschur.kb2.app.I18n;
+import com.neschur.kb2.app.View;
 import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.models.GameGrid;
 
-public abstract class View extends SurfaceView implements SurfaceHolder.Callback, Drawable {
+public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Callback, Drawable, View {
     private static final int IMAGE_WIDTH = 96;
     private static final int IMAGE_HEIGHT = 82;
 
@@ -20,7 +21,7 @@ public abstract class View extends SurfaceView implements SurfaceHolder.Callback
     int xOffset = 0;
     int yOffset = 0;
 
-    View(Context context, ViewController viewController) {
+    ViewImpl(Context context, ViewController viewController) {
         super(context);
         getHolder().addCallback(this);
         this.viewController = viewController;

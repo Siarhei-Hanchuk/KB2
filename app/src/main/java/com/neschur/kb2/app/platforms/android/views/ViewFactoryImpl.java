@@ -29,27 +29,27 @@ public class ViewFactoryImpl implements ViewFactory {
         messageFactory = new MessageFactory(gameOwner);
     }
 
-    public View getWorkersMenuView(ViewController controller) {
+    public ViewImpl getWorkersMenuView(ViewController controller) {
         return new MenuView(context, controller, menuFactory.getWorkersMenu());
     }
 
-    public View getMapView(PlayerViewsController controller) {
+    public ViewImpl getMapView(PlayerViewsController controller) {
         return new MapView(context, controller);
     }
 
-    public View getArmyView(PlayerViewsController controller) {
+    public ViewImpl getArmyView(PlayerViewsController controller) {
         return new ArmyView(context, controller);
     }
 
-    public View getMagicView(MagicViewController controller) {
+    public ViewImpl getMagicView(MagicViewController controller) {
         return new MagicView(context, controller);
     }
 
-    public View getMainMenuView(MainMenuController controller) {
+    public ViewImpl getMainMenuView(MainMenuController controller) {
         return new MainMenuView(context, controller);
     }
 
-    public View getMainView(MainViewController controller) {
+    public ViewImpl getMainView(MainViewController controller) {
         return new MainView(context, controller);
     }
 
@@ -57,14 +57,14 @@ public class ViewFactoryImpl implements ViewFactory {
         return new BattleView(context, controller);
     }
 
-    public View getCountryMenuView(ViewController controller) {
+    public ViewImpl getCountryMenuView(ViewController controller) {
         return new MenuView(context, controller, menuFactory.getCountryMenu());
     }
 
-    public View getViewForEntity(ViewController controller, Entity entity) {
+    public ViewImpl getViewForEntity(ViewController controller, Entity entity) {
         Menu menu = menuFactory.getMenu(entity);
         Message message = messageFactory.getMessage(entity);
-        View view = null;
+        ViewImpl view = null;
         if (menu != null) {
             view = new MenuView(context, controller, menu);
         }
@@ -77,7 +77,7 @@ public class ViewFactoryImpl implements ViewFactory {
         return view;
     }
 
-    public View getViewBattleMessageView(ViewController controller, boolean result) {
+    public ViewImpl getViewBattleMessageView(ViewController controller, boolean result) {
         return new MessageView(context, controller, messageFactory.getBattleMessage(result));
     }
 }

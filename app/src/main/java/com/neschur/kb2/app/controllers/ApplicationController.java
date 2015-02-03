@@ -4,7 +4,7 @@ import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.Storage;
 import com.neschur.kb2.app.ViewFactory;
 import com.neschur.kb2.app.models.Game;
-import com.neschur.kb2.app.platforms.android.views.View;
+import com.neschur.kb2.app.View;
 
 public abstract class ApplicationController implements ViewController, GameOwner {
     private static PlatformController platformController;
@@ -19,9 +19,12 @@ public abstract class ApplicationController implements ViewController, GameOwner
         i18n = _platformController.getI18n();
     }
 
-    protected ViewFactory getViewFactory() {
+    protected ApplicationController() {
         if (viewFactory == null)
             viewFactory = platformController.getViewFactory(this);
+    }
+
+    protected ViewFactory getViewFactory() {
         return viewFactory;
     }
 
