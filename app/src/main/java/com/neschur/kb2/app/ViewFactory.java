@@ -12,11 +12,7 @@ import com.neschur.kb2.app.View;
 public interface ViewFactory {
     public View getWorkersMenuView(ViewController controller);
 
-    public View getMapView(PlayerViewsController controller);
-
-    public View getArmyView(PlayerViewsController controller);
-
-    public View getMagicView(MagicViewController controller);
+    public View getPlayersView(MagicViewController controller, String viewName);
 
     public View getMainMenuView(MainMenuController controller);
 

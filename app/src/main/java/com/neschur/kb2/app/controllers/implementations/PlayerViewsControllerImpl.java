@@ -16,17 +16,7 @@ public class PlayerViewsControllerImpl extends ApplicationController
 
     public PlayerViewsControllerImpl(Object viewType) {
         if (viewType instanceof String) {
-            switch ((String) viewType) {
-                case "magic":
-                    view = getViewFactory().getMagicView(this);
-                    break;
-                case "army":
-                    view = getViewFactory().getArmyView(this);
-                    break;
-                case "map":
-                    view = getViewFactory().getMapView(this);
-                    break;
-            }
+            view = getViewFactory().getPlayersView(this, (String)viewType);
         } else {
             view = getViewFactory().getViewForEntity(this, (Entity) viewType);
         }

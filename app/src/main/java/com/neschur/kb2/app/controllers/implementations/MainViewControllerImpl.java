@@ -108,6 +108,10 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
                         new PlayerViewsControllerImpl("army");
                         grid.setMode(0);
                         break;
+                    case 1:
+                        new PlayerViewsControllerImpl("status");
+                        grid.setMode(0);
+                        break;
                     case 4:
                         grid.setMode(0);
                         view.refresh();

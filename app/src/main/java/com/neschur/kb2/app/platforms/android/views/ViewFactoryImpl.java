@@ -2,6 +2,7 @@ package com.neschur.kb2.app.platforms.android.views;
 
 import android.content.Context;
 
+import com.neschur.kb2.app.View;
 import com.neschur.kb2.app.ViewFactory;
 import com.neschur.kb2.app.controllers.ArmyShopViewController;
 import com.neschur.kb2.app.controllers.BattleController;
@@ -9,7 +10,6 @@ import com.neschur.kb2.app.controllers.GameOwner;
 import com.neschur.kb2.app.controllers.MagicViewController;
 import com.neschur.kb2.app.controllers.MainMenuController;
 import com.neschur.kb2.app.controllers.MainViewController;
-import com.neschur.kb2.app.controllers.PlayerViewsController;
 import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Entity;
@@ -33,16 +33,19 @@ public class ViewFactoryImpl implements ViewFactory {
         return new MenuView(context, controller, menuFactory.getWorkersMenu());
     }
 
-    public ViewImpl getMapView(PlayerViewsController controller) {
-        return new MapView(context, controller);
-    }
-
-    public ViewImpl getArmyView(PlayerViewsController controller) {
-        return new ArmyView(context, controller);
-    }
-
-    public ViewImpl getMagicView(MagicViewController controller) {
-        return new MagicView(context, controller);
+    @Override
+    public View getPlayersView(MagicViewController controller, String viewName) {
+        switch (viewName) {
+            case "magic":
+                return new MagicView(context, controller);
+            case "army":
+                return new ArmyView(context, controller);
+            case "map":
+                return new MapView(context, controller);
+            case "status":
+                return new StatusView(context, controller);
+        }
+        return null;
     }
 
     public ViewImpl getMainMenuView(MainMenuController controller) {
