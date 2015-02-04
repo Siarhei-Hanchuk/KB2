@@ -6,10 +6,14 @@ import com.neschur.kb2.app.models.Game;
 
 public class BattleFinishMessage extends Message {
     private final boolean result;
+    private final int authority;
+    private final int money;
 
-    BattleFinishMessage(Game game, boolean result, I18n i18n) {
+    BattleFinishMessage(Game game, I18n i18n, boolean result, int authority, int money) {
         super(null, game, i18n);
         this.result = result;
+        this.authority = authority;
+        this.money = money;
     }
 
     @Override

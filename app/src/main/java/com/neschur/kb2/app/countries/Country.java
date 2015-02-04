@@ -296,5 +296,20 @@ public abstract class Country implements Glade, Serializable {
     public Entity getEntity(int x, int y) {
         return map[x][y].getEntity();
     }
+
+    @Override
+    public boolean inBorders(int x, int y) {
+        return (x > 0 && y > 0 && x < MAX_MAP_SIZE && y < MAX_MAP_SIZE);
+    }
+
+    public MapPoint getRandomLand() {
+        int x;
+        int y;
+        do {
+            x = rand(MAX_MAP_SIZE);
+            y = rand(MAX_MAP_SIZE);
+        }while(isEntity(x, y) || !isLand(x, y));
+        return getMapPoint(x, y);
+    }
 }
 

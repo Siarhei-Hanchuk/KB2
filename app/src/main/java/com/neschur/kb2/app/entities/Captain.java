@@ -25,4 +25,9 @@ public class Captain extends EntityImpl implements Fighting {
     public WarriorSquad getWarriorSquad(int n) {
         return warriors[n];
     }
+
+    @Override
+    public int getAuthority() {
+        return 100; // TODO
+    }
 }

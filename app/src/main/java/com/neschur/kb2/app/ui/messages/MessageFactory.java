@@ -29,7 +29,8 @@ public class MessageFactory {
         return null;
     }
 
-    public Message getBattleMessage(boolean result) {
-        return new BattleFinishMessage(gameOwner.getGame(), result, gameOwner.i18n());
+    public Message getBattleMessage(boolean result, int authority, int money) {
+        return new BattleFinishMessage(gameOwner.getGame(), gameOwner.i18n(),
+                result, authority, money);
     }
 }

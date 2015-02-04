@@ -77,7 +77,9 @@ public class ViewFactoryImpl implements ViewFactory {
         return view;
     }
 
-    public ViewImpl getViewBattleMessageView(ViewController controller, boolean result) {
-        return new MessageView(context, controller, messageFactory.getBattleMessage(result));
+    public ViewImpl getViewBattleMessageView(ViewController controller,
+                                             boolean result, int authority, int money) {
+        return new MessageView(context, controller,
+                messageFactory.getBattleMessage(result, authority, money));
     }
 }

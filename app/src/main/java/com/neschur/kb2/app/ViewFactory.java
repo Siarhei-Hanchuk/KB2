@@ -28,6 +28,7 @@ public interface ViewFactory {
 
     public View getViewForEntity(ViewController controller, Entity entity);
 
-    public View getViewBattleMessageView(ViewController controller, boolean result);
+    public View getViewBattleMessageView(ViewController controller, boolean result,
+                                         int authority, int money);
 
 }
