@@ -2,9 +2,11 @@ package com.neschur.kb2.app.models.battle;
 
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.models.MapPoint;
+import com.neschur.kb2.app.models.Mover;
 import com.neschur.kb2.app.warriors.Warrior;
 
 public class WarriorEntity implements Entity, Warrior {
+    private final Mover mover;
     private final Warrior warrior;
     private MapPoint point;
     private boolean friendly;
@@ -13,6 +15,7 @@ public class WarriorEntity implements Entity, Warrior {
     private int defence;
 
     public WarriorEntity(MapPoint point, Warrior warrior, int count, boolean friendly) {
+        mover = new Mover(point.getGlade());
         point.setEntity(this);
         this.point = point;
         this.warrior = warrior;
@@ -119,5 +122,22 @@ public class WarriorEntity implements Entity, Warrior {
             this.step = warrior.getStep();
     }
 
+    public boolean flyTo(MapPoint point) {
+        int x = point.getX();
+        int y = point.getY();
+        for (int i = (x - 1 < 0) ? 0 : x - 1; i <= ((x + 1 < 6) ? x + 1 : 6); i++) {
+            for (int j = (y - 1 < 0) ? 0 : y - 1; j <= ((y + 1 < 5) ? y + 1 : 5); j++) {
+                if (mover.teleport(this, point.getGlade().getMapPoint(i, j))) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void moveInDirection(MapPoint point) {
+        mover.moveInDirection(this, point);
+        this.reduceStep(1);
+    }
 
 }

@@ -43,7 +43,7 @@ public class Game implements Serializable {
 
     public void moveEntities() {
 //        Sorcerer sorcerer = player.getCountry().getSorcerer();
-//        sorcerer.moveTo(player.getMapPoint());
+//        sorcerer.moveInDirection(player.getMapPoint());
     }
 
     public void weekUpdate() {

@@ -22,7 +22,7 @@ public class Mover implements Serializable {
         return false;
     }
 
-    public void moveTo(Entity entity, MapPoint to) {
+    public void moveInDirection(Entity entity, MapPoint to) {
         int x = entity.getMapPoint().getX();
         int y = entity.getMapPoint().getY();
         int directionX = (int) Math.signum(to.getX() - x);
