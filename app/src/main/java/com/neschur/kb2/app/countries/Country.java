@@ -6,6 +6,7 @@ import com.neschur.kb2.app.entities.Captain;
 import com.neschur.kb2.app.entities.Castle;
 import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Entity;
+import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.entities.GoldChest;
 import com.neschur.kb2.app.entities.GuidePost;
 import com.neschur.kb2.app.entities.MapNext;
@@ -45,14 +46,9 @@ public abstract class Country implements Glade, Serializable {
 //    }
 
     protected void createCaptain(int x, int y) {
-        Captain captain = new Captain(getMapPoint(x, y));
-        int squadCount = rand(5) + 1;
-        int authority = 100 + rand(1000);
-        for (int i = 0; i < squadCount; i++) {
-            Warrior warrior = WarriorFactory.createRandomFromGroup(0);
-            WarriorSquad squad = new WarriorSquad(warrior, authority / warrior.getDamage());
-            captain.setSquad(i, squad);
-        }
+        Fighting captain = new Captain(getMapPoint(x, y));
+        int authority = 100 + rand(100);
+        captain.generateArmy(authority, 0);
     }
 
     public void createWizards() {
