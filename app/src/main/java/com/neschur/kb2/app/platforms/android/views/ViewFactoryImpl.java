@@ -85,4 +85,9 @@ public class ViewFactoryImpl implements ViewFactory {
         return new MessageView(context, controller,
                 messageFactory.getBattleMessage(result, authority, money));
     }
+
+    @Override
+    public View getWeekEndView(ViewController controller) {
+        return new WeekEndView(context, controller);
+    }
 }

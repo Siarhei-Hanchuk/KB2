@@ -96,4 +96,12 @@
     <string name="magic.hiking_magic7">Дать волшебство</string>
     <string name="battle.finish.win">Вы победили, вам досталось золота #{?} и ваш авторитет возрос на #{?}</string>
     <string name="battle.finish.fail">Вы проиграли, ваш авторитет уменьшился на #{?} и противник забросил вас неизвестно куда</string>
+    <string name="messages.weekEnd.title">ФИНАНСОВЫЙ ОТЧЁТ ПРОШЛОЙ НЕДЕЛИ</string>
+    <string name="messages.weekEnd.money">Имеется всего</string>
+    <string name="messages.weekEnd.salary">Недельная прибавка</string>
+    <string name="messages.weekEnd.armySalary">Расходы на армию</string>
+    <string name="messages.weekEnd.armyRefresh">#{?} активизируются.</string>
+    <string name="messages.weekEnd.armyRefresh2">Наступает благоприятный период по расположению звёзд для этих войнов.</string>
+    <string name="messages.weekEnd.armyRefresh3">Все их жилища перенаселяются.</string>
+    <string name="messages.weekEnd.cityRefresh">Город #{?} заполнился работниками.</string>
 </resources>

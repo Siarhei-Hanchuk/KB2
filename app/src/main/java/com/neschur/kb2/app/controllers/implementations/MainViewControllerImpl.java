@@ -1,6 +1,6 @@
 package com.neschur.kb2.app.controllers.implementations;
 
-import com.neschur.kb2.app.controllers.ActivateCallback;
+import com.neschur.kb2.app.controllers.GameCallback;
 import com.neschur.kb2.app.controllers.ApplicationController;
 import com.neschur.kb2.app.controllers.MainViewController;
 import com.neschur.kb2.app.entities.Entity;
@@ -9,7 +9,7 @@ import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.View;
 
 public class MainViewControllerImpl extends ApplicationController implements MainViewController,
-        ActivateCallback {
+        GameCallback {
     private final View view;
     private GameGrid gameGrid;
 
@@ -33,8 +33,12 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
 
     @Override
     public void activateBattle(Fighting fighting) {
-        setContentView(getViewFactory().getWorkersMenuView(this));
         new BattleControllerImpl(this, fighting);
+    }
+
+    @Override
+    public void weekFinish() {
+        setContentView(getViewFactory().getWeekEndView(this));
     }
 
     @Override
@@ -108,6 +112,10 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
                 switch (i) {
                     case 0:
                         new PlayerViewsControllerImpl("army");
+                        grid.setMode(0);
+                        break;
+                    case 1:
+                        getGame().finishWeek();
                         grid.setMode(0);
                         break;
                     case 4:

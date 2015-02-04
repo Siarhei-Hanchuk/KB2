@@ -27,4 +27,5 @@ public interface ViewFactory {
     public View getViewBattleMessageView(ViewController controller, boolean result,
                                          int authority, int money);
 
+    public View getWeekEndView(ViewController controller);
 }

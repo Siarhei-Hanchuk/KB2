@@ -97,4 +97,12 @@
     <string name="magic.hiking_magic7">Магия7</string>
     <string name="battle.finish.win">Вы победили</string>
     <string name="battle.finish.fail">Вы проиграли</string>
+    <string name="messages.weekEnd.title">ФИНАНСОВЫЙ ОТЧЁТ ПРОШЛОЙ НЕДЕЛИ</string>
+    <string name="messages.weekEnd.money">Имеется всего</string>
+    <string name="messages.weekEnd.salary">Недельная прибавка</string>
+    <string name="messages.weekEnd.armySalary">Расходы на армию</string>
+    <string name="messages.weekEnd.armyRefresh">#{?} активизируются</string>
+    <string name="messages.weekEnd.armyRefresh2">Наступает</string>
+    <string name="messages.weekEnd.armyRefresh3">Все их</string>
+    <string name="messages.weekEnd.cityRefresh">Город #{?} заполнился работниками</string>
 </resources>

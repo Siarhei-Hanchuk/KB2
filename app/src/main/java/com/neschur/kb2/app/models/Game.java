@@ -1,7 +1,7 @@
 package com.neschur.kb2.app.models;
 
 import com.neschur.kb2.app.R;
-import com.neschur.kb2.app.controllers.ActivateCallback;
+import com.neschur.kb2.app.controllers.GameCallback;
 import com.neschur.kb2.app.countries.World;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Fighting;
@@ -13,23 +13,23 @@ public class Game implements Serializable {
     public static final int MODE_TRAINING = Player.MODE_TRAINING;
     public static final int MODE_GAME = Player.MODE_GAME;
 
-    final transient private ActivateCallback mainController;
+    final transient private GameCallback callbacks;
 
     private final World world;
     private final Player player;
     private Nave nave;
     private int weeks;
-    private int days = 0;
+    private int days = 200;
     private int currentWorker = -1;
 
-    public Game(ActivateCallback mainController, int mode) {
-        this.mainController = mainController;
+    public Game(GameCallback callbacks, int mode) {
+        this.callbacks = callbacks;
         world = new World(mode);
         player = new Player(world.getCountry(0), mode);
         if (mode == MODE_GAME) {
-            weeks = 200;
+            weeks = 200 - 1;
         } else if (mode == MODE_TRAINING) {
-            weeks = 600;
+            weeks = 600 - 1;
         }
     }
 
@@ -46,12 +46,17 @@ public class Game implements Serializable {
 //        sorcerer.moveInDirection(player.getMapPoint());
     }
 
+    private void weekFinish() {
+        callbacks.weekFinish();
+    }
+
     public void weekUpdate() {
         if (days > 0) {
             days--;
         } else {
             days = 200;
             weeks--;
+            weekFinish();
         }
     }
 
@@ -107,7 +112,7 @@ public class Game implements Serializable {
             player.setNave((Nave) mp.getEntity());
             player.move(mp.getX(), mp.getY());
         } else {
-            mainController.activateEntity(mp.getEntity());
+            callbacks.activateEntity(mp.getEntity());
         }
     }
 
@@ -136,7 +141,7 @@ public class Game implements Serializable {
     }
 
     public void activateBattle(Fighting fighting) {
-        mainController.activateBattle(fighting);
+        callbacks.activateBattle(fighting);
     }
 
     public void selectWorker(int n) {
@@ -148,5 +153,11 @@ public class Game implements Serializable {
 
     public int getWeeks() {
         return weeks;
+    }
+
+    public void finishWeek() {
+        weeks--;
+        days = 200;
+        weekFinish();
     }
 }
