@@ -215,15 +215,17 @@ public class BattleField implements Glade {
                 }
             }
         }
+        battleController.updateView();
         aiControl();
         newPhase();
     }
 
     private void aiControl() {
-        ai.start();
-        while (!ai.isFinished() && friendlyCount() > 0) {
+        do {
+            battleController.updateView(1000);
             ai.move();
-        }
+        } while (!ai.isFinished() && friendlyCount() > 0);
+        battleController.updateView();
     }
 
     private int friendlyCount() {

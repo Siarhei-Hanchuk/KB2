@@ -54,7 +54,20 @@ public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Call
         }
     }
 
+    @Override
     public void refresh() {
+        drawThread.refresh();
+    }
+
+    @Override
+    public void refresh(int delay) {
+        if (delay > 0) {
+            try {
+                Thread.sleep(delay);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+        }
         drawThread.refresh();
     }
 

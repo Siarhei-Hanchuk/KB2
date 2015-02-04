@@ -55,11 +55,6 @@ public class BattleView extends ViewImpl {
         drawSelected(canvas);
     }
 
-    @Override
-    public void refresh() {
-        drawThread.refresh();
-    }
-
     private void drawLand(Canvas canvas) {
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {

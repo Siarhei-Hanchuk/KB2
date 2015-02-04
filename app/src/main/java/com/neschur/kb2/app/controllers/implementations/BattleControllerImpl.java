@@ -46,7 +46,12 @@ public class BattleControllerImpl extends ApplicationController implements Battl
 
     @Override
     public void updateView() {
-        battleView.refresh();
+        updateView(0);
+    }
+
+    @Override
+    public void updateView(int delay) {
+        battleView.refresh(delay);
     }
 
     @Override

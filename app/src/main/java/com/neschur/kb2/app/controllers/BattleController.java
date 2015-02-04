@@ -14,4 +14,6 @@ public interface BattleController extends ViewController {
     public void battleFinish(boolean win);
 
     public void updateView();
+
+    public void updateView(int delay);
 }

@@ -6,19 +6,21 @@ import com.neschur.kb2.app.models.Mover;
 public class BattleAi {
     private final BattleField bf;
     private final Mover mover;
-    private boolean finished;
 
     public BattleAi(BattleField bf) {
         this.bf = bf;
         this.mover = new Mover(bf);
     }
 
-    public void start() {
-        finished = false;
-    }
-
     public boolean isFinished() {
-        return finished;
+        for (int x = 0; x < 6; x++) {
+            for (int y = 0; y < 5; y++) {
+                if (bf.isEntity(x, y) && !bf.isFriendly(x, y) && bf.getEntity(x, y).getStep() > 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public void move() {
@@ -30,7 +32,6 @@ public class BattleAi {
                 }
             }
         }
-        finished = true;
     }
 
     private void step(WarriorEntity war) {
