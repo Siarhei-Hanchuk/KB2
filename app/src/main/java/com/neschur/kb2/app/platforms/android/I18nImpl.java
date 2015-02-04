@@ -25,4 +25,19 @@ class I18nImpl implements I18n {
     public String translate(int key) {
         return resources.getString(key);
     }
+
+    @Override
+    public String translate(String key, String ... replaces) {
+        String result;
+        try {
+            result = resources.getString(R.string.class.getField(key).getInt(new R.string()));
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            return key;
+        }
+        for(String item : replaces) {
+            result = result.replaceFirst("#\\{\\?\\}", item);
+        }
+        return result;
+
+    }
 }

@@ -3,6 +3,7 @@ package com.neschur.kb2.app.platforms.android.views;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
@@ -26,8 +27,18 @@ class MessageView extends ViewImpl {
     @Override
     public void draw(@NonNull Canvas canvas) {
         canvas.drawColor(Color.BLACK);
-
-        canvas.drawText(message.getText(), 10, 100, getDefaultPaint());
+        String text = message.getText();
+        float textLength = getDefaultPaint().measureText(text);
+        if (textLength < getWidth()) {
+            canvas.drawText(message.getText(), 10, 100, getDefaultPaint());
+        } else {
+            int count = (int)(text.length() / (textLength / getWidth()));
+            int length = (text.length() + count - 1) / count;
+            for (int ix = 0, pos = 0; ix < length; ix++, pos += count) {
+                canvas.drawText(text.substring(pos, Math.min(text.length(), pos + count)).trim()
+                        , 10, 100 * (ix + 1), getDefaultPaint());
+            }
+        }
     }
 
     private void closeMessage() {

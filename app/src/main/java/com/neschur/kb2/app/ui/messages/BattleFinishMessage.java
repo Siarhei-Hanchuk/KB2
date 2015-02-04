@@ -24,9 +24,10 @@ public class BattleFinishMessage extends Message {
     @Override
     public String getText() {
         if (result) {
-            return i18n.translate(R.string.battle_finish_win);
+            return i18n.translate("battle_finish_win",
+                    Integer.toString(authority), Integer.toString(money));
         } else {
-            return i18n.translate(R.string.battle_finish_fail);
+            return i18n.translate("battle_finish_fail", Integer.toString(authority));
         }
     }
 }
