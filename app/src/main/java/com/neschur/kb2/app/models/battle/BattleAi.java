@@ -25,6 +25,7 @@ public class BattleAi {
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
                 if (bf.isEntity(x, y) && !bf.isFriendly(x, y) && bf.getEntity(x, y).getStep() > 0) {
+                    bf.setSelected(bf.getEntity(x, y));
                     step(bf.getEntity(x, y));
                     return;
                 }
@@ -33,27 +34,21 @@ public class BattleAi {
     }
 
     private void step(WarriorEntity war) {
-        if (war.isShoot() || war.isFly()) {
-            MapPointBattle attackedPoint = findUserWar(true);
-            if (attackedPoint == null)
-                attackedPoint = findUserWar(false);
-            if (attackedPoint != null)
-                if (war.isShoot()) {
-                    war.attack(attackedPoint.getEntity());
-                } else {
-                    if (war.flyTo(attackedPoint))
-                        war.attack(attackedPoint.getEntity());
-                }
+        MapPointBattle attackedPoint = findUserWar(true);
+        if (attackedPoint == null)
+            attackedPoint = findNearestUserWar(war);
+        if (war.isShoot()) {
+            war.attack(attackedPoint.getEntity());
+        } else if (war.isFly()) {
+            if (distance(war, attackedPoint) == 1)
+                war.attack(attackedPoint.getEntity());
+            else
+                war.flyTo(attackedPoint);
         } else {
-            MapPoint attackedPoint = findNearestUserWar(war);
-            if (attackedPoint != null) {
-                while (war.getStep() > 0) {
-                    if (distance(war, attackedPoint) == 1 && war.getStep() > 0) {
-                        war.attack((WarriorEntity) attackedPoint.getEntity());
-                    }
-                    war.moveInDirection(attackedPoint);
-                }
+            if (distance(war, attackedPoint) == 1 && war.getStep() > 0) {
+                war.attack(attackedPoint.getEntity());
             }
+            war.moveInDirection(attackedPoint);
         }
     }
 
@@ -63,9 +58,9 @@ public class BattleAi {
                 if (bf.isEntity(x, y) && bf.isFriendly(x, y)) {
                     if (shoot) {
                         if (bf.getEntity(x, y).isShoot())
-                            return (MapPointBattle)bf.getMapPoint(x, y);
+                            return bf.getMapPoint(x, y);
                     } else {
-                        return (MapPointBattle)bf.getMapPoint(x, y);
+                        return bf.getMapPoint(x, y);
                     }
                 }
             }
@@ -73,9 +68,9 @@ public class BattleAi {
         return null;
     }
 
-    private MapPoint findNearestUserWar(WarriorEntity war) {
+    private MapPointBattle findNearestUserWar(WarriorEntity war) {
         int distance = 99;
-        MapPoint dst = null;
+        MapPointBattle dst = null;
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 5; j++) {
                 if (bf.isEntity(i, j) && bf.isFriendly(i, j)) {

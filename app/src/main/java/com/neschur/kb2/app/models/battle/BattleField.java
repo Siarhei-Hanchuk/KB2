@@ -29,7 +29,7 @@ public class BattleField implements Glade {
     }
 
     @Override
-    public MapPoint getMapPoint(int x, int y) {
+    public MapPointBattle getMapPoint(int x, int y) {
         return map[x][y];
     }
 
@@ -240,6 +240,7 @@ public class BattleField implements Glade {
     }
 
     private void newPhase() {
+        setSelected(null);
         int friendlyCount = 0;
         int enemyCount = 0;
         for (int x = 0; x < 6; x++) {
@@ -260,5 +261,9 @@ public class BattleField implements Glade {
         if (enemyCount == 0) {
             battleController.battleFinish(true);
         }
+    }
+
+    public void setSelected(WarriorEntity selected) {
+        this.selected = selected;
     }
 }
