@@ -1,7 +1,6 @@
 package com.neschur.kb2.app.ui.messages;
 
 import com.neschur.kb2.app.I18n;
-import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.models.Game;
 
 public class BattleFinishMessage extends Message {

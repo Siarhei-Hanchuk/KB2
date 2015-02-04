@@ -29,7 +29,7 @@ class MessageView extends ViewImpl {
         String text = message.getText();
         float textLength = getDefaultPaint().measureText(text);
         if (textLength < getWidth()) {
-            canvas.drawText(message.getText(), 10, 100, getDefaultPaint());
+            canvas.drawText(text, 10, 100, getDefaultPaint());
         } else {
             int count = (int)(text.length() / (textLength / getWidth()));
             int length = (text.length() + count - 1) / count;

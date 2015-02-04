@@ -35,7 +35,7 @@ public class WeekEndView extends ViewImpl {
 
         drawItem(canvas, 3, "money", player.getMoney());
         drawItem(canvas, 4, "salary", player.getSalary());
-        drawItem(canvas, 5, "armySalary", player.getSalary());
+        drawItem(canvas, 5, "armySalary", 0);
 
         drawItem(canvas, 7, "armyRefresh", null);
         drawItem(canvas, 8, "armyRefresh2", null);
@@ -49,8 +49,17 @@ public class WeekEndView extends ViewImpl {
             text = i18n.translate("messages_weekEnd_" + attr) + ": " + value;
         else
             text = i18n.translate("messages_weekEnd_" + attr);
-        canvas.drawText(text,
-                10, textHeight() * (n), getDefaultPaint());
+        float textLength = getDefaultPaint().measureText(text);
+        if (textLength < getWidth()) {
+            canvas.drawText(text, 10, textHeight() * (n), getDefaultPaint());
+        } else {
+            int count = (int)(text.length() / (textLength / getWidth()));
+            int length = (text.length() + count - 1) / count;
+            for (int ix = 0, pos = 0; ix < length; ix++, pos += count) {
+                canvas.drawText(text.substring(pos, Math.min(text.length(), pos + count)).trim()
+                        , 10, (textHeight() * n) + textHeight() * ix, getDefaultPaint());
+            }
+        }
     }
 }
 
