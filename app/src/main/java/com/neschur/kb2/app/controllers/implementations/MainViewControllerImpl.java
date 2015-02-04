@@ -95,6 +95,8 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
                         view.refresh();
                         break;
                     case 3:
+                        new PlayerViewsControllerImpl("status");
+                        grid.setMode(0);
                         break;
                     case 4:
                         grid.setMode(3);
@@ -106,10 +108,6 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
                 switch (i) {
                     case 0:
                         new PlayerViewsControllerImpl("army");
-                        grid.setMode(0);
-                        break;
-                    case 1:
-                        new PlayerViewsControllerImpl("status");
                         grid.setMode(0);
                         break;
                     case 4:

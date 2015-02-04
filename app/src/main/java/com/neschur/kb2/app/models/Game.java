@@ -145,4 +145,8 @@ public class Game implements Serializable {
             player.changeWorker(n, -1);
         }
     }
+
+    public int getWeeks() {
+        return weeks;
+    }
 }

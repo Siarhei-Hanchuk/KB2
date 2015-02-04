@@ -66,7 +66,15 @@
     <string name="army.ui.fly">Летает?</string>
     <string name="army.ui.afford">Вы можете нанять</string>
     <string name="army.ui.howMany">Сколько?</string>
-    <string name="player.attrs.money">Деньги</string>
+    <string name="player.attrs.money">Золото</string>
+    <string name="player.attrs.authority">Авторитет</string>
+    <string name="player.attrs.salary">Недельная прибавка</string>
+    <string name="player.attrs.armySalary">Расходы на армию</string>
+    <string name="player.attrs.magickPower">Волешбная сила</string>
+    <string name="player.attrs.maxMagickCount">Макс.количество волшебств</string>
+    <string name="player.attrs.tornadoCount">Кол-во СМЕРЧЕЙ</string>
+    <string name="player.attrs.ancientMapCount">Кол-во частей древней карты</string>
+    <string name="player.attrs.weeks">Недель осталось</string>
     <string name="mainMenu.exit">Выход</string>
     <string name="mainMenu.load_game">Загрузить игру</string>
     <string name="mainMenu.new_game">Новая игра</string>
