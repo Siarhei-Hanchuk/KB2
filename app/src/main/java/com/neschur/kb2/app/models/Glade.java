@@ -10,4 +10,6 @@ public interface Glade {
     public boolean isLand(int x, int y);
 
     public Entity getEntity(int x, int y);
+
+    public boolean inBorders(int x, int y);
 }

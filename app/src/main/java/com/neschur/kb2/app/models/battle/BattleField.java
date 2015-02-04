@@ -4,7 +4,6 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.BattleController;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.models.Glade;
-import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.Mover;
 import com.neschur.kb2.app.models.Player;
 
@@ -194,6 +193,11 @@ public class BattleField implements Glade {
     @Override
     public boolean isLand(int x, int y) {
         return map[x][y].getLand() == R.drawable.land;
+    }
+
+    @Override
+    public boolean inBorders(int x, int y) {
+        return (x > -1 && y > -1 && x < 6 && y < 5);
     }
 
     @Override
