@@ -4,6 +4,7 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.models.MapPoint;
 
 public class Magician extends EntityImpl {
+    private static int[] usedMagicianCount = {0, 0, 0, 0, 0};
 
     public Magician(MapPoint point) {
         super(point);
@@ -12,5 +13,13 @@ public class Magician extends EntityImpl {
     @Override
     public int getID() {
         return R.drawable.magican;
+    }
+
+    public int getUsedMagicianCount() {
+        return usedMagicianCount[getCountry().getId()];
+    }
+
+    public void upUsedMagicianCount() {
+        this.usedMagicianCount[getCountry().getId()]++;
     }
 }

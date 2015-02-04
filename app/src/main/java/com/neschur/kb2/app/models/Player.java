@@ -3,33 +3,28 @@ package com.neschur.kb2.app.models;
 import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.entities.Nave;
 import com.neschur.kb2.app.warriors.Warrior;
-import com.neschur.kb2.app.warriors.WarriorFactory;
 import com.neschur.kb2.app.warriors.WarriorSquad;
 
 import java.io.Serializable;
 
 public class Player implements Serializable {
     public static final int MAX_ARMY = 10;
-    private final WarriorSquad[] warriors = new WarriorSquad[MAX_ARMY]; // TODO - List
     public static final int MODE_TRAINING = 0;
     public static final int MODE_GAME = 1;
+    private final WarriorSquad[] warriors = new WarriorSquad[MAX_ARMY]; // TODO - List
     private final int[] workers = new int[4];
-    private final int[] usedMagicianCount = {0, 0, 0, 0, 0};
     private final boolean[] importantDocs = {false, false, false, false, false};
     private final Memory memory;
-    private final Magics magics = new Magics();
+    private Magic magic;
     private boolean wallkick;
     private int money;
     private int authority;
     private Country country;
-    private int magicPower;
-    private int magicMaxCount;
     private int availableCountry = 1;
     private Nave nave;
     private int salary = 0;
     private int x;
     private int y;
-    private int tornado = 0;
 
     public Player(Country _country, int mode) {
         memory = new Memory();
@@ -50,7 +45,6 @@ public class Player implements Serializable {
         wallkick = false;
         money = 20000;
         authority = 50;
-        magicPower = 2;
         for (int i = 0; i < 10; i++) {
             workers[0] = 4;
             workers[1] = 6;
@@ -58,7 +52,7 @@ public class Player implements Serializable {
             workers[3] = 3;
         }
         salary = 500;
-        magicMaxCount = 4;
+        magic = new Magic(2, 4);
     }
 
 
@@ -132,14 +126,6 @@ public class Player implements Serializable {
         return nave != null;
     }
 
-    public int getMagicPower() {
-        return magicPower;
-    }
-
-    public void upMagicPower() {
-        this.magicPower++;
-    }
-
     public Integer getAuthority() {
         return authority;
     }
@@ -155,14 +141,6 @@ public class Player implements Serializable {
 
     public int getAvailableCountry() {
         return availableCountry;
-    }
-
-    public int getUsedMagicianCount() {
-        return usedMagicianCount[getCountry().getId()];
-    }
-
-    public void upUsedMagicianCount() {
-        this.usedMagicianCount[getCountry().getId()]++;
     }
 
     public void changeWorker(int id, int count) {
@@ -187,14 +165,6 @@ public class Player implements Serializable {
 
     public void changeSalary(int delta) {
         this.salary += delta;
-    }
-
-    public int getMagicMaxCount() {
-        return magicMaxCount;
-    }
-
-    public void upMagicMaxCount() {
-        this.magicMaxCount += 1;
     }
 
     private WarriorSquad findWarriorSquad(Warrior warrior) {
@@ -249,19 +219,11 @@ public class Player implements Serializable {
         return true;
     }
 
-    public Magics getMagics() {
-        return magics;
+    public Magic getMagic() {
+        return magic;
     }
 
     public MapPoint getMapPoint() {
         return getCountry().getMapPoint(getX(), getY());
-    }
-
-    public int getTornado() {
-        return tornado;
-    }
-
-    public void changeTornado(int d) {
-        this.tornado += d;
     }
 }

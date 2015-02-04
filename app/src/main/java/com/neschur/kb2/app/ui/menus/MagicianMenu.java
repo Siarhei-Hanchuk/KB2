@@ -2,6 +2,7 @@ package com.neschur.kb2.app.ui.menus;
 
 import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.entities.Entity;
+import com.neschur.kb2.app.entities.Magician;
 import com.neschur.kb2.app.models.Game;
 
 public class MagicianMenu extends Menu {
@@ -9,11 +10,11 @@ public class MagicianMenu extends Menu {
     private final int PRICE_WORKERS = 1000;
     private final int PRICE_MOVE_TO_COUNTRY = 5000;
     private final int PRICE_TORNADO = 10000;
-    private final Entity magician;
+    private final Magician magician;
 
     MagicianMenu(Entity magician, Game game, I18n i18n) {
         super(game, i18n);
-        this.magician = magician;
+        this.magician = (Magician)magician;
     }
 
     @Override
@@ -54,30 +55,30 @@ public class MagicianMenu extends Menu {
                         return false;
                     case 1:
                         if (player.changeMoney(-PRICE_MAGIC_POWER)) {
-                            player.upMagicPower();
-                            player.upUsedMagicianCount();
+                            player.getMagic().upMagicPower();
+                            magician.upUsedMagicianCount();
                         }
                         magician.destroy();
                         return true;
                     case 2:
                         if (player.changeMoney(-PRICE_MOVE_TO_COUNTRY)) {
                             menuMode = 2;
-                            player.upUsedMagicianCount();
+                            magician.upUsedMagicianCount();
                         }
                         magician.destroy();
                         return true;
                     case 4:
                         if (player.changeMoney(-PRICE_TORNADO)) {
-                            player.changeTornado(+1);
-                            player.upUsedMagicianCount();
+                            player.getMagic().changeTornado(+1);
+                            magician.upUsedMagicianCount();
                         }
                         magician.destroy();
                         return true;
                 }
             case 1:
                 player.changeMoney(-PRICE_WORKERS);
-                player.changeWorker(i, +player.getMagicPower());
-                player.upUsedMagicianCount();
+                player.changeWorker(i, +player.getMagic().getMagicPower());
+                magician.upUsedMagicianCount();
                 magician.destroy();
                 return true;
         }
@@ -88,7 +89,7 @@ public class MagicianMenu extends Menu {
     public int getCount() {
         switch (menuMode) {
             case 0:
-                return Math.min(player.getUsedMagicianCount() + 1, 6);
+                return Math.min(magician.getUsedMagicianCount() + 1, 6);
             case 1:
                 return 4;
             case 2:

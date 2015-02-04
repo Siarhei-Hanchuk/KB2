@@ -9,20 +9,20 @@ import android.view.MotionEvent;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.MagicViewController;
 import com.neschur.kb2.app.models.GameGrid;
-import com.neschur.kb2.app.models.Magics;
+import com.neschur.kb2.app.models.Magic;
 import com.neschur.kb2.app.warriors.WarriorFactory;
 
 import java.util.HashMap;
 
 class MagicView extends ViewImpl {
-    private final Magics magics;
+    private final Magic magic;
     private final HashMap<Integer, String> armyIdCache = new HashMap<>();
     private int mode = 0;
     private MagicViewController magicViewController;
 
     public MagicView(Context context, MagicViewController magicViewController) {
         super(context, magicViewController);
-        this.magics = magicViewController.getPlayer().getMagics();
+        this.magic = magicViewController.getPlayer().getMagic();
         this.magicViewController = magicViewController;
     }
 
@@ -51,7 +51,7 @@ class MagicView extends ViewImpl {
         if (mode != 1) {
             for (int i = 1; i < 8; i++) {
                 canvas.drawText(i18n.translate("magic_hiking_magic" + i) + ": "
-                                + magics.getCampingMagic(i - 1),
+                                + magic.getCampingMagic(i - 1),
                         0, i * menuItemHeight(), getDefaultPaint());
             }
         } else {

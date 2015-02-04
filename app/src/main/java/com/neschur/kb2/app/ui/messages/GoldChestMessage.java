@@ -35,10 +35,10 @@ public class GoldChestMessage extends Message {
                 player.changeSalary(((GoldChest) entity).getSalary());
                 break;
             case 1:
-                player.upMagicMaxCount();
+                player.getMagic().upMagicMaxCount();
                 break;
             case 2:
-                player.getMagics().upRandomMagic();
+                player.getMagic().upRandomMagic();
                 break;
         }
         entity.destroy();
