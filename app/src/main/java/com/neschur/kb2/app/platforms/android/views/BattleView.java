@@ -37,7 +37,7 @@ public class BattleView extends ViewImpl {
 
     @Override
     public void draw(@NonNull Canvas canvas) {
-        calcOffsets();
+        super.draw(canvas);
 
         drawLand(canvas);
 

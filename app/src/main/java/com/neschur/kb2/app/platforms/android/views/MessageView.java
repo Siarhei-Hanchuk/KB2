@@ -3,7 +3,6 @@ package com.neschur.kb2.app.platforms.android.views;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 

@@ -1,11 +1,7 @@
 package com.neschur.kb2.app.platforms.android.views;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
@@ -29,27 +25,19 @@ class ArmyView extends ViewImpl {
 
     @Override
     public void draw(@NonNull Canvas canvas) {
-        Paint paint = getDefaultPaint();
-        canvas.drawColor(Color.BLACK);
+        super.draw(canvas);
 
-        int imageWidth = stepX();
-        int imageHeight = stepY();
         for (int i = 0; i < 5; i++) {
             WarriorSquad squad = player.getWarriorSquad(i);
             if (squad == null)
                 continue;
-            Bitmap image = Bitmap.createScaledBitmap(
-                    BitmapFactory.decodeResource(
-                            getContext().getResources(), squad.getWarrior().getId()
-                    ),
-                    imageWidth, imageHeight, false
-            );
 
-            canvas.drawBitmap(image, 0, imageHeight * i, null);
+            canvas.drawBitmap(getImageCache().getImage(squad.getWarrior().getId())
+                    , 0, stepY(i), null);
             canvas.drawText(i18n.translate("army_names_" + squad.getWarrior().getTextId()),
-                    imageWidth + 10, menuItemHeight() + imageHeight * i, paint);
+                    stepX(1) + 10, stepY(i) + textHeight(), getDefaultPaint());
             canvas.drawText(Integer.toString(squad.getCount()),
-                    imageWidth * 2 + 10, menuItemHeight() + imageHeight * i, paint);
+                    stepX(1) + 10, stepY(i) + stepY(), getDefaultPaint());
         }
 
     }

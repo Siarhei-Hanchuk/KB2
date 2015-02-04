@@ -1,6 +1,7 @@
 package com.neschur.kb2.app.platforms.android.views;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.SurfaceHolder;
@@ -52,6 +53,12 @@ public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Call
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+        canvas.drawColor(Color.BLACK);
+        calcOffsets();
     }
 
     @Override

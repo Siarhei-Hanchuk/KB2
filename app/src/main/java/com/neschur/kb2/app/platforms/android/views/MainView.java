@@ -1,9 +1,7 @@
 package com.neschur.kb2.app.platforms.android.views;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
@@ -64,22 +62,18 @@ class MainView extends ViewImpl {
 
     @Override
     public void draw(@NonNull Canvas canvas) {
+        super.draw(canvas);
         GameGrid grid = mainViewController.getGameGrid();
-        canvas.drawColor(Color.BLACK);
-        ImageCache imageCache = ImageCache.getInstance(getResources(), stepX(), stepY());
-        calcOffsets();
 
         for (int x = 0; x < GameGrid.STEP_X; x++) {
             for (int y = 0; y < GameGrid.STEP_Y; y++) {
                 if (x < 5) {
-                    Bitmap background = imageCache.getImage(
-                            grid.getBackgroundBuyXY(x, y));
-                    canvas.drawBitmap(background, xOffset + x * stepX(), yOffset + y * stepY(), null);
+                    canvas.drawBitmap(getImageCache().getImage(grid.getBackgroundBuyXY(x, y)),
+                            stepX(x), stepY(y), null);
                 }
                 if (grid.getImageBuyXY(x, y) > -1) {
-                    Bitmap image = imageCache.getImage(
-                            grid.getImageBuyXY(x, y));
-                    canvas.drawBitmap(image, xOffset + x * stepX(), yOffset + y * stepY(), null);
+                    canvas.drawBitmap(getImageCache().getImage(grid.getImageBuyXY(x, y)),
+                            stepX(x), stepY(y), null);
                 }
             }
         }
