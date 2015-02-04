@@ -206,13 +206,13 @@ public class GameGrid {
         grid[5][0] = R.drawable.status_army;
         grid[5][1] = R.drawable.status_week;
         grid[5][2] = R.drawable.status_contract_0;
-        grid[5][3] = R.drawable.guidepost;
+        grid[5][3] = R.drawable.status_shipment;
         grid[5][4] = R.drawable.status_back;
     }
 
     private void makeStatus2() {
         grid[5][0] = R.drawable.status_magic;
-        grid[5][1] = R.drawable.guidepost;
+        grid[5][1] = R.drawable.status_tornado;
         grid[5][2] = R.drawable.guidepost;
         grid[5][3] = R.drawable.guidepost;
         grid[5][4] = R.drawable.status_back;
