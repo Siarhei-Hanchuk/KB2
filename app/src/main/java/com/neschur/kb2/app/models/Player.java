@@ -3,6 +3,7 @@ package com.neschur.kb2.app.models;
 import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.entities.Nave;
 import com.neschur.kb2.app.warriors.Warrior;
+import com.neschur.kb2.app.warriors.WarriorFactory;
 import com.neschur.kb2.app.warriors.WarriorSquad;
 
 import java.io.Serializable;
@@ -34,12 +35,14 @@ public class Player implements Serializable {
         memory = new Memory();
         country = _country;
 
-        move(5, 5);
+        MapPoint point = country.getRandomLand();
+        move(point.getX(), point.getY());
 
         easy();
 
         if (mode == MODE_TRAINING) {
             availableCountry = 5;
+            move(5, 5);
         }
     }
 

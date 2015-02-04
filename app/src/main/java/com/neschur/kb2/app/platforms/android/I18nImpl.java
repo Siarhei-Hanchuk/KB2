@@ -40,4 +40,15 @@ class I18nImpl implements I18n {
         return result;
 
     }
+
+    @Override
+    public String translate(String key, int ... replaces) {
+        String[] sReplaces = new String[replaces.length];
+        int i = 0;
+        for(int n : replaces) {
+            sReplaces[i] = Integer.toString(n);
+            i++;
+        }
+        return translate(key, sReplaces);
+    }
 }

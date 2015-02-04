@@ -94,7 +94,7 @@ public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Call
     }
 
     int textHeight() {
-        return (int) (menuItemHeight() * 0.8);
+        return (int) (menuItemHeight() * 0.6);
     }
 
     int menuItemHeight() {

@@ -6,4 +6,6 @@ public interface I18n {
     public String translate(int key);
 
     public String translate(String key, String ... replaces);
+
+    public String translate(String key, int ... replaces);
 }
