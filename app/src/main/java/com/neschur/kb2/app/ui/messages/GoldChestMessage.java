@@ -23,8 +23,7 @@ public class GoldChestMessage extends Message {
             case 1:
                 return i18n.translate("entity_goldChest_messages_magickUp");
             case 2:
-                // TODO
-                return "-";
+                return i18n.translate("entity_goldChest_messages_randomMagic");
         }
         return null;
     }
@@ -39,8 +38,9 @@ public class GoldChestMessage extends Message {
                 player.upMagicMaxCount();
                 break;
             case 2:
-                // TODO
+                player.getMagics().upRandomMagic();
                 break;
         }
+        entity.destroy();
     }
 }

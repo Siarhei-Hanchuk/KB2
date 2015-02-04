@@ -51,7 +51,7 @@ class MagicView extends ViewImpl {
         if (mode != 1) {
             for (int i = 1; i < 8; i++) {
                 canvas.drawText(i18n.translate("magic_hiking_magic" + i) + ": "
-                                + magics.getMagic(i - 1),
+                                + magics.getCampingMagic(i - 1),
                         0, i * menuItemHeight(), getDefaultPaint());
             }
         } else {

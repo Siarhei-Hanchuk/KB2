@@ -7,14 +7,12 @@ import java.util.Random;
 
 public class GoldChest extends EntityImpl {
     private final int wealth;
-    private boolean bonus = false;
+    private int bonus = 0;
 
     public GoldChest(MapPoint point, int wealth) {
         super(point);
         this.wealth = wealth;
-        int rand = (new Random()).nextInt(10);
-        if (rand == 0)
-            bonus = true;
+
     }
 
     @Override
@@ -23,7 +21,13 @@ public class GoldChest extends EntityImpl {
     }
 
     public boolean isBonus() {
-        return bonus;
+        if (bonus == 0) {
+            if ((new Random()).nextInt(10) == 0)
+                bonus = 1;
+            else
+                bonus = 2;
+        }
+        return bonus == 1;
     }
 
     public int getGold() {
