@@ -13,23 +13,22 @@ import com.neschur.kb2.app.entities.MapNext;
 import com.neschur.kb2.app.entities.Sorcerer;
 import com.neschur.kb2.app.models.Glade;
 import com.neschur.kb2.app.models.MapPoint;
-import com.neschur.kb2.app.models.iterators.ArmyShopIterator;
-import com.neschur.kb2.app.models.iterators.ArmyShops;
-import com.neschur.kb2.app.models.iterators.Cities;
-import com.neschur.kb2.app.models.iterators.CitiesIterator;
+import com.neschur.kb2.app.models.iterators.ArmyShopsOwner;
+import com.neschur.kb2.app.models.iterators.CitiesOwner;
+import com.neschur.kb2.app.models.iterators.EntityIterator;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
-public abstract class Country implements Glade, Serializable, ArmyShops, Cities {
+public abstract class Country implements Glade, Serializable, ArmyShopsOwner, CitiesOwner {
     public final static int MAX_MAP_SIZE = 65;
     protected final MapPoint[][] map;
     private final Random random;
     protected int id;
     private Sorcerer sorcerer;
-    private ArrayList<ArmyShops> armyShops = new ArrayList<>();
+    private ArrayList<ArmyShopsOwner> armyShops = new ArrayList<>();
     private ArrayList<City> cities = new ArrayList<>();
 
     public Country() {
@@ -326,12 +325,12 @@ public abstract class Country implements Glade, Serializable, ArmyShops, Cities 
     }
 
     @Override
-    public ArmyShopIterator getArmyShops() {
-        ArrayList<com.neschur.kb2.app.models.iterators.Iterator<ArmyShop>> iterators = new ArrayList<>();
-        for(ArmyShops shop: armyShops) {
+    public Iterator<ArmyShop> getArmyShops() {
+        ArrayList<Iterator<ArmyShop>> iterators = new ArrayList<>();
+        for(ArmyShopsOwner shop: armyShops) {
             iterators.add(shop.getArmyShops());
         }
-        return new ArmyShopIterator(iterators);
+        return new EntityIterator(iterators);
     }
 
     @Override
@@ -340,7 +339,7 @@ public abstract class Country implements Glade, Serializable, ArmyShops, Cities 
         for(City city: cities) {
             iterators.add(city.getCities());
         }
-        return new CitiesIterator(iterators);
+        return new EntityIterator(iterators);
     }
 }
 

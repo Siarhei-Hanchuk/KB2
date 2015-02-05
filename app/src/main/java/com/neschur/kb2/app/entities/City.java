@@ -2,11 +2,11 @@ package com.neschur.kb2.app.entities;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.models.MapPoint;
-import com.neschur.kb2.app.models.iterators.Cities;
+import com.neschur.kb2.app.models.iterators.CitiesOwner;
 
 import java.util.Iterator;
 
-public class City extends EntityImpl implements Cities {
+public class City extends EntityImpl implements CitiesOwner {
     private final int[] workers = new int[4];
 
     public City(MapPoint point) {

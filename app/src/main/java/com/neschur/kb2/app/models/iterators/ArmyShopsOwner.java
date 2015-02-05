@@ -4,6 +4,6 @@ import com.neschur.kb2.app.entities.ArmyShop;
 
 import java.util.Iterator;
 
-public interface ArmyShops {
+public interface ArmyShopsOwner {
     public Iterator<ArmyShop> getArmyShops();
 }

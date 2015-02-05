@@ -6,11 +6,11 @@ import com.neschur.kb2.app.countries.World;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.entities.Nave;
-import com.neschur.kb2.app.models.iterators.Iterator;
 import com.neschur.kb2.app.warriors.Warrior;
 import com.neschur.kb2.app.warriors.WarriorFactory;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.Random;
 
 public class Game implements Serializable {
@@ -51,13 +51,14 @@ public class Game implements Serializable {
     }
 
     private void weekFinish() {
-        Iterator iterator = world.getArmyShops();
+        Iterator<ArmyShop> shopsIterator = world.getArmyShops();
         Warrior war = WarriorFactory.createRandom();
-        iterator.init(war.getId());
-        while(!iterator.isDone()) {
-            ((ArmyShop)(iterator.next())).resetCount();
+        while(shopsIterator.hasNext()) {
+            if(shopsIterator.next().getID() == war.getId())
+                shopsIterator.next().resetCount();
         }
-        java.util.Iterator citiesIterator = world.getCities();
+
+        Iterator citiesIterator = world.getCities();
         int n = (new Random()).nextInt(25);
         for (int i = 0; citiesIterator.hasNext(); i++) {
             if(i == n) {

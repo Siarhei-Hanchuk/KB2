@@ -2,16 +2,15 @@ package com.neschur.kb2.app.countries;
 
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.City;
-import com.neschur.kb2.app.models.iterators.ArmyShopIterator;
-import com.neschur.kb2.app.models.iterators.ArmyShops;
-import com.neschur.kb2.app.models.iterators.Iterator;
-import com.neschur.kb2.app.models.iterators.Cities;
-import com.neschur.kb2.app.models.iterators.CitiesIterator;
+import com.neschur.kb2.app.models.iterators.ArmyShopsOwner;
+import com.neschur.kb2.app.models.iterators.CitiesOwner;
+import com.neschur.kb2.app.models.iterators.EntityIterator;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class World implements Serializable, ArmyShops, Cities {
+public class World implements Serializable, ArmyShopsOwner, CitiesOwner {
     private Country[] country;
 
     public World(int mode) {
@@ -50,19 +49,19 @@ public class World implements Serializable, ArmyShops, Cities {
     @Override
     public Iterator<ArmyShop> getArmyShops() {
         ArrayList<Iterator<ArmyShop>> iterators = new ArrayList<>();
-        for(ArmyShops shop: country) {
+        for(ArmyShopsOwner shop: country) {
             iterators.add(shop.getArmyShops());
         }
-        return new ArmyShopIterator(iterators);
+        return new EntityIterator(iterators);
     }
 
     @Override
-    public java.util.Iterator<City> getCities() {
-        ArrayList<java.util.Iterator<City>> iterators = new ArrayList<>();
-        for(Cities city: country) {
+    public Iterator<City> getCities() {
+        ArrayList<Iterator<City>> iterators = new ArrayList<>();
+        for(CitiesOwner city: country) {
             iterators.add(city.getCities());
         }
-        return new CitiesIterator(iterators);
+        return new EntityIterator(iterators);
     }
 }
 
