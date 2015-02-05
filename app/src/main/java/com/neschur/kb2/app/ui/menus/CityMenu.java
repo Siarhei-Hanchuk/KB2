@@ -96,7 +96,6 @@ public class CityMenu extends Menu {
                 }
             }
         }
-
     }
 
     @Override

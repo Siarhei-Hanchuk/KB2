@@ -14,7 +14,7 @@ public class Player implements Serializable {
     private final boolean[] importantDocs = {false, false, false, false, false};
     private final Memory memory;
     private Magic magic;
-    private boolean wallkick;
+    private boolean wallkick = false;
     private int money;
     private int authority;
     private Country country;
@@ -28,31 +28,47 @@ public class Player implements Serializable {
         memory = new Memory();
         country = _country;
 
-        MapPoint point = country.getRandomLand();
-        move(point.getX(), point.getY());
-
-        easy();
-
-        if (mode == Game.MODE_TEST) {
-            availableCountry = 5;
-            move(5, 5);
+        MapPoint point = null;
+        switch (mode) {
+            case Game.MODE_TEST:
+                point = country.getMapPoint(5, 5);
+                easy();
+                availableCountry = 5;
+                break;
+            case Game.MODE_TRAINING:
+                point = country.getRandomLandNearCity();
+                easy();
+                break;
+            case Game.MODE_GAME:
+                point = country.getRandomLand();
+                hard();
+                break;
         }
+
+        move(point.getX(), point.getY());
     }
 
     private void easy() {
-        wallkick = false;
         money = 20000;
         authority = 50;
-        for (int i = 0; i < 10; i++) {
-            workers[0] = 4;
-            workers[1] = 6;
-            workers[2] = 0;
-            workers[3] = 3;
-        }
+        workers[0] = 4;
+        workers[1] = 6;
+        workers[2] = 0;
+        workers[3] = 3;
         salary = 500;
-        magic = new Magic(2, 4);
+        magic = new Magic(1, 4);
     }
 
+    private void hard() {
+        money = 0;
+        authority = 50;
+        workers[0] = 2;
+        workers[1] = 2;
+        workers[2] = 0;
+        workers[3] = 0;
+        salary = 500;
+        magic = new Magic(0, 2);
+    }
 
     public void move(int x, int y) {
         this.x = x;

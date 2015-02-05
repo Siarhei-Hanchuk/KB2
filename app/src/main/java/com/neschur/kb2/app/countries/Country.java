@@ -325,6 +325,22 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
     public boolean inBorders(int x, int y) {
         return (x > 0 && y > 0 && x < MAX_MAP_SIZE && y < MAX_MAP_SIZE);
     }
+    public MapPoint getRandomLandNearCity() {
+        City city = cities.get(0);
+        int index = 0;
+        while(index < cities.size()) {
+            city = cities.get(index);
+            index++;
+            for (int x = city.getX() - 1; x <= city.getX() + 1; x++) {
+                for (int y = city.getY() - 1; y <= city.getY() + 1; y++) {
+                    if (city.getCountry().getMapPoint(x, y).getLand() == R.drawable.land) {
+                        return getMapPoint(x, y);
+                    }
+                }
+            }
+        }
+        return city.getMapPoint();
+    }
 
     public MapPoint getRandomLand() {
         int x;
