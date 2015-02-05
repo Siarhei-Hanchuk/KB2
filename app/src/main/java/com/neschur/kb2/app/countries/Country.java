@@ -44,7 +44,6 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
         }
 
         base();
-        sorcerer = new Sorcerer(getMapPoint(6, 12));
     }
 
 //    protected void createCaptain() {
