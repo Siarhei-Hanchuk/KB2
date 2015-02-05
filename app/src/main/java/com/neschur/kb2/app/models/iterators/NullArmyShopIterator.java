@@ -16,14 +16,14 @@ public class NullArmyShopIterator extends ArmyShopIterator {
         init(armyId);
     }
 
+    @Override
     public void init(int armyId) {
         this.armyId = armyId;
-        System.out.println("init");
-//        System.out.println(armyShop.getWarrior().getId() + " " + armyId);
         if(armyId > -1 && armyShop.getWarrior().getId() != armyId)
             isDone = true;
     }
 
+    @Override
     public ArmyShop next() {
         if(!isDone) {
             isDone = true;
@@ -32,29 +32,8 @@ public class NullArmyShopIterator extends ArmyShopIterator {
         return null;
     }
 
+    @Override
     public boolean isDone() {
         return isDone;
     }
-
-//
-//    public ArmyShop first(int armyId) {
-//        isDone = true;
-//        if (armyShop.getWarrior().getId() == armyId)
-//            return armyShop;
-//        return null;
-//    }
-//
-//    public ArmyShop next() {
-//        return null;
-//    }
-//
-//    public boolean isDone() {
-//        return isDone;
-//    }
-//
-//    public boolean isDone(int armyId) {
-//        if (!isDone && armyShop.getWarrior().getId() == armyId)
-//            return false;
-//        return true;
-//    }
 }

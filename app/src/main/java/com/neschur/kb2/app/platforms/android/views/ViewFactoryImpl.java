@@ -29,6 +29,7 @@ public class ViewFactoryImpl implements ViewFactory {
         messageFactory = new MessageFactory(gameOwner);
     }
 
+    @Override
     public ViewImpl getWorkersMenuView(ViewController controller) {
         return new MenuView(context, controller, menuFactory.getWorkersMenu());
     }
@@ -48,22 +49,27 @@ public class ViewFactoryImpl implements ViewFactory {
         return null;
     }
 
+    @Override
     public ViewImpl getMainMenuView(MainMenuController controller) {
         return new MainMenuView(context, controller);
     }
 
+    @Override
     public ViewImpl getMainView(MainViewController controller) {
         return new MainView(context, controller);
     }
 
+    @Override
     public BattleView getBattleView(BattleController controller) {
         return new BattleView(context, controller);
     }
 
+    @Override
     public ViewImpl getCountryMenuView(ViewController controller) {
         return new MenuView(context, controller, menuFactory.getCountryMenu());
     }
 
+    @Override
     public ViewImpl getViewForEntity(ViewController controller, Entity entity) {
         Menu menu = menuFactory.getMenu(entity);
         Message message = messageFactory.getMessage(entity);
@@ -80,6 +86,7 @@ public class ViewFactoryImpl implements ViewFactory {
         return view;
     }
 
+    @Override
     public ViewImpl getViewBattleMessageView(ViewController controller,
                                              boolean result, int authority, int money) {
         return new MessageView(context, controller,

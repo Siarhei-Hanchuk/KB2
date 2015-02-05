@@ -49,6 +49,7 @@ public abstract class ApplicationController implements ViewController, GameOwner
         platformController.exit();
     }
 
+    @Override
     public I18n i18n() {
         return i18n;
     }

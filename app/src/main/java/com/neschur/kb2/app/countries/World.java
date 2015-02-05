@@ -1,6 +1,9 @@
 package com.neschur.kb2.app.countries;
 
+import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.models.iterators.ArmyShopIterator;
+import com.neschur.kb2.app.models.iterators.ArmyShops;
+import com.neschur.kb2.app.models.iterators.Iterator;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -42,8 +45,8 @@ public class World implements Serializable, ArmyShops {
     }
 
     @Override
-    public ArmyShopIterator getArmyShops() {
-        ArrayList<ArmyShopIterator> iterators = new ArrayList<>();
+    public Iterator<ArmyShop> getArmyShops() {
+        ArrayList<Iterator<ArmyShop>> iterators = new ArrayList<>();
         for(ArmyShops shop: country) {
             iterators.add(shop.getArmyShops());
         }

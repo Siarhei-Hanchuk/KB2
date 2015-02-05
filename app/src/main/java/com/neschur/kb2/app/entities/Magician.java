@@ -20,6 +20,6 @@ public class Magician extends EntityImpl {
     }
 
     public void upUsedMagicianCount() {
-        this.usedMagicianCount[getCountry().getId()]++;
+        usedMagicianCount[getCountry().getId()]++;
     }
 }

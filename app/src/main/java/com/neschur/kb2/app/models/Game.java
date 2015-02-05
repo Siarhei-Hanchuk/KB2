@@ -6,6 +6,8 @@ import com.neschur.kb2.app.countries.World;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.entities.Nave;
+import com.neschur.kb2.app.models.iterators.ArmyShopIterator;
+import com.neschur.kb2.app.models.iterators.Iterator;
 
 import java.io.Serializable;
 
@@ -48,6 +50,8 @@ public class Game implements Serializable {
 
     private void weekFinish() {
         callbacks.weekFinish();
+        //refresh armies
+        //refresh city
     }
 
     public void weekUpdate() {

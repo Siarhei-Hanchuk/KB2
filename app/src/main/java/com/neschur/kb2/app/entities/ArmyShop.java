@@ -1,9 +1,9 @@
 package com.neschur.kb2.app.entities;
 
 import com.neschur.kb2.app.R;
-import com.neschur.kb2.app.countries.ArmyShops;
+import com.neschur.kb2.app.models.iterators.ArmyShops;
 import com.neschur.kb2.app.models.MapPoint;
-import com.neschur.kb2.app.models.iterators.ArmyShopIterator;
+import com.neschur.kb2.app.models.iterators.Iterator;
 import com.neschur.kb2.app.models.iterators.NullArmyShopIterator;
 import com.neschur.kb2.app.warriors.Warrior;
 import com.neschur.kb2.app.warriors.WarriorFactory;
@@ -40,7 +40,7 @@ public class ArmyShop extends EntityImpl implements ArmyShops {
     }
 
     @Override
-    public ArmyShopIterator getArmyShops() {
+    public Iterator<ArmyShop> getArmyShops() {
         return new NullArmyShopIterator(this);
     }
 }

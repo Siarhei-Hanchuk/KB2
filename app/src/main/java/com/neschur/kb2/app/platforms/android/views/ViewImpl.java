@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.support.annotation.NonNull;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -56,7 +57,7 @@ public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Call
     }
 
     @Override
-    public void draw(Canvas canvas) {
+    public void draw(@NonNull Canvas canvas) {
         canvas.drawColor(Color.BLACK);
         calcOffsets();
     }

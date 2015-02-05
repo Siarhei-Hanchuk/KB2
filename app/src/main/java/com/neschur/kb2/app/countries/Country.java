@@ -14,6 +14,8 @@ import com.neschur.kb2.app.entities.Sorcerer;
 import com.neschur.kb2.app.models.Glade;
 import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.iterators.ArmyShopIterator;
+import com.neschur.kb2.app.models.iterators.ArmyShops;
+import com.neschur.kb2.app.models.iterators.Iterator;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -316,11 +318,10 @@ public abstract class Country implements Glade, Serializable, ArmyShops {
 
     @Override
     public ArmyShopIterator getArmyShops() {
-        ArrayList<ArmyShopIterator> iterators = new ArrayList<>();
+        ArrayList<Iterator<ArmyShop>> iterators = new ArrayList<>();
         for(ArmyShops shop: armyShops) {
             iterators.add(shop.getArmyShops());
         }
-        System.out.println(iterators.size());
         return new ArmyShopIterator(iterators);
     }
 }
