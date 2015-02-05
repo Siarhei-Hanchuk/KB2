@@ -5,18 +5,22 @@ import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.iterators.CitiesOwner;
 
 import java.util.Iterator;
+import java.util.Random;
 
 public class City extends EntityImpl implements CitiesOwner {
-    private final int[] workers = new int[4];
     private final int nameId;
+    private int[] workers;
 
     public City(MapPoint point, int nameId) {
         super(point);
         this.nameId = nameId;
-        workers[0] = 4;
-        workers[1] = 5;
-        workers[2] = 6;
-        workers[3] = 1;
+        resetWorkers();
+    }
+
+    public void resetWorkers() {
+        Random rand = new Random();
+        int[] _workers = {rand.nextInt(8), rand.nextInt(8), rand.nextInt(8), rand.nextInt(8)};
+        workers = _workers;
     }
 
     @Override

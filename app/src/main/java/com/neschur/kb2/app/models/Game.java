@@ -64,7 +64,7 @@ public class Game implements Serializable {
         int n = (new Random()).nextInt(25);
         for (int i = 0; citiesIterator.hasNext(); city = citiesIterator.next(), i++) {
             if(i == n) {
-                // TODO
+                city.resetWorkers();
                 break;
             }
         }
