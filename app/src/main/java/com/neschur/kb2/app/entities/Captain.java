@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class Captain extends EntityImpl implements Fighting {
     private static final int MAX_ARMY = 5;
-    private final WarriorSquad[] warriors = new WarriorSquad[MAX_ARMY];
+    private WarriorSquad[] warriors;
     private int authority;
 
     public Captain(MapPoint point) {
@@ -35,7 +35,8 @@ public class Captain extends EntityImpl implements Fighting {
     @Override
     public void generateArmy(int authority, int group) {
         this.authority = authority;
-        int squadCount = (new Random()).nextInt(5) + 1;
+        int squadCount = (new Random()).nextInt(MAX_ARMY) + 1;
+        warriors = new WarriorSquad[squadCount];
         for (int i = 0; i < squadCount; i++) {
             Warrior warrior = WarriorFactory.createRandomFromGroup(group);
             WarriorSquad squad = new WarriorSquad(warrior, authority / warrior.getDamage());

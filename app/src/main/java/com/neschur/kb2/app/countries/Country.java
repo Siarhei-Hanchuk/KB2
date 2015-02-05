@@ -244,7 +244,7 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
         map[x][y].setEntity(new MapNext(getMapPoint(x, y)));
     }
 
-    private boolean tryPlaceCastle(int x, int y) {
+    private Castle tryPlaceCastle(int x, int y) {
         if (((map[x][y].getLand() == R.drawable.land) &&
                 (map[x - 1][y].getLand() == R.drawable.land) &&
                 (map[x + 1][y].getLand() == R.drawable.land) &&
@@ -253,19 +253,21 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
                         (map[x - 1][y].getEntity() == null) &&
                         (map[x + 1][y].getEntity() == null) &&
                         (map[x][y + 1].getEntity() == null))) {
-            new Castle(getMapPoint(x, y));
+            Castle castle = new Castle(getMapPoint(x, y));
             new CastleRight(getMapPoint(x + 1, y));
             new CastleLeft(getMapPoint(x - 1, y));
             createCaptain(x, y + 1);
-            return true;
+            return castle;
         }
-        return false;
+        return null;
     }
 
     void castles() {
         int count = 0;
         while (count < 5) {
-            if (tryPlaceCastle(rand(MAX_MAP_SIZE), rand(MAX_MAP_SIZE))) {
+            Castle castle = tryPlaceCastle(rand(MAX_MAP_SIZE), rand(MAX_MAP_SIZE));
+            if (castle != null) {
+                castle.generateArmy(1000, 0);
                 count++;
             }
         }
