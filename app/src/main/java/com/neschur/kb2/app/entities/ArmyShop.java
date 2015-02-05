@@ -61,7 +61,8 @@ public class ArmyShop extends EntityImpl implements ArmyShopsOwner {
             }
 
             @Override
-            public void remove() {}
+            public void remove() {
+            }
         };
     }
 

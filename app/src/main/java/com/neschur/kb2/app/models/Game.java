@@ -55,8 +55,8 @@ public class Game implements Serializable {
     private void weekFinish() {
         Iterator<ArmyShop> shopsIterator = world.getArmyShops();
         Warrior war = WarriorFactory.createRandom();
-        while(shopsIterator.hasNext()) {
-            if(shopsIterator.next().getID() == war.getId())
+        while (shopsIterator.hasNext()) {
+            if (shopsIterator.next().getID() == war.getId())
                 shopsIterator.next().resetCount();
         }
 
@@ -64,7 +64,7 @@ public class Game implements Serializable {
         Iterator<City> citiesIterator = world.getCities();
         int n = (new Random()).nextInt(25);
         for (int i = 0; citiesIterator.hasNext(); city = citiesIterator.next(), i++) {
-            if(i == n) {
+            if (i == n) {
                 city.resetWorkers();
                 break;
             }

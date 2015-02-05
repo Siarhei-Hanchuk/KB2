@@ -46,7 +46,7 @@ public class BattleControllerImpl extends ApplicationController implements Battl
     public void battleFinish(boolean win) {
         int authority = fighting.getAuthority() / 40; //??
         int money = fighting.getAuthority() * 40; //??
-        if(win){
+        if (win) {
             getGame().getPlayer().changeAuthority(authority);
             getGame().getPlayer().changeMoney(money);
         } else {

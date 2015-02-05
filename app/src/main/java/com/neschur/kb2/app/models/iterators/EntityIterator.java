@@ -15,7 +15,7 @@ public class EntityIterator<T> implements Iterator<T> {
     public T next() {
         T dst = null;
         while (iterators.size() > currentIterator && dst == null) {
-            while(!iterators.get(currentIterator).hasNext()) {
+            while (!iterators.get(currentIterator).hasNext()) {
                 currentIterator++;
             }
             dst = iterators.get(currentIterator).next();
@@ -26,12 +26,13 @@ public class EntityIterator<T> implements Iterator<T> {
     @Override
     public boolean hasNext() {
         for (int i = currentIterator; i < iterators.size(); i++) {
-            if(iterators.get(i).hasNext())
+            if (iterators.get(i).hasNext())
                 return true;
         }
         return false;
     }
 
     @Override
-    public void remove() {}
+    public void remove() {
+    }
 }

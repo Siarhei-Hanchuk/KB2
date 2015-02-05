@@ -12,7 +12,7 @@ public class Mover implements Serializable {
     }
 
     private boolean teleport(Entity entity, int x, int y) {
-        if(!glade.inBorders(x, y))
+        if (!glade.inBorders(x, y))
             return false;
         return teleport(entity, glade.getMapPoint(x, y));
     }

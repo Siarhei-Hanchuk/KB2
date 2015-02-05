@@ -16,11 +16,11 @@ public class PlayerViewsControllerImpl extends ApplicationController
 
     public PlayerViewsControllerImpl(Object viewType) {
         if (viewType instanceof String) {
-            view = getViewFactory().getPlayersView(this, (String)viewType);
+            view = getViewFactory().getPlayersView(this, (String) viewType);
         } else {
             view = getViewFactory().getViewForEntity(this, (Entity) viewType);
         }
-        if(view != null)
+        if (view != null)
             setContentView(view);
     }
 

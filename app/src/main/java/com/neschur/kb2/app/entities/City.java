@@ -59,7 +59,8 @@ public class City extends EntityImpl implements CitiesOwner {
             }
 
             @Override
-            public void remove() {}
+            public void remove() {
+            }
         };
 
     }

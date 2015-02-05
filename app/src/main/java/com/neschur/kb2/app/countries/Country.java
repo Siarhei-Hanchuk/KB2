@@ -26,15 +26,15 @@ import java.util.Random;
 
 public abstract class Country implements Glade, Serializable, ArmyShopsOwner, CitiesOwner {
     public final static int MAX_MAP_SIZE = 65;
-    protected final MapPoint[][] map;
+    final MapPoint[][] map;
     private final Random random;
-    protected int id;
+    private final ArrayList<ArmyShopsOwner> armyShops = new ArrayList<>();
+    private final ArrayList<City> cities = new ArrayList<>();
+    private final byte[] cityNamesMask;
+    int id;
     private Sorcerer sorcerer;
-    private ArrayList<ArmyShopsOwner> armyShops = new ArrayList<>();
-    private ArrayList<City> cities = new ArrayList<>();
-    private byte[] cityNamesMask;
 
-    public Country(byte[] cityNamesMask) {
+    Country(byte[] cityNamesMask) {
         this.cityNamesMask = cityNamesMask;
         this.random = new Random();
 
@@ -48,18 +48,10 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
         base();
     }
 
-//    protected void createCaptain() {
-//        createCaptain(rand(MAX_MAP_SIZE), rand(MAX_MAP_SIZE));
-//    }
-
-    protected void createCaptain(int x, int y) {
+    void createCaptain(int x, int y) {
         Fighting captain = new Captain(getMapPoint(x, y));
         int authority = 100 + rand(100);
         captain.generateArmy(authority, 0);
-    }
-
-    public void createWizards() {
-        // TODO
     }
 
     private void createSorcerer(int x, int y) {
@@ -70,7 +62,7 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
         return sorcerer;
     }
 
-    protected int rand(int n) {
+    int rand(int n) {
         return random.nextInt(n);
     }
 
@@ -101,10 +93,9 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
     }
 
     void createCity(MapPoint mp) {
-        System.out.print("city created");
         int nameId = 0;
         for (int i = 0; i < cityNamesMask.length; i++) {
-            if(cityNamesMask[i] == 1) {
+            if (cityNamesMask[i] == 1) {
                 nameId = i + 1;
                 cityNamesMask[i] = -1;
                 break;
@@ -115,7 +106,7 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
         mp.setEntity(city);
     }
 
-    protected void cities() {
+    void cities() {
         int count = 0;
         int x;
         int y;
@@ -135,7 +126,7 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
         }
     }
 
-    protected void guidePosts() {
+    void guidePosts() {
         int count = 0;
         while (count < 5) {
             int y = rand(54) + 5;
@@ -148,7 +139,7 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
         }
     }
 
-    protected void goldChests(int frequency, int mode) {
+    void goldChests(int frequency, int mode) {
         for (int i = 5; i < MAX_MAP_SIZE - 5; i++) {
             for (int j = 5; j < MAX_MAP_SIZE - 5; j++) {
                 if (((map[i][j].getLand() == R.drawable.land)
@@ -200,7 +191,7 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
         }
     }
 
-    protected void river(int length) {
+    void river(int length) {
         int start1 = rand(53) + 5;
         int r = rand(4);
         switch (r) {
@@ -221,7 +212,7 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
         }
     }
 
-    protected void landscape(double frequency, int land) {
+    void landscape(double frequency, int land) {
         for (int i = 5; i < MAX_MAP_SIZE - 5; i++) {
             for (int j = 5; j < MAX_MAP_SIZE - 5; j++) {
                 if (Math.random() < frequency) {
@@ -234,7 +225,7 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
         }
     }
 
-    protected void mapNext() {
+    void mapNext() {
         int x;
         int y;
         do {
@@ -327,10 +318,11 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
     public boolean inBorders(int x, int y) {
         return (x > 0 && y > 0 && x < MAX_MAP_SIZE && y < MAX_MAP_SIZE);
     }
+
     public MapPoint getRandomLandNearCity() {
         City city = cities.get(0);
         int index = 0;
-        while(index < cities.size()) {
+        while (index < cities.size()) {
             city = cities.get(index);
             index++;
             for (int x = city.getX() - 1; x <= city.getX() + 1; x++) {
@@ -350,14 +342,14 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
         do {
             x = rand(MAX_MAP_SIZE);
             y = rand(MAX_MAP_SIZE);
-        }while(isEntity(x, y) || !isLand(x, y));
+        } while (isEntity(x, y) || !isLand(x, y));
         return getMapPoint(x, y);
     }
 
     @Override
     public Iterator<ArmyShop> getArmyShops() {
         ArrayList<Iterator<ArmyShop>> iterators = new ArrayList<>();
-        for(ArmyShopsOwner shop: armyShops) {
+        for (ArmyShopsOwner shop : armyShops) {
             iterators.add(shop.getArmyShops());
         }
         return new EntityIterator(iterators);
@@ -366,7 +358,7 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
     @Override
     public Iterator<City> getCities() {
         ArrayList<Iterator<City>> iterators = new ArrayList<>();
-        for(City city: cities) {
+        for (City city : cities) {
             iterators.add(city.getCities());
         }
         return new EntityIterator(iterators);

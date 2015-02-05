@@ -13,15 +13,15 @@ public abstract class ApplicationController implements ViewController, GameOwner
     private static Game game;
     private static I18n i18n;
 
+    protected ApplicationController() {
+        if (viewFactory == null)
+            viewFactory = platformController.getViewFactory(this);
+    }
+
     public static void initApp(PlatformController _platformController) {
         platformController = _platformController;
         storage = _platformController.getStorage();
         i18n = _platformController.getI18n();
-    }
-
-    protected ApplicationController() {
-        if (viewFactory == null)
-            viewFactory = platformController.getViewFactory(this);
     }
 
     protected ViewFactory getViewFactory() {

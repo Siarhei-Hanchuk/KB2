@@ -107,7 +107,7 @@ public class WarriorEntity implements Entity, Warrior {
     public void takeAttack(int damage) {
         defence -= damage;
         count = defence / warrior.getDefence();
-        if (count < 0)
+        if (count < 1)
             destroy();
     }
 

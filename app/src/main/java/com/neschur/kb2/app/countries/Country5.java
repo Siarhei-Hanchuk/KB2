@@ -9,9 +9,9 @@ class Country5 extends Country {
         this.id = 4;
         sand();
         river(10);
-        if(hard) {
+        if (hard) {
             stones(0.75);
-        }else{
+        } else {
             stones(0.6);
         }
 

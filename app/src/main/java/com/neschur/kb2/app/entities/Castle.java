@@ -6,7 +6,7 @@ import com.neschur.kb2.app.warriors.Warrior;
 import com.neschur.kb2.app.warriors.WarriorFactory;
 import com.neschur.kb2.app.warriors.WarriorSquad;
 
-public class Castle extends EntityImpl implements Fighting{
+public class Castle extends EntityImpl implements Fighting {
     private static final int ARMY_COUNT = 5;
     private final WarriorSquad[] warriors = new WarriorSquad[ARMY_COUNT];
     private int authority;
@@ -25,6 +25,7 @@ public class Castle extends EntityImpl implements Fighting{
         return warriors[n];
     }
 
+    @Override
     public int getAuthority() {
         return authority;
     }

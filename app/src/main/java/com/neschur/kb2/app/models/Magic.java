@@ -4,12 +4,12 @@ import java.io.Serializable;
 import java.util.Random;
 
 public class Magic implements Serializable {
-    private int magicPower;
-    private int magicMaxCount;
-    private int tornado = 0;
     private final int[] campingMagics = {0, 0, 0, 0, 0, 0, 0};
     private final int[] battleMagics = {0, 0, 0, 0, 0, 0, 0};
     private final Random rand = new Random();
+    private int magicPower;
+    private int magicMaxCount;
+    private int tornado = 0;
 
     public Magic(int magicPower, int magicMaxCount) {
         this.magicPower = magicPower;

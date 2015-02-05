@@ -13,8 +13,8 @@ import java.util.Iterator;
 import java.util.Random;
 
 public class World implements Serializable, ArmyShopsOwner, CitiesOwner {
+    private final byte[] cityNames = new byte[25];
     private Country[] country;
-    private byte[] cityNames = new byte[25];
 
     public World(int mode) {
         switch (mode) {
@@ -63,14 +63,14 @@ public class World implements Serializable, ArmyShopsOwner, CitiesOwner {
 
     private byte[] updateCityNamesMask() {
         for (int i = 0; i < cityNames.length; i++) {
-            if(cityNames[i] == 1) {
+            if (cityNames[i] == 1) {
                 cityNames[i] = -1;
             }
         }
         Random rand = new Random();
-        for (int i = 0; i < 5;) {
+        for (int i = 0; i < 5; ) {
             int n = rand.nextInt(cityNames.length);
-            if(cityNames[n] == 0) {
+            if (cityNames[n] == 0) {
                 cityNames[n] = 1;
                 i++;
             }
@@ -81,7 +81,7 @@ public class World implements Serializable, ArmyShopsOwner, CitiesOwner {
     @Override
     public Iterator<ArmyShop> getArmyShops() {
         ArrayList<Iterator<ArmyShop>> iterators = new ArrayList<>();
-        for(ArmyShopsOwner shop: country) {
+        for (ArmyShopsOwner shop : country) {
             iterators.add(shop.getArmyShops());
         }
         return new EntityIterator(iterators);
@@ -90,7 +90,7 @@ public class World implements Serializable, ArmyShopsOwner, CitiesOwner {
     @Override
     public Iterator<City> getCities() {
         ArrayList<Iterator<City>> iterators = new ArrayList<>();
-        for(CitiesOwner city: country) {
+        for (CitiesOwner city : country) {
             iterators.add(city.getCities());
         }
         return new EntityIterator(iterators);

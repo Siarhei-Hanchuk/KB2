@@ -33,7 +33,7 @@ public class WeekEndView extends ViewImpl {
         super.draw(canvas);
         String text = i18n.translate(R.string.messages_weekEnd_title);
 
-        int delta = ((int)getDefaultPaint().measureText(text) + 1 - getWidth())/2;
+        int delta = ((int) getDefaultPaint().measureText(text) + 1 - getWidth()) / 2;
         delta = (delta > 0) ? delta : 0;
         canvas.drawText(text, delta, textHeight(), getDefaultPaint());
 
@@ -44,25 +44,25 @@ public class WeekEndView extends ViewImpl {
         drawItem(canvas, 7, "armyRefresh", i18n.translate("army_names_" + armyTextId));
         drawItem(canvas, 8, "armyRefresh2", null);
         drawItem(canvas, 10, "armyRefresh3", null);
-        drawItem(canvas, 12, "cityRefresh", i18n.translate("city_names_name" +  city.getNameId()));
+        drawItem(canvas, 12, "cityRefresh", i18n.translate("city_names_name" + city.getNameId()));
     }
 
     private void drawItem(Canvas canvas, int n, String attr, Object value) {
         String text;
-        if(value != null) {
+        if (value != null) {
             if (value instanceof Integer) {
                 text = i18n.translate("messages_weekEnd_" + attr) + ": " + value;
-            }else{
-                text = i18n.translate("messages_weekEnd_" + attr, (String)value);
+            } else {
+                text = i18n.translate("messages_weekEnd_" + attr, (String) value);
             }
-        }else {
+        } else {
             text = i18n.translate("messages_weekEnd_" + attr);
         }
         float textLength = getDefaultPaint().measureText(text);
         if (textLength < getWidth()) {
             canvas.drawText(text, 10, textHeight() * (n), getDefaultPaint());
         } else {
-            int count = (int)(text.length() / (textLength / getWidth()));
+            int count = (int) (text.length() / (textLength / getWidth()));
             int length = (text.length() + count - 1) / count;
             for (int ix = 0, pos = 0; ix < length; ix++, pos += count) {
                 canvas.drawText(text.substring(pos, Math.min(text.length(), pos + count)).trim()

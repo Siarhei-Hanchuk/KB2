@@ -31,7 +31,7 @@ class MessageView extends ViewImpl {
         if (textLength < getWidth()) {
             canvas.drawText(text, 10, 100, getDefaultPaint());
         } else {
-            int count = (int)(text.length() / (textLength / getWidth()));
+            int count = (int) (text.length() / (textLength / getWidth()));
             int length = (text.length() + count - 1) / count;
             for (int ix = 0, pos = 0; ix < length; ix++, pos += count) {
                 canvas.drawText(text.substring(pos, Math.min(text.length(), pos + count)).trim()

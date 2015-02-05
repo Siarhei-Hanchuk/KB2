@@ -14,7 +14,7 @@ public class MagicianMenu extends Menu {
 
     MagicianMenu(Entity magician, Game game, I18n i18n) {
         super(game, i18n);
-        this.magician = (Magician)magician;
+        this.magician = (Magician) magician;
     }
 
     @Override
