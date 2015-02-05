@@ -8,9 +8,11 @@ import java.util.Iterator;
 
 public class City extends EntityImpl implements CitiesOwner {
     private final int[] workers = new int[4];
+    private final int nameId;
 
-    public City(MapPoint point) {
+    public City(MapPoint point, int nameId) {
         super(point);
+        this.nameId = nameId;
         workers[0] = 4;
         workers[1] = 5;
         workers[2] = 6;
@@ -28,6 +30,10 @@ public class City extends EntityImpl implements CitiesOwner {
 
     public void changeWorkers(int id, int count) {
         workers[id] += count;
+    }
+
+    public int getNameId() {
+        return nameId;
     }
 
     @Override

@@ -9,9 +9,11 @@ import com.neschur.kb2.app.models.iterators.EntityIterator;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 public class World implements Serializable, ArmyShopsOwner, CitiesOwner {
     private Country[] country;
+    private byte[] cityNames = new byte[25];
 
     public World(int mode) {
         switch (mode) {
@@ -30,20 +32,37 @@ public class World implements Serializable, ArmyShopsOwner, CitiesOwner {
 
     private void trainingWorld() {
         country = new Country[5];
-        country[0] = new CountryTraining();
-        country[1] = new Country2();
-        country[2] = new Country3();
-        country[3] = new Country4();
-        country[4] = new Country5();
+        country[0] = new CountryTraining(updateCityNamesMask());
+        country[1] = new Country2(updateCityNamesMask());
+        country[2] = new Country3(updateCityNamesMask());
+        country[3] = new Country4(updateCityNamesMask());
+        country[4] = new Country5(updateCityNamesMask());
     }
 
     private void defaultWorld() {
         country = new Country[5];
-        country[0] = new Country1();
-        country[1] = new Country2();
-        country[2] = new Country3();
-        country[3] = new Country4();
-        country[4] = new Country5();
+        country[0] = new Country1(updateCityNamesMask());
+        country[1] = new Country2(updateCityNamesMask());
+        country[2] = new Country3(updateCityNamesMask());
+        country[3] = new Country4(updateCityNamesMask());
+        country[4] = new Country5(updateCityNamesMask());
+    }
+
+    private byte[] updateCityNamesMask() {
+        for (int i = 0; i < cityNames.length; i++) {
+            if(cityNames[i] == 1) {
+                cityNames[i] = -1;
+            }
+        }
+        Random rand = new Random();
+        for (int i = 0; i < 5;) {
+            int n = rand.nextInt(cityNames.length);
+            if(cityNames[n] == 0) {
+                cityNames[n] = 1;
+                i++;
+            }
+        }
+        return cityNames;
     }
 
     @Override

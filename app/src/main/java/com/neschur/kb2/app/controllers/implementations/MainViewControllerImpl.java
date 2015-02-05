@@ -1,12 +1,13 @@
 package com.neschur.kb2.app.controllers.implementations;
 
-import com.neschur.kb2.app.controllers.GameCallback;
+import com.neschur.kb2.app.View;
 import com.neschur.kb2.app.controllers.ApplicationController;
+import com.neschur.kb2.app.controllers.GameCallback;
 import com.neschur.kb2.app.controllers.MainViewController;
+import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.models.GameGrid;
-import com.neschur.kb2.app.View;
 
 public class MainViewControllerImpl extends ApplicationController implements MainViewController,
         GameCallback {
@@ -37,7 +38,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
     }
 
     @Override
-    public void weekFinish(String armyTextId, String city) {
+    public void weekFinish(String armyTextId, City city) {
         setContentView(getViewFactory().getWeekEndView(this, armyTextId, city));
     }
 

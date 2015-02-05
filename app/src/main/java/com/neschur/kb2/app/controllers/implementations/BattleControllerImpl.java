@@ -1,5 +1,6 @@
 package com.neschur.kb2.app.controllers.implementations;
 
+import com.neschur.kb2.app.View;
 import com.neschur.kb2.app.controllers.ApplicationController;
 import com.neschur.kb2.app.controllers.BattleController;
 import com.neschur.kb2.app.controllers.ViewController;
@@ -7,7 +8,6 @@ import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.battle.BattleField;
 import com.neschur.kb2.app.models.battle.MapPointBattle;
-import com.neschur.kb2.app.View;
 
 public class BattleControllerImpl extends ApplicationController implements BattleController {
     private final BattleField battleField;

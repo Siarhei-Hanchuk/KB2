@@ -8,8 +8,8 @@ import com.neschur.kb2.app.View;
 import com.neschur.kb2.app.ViewFactory;
 import com.neschur.kb2.app.controllers.GameOwner;
 import com.neschur.kb2.app.controllers.PlatformController;
-import com.neschur.kb2.app.platforms.android.views.ViewImpl;
 import com.neschur.kb2.app.platforms.android.views.ViewFactoryImpl;
+import com.neschur.kb2.app.platforms.android.views.ViewImpl;
 
 class PlatformControllerImpl implements PlatformController {
     private final Activity activity;

@@ -30,8 +30,10 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
     private Sorcerer sorcerer;
     private ArrayList<ArmyShopsOwner> armyShops = new ArrayList<>();
     private ArrayList<City> cities = new ArrayList<>();
+    private byte[] cityNamesMask;
 
-    public Country() {
+    public Country(byte[] cityNamesMask) {
+        this.cityNamesMask = cityNamesMask;
         this.random = new Random();
 
         map = new MapPoint[65][65];
@@ -98,13 +100,22 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
     }
 
     void createCity(MapPoint mp) {
-        City city = new City(mp);
+        System.out.print("city created");
+        int nameId = 0;
+        for (int i = 0; i < cityNamesMask.length; i++) {
+            if(cityNamesMask[i] == 1) {
+                nameId = i + 1;
+                cityNamesMask[i] = -1;
+                break;
+            }
+        }
+        City city = new City(mp, nameId);
         cities.add(city);
         mp.setEntity(city);
     }
 
     protected void cities() {
-        int count = 1;
+        int count = 0;
         int x;
         int y;
         while (count < 5) {

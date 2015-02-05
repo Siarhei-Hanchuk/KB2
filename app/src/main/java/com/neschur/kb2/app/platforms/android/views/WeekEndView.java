@@ -2,20 +2,20 @@ package com.neschur.kb2.app.platforms.android.views;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.ViewController;
+import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.models.Player;
 
 public class WeekEndView extends ViewImpl {
     private final Player player;
     private String armyTextId;
-    private String city;
+    private City city;
 
-    public WeekEndView(Context context, ViewController controller, String armyTextId, String city) {
+    public WeekEndView(Context context, ViewController controller, String armyTextId, City city) {
         super(context, controller);
         this.armyTextId = armyTextId;
         this.city = city;
@@ -44,7 +44,7 @@ public class WeekEndView extends ViewImpl {
         drawItem(canvas, 7, "armyRefresh", i18n.translate("army_names_" + armyTextId));
         drawItem(canvas, 8, "armyRefresh2", null);
         drawItem(canvas, 10, "armyRefresh3", null);
-        drawItem(canvas, 12, "cityRefresh", city);
+        drawItem(canvas, 12, "cityRefresh", i18n.translate("city_names_name" +  city.getNameId()));
     }
 
     private void drawItem(Canvas canvas, int n, String attr, Object value) {

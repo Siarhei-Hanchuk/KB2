@@ -1,5 +1,6 @@
 package com.neschur.kb2.app.controllers;
 
+import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
 
@@ -8,5 +9,5 @@ public interface GameCallback {
 
     public void activateBattle(Fighting fighting);
 
-    public void weekFinish(String armyTextId, String city);
+    public void weekFinish(String armyTextId, City city);
 }

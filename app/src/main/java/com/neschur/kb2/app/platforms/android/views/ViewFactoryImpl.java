@@ -12,6 +12,7 @@ import com.neschur.kb2.app.controllers.MainMenuController;
 import com.neschur.kb2.app.controllers.MainViewController;
 import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.entities.ArmyShop;
+import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.ui.menus.Menu;
 import com.neschur.kb2.app.ui.menus.MenuFactory;
@@ -94,7 +95,7 @@ public class ViewFactoryImpl implements ViewFactory {
     }
 
     @Override
-    public View getWeekEndView(ViewController controller, String armyTextId, String city) {
+    public View getWeekEndView(ViewController controller, String armyTextId, City city) {
         return new WeekEndView(context, controller, armyTextId, city);
     }
 }

@@ -4,10 +4,9 @@ import com.neschur.kb2.app.controllers.BattleController;
 import com.neschur.kb2.app.controllers.MagicViewController;
 import com.neschur.kb2.app.controllers.MainMenuController;
 import com.neschur.kb2.app.controllers.MainViewController;
-import com.neschur.kb2.app.controllers.PlayerViewsController;
 import com.neschur.kb2.app.controllers.ViewController;
+import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Entity;
-import com.neschur.kb2.app.View;
 
 public interface ViewFactory {
     public View getWorkersMenuView(ViewController controller);
@@ -27,5 +26,5 @@ public interface ViewFactory {
     public View getViewBattleMessageView(ViewController controller, boolean result,
                                          int authority, int money);
 
-    public View getWeekEndView(ViewController controller, String armyTextId, String city);
+    public View getWeekEndView(ViewController controller, String armyTextId, City city);
 }

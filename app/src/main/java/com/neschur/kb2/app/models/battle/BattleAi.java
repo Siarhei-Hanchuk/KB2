@@ -1,7 +1,6 @@
 package com.neschur.kb2.app.models.battle;
 
 import com.neschur.kb2.app.models.MapPoint;
-import com.neschur.kb2.app.models.Mover;
 
 public class BattleAi {
     private final BattleField bf;

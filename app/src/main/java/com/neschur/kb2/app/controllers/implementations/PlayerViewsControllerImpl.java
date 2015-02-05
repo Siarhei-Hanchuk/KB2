@@ -1,5 +1,6 @@
 package com.neschur.kb2.app.controllers.implementations;
 
+import com.neschur.kb2.app.View;
 import com.neschur.kb2.app.controllers.ApplicationController;
 import com.neschur.kb2.app.controllers.ArmyShopViewController;
 import com.neschur.kb2.app.controllers.MagicViewController;
@@ -7,7 +8,6 @@ import com.neschur.kb2.app.controllers.PlayerViewsController;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.models.Player;
-import com.neschur.kb2.app.View;
 import com.neschur.kb2.app.warriors.WarriorFactory;
 
 public class PlayerViewsControllerImpl extends ApplicationController

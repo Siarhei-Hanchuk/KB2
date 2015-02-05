@@ -104,4 +104,9 @@
     <string name="messages.weekEnd.armyRefresh2">Наступает благоприятный период по расположению звёзд для этих войнов.</string>
     <string name="messages.weekEnd.armyRefresh3">Все их жилища перенаселяются.</string>
     <string name="messages.weekEnd.cityRefresh">Город #{?} заполнился работниками.</string>
+    <string name="city.names.name1">БАВАРИЯ</string>
+    <string name="city.names.name2">БОРМАШОВ</string>
+    <string name="city.names.name3">ГНИЛОВКА</string>
+    <string name="city.names.name4">ГУРЬЕВ</string>
+    <string name="city.names.name5">ЕЛОВОЕ</string>
 </resources>

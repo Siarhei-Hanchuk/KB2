@@ -68,7 +68,7 @@ public class Game implements Serializable {
                 break;
             }
         }
-        callbacks.weekFinish(war.getTextId(), "city");
+        callbacks.weekFinish(war.getTextId(), city);
     }
 
     public void weekUpdate() {
