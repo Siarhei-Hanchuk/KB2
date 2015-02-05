@@ -94,7 +94,7 @@ public class ViewFactoryImpl implements ViewFactory {
     }
 
     @Override
-    public View getWeekEndView(ViewController controller) {
-        return new WeekEndView(context, controller);
+    public View getWeekEndView(ViewController controller, String armyTextId, String city) {
+        return new WeekEndView(context, controller, armyTextId, city);
     }
 }

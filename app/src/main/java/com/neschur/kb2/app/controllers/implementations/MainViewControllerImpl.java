@@ -37,8 +37,8 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
     }
 
     @Override
-    public void weekFinish() {
-        setContentView(getViewFactory().getWeekEndView(this));
+    public void weekFinish(String armyTextId, String city) {
+        setContentView(getViewFactory().getWeekEndView(this, armyTextId, city));
     }
 
     @Override

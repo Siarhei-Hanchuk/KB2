@@ -8,5 +8,5 @@ public interface GameCallback {
 
     public void activateBattle(Fighting fighting);
 
-    public void weekFinish();
+    public void weekFinish(String armyTextId, String city);
 }

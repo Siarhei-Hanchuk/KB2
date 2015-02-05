@@ -4,6 +4,7 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.GameCallback;
 import com.neschur.kb2.app.countries.World;
 import com.neschur.kb2.app.entities.ArmyShop;
+import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.entities.Nave;
 import com.neschur.kb2.app.warriors.Warrior;
@@ -58,14 +59,16 @@ public class Game implements Serializable {
                 shopsIterator.next().resetCount();
         }
 
-        Iterator citiesIterator = world.getCities();
+        City city = null;
+        Iterator<City> citiesIterator = world.getCities();
         int n = (new Random()).nextInt(25);
-        for (int i = 0; citiesIterator.hasNext(); i++) {
+        for (int i = 0; citiesIterator.hasNext(); city = citiesIterator.next(), i++) {
             if(i == n) {
                 // TODO
+                break;
             }
         }
-        callbacks.weekFinish();
+        callbacks.weekFinish(war.getTextId(), "city");
     }
 
     public void weekUpdate() {

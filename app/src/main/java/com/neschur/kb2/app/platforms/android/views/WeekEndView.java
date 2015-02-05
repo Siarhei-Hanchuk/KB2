@@ -12,9 +12,13 @@ import com.neschur.kb2.app.models.Player;
 
 public class WeekEndView extends ViewImpl {
     private final Player player;
+    private String armyTextId;
+    private String city;
 
-    public WeekEndView(Context context, ViewController controller) {
+    public WeekEndView(Context context, ViewController controller, String armyTextId, String city) {
         super(context, controller);
+        this.armyTextId = armyTextId;
+        this.city = city;
         this.player = controller.getGame().getPlayer();
     }
 
@@ -37,18 +41,23 @@ public class WeekEndView extends ViewImpl {
         drawItem(canvas, 4, "salary", player.getSalary());
         drawItem(canvas, 5, "armySalary", 0);
 
-        drawItem(canvas, 7, "armyRefresh", null);
+        drawItem(canvas, 7, "armyRefresh", i18n.translate("army_names_" + armyTextId));
         drawItem(canvas, 8, "armyRefresh2", null);
         drawItem(canvas, 10, "armyRefresh3", null);
-        drawItem(canvas, 12, "cityRefresh", null);
+        drawItem(canvas, 12, "cityRefresh", city);
     }
 
-    private void drawItem(Canvas canvas, int n, String attr, Integer value) {
+    private void drawItem(Canvas canvas, int n, String attr, Object value) {
         String text;
-        if(value != null)
-            text = i18n.translate("messages_weekEnd_" + attr) + ": " + value;
-        else
+        if(value != null) {
+            if (value instanceof Integer) {
+                text = i18n.translate("messages_weekEnd_" + attr) + ": " + value;
+            }else{
+                text = i18n.translate("messages_weekEnd_" + attr, (String)value);
+            }
+        }else {
             text = i18n.translate("messages_weekEnd_" + attr);
+        }
         float textLength = getDefaultPaint().measureText(text);
         if (textLength < getWidth()) {
             canvas.drawText(text, 10, textHeight() * (n), getDefaultPaint());
