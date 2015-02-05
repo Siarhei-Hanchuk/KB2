@@ -16,13 +16,12 @@ public class MainMenuControllerImpl extends ApplicationController implements Mai
 
     @Override
     public void newGame() {
-        setGame(new Game(new MainViewControllerImpl(), 1));
-
+        setGame(new Game(new MainViewControllerImpl(), Game.MODE_GAME));
     }
 
     @Override
     public void newTraining() {
-        setGame(new Game(new MainViewControllerImpl(), 0));
+        setGame(new Game(new MainViewControllerImpl(), Game.MODE_TRAINING));
     }
 
     @Override
@@ -40,5 +39,10 @@ public class MainMenuControllerImpl extends ApplicationController implements Mai
     @Override
     public void viewClose() {
         setContentView(getViewFactory().getMainView(new MainViewControllerImpl()));
+    }
+
+    @Override
+    public void newTestGame() {
+        setGame(new Game(new MainViewControllerImpl(), Game.MODE_TEST));
     }
 }

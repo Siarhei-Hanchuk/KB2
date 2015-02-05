@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
+import com.neschur.kb2.app.BuildConfig;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.MainMenuController;
 
@@ -47,6 +48,9 @@ class MainMenuView extends ViewImpl {
         }
         canvas.drawText(i18n.translate(R.string.mainMenu_exit),
                 0, 6 * menuItemHeight(), paint);
+
+        if (BuildConfig.DEBUG)
+            canvas.drawText("Test", 0, 7 * menuItemHeight(), paint);
     }
 
     @Override
@@ -69,6 +73,8 @@ class MainMenuView extends ViewImpl {
                 }
             } else if (event.getY() < menuItemHeight() * 6) {
                 mainController.exit();
+            } else if (event.getY() < menuItemHeight() * 7) {
+                mainController.newTestGame();
             }
 
         }

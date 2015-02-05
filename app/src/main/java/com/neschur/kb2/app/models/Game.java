@@ -15,15 +15,16 @@ import java.util.Iterator;
 import java.util.Random;
 
 public class Game implements Serializable {
-    public static final int MODE_TRAINING = Player.MODE_TRAINING;
-    public static final int MODE_GAME = Player.MODE_GAME;
+    public static final int MODE_TRAINING = 0;
+    public static final int MODE_GAME = 1;
+    public static final int MODE_TEST = 2;
 
     final transient private GameCallback callbacks;
 
     private final World world;
     private final Player player;
     private Nave nave;
-    private int weeks;
+    private int weeks = 999;
     private int days = 200;
     private int currentWorker = -1;
 

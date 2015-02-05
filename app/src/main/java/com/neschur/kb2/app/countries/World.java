@@ -2,6 +2,7 @@ package com.neschur.kb2.app.countries;
 
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.City;
+import com.neschur.kb2.app.models.Game;
 import com.neschur.kb2.app.models.iterators.ArmyShopsOwner;
 import com.neschur.kb2.app.models.iterators.CitiesOwner;
 import com.neschur.kb2.app.models.iterators.EntityIterator;
@@ -17,10 +18,13 @@ public class World implements Serializable, ArmyShopsOwner, CitiesOwner {
 
     public World(int mode) {
         switch (mode) {
-            case 0:
-                trainingWorld();
+            case Game.MODE_TEST:
+                testWorld();
                 break;
-            case 1:
+            case Game.MODE_GAME:
+                defaultWorld();
+                break;
+            case Game.MODE_TRAINING:
                 defaultWorld();
                 break;
         }
@@ -30,7 +34,7 @@ public class World implements Serializable, ArmyShopsOwner, CitiesOwner {
         return country[i];
     }
 
-    private void trainingWorld() {
+    private void testWorld() {
         country = new Country[5];
         country[0] = new CountryTraining(updateCityNamesMask());
         country[1] = new Country2(updateCityNamesMask());

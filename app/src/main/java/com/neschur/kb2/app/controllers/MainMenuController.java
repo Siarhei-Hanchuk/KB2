@@ -12,4 +12,6 @@ public interface MainMenuController extends ViewController {
     public void newTraining();
 
     public boolean isCurrentGame();
+
+    public void newTestGame();
 }

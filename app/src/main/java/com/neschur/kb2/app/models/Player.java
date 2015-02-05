@@ -9,8 +9,6 @@ import java.io.Serializable;
 
 public class Player implements Serializable {
     public static final int MAX_ARMY = 10;
-    public static final int MODE_TRAINING = 0;
-    public static final int MODE_GAME = 1;
     private final WarriorSquad[] warriors = new WarriorSquad[MAX_ARMY]; // TODO - List
     private final int[] workers = new int[4];
     private final boolean[] importantDocs = {false, false, false, false, false};
@@ -35,7 +33,7 @@ public class Player implements Serializable {
 
         easy();
 
-        if (mode == MODE_TRAINING) {
+        if (mode == Game.MODE_TEST) {
             availableCountry = 5;
             move(5, 5);
         }
