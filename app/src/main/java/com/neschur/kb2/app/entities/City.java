@@ -2,8 +2,12 @@ package com.neschur.kb2.app.entities;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.models.MapPoint;
+import com.neschur.kb2.app.models.iterators2.Cities;
+import com.neschur.kb2.app.models.iterators2.NullCityIterator;
 
-public class City extends EntityImpl {
+import java.util.Iterator;
+
+public class City extends EntityImpl implements Cities {
     private final int[] workers = new int[4];
 
     public City(MapPoint point) {
@@ -25,5 +29,10 @@ public class City extends EntityImpl {
 
     public void changeWorkers(int id, int count) {
         workers[id] += count;
+    }
+
+    @Override
+    public Iterator<City> getCities() {
+        return new NullCityIterator(this);
     }
 }

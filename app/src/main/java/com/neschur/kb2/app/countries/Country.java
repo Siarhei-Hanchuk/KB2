@@ -15,19 +15,22 @@ import com.neschur.kb2.app.models.Glade;
 import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.iterators.ArmyShopIterator;
 import com.neschur.kb2.app.models.iterators.ArmyShops;
-import com.neschur.kb2.app.models.iterators.Iterator;
+import com.neschur.kb2.app.models.iterators2.Cities;
+import com.neschur.kb2.app.models.iterators2.CitiesIterator;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
-public abstract class Country implements Glade, Serializable, ArmyShops {
+public abstract class Country implements Glade, Serializable, ArmyShops, Cities {
     public final static int MAX_MAP_SIZE = 65;
     protected final MapPoint[][] map;
     private final Random random;
     protected int id;
     private Sorcerer sorcerer;
     private ArrayList<ArmyShops> armyShops = new ArrayList<>();
+    private ArrayList<City> cities = new ArrayList<>();
 
     public Country() {
         this.random = new Random();
@@ -95,6 +98,12 @@ public abstract class Country implements Glade, Serializable, ArmyShops {
         }
     }
 
+    void createCity(MapPoint mp) {
+        City city = new City(mp);
+        cities.add(city);
+        mp.setEntity(city);
+    }
+
     protected void cities() {
         int count = 1;
         int x;
@@ -109,7 +118,7 @@ public abstract class Country implements Glade, Serializable, ArmyShops {
                     || (map[x][y - 1].getLand() == R.drawable.water))
                     && ((map[x][y].getLand() == R.drawable.land)
                     && (map[x][y].getEntity() == null))) {
-                map[x][y].setEntity(new City(getMapPoint(x, y)));
+                createCity(getMapPoint(x, y));
                 count++;
             }
         }
@@ -318,11 +327,20 @@ public abstract class Country implements Glade, Serializable, ArmyShops {
 
     @Override
     public ArmyShopIterator getArmyShops() {
-        ArrayList<Iterator<ArmyShop>> iterators = new ArrayList<>();
+        ArrayList<com.neschur.kb2.app.models.iterators.Iterator<ArmyShop>> iterators = new ArrayList<>();
         for(ArmyShops shop: armyShops) {
             iterators.add(shop.getArmyShops());
         }
         return new ArmyShopIterator(iterators);
+    }
+
+    @Override
+    public Iterator<City> getCities() {
+        ArrayList<Iterator<City>> iterators = new ArrayList<>();
+        for(City city: cities) {
+            iterators.add(city.getCities());
+        }
+        return new CitiesIterator(iterators);
     }
 }
 

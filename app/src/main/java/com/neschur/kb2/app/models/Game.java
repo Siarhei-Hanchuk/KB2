@@ -12,6 +12,7 @@ import com.neschur.kb2.app.warriors.Warrior;
 import com.neschur.kb2.app.warriors.WarriorFactory;
 
 import java.io.Serializable;
+import java.util.Random;
 
 public class Game implements Serializable {
     public static final int MODE_TRAINING = Player.MODE_TRAINING;
@@ -57,8 +58,13 @@ public class Game implements Serializable {
         while(!iterator.isDone()) {
             ((ArmyShop)(iterator.next())).resetCount();
         }
-        //refresh armies
-        //refresh city
+        java.util.Iterator citiesIterator = world.getCities();
+        int n = (new Random()).nextInt(25);
+        for (int i = 0; citiesIterator.hasNext(); i++) {
+            if(i == n) {
+                // TODO
+            }
+        }
         callbacks.weekFinish();
     }
 
