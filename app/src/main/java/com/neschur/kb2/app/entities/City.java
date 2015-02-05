@@ -2,8 +2,7 @@ package com.neschur.kb2.app.entities;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.models.MapPoint;
-import com.neschur.kb2.app.models.iterators2.Cities;
-import com.neschur.kb2.app.models.iterators2.NullCityIterator;
+import com.neschur.kb2.app.models.iterators.Cities;
 
 import java.util.Iterator;
 
@@ -33,6 +32,25 @@ public class City extends EntityImpl implements Cities {
 
     @Override
     public Iterator<City> getCities() {
-        return new NullCityIterator(this);
+        final City self = this;
+
+        return new Iterator<City>() {
+            private boolean hasNext = true;
+
+            @Override
+            public boolean hasNext() {
+                return hasNext;
+            }
+
+            @Override
+            public City next() {
+                hasNext = false;
+                return self;
+            }
+
+            @Override
+            public void remove() {}
+        };
+
     }
 }

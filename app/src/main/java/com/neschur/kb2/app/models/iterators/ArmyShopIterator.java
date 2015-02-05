@@ -3,6 +3,7 @@ package com.neschur.kb2.app.models.iterators;
 import com.neschur.kb2.app.entities.ArmyShop;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class ArmyShopIterator implements Iterator<ArmyShop> {
     private ArrayList<Iterator<ArmyShop>> iterators;
@@ -13,18 +14,10 @@ public class ArmyShopIterator implements Iterator<ArmyShop> {
     }
 
     @Override
-    public void init(int armyId) {
-        currentIterator = 0;
-        for(Iterator iterator: iterators) {
-            iterator.init(armyId);
-        }
-    }
-
-    @Override
     public ArmyShop next() {
         ArmyShops dst = null;
         while (iterators.size() > currentIterator && dst == null) {
-            while(iterators.get(currentIterator).isDone()) {
+            while(!iterators.get(currentIterator).hasNext()) {
                 currentIterator++;
             }
             dst = iterators.get(currentIterator).next();
@@ -33,12 +26,15 @@ public class ArmyShopIterator implements Iterator<ArmyShop> {
     }
 
     @Override
-    public boolean isDone() {
+    public boolean hasNext() {
         for (int i = currentIterator; i < iterators.size(); i++) {
-            if(!iterators.get(i).isDone())
-                return false;
+            if(iterators.get(i).hasNext())
+                return true;
         }
-        return true;
+        return false;
     }
+
+    @Override
+    public void remove() {}
 }
 

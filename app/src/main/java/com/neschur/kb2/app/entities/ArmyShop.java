@@ -3,10 +3,10 @@ package com.neschur.kb2.app.entities;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.models.iterators.ArmyShops;
 import com.neschur.kb2.app.models.MapPoint;
-import com.neschur.kb2.app.models.iterators.Iterator;
-import com.neschur.kb2.app.models.iterators.NullArmyShopIterator;
 import com.neschur.kb2.app.warriors.Warrior;
 import com.neschur.kb2.app.warriors.WarriorFactory;
+
+import java.util.Iterator;
 
 public class ArmyShop extends EntityImpl implements ArmyShops {
     private final Warrior warrior;
@@ -39,12 +39,30 @@ public class ArmyShop extends EntityImpl implements ArmyShops {
         return false;
     }
 
-    @Override
-    public Iterator<ArmyShop> getArmyShops() {
-        return new NullArmyShopIterator(this);
-    }
-
     public void resetCount() {
         this.count = warrior.getCountInShop();
     }
+
+    @Override
+    public Iterator<ArmyShop> getArmyShops() {
+        final ArmyShop self = this;
+        return new Iterator<ArmyShop>() {
+            private boolean hasNext = true;
+
+            @Override
+            public boolean hasNext() {
+                return hasNext;
+            }
+
+            @Override
+            public ArmyShop next() {
+                hasNext = false;
+                return self;
+            }
+
+            @Override
+            public void remove() {}
+        };
+    }
+
 }

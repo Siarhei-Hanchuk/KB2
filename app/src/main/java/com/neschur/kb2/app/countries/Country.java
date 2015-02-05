@@ -15,8 +15,8 @@ import com.neschur.kb2.app.models.Glade;
 import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.iterators.ArmyShopIterator;
 import com.neschur.kb2.app.models.iterators.ArmyShops;
-import com.neschur.kb2.app.models.iterators2.Cities;
-import com.neschur.kb2.app.models.iterators2.CitiesIterator;
+import com.neschur.kb2.app.models.iterators.Cities;
+import com.neschur.kb2.app.models.iterators.CitiesIterator;
 
 import java.io.Serializable;
 import java.util.ArrayList;

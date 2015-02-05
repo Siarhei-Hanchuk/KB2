@@ -6,7 +6,6 @@ import com.neschur.kb2.app.countries.World;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.entities.Nave;
-import com.neschur.kb2.app.models.iterators.ArmyShopIterator;
 import com.neschur.kb2.app.models.iterators.Iterator;
 import com.neschur.kb2.app.warriors.Warrior;
 import com.neschur.kb2.app.warriors.WarriorFactory;

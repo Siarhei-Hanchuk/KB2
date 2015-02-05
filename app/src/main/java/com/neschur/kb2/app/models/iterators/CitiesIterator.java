@@ -1,4 +1,4 @@
-package com.neschur.kb2.app.models.iterators2;
+package com.neschur.kb2.app.models.iterators;
 
 import com.neschur.kb2.app.entities.City;
 
