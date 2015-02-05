@@ -13,19 +13,19 @@ import com.neschur.kb2.app.entities.MapNext;
 import com.neschur.kb2.app.entities.Sorcerer;
 import com.neschur.kb2.app.models.Glade;
 import com.neschur.kb2.app.models.MapPoint;
-import com.neschur.kb2.app.warriors.Warrior;
-import com.neschur.kb2.app.warriors.WarriorFactory;
-import com.neschur.kb2.app.warriors.WarriorSquad;
+import com.neschur.kb2.app.models.iterators.ArmyShopIterator;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Random;
 
-public abstract class Country implements Glade, Serializable {
+public abstract class Country implements Glade, Serializable, ArmyShops {
     public final static int MAX_MAP_SIZE = 65;
     protected final MapPoint[][] map;
     private final Random random;
     protected int id;
     private Sorcerer sorcerer;
+    private ArrayList<ArmyShops> armyShops = new ArrayList<>();
 
     public Country() {
         this.random = new Random();
@@ -265,6 +265,12 @@ public abstract class Country implements Glade, Serializable {
         }
     }
 
+    void createArmy(MapPoint mp, int group) {
+        ArmyShop shop = new ArmyShop(mp, group);
+        armyShops.add(shop);
+        mp.setEntity(shop);
+    }
+
     void army(int count, int group) {
         int run = 0;
         while (run < count) {
@@ -272,7 +278,7 @@ public abstract class Country implements Glade, Serializable {
             int y = rand(65);
             MapPoint mp = getMapPoint(x, y);
             if (mp.getEntity() == null && mp.getLand() == R.drawable.land) {
-                mp.setEntity(new ArmyShop(getMapPoint(x, y), group));
+                createArmy(mp, group);
                 run++;
             }
         }
@@ -306,6 +312,16 @@ public abstract class Country implements Glade, Serializable {
             y = rand(MAX_MAP_SIZE);
         }while(isEntity(x, y) || !isLand(x, y));
         return getMapPoint(x, y);
+    }
+
+    @Override
+    public ArmyShopIterator getArmyShops() {
+        ArrayList<ArmyShopIterator> iterators = new ArrayList<>();
+        for(ArmyShops shop: armyShops) {
+            iterators.add(shop.getArmyShops());
+        }
+        System.out.println(iterators.size());
+        return new ArmyShopIterator(iterators);
     }
 }
 

@@ -1,8 +1,11 @@
 package com.neschur.kb2.app.countries;
 
-import java.io.Serializable;
+import com.neschur.kb2.app.models.iterators.ArmyShopIterator;
 
-public class World implements Serializable {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class World implements Serializable, ArmyShops {
     private Country[] country;
 
     public World(int mode) {
@@ -36,6 +39,15 @@ public class World implements Serializable {
         country[2] = new Country3();
         country[3] = new Country4();
         country[4] = new Country5();
+    }
+
+    @Override
+    public ArmyShopIterator getArmyShops() {
+        ArrayList<ArmyShopIterator> iterators = new ArrayList<>();
+        for(ArmyShops shop: country) {
+            iterators.add(shop.getArmyShops());
+        }
+        return new ArmyShopIterator(iterators);
     }
 }
 

@@ -1,11 +1,14 @@
 package com.neschur.kb2.app.entities;
 
 import com.neschur.kb2.app.R;
+import com.neschur.kb2.app.countries.ArmyShops;
 import com.neschur.kb2.app.models.MapPoint;
+import com.neschur.kb2.app.models.iterators.ArmyShopIterator;
+import com.neschur.kb2.app.models.iterators.NullArmyShopIterator;
 import com.neschur.kb2.app.warriors.Warrior;
 import com.neschur.kb2.app.warriors.WarriorFactory;
 
-public class ArmyShop extends EntityImpl {
+public class ArmyShop extends EntityImpl implements ArmyShops {
     private final Warrior warrior;
     private int count;
 
@@ -34,5 +37,10 @@ public class ArmyShop extends EntityImpl {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public ArmyShopIterator getArmyShops() {
+        return new NullArmyShopIterator(this);
     }
 }
