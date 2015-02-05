@@ -220,10 +220,10 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
         }
     }
 
-    protected void landscape(int frequency, int land) {
+    protected void landscape(double frequency, int land) {
         for (int i = 5; i < MAX_MAP_SIZE - 5; i++) {
             for (int j = 5; j < MAX_MAP_SIZE - 5; j++) {
-                if (rand(frequency) == 1) {
+                if (Math.random() < frequency) {
                     if ((map[i][j].getLand() == R.drawable.land)
                             && (map[i][j].getEntity() == null)) {
                         map[i][j].setLand(land);

@@ -22,7 +22,7 @@ public class World implements Serializable, ArmyShopsOwner, CitiesOwner {
                 testWorld();
                 break;
             case Game.MODE_GAME:
-                defaultWorld();
+                hardWorld();
                 break;
             case Game.MODE_TRAINING:
                 defaultWorld();
@@ -37,19 +37,28 @@ public class World implements Serializable, ArmyShopsOwner, CitiesOwner {
     private void testWorld() {
         country = new Country[5];
         country[0] = new CountryTraining(updateCityNamesMask());
-        country[1] = new Country2(updateCityNamesMask());
-        country[2] = new Country3(updateCityNamesMask());
-        country[3] = new Country4(updateCityNamesMask());
-        country[4] = new Country5(updateCityNamesMask());
+        country[1] = new Country2(true, updateCityNamesMask());
+        country[2] = new Country3(true, updateCityNamesMask());
+        country[3] = new Country4(true, updateCityNamesMask());
+        country[4] = new Country5(true, updateCityNamesMask());
+    }
+
+    private void hardWorld() {
+        country = new Country[5];
+        country[0] = new Country1(true, updateCityNamesMask());
+        country[1] = new Country2(true, updateCityNamesMask());
+        country[2] = new Country3(true, updateCityNamesMask());
+        country[3] = new Country4(true, updateCityNamesMask());
+        country[4] = new Country5(true, updateCityNamesMask());
     }
 
     private void defaultWorld() {
         country = new Country[5];
-        country[0] = new Country1(updateCityNamesMask());
-        country[1] = new Country2(updateCityNamesMask());
-        country[2] = new Country3(updateCityNamesMask());
-        country[3] = new Country4(updateCityNamesMask());
-        country[4] = new Country5(updateCityNamesMask());
+        country[0] = new Country1(false, updateCityNamesMask());
+        country[1] = new Country2(false, updateCityNamesMask());
+        country[2] = new Country3(false, updateCityNamesMask());
+        country[3] = new Country4(false, updateCityNamesMask());
+        country[4] = new Country5(false, updateCityNamesMask());
     }
 
     private byte[] updateCityNamesMask() {

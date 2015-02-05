@@ -4,13 +4,17 @@ import com.neschur.kb2.app.R;
 
 class Country5 extends Country {
 
-    public Country5(byte[] cityNamesMask) {
+    public Country5(boolean hard, byte[] cityNamesMask) {
         super(cityNamesMask);
         this.id = 4;
         sand();
         river(10);
         cities();
-        stones();
+        if(hard) {
+            stones(0.75);
+        }else{
+            stones(0.6);
+        }
         goldChests(100, getId());
         army(5, 5);
     }
@@ -30,12 +34,12 @@ class Country5 extends Country {
         }
     }
 
-    private void stones() {
+    private void stones(double frequency) {
         for (int i = 11; i < MAX_MAP_SIZE - 11; i++) {
             for (int j = 11; j < MAX_MAP_SIZE - 11; j++) {
-                if ((map[i][j].getEntity() == null) && (map[i][j].getLand() == R.drawable.land)) {
-                    int r = rand(30);
-                    if (r < 16) {
+                if (Math.random() < frequency) {
+                    if ((map[i][j].getLand() == R.drawable.land) &&
+                            (map[i][j].getEntity() == null)) {
                         map[i][j].setLand(R.drawable.stone);
                     }
                 }

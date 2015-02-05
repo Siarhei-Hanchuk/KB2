@@ -4,14 +4,19 @@ import com.neschur.kb2.app.R;
 
 class Country1 extends Country {
 
-    public Country1(byte[] cityNamesMask) {
+    public Country1(boolean hard, byte[] cityNamesMask) {
         super(cityNamesMask);
         this.id = 0;
         river(30);
         river(20);
         river(40);
-        landscape(7, R.drawable.forest);
-        landscape(20, R.drawable.stone);
+        if (hard) {
+            landscape(0.33, R.drawable.forest);
+            landscape(0.33, R.drawable.stone);
+        } else {
+            landscape(0.14, R.drawable.forest);
+            landscape(0.05, R.drawable.stone);
+        }
 
         cities();
         guidePosts();
