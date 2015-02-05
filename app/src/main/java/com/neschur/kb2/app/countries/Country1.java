@@ -19,6 +19,7 @@ class Country1 extends Country {
         }
 
         cities();
+        castles();
         guidePosts();
         goldChests(40, getId());
         army(5, 0);

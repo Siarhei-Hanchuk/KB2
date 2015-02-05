@@ -19,8 +19,12 @@ class Country2 extends Country {
             landscape(0.08, R.drawable.forest);
             landscape(0.03, R.drawable.stone);
         }
+
         cities();
-        army(5, 2);
+        castles();
+        guidePosts();
         goldChests(40, getId());
+        army(5, 2);
+        mapNext();
     }
 }

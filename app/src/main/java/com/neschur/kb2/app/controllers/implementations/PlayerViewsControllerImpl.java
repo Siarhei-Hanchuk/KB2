@@ -20,7 +20,8 @@ public class PlayerViewsControllerImpl extends ApplicationController
         } else {
             view = getViewFactory().getViewForEntity(this, (Entity) viewType);
         }
-        setContentView(view);
+        if(view != null)
+            setContentView(view);
     }
 
     @Override

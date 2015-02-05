@@ -4,6 +4,8 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Captain;
 import com.neschur.kb2.app.entities.Castle;
+import com.neschur.kb2.app.entities.CastleLeft;
+import com.neschur.kb2.app.entities.CastleRight;
 import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
@@ -251,16 +253,16 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
                         (map[x - 1][y].getEntity() == null) &&
                         (map[x + 1][y].getEntity() == null) &&
                         (map[x][y + 1].getEntity() == null))) {
-            map[x][y].setEntity(new Castle(getMapPoint(x, y), R.drawable.castle_c));
-            map[x + 1][y].setEntity(new Castle(getMapPoint(x, y), R.drawable.castle_r));
-            map[x - 1][y].setEntity(new Castle(getMapPoint(x, y), R.drawable.castle_l));
-            map[x][y + 1].setEntity(new Captain(getMapPoint(x, y)));
+            new Castle(getMapPoint(x, y));
+            new CastleRight(getMapPoint(x + 1, y));
+            new CastleLeft(getMapPoint(x - 1, y));
+            createCaptain(x, y + 1);
             return true;
         }
         return false;
     }
 
-    private void castles() {
+    void castles() {
         int count = 0;
         while (count < 5) {
             if (tryPlaceCastle(rand(MAX_MAP_SIZE), rand(MAX_MAP_SIZE))) {

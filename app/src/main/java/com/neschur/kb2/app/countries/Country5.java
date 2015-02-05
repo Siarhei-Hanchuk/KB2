@@ -9,13 +9,16 @@ class Country5 extends Country {
         this.id = 4;
         sand();
         river(10);
-        cities();
         if(hard) {
             stones(0.75);
         }else{
             stones(0.6);
         }
-        goldChests(100, getId());
+
+        cities();
+        castles();
+        guidePosts();
+        goldChests(60, getId());
         army(5, 5);
     }
 

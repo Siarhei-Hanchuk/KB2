@@ -9,13 +9,17 @@ class Country3 extends Country {
         this.id = 2;
         river(40);
         river(30);
-        cities();
         if (hard) {
             landscape(0.7, R.drawable.forest);
         } else {
             landscape(0.5, R.drawable.forest);
         }
+
+        cities();
+        castles();
+        guidePosts();
         goldChests(40, getId());
         army(5, 3);
+        mapNext();
     }
 }
