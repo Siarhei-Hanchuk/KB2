@@ -8,6 +8,8 @@ import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.entities.Nave;
 import com.neschur.kb2.app.models.iterators.ArmyShopIterator;
 import com.neschur.kb2.app.models.iterators.Iterator;
+import com.neschur.kb2.app.warriors.Warrior;
+import com.neschur.kb2.app.warriors.WarriorFactory;
 
 import java.io.Serializable;
 
@@ -49,9 +51,15 @@ public class Game implements Serializable {
     }
 
     private void weekFinish() {
-        callbacks.weekFinish();
+        Iterator iterator = world.getArmyShops();
+        Warrior war = WarriorFactory.createRandom();
+        iterator.init(war.getId());
+        while(!iterator.isDone()) {
+            ((ArmyShop)(iterator.next())).resetCount();
+        }
         //refresh armies
         //refresh city
+        callbacks.weekFinish();
     }
 
     public void weekUpdate() {

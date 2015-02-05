@@ -11,5 +11,6 @@ class Country4 extends Country {
         cities();
         landscape(2, R.drawable.stone);
         goldChests(40, getId());
+        army(5, 4);
     }
 }

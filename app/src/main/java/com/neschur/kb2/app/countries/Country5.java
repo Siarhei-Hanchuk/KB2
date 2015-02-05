@@ -11,6 +11,7 @@ class Country5 extends Country {
         cities();
         stones();
         goldChests(100, getId());
+        army(5, 5);
     }
 
     private void sand() {

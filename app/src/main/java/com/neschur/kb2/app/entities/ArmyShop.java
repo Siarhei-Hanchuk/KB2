@@ -15,7 +15,7 @@ public class ArmyShop extends EntityImpl implements ArmyShops {
     public ArmyShop(MapPoint point, int group) {
         super(point);
         warrior = WarriorFactory.createRandomFromGroup(group);
-        this.count = warrior.getCountInShop();
+        resetCount();
     }
 
     @Override
@@ -42,5 +42,9 @@ public class ArmyShop extends EntityImpl implements ArmyShops {
     @Override
     public Iterator<ArmyShop> getArmyShops() {
         return new NullArmyShopIterator(this);
+    }
+
+    public void resetCount() {
+        this.count = warrior.getCountInShop();
     }
 }

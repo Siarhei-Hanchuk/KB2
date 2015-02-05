@@ -12,7 +12,7 @@ public class WarriorFactory {
     private static final String[] group4 = {"centaur", "dinosaur"};
     private static final String[] group5 = {"daemon", "cyclops", "dragon"};
 
-    public static WarriorImpl createRandomFromGroup(int group) {
+    public static Warrior createRandomFromGroup(int group) {
         switch (group) {
             case 0:
                 return create(group0[(new Random()).nextInt(5)]);
@@ -29,6 +29,10 @@ public class WarriorFactory {
             default:
                 return null;
         }
+    }
+
+    public static Warrior createRandom() {
+        return create(getAllArmyTextIds()[(new Random()).nextInt(25)]);
     }
 
     public static WarriorImpl create(String id) {
