@@ -7,24 +7,24 @@ class Country2 extends Country {
     public Country2(boolean hard, byte[] cityNamesMask) {
         super(cityNamesMask);
         this.id = 1;
-        river(40);
-        river(50);
-        river(30);
+        baseGenerator.river(40);
+        baseGenerator.river(50);
+        baseGenerator.river(30);
         if (hard) {
-            landscape(0.125, R.drawable.water);
-            landscape(0.125, R.drawable.forest);
-            landscape(0.05, R.drawable.stone);
+            baseGenerator.landscape(0.125, R.drawable.water);
+            baseGenerator.landscape(0.125, R.drawable.forest);
+            baseGenerator.landscape(0.05, R.drawable.stone);
         } else {
-            landscape(0.14, R.drawable.water);
-            landscape(0.08, R.drawable.forest);
-            landscape(0.03, R.drawable.stone);
+            baseGenerator.landscape(0.14, R.drawable.water);
+            baseGenerator.landscape(0.08, R.drawable.forest);
+            baseGenerator.landscape(0.03, R.drawable.stone);
         }
 
-        cities();
-        castles();
-        guidePosts();
-        goldChests(40, getId());
-        army(5, 2);
-        mapNext();
+        entityGenerator.cities();
+        entityGenerator.castles();
+        entityGenerator.guidePosts();
+        entityGenerator.goldChests(40, getId());
+        entityGenerator.armies(5, 2);
+        entityGenerator.mapNext();
     }
 }

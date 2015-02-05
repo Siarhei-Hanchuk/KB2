@@ -7,19 +7,19 @@ class Country3 extends Country {
     public Country3(boolean hard, byte[] cityNamesMask) {
         super(cityNamesMask);
         this.id = 2;
-        river(40);
-        river(30);
+        baseGenerator.river(40);
+        baseGenerator.river(30);
         if (hard) {
-            landscape(0.7, R.drawable.forest);
+            baseGenerator.landscape(0.7, R.drawable.forest);
         } else {
-            landscape(0.5, R.drawable.forest);
+            baseGenerator.landscape(0.5, R.drawable.forest);
         }
 
-        cities();
-        castles();
-        guidePosts();
-        goldChests(40, getId());
-        army(5, 3);
-        mapNext();
+        entityGenerator.cities();
+        entityGenerator.castles();
+        entityGenerator.guidePosts();
+        entityGenerator.goldChests(40, getId());
+        entityGenerator.armies(5, 3);
+        entityGenerator.mapNext();
     }
 }

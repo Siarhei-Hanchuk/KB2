@@ -8,18 +8,18 @@ class Country5 extends Country {
         super(cityNamesMask);
         this.id = 4;
         sand();
-        river(10);
+        baseGenerator.river(10);
         if (hard) {
             stones(0.75);
         } else {
             stones(0.6);
         }
 
-        cities();
-        castles();
-        guidePosts();
-        goldChests(60, getId());
-        army(5, 5);
+        entityGenerator.cities();
+        entityGenerator.castles();
+        entityGenerator.guidePosts();
+        entityGenerator.goldChests(60, getId());
+        entityGenerator.armies(5, 5);
     }
 
     private void sand() {
