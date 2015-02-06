@@ -8,20 +8,23 @@ import com.neschur.kb2.app.entities.Castle;
 import com.neschur.kb2.app.entities.CastleLeft;
 import com.neschur.kb2.app.entities.CastleRight;
 import com.neschur.kb2.app.entities.City;
+import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.entities.GoldChest;
 import com.neschur.kb2.app.entities.GuidePost;
 import com.neschur.kb2.app.entities.MapNext;
+import com.neschur.kb2.app.entities.Metro;
 import com.neschur.kb2.app.models.Glade;
 import com.neschur.kb2.app.models.MapPoint;
+import com.neschur.kb2.app.models.iterators.EntityIterator;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 public class EntityGenerator {
     private final Random random;
-    private final ArrayList<ArmyShop> armyShops = new ArrayList<>();
-    private final ArrayList<City> cities = new ArrayList<>();
     private final MapPoint[][] map;
     private final byte[] cityNamesMask;
 
@@ -31,7 +34,8 @@ public class EntityGenerator {
         this.map = country.getMapPoints();
     }
 
-    public void cities() {
+    public Iterator<City> cities() {
+        ArrayList<Iterator<City>> iterators = new ArrayList<>();
         int count = 0;
         int x;
         int y;
@@ -45,13 +49,14 @@ public class EntityGenerator {
                     || (map[x][y - 1].getLand() == R.drawable.water))
                     && ((map[x][y].getLand() == R.drawable.land)
                     && (map[x][y].getEntity() == null))) {
-                createCity(map[x][y]);
+                iterators.add(createCity(map[x][y]).getCities());
                 count++;
             }
         }
+        return new EntityIterator(iterators);
     }
 
-    private void createCity(MapPoint mp) {
+    private City createCity(MapPoint mp) {
         int nameId = 0;
         for (int i = 0; i < cityNamesMask.length; i++) {
             if (cityNamesMask[i] == 1) {
@@ -60,9 +65,7 @@ public class EntityGenerator {
                 break;
             }
         }
-        City city = new City(mp, nameId);
-        cities.add(city);
-        mp.setEntity(city);
+        return new City(mp, nameId);
     }
 
     public void guidePosts() {
@@ -142,38 +145,46 @@ public class EntityGenerator {
         return false;
     }
 
-    public void armies(int count, int group) {
+    public Iterator<ArmyShop> armies(int count, int group) {
+        ArrayList<Iterator<ArmyShop>> iterators = new ArrayList<>();
         int run = 0;
         while (run < count) {
             MapPoint mp = map[random.nextInt(65)][random.nextInt(65)];
             if (mp.getEntity() == null && mp.getLand() == R.drawable.land) {
-                createArmy(mp, group);
+                iterators.add(createArmy(mp, group).getArmyShops());
                 run++;
             }
         }
+        return new EntityIterator(iterators);
     }
 
-    private void createArmy(MapPoint mp, int group) {
-        ArmyShop shop = new ArmyShop(mp, group);
-        armyShops.add(shop);
-        mp.setEntity(shop);
+    private ArmyShop createArmy(MapPoint mp, int group) {
+        return new ArmyShop(mp, group);
     }
 
     public void mapNext() {
+        tryPlaceEntity(MapNext.class);
+    }
+
+    public void metro() {
+        tryPlaceEntity(Metro.class);
+        tryPlaceEntity(Metro.class);
+    }
+
+    private Entity tryPlaceEntity(Class Entity) {
         int x;
         int y;
         do {
             y = random.nextInt(54) + 5;
             x = random.nextInt(54) + 5;
         } while (map[x][y].getLand() != R.drawable.land && map[x][y].getEntity() == null);
-        new MapNext(map[x][y]);
-    }
-
-    public ArrayList<City> getCities() {
-        return cities;
-    }
-
-    public ArrayList<ArmyShop> getArmyShops() {
-        return armyShops;
+        try {
+            return (Entity)Entity.getDeclaredConstructor(MapPoint.class).newInstance(map[x][y]);
+        } catch (InvocationTargetException | NoSuchMethodException | InstantiationException |
+                IllegalAccessException  e) {
+            e.printStackTrace();
+            System.out.println(1/0);
+        }
+        return null;
     }
 }

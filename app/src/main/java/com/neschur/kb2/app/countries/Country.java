@@ -24,6 +24,8 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
     final EntityGenerator entityGenerator;
     private final Random random;
     int id;
+    Iterator<City> cities;
+    Iterator<ArmyShop> armyShops;
 
     Country(byte[] cityNamesMask) {
         random = new Random();
@@ -53,20 +55,12 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
 
     @Override
     public Iterator<ArmyShop> getArmyShops() {
-        ArrayList<Iterator<ArmyShop>> iterators = new ArrayList<>();
-        for (ArmyShopsOwner shop : entityGenerator.getArmyShops()) {
-            iterators.add(shop.getArmyShops());
-        }
-        return new EntityIterator(iterators);
+        return armyShops;
     }
 
     @Override
     public Iterator<City> getCities() {
-        ArrayList<Iterator<City>> iterators = new ArrayList<>();
-        for (City city : entityGenerator.getCities()) {
-            iterators.add(city.getCities());
-        }
-        return new EntityIterator(iterators);
+        return cities;
     }
 
     public int getId() {
@@ -94,11 +88,9 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
     }
 
     public MapPoint getRandomLandNearCity() {
-        City city = entityGenerator.getCities().get(0);
-        int index = 0;
-        while (index < entityGenerator.getCities().size()) {
-            city = entityGenerator.getCities().get(index);
-            index++;
+        City city = null;
+        while (cities.hasNext()) {
+            city = cities.next();
             for (int x = city.getX() - 1; x <= city.getX() + 1; x++) {
                 for (int y = city.getY() - 1; y <= city.getY() + 1; y++) {
                     if (city.getCountry().getMapPoint(x, y).getLand() == R.drawable.land) {

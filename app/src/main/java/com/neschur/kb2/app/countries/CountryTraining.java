@@ -14,5 +14,7 @@ class CountryTraining extends Country {
         new ArmyShop(getMapPoint(5, 10), 0);
         new City(getMapPoint(6, 5), 0);
         new Captain(getMapPoint(8, 5));
+
+        entityGenerator.metro();
     }
 }

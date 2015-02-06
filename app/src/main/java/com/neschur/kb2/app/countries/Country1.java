@@ -1,6 +1,11 @@
 package com.neschur.kb2.app.countries;
 
 import com.neschur.kb2.app.R;
+import com.neschur.kb2.app.entities.ArmyShop;
+import com.neschur.kb2.app.models.iterators.EntityIterator;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 
 class Country1 extends Country {
 
@@ -11,12 +16,16 @@ class Country1 extends Country {
         baseGenerator.river(20);
         baseGenerator.river(40);
 
-        entityGenerator.cities();
+        cities = entityGenerator.cities();
         entityGenerator.castles();
         entityGenerator.guidePosts();
         entityGenerator.goldChests(40, getId());
-        entityGenerator.armies(5, 0);
-        entityGenerator.armies(5, 1);
+
+        ArrayList<Iterator<ArmyShop>> iterators = new ArrayList<>();
+        iterators.add(entityGenerator.armies(5, 0));
+        iterators.add(entityGenerator.armies(5, 1));
+        armyShops = new EntityIterator(iterators);
+
         entityGenerator.mapNext();
         entityGenerator.captains();
 
