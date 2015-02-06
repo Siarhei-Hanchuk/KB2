@@ -95,7 +95,8 @@ public class EntityGenerator {
         }
     }
 
-    public void castles() {
+    public Iterator<Castle> castles() {
+        ArrayList<Iterator<Castle>> iterators = new ArrayList<>();
         int count = 0;
         while (count < 5) {
             Castle castle = tryPlaceCastle(random.nextInt(Country.MAX_MAP_SIZE),
@@ -103,8 +104,10 @@ public class EntityGenerator {
             if (castle != null) {
                 castle.generateArmy(1000, 0);
                 count++;
+                iterators.add(castle.getCastles());
             }
         }
+        return new EntityIterator<>(iterators);
     }
 
     private Castle tryPlaceCastle(int x, int y) {

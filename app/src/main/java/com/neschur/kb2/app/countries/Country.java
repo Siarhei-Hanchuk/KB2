@@ -4,6 +4,8 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.generators.BaseGenerator;
 import com.neschur.kb2.app.countries.generators.EntityGenerator;
 import com.neschur.kb2.app.entities.ArmyShop;
+import com.neschur.kb2.app.entities.Castle;
+import com.neschur.kb2.app.entities.CastlesOwner;
 import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.models.Glade;
@@ -17,7 +19,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
-public abstract class Country implements Glade, Serializable, ArmyShopsOwner, CitiesOwner {
+public abstract class Country implements Glade, Serializable, ArmyShopsOwner, CitiesOwner,
+        CastlesOwner {
     public final static int MAX_MAP_SIZE = 65;
     final MapPoint[][] map;
     final BaseGenerator baseGenerator;
@@ -26,6 +29,7 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
     int id;
     Iterator<City> cities;
     Iterator<ArmyShop> armyShops;
+    Iterator<Castle> castles;
 
     Country(byte[] cityNamesMask) {
         random = new Random();
@@ -61,6 +65,11 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
     @Override
     public Iterator<City> getCities() {
         return cities;
+    }
+
+    @Override
+    public Iterator<Castle> getCastles() {
+        return castles;
     }
 
     public int getId() {

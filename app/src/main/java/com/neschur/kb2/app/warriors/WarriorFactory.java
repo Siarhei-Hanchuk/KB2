@@ -14,6 +14,11 @@ public class WarriorFactory {
 
     public static Warrior createRandomFromGroup(int group) {
         switch (group) {
+            case 10:
+                if (Math.random() > 0.5)
+                    return create(group0[(new Random()).nextInt(5)]);
+                else
+                    return create(group1[(new Random()).nextInt(5)]);
             case 0:
                 return create(group0[(new Random()).nextInt(5)]);
             case 1:

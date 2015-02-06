@@ -6,7 +6,9 @@ import com.neschur.kb2.app.warriors.Warrior;
 import com.neschur.kb2.app.warriors.WarriorFactory;
 import com.neschur.kb2.app.warriors.WarriorSquad;
 
-public class Castle extends EntityImpl implements Fighting {
+import java.util.Iterator;
+
+public class Castle extends EntityImpl implements Fighting, CastlesOwner {
     private static final int ARMY_COUNT = 5;
     private final WarriorSquad[] warriors = new WarriorSquad[ARMY_COUNT];
     private int authority;
@@ -38,5 +40,28 @@ public class Castle extends EntityImpl implements Fighting {
             WarriorSquad squad = new WarriorSquad(warrior, authority / warrior.getDamage());
             warriors[i] = squad;
         }
+    }
+
+    @Override
+    public Iterator<Castle> getCastles() {
+        final Castle self = this;
+
+        return new Iterator<Castle>() {
+            private boolean hasNext = true;
+
+            @Override
+            public boolean hasNext() {
+                return hasNext;
+            }
+
+            @Override
+            public Castle next() {
+                hasNext = false;
+                return self;
+            }
+
+            @Override
+            public void remove() {}
+        };
     }
 }
