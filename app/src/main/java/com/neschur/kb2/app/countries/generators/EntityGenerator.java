@@ -148,21 +148,21 @@ public class EntityGenerator {
         return false;
     }
 
-    public Iterator<ArmyShop> armies(int count, int group) {
+    public Iterator<ArmyShop> armies(int count, int ... groups) {
         ArrayList<Iterator<ArmyShop>> iterators = new ArrayList<>();
         int run = 0;
         while (run < count) {
             MapPoint mp = map[random.nextInt(65)][random.nextInt(65)];
             if (mp.getEntity() == null && mp.getLand() == R.drawable.land) {
-                iterators.add(createArmy(mp, group).getArmyShops());
+                iterators.add(createArmy(mp, groups).getArmyShops());
                 run++;
             }
         }
         return new EntityIterator(iterators);
     }
 
-    private ArmyShop createArmy(MapPoint mp, int group) {
-        return new ArmyShop(mp, group);
+    private ArmyShop createArmy(MapPoint mp, int ... groups) {
+        return new ArmyShop(mp, groups);
     }
 
     public void mapNext() {

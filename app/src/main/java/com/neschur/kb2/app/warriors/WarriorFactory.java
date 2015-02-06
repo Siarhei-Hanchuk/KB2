@@ -12,25 +12,26 @@ public class WarriorFactory {
     private static final String[] group4 = {"centaur", "dinosaur"};
     private static final String[] group5 = {"daemon", "cyclops", "dragon"};
 
-    public static Warrior createRandomFromGroup(int group) {
+    public static Warrior createRandomFromGroup(int... groups) {
+        Random random = new Random();
+        int group;
+        if (groups.length == 0)
+            group = random.nextInt(6);
+        else
+            group = groups[random.nextInt(groups.length)];
         switch (group) {
-            case 10:
-                if (Math.random() > 0.5)
-                    return create(group0[(new Random()).nextInt(5)]);
-                else
-                    return create(group1[(new Random()).nextInt(5)]);
             case 0:
-                return create(group0[(new Random()).nextInt(5)]);
+                return create(group0[random.nextInt(5)]);
             case 1:
-                return create(group1[(new Random()).nextInt(5)]);
+                return create(group1[random.nextInt(5)]);
             case 2:
-                return create(group2[(new Random()).nextInt(5)]);
+                return create(group2[random.nextInt(5)]);
             case 3:
-                return create(group3[(new Random()).nextInt(5)]);
+                return create(group3[random.nextInt(5)]);
             case 4:
-                return create(group4[(new Random()).nextInt(2)]);
+                return create(group4[random.nextInt(2)]);
             case 5:
-                return create(group5[(new Random()).nextInt(3)]);
+                return create(group5[random.nextInt(3)]);
             default:
                 return null;
         }

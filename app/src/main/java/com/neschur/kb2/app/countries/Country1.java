@@ -15,7 +15,7 @@ class Country1 extends Country {
         castles = entityGenerator.castles();
         entityGenerator.guidePosts();
         entityGenerator.goldChests(40, getId());
-        armyShops = entityGenerator.armies(10, 10);
+        armyShops = entityGenerator.armies(10, 1, 0);
         entityGenerator.mapNext();
         entityGenerator.captains();
 
