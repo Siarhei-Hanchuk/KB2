@@ -88,7 +88,6 @@ public class BaseGenerator {
         }
     }
 
-
     public void landscape(double frequency, int land) {
         for (int i = 5; i < Country.MAX_MAP_SIZE - 5; i++) {
             for (int j = 5; j < Country.MAX_MAP_SIZE - 5; j++) {

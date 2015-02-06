@@ -9,11 +9,6 @@ class Country4 extends Country {
         this.id = 3;
         baseGenerator.river(40);
         baseGenerator.river(30);
-        if (hard) {
-            baseGenerator.landscape(0.7, R.drawable.stone);
-        } else {
-            baseGenerator.landscape(0.5, R.drawable.stone);
-        }
 
         entityGenerator.cities();
         entityGenerator.castles();
@@ -21,5 +16,11 @@ class Country4 extends Country {
         entityGenerator.goldChests(40, getId());
         entityGenerator.armies(5, 4);
         entityGenerator.mapNext();
+
+        if (hard) {
+            baseGenerator.landscape(0.7, R.drawable.stone);
+        } else {
+            baseGenerator.landscape(0.5, R.drawable.stone);
+        }
     }
 }

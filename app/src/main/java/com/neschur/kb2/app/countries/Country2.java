@@ -12,6 +12,14 @@ class Country2 extends Country {
         baseGenerator.river(30);
         baseGenerator.river(50);
         baseGenerator.river(50);
+
+        entityGenerator.cities();
+        entityGenerator.castles();
+        entityGenerator.guidePosts();
+        entityGenerator.goldChests(40, getId());
+        entityGenerator.armies(5, 2);
+        entityGenerator.mapNext();
+
         if (hard) {
             baseGenerator.landscape(0.125, R.drawable.water);
             baseGenerator.landscape(0.125, R.drawable.forest);
@@ -21,12 +29,5 @@ class Country2 extends Country {
             baseGenerator.landscape(0.08, R.drawable.forest);
             baseGenerator.landscape(0.03, R.drawable.stone);
         }
-
-        entityGenerator.cities();
-        entityGenerator.castles();
-        entityGenerator.guidePosts();
-        entityGenerator.goldChests(40, getId());
-        entityGenerator.armies(5, 2);
-        entityGenerator.mapNext();
     }
 }
