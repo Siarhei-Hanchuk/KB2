@@ -10,6 +10,8 @@ class Country2 extends Country {
         baseGenerator.river(40);
         baseGenerator.river(50);
         baseGenerator.river(30);
+        baseGenerator.river(50);
+        baseGenerator.river(50);
         if (hard) {
             baseGenerator.landscape(0.125, R.drawable.water);
             baseGenerator.landscape(0.125, R.drawable.forest);

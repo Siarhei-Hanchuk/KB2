@@ -27,8 +27,6 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
 
     Country(byte[] cityNamesMask) {
         random = new Random();
-        baseGenerator = new BaseGenerator(this);
-        entityGenerator = new EntityGenerator(this, cityNamesMask);
 
         map = new MapPoint[MAX_MAP_SIZE][MAX_MAP_SIZE];
         for (int i = 0; i < MAX_MAP_SIZE; i++) {
@@ -36,6 +34,9 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
                 map[i][j] = new MapPoint(this, i, j);
             }
         }
+
+        baseGenerator = new BaseGenerator(this);
+        entityGenerator = new EntityGenerator(this, cityNamesMask);
 
         baseGenerator.base();
     }

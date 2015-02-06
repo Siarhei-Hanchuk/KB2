@@ -116,7 +116,7 @@ public class EntityGenerator {
             Castle castle = new Castle(map[x][y]);
             new CastleRight(map[x + 1][y]);
             new CastleLeft(map[x - 1][y]);
-            tryPlaceCastle(x, y + 1);
+            tryPlaceCaptain(x, y + 1);
             return castle;
         }
         return null;
