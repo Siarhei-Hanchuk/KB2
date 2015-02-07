@@ -6,7 +6,6 @@ import com.neschur.kb2.app.controllers.GameCallback;
 import com.neschur.kb2.app.controllers.MainViewController;
 import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Entity;
-import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.models.GameGrid;
 
 public class MainViewControllerImpl extends ApplicationController implements MainViewController,
@@ -30,11 +29,6 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
     @Override
     public void activateEntity(Entity entity) {
         new PlayerViewsControllerImpl(entity);
-    }
-
-    @Override
-    public void activateBattle(Fighting fighting) {
-        new BattleControllerImpl(this, fighting);
     }
 
     @Override

@@ -94,7 +94,6 @@
     <string name="mainMenu.training">Тренировка</string>
     <string name="mainMenu.save_game">Сохранить игру</string>
     <string name="mainMenu.save_game.saved">Cохранено</string>
-    <string name="entity.captain.noArmy">Без войска драться? Насмешил!</string>
     <string name="workers.item1">Плотники</string>
     <string name="workers.item2">Лесорубы</string>
     <string name="workers.item3">Землекопы</string>
@@ -106,6 +105,10 @@
     <string name="magic.hiking_magic5">Дать армию</string>
     <string name="magic.hiking_magic6">Квариавторитет</string>
     <string name="magic.hiking_magic7">Дать волшебство</string>
+    <string name="battle.begin.noArmy">Без войска драться? Насмешил!</string>
+    <string name="battle.begin.ask">Будешь драться?</string>
+    <string name="battle.begin.ask.yes">Да</string>
+    <string name="battle.begin.ask.no">Нет</string>
     <string name="battle.finish.win">Вы победили, вам досталось золота #{?} и ваш авторитет возрос на #{?}</string>
     <string name="battle.finish.fail">Вы проиграли, ваш авторитет уменьшился на #{?} и противник забросил вас неизвестно куда</string>
     <string name="messages.weekEnd.title">ФИНАНСОВЫЙ ОТЧЁТ ПРОШЛОЙ НЕДЕЛИ</string>

@@ -5,6 +5,7 @@ import android.content.Context;
 import com.neschur.kb2.app.View;
 import com.neschur.kb2.app.ViewFactory;
 import com.neschur.kb2.app.controllers.ArmyShopViewController;
+import com.neschur.kb2.app.controllers.BattleAskController;
 import com.neschur.kb2.app.controllers.BattleController;
 import com.neschur.kb2.app.controllers.GameOwner;
 import com.neschur.kb2.app.controllers.MagicViewController;
@@ -14,6 +15,7 @@ import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Entity;
+import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.ui.menus.Menu;
 import com.neschur.kb2.app.ui.menus.MenuFactory;
 import com.neschur.kb2.app.ui.messages.Message;
@@ -83,6 +85,9 @@ public class ViewFactoryImpl implements ViewFactory {
         }
         if (entity instanceof ArmyShop) {
             view = new ArmyShopView(context, (ArmyShopViewController) controller, (ArmyShop) entity);
+        }
+        if (entity instanceof Fighting) {
+            view = new BattleAskView(context, (BattleAskController)controller, (Fighting) entity);
         }
         return view;
     }

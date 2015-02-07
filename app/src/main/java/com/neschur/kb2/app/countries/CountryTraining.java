@@ -3,7 +3,6 @@ package com.neschur.kb2.app.countries;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Captain;
 import com.neschur.kb2.app.entities.City;
-import com.neschur.kb2.app.entities.Metro;
 
 class CountryTraining extends Country {
     public CountryTraining(byte[] cityNamesMask) {
@@ -14,7 +13,8 @@ class CountryTraining extends Country {
         new ArmyShop(getMapPoint(5, 9), 0);
         new ArmyShop(getMapPoint(5, 10), 0);
         new City(getMapPoint(6, 5), 0);
-        new Captain(getMapPoint(8, 5));
+        Captain captain = new Captain(getMapPoint(8, 5));
+        captain.generateArmy(100, 0);
 
         createMetro();
 

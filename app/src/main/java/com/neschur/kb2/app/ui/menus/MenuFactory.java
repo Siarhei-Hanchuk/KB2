@@ -1,7 +1,6 @@
 package com.neschur.kb2.app.ui.menus;
 
 import com.neschur.kb2.app.controllers.GameOwner;
-import com.neschur.kb2.app.entities.Captain;
 import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.GoldChest;
@@ -23,9 +22,6 @@ public class MenuFactory {
         }
         if (entity instanceof GoldChest && !((GoldChest) entity).isBonus()) {
             return new GoldChestMenu(entity, gameOwner.getGame(), gameOwner.i18n());
-        }
-        if (entity instanceof Captain) {
-            return new CaptainMenu(entity, gameOwner.getGame(), gameOwner.i18n());
         }
         return null;
     }

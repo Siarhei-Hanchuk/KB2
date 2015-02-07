@@ -45,6 +45,8 @@ public class Player implements Serializable {
                 break;
         }
 
+        memory.showAll();
+
         move(point.getX(), point.getY());
     }
 

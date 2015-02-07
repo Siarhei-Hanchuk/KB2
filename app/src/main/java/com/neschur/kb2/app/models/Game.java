@@ -5,7 +5,6 @@ import com.neschur.kb2.app.controllers.GameCallback;
 import com.neschur.kb2.app.countries.World;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.City;
-import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.entities.Metro;
 import com.neschur.kb2.app.entities.Nave;
 import com.neschur.kb2.app.warriors.Warrior;
@@ -163,10 +162,6 @@ public class Game implements Serializable {
             armyShop.pullArmy(count);
             player.pushArmy(armyShop.getWarrior(), count);
         }
-    }
-
-    public void activateBattle(Fighting fighting) {
-        callbacks.activateBattle(fighting);
     }
 
     public void selectWorker(int n) {
