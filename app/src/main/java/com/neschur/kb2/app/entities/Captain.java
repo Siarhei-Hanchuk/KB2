@@ -2,19 +2,22 @@ package com.neschur.kb2.app.entities;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.models.MapPoint;
+import com.neschur.kb2.app.models.Mover;
 import com.neschur.kb2.app.warriors.Warrior;
 import com.neschur.kb2.app.warriors.WarriorFactory;
 import com.neschur.kb2.app.warriors.WarriorSquad;
 
 import java.util.Random;
 
-public class Captain extends EntityImpl implements Fighting {
+public class Captain extends EntityImpl implements Fighting, Moving {
     private static final int MAX_ARMY = 5;
     private final WarriorSquad[] warriors = new WarriorSquad[MAX_ARMY];
     private int authority;
+    private final Mover mover;
 
     public Captain(MapPoint point) {
         super(point);
+        mover = new Mover(point.getGlade());
     }
 
     @Override
@@ -41,5 +44,15 @@ public class Captain extends EntityImpl implements Fighting {
             WarriorSquad squad = new WarriorSquad(warrior, authority / warrior.getDamage());
             warriors[i] = squad;
         }
+    }
+
+    @Override
+    public void moveInDirection(MapPoint point) {
+        mover.moveInDirection(this, point);
+    }
+
+    @Override
+    public void moveInRandomDirection() {
+        mover.moveInRandomDirection(this);
     }
 }

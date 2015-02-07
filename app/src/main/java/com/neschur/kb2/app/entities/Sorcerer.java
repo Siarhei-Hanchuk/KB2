@@ -18,7 +18,12 @@ public class Sorcerer extends EntityImpl implements Moving {
     }
 
     @Override
-    public void moveTo(MapPoint point) {
+    public void moveInDirection(MapPoint point) {
         mover.moveInDirection(this, point);
+    }
+
+    @Override
+    public void moveInRandomDirection() {
+        mover.moveInRandomDirection(this);
     }
 }

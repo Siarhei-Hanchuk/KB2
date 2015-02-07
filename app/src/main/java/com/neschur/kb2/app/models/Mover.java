@@ -3,6 +3,7 @@ package com.neschur.kb2.app.models;
 import com.neschur.kb2.app.entities.Entity;
 
 import java.io.Serializable;
+import java.util.Random;
 
 public class Mover implements Serializable {
     private final Glade glade;
@@ -41,5 +42,12 @@ public class Mover implements Serializable {
                 if (!teleport(entity, x + directionX, y + 1))
                     teleport(entity, x + directionX, y - 1);
         }
+    }
+
+    public void moveInRandomDirection(Entity entity) {
+        Random random = new Random();
+        MapPoint from = entity.getMapPoint();
+        MapPoint to = glade.getMapPoint(from.getX() +(-1 + random.nextInt(3)), from.getY() +(-1 + random.nextInt(3)));
+        moveInDirection(entity, to);
     }
 }

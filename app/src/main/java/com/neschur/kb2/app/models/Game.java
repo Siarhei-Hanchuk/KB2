@@ -4,10 +4,15 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.GameCallback;
 import com.neschur.kb2.app.countries.World;
 import com.neschur.kb2.app.entities.ArmyShop;
+import com.neschur.kb2.app.entities.Captain;
 import com.neschur.kb2.app.entities.Castle;
 import com.neschur.kb2.app.entities.City;
+import com.neschur.kb2.app.entities.Entity;
+import com.neschur.kb2.app.entities.Magician;
 import com.neschur.kb2.app.entities.Metro;
+import com.neschur.kb2.app.entities.Moving;
 import com.neschur.kb2.app.entities.Nave;
+import com.neschur.kb2.app.entities.Sorcerer;
 import com.neschur.kb2.app.warriors.Warrior;
 import com.neschur.kb2.app.warriors.WarriorFactory;
 
@@ -49,8 +54,19 @@ public class Game implements Serializable {
     }
 
     public void moveEntities() {
-//        Sorcerer sorcerer = player.getCountry().getSorcerer();
-//        sorcerer.moveInDirection(player.getMapPoint());
+        Glade glade = player.getCountry();
+        for (int x = player.getX() - 2; x <= player.getX() + 2; x++) {
+            for (int y = player.getY() - 2; y <= player.getY() + 2; y++) {
+                Entity entity = glade.getMapPoint(x, y).getEntity();
+                if (entity != null) {
+                    if (entity instanceof Captain || entity instanceof Sorcerer) {
+                        ((Moving) entity).moveInDirection(player.getMapPoint());
+                    } else if (entity instanceof Magician) {
+                        ((Moving) entity).moveInRandomDirection();
+                    }
+                }
+            }
+        }
     }
 
     private void weekFinish() {
