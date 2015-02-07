@@ -49,6 +49,8 @@
     <string name="entity.guidePost.message9">Отпусти животных из своего войска.</string>
     <string name="entity.guidePost.message10">Здесь будет город-сад!</string>
     <string name="entity.guidePost.message11">Здесь поиться Твой предшественник.</string>
+    <string name="entity.guidePost.message12">Надпись неразборчива.</string>
+    <string name="entity.guidePost.message13">Зайдите завтра.</string>
     <string name="entity.magician.menu.item1">Работники</string>
     <string name="entity.magician.menu.item2">Волшебная сила</string>
     <string name="entity.magician.menu.item3">Переместить на другой континент</string>
@@ -133,9 +135,21 @@
     <string name="entity.city.names.name3">ГНИЛОВКА</string>
     <string name="entity.city.names.name4">ГУРЬЕВ</string>
     <string name="entity.city.names.name5">ЕЛОВОЕ</string>
-    <string name="entity.castle.names.name1">АККРА</string>
+    <string name="entity.castle.names.name1">AKКРА</string>
     <string name="entity.castle.names.name2">БАМАКО</string>
     <string name="entity.castle.names.name3">БИСАУ</string>
     <string name="entity.castle.names.name4">ГЛАЗГО</string>
     <string name="entity.castle.names.name5">ГРИНВИЧ</string>
+    <string name="entity.sorcerer.message1">Уменьшил отведенное Вам время</string>
+    <string name="entity.sorcerer.message2">Уменьшил Вашу волшебную силу</string>
+    <string name="entity.sorcerer.message3">Уменьшил Ваш авторитет</string>
+    <string name="entity.sorcerer.message4">Забрал Ваших работников</string>
+    <string name="entity.sorcerer.message5">Забрал Ваше золото</string>
+    <string name="entity.sorcerer.message6">Забрал Вашу армию</string>
+    <string name="entity.sorcerer.message7">Забрал карту Земли</string>
+    <string name="entity.sorcerer.message8">Забрал Ваши волшебства</string>
+    <string name="entity.sorcerer.message9">Перенес Вас на другой континент</string>
+    <string name="entity.sorcerer.message10">Перенес Вас в другое место</string>
+    <string name="entity.sorcerer.message11">Потопил Ваш корабль</string>
+    <string name="entity.sorcerer.message12">Заставил Вас всё забыть</string>
 </resources>
