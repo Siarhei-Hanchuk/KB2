@@ -13,9 +13,7 @@ public class Mover implements Serializable {
     }
 
     private boolean teleport(Entity entity, int x, int y) {
-        if (!glade.inBorders(x, y))
-            return false;
-        return teleport(entity, glade.getMapPoint(x, y));
+        return glade.inBorders(x, y) && teleport(entity, glade.getMapPoint(x, y));
     }
 
     public boolean teleport(Entity entity, MapPoint to) {
@@ -47,7 +45,7 @@ public class Mover implements Serializable {
     public void moveInRandomDirection(Entity entity) {
         Random random = new Random();
         MapPoint from = entity.getMapPoint();
-        MapPoint to = glade.getMapPoint(from.getX() +(-1 + random.nextInt(3)), from.getY() +(-1 + random.nextInt(3)));
+        MapPoint to = glade.getMapPoint(from.getX() + (-1 + random.nextInt(3)), from.getY() + (-1 + random.nextInt(3)));
         moveInDirection(entity, to);
     }
 }

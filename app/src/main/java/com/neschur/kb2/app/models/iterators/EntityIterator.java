@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class EntityIterator<T> implements Iterator<T> {
-    private ArrayList<Iterator<T>> iterators;
+    private final ArrayList<Iterator<T>> iterators;
     private int currentIterator = 0;
 
     public EntityIterator(ArrayList<Iterator<T>> iterators) {

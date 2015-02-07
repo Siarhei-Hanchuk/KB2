@@ -8,13 +8,13 @@ import com.neschur.kb2.app.models.Mover;
 import com.neschur.kb2.app.models.Player;
 
 public class BattleField implements Glade {
-    private MapPointBattle[][] map = new MapPointBattle[6][5];
-    private Player player;
-    private Fighting fighting;
+    private final MapPointBattle[][] map = new MapPointBattle[6][5];
+    private final Player player;
+    private final Fighting fighting;
+    private final BattleAi ai;
+    private final BattleController battleController;
+    private final Mover mover;
     private WarriorEntity selected;
-    private BattleAi ai;
-    private BattleController battleController;
-    private Mover mover;
 
     public BattleField(Player player, Fighting fighting, BattleController battleController) {
         this.player = player;
@@ -32,6 +32,7 @@ public class BattleField implements Glade {
         return map[x][y];
     }
 
+    @Override
     public MapPointBattle[][] getMapPoints() {
         return map;
     }

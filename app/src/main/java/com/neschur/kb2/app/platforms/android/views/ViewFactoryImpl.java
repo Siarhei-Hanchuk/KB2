@@ -87,7 +87,7 @@ public class ViewFactoryImpl implements ViewFactory {
             view = new ArmyShopView(context, (ArmyShopViewController) controller, (ArmyShop) entity);
         }
         if (entity instanceof Fighting) {
-            view = new BattleAskView(context, (BattleAskController)controller, (Fighting) entity);
+            view = new BattleAskView(context, (BattleAskController) controller, (Fighting) entity);
         }
         return view;
     }

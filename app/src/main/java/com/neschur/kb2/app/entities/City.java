@@ -9,9 +9,9 @@ import java.util.Random;
 
 public class City extends EntityImpl implements CitiesOwner {
     private final int nameId;
+    private final Castle castle;
     private int[] workers;
     private int magic;
-    private Castle castle;
 
     public City(MapPoint point, int nameId, Castle castle) {
         super(point);
@@ -63,7 +63,8 @@ public class City extends EntityImpl implements CitiesOwner {
             }
 
             @Override
-            public void remove() {}
+            public void remove() {
+            }
         };
     }
 

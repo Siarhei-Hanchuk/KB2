@@ -11,7 +11,6 @@ import com.neschur.kb2.app.models.iterators.EntityIterator;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Random;
 
 public class World implements Serializable, ArmyShopsOwner, CitiesOwner {
     private Country[] country;

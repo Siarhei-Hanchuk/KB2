@@ -18,7 +18,7 @@ class MainView extends ViewImpl {
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
-        if(mainViewController.getGame() == null)
+        if (mainViewController.getGame() == null)
             return super.onTouchEvent(event);
         int x = (int) event.getX() - xOffset;
         int y = (int) event.getY() - yOffset;

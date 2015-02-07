@@ -133,7 +133,7 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
     }
 
     public MapPoint getLinkedMetroPoint(Metro metro) {
-        if(metro == metro1)
+        if (metro == metro1)
             metro = metro2;
         else
             metro = metro1;

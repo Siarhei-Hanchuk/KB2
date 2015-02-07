@@ -81,7 +81,8 @@ public class Game implements Serializable {
         City city = null;
         Iterator<City> citiesIterator = world.getCities();
         int n = (new Random()).nextInt(25);
-        for (int i = 0; citiesIterator.hasNext(); city = citiesIterator.next(), i++) {
+        for (int i = 0; citiesIterator.hasNext(); i++) {
+            city = citiesIterator.next();
             if (i == n) {
                 city.resetWorkers();
                 break;
@@ -152,9 +153,9 @@ public class Game implements Serializable {
             player.setNave((Nave) mp.getEntity());
             player.move(mp);
         } else if (mp.getEntity() instanceof Metro) {
-            player.move(player.getCountry().getLinkedMetroPoint((Metro)mp.getEntity()));
+            player.move(player.getCountry().getLinkedMetroPoint((Metro) mp.getEntity()));
         } else if (mp.getEntity() instanceof Castle) {
-            if( player.getY() > mp.getY())
+            if (player.getY() > mp.getY())
                 callbacks.activateEntity(mp.getEntity());
         } else {
             callbacks.activateEntity(mp.getEntity());

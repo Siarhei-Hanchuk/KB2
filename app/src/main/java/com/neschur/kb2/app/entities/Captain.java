@@ -12,8 +12,8 @@ import java.util.Random;
 public class Captain extends EntityImpl implements Fighting, Moving {
     private static final int MAX_ARMY = 5;
     private final WarriorSquad[] warriors = new WarriorSquad[MAX_ARMY];
-    private int authority;
     private final Mover mover;
+    private int authority;
 
     public Captain(MapPoint point) {
         super(point);

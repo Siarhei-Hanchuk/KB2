@@ -37,7 +37,7 @@ public class CityMenu extends Menu {
                             return menuItem("magic_battle_magic" + (city.getMagic() + 1),
                                     PRICE_MAGIC[city.getMagic()]);
                         else
-                            return menuItem("magic_hiking_magic" + (city.getMagic() -7 + 1),
+                            return menuItem("magic_hiking_magic" + (city.getMagic() - 7 + 1),
                                     PRICE_MAGIC[city.getMagic()]);
                     case 4:
                         if (player.isWallkick())
@@ -52,7 +52,7 @@ public class CityMenu extends Menu {
                 return menuItem("entity_city_menu_workers_item" + (i + 1), PRICE_WORKERS[i])
                         + ": " + city.getWorkers(i);
             case 2:
-                if( i == 0) {
+                if (i == 0) {
                     return i18n.translate(R.string.battle_begin_castle) + " " +
                             i18n.translate("entity_castle_names_name" + city.getCastle().getNameId());
 

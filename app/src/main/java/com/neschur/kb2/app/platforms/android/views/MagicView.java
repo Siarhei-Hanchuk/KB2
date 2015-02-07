@@ -17,8 +17,8 @@ import java.util.HashMap;
 class MagicView extends ViewImpl {
     private final Magic magic;
     private final HashMap<Integer, String> armyIdCache = new HashMap<>();
+    private final MagicViewController magicViewController;
     private int mode = 0;
-    private MagicViewController magicViewController;
 
     public MagicView(Context context, MagicViewController magicViewController) {
         super(context, magicViewController);

@@ -12,8 +12,8 @@ import com.neschur.kb2.app.models.Player;
 
 public class WeekEndView extends ViewImpl {
     private final Player player;
-    private String armyTextId;
-    private City city;
+    private final String armyTextId;
+    private final City city;
 
     public WeekEndView(Context context, ViewController controller, String armyTextId, City city) {
         super(context, controller);

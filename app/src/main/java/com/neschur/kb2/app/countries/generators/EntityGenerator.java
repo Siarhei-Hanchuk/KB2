@@ -38,14 +38,14 @@ public class EntityGenerator implements CitiesOwner, ArmyShopsOwner {
     private HarmfulMap harmfulMap;
     private GoodMap goodMap;
 
-    public static void reset() {
-        cityNamesMask = new byte[28];
-        castleNamesMask = new byte[28];
-    }
-
     public EntityGenerator(Glade country) {
         this.random = new Random();
         this.map = country.getMapPoints();
+    }
+
+    public static void reset() {
+        cityNamesMask = new byte[28];
+        castleNamesMask = new byte[28];
     }
 
     public void citiesAndCastles() {
@@ -174,7 +174,7 @@ public class EntityGenerator implements CitiesOwner, ArmyShopsOwner {
         return false;
     }
 
-    public void armies(int count, int ... groups) {
+    public void armies(int count, int... groups) {
         int run = 0;
         while (run < count) {
             MapPoint mp = map[random.nextInt(65)][random.nextInt(65)];
@@ -185,7 +185,7 @@ public class EntityGenerator implements CitiesOwner, ArmyShopsOwner {
         }
     }
 
-    private ArmyShop createArmy(MapPoint mp, int ... groups) {
+    private ArmyShop createArmy(MapPoint mp, int... groups) {
         return new ArmyShop(mp, groups);
     }
 
@@ -194,7 +194,7 @@ public class EntityGenerator implements CitiesOwner, ArmyShopsOwner {
     }
 
     public Metro metro() {
-        return (Metro)tryPlaceEntity(Metro.class);
+        return (Metro) tryPlaceEntity(Metro.class);
     }
 
     private Entity tryPlaceEntity(Class Entity) {
@@ -205,9 +205,9 @@ public class EntityGenerator implements CitiesOwner, ArmyShopsOwner {
             x = random.nextInt(54) + 5;
         } while (map[x][y].getLand() != R.drawable.land && map[x][y].getEntity() == null);
         try {
-            return (Entity)Entity.getDeclaredConstructor(MapPoint.class).newInstance(map[x][y]);
+            return (Entity) Entity.getDeclaredConstructor(MapPoint.class).newInstance(map[x][y]);
         } catch (InvocationTargetException | NoSuchMethodException | InstantiationException |
-                IllegalAccessException  e) {
+                IllegalAccessException e) {
             e.printStackTrace();
             throw new NullPointerException();
         }
@@ -226,12 +226,12 @@ public class EntityGenerator implements CitiesOwner, ArmyShopsOwner {
 
     public void goodMap() {
 
-        goodMap = (GoodMap)tryPlaceEntity(GoodMap.class);
+        goodMap = (GoodMap) tryPlaceEntity(GoodMap.class);
     }
 
     public void harmfulMap() {
 
-        harmfulMap = (HarmfulMap)tryPlaceEntity(HarmfulMap.class);
+        harmfulMap = (HarmfulMap) tryPlaceEntity(HarmfulMap.class);
     }
 
     private void updateNamesMask(byte[] namesMask) {

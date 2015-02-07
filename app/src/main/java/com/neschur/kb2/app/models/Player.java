@@ -6,13 +6,12 @@ import com.neschur.kb2.app.warriors.Warrior;
 import com.neschur.kb2.app.warriors.WarriorSquad;
 
 import java.io.Serializable;
-import java.util.Random;
 
 public class Player implements Serializable {
     public static final int MAX_ARMY = 10;
     private final WarriorSquad[] warriors = new WarriorSquad[MAX_ARMY]; // TODO - List
     private final int[] workers = new int[4];
-    private final byte[] relationshipWithOwner = {0,0,0,0,0};
+    private final byte[] relationshipWithOwner = {0, 0, 0, 0, 0};
     private final Memory memory;
     private Magic magic;
     private boolean wallkick = false;
@@ -29,7 +28,7 @@ public class Player implements Serializable {
         memory = new Memory();
         country = _country;
 
-        MapPoint point = null;
+        MapPoint point;
         switch (mode) {
             case Game.MODE_TEST:
                 point = country.getMapPoint(5, 5);
@@ -44,6 +43,9 @@ public class Player implements Serializable {
                 point = country.getRandomLand();
                 hard();
                 break;
+            default:
+                point = country.getRandomLand();
+                easy();
         }
 
         memory.showAll();

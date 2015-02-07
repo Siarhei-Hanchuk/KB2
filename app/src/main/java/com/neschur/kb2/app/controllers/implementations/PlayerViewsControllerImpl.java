@@ -15,7 +15,7 @@ import com.neschur.kb2.app.warriors.WarriorFactory;
 public class PlayerViewsControllerImpl extends ApplicationController
         implements PlayerViewsController, MagicViewController, ArmyShopViewController,
         BattleAskController {
-    private View view;
+    private final View view;
     private Entity entity;
 
     public PlayerViewsControllerImpl(Object viewType) {
@@ -52,6 +52,6 @@ public class PlayerViewsControllerImpl extends ApplicationController
 
     @Override
     public void startBattle() {
-        new BattleControllerImpl(this, (Fighting)entity);
+        new BattleControllerImpl(this, (Fighting) entity);
     }
 }

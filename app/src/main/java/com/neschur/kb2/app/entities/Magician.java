@@ -5,7 +5,7 @@ import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.Mover;
 
 public class Magician extends EntityImpl implements Moving {
-    private static int[] usedMagicianCount = {0, 0, 0, 0, 0};
+    private static final int[] usedMagicianCount = {0, 0, 0, 0, 0};
     private final Mover mover;
 
     public Magician(MapPoint point) {
