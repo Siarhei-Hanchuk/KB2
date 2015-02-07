@@ -8,6 +8,7 @@ import java.util.Random;
 
 public class SorcererMessage extends Message {
     private int mode;
+
     SorcererMessage(Entity entity, Game game, I18n i18n) {
         super(entity, game, i18n);
     }
@@ -21,7 +22,39 @@ public class SorcererMessage extends Message {
     @Override
     public void action() {
         switch (mode) {
-
+            case 0:
+                // TODO
+            case 1:
+                // TODO player.getMagic().magicPwoer
+            case 2:
+                player.changeAuthority(-player.getAuthority() / 2);
+                break;
+            case 3:
+                for (int i = 0; i < 4; i++)
+                    player.changeWorker(i, -player.getWorker(i));
+                break;
+            case 4:
+                player.changeMoney(-player.getMoney());
+                break;
+            case 5:
+                player.clearArmy();
+                break;
+            case 6:
+                // TODO player.getMagic().
+            case 7:
+                // TODO player.getMagic().
+            case 8:
+                player.move(game.getWorld().getCountry((new Random()).nextInt(5)).getRandomLand());
+                break;
+            case 9:
+                player.move(player.getCountry().getRandomLand());
+                break;
+            case 10:
+                game.destroyNave();
+                break;
+            case 11:
+                player.getMemory().clear();
+                break;
         }
     }
 }
