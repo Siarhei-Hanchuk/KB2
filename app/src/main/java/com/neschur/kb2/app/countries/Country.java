@@ -8,6 +8,7 @@ import com.neschur.kb2.app.entities.Castle;
 import com.neschur.kb2.app.entities.CastlesOwner;
 import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Entity;
+import com.neschur.kb2.app.entities.Metro;
 import com.neschur.kb2.app.models.Glade;
 import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.iterators.ArmyShopsOwner;
@@ -27,9 +28,8 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
     final EntityGenerator entityGenerator;
     private final Random random;
     int id;
-    Iterator<City> cities;
-    Iterator<ArmyShop> armyShops;
-    Iterator<Castle> castles;
+    Metro metro1;
+    Metro metro2;
 
     Country(byte[] cityNamesMask) {
         random = new Random();
@@ -59,17 +59,17 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
 
     @Override
     public Iterator<ArmyShop> getArmyShops() {
-        return armyShops;
+        return entityGenerator.getArmyShops();
     }
 
     @Override
     public Iterator<City> getCities() {
-        return cities;
+        return entityGenerator.getCities();
     }
 
     @Override
     public Iterator<Castle> getCastles() {
-        return castles;
+        return null;
     }
 
     public int getId() {
@@ -97,18 +97,18 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
     }
 
     public MapPoint getRandomLandNearCity() {
-        City city = null;
-        while (cities.hasNext()) {
-            city = cities.next();
-            for (int x = city.getX() - 1; x <= city.getX() + 1; x++) {
-                for (int y = city.getY() - 1; y <= city.getY() + 1; y++) {
-                    if (city.getCountry().getMapPoint(x, y).getLand() == R.drawable.land) {
-                        return getMapPoint(x, y);
-                    }
+        return getRandomLandNearPoint(getCities().next().getMapPoint());
+    }
+
+    public MapPoint getRandomLandNearPoint(MapPoint point) {
+        for (int x = point.getX() - 1; x <= point.getX() + 1; x++) {
+            for (int y = point.getY() - 1; y <= point.getY() + 1; y++) {
+                if (point.getGlade().getMapPoint(x, y).getLand() == R.drawable.land) {
+                    return getMapPoint(x, y);
                 }
             }
         }
-        return city.getMapPoint();
+        return point;
     }
 
     public MapPoint getRandomLand() {

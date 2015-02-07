@@ -11,13 +11,15 @@ class Country1 extends Country {
         baseGenerator.river(20);
         baseGenerator.river(40);
 
-        cities = entityGenerator.cities();
-        castles = entityGenerator.castles();
+        entityGenerator.cities();
+        entityGenerator.castles();
         entityGenerator.guidePosts();
         entityGenerator.goldChests(40, getId());
-        armyShops = entityGenerator.armies(10, 1, 0);
+        entityGenerator.armies(10, 1, 0);
         entityGenerator.mapNext();
         entityGenerator.captains();
+        metro1 = entityGenerator.metro();
+        metro2 = entityGenerator.metro();
 
         if (hard) {
             baseGenerator.landscape(0.33, R.drawable.forest);

@@ -10,11 +10,11 @@ class Country5 extends Country {
         sand();
         baseGenerator.river(10);
 
-        cities = entityGenerator.cities();
+        entityGenerator.cities();
         entityGenerator.castles();
         entityGenerator.guidePosts();
         entityGenerator.goldChests(60, getId());
-        armyShops = entityGenerator.armies(5, 5);
+        entityGenerator.armies(5, 5);
 
         if (hard) {
             stones(0.75);

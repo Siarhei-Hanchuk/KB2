@@ -16,6 +16,8 @@ import com.neschur.kb2.app.entities.MapNext;
 import com.neschur.kb2.app.entities.Metro;
 import com.neschur.kb2.app.models.Glade;
 import com.neschur.kb2.app.models.MapPoint;
+import com.neschur.kb2.app.models.iterators.ArmyShopsOwner;
+import com.neschur.kb2.app.models.iterators.CitiesOwner;
 import com.neschur.kb2.app.models.iterators.EntityIterator;
 
 import java.lang.reflect.InvocationTargetException;
@@ -23,10 +25,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
-public class EntityGenerator {
+public class EntityGenerator implements CitiesOwner, ArmyShopsOwner {
     private final Random random;
     private final MapPoint[][] map;
     private final byte[] cityNamesMask;
+    private ArrayList<City> cities = new ArrayList<>();
+    private ArrayList<ArmyShop> armyShops = new ArrayList<>();
+    private ArrayList<Castle> castles = new ArrayList<>();
 
     public EntityGenerator(Glade country, byte[] cityNamesMask) {
         this.cityNamesMask = cityNamesMask;
@@ -34,8 +39,7 @@ public class EntityGenerator {
         this.map = country.getMapPoints();
     }
 
-    public Iterator<City> cities() {
-        ArrayList<Iterator<City>> iterators = new ArrayList<>();
+    public void cities() {
         int count = 0;
         int x;
         int y;
@@ -49,11 +53,10 @@ public class EntityGenerator {
                     || (map[x][y - 1].getLand() == R.drawable.water))
                     && ((map[x][y].getLand() == R.drawable.land)
                     && (map[x][y].getEntity() == null))) {
-                iterators.add(createCity(map[x][y]).getCities());
+                cities.add(createCity(map[x][y]));
                 count++;
             }
         }
-        return new EntityIterator(iterators);
     }
 
     private City createCity(MapPoint mp) {
@@ -95,8 +98,7 @@ public class EntityGenerator {
         }
     }
 
-    public Iterator<Castle> castles() {
-        ArrayList<Iterator<Castle>> iterators = new ArrayList<>();
+    public void castles() {
         int count = 0;
         while (count < 5) {
             Castle castle = tryPlaceCastle(random.nextInt(Country.MAX_MAP_SIZE),
@@ -104,10 +106,9 @@ public class EntityGenerator {
             if (castle != null) {
                 castle.generateArmy(1000, 0);
                 count++;
-                iterators.add(castle.getCastles());
+                castles.add(castle);
             }
         }
-        return new EntityIterator<>(iterators);
     }
 
     private Castle tryPlaceCastle(int x, int y) {
@@ -148,17 +149,15 @@ public class EntityGenerator {
         return false;
     }
 
-    public Iterator<ArmyShop> armies(int count, int ... groups) {
-        ArrayList<Iterator<ArmyShop>> iterators = new ArrayList<>();
+    public void armies(int count, int ... groups) {
         int run = 0;
         while (run < count) {
             MapPoint mp = map[random.nextInt(65)][random.nextInt(65)];
             if (mp.getEntity() == null && mp.getLand() == R.drawable.land) {
-                iterators.add(createArmy(mp, groups).getArmyShops());
+                armyShops.add(createArmy(mp, groups));
                 run++;
             }
         }
-        return new EntityIterator(iterators);
     }
 
     private ArmyShop createArmy(MapPoint mp, int ... groups) {
@@ -169,9 +168,8 @@ public class EntityGenerator {
         tryPlaceEntity(MapNext.class);
     }
 
-    public void metro() {
-        tryPlaceEntity(Metro.class);
-        tryPlaceEntity(Metro.class);
+    public Metro metro() {
+        return (Metro)tryPlaceEntity(Metro.class);
     }
 
     private Entity tryPlaceEntity(Class Entity) {
@@ -189,5 +187,23 @@ public class EntityGenerator {
             System.out.println(1/0);
         }
         return null;
+    }
+
+    @Override
+    public Iterator<City> getCities() {
+        ArrayList<Iterator<City>> iterators = new ArrayList<>();
+        for (CitiesOwner city : cities) {
+            iterators.add(city.getCities());
+        }
+        return new EntityIterator(iterators);
+    }
+
+    @Override
+    public Iterator<ArmyShop> getArmyShops() {
+        ArrayList<Iterator<ArmyShop>> iterators = new ArrayList<>();
+        for (ArmyShopsOwner armyShop : armyShops) {
+            iterators.add(armyShop.getArmyShops());
+        }
+        return new EntityIterator(iterators);
     }
 }
