@@ -11,10 +11,12 @@ public class City extends EntityImpl implements CitiesOwner {
     private final int nameId;
     private int[] workers;
     private int magic;
+    private Castle castle;
 
-    public City(MapPoint point, int nameId) {
+    public City(MapPoint point, int nameId, Castle castle) {
         super(point);
         this.nameId = nameId;
+        this.castle = castle;
         resetWorkers();
         resetMagic();
     }
@@ -71,5 +73,9 @@ public class City extends EntityImpl implements CitiesOwner {
 
     public int getMagic() {
         return magic;
+    }
+
+    public Castle getCastle() {
+        return castle;
     }
 }

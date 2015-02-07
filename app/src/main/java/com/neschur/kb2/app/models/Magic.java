@@ -55,6 +55,6 @@ public class Magic implements Serializable {
         if (n < 7)
             battleMagics[n]++;
         else
-            campingMagics[n]++;
+            campingMagics[n - 7]++;
     }
 }

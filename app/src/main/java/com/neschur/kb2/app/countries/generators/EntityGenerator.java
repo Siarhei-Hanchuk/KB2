@@ -49,11 +49,11 @@ public class EntityGenerator implements CitiesOwner, ArmyShopsOwner {
     }
 
     public void citiesAndCastles() {
-        updateNamesMask(cityNamesMask);
-        cities();
-
         updateNamesMask(castleNamesMask);
         castles();
+
+        updateNamesMask(cityNamesMask);
+        cities();
     }
 
     private void cities() {
@@ -70,13 +70,13 @@ public class EntityGenerator implements CitiesOwner, ArmyShopsOwner {
                     || (map[x][y - 1].getLand() == R.drawable.water))
                     && ((map[x][y].getLand() == R.drawable.land)
                     && (map[x][y].getEntity() == null))) {
-                cities.add(createCity(map[x][y]));
+                cities.add(createCity(map[x][y], castles.get(count)));
                 count++;
             }
         }
     }
 
-    private City createCity(MapPoint mp) {
+    private City createCity(MapPoint mp, Castle castle) {
         int nameId = 0;
         for (int i = 0; i < cityNamesMask.length; i++) {
             if (cityNamesMask[i] == 1) {
@@ -85,7 +85,7 @@ public class EntityGenerator implements CitiesOwner, ArmyShopsOwner {
                 break;
             }
         }
-        return new City(mp, nameId);
+        return new City(mp, nameId, castle);
     }
 
     public void guidePosts() {

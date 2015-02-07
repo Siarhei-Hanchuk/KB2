@@ -5,10 +5,11 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.models.Game;
+import com.neschur.kb2.app.warriors.WarriorSquad;
 
 public class CityMenu extends Menu {
     private final int[] PRICE_WORKERS = {500, 500, 800, 800};
-    private final int[] PRICE_MAGIC = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private final int[] PRICE_MAGIC = {10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10};
     private final int PRICE_NAVE = 500;
     private final int PRICE_WALLKICK = 3000;
     private final City city;
@@ -33,10 +34,10 @@ public class CityMenu extends Menu {
                         return i18n.translate(R.string.entity_menus_city_item3);
                     case 3:
                         if (city.getMagic() < 7)
-                            return menuItem("magic.battle_magic" + (city.getMagic() + 1),
+                            return menuItem("magic_battle_magic" + (city.getMagic() + 1),
                                     PRICE_MAGIC[city.getMagic()]);
                         else
-                            return menuItem("magic.hiking_magic" + (city.getMagic() -7 + 1),
+                            return menuItem("magic_hiking_magic" + (city.getMagic() -7 + 1),
                                     PRICE_MAGIC[city.getMagic()]);
                     case 4:
                         if (player.isWallkick())
@@ -50,6 +51,17 @@ public class CityMenu extends Menu {
             case 1:
                 return menuItem("entity_menus_city_workers_item" + (i + 1), PRICE_WORKERS[i])
                         + ": " + city.getWorkers(i);
+            case 2:
+                if( i == 0) {
+                    return i18n.translate(R.string.battle_begin_castle) + " " +
+                            i18n.translate("castle_names_name" + city.getCastle().getNameId());
+
+                } else {
+                    WarriorSquad squad = city.getCastle().getWarriorSquad(i - 1);
+                    if (squad != null) {
+                        return i18n.translate("army_names_" + squad.getWarrior().getTextId());
+                    }
+                }
         }
         return null;
     }
@@ -65,6 +77,9 @@ public class CityMenu extends Menu {
                         } else {
                             buyNave();
                         }
+                        return false;
+                    case 2:
+                        menuMode = 2;
                         return false;
                     case 3:
                         if (player.changeMoney(-PRICE_MAGIC[city.getMagic()]))
@@ -89,6 +104,8 @@ public class CityMenu extends Menu {
                     }
                 }
                 return false;
+            case 2:
+                menuMode = 0;
             default:
                 return false;
         }
@@ -113,6 +130,8 @@ public class CityMenu extends Menu {
         switch (menuMode) {
             case 1:
                 return 4;
+            case 2:
+                return 6;
             default:
                 return 7;
         }
