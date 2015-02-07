@@ -105,6 +105,7 @@
     <string name="magic.hiking_magic5">Дать армию</string>
     <string name="magic.hiking_magic6">Квариавторитет</string>
     <string name="magic.hiking_magic7">Дать волшебство</string>
+    <string name="battle.begin.castle">Замок</string>
     <string name="battle.begin.noArmy">Без войска драться? Насмешил!</string>
     <string name="battle.begin.ask">Будешь драться?</string>
     <string name="battle.begin.ask.yes">Да</string>
@@ -124,4 +125,9 @@
     <string name="city.names.name3">ГНИЛОВКА</string>
     <string name="city.names.name4">ГУРЬЕВ</string>
     <string name="city.names.name5">ЕЛОВОЕ</string>
+    <string name="castle.names.name1">AKКРА</string>
+    <string name="castle.names.name2">БАМАКО</string>
+    <string name="castle.names.name3">БИСАУ</string>
+    <string name="castle.names.name4">ГЛАЗГО</string>
+    <string name="castle.names.name5">ГРИНВИЧ</string>
 </resources>

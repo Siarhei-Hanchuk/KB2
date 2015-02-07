@@ -12,9 +12,11 @@ public class Castle extends EntityImpl implements Fighting, CastlesOwner {
     private static final int ARMY_COUNT = 5;
     private final WarriorSquad[] warriors = new WarriorSquad[ARMY_COUNT];
     private int authority;
+    private int nameId;
 
-    public Castle(MapPoint point) {
+    public Castle(MapPoint point, int nameId) {
         super(point);
+        this.nameId = nameId;
     }
 
     @Override
@@ -63,5 +65,9 @@ public class Castle extends EntityImpl implements Fighting, CastlesOwner {
             @Override
             public void remove() {}
         };
+    }
+
+    public int getNameId() {
+        return nameId;
     }
 }

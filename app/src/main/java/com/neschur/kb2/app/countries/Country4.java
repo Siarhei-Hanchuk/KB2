@@ -10,8 +10,7 @@ class Country4 extends Country {
         baseGenerator.river(40);
         baseGenerator.river(30);
 
-        entityGenerator.cities();
-        entityGenerator.castles();
+        entityGenerator.citiesAndCastles();
         entityGenerator.guidePosts();
         entityGenerator.goldChests(40, getId());
         entityGenerator.armies(5, 4);

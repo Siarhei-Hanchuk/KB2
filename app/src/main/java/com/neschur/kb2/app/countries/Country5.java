@@ -9,9 +9,7 @@ class Country5 extends Country {
         this.id = 4;
         sand();
         baseGenerator.river(10);
-
-        entityGenerator.cities();
-        entityGenerator.castles();
+        entityGenerator.citiesAndCastles();
         entityGenerator.guidePosts();
         entityGenerator.goldChests(60, getId());
         entityGenerator.armies(5, 5);

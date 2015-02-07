@@ -26,7 +26,8 @@ import java.util.Iterator;
 import java.util.Random;
 
 public class EntityGenerator implements CitiesOwner, ArmyShopsOwner {
-    private final static byte[] cityNamesMask = new byte[25];
+    private final static byte[] cityNamesMask = new byte[28];
+    private final static byte[] castleNamesMask = new byte[28];
     private final Random random;
     private final MapPoint[][] map;
     private final ArrayList<City> cities = new ArrayList<>();
@@ -38,8 +39,15 @@ public class EntityGenerator implements CitiesOwner, ArmyShopsOwner {
         this.map = country.getMapPoints();
     }
 
-    public void cities() {
-        updateCityNamesMask();
+    public void citiesAndCastles() {
+        updateNamesMask(cityNamesMask);
+        cities();
+
+        updateNamesMask(castleNamesMask);
+        castles();
+    }
+
+    private void cities() {
         int count = 0;
         int x;
         int y;
@@ -98,7 +106,7 @@ public class EntityGenerator implements CitiesOwner, ArmyShopsOwner {
         }
     }
 
-    public void castles() {
+    private void castles() {
         int count = 0;
         while (count < 5) {
             Castle castle = tryPlaceCastle(random.nextInt(Country.MAX_MAP_SIZE),
@@ -120,7 +128,15 @@ public class EntityGenerator implements CitiesOwner, ArmyShopsOwner {
                         (map[x - 1][y].getEntity() == null) &&
                         (map[x + 1][y].getEntity() == null) &&
                         (map[x][y + 1].getEntity() == null))) {
-            Castle castle = new Castle(map[x][y]);
+            int nameId = 0;
+            for (int i = 0; i < castleNamesMask.length; i++) {
+                if (castleNamesMask[i] == 1) {
+                    nameId = i + 1;
+                    castleNamesMask[i] = -1;
+                    break;
+                }
+            }
+            Castle castle = new Castle(map[x][y], nameId);
             new CastleRight(map[x + 1][y]);
             new CastleLeft(map[x - 1][y]);
             tryPlaceCaptain(x, y + 1);
@@ -184,26 +200,32 @@ public class EntityGenerator implements CitiesOwner, ArmyShopsOwner {
         } catch (InvocationTargetException | NoSuchMethodException | InstantiationException |
                 IllegalAccessException  e) {
             e.printStackTrace();
-            System.out.println(1/0);
+            throw new NullPointerException();
         }
-        return null;
     }
 
-    private byte[] updateCityNamesMask() {
-        for (int i = 0; i < cityNamesMask.length; i++) {
-            if (cityNamesMask[i] == 1) {
-                cityNamesMask[i] = -1;
+    private void updateNamesMask(byte[] namesMask) {
+        int count0 = 0;
+        for (int i = 0; i < namesMask.length; i++) {
+            if (namesMask[i] == 1) {
+                namesMask[i] = -1;
+            }
+            if (namesMask[i] == 0) {
+                count0++;
             }
         }
+        if (count0 < 5) {
+            throw new NullPointerException();
+        }
         Random rand = new Random();
-        for (int i = 0; i < 5; ) {
-            int n = rand.nextInt(cityNamesMask.length);
-            if (cityNamesMask[n] == 0) {
-                cityNamesMask[n] = 1;
+        int i = 1;
+        while (i < 5) {
+            int n = rand.nextInt(namesMask.length);
+            if (namesMask[n] == 0) {
+                namesMask[n] = 1;
                 i++;
             }
         }
-        return cityNamesMask;
     }
 
     @Override

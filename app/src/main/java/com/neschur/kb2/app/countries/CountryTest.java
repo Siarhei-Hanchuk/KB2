@@ -19,7 +19,7 @@ class CountryTest extends Country {
         Captain captain = new Captain(getMapPoint(8, 5));
         captain.generateArmy(100, 0);
 
-        Castle castle = new Castle(getMapPoint(8, 8));
+        Castle castle = new Castle(getMapPoint(8, 8), 0);
         new CastleRight(getMapPoint(9, 8));
         new CastleLeft(getMapPoint(7, 8));
         castle.generateArmy(50, 0);
