@@ -13,10 +13,8 @@ import com.neschur.kb2.app.models.Glade;
 import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.iterators.ArmyShopsOwner;
 import com.neschur.kb2.app.models.iterators.CitiesOwner;
-import com.neschur.kb2.app.models.iterators.EntityIterator;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
@@ -28,8 +26,8 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
     final EntityGenerator entityGenerator;
     private final Random random;
     int id;
-    Metro metro1;
-    Metro metro2;
+    private Metro metro1;
+    private Metro metro2;
 
     Country(byte[] cityNamesMask) {
         random = new Random();
@@ -96,11 +94,16 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
         return (x > 0 && y > 0 && x < MAX_MAP_SIZE && y < MAX_MAP_SIZE);
     }
 
-    public MapPoint getRandomLandNearCity() {
-        return getRandomLandNearPoint(getCities().next().getMapPoint());
+    public void createMetro() {
+        metro1 = entityGenerator.metro();
+        metro2 = entityGenerator.metro();
     }
 
-    public MapPoint getRandomLandNearPoint(MapPoint point) {
+    public MapPoint getLandNearCity() {
+        return getLandNearPoint(getCities().next().getMapPoint());
+    }
+
+    public MapPoint getLandNearPoint(MapPoint point) {
         for (int x = point.getX() - 1; x <= point.getX() + 1; x++) {
             for (int y = point.getY() - 1; y <= point.getY() + 1; y++) {
                 if (point.getGlade().getMapPoint(x, y).getLand() == R.drawable.land) {
@@ -119,6 +122,14 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
             y = random.nextInt(MAX_MAP_SIZE);
         } while (isEntity(x, y) || !isLand(x, y));
         return getMapPoint(x, y);
+    }
+
+    public MapPoint getLinkedMetroPoint(Metro metro) {
+        if(metro == metro1)
+            metro = metro2;
+        else
+            metro = metro1;
+        return getLandNearPoint(metro.getMapPoint());
     }
 }
 

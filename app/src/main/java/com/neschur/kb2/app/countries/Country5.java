@@ -15,6 +15,7 @@ class Country5 extends Country {
         entityGenerator.guidePosts();
         entityGenerator.goldChests(60, getId());
         entityGenerator.armies(5, 5);
+        createMetro();
 
         if (hard) {
             stones(0.75);

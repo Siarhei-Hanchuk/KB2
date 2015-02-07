@@ -19,6 +19,7 @@ class Country2 extends Country {
         entityGenerator.goldChests(40, getId());
         entityGenerator.armies(5, 2);
         entityGenerator.mapNext();
+        createMetro();
 
         if (hard) {
             baseGenerator.landscape(0.125, R.drawable.water);

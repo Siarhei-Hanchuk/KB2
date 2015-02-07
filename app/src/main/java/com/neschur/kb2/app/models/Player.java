@@ -36,7 +36,7 @@ public class Player implements Serializable {
                 availableCountry = 5;
                 break;
             case Game.MODE_TRAINING:
-                point = country.getRandomLandNearCity();
+                point = country.getLandNearCity();
                 easy();
                 break;
             case Game.MODE_GAME:
@@ -77,6 +77,10 @@ public class Player implements Serializable {
             getNave().move(x, y);
         }
         memory.update(getCountry().getId(), x, y);
+    }
+
+    public void move(MapPoint point) {
+        move(point.getX(), point.getY());
     }
 
     public void changeCountry(Country country) {

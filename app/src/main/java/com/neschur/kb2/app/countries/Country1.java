@@ -18,8 +18,7 @@ class Country1 extends Country {
         entityGenerator.armies(10, 1, 0);
         entityGenerator.mapNext();
         entityGenerator.captains();
-        metro1 = entityGenerator.metro();
-        metro2 = entityGenerator.metro();
+        createMetro();
 
         if (hard) {
             baseGenerator.landscape(0.33, R.drawable.forest);

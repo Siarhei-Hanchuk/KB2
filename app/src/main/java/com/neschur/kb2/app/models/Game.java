@@ -6,6 +6,7 @@ import com.neschur.kb2.app.countries.World;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Fighting;
+import com.neschur.kb2.app.entities.Metro;
 import com.neschur.kb2.app.entities.Nave;
 import com.neschur.kb2.app.warriors.Warrior;
 import com.neschur.kb2.app.warriors.WarriorFactory;
@@ -133,6 +134,8 @@ public class Game implements Serializable {
         if (mp.getEntity() instanceof Nave) {
             player.setNave((Nave) mp.getEntity());
             player.move(mp.getX(), mp.getY());
+        } else if (mp.getEntity() instanceof Metro) {
+            player.move(player.getCountry().getLinkedMetroPoint((Metro)mp.getEntity()));
         } else {
             callbacks.activateEntity(mp.getEntity());
         }
