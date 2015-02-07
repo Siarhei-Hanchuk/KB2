@@ -8,8 +8,8 @@ import com.neschur.kb2.app.entities.CastleRight;
 import com.neschur.kb2.app.entities.City;
 
 class CountryTest extends Country {
-    public CountryTest(byte[] cityNamesMask) {
-        super(cityNamesMask);
+    public CountryTest() {
+        super();
         this.id = 0;
 
         new ArmyShop(getMapPoint(5, 8), 0);

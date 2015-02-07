@@ -4,8 +4,8 @@ import com.neschur.kb2.app.R;
 
 class Country5 extends Country {
 
-    public Country5(boolean hard, byte[] cityNamesMask) {
-        super(cityNamesMask);
+    public Country5(boolean hard) {
+        super();
         this.id = 4;
         sand();
         baseGenerator.river(10);

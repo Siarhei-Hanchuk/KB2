@@ -36,46 +36,29 @@ public class World implements Serializable, ArmyShopsOwner, CitiesOwner {
 
     private void testWorld() {
         country = new Country[5];
-        country[0] = new CountryTest(updateCityNamesMask());
-        country[1] = new Country2(true, updateCityNamesMask());
-        country[2] = new Country3(true, updateCityNamesMask());
-        country[3] = new Country4(true, updateCityNamesMask());
-        country[4] = new Country5(true, updateCityNamesMask());
+        country[0] = new CountryTest();
+        country[1] = new Country2(true);
+        country[2] = new Country3(true);
+        country[3] = new Country4(true);
+        country[4] = new Country5(true);
     }
 
     private void hardWorld() {
         country = new Country[5];
-        country[0] = new Country1(true, updateCityNamesMask());
-        country[1] = new Country2(true, updateCityNamesMask());
-        country[2] = new Country3(true, updateCityNamesMask());
-        country[3] = new Country4(true, updateCityNamesMask());
-        country[4] = new Country5(true, updateCityNamesMask());
+        country[0] = new Country1(true);
+        country[1] = new Country2(true);
+        country[2] = new Country3(true);
+        country[3] = new Country4(true);
+        country[4] = new Country5(true);
     }
 
     private void defaultWorld() {
         country = new Country[5];
-        country[0] = new Country1(false, updateCityNamesMask());
-        country[1] = new Country2(false, updateCityNamesMask());
-        country[2] = new Country3(false, updateCityNamesMask());
-        country[3] = new Country4(false, updateCityNamesMask());
-        country[4] = new Country5(false, updateCityNamesMask());
-    }
-
-    private byte[] updateCityNamesMask() {
-        for (int i = 0; i < cityNames.length; i++) {
-            if (cityNames[i] == 1) {
-                cityNames[i] = -1;
-            }
-        }
-        Random rand = new Random();
-        for (int i = 0; i < 5; ) {
-            int n = rand.nextInt(cityNames.length);
-            if (cityNames[n] == 0) {
-                cityNames[n] = 1;
-                i++;
-            }
-        }
-        return cityNames;
+        country[0] = new Country1(false);
+        country[1] = new Country2(false);
+        country[2] = new Country3(false);
+        country[3] = new Country4(false);
+        country[4] = new Country5(false);
     }
 
     @Override

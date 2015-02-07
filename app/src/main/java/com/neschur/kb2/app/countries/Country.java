@@ -29,7 +29,7 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
     private Metro metro1;
     private Metro metro2;
 
-    Country(byte[] cityNamesMask) {
+    Country() {
         random = new Random();
 
         map = new MapPoint[MAX_MAP_SIZE][MAX_MAP_SIZE];
@@ -40,7 +40,7 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
         }
 
         baseGenerator = new BaseGenerator(this);
-        entityGenerator = new EntityGenerator(this, cityNamesMask);
+        entityGenerator = new EntityGenerator(this);
 
         baseGenerator.base();
     }
