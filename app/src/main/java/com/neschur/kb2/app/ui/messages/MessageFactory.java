@@ -3,6 +3,7 @@ package com.neschur.kb2.app.ui.messages;
 import com.neschur.kb2.app.controllers.GameOwner;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.GoldChest;
+import com.neschur.kb2.app.entities.GoodMap;
 import com.neschur.kb2.app.entities.GuidePost;
 import com.neschur.kb2.app.entities.HarmfulMap;
 import com.neschur.kb2.app.entities.MapNext;
@@ -20,6 +21,8 @@ public class MessageFactory {
             return new NextMapMessage(entity, gameOwner.getGame(), gameOwner.i18n());
         if (entity instanceof HarmfulMap)
             return new HarmfulMapMessage(entity, gameOwner.getGame(), gameOwner.i18n());
+        if (entity instanceof GoodMap)
+            return new GoodMapMessage(entity, gameOwner.getGame(), gameOwner.i18n());
         if (entity instanceof GuidePost)
             return new GuidePostMessage(entity, gameOwner.getGame(), gameOwner.i18n());
         if (entity instanceof GoldChest && ((GoldChest) entity).isBonus())

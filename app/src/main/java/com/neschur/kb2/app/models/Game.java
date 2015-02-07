@@ -2,6 +2,7 @@ package com.neschur.kb2.app.models;
 
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.GameCallback;
+import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.countries.World;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.Captain;
@@ -200,4 +201,11 @@ public class Game implements Serializable {
         days = 200;
         weekFinish();
     }
+
+    public void changeCountry(int n) {
+        Country country = getWorld().getCountry(n);
+        country.createMaps();
+        player.changeCountry(country);
+    }
+
 }
