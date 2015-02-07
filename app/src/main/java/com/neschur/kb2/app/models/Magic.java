@@ -50,4 +50,11 @@ public class Magic implements Serializable {
     public void changeTornado(int d) {
         this.tornado += d;
     }
+
+    public void upMagic(int n) {
+        if (n < 7)
+            battleMagics[n]++;
+        else
+            campingMagics[n]++;
+    }
 }

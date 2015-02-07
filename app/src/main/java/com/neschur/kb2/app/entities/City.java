@@ -10,11 +10,13 @@ import java.util.Random;
 public class City extends EntityImpl implements CitiesOwner {
     private final int nameId;
     private int[] workers;
+    private int magic;
 
     public City(MapPoint point, int nameId) {
         super(point);
         this.nameId = nameId;
         resetWorkers();
+        resetMagic();
     }
 
     public void resetWorkers() {
@@ -61,5 +63,13 @@ public class City extends EntityImpl implements CitiesOwner {
             @Override
             public void remove() {}
         };
+    }
+
+    public void resetMagic() {
+        magic = (new Random()).nextInt(14);
+    }
+
+    public int getMagic() {
+        return magic;
     }
 }

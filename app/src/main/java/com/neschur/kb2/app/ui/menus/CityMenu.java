@@ -8,6 +8,7 @@ import com.neschur.kb2.app.models.Game;
 
 public class CityMenu extends Menu {
     private final int[] PRICE_WORKERS = {500, 500, 800, 800};
+    private final int[] PRICE_MAGIC = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     private final int PRICE_NAVE = 500;
     private final int PRICE_WALLKICK = 3000;
     private final City city;
@@ -31,7 +32,12 @@ public class CityMenu extends Menu {
                     case 2:
                         return i18n.translate(R.string.entity_menus_city_item3);
                     case 3:
-                        return i18n.translate(R.string.entity_menus_city_item4);
+                        if (city.getMagic() < 7)
+                            return menuItem("magic.battle_magic" + (city.getMagic() + 1),
+                                    PRICE_MAGIC[city.getMagic()]);
+                        else
+                            return menuItem("magic.hiking_magic" + (city.getMagic() -7 + 1),
+                                    PRICE_MAGIC[city.getMagic()]);
                     case 4:
                         if (player.isWallkick())
                             return "-";
@@ -42,7 +48,8 @@ public class CityMenu extends Menu {
                         return i18n.translate(R.string.entity_menus_city_item7);
                 }
             case 1:
-                return menuItem("entity_menus_city_workers_item" + (i + 1), PRICE_WORKERS[i]) + ": " + city.getWorkers(i);
+                return menuItem("entity_menus_city_workers_item" + (i + 1), PRICE_WORKERS[i])
+                        + ": " + city.getWorkers(i);
         }
         return null;
     }
@@ -59,6 +66,9 @@ public class CityMenu extends Menu {
                             buyNave();
                         }
                         return false;
+                    case 3:
+                        if (player.changeMoney(-PRICE_MAGIC[city.getMagic()]))
+                            player.getMagic().upMagic(city.getMagic());
                     case 4:
                         if (!player.isWallkick()) {
                             player.changeMoney(-PRICE_WALLKICK);
