@@ -11,11 +11,10 @@ import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.entities.GoldChest;
-import com.neschur.kb2.app.entities.GoodMap;
 import com.neschur.kb2.app.entities.GuidePost;
-import com.neschur.kb2.app.entities.HarmfulMap;
 import com.neschur.kb2.app.entities.MapNext;
 import com.neschur.kb2.app.entities.Metro;
+import com.neschur.kb2.app.entities.Spell;
 import com.neschur.kb2.app.models.Glade;
 import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.iterators.ArmyShopsOwner;
@@ -35,8 +34,7 @@ public class EntityGenerator implements CitiesOwner, ArmyShopsOwner {
     private final ArrayList<City> cities = new ArrayList<>();
     private final ArrayList<ArmyShop> armyShops = new ArrayList<>();
     private final ArrayList<Castle> castles = new ArrayList<>();
-    private HarmfulMap harmfulMap;
-    private GoodMap goodMap;
+    private Spell spell;
 
     public EntityGenerator(Glade country) {
         this.random = new Random();
@@ -213,25 +211,14 @@ public class EntityGenerator implements CitiesOwner, ArmyShopsOwner {
         }
     }
 
-    public void clearMaps() {
-        if (goodMap != null) {
-            goodMap.destroy();
-            goodMap = null;
+    public void updateSpell() {
+        if (spell != null) {
+            spell.destroy();
+            spell = null;
         }
-        if (harmfulMap != null) {
-            harmfulMap.destroy();
-            harmfulMap = null;
+        if (Math.random() < 0.1) {
+            spell = (Spell) tryPlaceEntity(Spell.class);
         }
-    }
-
-    public void goodMap() {
-
-        goodMap = (GoodMap) tryPlaceEntity(GoodMap.class);
-    }
-
-    public void harmfulMap() {
-
-        harmfulMap = (HarmfulMap) tryPlaceEntity(HarmfulMap.class);
     }
 
     private void updateNamesMask(byte[] namesMask) {

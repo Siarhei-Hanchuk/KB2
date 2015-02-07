@@ -100,11 +100,7 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
     }
 
     public void createMaps() {
-        entityGenerator.clearMaps();
-        if (Math.random() < 0.1)
-            entityGenerator.goodMap();
-        if (Math.random() < 0.1)
-            entityGenerator.harmfulMap();
+        entityGenerator.updateSpell();
     }
 
     public MapPoint getLandNearCity() {

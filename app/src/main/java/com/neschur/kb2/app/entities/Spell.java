@@ -3,8 +3,8 @@ package com.neschur.kb2.app.entities;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.models.MapPoint;
 
-public class HarmfulMap extends EntityImpl {
-    public HarmfulMap(MapPoint point) {
+public class Spell extends EntityImpl {
+    public Spell(MapPoint point) {
         super(point);
     }
 
