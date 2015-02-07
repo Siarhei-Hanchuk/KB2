@@ -26,13 +26,18 @@ import java.util.Iterator;
 import java.util.Random;
 
 public class EntityGenerator implements CitiesOwner, ArmyShopsOwner {
-    private final static byte[] cityNamesMask = new byte[28];
-    private final static byte[] castleNamesMask = new byte[28];
+    private static byte[] cityNamesMask;
+    private static byte[] castleNamesMask;
     private final Random random;
     private final MapPoint[][] map;
     private final ArrayList<City> cities = new ArrayList<>();
     private final ArrayList<ArmyShop> armyShops = new ArrayList<>();
     private final ArrayList<Castle> castles = new ArrayList<>();
+
+    public static void reset() {
+        cityNamesMask = new byte[28];
+        castleNamesMask = new byte[28];
+    }
 
     public EntityGenerator(Glade country) {
         this.random = new Random();

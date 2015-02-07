@@ -1,5 +1,6 @@
 package com.neschur.kb2.app.countries;
 
+import com.neschur.kb2.app.countries.generators.EntityGenerator;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.models.Game;
@@ -13,10 +14,10 @@ import java.util.Iterator;
 import java.util.Random;
 
 public class World implements Serializable, ArmyShopsOwner, CitiesOwner {
-    private final byte[] cityNames = new byte[25];
     private Country[] country;
 
     public World(int mode) {
+        EntityGenerator.reset();
         switch (mode) {
             case Game.MODE_TEST:
                 testWorld();
