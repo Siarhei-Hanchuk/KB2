@@ -30,6 +30,18 @@ public class GoodMapMessage extends MapMessage {
             case 1:
                 player.setImportantDocs((new Random()).nextInt() % 5);
                 return;
+            case 2:
+                // TODO
+                return;
+            case 3:
+                // TODO
+                return;
+            case 4:
+                player.changeMoney(+player.getMoney());
+                return;
+            case 5:
+                // TODO
+                return;
         }
         entity.destroy();
     }

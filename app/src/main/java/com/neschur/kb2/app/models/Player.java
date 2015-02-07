@@ -6,12 +6,13 @@ import com.neschur.kb2.app.warriors.Warrior;
 import com.neschur.kb2.app.warriors.WarriorSquad;
 
 import java.io.Serializable;
+import java.util.Random;
 
 public class Player implements Serializable {
     public static final int MAX_ARMY = 10;
     private final WarriorSquad[] warriors = new WarriorSquad[MAX_ARMY]; // TODO - List
     private final int[] workers = new int[4];
-    private final boolean[] importantDocs = {false, false, false, false, false};
+    private final byte[] relationshipWithOwner = {0,0,0,0,0};
     private final Memory memory;
     private Magic magic;
     private boolean wallkick = false;
@@ -172,11 +173,16 @@ public class Player implements Serializable {
     }
 
     public boolean getImportantDocs(int id) {
-        return importantDocs[id];
+        return relationshipWithOwner[id] == 1;
     }
 
     public void setImportantDocs(int id) {
-        this.importantDocs[id] = true;
+        if (relationshipWithOwner[id] == 0)
+            relationshipWithOwner[id] = 1;
+    }
+
+    public void setBigEars(int id) {
+        relationshipWithOwner[id] = 1;
     }
 
     public int getSalary() {
@@ -229,6 +235,12 @@ public class Player implements Serializable {
 
     public WarriorSquad getWarriorSquad(int n) {
         return warriors[n];
+    }
+
+    public void clearArmy() {
+        for (int i = 0; i < MAX_ARMY; i++) {
+            warriors[i] = null;
+        }
     }
 
     public boolean noArmy() {

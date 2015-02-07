@@ -35,7 +35,6 @@
     <string name="entity.goodMap.message4">*Контрактные замки данной земли расположены</string>
     <string name="entity.goodMap.message5">*Ваш золотой запас растёт</string>
     <string name="entity.goodMap.message6">*Ваши войно становятся более умелыми</string>
-    <string name="entity.goodMap.message7">Ценная бумага, нужна одному из хозяев земель</string>
     <string name="entity.guidePost.message1">Найди ритуальный камень.</string>
     <string name="entity.guidePost.message2">Ку-ку.</string>
     <string name="entity.guidePost.message3">Присядь, Рыцарь, Отдохни.</string>

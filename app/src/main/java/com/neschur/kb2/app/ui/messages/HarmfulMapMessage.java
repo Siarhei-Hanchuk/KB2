@@ -4,6 +4,8 @@ import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.models.Game;
 
+import java.util.Random;
+
 public class HarmfulMapMessage extends MapMessage {
     HarmfulMapMessage(Entity entity, Game game, I18n i18n) {
         super(entity, game, i18n);
@@ -27,18 +29,23 @@ public class HarmfulMapMessage extends MapMessage {
                     player.changeWorker(i, -player.getWorker(i));
                 return;
             case 1:
-                // TODO bad destroy
                 if (game.getNave())
                     game.destroyNave();
                 return;
             case 2:
-                // TODO
+                player.getMemory().clear();
                 return;
             case 3:
-                // TODO
+                player.clearArmy();
                 return;
             case 4:
                 player.changeMoney(-player.getMoney());
+                return;
+            case 5:
+                player.setBigEars((new Random()).nextInt(5));
+                return;
+            case 6:
+                player.move(game.getPlayer().getCountry().getRandomLand());
                 return;
         }
         entity.destroy();
