@@ -8,11 +8,11 @@ import java.util.Random;
 public class GoldChest extends EntityImpl {
     private final int wealth;
     private int bonus = 0;
+    private int gold;
 
     public GoldChest(MapPoint point, int wealth) {
         super(point);
         this.wealth = wealth;
-
     }
 
     @Override
@@ -31,11 +31,17 @@ public class GoldChest extends EntityImpl {
     }
 
     public int getGold() {
-        return (int) ((getMaxGold() - getMinGold()) * Math.random() + getMinGold()) * 10;
+        if (gold > 0)
+            return gold;
+        gold = (int) ((getMaxGold() - getMinGold()) * Math.random() + getMinGold()) * 10;
+        return gold;
     }
 
     public int getAuthority() {
-        return (int) ((getMaxGold() - getMinGold()) * Math.random() + getMinGold()) / 5;
+        if (gold > 0)
+            return gold / 50;
+        gold = (int) ((getMaxGold() - getMinGold()) * Math.random() + getMinGold()) / 5;
+        return gold / 50;
     }
 
     public int getSalary() {

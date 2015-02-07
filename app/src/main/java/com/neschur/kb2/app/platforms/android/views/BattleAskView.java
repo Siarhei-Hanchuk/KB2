@@ -40,7 +40,7 @@ public class BattleAskView extends ViewImpl {
         super.draw(canvas);
         if (fighting instanceof Castle) {
             canvas.drawText(i18n.translate(R.string.battle_begin_castle) + " " +
-                            i18n.translate("castle_names_name" + ((Castle)fighting).getNameId()),
+                            i18n.translate("entity_castle_names_name" + ((Castle)fighting).getNameId()),
                     (int) (getWidth() * 0.05), menuItemHeight(), getDefaultPaint());
         }
 

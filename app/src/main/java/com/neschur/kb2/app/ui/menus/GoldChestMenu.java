@@ -16,9 +16,9 @@ public class GoldChestMenu extends Menu {
     @Override
     public String getItemDescription(int i) {
         if (i == 0)
-            return i18n.translate("entity_menus_goldchest_item1", chest.getGold());
+            return i18n.translate("entity_goldchest_menu_item1", chest.getGold());
         else
-            return i18n.translate("entity_menus_goldchest_item2", chest.getGold());
+            return i18n.translate("entity_goldchest_menu_item2", chest.getAuthority());
     }
 
     @Override

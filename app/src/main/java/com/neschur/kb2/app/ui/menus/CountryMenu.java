@@ -10,7 +10,7 @@ public class CountryMenu extends Menu {
 
     @Override
     public String getItemDescription(int i) {
-        return i18n.translate("menus_country_item" + (i + 1));
+        return i18n.translate("countries_country" + (i + 1));
     }
 
     @Override

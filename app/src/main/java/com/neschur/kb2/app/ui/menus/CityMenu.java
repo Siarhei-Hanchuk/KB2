@@ -25,13 +25,13 @@ public class CityMenu extends Menu {
             case 0:
                 switch (i) {
                     case 0:
-                        return i18n.translate(R.string.entity_menus_city_item1);
+                        return i18n.translate(R.string.entity_city_menu_item1);
                     case 1:
                         if (game.getNave())
-                            return i18n.translate(R.string.entity_menus_city_item2a);
-                        return menuItem("entity_menus_city_item2", PRICE_NAVE);
+                            return i18n.translate(R.string.entity_city_menu_item2a);
+                        return menuItem("entity_city_menu_item2", PRICE_NAVE);
                     case 2:
-                        return i18n.translate(R.string.entity_menus_city_item3);
+                        return i18n.translate(R.string.entity_city_menu_item3);
                     case 3:
                         if (city.getMagic() < 7)
                             return menuItem("magic_battle_magic" + (city.getMagic() + 1),
@@ -42,19 +42,19 @@ public class CityMenu extends Menu {
                     case 4:
                         if (player.isWallkick())
                             return "-";
-                        return menuItem("entity_menus_city_item5", PRICE_WALLKICK);
+                        return menuItem("entity_city_menu_item5", PRICE_WALLKICK);
                     case 5:
-                        return i18n.translate(R.string.entity_menus_city_item6);
+                        return i18n.translate(R.string.entity_city_menu_item6);
                     case 6:
-                        return i18n.translate(R.string.entity_menus_city_item7);
+                        return i18n.translate(R.string.entity_city_menu_item7);
                 }
             case 1:
-                return menuItem("entity_menus_city_workers_item" + (i + 1), PRICE_WORKERS[i])
+                return menuItem("entity_city_menu_workers_item" + (i + 1), PRICE_WORKERS[i])
                         + ": " + city.getWorkers(i);
             case 2:
                 if( i == 0) {
                     return i18n.translate(R.string.battle_begin_castle) + " " +
-                            i18n.translate("castle_names_name" + city.getCastle().getNameId());
+                            i18n.translate("entity_castle_names_name" + city.getCastle().getNameId());
 
                 } else {
                     WarriorSquad squad = city.getCastle().getWarriorSquad(i - 1);
