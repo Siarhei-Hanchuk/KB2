@@ -26,6 +26,9 @@ public class BattleAskView extends ViewImpl {
             else
                 controller.viewClose();
         }
+        if (!playerHasArmy()) {
+            controller.viewClose();
+        }
         return super.onTouchEvent(event);
     }
 

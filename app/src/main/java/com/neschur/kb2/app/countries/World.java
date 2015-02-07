@@ -36,7 +36,7 @@ public class World implements Serializable, ArmyShopsOwner, CitiesOwner {
 
     private void testWorld() {
         country = new Country[5];
-        country[0] = new CountryTraining(updateCityNamesMask());
+        country[0] = new CountryTest(updateCityNamesMask());
         country[1] = new Country2(true, updateCityNamesMask());
         country[2] = new Country3(true, updateCityNamesMask());
         country[3] = new Country4(true, updateCityNamesMask());

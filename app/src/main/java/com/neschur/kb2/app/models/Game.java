@@ -4,6 +4,7 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.GameCallback;
 import com.neschur.kb2.app.countries.World;
 import com.neschur.kb2.app.entities.ArmyShop;
+import com.neschur.kb2.app.entities.Castle;
 import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Metro;
 import com.neschur.kb2.app.entities.Nave;
@@ -132,9 +133,12 @@ public class Game implements Serializable {
     private void actionWithObject(Player player, MapPoint mp) {
         if (mp.getEntity() instanceof Nave) {
             player.setNave((Nave) mp.getEntity());
-            player.move(mp.getX(), mp.getY());
+            player.move(mp);
         } else if (mp.getEntity() instanceof Metro) {
             player.move(player.getCountry().getLinkedMetroPoint((Metro)mp.getEntity()));
+        } else if (mp.getEntity() instanceof Castle) {
+            if( player.getY() > mp.getY())
+                callbacks.activateEntity(mp.getEntity());
         } else {
             callbacks.activateEntity(mp.getEntity());
         }
