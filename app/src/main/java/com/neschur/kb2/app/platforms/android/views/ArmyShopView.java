@@ -63,46 +63,47 @@ class ArmyShopView extends ViewImpl {
 
     @Override
     public void draw(@NonNull Canvas canvas) {
+        super.draw(canvas);
+
         Paint paint = getDefaultPaint();
         Paint smallFont = new Paint(paint);
         smallFont.setTextSize(textHeight() / 2);
 
-        canvas.drawColor(Color.BLACK);
-
         this.buttonSize = getHeight() / 5;
-        int imageWidth = stepX();//(getWidth() / 6) * 3 / 2;
-        int imageHeight = stepY();//(getHeight() / 5) * 3 / 2;
+        int imageHeight = stepY();
         int buttonBorderSize = 5;
-        Bitmap image = Bitmap.createScaledBitmap(
-                BitmapFactory.decodeResource(
-                        getContext().getResources(), warrior.getId()
-                ),
-                imageWidth, imageHeight, false
-        );
+        Bitmap image = getImageCache().getImage(warrior.getId());
 
-        canvas.drawBitmap(image, 0, 0, null);
-        canvas.drawText(i18n.translate(R.string.entity_armyShop_ui_step) + ": " + warrior.getStep(),
-                0, imageHeight + menuItemHeight(), paint);
-        canvas.drawText(i18n.translate(R.string.entity_armyShop_ui_defense) + ": " + warrior.getDefence(),
-                0, imageHeight + menuItemHeight() * 2, paint);
-        canvas.drawText(i18n.translate(R.string.entity_armyShop_ui_damage) + ": " + warrior.getDamage(),
-                0, imageHeight + menuItemHeight() * 3, paint);
-        canvas.drawText(i18n.translate(R.string.entity_armyShop_ui_fly) + ": " + warrior.isFly(),
-                0, imageHeight + menuItemHeight() * 4, paint);
-        canvas.drawText(i18n.translate(R.string.entity_armyShop_ui_shoot) + ": " + warrior.isShoot(),
-                0, imageHeight + menuItemHeight() * 5, paint);
-
+        canvas.drawBitmap(image, stepX(0), stepY(0), null);
         canvas.drawText(i18n.translate("army_names_" + warrior.getTextId()),
-                imageWidth + 10, menuItemHeight(), paint);
-        canvas.drawText(i18n.translate(R.string.entity_armyShop_ui_thereIs) + ": " + shop.getCount(),
-                imageWidth + 10, (int) (menuItemHeight() * 1.5), smallFont);
-        canvas.drawText(i18n.translate(R.string.entity_armyShop_ui_price) + ": " + warrior.getPriceInShop(),
-                imageWidth + 10, menuItemHeight() * 2, smallFont);
-        canvas.drawText(i18n.translate(R.string.player_attrs_money) + ": " + player.getMoney(),
-                getWidth() - imageWidth * 2, menuItemHeight() * 2, paint);
+                stepX(1) + 10, textHeight(), paint);
+        canvas.drawText(i18n.translate(R.string.entity_armyShop_ui_thereIs)
+                        + ": " + shop.getCount(),
+                stepX(1) + 10, menuItemHeight(), smallFont);
+        canvas.drawText(i18n.translate(R.string.entity_armyShop_ui_price)
+                        + ": " + warrior.getPriceInShop(),
+                stepX(1) + 10, (int) (menuItemHeight() * 1.5), smallFont);
 
-        canvas.drawText(i18n.translate(R.string.entity_armyShop_ui_afford) + ": " + player.armyAfford(warrior),
-                getWidth() - buttonSize * 3,
+        String playerMoney = i18n.translate(R.string.player_attrs_money) + ": " + player.getMoney();
+        canvas.drawText(playerMoney,
+                getWidth() - xOffset - paint.measureText(playerMoney), textHeight() * 2, paint);
+
+        canvas.drawText(i18n.translate(R.string.entity_armyShop_ui_step) + ": " + warrior.getStep(),
+                stepX(0), stepY(1) + textHeight(), paint);
+        canvas.drawText(i18n.translate(R.string.entity_armyShop_ui_defense) + ": " + warrior.getDefence(),
+                stepX(0), stepY(1) + textHeight() * 2, paint);
+        canvas.drawText(i18n.translate(R.string.entity_armyShop_ui_damage) + ": " + warrior.getDamage(),
+                stepX(0), stepY(1) + textHeight() * 3, paint);
+        canvas.drawText(i18n.translate(R.string.entity_armyShop_ui_fly) +
+                        ": " + (warrior.isFly() ? i18n.translate(R.string.yes) : i18n.translate(R.string.no)) ,
+                stepX(0), stepY(1) + textHeight() * 4, paint);
+        canvas.drawText(i18n.translate(R.string.entity_armyShop_ui_shoot) +
+                        ": " + (warrior.isShoot() ? i18n.translate(R.string.yes) : i18n.translate(R.string.no)) ,
+                stepX(0), stepY(1) + textHeight() * 5, paint);
+
+        String how = i18n.translate(R.string.entity_armyShop_ui_afford) + ": " + player.armyAfford(warrior);
+        canvas.drawText(how,
+                getWidth() - smallFont.measureText(how) - xOffset,
                 getHeight() - buttonSize * 2 - 10 - menuItemHeight(), smallFont);
         canvas.drawText(i18n.translate(R.string.entity_armyShop_ui_howMany),
                 getWidth() - buttonSize * 2,

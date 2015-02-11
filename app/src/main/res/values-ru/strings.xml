@@ -212,4 +212,6 @@
     <string name="entity.sorcerer.message10">Перенес Вас в другое место</string>
     <string name="entity.sorcerer.message11">Потопил Ваш корабль</string>
     <string name="entity.sorcerer.message12">Заставил Вас всё забыть</string>
+    <string name="no">Нет</string>
+    <string name="yes">Да</string>
 </resources>
