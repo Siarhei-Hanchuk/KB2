@@ -67,7 +67,7 @@ public class World implements Serializable, ArmyShopsOwner, CitiesOwner {
         for (ArmyShopsOwner shop : country) {
             iterators.add(shop.getArmyShops());
         }
-        return new EntityIterator(iterators);
+        return new EntityIterator<>(iterators);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class World implements Serializable, ArmyShopsOwner, CitiesOwner {
         for (CitiesOwner city : country) {
             iterators.add(city.getCities());
         }
-        return new EntityIterator(iterators);
+        return new EntityIterator<>(iterators);
     }
 }
 

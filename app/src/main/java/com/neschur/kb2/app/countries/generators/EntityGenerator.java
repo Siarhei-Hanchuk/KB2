@@ -251,7 +251,7 @@ public class EntityGenerator implements CitiesOwner, ArmyShopsOwner {
         for (CitiesOwner city : cities) {
             iterators.add(city.getCities());
         }
-        return new EntityIterator(iterators);
+        return new EntityIterator<>(iterators);
     }
 
     @Override
@@ -260,6 +260,6 @@ public class EntityGenerator implements CitiesOwner, ArmyShopsOwner {
         for (ArmyShopsOwner armyShop : armyShops) {
             iterators.add(armyShop.getArmyShops());
         }
-        return new EntityIterator(iterators);
+        return new EntityIterator<>(iterators);
     }
 }
