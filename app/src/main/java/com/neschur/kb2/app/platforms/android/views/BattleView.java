@@ -89,7 +89,7 @@ public class BattleView extends ViewImpl {
         painter.drawBitmap(image, stepX() * x, stepY() * y);
         painter.drawRect(stepX() * x,
                 stepY() * y + stepY() - textHeight() / 3,
-                stepX() * y +
+                stepX() * x +
                         getCountPaint().measureText(
                                 Integer.toString(warrior.getCount())) + 4,
                 stepY() * y + stepY(),
@@ -122,15 +122,16 @@ public class BattleView extends ViewImpl {
 
     private Paint getCountPaint() {
         if (countPaint == null) {
-            countPaint = getDefaultPaint();
+            countPaint = new Paint();
             countPaint.setTextSize(textHeight() / 3);
+            countPaint.setColor(Color.WHITE);
         }
         return countPaint;
     }
 
     private Paint getCountPaintBg() {
         if (countPaintBg == null) {
-            countPaintBg = getDefaultPaint();
+            countPaintBg = new Paint();
             countPaintBg.setColor(Color.BLACK);
         }
         return countPaintBg;

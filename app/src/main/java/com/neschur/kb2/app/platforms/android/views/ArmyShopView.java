@@ -38,18 +38,17 @@ class ArmyShopView extends ViewImpl {
         if (click.in(buttonSize * 2, buttonSize, buttonSize * 2, buttonSize,
                 Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM)) {
             armyShopViewController.buyArmy(shop, 1);
-        }
-        if (click.in(buttonSize, 0, buttonSize * 2, buttonSize,
+        } else if (click.in(buttonSize, 0, buttonSize * 2, buttonSize,
                 Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM)) {
             armyShopViewController.buyArmy(shop, 10);
-        }
-        if (click.in(buttonSize * 2, buttonSize, buttonSize, 0,
+        } else if (click.in(buttonSize * 2, buttonSize, buttonSize, 0,
                 Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM)) {
             armyShopViewController.buyArmy(shop, 100);
-        }
-        if (click.in(buttonSize, 0, buttonSize, 0,
+        } else  if (click.in(buttonSize, 0, buttonSize, 0,
                 Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM)) {
             armyShopViewController.buyArmy(shop, 1000);
+        } else {
+            viewController.viewClose();
         }
         return false;
     }
@@ -59,7 +58,7 @@ class ArmyShopView extends ViewImpl {
         Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 
-        Paint paint = getDefaultPaint();
+        Paint paint = new Paint(getDefaultPaint());
         Paint smallFont = new Paint(paint);
         smallFont.setTextSize(textHeight() / 2);
 

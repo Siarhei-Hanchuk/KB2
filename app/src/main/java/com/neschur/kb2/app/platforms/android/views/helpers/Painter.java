@@ -47,14 +47,17 @@ public class Painter {
 
     public void drawRect(float left, float top, float right, float bottom, Paint paint, int align) {
         if (align == ALIGN_RIGHT) {
-            canvas.drawRect(width - xOffset - left, top,
-                    width - xOffset - right, bottom, paint);
+            canvas.drawRect(width - xOffset - left, top + yOffset,
+                    width - xOffset - right, bottom + yOffset, paint);
         } else if (align == ALIGN_BOTTOM) {
             canvas.drawRect(left + xOffset, height - yOffset - top,
-                    right, height - yOffset - bottom, paint);
+                    right + xOffset, height - yOffset - bottom, paint);
         } else if (align == ALIGN_BOTTOM + ALIGN_RIGHT) {
             canvas.drawRect(width - xOffset - left, height - yOffset - top,
                     width - xOffset - right, height - yOffset - bottom, paint);
+        } else {
+            canvas.drawRect(left + xOffset, top + yOffset,
+                    right + xOffset, bottom + yOffset, paint);
         }
     }
 }
