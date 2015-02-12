@@ -25,16 +25,18 @@ class MessageView extends ViewImpl {
 
     @Override
     public void draw(@NonNull Canvas canvas) {
+        Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
+
         String text = message.getText();
         float textLength = getDefaultPaint().measureText(text);
         if (textLength < getWidth()) {
-            canvas.drawText(text, 10, 100, getDefaultPaint());
+            painter.drawText(text, 10, 100, getDefaultPaint());
         } else {
             int count = (int) (text.length() / (textLength / getWidth()));
             int length = (text.length() + count - 1) / count;
             for (int ix = 0, pos = 0; ix < length; ix++, pos += count) {
-                canvas.drawText(text.substring(pos, Math.min(text.length(), pos + count)).trim()
+                painter.drawText(text.substring(pos, Math.min(text.length(), pos + count)).trim()
                         , 10, 100 * (ix + 1), getDefaultPaint());
             }
         }

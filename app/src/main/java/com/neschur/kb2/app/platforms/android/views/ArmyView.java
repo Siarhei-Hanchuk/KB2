@@ -2,6 +2,7 @@ package com.neschur.kb2.app.platforms.android.views;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
@@ -25,7 +26,8 @@ class ArmyView extends ViewImpl {
 
     @Override
     public void draw(@NonNull Canvas canvas) {
-        super.draw(canvas);
+        Painter painter = getPainter(canvas);
+        canvas.drawColor(Color.BLACK);
 
         for (int i = 0; i < 5; i++) {
             WarriorSquad squad = player.getWarriorSquad(i);

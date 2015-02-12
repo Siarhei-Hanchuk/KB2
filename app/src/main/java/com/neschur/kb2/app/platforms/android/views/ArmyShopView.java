@@ -32,7 +32,7 @@ class ArmyShopView extends ViewImpl {
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
-        super.onTouchEvent(event);
+        Click click = getClick(event);
         if (click.in(buttonSize * 2, buttonSize, buttonSize * 2, buttonSize,
                 Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM)) {
             armyShopViewController.buyArmy(shop, 1);
@@ -54,7 +54,8 @@ class ArmyShopView extends ViewImpl {
 
     @Override
     public void draw(@NonNull Canvas canvas) {
-        super.draw(canvas);
+        Painter painter = getPainter(canvas);
+        canvas.drawColor(Color.BLACK);
 
         Paint paint = getDefaultPaint();
         Paint smallFont = new Paint(paint);

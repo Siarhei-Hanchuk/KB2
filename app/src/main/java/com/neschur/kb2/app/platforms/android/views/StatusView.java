@@ -2,6 +2,7 @@ package com.neschur.kb2.app.platforms.android.views;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
@@ -24,21 +25,22 @@ public class StatusView extends ViewImpl {
 
     @Override
     public void draw(@NonNull Canvas canvas) {
-        super.draw(canvas);
+        Painter painter = getPainter(canvas);
+        canvas.drawColor(Color.BLACK);
 
-        drawItem(canvas, 1, "authority", player.getAuthority());
-        drawItem(canvas, 3, "money", player.getMoney());
-        drawItem(canvas, 4, "salary", player.getSalary());
-        drawItem(canvas, 5, "armySalary", 0);
-        drawItem(canvas, 7, "magickPower", player.getMagic().getMagicPower());
-        drawItem(canvas, 8, "maxMagickCount", player.getMagic().getMagicMaxCount());
-        drawItem(canvas, 10, "tornadoCount", player.getMagic().getTornado());
-        drawItem(canvas, 11, "ancientMapCount", 0);
-        drawItem(canvas, 13, "weeks", viewController.getGame().getWeeks());
+        drawItem(painter, 1, "authority", player.getAuthority());
+        drawItem(painter, 3, "money", player.getMoney());
+        drawItem(painter, 4, "salary", player.getSalary());
+        drawItem(painter, 5, "armySalary", 0);
+        drawItem(painter, 7, "magickPower", player.getMagic().getMagicPower());
+        drawItem(painter, 8, "maxMagickCount", player.getMagic().getMagicMaxCount());
+        drawItem(painter, 10, "tornadoCount", player.getMagic().getTornado());
+        drawItem(painter, 11, "ancientMapCount", 0);
+        drawItem(painter, 13, "weeks", viewController.getGame().getWeeks());
     }
 
-    private void drawItem(Canvas canvas, int n, String attr, int value) {
-        canvas.drawText(i18n.translate("player_attrs_" + attr) + ": " + value,
+    private void drawItem(Painter painter, int n, String attr, int value) {
+        painter.drawText(i18n.translate("player_attrs_" + attr) + ": " + value,
                 10, textHeight() * n, getDefaultPaint());
     }
 }

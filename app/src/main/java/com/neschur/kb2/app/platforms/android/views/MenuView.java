@@ -3,7 +3,6 @@ package com.neschur.kb2.app.platforms.android.views;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
@@ -28,21 +27,21 @@ class MenuView extends ViewImpl {
 
     @Override
     public void draw(@NonNull Canvas canvas) {
-        Paint paint = getDefaultPaint();
+        Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 
         int i;
         for (i = 0; i < menu.getCount(); i++) {
-            canvas.drawText(menu.getItemDescription(i), 10,
-                    menuItemHeight() + menuItemHeight() * i, paint);
+            painter.drawText(menu.getItemDescription(i), 10,
+                    menuItemHeight() + menuItemHeight() * i, getDefaultPaint());
         }
         if (menu.withExit())
-            canvas.drawText("Exit", 10,
-                    menuItemHeight() + menuItemHeight() * i, paint);
+            painter.drawText("Exit", 10,
+                    menuItemHeight() + menuItemHeight() * i, getDefaultPaint());
         if (menu.withMoney())
-            canvas.drawText("Money: " + viewController.getGame().getPlayer().getMoney(),
+            painter.drawText("Money: " + viewController.getGame().getPlayer().getMoney(),
                     (int) (getWidth() * 0.5),
-                    menuItemHeight() + menuItemHeight() * i, paint);
+                    menuItemHeight() + menuItemHeight() * i, getDefaultPaint());
     }
 
     private void select(int item) {

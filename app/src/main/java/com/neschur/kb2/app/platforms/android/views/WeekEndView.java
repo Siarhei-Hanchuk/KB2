@@ -2,6 +2,7 @@ package com.neschur.kb2.app.platforms.android.views;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
@@ -30,24 +31,26 @@ public class WeekEndView extends ViewImpl {
 
     @Override
     public void draw(@NonNull Canvas canvas) {
-        super.draw(canvas);
+        Painter painter = getPainter(canvas);
+        canvas.drawColor(Color.BLACK);
+
         String text = i18n.translate(R.string.weekEnd_messages_title);
 
         int delta = ((int) getDefaultPaint().measureText(text) + 1 - getWidth()) / 2;
         delta = (delta > 0) ? delta : 0;
         canvas.drawText(text, delta, textHeight(), getDefaultPaint());
 
-        drawItem(canvas, 3, "money", player.getMoney());
-        drawItem(canvas, 4, "salary", player.getSalary());
-        drawItem(canvas, 5, "armySalary", 0);
+        drawItem(painter, 3, "money", player.getMoney());
+        drawItem(painter, 4, "salary", player.getSalary());
+        drawItem(painter, 5, "armySalary", 0);
 
-        drawItem(canvas, 7, "armyRefresh", i18n.translate("army_names_" + armyTextId));
-        drawItem(canvas, 8, "armyRefresh2", null);
-        drawItem(canvas, 10, "armyRefresh3", null);
-        drawItem(canvas, 12, "cityRefresh", i18n.translate("entity.city_names_name" + city.getNameId()));
+        drawItem(painter, 7, "armyRefresh", i18n.translate("army_names_" + armyTextId));
+        drawItem(painter, 8, "armyRefresh2", null);
+        drawItem(painter, 10, "armyRefresh3", null);
+        drawItem(painter, 12, "cityRefresh", i18n.translate("entity.city_names_name" + city.getNameId()));
     }
 
-    private void drawItem(Canvas canvas, int n, String attr, Object value) {
+    private void drawItem(Painter painter, int n, String attr, Object value) {
         String text;
         if (value != null) {
             if (value instanceof Integer) {
@@ -60,12 +63,12 @@ public class WeekEndView extends ViewImpl {
         }
         float textLength = getDefaultPaint().measureText(text);
         if (textLength < getWidth()) {
-            canvas.drawText(text, 10, textHeight() * (n), getDefaultPaint());
+            painter.drawText(text, 10, textHeight() * (n), getDefaultPaint());
         } else {
             int count = (int) (text.length() / (textLength / getWidth()));
             int length = (text.length() + count - 1) / count;
             for (int ix = 0, pos = 0; ix < length; ix++, pos += count) {
-                canvas.drawText(text.substring(pos, Math.min(text.length(), pos + count)).trim()
+                painter.drawText(text.substring(pos, Math.min(text.length(), pos + count)).trim()
                         , 10, (textHeight() * n) + textHeight() * ix, getDefaultPaint());
             }
         }

@@ -29,6 +29,9 @@ class MapView extends ViewImpl {
 
     @Override
     public void draw(@NonNull Canvas canvas) {
+        Painter painter = getPainter(canvas);
+        canvas.drawColor(Color.BLACK);
+
         int pointSize = canvas.getHeight() / Country.MAX_MAP_SIZE;
         Country country = player.getCountry();
         boolean memory[][] = player.getMemory().getMap(country.getId());
@@ -41,7 +44,7 @@ class MapView extends ViewImpl {
 
                 setMapPointColor(paint, country.getMapPoint(i, j));
 
-                canvas.drawRect(pointSize * i, pointSize * j,
+                painter.drawRect(pointSize * i, pointSize * j,
                         pointSize * (i + 1), pointSize * (j + 1), paint);
             }
         }

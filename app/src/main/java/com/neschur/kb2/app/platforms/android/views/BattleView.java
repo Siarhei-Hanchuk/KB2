@@ -27,7 +27,7 @@ public class BattleView extends ViewImpl {
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
-        super.onTouchEvent(event);
+        Click click = getClick(event);
         int x = click.getX() / stepX();
         int y = click.getY() / stepY();
         battleController.select(x, y);
@@ -37,7 +37,8 @@ public class BattleView extends ViewImpl {
 
     @Override
     public void draw(@NonNull Canvas canvas) {
-        super.draw(canvas);
+        Painter painter = getPainter(canvas);
+        canvas.drawColor(Color.BLACK);
 
         drawLand(painter);
 
@@ -69,7 +70,7 @@ public class BattleView extends ViewImpl {
         if (point.getEntity() != null) {
             if (!point.getEntity().isFriendly())
                 painter.drawBitmap(getImageCache().getImage(R.drawable.battle_attack),
-                        stepX() * x , stepY() * y);
+                        stepX() * x, stepY() * y);
         } else {
             painter.drawBitmap(getImageCache().getImage(R.drawable.battle_move),
                     stepX() * x, stepY() * y);

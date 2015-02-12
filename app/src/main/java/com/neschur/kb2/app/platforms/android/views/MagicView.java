@@ -47,7 +47,9 @@ class MagicView extends ViewImpl {
 
     @Override
     public void draw(@NonNull Canvas canvas) {
+        Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
+
         if (mode != 1) {
             for (int i = 1; i < 8; i++) {
                 canvas.drawText(i18n.translate("magic_hiking_magic" + i) + ": "
@@ -64,8 +66,8 @@ class MagicView extends ViewImpl {
                 } catch (NoSuchFieldException | IllegalAccessException e) {
                     e.printStackTrace();
                 }
-                canvas.drawBitmap(imageCache.getImage(imageId), (count % GameGrid.STEP_Y) * stepX(),
-                        (count / GameGrid.STEP_Y) * stepY(), null);
+                painter.drawBitmap(imageCache.getImage(imageId), (count % GameGrid.STEP_Y) * stepX(),
+                        (count / GameGrid.STEP_Y) * stepY());
                 count++;
                 armyIdCache.put(count, army);
             }

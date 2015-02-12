@@ -22,35 +22,36 @@ class MainMenuView extends ViewImpl {
 
     @Override
     public void draw(@NonNull Canvas canvas) {
-        Paint paint = getDefaultPaint();
+        Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
+        Paint paint = getDefaultPaint();
 
         if (mainController.isCurrentGame()) {
-            canvas.drawText(i18n.translate(R.string.mainMenu_resume),
+            painter.drawText(i18n.translate(R.string.mainMenu_resume),
                     0, menuItemHeight(), paint);
         }
-        canvas.drawText(i18n.translate(R.string.mainMenu_new_game),
+        painter.drawText(i18n.translate(R.string.mainMenu_new_game),
                 0, 2 * menuItemHeight(), paint);
-        canvas.drawText(i18n.translate(R.string.mainMenu_training),
+        painter.drawText(i18n.translate(R.string.mainMenu_training),
                 0, 3 * menuItemHeight(), paint);
-        canvas.drawText(i18n.translate(R.string.mainMenu_load_game),
+        painter.drawText(i18n.translate(R.string.mainMenu_load_game),
                 0, 4 * menuItemHeight(), paint);
         if (mainController.isCurrentGame()) {
             if (!saved) {
-                canvas.drawText(i18n.translate(R.string.mainMenu_save_game),
+                painter.drawText(i18n.translate(R.string.mainMenu_save_game),
                         0, 5 * menuItemHeight(), paint);
             } else {
-                canvas.drawText(i18n.translate(R.string.mainMenu_save_game) + " - " +
+                painter.drawText(i18n.translate(R.string.mainMenu_save_game) + " - " +
                                 i18n.translate(R.string.mainMenu_save_game_saved),
                         0, 5 * menuItemHeight(), paint);
                 saved = false;
             }
         }
-        canvas.drawText(i18n.translate(R.string.mainMenu_exit),
+        painter.drawText(i18n.translate(R.string.mainMenu_exit),
                 0, 6 * menuItemHeight(), paint);
 
         if (BuildConfig.DEBUG)
-            canvas.drawText("Test", 0, 7 * menuItemHeight(), paint);
+            painter.drawText("Test", 0, 7 * menuItemHeight(), paint);
     }
 
     @Override

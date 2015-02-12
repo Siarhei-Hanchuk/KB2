@@ -2,6 +2,7 @@ package com.neschur.kb2.app.platforms.android.views;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
@@ -18,10 +19,11 @@ class MainView extends ViewImpl {
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
+        Click click = getClick(event);
         if (mainViewController.getGame() == null)
             return super.onTouchEvent(event);
-        int x = (int) click.getX();
-        int y = (int) click.getY();
+        int x = click.getX();
+        int y = click.getY();
         if (x > this.stepX() * 5) {
             int item = (y / stepY());
             mainViewController.touchMenu(item);
@@ -64,18 +66,20 @@ class MainView extends ViewImpl {
 
     @Override
     public void draw(@NonNull Canvas canvas) {
-        super.draw(canvas);
+        Painter painter = getPainter(canvas);
+        canvas.drawColor(Color.BLACK);
+        
         GameGrid grid = mainViewController.getGameGrid();
 
         for (int x = 0; x < GameGrid.STEP_X; x++) {
             for (int y = 0; y < GameGrid.STEP_Y; y++) {
                 if (x < 5) {
                     painter.drawBitmap(getImageCache().getImage(grid.getBackgroundBuyXY(x, y)),
-                            stepX() * x, stepY( )*y);
+                            stepX() * x, stepY() * y);
                 }
                 if (grid.getImageBuyXY(x, y) > -1) {
                     painter.drawBitmap(getImageCache().getImage(grid.getImageBuyXY(x, y)),
-                            stepX() * x, stepY()* y);
+                            stepX() * x, stepY() * y);
                 }
             }
         }

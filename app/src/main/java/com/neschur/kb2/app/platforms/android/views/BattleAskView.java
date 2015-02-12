@@ -2,6 +2,7 @@ package com.neschur.kb2.app.platforms.android.views;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
@@ -22,6 +23,8 @@ public class BattleAskView extends ViewImpl {
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
+        Click click = getClick(event);
+
         if (event.getY() > getHeight() / 2 && playerHasArmy()) {
             if (event.getX() < getWidth() / 2)
                 controller.startBattle();
@@ -36,24 +39,26 @@ public class BattleAskView extends ViewImpl {
 
     @Override
     public void draw(@NonNull Canvas canvas) {
-        super.draw(canvas);
+        Painter painter = getPainter(canvas);
+        canvas.drawColor(Color.BLACK);
+
         if (fighting instanceof Castle) {
-            canvas.drawText(i18n.translate(R.string.battle_begin_castle) + " " +
+            painter.drawText(i18n.translate(R.string.battle_begin_castle) + " " +
                             i18n.translate("entity_castle_names_name" + ((Castle) fighting).getNameId()),
                     (int) (getWidth() * 0.05), menuItemHeight(), getDefaultPaint());
         }
 
         if (playerHasArmy()) {
-            canvas.drawText(i18n.translate(R.string.battle_begin_ask),
+            painter.drawText(i18n.translate(R.string.battle_begin_ask),
                     (int) (getWidth() * 0.33), menuItemHeight() * 2, getDefaultPaint());
 
-            canvas.drawText(i18n.translate(R.string.battle_begin_ask_yes),
+            painter.drawText(i18n.translate(R.string.battle_begin_ask_yes),
                     (int) (getWidth() * 0.33), getHeight() - menuItemHeight() * 2, getDefaultPaint());
 
-            canvas.drawText(i18n.translate(R.string.battle_begin_ask_no),
+            painter.drawText(i18n.translate(R.string.battle_begin_ask_no),
                     (int) (getWidth() * 0.66), getHeight() - menuItemHeight() * 2, getDefaultPaint());
         } else {
-            canvas.drawText(i18n.translate(R.string.battle_begin_noArmy),
+            painter.drawText(i18n.translate(R.string.battle_begin_noArmy),
                     (int) (getWidth() * 0.33), menuItemHeight() * 2, getDefaultPaint());
         }
     }
