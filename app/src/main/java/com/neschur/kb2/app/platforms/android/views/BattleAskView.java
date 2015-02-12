@@ -22,7 +22,6 @@ public class BattleAskView extends ViewImpl {
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
-        calcOffsets();
         if (event.getY() > getHeight() / 2 && playerHasArmy()) {
             if (event.getX() < getWidth() / 2)
                 controller.startBattle();

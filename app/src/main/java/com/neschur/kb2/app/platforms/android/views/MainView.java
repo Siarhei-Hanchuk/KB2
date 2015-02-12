@@ -20,8 +20,8 @@ class MainView extends ViewImpl {
     public boolean onTouchEvent(@NonNull MotionEvent event) {
         if (mainViewController.getGame() == null)
             return super.onTouchEvent(event);
-        int x = (int) event.getX() - xOffset;
-        int y = (int) event.getY() - yOffset;
+        int x = (int) click.getX();
+        int y = (int) click.getY();
         if (x > this.stepX() * 5) {
             int item = (y / stepY());
             mainViewController.touchMenu(item);

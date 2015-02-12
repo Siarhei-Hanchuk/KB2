@@ -28,4 +28,12 @@ public class Click {
         }
         return false;
     }
+
+    public int getX() {
+        return (int)event.getX() - xOffset;
+    }
+
+    public int getY() {
+        return (int)event.getY() - yOffset;
+    }
 }

@@ -27,12 +27,12 @@ public class BattleView extends ViewImpl {
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
-        calcOffsets();
-        int x = (int) ((event.getX() - xOffset) / stepX());
-        int y = (int) ((event.getY() - yOffset) / stepY());
+        super.onTouchEvent(event);
+        int x = click.getX() / stepX();
+        int y = click.getY() / stepY();
         battleController.select(x, y);
 
-        return super.onTouchEvent(event);
+        return false;
     }
 
     @Override

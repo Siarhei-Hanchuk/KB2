@@ -21,8 +21,6 @@ public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Call
     final ViewController viewController;
     final I18n i18n;
     DrawThread drawThread;
-    int xOffset = 0;
-    int yOffset = 0;
     Painter painter;
     Click click;
     Paint defaultPaint = null;
@@ -62,15 +60,15 @@ public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Call
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
-        calcOffsets();
-        click = new Click(event, xOffset, yOffset, getWidth(), getHeight());
+        int[] offsets = calcOffsets();
+        click = new Click(event, offsets[0], offsets[1], getWidth(), getHeight());
         return false;
     }
 
     @Override
     public void draw(@NonNull Canvas canvas) {
-        calcOffsets();
-        painter = new Painter(canvas, xOffset, yOffset, getWidth(), getHeight());
+        int[] offsets = calcOffsets();
+        painter = new Painter(canvas, offsets[0], offsets[1], getWidth(), getHeight());
         canvas.drawColor(Color.BLACK);
     }
 
@@ -106,11 +104,11 @@ public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Call
     }
 
     int stepX(int x) {
-        return ((int) (IMAGE_WIDTH * getScale())) * x + xOffset;
+        return ((int) (IMAGE_WIDTH * getScale())) * x + calcOffsets()[0];
     }
 
     int stepY(int y) {
-        return ((int) (IMAGE_HEIGHT * getScale())) * y + yOffset;
+        return ((int) (IMAGE_HEIGHT * getScale())) * y + calcOffsets()[1];
     }
 
     int textHeight() {
@@ -130,14 +128,17 @@ public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Call
         return defaultPaint;
     }
 
-    void calcOffsets() {
+    private int[] calcOffsets() {
         double scaleX = (double) getWidth() / (IMAGE_WIDTH * GameGrid.STEP_X);
         double scaleY = (double) getHeight() / (IMAGE_HEIGHT * GameGrid.STEP_Y);
+        int[] offsets = new int[2];
         if (scaleX > scaleY) {
-            xOffset = (getWidth() - stepX() * GameGrid.STEP_X) / 2;
+            offsets[0] = (getWidth() - stepX() * GameGrid.STEP_X) / 2;
         } else {
-            yOffset = (getHeight() - stepX() * GameGrid.STEP_Y) / 2;
+            offsets[0] = (getHeight() - stepX() * GameGrid.STEP_Y) / 2;
         }
+
+        return offsets;
     }
 
     ImageCache getImageCache() {
