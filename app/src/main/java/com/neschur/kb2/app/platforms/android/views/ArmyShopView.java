@@ -2,7 +2,6 @@ package com.neschur.kb2.app.platforms.android.views;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -33,6 +32,7 @@ class ArmyShopView extends ViewImpl {
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
+        super.onTouchEvent(event);
         if (event.getX() < getWidth() - buttonSize * 2 ||
                 event.getY() < getHeight() - buttonSize * 2) {
             viewController.viewClose();
@@ -58,7 +58,7 @@ class ArmyShopView extends ViewImpl {
                 armyShopViewController.buyArmy(shop, 1000);
             }
         }
-        return super.onTouchEvent(event);
+        return false;
     }
 
     @Override
@@ -70,77 +70,84 @@ class ArmyShopView extends ViewImpl {
         smallFont.setTextSize(textHeight() / 2);
 
         this.buttonSize = getHeight() / 5;
-        int imageHeight = stepY();
         int buttonBorderSize = 5;
         Bitmap image = getImageCache().getImage(warrior.getId());
 
-        canvas.drawBitmap(image, stepX(0), stepY(0), null);
-        canvas.drawText(i18n.translate("army_names_" + warrior.getTextId()),
-                stepX(1) + 10, textHeight(), paint);
-        canvas.drawText(i18n.translate(R.string.entity_armyShop_ui_thereIs)
+        painter.drawBitmap(image, 0, 0);
+        painter.drawText(i18n.translate("army_names_" + warrior.getTextId()),
+                stepX() + 10, textHeight(), paint);
+        painter.drawText(i18n.translate(R.string.entity_armyShop_ui_thereIs)
                         + ": " + shop.getCount(),
-                stepX(1) + 10, menuItemHeight(), smallFont);
-        canvas.drawText(i18n.translate(R.string.entity_armyShop_ui_price)
+                stepX() + 10, menuItemHeight(), smallFont);
+        painter.drawText(i18n.translate(R.string.entity_armyShop_ui_price)
                         + ": " + warrior.getPriceInShop(),
-                stepX(1) + 10, (int) (menuItemHeight() * 1.5), smallFont);
+                stepX() + 10, (int) (menuItemHeight() * 1.5), smallFont);
 
         String playerMoney = i18n.translate(R.string.player_attrs_money) + ": " + player.getMoney();
-        canvas.drawText(playerMoney,
-                getWidth() - xOffset - paint.measureText(playerMoney), textHeight() * 2, paint);
+        painter.drawText(playerMoney, paint.measureText(playerMoney), textHeight() * 2, paint, painter.ALIGN_RIGHT);
 
-        canvas.drawText(i18n.translate(R.string.entity_armyShop_ui_step) + ": " + warrior.getStep(),
-                stepX(0), stepY(1) + textHeight(), paint);
-        canvas.drawText(i18n.translate(R.string.entity_armyShop_ui_defense) + ": " + warrior.getDefence(),
-                stepX(0), stepY(1) + textHeight() * 2, paint);
-        canvas.drawText(i18n.translate(R.string.entity_armyShop_ui_damage) + ": " + warrior.getDamage(),
-                stepX(0), stepY(1) + textHeight() * 3, paint);
-        canvas.drawText(i18n.translate(R.string.entity_armyShop_ui_fly) +
-                        ": " + (warrior.isFly() ? i18n.translate(R.string.yes) : i18n.translate(R.string.no)) ,
-                stepX(0), stepY(1) + textHeight() * 4, paint);
-        canvas.drawText(i18n.translate(R.string.entity_armyShop_ui_shoot) +
-                        ": " + (warrior.isShoot() ? i18n.translate(R.string.yes) : i18n.translate(R.string.no)) ,
-                stepX(0), stepY(1) + textHeight() * 5, paint);
+        painter.drawText(i18n.translate(R.string.entity_armyShop_ui_step) + ": " + warrior.getStep(),
+                0, stepY() + textHeight(), paint);
+        painter.drawText(i18n.translate(R.string.entity_armyShop_ui_defense) + ": " + warrior.getDefence(),
+                0, stepY() + textHeight() * 2, paint);
+        painter.drawText(i18n.translate(R.string.entity_armyShop_ui_damage) + ": " + warrior.getDamage(),
+                0, stepY() + textHeight() * 3, paint);
+        painter.drawText(i18n.translate(R.string.entity_armyShop_ui_fly) +
+                        ": " + (warrior.isFly() ? i18n.translate(R.string.yes) : i18n.translate(R.string.no)),
+                0, stepY() + textHeight() * 4, paint);
+        painter.drawText(i18n.translate(R.string.entity_armyShop_ui_shoot) +
+                        ": " + (warrior.isShoot() ? i18n.translate(R.string.yes) : i18n.translate(R.string.no)),
+                0, stepY() + textHeight() * 5, paint);
 
         String how = i18n.translate(R.string.entity_armyShop_ui_afford) + ": " + player.armyAfford(warrior);
-        canvas.drawText(how,
-                getWidth() - smallFont.measureText(how) - xOffset,
-                getHeight() - buttonSize * 2 - 10 - menuItemHeight(), smallFont);
-        canvas.drawText(i18n.translate(R.string.entity_armyShop_ui_howMany),
-                getWidth() - buttonSize * 2,
-                getHeight() - buttonSize * 2 - 10, smallFont);
+        painter.drawText(how,
+                smallFont.measureText(how),
+                getHeight() - buttonSize * 2 - 10 - menuItemHeight(),
+                smallFont, painter.ALIGN_RIGHT);
+        painter.drawText(i18n.translate(R.string.entity_armyShop_ui_howMany),
+                buttonSize * 2,
+                buttonSize * 2 - smallFont.getTextSize(),
+                smallFont, painter.ALIGN_RIGHT + painter.ALIGN_BOTTOM);
         paint.setColor(Color.GRAY);
-        canvas.drawRect(getWidth() - buttonSize * 2, getHeight() - buttonSize * 2,
-                getWidth(), getHeight(), paint);
+        painter.drawRect(buttonSize * 2, buttonSize * 2, 0, 0,
+                paint, painter.ALIGN_BOTTOM + painter.ALIGN_RIGHT);
         paint.setColor(Color.BLACK);
-        canvas.drawRect(getWidth() - buttonSize + buttonBorderSize,
-                getHeight() - buttonSize + buttonBorderSize,
-                getWidth() - buttonBorderSize,
-                getHeight() - buttonBorderSize, paint);
-        canvas.drawRect(getWidth() - buttonSize * 2 + buttonBorderSize,
-                getHeight() - buttonSize * 2 + buttonBorderSize,
-                getWidth() - buttonSize - buttonBorderSize,
-                getHeight() - buttonSize - buttonBorderSize, paint);
-        canvas.drawRect(getWidth() - buttonSize + buttonBorderSize,
-                getHeight() - buttonSize * 2 + buttonBorderSize,
-                getWidth() - buttonBorderSize,
-                getHeight() - buttonSize - buttonBorderSize, paint);
-        canvas.drawRect(getWidth() - buttonSize * 2 + buttonBorderSize,
-                getHeight() - buttonSize + buttonBorderSize,
-                getWidth() - buttonSize - buttonBorderSize,
-                getHeight() - buttonBorderSize, paint);
+        painter.drawRect(buttonSize - buttonBorderSize,
+                buttonSize - buttonBorderSize,
+                buttonBorderSize,
+                buttonBorderSize, paint, painter.ALIGN_BOTTOM + painter.ALIGN_RIGHT);
+        painter.drawRect(buttonSize * 2 - buttonBorderSize,
+                buttonSize * 2 - buttonBorderSize,
+                buttonSize + buttonBorderSize,
+                buttonSize + buttonBorderSize,
+                paint, painter.ALIGN_RIGHT + painter.ALIGN_BOTTOM);
+        painter.drawRect(buttonSize - buttonBorderSize,
+                buttonSize * 2 - buttonBorderSize,
+                buttonBorderSize,
+                buttonSize + buttonBorderSize,
+                paint, painter.ALIGN_RIGHT + painter.ALIGN_BOTTOM);
+        painter.drawRect(buttonSize * 2 - buttonBorderSize,
+                buttonSize - buttonBorderSize,
+                buttonSize + buttonBorderSize,
+                buttonBorderSize,
+                paint, painter.ALIGN_RIGHT + painter.ALIGN_BOTTOM);
 
         paint.setColor(Color.WHITE);
-        canvas.drawText("1",
-                getWidth() - buttonSize - buttonSize / 2,
-                getHeight() - buttonSize - buttonSize / 2, smallFont);
-        canvas.drawText("10",
-                getWidth() - buttonSize / 1.5f,
-                getHeight() - buttonSize - buttonSize / 2, smallFont);
-        canvas.drawText("100",
-                getWidth() - buttonSize - buttonSize / 1.2f,
-                getHeight() - buttonSize / 2, smallFont);
-        canvas.drawText("1000",
-                getWidth() - buttonSize / 1.12f,
-                getHeight() - buttonSize / 2, smallFont);
+        painter.drawText("1",
+                buttonSize + buttonSize / 2,
+                buttonSize + buttonSize / 2,
+                smallFont, painter.ALIGN_RIGHT + painter.ALIGN_BOTTOM);
+        painter.drawText("10",
+                buttonSize / 1.5f,
+                buttonSize + buttonSize / 2,
+                smallFont, painter.ALIGN_RIGHT + painter.ALIGN_BOTTOM);
+        painter.drawText("100",
+                buttonSize + buttonSize / 1.2f,
+                buttonSize / 2,
+                smallFont, painter.ALIGN_RIGHT + painter.ALIGN_BOTTOM);
+        painter.drawText("1000",
+                buttonSize / 1.12f,
+                buttonSize / 2,
+                smallFont, painter.ALIGN_RIGHT + painter.ALIGN_BOTTOM);
     }
 }

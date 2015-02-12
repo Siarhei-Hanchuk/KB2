@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.NonNull;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -22,6 +23,8 @@ public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Call
     DrawThread drawThread;
     int xOffset = 0;
     int yOffset = 0;
+    Painter painter;
+    Paint defaultPaint = null;
 
     ViewImpl(Context context, ViewController viewController) {
         super(context);
@@ -31,8 +34,8 @@ public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Call
     }
 
     @Override
-    public void surfaceChanged(SurfaceHolder holder, int format, int width,
-                               int height) {
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+
     }
 
     @Override
@@ -57,9 +60,16 @@ public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Call
     }
 
     @Override
-    public void draw(@NonNull Canvas canvas) {
-        canvas.drawColor(Color.BLACK);
+    public boolean onTouchEvent(@NonNull MotionEvent event) {
         calcOffsets();
+        return false;
+    }
+
+    @Override
+    public void draw(@NonNull Canvas canvas) {
+        calcOffsets();
+        this.painter = new Painter(canvas, xOffset, yOffset, getWidth(), getHeight());
+        canvas.drawColor(Color.BLACK);
     }
 
     @Override
@@ -110,9 +120,11 @@ public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Call
     }
 
     Paint getDefaultPaint() {
-        Paint defaultPaint = new Paint();
-        defaultPaint.setColor(Color.WHITE);
-        defaultPaint.setTextSize(textHeight());
+        if (defaultPaint == null) {
+            defaultPaint = new Paint();
+            defaultPaint.setColor(Color.WHITE);
+            defaultPaint.setTextSize(textHeight());
+        }
         return defaultPaint;
     }
 
@@ -129,4 +141,5 @@ public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Call
     ImageCache getImageCache() {
         return ImageCache.getInstance(getResources(), stepX(), stepY());
     }
+
 }
