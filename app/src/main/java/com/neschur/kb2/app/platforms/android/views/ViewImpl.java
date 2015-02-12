@@ -24,6 +24,7 @@ public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Call
     int xOffset = 0;
     int yOffset = 0;
     Painter painter;
+    Click click;
     Paint defaultPaint = null;
 
     ViewImpl(Context context, ViewController viewController) {
@@ -62,13 +63,14 @@ public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Call
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
         calcOffsets();
+        click = new Click(event, xOffset, yOffset, getWidth(), getHeight());
         return false;
     }
 
     @Override
     public void draw(@NonNull Canvas canvas) {
         calcOffsets();
-        this.painter = new Painter(canvas, xOffset, yOffset, getWidth(), getHeight());
+        painter = new Painter(canvas, xOffset, yOffset, getWidth(), getHeight());
         canvas.drawColor(Color.BLACK);
     }
 

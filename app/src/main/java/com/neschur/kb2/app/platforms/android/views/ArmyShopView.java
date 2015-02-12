@@ -33,30 +33,21 @@ class ArmyShopView extends ViewImpl {
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
         super.onTouchEvent(event);
-        if (event.getX() < getWidth() - buttonSize * 2 ||
-                event.getY() < getHeight() - buttonSize * 2) {
-            viewController.viewClose();
-        } else {
-            if (event.getX() > getWidth() - buttonSize * 2 &&
-                    event.getX() < getWidth() - buttonSize &&
-                    event.getY() > getHeight() - buttonSize * 2 &&
-                    event.getY() < getHeight() - buttonSize) {
-                armyShopViewController.buyArmy(shop, 1);
-            }
-            if (event.getX() > getWidth() - buttonSize &&
-                    event.getY() > getHeight() - buttonSize * 2 &&
-                    event.getY() < getHeight() - buttonSize) {
-                armyShopViewController.buyArmy(shop, 10);
-            }
-            if (event.getX() > getWidth() - buttonSize * 2 &&
-                    event.getX() < getWidth() - buttonSize &&
-                    event.getY() > getHeight() - buttonSize) {
-                armyShopViewController.buyArmy(shop, 100);
-            }
-            if (event.getX() > getWidth() - buttonSize &&
-                    event.getY() > getHeight() - buttonSize) {
-                armyShopViewController.buyArmy(shop, 1000);
-            }
+        if (click.in(buttonSize * 2, buttonSize, buttonSize * 2, buttonSize,
+                Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM)) {
+            armyShopViewController.buyArmy(shop, 1);
+        }
+        if (click.in(buttonSize, 0, buttonSize * 2, buttonSize,
+                Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM)) {
+            armyShopViewController.buyArmy(shop, 10);
+        }
+        if (click.in(buttonSize * 2, buttonSize, buttonSize, 0,
+                Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM)) {
+            armyShopViewController.buyArmy(shop, 100);
+        }
+        if (click.in(buttonSize, 0, buttonSize, 0,
+                Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM)) {
+            armyShopViewController.buyArmy(shop, 1000);
         }
         return false;
     }

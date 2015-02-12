@@ -5,9 +5,9 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 public class Painter {
-    public final int ALIGN_NONE = 0;
-    public final int ALIGN_RIGHT = 1;
-    public final int ALIGN_BOTTOM = 2;
+    public static final int ALIGN_NONE = 0;
+    public static final int ALIGN_RIGHT = 1;
+    public static final int ALIGN_BOTTOM = 2;
     private Canvas canvas;
     private int xOffset;
     private int yOffset;
@@ -41,9 +41,9 @@ public class Painter {
         canvas.drawBitmap(bitmap, xOffset + x, yOffset + y, null);
     }
 
-//    public void drawRect(float x, float y, float top, float right, Paint paint) {
-//        drawRect(x, y, top, right, paint, ALIGN_NONE);
-//    }
+    public void drawRect(float x, float y, float top, float right, Paint paint) {
+        drawRect(x, y, top, right, paint, ALIGN_NONE);
+    }
 
     public void drawRect(float left, float top, float right, float bottom, Paint paint, int align) {
         if (align == ALIGN_RIGHT) {
