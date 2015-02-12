@@ -30,10 +30,10 @@ public class Click {
     }
 
     public int getX() {
-        return (int)event.getX() - xOffset;
+        return (int) event.getX() - xOffset;
     }
 
     public int getY() {
-        return (int)event.getY() - yOffset;
+        return (int) event.getY() - yOffset;
     }
 }

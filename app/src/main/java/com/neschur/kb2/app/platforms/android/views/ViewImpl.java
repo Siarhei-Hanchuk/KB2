@@ -23,7 +23,7 @@ public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Call
     DrawThread drawThread;
     Painter painter;
     Click click;
-    Paint defaultPaint = null;
+    private Paint defaultPaint = null;
 
     ViewImpl(Context context, ViewController viewController) {
         super(context);
@@ -95,31 +95,23 @@ public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Call
         return (scaleX > scaleY) ? scaleY : scaleX;
     }
 
-    int stepX() {
+    public int stepX() {
         return (int) (IMAGE_WIDTH * getScale());
     }
 
-    int stepY() {
+    public int stepY() {
         return (int) (IMAGE_HEIGHT * getScale());
     }
 
-    int stepX(int x) {
-        return ((int) (IMAGE_WIDTH * getScale())) * x + calcOffsets()[0];
-    }
-
-    int stepY(int y) {
-        return ((int) (IMAGE_HEIGHT * getScale())) * y + calcOffsets()[1];
-    }
-
-    int textHeight() {
+    protected int textHeight() {
         return (int) (menuItemHeight() * 0.6);
     }
 
-    int menuItemHeight() {
+    protected int menuItemHeight() {
         return (int) (getHeight() / 8.0);
     }
 
-    Paint getDefaultPaint() {
+    protected Paint getDefaultPaint() {
         if (defaultPaint == null) {
             defaultPaint = new Paint();
             defaultPaint.setColor(Color.WHITE);
@@ -141,7 +133,7 @@ public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Call
         return offsets;
     }
 
-    ImageCache getImageCache() {
+    protected ImageCache getImageCache() {
         return ImageCache.getInstance(getResources(), stepX(), stepY());
     }
 

@@ -39,70 +39,69 @@ public class BattleView extends ViewImpl {
     public void draw(@NonNull Canvas canvas) {
         super.draw(canvas);
 
-        drawLand(canvas);
+        drawLand(painter);
 
         MapPointBattle[][] map = battleController.getMap();
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
                 if (map[x][y].isMove())
-                    drawMoveCircle(canvas, x, y);
+                    drawMoveCircle(painter, x, y);
                 if (map[x][y].getEntity() != null) {
-                    drawWarrior(canvas, x, y);
+                    drawWarrior(painter, x, y);
                 }
             }
         }
 
-        drawSelected(canvas);
+        drawSelected(painter);
     }
 
-    private void drawLand(Canvas canvas) {
+    private void drawLand(Painter painter) {
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
-                canvas.drawBitmap(getImageCache().getImage(getMap()[x][y].getLand()),
-                        stepX(x), stepY(y), null);
+                painter.drawBitmap(getImageCache().getImage(getMap()[x][y].getLand()),
+                        stepX() * x, stepY() * y);
             }
         }
     }
 
-    private void drawMoveCircle(Canvas canvas, int x, int y) {
+    private void drawMoveCircle(Painter painter, int x, int y) {
         MapPointBattle point = getMap()[x][y];
         if (point.getEntity() != null) {
             if (!point.getEntity().isFriendly())
-                canvas.drawBitmap(getImageCache().getImage(R.drawable.battle_attack),
-                        stepX(x), stepY(y), null);
+                painter.drawBitmap(getImageCache().getImage(R.drawable.battle_attack),
+                        stepX() * x , stepY() * y);
         } else {
-            canvas.drawBitmap(getImageCache().getImage(R.drawable.battle_move),
-                    stepX(x), stepY(y), null);
+            painter.drawBitmap(getImageCache().getImage(R.drawable.battle_move),
+                    stepX() * x, stepY() * y);
         }
     }
 
-    private void drawWarrior(Canvas canvas, int x, int y) {
+    private void drawWarrior(Painter painter, int x, int y) {
         MapPointBattle point = getMap()[x][y];
         WarriorEntity warrior = point.getEntity();
         Bitmap image = getImageCache().getImage(point.getEntity().getID());
         if (!warrior.isFriendly()) {
             image = flipImage(image);
         }
-        canvas.drawBitmap(image, stepX(x), stepY(y), null);
-        canvas.drawRect(stepX(x),
-                stepY(y) + stepY() - textHeight() / 3,
-                stepX(x) +
+        painter.drawBitmap(image, stepX() * x, stepY() * y);
+        painter.drawRect(stepX() * x,
+                stepY() * y + stepY() - textHeight() / 3,
+                stepX() * y +
                         getCountPaint().measureText(
                                 Integer.toString(warrior.getCount())) + 4,
-                stepY(y) + stepY(),
+                stepY() * y + stepY(),
                 getCountPaintBg());
-        canvas.drawText(Integer.toString(warrior.getCount()),
-                stepX(x) + 2,
-                stepY(y) + stepY() - 2,
+        painter.drawText(Integer.toString(warrior.getCount()),
+                stepX() * x + 2,
+                stepY() * y + stepY() - 2,
                 getCountPaint());
     }
 
-    private void drawSelected(@NonNull Canvas canvas) {
+    private void drawSelected(@NonNull Painter painter) {
         if (battleController.getSelectedX() >= 0 && battleController.getSelectedY() >= 0) {
-            canvas.drawBitmap(getImageCache().getImage(R.drawable.battle_select),
-                    stepX(battleController.getSelectedX()),
-                    stepY(battleController.getSelectedY()),
-                    null);
+            painter.drawBitmap(getImageCache().getImage(R.drawable.battle_select),
+                    stepX() * battleController.getSelectedX(),
+                    stepY() * battleController.getSelectedY());
         }
     }
 

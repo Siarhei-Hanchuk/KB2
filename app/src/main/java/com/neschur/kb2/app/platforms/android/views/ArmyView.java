@@ -32,12 +32,12 @@ class ArmyView extends ViewImpl {
             if (squad == null)
                 continue;
 
-            canvas.drawBitmap(getImageCache().getImage(squad.getWarrior().getId())
-                    , 0, stepY(i), null);
-            canvas.drawText(i18n.translate("army_names_" + squad.getWarrior().getTextId()),
-                    stepX(1) + 10, stepY(i) + textHeight(), getDefaultPaint());
-            canvas.drawText(Integer.toString(squad.getCount()),
-                    stepX(1) + 10, stepY(i) + stepY(), getDefaultPaint());
+            painter.drawBitmap(getImageCache().getImage(squad.getWarrior().getId())
+                    , 0, stepY() * i);
+            painter.drawText(i18n.translate("army_names_" + squad.getWarrior().getTextId()),
+                    stepX() + 10, stepY() * i + textHeight(), getDefaultPaint());
+            painter.drawText(Integer.toString(squad.getCount()),
+                    stepX() + 10, stepY() * i + stepY(), getDefaultPaint());
         }
 
     }

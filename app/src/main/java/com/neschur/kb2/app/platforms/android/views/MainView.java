@@ -70,12 +70,12 @@ class MainView extends ViewImpl {
         for (int x = 0; x < GameGrid.STEP_X; x++) {
             for (int y = 0; y < GameGrid.STEP_Y; y++) {
                 if (x < 5) {
-                    canvas.drawBitmap(getImageCache().getImage(grid.getBackgroundBuyXY(x, y)),
-                            stepX(x), stepY(y), null);
+                    painter.drawBitmap(getImageCache().getImage(grid.getBackgroundBuyXY(x, y)),
+                            stepX() * x, stepY( )*y);
                 }
                 if (grid.getImageBuyXY(x, y) > -1) {
-                    canvas.drawBitmap(getImageCache().getImage(grid.getImageBuyXY(x, y)),
-                            stepX(x), stepY(y), null);
+                    painter.drawBitmap(getImageCache().getImage(grid.getImageBuyXY(x, y)),
+                            stepX() * x, stepY()* y);
                 }
             }
         }
