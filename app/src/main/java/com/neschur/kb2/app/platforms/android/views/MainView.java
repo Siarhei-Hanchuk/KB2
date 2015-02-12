@@ -8,6 +8,8 @@ import android.view.MotionEvent;
 
 import com.neschur.kb2.app.controllers.MainViewController;
 import com.neschur.kb2.app.models.GameGrid;
+import com.neschur.kb2.app.platforms.android.views.helpers.Click;
+import com.neschur.kb2.app.platforms.android.views.helpers.Painter;
 
 class MainView extends ViewImpl {
     private final MainViewController mainViewController;
@@ -68,7 +70,7 @@ class MainView extends ViewImpl {
     public void draw(@NonNull Canvas canvas) {
         Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
-        
+
         GameGrid grid = mainViewController.getGameGrid();
 
         for (int x = 0; x < GameGrid.STEP_X; x++) {

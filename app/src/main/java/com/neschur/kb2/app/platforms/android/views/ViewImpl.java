@@ -13,6 +13,11 @@ import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.View;
 import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.models.GameGrid;
+import com.neschur.kb2.app.platforms.android.views.helpers.Click;
+import com.neschur.kb2.app.platforms.android.views.helpers.DrawThread;
+import com.neschur.kb2.app.platforms.android.views.helpers.Drawable;
+import com.neschur.kb2.app.platforms.android.views.helpers.ImageCache;
+import com.neschur.kb2.app.platforms.android.views.helpers.Painter;
 
 public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Callback, Drawable, View {
     private static final int IMAGE_WIDTH = 96;
@@ -20,7 +25,7 @@ public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Call
 
     final ViewController viewController;
     final I18n i18n;
-    DrawThread drawThread;
+    private DrawThread drawThread;
     private Paint defaultPaint = null;
 
     ViewImpl(Context context, ViewController viewController) {
@@ -56,12 +61,12 @@ public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Call
         }
     }
 
-    public Click getClick(@NonNull MotionEvent event) {
+    Click getClick(@NonNull MotionEvent event) {
         int[] offsets = calcOffsets();
         return new Click(event, offsets[0], offsets[1], getWidth(), getHeight());
     }
 
-    public Painter getPainter(@NonNull Canvas canvas) {
+    Painter getPainter(@NonNull Canvas canvas) {
         int[] offsets = calcOffsets();
         return new Painter(canvas, offsets[0], offsets[1], getWidth(), getHeight());
     }
@@ -89,23 +94,23 @@ public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Call
         return (scaleX > scaleY) ? scaleY : scaleX;
     }
 
-    public int stepX() {
+    int stepX() {
         return (int) (IMAGE_WIDTH * getScale());
     }
 
-    public int stepY() {
+    int stepY() {
         return (int) (IMAGE_HEIGHT * getScale());
     }
 
-    protected int textHeight() {
+    int textHeight() {
         return (int) (menuItemHeight() * 0.6);
     }
 
-    protected int menuItemHeight() {
+    int menuItemHeight() {
         return (int) (getHeight() / 8.0);
     }
 
-    protected Paint getDefaultPaint() {
+    Paint getDefaultPaint() {
         if (defaultPaint == null) {
             defaultPaint = new Paint();
             defaultPaint.setColor(Color.WHITE);
@@ -127,7 +132,7 @@ public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Call
         return offsets;
     }
 
-    protected ImageCache getImageCache() {
+    ImageCache getImageCache() {
         return ImageCache.getInstance(getResources(), stepX(), stepY());
     }
 

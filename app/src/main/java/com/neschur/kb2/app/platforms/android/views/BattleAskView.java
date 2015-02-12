@@ -10,6 +10,7 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.BattleAskController;
 import com.neschur.kb2.app.entities.Castle;
 import com.neschur.kb2.app.entities.Fighting;
+import com.neschur.kb2.app.platforms.android.views.helpers.Painter;
 
 public class BattleAskView extends ViewImpl {
     private final BattleAskController controller;
@@ -23,8 +24,6 @@ public class BattleAskView extends ViewImpl {
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
-        Click click = getClick(event);
-
         if (event.getY() > getHeight() / 2 && playerHasArmy()) {
             if (event.getX() < getWidth() / 2)
                 controller.startBattle();

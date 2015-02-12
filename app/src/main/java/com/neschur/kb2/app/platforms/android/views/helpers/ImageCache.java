@@ -1,4 +1,4 @@
-package com.neschur.kb2.app.platforms.android.views;
+package com.neschur.kb2.app.platforms.android.views.helpers;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -8,7 +8,7 @@ import com.neschur.kb2.app.R;
 
 import java.util.HashMap;
 
-class ImageCache {
+public class ImageCache {
     private static ImageCache self;
     private final int width;
     private final int height;
@@ -21,7 +21,7 @@ class ImageCache {
         this.height = height;
     }
 
-    static ImageCache getInstance(Resources resources, int width, int height) {
+    public static ImageCache getInstance(Resources resources, int width, int height) {
         if (self == null) {
             self = new ImageCache(resources, width, height);
         } else {

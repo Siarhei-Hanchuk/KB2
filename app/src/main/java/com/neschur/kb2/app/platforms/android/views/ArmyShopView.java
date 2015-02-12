@@ -12,6 +12,8 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.ArmyShopViewController;
 import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.models.Player;
+import com.neschur.kb2.app.platforms.android.views.helpers.Click;
+import com.neschur.kb2.app.platforms.android.views.helpers.Painter;
 import com.neschur.kb2.app.warriors.Warrior;
 
 class ArmyShopView extends ViewImpl {
@@ -76,7 +78,7 @@ class ArmyShopView extends ViewImpl {
                 stepX() + 10, (int) (menuItemHeight() * 1.5), smallFont);
 
         String playerMoney = i18n.translate(R.string.player_attrs_money) + ": " + player.getMoney();
-        painter.drawText(playerMoney, paint.measureText(playerMoney), textHeight() * 2, paint, painter.ALIGN_RIGHT);
+        painter.drawText(playerMoney, paint.measureText(playerMoney), textHeight() * 2, paint, Painter.ALIGN_RIGHT);
 
         painter.drawText(i18n.translate(R.string.entity_armyShop_ui_step) + ": " + warrior.getStep(),
                 0, stepY() + textHeight(), paint);
@@ -95,51 +97,51 @@ class ArmyShopView extends ViewImpl {
         painter.drawText(how,
                 smallFont.measureText(how),
                 getHeight() - buttonSize * 2 - 10 - menuItemHeight(),
-                smallFont, painter.ALIGN_RIGHT);
+                smallFont, Painter.ALIGN_RIGHT);
         painter.drawText(i18n.translate(R.string.entity_armyShop_ui_howMany),
                 buttonSize * 2,
                 buttonSize * 2 - smallFont.getTextSize(),
-                smallFont, painter.ALIGN_RIGHT + painter.ALIGN_BOTTOM);
+                smallFont, Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM);
         paint.setColor(Color.GRAY);
         painter.drawRect(buttonSize * 2, buttonSize * 2, 0, 0,
-                paint, painter.ALIGN_BOTTOM + painter.ALIGN_RIGHT);
+                paint, Painter.ALIGN_BOTTOM + Painter.ALIGN_RIGHT);
         paint.setColor(Color.BLACK);
         painter.drawRect(buttonSize - buttonBorderSize,
                 buttonSize - buttonBorderSize,
                 buttonBorderSize,
-                buttonBorderSize, paint, painter.ALIGN_BOTTOM + painter.ALIGN_RIGHT);
+                buttonBorderSize, paint, Painter.ALIGN_BOTTOM + Painter.ALIGN_RIGHT);
         painter.drawRect(buttonSize * 2 - buttonBorderSize,
                 buttonSize * 2 - buttonBorderSize,
                 buttonSize + buttonBorderSize,
                 buttonSize + buttonBorderSize,
-                paint, painter.ALIGN_RIGHT + painter.ALIGN_BOTTOM);
+                paint, Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM);
         painter.drawRect(buttonSize - buttonBorderSize,
                 buttonSize * 2 - buttonBorderSize,
                 buttonBorderSize,
                 buttonSize + buttonBorderSize,
-                paint, painter.ALIGN_RIGHT + painter.ALIGN_BOTTOM);
+                paint, Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM);
         painter.drawRect(buttonSize * 2 - buttonBorderSize,
                 buttonSize - buttonBorderSize,
                 buttonSize + buttonBorderSize,
                 buttonBorderSize,
-                paint, painter.ALIGN_RIGHT + painter.ALIGN_BOTTOM);
+                paint, Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM);
 
         paint.setColor(Color.WHITE);
         painter.drawText("1",
                 buttonSize + buttonSize / 2,
                 buttonSize + buttonSize / 2,
-                smallFont, painter.ALIGN_RIGHT + painter.ALIGN_BOTTOM);
+                smallFont, Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM);
         painter.drawText("10",
                 buttonSize / 1.5f,
                 buttonSize + buttonSize / 2,
-                smallFont, painter.ALIGN_RIGHT + painter.ALIGN_BOTTOM);
+                smallFont, Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM);
         painter.drawText("100",
                 buttonSize + buttonSize / 1.2f,
                 buttonSize / 2,
-                smallFont, painter.ALIGN_RIGHT + painter.ALIGN_BOTTOM);
+                smallFont, Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM);
         painter.drawText("1000",
                 buttonSize / 1.12f,
                 buttonSize / 2,
-                smallFont, painter.ALIGN_RIGHT + painter.ALIGN_BOTTOM);
+                smallFont, Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM);
     }
 }

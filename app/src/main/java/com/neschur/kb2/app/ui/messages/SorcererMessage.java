@@ -25,7 +25,7 @@ public class SorcererMessage extends Message {
             case 0:
                 // TODO
             case 1:
-                // TODO player.getMagic().magicPwoer
+                // TODO player.getMagic().magicPower
             case 2:
                 player.changeAuthority(-player.getAuthority() / 2);
                 break;

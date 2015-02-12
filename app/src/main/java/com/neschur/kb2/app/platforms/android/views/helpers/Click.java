@@ -1,13 +1,13 @@
-package com.neschur.kb2.app.platforms.android.views;
+package com.neschur.kb2.app.platforms.android.views.helpers;
 
 import android.view.MotionEvent;
 
 public class Click {
-    private MotionEvent event;
-    private int xOffset;
-    private int yOffset;
-    private int width;
-    private int height;
+    private final MotionEvent event;
+    private final int xOffset;
+    private final int yOffset;
+    private final int width;
+    private final int height;
 
     public Click(MotionEvent event, int xOffset, int yOffset, int width, int height) {
         this.event = event;

@@ -14,6 +14,8 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.BattleController;
 import com.neschur.kb2.app.models.battle.MapPointBattle;
 import com.neschur.kb2.app.models.battle.WarriorEntity;
+import com.neschur.kb2.app.platforms.android.views.helpers.Click;
+import com.neschur.kb2.app.platforms.android.views.helpers.Painter;
 
 public class BattleView extends ViewImpl {
     private final BattleController battleController;

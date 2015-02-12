@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.controllers.ViewController;
+import com.neschur.kb2.app.platforms.android.views.helpers.Painter;
 import com.neschur.kb2.app.ui.menus.Menu;
 
 class MenuView extends ViewImpl {

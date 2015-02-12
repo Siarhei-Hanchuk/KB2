@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 
 import com.neschur.kb2.app.controllers.PlayerViewsController;
 import com.neschur.kb2.app.models.Player;
+import com.neschur.kb2.app.platforms.android.views.helpers.Painter;
 
 public class StatusView extends ViewImpl {
     private final Player player;

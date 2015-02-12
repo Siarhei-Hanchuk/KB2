@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import com.neschur.kb2.app.BuildConfig;
 import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.MainMenuController;
+import com.neschur.kb2.app.platforms.android.views.helpers.Painter;
 
 class MainMenuView extends ViewImpl {
     private final MainMenuController mainController;

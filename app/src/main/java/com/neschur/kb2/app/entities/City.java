@@ -23,8 +23,7 @@ public class City extends EntityImpl implements CitiesOwner {
 
     public void resetWorkers() {
         Random rand = new Random();
-        int[] _workers = {rand.nextInt(8), rand.nextInt(8), rand.nextInt(8), rand.nextInt(8)};
-        workers = _workers;
+        workers = new int[]{rand.nextInt(8), rand.nextInt(8), rand.nextInt(8), rand.nextInt(8)};
     }
 
     @Override

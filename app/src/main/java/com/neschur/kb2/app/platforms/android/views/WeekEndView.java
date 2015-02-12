@@ -10,6 +10,7 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.models.Player;
+import com.neschur.kb2.app.platforms.android.views.helpers.Painter;
 
 public class WeekEndView extends ViewImpl {
     private final Player player;

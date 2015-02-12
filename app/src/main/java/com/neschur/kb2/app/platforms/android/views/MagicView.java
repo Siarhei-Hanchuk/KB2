@@ -10,6 +10,8 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.MagicViewController;
 import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.models.Magic;
+import com.neschur.kb2.app.platforms.android.views.helpers.ImageCache;
+import com.neschur.kb2.app.platforms.android.views.helpers.Painter;
 import com.neschur.kb2.app.warriors.WarriorFactory;
 
 import java.util.HashMap;

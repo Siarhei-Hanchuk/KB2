@@ -12,6 +12,7 @@ import com.neschur.kb2.app.controllers.PlayerViewsController;
 import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.models.MapPoint;
 import com.neschur.kb2.app.models.Player;
+import com.neschur.kb2.app.platforms.android.views.helpers.Painter;
 
 class MapView extends ViewImpl {
     private final Player player;

@@ -1,9 +1,9 @@
-package com.neschur.kb2.app.platforms.android.views;
+package com.neschur.kb2.app.platforms.android.views.helpers;
 
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
-class DrawThread extends Thread {
+public class DrawThread extends Thread {
     private final SurfaceHolder surfaceHolder;
     private final Drawable drawable;
     private boolean running = false;
