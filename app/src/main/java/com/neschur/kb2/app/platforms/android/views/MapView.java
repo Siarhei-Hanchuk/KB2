@@ -49,6 +49,19 @@ class MapView extends ViewImpl {
                         pointSize * (i + 1), pointSize * (j + 1), paint);
             }
         }
+
+        paint.setColor(Color.RED);
+        painter.drawRect(pointSize * player.getX(), pointSize * player.getY(),
+                pointSize * (player.getX() + 1), pointSize * (player.getY() + 1), paint);
+
+        String xText = "X: " + player.getX();
+        String yText = "Y: " + player.getY();
+        int textLength = Math.max((int) getDefaultPaint().measureText(xText) + 1,
+                (int) getDefaultPaint().measureText(yText) + 1);
+        painter.drawText(xText, textLength, textHeight(),
+                getDefaultPaint(), Painter.ALIGN_RIGHT);
+        painter.drawText(yText, textLength, textHeight() * 2,
+                getDefaultPaint(), Painter.ALIGN_RIGHT);
     }
 
     private void setMapPointColor(Paint paint, MapPoint mapPoint) {
@@ -91,10 +104,10 @@ class MapView extends ViewImpl {
                 paint.setColor(Color.GRAY);
                 break;
             case R.drawable.captain:
-                paint.setColor(Color.CYAN);
+                paint.setColor(Color.MAGENTA);
                 break;
             case R.drawable.city:
-                paint.setColor(Color.GRAY);
+                paint.setColor(Color.MAGENTA);
                 break;
             case R.drawable.castle_c:
             case R.drawable.castle_r:
@@ -106,6 +119,9 @@ class MapView extends ViewImpl {
                 break;
             case R.drawable.goldchest:
                 paint.setColor(Color.CYAN);
+                break;
+            case R.drawable.nave:
+                paint.setColor(Color.WHITE);
                 break;
             default:
                 paint.setColor(Color.BLACK);
