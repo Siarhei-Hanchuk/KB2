@@ -15,7 +15,7 @@ public class Magician extends EntityImpl implements Moving {
 
     @Override
     public int getID() {
-        return R.drawable.magican;
+        return R.drawable.magician;
     }
 
     public int getUsedMagicianCount() {
