@@ -44,21 +44,21 @@ public class BattleAskView extends ViewImpl {
         if (fighting instanceof Castle) {
             painter.drawText(i18n.translate(R.string.battle_begin_castle) + " " +
                             i18n.translate("entity_castle_names_name" + ((Castle) fighting).getNameId()),
-                    (int) (getWidth() * 0.05), menuItemHeight(), getDefaultPaint());
+                    0, menuItemHeight(), getDefaultPaint());
         }
 
         if (playerHasArmy()) {
             painter.drawText(i18n.translate(R.string.battle_begin_ask),
-                    (int) (getWidth() * 0.33), menuItemHeight() * 2, getDefaultPaint());
+                    0, menuItemHeight() * 2, getDefaultPaint(), Painter.ALIGN_CENTER);
 
             painter.drawText(i18n.translate(R.string.battle_begin_ask_yes),
-                    (int) (getWidth() * 0.33), getHeight() - menuItemHeight() * 2, getDefaultPaint());
+                    0, getHeight() - menuItemHeight() * 2, getDefaultPaint());
 
             painter.drawText(i18n.translate(R.string.battle_begin_ask_no),
-                    (int) (getWidth() * 0.66), getHeight() - menuItemHeight() * 2, getDefaultPaint());
+                    0, getHeight() - menuItemHeight() * 2, getDefaultPaint(), Painter.ALIGN_RIGHT);
         } else {
             painter.drawText(i18n.translate(R.string.battle_begin_noArmy),
-                    (int) (getWidth() * 0.33), menuItemHeight() * 2, getDefaultPaint());
+                    0, menuItemHeight() * 2, getDefaultPaint(), Painter.ALIGN_CENTER);
         }
     }
 

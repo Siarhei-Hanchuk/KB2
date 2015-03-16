@@ -7,6 +7,7 @@ import android.graphics.Paint;
 public class Painter {
     public static final int ALIGN_RIGHT = 1;
     public static final int ALIGN_BOTTOM = 2;
+    public static final int ALIGN_CENTER = 4;
     private static final int ALIGN_NONE = 0;
     private final Canvas canvas;
     private final int xOffset;
@@ -28,11 +29,13 @@ public class Painter {
 
     public void drawText(String text, float x, float y, Paint paint, int align) {
         if (align == ALIGN_RIGHT)
-            canvas.drawText(text, width - x - xOffset, y + yOffset, paint);
+            canvas.drawText(text, width - x - xOffset - paint.measureText(text), y + yOffset, paint);
         else if (align == ALIGN_BOTTOM)
             canvas.drawText(text, x + xOffset, height - y - yOffset, paint);
         else if (align == ALIGN_BOTTOM + ALIGN_RIGHT)
-            canvas.drawText(text, width - x - xOffset, height - y - yOffset, paint);
+            canvas.drawText(text, width - x - xOffset - paint.measureText(text), height - y - yOffset, paint);
+        else if (align == ALIGN_CENTER)
+            canvas.drawText(text, width + x + xOffset - paint.measureText(text)/2, y, paint);
         else
             canvas.drawText(text, x + xOffset, y + yOffset, paint);
     }

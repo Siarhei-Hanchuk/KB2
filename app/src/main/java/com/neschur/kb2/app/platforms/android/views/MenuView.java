@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
+import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.ViewController;
 import com.neschur.kb2.app.platforms.android.views.helpers.Painter;
 import com.neschur.kb2.app.ui.menus.Menu;
@@ -34,15 +35,18 @@ class MenuView extends ViewImpl {
         int i;
         for (i = 0; i < menu.getCount(); i++) {
             painter.drawText(menu.getItemDescription(i), 10,
-                    menuItemHeight() + menuItemHeight() * i, getDefaultPaint());
+                    textHeight() + menuItemHeight() * i, getDefaultPaint());
         }
         if (menu.withExit())
-            painter.drawText("Exit", 10,
-                    menuItemHeight() + menuItemHeight() * i, getDefaultPaint());
-        if (menu.withMoney())
-            painter.drawText("Money: " + viewController.getGame().getPlayer().getMoney(),
-                    (int) (getWidth() * 0.5),
-                    menuItemHeight() + menuItemHeight() * i, getDefaultPaint());
+            painter.drawText(i18n.translate(R.string.mainMenu_exit), 10,
+                    textHeight() + menuItemHeight() * i, getDefaultPaint());
+        if (menu.withMoney()) {
+            String money = i18n.translate(R.string.player_attrs_money) + ": "
+                    + viewController.getGame().getPlayer().getMoney();
+            painter.drawText(money,
+                    getDefaultPaint().measureText(money) + 1,
+                    textHeight() + menuItemHeight() * i, getDefaultPaint(), Painter.ALIGN_RIGHT);
+        }
     }
 
     private void select(int item) {
