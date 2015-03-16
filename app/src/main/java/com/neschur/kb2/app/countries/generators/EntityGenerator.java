@@ -8,7 +8,6 @@ import com.neschur.kb2.app.entities.Castle;
 import com.neschur.kb2.app.entities.CastleLeft;
 import com.neschur.kb2.app.entities.CastleRight;
 import com.neschur.kb2.app.entities.City;
-import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
 import com.neschur.kb2.app.entities.GoldChest;
 import com.neschur.kb2.app.entities.GuidePost;
@@ -21,7 +20,6 @@ import com.neschur.kb2.app.models.iterators.ArmyShopsOwner;
 import com.neschur.kb2.app.models.iterators.CitiesOwner;
 import com.neschur.kb2.app.models.iterators.EntityIterator;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
@@ -188,27 +186,21 @@ public class EntityGenerator implements CitiesOwner, ArmyShopsOwner {
     }
 
     public void mapNext() {
-        tryPlaceEntity(MapNext.class);
+        new MapNext(getEmptyLand());
     }
 
     public Metro metro() {
-        return (Metro) tryPlaceEntity(Metro.class);
+        return new Metro(getEmptyLand());
     }
 
-    private Entity tryPlaceEntity(Class Entity) {
+    private MapPoint getEmptyLand() {
         int x;
         int y;
         do {
             y = random.nextInt(54) + 5;
             x = random.nextInt(54) + 5;
         } while (map[x][y].getLand() != R.drawable.land && map[x][y].getEntity() == null);
-        try {
-            return (Entity) Entity.getDeclaredConstructor(MapPoint.class).newInstance(map[x][y]);
-        } catch (InvocationTargetException | NoSuchMethodException | InstantiationException |
-                IllegalAccessException e) {
-            e.printStackTrace();
-            throw new NullPointerException();
-        }
+        return map[x][y];
     }
 
     public void updateSpell() {
@@ -217,7 +209,7 @@ public class EntityGenerator implements CitiesOwner, ArmyShopsOwner {
             spell = null;
         }
         if (Math.random() < 0.1) {
-            spell = (Spell) tryPlaceEntity(Spell.class);
+            spell = new Spell(getEmptyLand());
         }
     }
 
