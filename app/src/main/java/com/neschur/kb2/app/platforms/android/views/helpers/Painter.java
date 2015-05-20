@@ -35,7 +35,7 @@ public class Painter {
         else if (align == ALIGN_BOTTOM + ALIGN_RIGHT)
             canvas.drawText(text, width - x - xOffset - paint.measureText(text), height - y - yOffset, paint);
         else if (align == ALIGN_CENTER)
-            canvas.drawText(text, width + x + xOffset - paint.measureText(text)/2, y, paint);
+            canvas.drawText(text, (width - xOffset *2)/2 + xOffset + x - paint.measureText(text)/2, y, paint);
         else
             canvas.drawText(text, x + xOffset, y + yOffset, paint);
     }
