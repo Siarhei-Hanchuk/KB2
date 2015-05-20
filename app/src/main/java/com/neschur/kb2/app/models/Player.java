@@ -1,6 +1,8 @@
 package com.neschur.kb2.app.models;
 
 import com.neschur.kb2.app.countries.Country;
+import com.neschur.kb2.app.entities.Entity;
+import com.neschur.kb2.app.entities.Moving;
 import com.neschur.kb2.app.entities.Nave;
 import com.neschur.kb2.app.warriors.Warrior;
 import com.neschur.kb2.app.warriors.WarriorSquad;
@@ -259,5 +261,12 @@ public class Player implements Serializable {
 
     public MapPoint getMapPoint() {
         return getCountry().getMapPoint(getX(), getY());
+    }
+
+    public int distanceToEntity(Entity entity) {
+        return Math.max(
+                Math.abs(getX() - entity.getMapPoint().getX()),
+                Math.abs(getY() - entity.getMapPoint().getY())
+        );
     }
 }

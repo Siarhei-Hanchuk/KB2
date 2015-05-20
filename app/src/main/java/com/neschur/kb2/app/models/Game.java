@@ -18,6 +18,7 @@ import com.neschur.kb2.app.warriors.Warrior;
 import com.neschur.kb2.app.warriors.WarriorFactory;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Random;
 
@@ -55,13 +56,22 @@ public class Game implements Serializable {
     }
 
     public void moveEntities() {
+        HashMap<Entity, Boolean> movedEntity = new HashMap<>();
         Glade glade = player.getCountry();
         for (int x = player.getX() - 2; x <= player.getX() + 2; x++) {
             for (int y = player.getY() - 2; y <= player.getY() + 2; y++) {
                 Entity entity = glade.getMapPoint(x, y).getEntity();
                 if (entity != null) {
+                    if(movedEntity.get(entity) != null) {
+                        continue;
+                    }
+                    movedEntity.put(entity, true);
                     if (entity instanceof Captain || entity instanceof Sorcerer) {
-                        ((Moving) entity).moveInDirection(player.getMapPoint());
+                        if(player.distanceToEntity(entity) <= 1) {
+                            actionWithObject(player, glade.getMapPoint(x, y));
+                        } else {
+                            ((Moving) entity).moveInDirection(player.getMapPoint());
+                        }
                     } else if (entity instanceof Magician) {
                         ((Moving) entity).moveInRandomDirection();
                     }
@@ -108,9 +118,6 @@ public class Game implements Serializable {
             return false;
         }
 
-        moveEntities();
-        weekUpdate();
-
         MapPoint mp = player.getCountry().getMapPoint(x + dx, y + dy);
 
         if (mp.getEntity() == null) {
@@ -144,7 +151,11 @@ public class Game implements Serializable {
             }
         } else {
             actionWithObject(player, mp);
+            return true;
         }
+
+        moveEntities();
+        weekUpdate();
         return true;
     }
 
