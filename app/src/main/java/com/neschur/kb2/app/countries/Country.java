@@ -4,6 +4,7 @@ import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.countries.generators.BaseGenerator;
 import com.neschur.kb2.app.countries.generators.EntityGenerator;
 import com.neschur.kb2.app.entities.ArmyShop;
+import com.neschur.kb2.app.entities.Captain;
 import com.neschur.kb2.app.entities.Castle;
 import com.neschur.kb2.app.entities.CastlesOwner;
 import com.neschur.kb2.app.entities.City;
@@ -134,6 +135,18 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
         else
             metro = metro1;
         return getLandNearPoint(metro.getMapPoint());
+    }
+
+    public void activateCaptains() {
+        for (int i = 0; i < MAX_MAP_SIZE; i++) {
+            for (int j = 0; j < MAX_MAP_SIZE; j++) {
+                Entity entity = map[i][j].getEntity();
+                if(entity instanceof Captain) {
+                    ((Captain)entity).activate();
+                }
+
+            }
+        }
     }
 }
 

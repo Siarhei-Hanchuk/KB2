@@ -35,6 +35,7 @@ public class Game implements Serializable {
     private int weeks = 999;
     private int days = 200;
     private int currentWorker = -1;
+    private boolean captainActive = false;
 
     public Game(GameCallback callbacks, int mode) {
         this.callbacks = callbacks;
@@ -69,7 +70,7 @@ public class Game implements Serializable {
                     if ((entity instanceof Captain && ((Captain)entity).isActive())
                             || entity instanceof Sorcerer) {
                         if(player.distanceToEntity(entity) <= 1) {
-                            actionWithObject(player, glade.getMapPoint(x, y));
+                            actionWithObject(glade.getMapPoint(x, y));
                         } else {
                             ((Moving) entity).moveInDirection(player.getMapPoint());
                         }
@@ -151,16 +152,24 @@ public class Game implements Serializable {
                 }
             }
         } else {
-            actionWithObject(player, mp);
+            actionWithObject(mp);
             return true;
         }
 
+        tryActivateCaptains();
         moveEntities();
         weekUpdate();
         return true;
     }
 
-    private void actionWithObject(Player player, MapPoint mp) {
+    private void tryActivateCaptains() {
+        if(!captainActive && !player.noArmy()) {
+            captainActive = true;
+            world.activateCaptains();
+        }
+    }
+
+    private void actionWithObject(MapPoint mp) {
         if (mp.getEntity() instanceof Nave) {
             player.setNave((Nave) mp.getEntity());
             player.move(mp);
