@@ -53,7 +53,7 @@ public class BattleControllerImpl extends ApplicationController implements Battl
             getGame().getPlayer().changeAuthority(-authority);
             MapPoint land = getGame().getPlayer().getCountry().getRandomLand();
             getGame().getPlayer().move(land.getX(), land.getY());
-
+            getGame().getPlayer().clearArmy();
         }
         setContentView(getViewFactory().getViewBattleMessageView(this, win, authority, money));
     }
