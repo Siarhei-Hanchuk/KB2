@@ -14,6 +14,7 @@ public class Captain extends EntityImpl implements Fighting, Moving {
     private final WarriorSquad[] warriors = new WarriorSquad[MAX_ARMY];
     private final Mover mover;
     private int authority;
+    private boolean activated = false;
 
     public Captain(MapPoint point) {
         super(point);
@@ -22,7 +23,7 @@ public class Captain extends EntityImpl implements Fighting, Moving {
 
     @Override
     public int getID() {
-        return R.drawable.captain;
+        return activated ? R.drawable.captain : R.drawable.captain_0;
     }
 
     @Override
@@ -54,5 +55,13 @@ public class Captain extends EntityImpl implements Fighting, Moving {
     @Override
     public void moveInRandomDirection() {
         mover.moveInRandomDirection(this);
+    }
+
+    public void activate() {
+        activated = true;
+    }
+
+    public boolean isActive() {
+        return activated;
     }
 }

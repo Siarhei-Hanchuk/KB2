@@ -50,8 +50,6 @@ public class Player implements Serializable {
                 easy();
         }
 
-        memory.showAll();
-
         move(point.getX(), point.getY());
     }
 

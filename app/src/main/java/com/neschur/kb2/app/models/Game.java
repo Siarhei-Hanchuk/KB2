@@ -66,7 +66,8 @@ public class Game implements Serializable {
                         continue;
                     }
                     movedEntity.put(entity, true);
-                    if (entity instanceof Captain || entity instanceof Sorcerer) {
+                    if ((entity instanceof Captain && ((Captain)entity).isActive())
+                            || entity instanceof Sorcerer) {
                         if(player.distanceToEntity(entity) <= 1) {
                             actionWithObject(player, glade.getMapPoint(x, y));
                         } else {
