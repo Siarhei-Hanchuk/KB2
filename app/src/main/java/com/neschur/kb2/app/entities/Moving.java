@@ -6,4 +6,6 @@ public interface Moving {
     public void moveInDirection(MapPoint point);
 
     public void moveInRandomDirection();
+
+    public boolean canMoveTo(MapPoint point);
 }

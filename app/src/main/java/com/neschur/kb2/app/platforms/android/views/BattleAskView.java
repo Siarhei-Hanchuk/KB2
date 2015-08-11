@@ -63,6 +63,6 @@ public class BattleAskView extends ViewImpl {
     }
 
     private boolean playerHasArmy() {
-        return !controller.getGame().getPlayer().noArmy();
+        return controller.getGame().getPlayer().hasArmy();
     }
 }

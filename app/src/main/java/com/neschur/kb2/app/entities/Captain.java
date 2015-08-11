@@ -57,6 +57,11 @@ public class Captain extends EntityImpl implements Fighting, Moving {
         mover.moveInRandomDirection(this);
     }
 
+    @Override
+    public boolean canMoveTo(MapPoint point) {
+        return mover.canMoveTo(point);
+    }
+
     public void activate() {
         activated = true;
     }

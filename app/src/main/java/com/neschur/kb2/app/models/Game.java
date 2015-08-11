@@ -46,6 +46,7 @@ public class Game implements Serializable {
         } else if (mode == MODE_TRAINING) {
             weeks = 600 - 1;
         }
+
     }
 
     public Player getPlayer() {
@@ -69,7 +70,8 @@ public class Game implements Serializable {
                     movedEntity.put(entity, true);
                     if ((entity instanceof Captain && ((Captain)entity).isActive())
                             || entity instanceof Sorcerer) {
-                        if(player.distanceToEntity(entity) <= 1) {
+                        if(player.distanceToEntity(entity) <= 1 &&
+                                ((Moving) entity).canMoveTo(player.getMapPoint())) {
                             actionWithObject(glade.getMapPoint(x, y));
                         } else {
                             ((Moving) entity).moveInDirection(player.getMapPoint());
@@ -163,7 +165,7 @@ public class Game implements Serializable {
     }
 
     private void tryActivateCaptains() {
-        if(!captainActive && !player.noArmy()) {
+        if(!captainActive && player.hasArmy()) {
             captainActive = true;
             world.activateCaptains();
         }

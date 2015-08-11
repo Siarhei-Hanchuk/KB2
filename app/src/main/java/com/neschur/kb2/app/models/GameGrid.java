@@ -59,7 +59,9 @@ public class GameGrid {
     private int drawableReflection(String drawable) {
         try {
             return R.drawable.class.getField(drawable).getInt(new R.drawable());
-        } catch (NoSuchFieldException | IllegalAccessException e) {
+        } catch (NoSuchFieldException e) {
+            return 0;
+        } catch (IllegalAccessException e) {
             return 0;
         }
     }

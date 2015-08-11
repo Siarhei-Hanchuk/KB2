@@ -2,7 +2,6 @@ package com.neschur.kb2.app.models;
 
 import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.entities.Entity;
-import com.neschur.kb2.app.entities.Moving;
 import com.neschur.kb2.app.entities.Nave;
 import com.neschur.kb2.app.warriors.Warrior;
 import com.neschur.kb2.app.warriors.WarriorSquad;
@@ -33,6 +32,7 @@ public class Player implements Serializable {
         MapPoint point;
         switch (mode) {
             case Game.MODE_TEST:
+                memory.showAll();
                 point = country.getMapPoint(5, 5);
                 easy();
                 availableCountry = 5;
@@ -245,12 +245,12 @@ public class Player implements Serializable {
         }
     }
 
-    public boolean noArmy() {
+    public boolean hasArmy() {
         for (int i = 0; i < MAX_ARMY; i++) {
             if (warriors[i] != null)
-                return false;
+                return true;
         }
-        return true;
+        return false;
     }
 
     public Magic getMagic() {

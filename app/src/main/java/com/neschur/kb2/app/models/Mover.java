@@ -42,6 +42,10 @@ public class Mover implements Serializable {
         }
     }
 
+    public boolean canMoveTo(MapPoint point) {
+        return (point.getEntity() == null && point.isLand());
+    }
+
     public void moveInRandomDirection(Entity entity) {
         Random random = new Random();
         MapPoint from = entity.getMapPoint();

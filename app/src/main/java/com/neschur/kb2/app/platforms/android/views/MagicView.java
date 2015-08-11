@@ -65,7 +65,9 @@ class MagicView extends ViewImpl {
                 int imageId = 0;
                 try {
                     imageId = R.drawable.class.getField("army_" + army).getInt(new R.string());
-                } catch (NoSuchFieldException | IllegalAccessException e) {
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (NoSuchFieldException e) {
                     e.printStackTrace();
                 }
                 painter.drawBitmap(imageCache.getImage(imageId), (count % GameGrid.STEP_Y) * stepX(),

@@ -16,7 +16,9 @@ class I18nImpl implements I18n {
     public String translate(String key) {
         try {
             return resources.getString(R.string.class.getField(key).getInt(new R.string()));
-        } catch (NoSuchFieldException | IllegalAccessException e) {
+        } catch (NoSuchFieldException e) {
+            return key;
+        } catch (IllegalAccessException e) {
             return key;
         }
     }
@@ -31,7 +33,9 @@ class I18nImpl implements I18n {
         String result;
         try {
             result = resources.getString(R.string.class.getField(key).getInt(new R.string()));
-        } catch (NoSuchFieldException | IllegalAccessException e) {
+        } catch (NoSuchFieldException e) {
+            return key;
+        } catch (IllegalAccessException e) {
             return key;
         }
         for (String item : replaces) {

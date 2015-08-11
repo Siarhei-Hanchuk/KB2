@@ -80,8 +80,8 @@ public class World implements Serializable, ArmyShopsOwner, CitiesOwner {
     }
 
     public void activateCaptains() {
-        for (int i = 0; i < country.length; i++) {
-            country[i].activateCaptains();
+        for (Country aCountry : country) {
+            aCountry.activateCaptains();
         }
     }
 }
