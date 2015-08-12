@@ -38,7 +38,7 @@ public class MainMenuControllerImpl extends ApplicationController implements Mai
 
     @Override
     public void viewClose() {
-        setContentView(getViewFactory().getMainView(new MainViewControllerImpl()));
+        new MainViewControllerImpl();
     }
 
     @Override
