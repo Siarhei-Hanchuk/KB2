@@ -77,7 +77,7 @@ class ArmyShopView extends ViewImpl {
                 stepX() + 10, (int) (menuItemHeight() * 1.5), smallFont);
 
         String playerMoney = i18n.translate(R.string.player_attrs_money) + ": " + player.getMoney();
-        painter.drawText(playerMoney, paint.measureText(playerMoney), textHeight() * 2, paint, Painter.ALIGN_RIGHT);
+        painter.drawText(playerMoney, 0, textHeight() * 2, paint, Painter.ALIGN_RIGHT);
 
         painter.drawText(i18n.translate(R.string.entity_armyShop_ui_step) + ": " + warrior.getStep(),
                 0, stepY() + textHeight(), paint);
@@ -94,12 +94,12 @@ class ArmyShopView extends ViewImpl {
 
         String how = i18n.translate(R.string.entity_armyShop_ui_afford) + ": " + player.armyAfford(warrior);
         painter.drawText(how,
-                smallFont.measureText(how),
+                0,
                 getHeight() - buttonSize * 2 - 10 - menuItemHeight(),
                 smallFont, Painter.ALIGN_RIGHT);
         painter.drawText(i18n.translate(R.string.entity_armyShop_ui_howMany),
-                buttonSize * 2,
-                buttonSize * 2 - smallFont.getTextSize(),
+                0,
+                buttonSize * 2 + smallFont.getTextSize(),
                 smallFont, Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM);
         paint.setColor(Color.GRAY);
         painter.drawRect(buttonSize * 2, buttonSize * 2, 0, 0,
@@ -131,15 +131,15 @@ class ArmyShopView extends ViewImpl {
                 buttonSize + buttonSize / 2,
                 smallFont, Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM);
         painter.drawText("10",
-                buttonSize / 1.5f,
+                buttonSize / 2,
                 buttonSize + buttonSize / 2,
                 smallFont, Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM);
         painter.drawText("100",
-                buttonSize + buttonSize / 1.2f,
+                buttonSize + buttonSize / 2,
                 buttonSize / 2,
                 smallFont, Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM);
         painter.drawText("1000",
-                buttonSize / 1.12f,
+                buttonSize / 2,
                 buttonSize / 2,
                 smallFont, Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM);
     }
