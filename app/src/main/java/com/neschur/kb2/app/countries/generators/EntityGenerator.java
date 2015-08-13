@@ -144,26 +144,26 @@ public class EntityGenerator implements CitiesOwner, ArmyShopsOwner {
             Castle castle = new Castle(map[x][y], nameId);
             new CastleRight(map[x + 1][y]);
             new CastleLeft(map[x - 1][y]);
-            tryPlaceCaptain(x, y + 1);
+            tryPlaceCaptain(x, y + 1, 1000, 2000);
             return castle;
         }
         return null;
     }
 
 
-    public void captains() {
+    public void captains(int minAuthority, int maxAuthority) {
         int count = 0;
-        while (count < 20) {
+        while (count < 15) {
             if (tryPlaceCaptain(random.nextInt(Country.MAX_MAP_SIZE),
-                    random.nextInt(Country.MAX_MAP_SIZE)))
+                    random.nextInt(Country.MAX_MAP_SIZE), minAuthority, maxAuthority))
                 count++;
         }
     }
 
-    private boolean tryPlaceCaptain(int x, int y) {
+    private boolean tryPlaceCaptain(int x, int y, int minAuthority, int maxAuthority) {
         if (map[x][y].getLand() == R.drawable.land && map[x][y].getEntity() == null) {
             Fighting captain = new Captain(map[x][y]);
-            int authority = 100 + random.nextInt(100);
+            int authority = minAuthority + random.nextInt(maxAuthority - minAuthority);
             captain.generateArmy(authority, 0);
             return true;
         }

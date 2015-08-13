@@ -16,7 +16,7 @@ class Country1 extends Country {
         entityGenerator.goldChests(40, getId());
         entityGenerator.armies(10, 1, 0);
         entityGenerator.mapNext();
-        entityGenerator.captains();
+        entityGenerator.captains(30, 400);
         createMetro();
 
         if (hard) {
