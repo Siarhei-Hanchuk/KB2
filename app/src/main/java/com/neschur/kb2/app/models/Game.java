@@ -144,7 +144,7 @@ public class Game implements Serializable {
                     player.setNave(null);
                     player.move(x + dx, y + dy);
                 }
-                if (mp.getLand() == R.drawable.water) {
+                if (mp.getLand() == R.drawable.water || mp.getLand() == R.drawable.plot) {
                     player.move(x + dx, y + dy);
                 }
             } else {
