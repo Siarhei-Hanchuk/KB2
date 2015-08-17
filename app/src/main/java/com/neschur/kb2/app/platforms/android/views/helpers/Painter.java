@@ -2,7 +2,10 @@ package com.neschur.kb2.app.platforms.android.views.helpers;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RadialGradient;
+import android.graphics.Shader;
 
 public class Painter {
     public static final int ALIGN_RIGHT = 1;
@@ -63,4 +66,20 @@ public class Painter {
                     right + xOffset, bottom + yOffset, paint);
         }
     }
+
+    public void drawTrainingCircle(int stepX, int stepY) {
+        int dx = (width - xOffset * 2) / 6;
+        int dy = (height - yOffset * 2) / 5;
+        int x = xOffset + stepX *dx + dx / 2;
+        int y = yOffset + stepY *dy + dy / 2;
+
+        RadialGradient gradient = new RadialGradient(x, y, 200,
+                Color.TRANSPARENT, Color.BLUE, Shader.TileMode.CLAMP);
+        Paint p = new Paint();
+        p.setDither(true);
+        p.setShader(gradient);
+
+        canvas.drawCircle(x, y, 200, p);
+    }
+
 }

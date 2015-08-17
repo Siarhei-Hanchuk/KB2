@@ -214,4 +214,7 @@
     <string name="entity.sorcerer.message12">Заставил Вас всё забыть</string>
     <string name="no">Нет</string>
     <string name="yes">Да</string>
+    <string name="training.moving">Для передвижения в определённую сторону нажимайте на эти области на экране</string>
+    <string name="training.moving2">Или эти для движения по диагонали</string>
+    <string name="training.cities">В городах вы можете сделать полезные покупки, в частности преобрести карабль</string>
 </resources>

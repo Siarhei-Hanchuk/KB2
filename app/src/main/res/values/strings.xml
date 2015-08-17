@@ -215,4 +215,7 @@
     <string name="entity.sorcerer.message12">Заставил Вас всё забыть</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="training.moving">Move</string>
+    <string name="training.moving2">Move2</string>
+    <string name="training.cities">cities</string>
 </resources>

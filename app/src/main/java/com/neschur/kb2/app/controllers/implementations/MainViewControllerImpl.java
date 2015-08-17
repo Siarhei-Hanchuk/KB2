@@ -6,6 +6,7 @@ import com.neschur.kb2.app.controllers.GameCallback;
 import com.neschur.kb2.app.controllers.MainViewController;
 import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Entity;
+import com.neschur.kb2.app.models.Game;
 import com.neschur.kb2.app.models.GameGrid;
 
 public class MainViewControllerImpl extends ApplicationController implements MainViewController,
@@ -153,6 +154,11 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
     @Override
     public void viewClose() {
         setContentView(view);
+    }
+
+    @Override
+    public boolean isTrainingMode() {
+        return getGame().getMode() == Game.MODE_TRAINING;
     }
 
     private void playerMove(int dx, int dy) {

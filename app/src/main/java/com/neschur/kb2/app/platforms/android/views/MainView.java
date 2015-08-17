@@ -1,11 +1,16 @@
 package com.neschur.kb2.app.platforms.android.views;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RadialGradient;
+import android.graphics.Shader;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
+import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.controllers.MainViewController;
 import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.platforms.android.views.helpers.Click;
@@ -13,6 +18,8 @@ import com.neschur.kb2.app.platforms.android.views.helpers.Painter;
 
 class MainView extends ViewImpl {
     private final MainViewController mainViewController;
+    private boolean trainingMode = false;
+    private int trainingStep = 0;
 
     public MainView(Context context, MainViewController mainViewController) {
         super(context, mainViewController);
@@ -21,6 +28,13 @@ class MainView extends ViewImpl {
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
+        if(trainingMode) {
+            trainingMode = false;
+            trainingStep++;
+            refresh();
+            super.onTouchEvent(event);
+        }
+
         Click click = getClick(event);
         if (mainViewController.getGame() == null)
             return super.onTouchEvent(event);
@@ -68,6 +82,7 @@ class MainView extends ViewImpl {
 
     @Override
     public void draw(@NonNull Canvas canvas) {
+        super.draw(canvas);
         Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 
@@ -84,6 +99,59 @@ class MainView extends ViewImpl {
                             stepX() * x, stepY() * y);
                 }
             }
+        }
+
+        showTraining(canvas);
+    }
+
+    private void showTraining(@NonNull Canvas canvas) {
+        if(!mainViewController.isTrainingMode()){
+            return;
+        }
+        Painter painter = getPainter(canvas);
+
+        if(trainingStep == 0) {
+            painter.drawTrainingCircle(0, 2);
+            painter.drawTrainingCircle(2, 0);
+            painter.drawTrainingCircle(4, 2);
+            painter.drawTrainingCircle(2, 4);
+
+            Paint paint = new Paint(getDefaultPaint());
+            paint.setColor(Color.GRAY);
+            painter.drawRect(10, 10, 500, textHeight() * 2, paint);
+            painter.drawText(i18n.translate(R.string.training_moving), 10, 10 + textHeight(), getDefaultPaint());
+            trainingMode = true;
+        }
+
+        if(trainingStep == 1) {
+            painter.drawTrainingCircle(0, 0);
+            painter.drawTrainingCircle(4, 4);
+            painter.drawTrainingCircle(4, 0);
+            painter.drawTrainingCircle(0, 4);
+
+            Paint paint = new Paint(getDefaultPaint());
+            paint.setColor(Color.GRAY);
+            painter.drawRect(10, 10, 500, textHeight() * 2, paint);
+            painter.drawText(i18n.translate(R.string.training_moving2), 10, 10 + textHeight(), getDefaultPaint());
+            trainingMode = true;
+        }
+
+        if(trainingStep == 2) {
+            GameGrid grid = mainViewController.getGameGrid();
+            for (int x = 0; x < GameGrid.STEP_X; x++) {
+                for (int y = 0; y < GameGrid.STEP_Y; y++) {
+                    if(grid.getImageBuyXY(x, y) == R.drawable.city) {
+                        painter.drawTrainingCircle(x, y);
+                    }
+                }
+            }
+
+            Paint paint = new Paint(getDefaultPaint());
+            paint.setColor(Color.GRAY);
+            painter.drawRect(10, 10, 500, textHeight() * 2, paint);
+            painter.drawText(i18n.translate(R.string.training_cities), 10, 10 + textHeight(), getDefaultPaint());
+
+            trainingMode = true;
         }
     }
 }

@@ -22,4 +22,6 @@ public interface MainViewController extends ViewController {
     public void touchRight();
 
     public void touchLeft();
+
+    public boolean isTrainingMode();
 }

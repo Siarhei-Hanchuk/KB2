@@ -36,8 +36,10 @@ public class Game implements Serializable {
     private int days = 200;
     private int currentWorker = -1;
     private boolean captainActive = false;
+    private int mode;
 
     public Game(GameCallback callbacks, int mode) {
+        this.mode = mode;
         this.callbacks = callbacks;
         world = new World(mode);
         player = new Player(world.getCountry(0), mode);
@@ -46,7 +48,10 @@ public class Game implements Serializable {
         } else if (mode == MODE_TRAINING) {
             weeks = 600 - 1;
         }
+    }
 
+    public int getMode() {
+        return mode;
     }
 
     public Player getPlayer() {
