@@ -5,9 +5,10 @@ import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.models.Glade;
 import com.neschur.kb2.app.models.MapPoint;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class BaseGenerator {
+public class BaseGenerator implements Serializable {
     private final Random random;
     private final MapPoint[][] map;
 

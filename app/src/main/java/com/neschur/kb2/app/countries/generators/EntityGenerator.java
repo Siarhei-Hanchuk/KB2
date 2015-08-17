@@ -20,11 +20,12 @@ import com.neschur.kb2.app.models.iterators.ArmyShopsOwner;
 import com.neschur.kb2.app.models.iterators.CitiesOwner;
 import com.neschur.kb2.app.models.iterators.EntityIterator;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
-public class EntityGenerator implements CitiesOwner, ArmyShopsOwner {
+public class EntityGenerator implements CitiesOwner, ArmyShopsOwner, Serializable {
     private static byte[] cityNamesMask;
     private static byte[] castleNamesMask;
     private final Random random;
