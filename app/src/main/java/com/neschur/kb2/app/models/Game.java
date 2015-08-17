@@ -1,6 +1,7 @@
 package com.neschur.kb2.app.models;
 
 import com.neschur.kb2.app.R;
+import com.neschur.kb2.app.TrainingData;
 import com.neschur.kb2.app.controllers.GameCallback;
 import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.countries.World;
@@ -37,6 +38,7 @@ public class Game implements Serializable {
     private int currentWorker = -1;
     private boolean captainActive = false;
     private int mode;
+    private TrainingData trainingData = new TrainingData();
 
     public Game(GameCallback callbacks, int mode) {
         this.mode = mode;
@@ -235,6 +237,10 @@ public class Game implements Serializable {
         Country country = getWorld().getCountry(n);
         country.createMaps();
         player.changeCountry(country);
+    }
+
+    public TrainingData getTrainingData() {
+        return trainingData;
     }
 
 }

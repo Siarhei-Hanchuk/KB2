@@ -1,16 +1,14 @@
 package com.neschur.kb2.app.platforms.android.views;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.RadialGradient;
-import android.graphics.Shader;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.R;
+import com.neschur.kb2.app.TrainingData;
 import com.neschur.kb2.app.controllers.MainViewController;
 import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.platforms.android.views.helpers.Click;
@@ -109,34 +107,9 @@ class MainView extends ViewImpl {
             return;
         }
         Painter painter = getPainter(canvas);
+        TrainingData trainingData = mainViewController.getGame().getTrainingData();
 
-        if(trainingStep == 0) {
-            painter.drawTrainingCircle(0, 2);
-            painter.drawTrainingCircle(2, 0);
-            painter.drawTrainingCircle(4, 2);
-            painter.drawTrainingCircle(2, 4);
-
-            Paint paint = new Paint(getDefaultPaint());
-            paint.setColor(Color.GRAY);
-            painter.drawRect(10, 10, 500, textHeight() * 2, paint);
-            painter.drawText(i18n.translate(R.string.training_moving), 10, 10 + textHeight(), getDefaultPaint());
-            trainingMode = true;
-        }
-
-        if(trainingStep == 1) {
-            painter.drawTrainingCircle(0, 0);
-            painter.drawTrainingCircle(4, 4);
-            painter.drawTrainingCircle(4, 0);
-            painter.drawTrainingCircle(0, 4);
-
-            Paint paint = new Paint(getDefaultPaint());
-            paint.setColor(Color.GRAY);
-            painter.drawRect(10, 10, 500, textHeight() * 2, paint);
-            painter.drawText(i18n.translate(R.string.training_moving2), 10, 10 + textHeight(), getDefaultPaint());
-            trainingMode = true;
-        }
-
-        if(trainingStep == 2) {
+        if(!trainingData.citiesDid()) {
             GameGrid grid = mainViewController.getGameGrid();
             for (int x = 0; x < GameGrid.STEP_X; x++) {
                 for (int y = 0; y < GameGrid.STEP_Y; y++) {
@@ -151,6 +124,38 @@ class MainView extends ViewImpl {
             painter.drawRect(10, 10, 500, textHeight() * 2, paint);
             painter.drawText(i18n.translate(R.string.training_cities), 10, 10 + textHeight(), getDefaultPaint());
 
+            trainingData.doneCities();
+            trainingMode = true;
+        }
+
+
+        if(!trainingData.step2Did()) {
+            painter.drawTrainingCircle(0, 0);
+            painter.drawTrainingCircle(4, 4);
+            painter.drawTrainingCircle(4, 0);
+            painter.drawTrainingCircle(0, 4);
+
+            Paint paint = new Paint(getDefaultPaint());
+            paint.setColor(Color.GRAY);
+            painter.drawRect(10, 10, 500, textHeight() * 2, paint);
+            painter.drawText(i18n.translate(R.string.training_moving2), 10, 10 + textHeight(), getDefaultPaint());
+
+            trainingData.doneStep2();
+            trainingMode = true;
+        }
+
+        if(!trainingData.step1Did()) {
+            painter.drawTrainingCircle(0, 2);
+            painter.drawTrainingCircle(2, 0);
+            painter.drawTrainingCircle(4, 2);
+            painter.drawTrainingCircle(2, 4);
+
+            Paint paint = new Paint(getDefaultPaint());
+            paint.setColor(Color.GRAY);
+            painter.drawRect(10, 10, 500, textHeight() * 2, paint);
+            painter.drawText(i18n.translate(R.string.training_moving), 10, 10 + textHeight(), getDefaultPaint());
+
+            trainingData.doneStep1();
             trainingMode = true;
         }
     }
