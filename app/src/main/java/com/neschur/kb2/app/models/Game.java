@@ -37,8 +37,8 @@ public class Game implements Serializable {
     private int days = 200;
     private int currentWorker = -1;
     private boolean captainActive = false;
-    private int mode;
-    private TrainingData trainingData = new TrainingData();
+    private final int mode;
+    private final TrainingData trainingData = new TrainingData();
 
     public Game(GameCallback callbacks, int mode) {
         this.mode = mode;

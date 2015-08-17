@@ -9,22 +9,22 @@ import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Entity;
 
 public interface ViewFactory {
-    public View getWorkersMenuView(ViewController controller);
+    View getWorkersMenuView(ViewController controller);
 
-    public View getPlayersView(MagicViewController controller, String viewName);
+    View getPlayersView(MagicViewController controller, String viewName);
 
-    public View getMainMenuView(MainMenuController controller);
+    View getMainMenuView(MainMenuController controller);
 
-    public View getMainView(MainViewController controller);
+    View getMainView(MainViewController controller);
 
-    public View getBattleView(BattleController controller);
+    View getBattleView(BattleController controller);
 
-    public View getCountryMenuView(ViewController controller);
+    View getCountryMenuView(ViewController controller);
 
-    public View getViewForEntity(ViewController controller, Entity entity);
+    View getViewForEntity(ViewController controller, Entity entity);
 
-    public View getViewBattleMessageView(ViewController controller, boolean result,
-                                         int authority, int money);
+    View getViewBattleMessageView(ViewController controller, boolean result,
+                                  int authority, int money);
 
-    public View getWeekEndView(ViewController controller, String armyTextId, City city);
+    View getWeekEndView(ViewController controller, String armyTextId, City city);
 }

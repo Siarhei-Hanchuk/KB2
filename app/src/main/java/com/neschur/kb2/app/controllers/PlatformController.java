@@ -10,9 +10,9 @@ public interface PlatformController {
 
     ViewFactory getViewFactory(GameOwner gameOwner);
 
-    public I18n getI18n();
+    I18n getI18n();
 
-    public void setContentView(View view);
+    void setContentView(View view);
 
-    public void exit();
+    void exit();
 }

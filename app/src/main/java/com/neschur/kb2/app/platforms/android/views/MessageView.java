@@ -26,6 +26,7 @@ class MessageView extends ViewImpl {
 
     @Override
     public void draw(@NonNull Canvas canvas) {
+        super.draw(canvas);
         int realWidth = stepX() * 6;
         Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);

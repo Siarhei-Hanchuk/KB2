@@ -3,25 +3,25 @@ package com.neschur.kb2.app.controllers;
 import com.neschur.kb2.app.models.GameGrid;
 
 public interface MainViewController extends ViewController {
-    public GameGrid getGameGrid();
+    GameGrid getGameGrid();
 
-    public void touchMenu(int item);
+    void touchMenu(int item);
 
-    public void touchUp();
+    void touchUp();
 
-    public void touchUpLeft();
+    void touchUpLeft();
 
-    public void touchUpRight();
+    void touchUpRight();
 
-    public void touchDown();
+    void touchDown();
 
-    public void touchDownLeft();
+    void touchDownLeft();
 
-    public void touchDownRight();
+    void touchDownRight();
 
-    public void touchRight();
+    void touchRight();
 
-    public void touchLeft();
+    void touchLeft();
 
-    public boolean isTrainingMode();
+    boolean isTrainingMode();
 }

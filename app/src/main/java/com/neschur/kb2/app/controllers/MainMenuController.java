@@ -1,17 +1,17 @@
 package com.neschur.kb2.app.controllers;
 
 public interface MainMenuController extends ViewController {
-    public void exit();
+    void exit();
 
-    public void saveGame();
+    void saveGame();
 
-    public void loadGame();
+    void loadGame();
 
-    public void newGame();
+    void newGame();
 
-    public void newTraining();
+    void newTraining();
 
-    public boolean isCurrentGame();
+    boolean isCurrentGame();
 
-    public void newTestGame();
+    void newTestGame();
 }

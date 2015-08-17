@@ -26,6 +26,7 @@ public class StatusView extends ViewImpl {
 
     @Override
     public void draw(@NonNull Canvas canvas) {
+        super.draw(canvas);
         Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 

@@ -3,17 +3,17 @@ package com.neschur.kb2.app.controllers;
 import com.neschur.kb2.app.models.battle.MapPointBattle;
 
 public interface BattleController extends ViewController {
-    public MapPointBattle[][] getMap();
+    MapPointBattle[][] getMap();
 
-    public void select(int x, int y);
+    void select(int x, int y);
 
-    public int getSelectedX();
+    int getSelectedX();
 
-    public int getSelectedY();
+    int getSelectedY();
 
-    public void battleFinish(boolean win);
+    void battleFinish(boolean win);
 
-    public void updateView();
+    void updateView();
 
-    public void updateView(int delay);
+    void updateView(int delay);
 }

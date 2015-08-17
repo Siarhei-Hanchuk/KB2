@@ -1,21 +1,21 @@
 package com.neschur.kb2.app.warriors;
 
 public interface Warrior {
-    public String getTextId();
+    String getTextId();
 
-    public int getId();
+    int getId();
 
-    public int getPriceInShop();
+    int getPriceInShop();
 
-    public int getDefence();
+    int getDefence();
 
-    public int getDamage();
+    int getDamage();
 
-    public int getStep();
+    int getStep();
 
-    public boolean isFly();
+    boolean isFly();
 
-    public boolean isShoot();
+    boolean isShoot();
 
-    public int getCountInShop();
+    int getCountInShop();
 }

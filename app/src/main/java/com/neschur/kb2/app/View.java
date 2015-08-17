@@ -1,7 +1,7 @@
 package com.neschur.kb2.app;
 
 public interface View {
-    public void refresh();
+    void refresh();
 
-    public void refresh(int delay);
+    void refresh(int delay);
 }

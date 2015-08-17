@@ -3,11 +3,11 @@ package com.neschur.kb2.app.entities;
 import com.neschur.kb2.app.models.MapPoint;
 
 public interface Entity {
-    public int getID();
+    int getID();
 
-    public void destroy();
+    void destroy();
 
-    public MapPoint getMapPoint();
+    MapPoint getMapPoint();
 
-    public void setMapPoint(MapPoint point);
+    void setMapPoint(MapPoint point);
 }
