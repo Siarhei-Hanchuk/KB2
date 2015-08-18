@@ -217,4 +217,7 @@
     <string name="training.moving">Для передвижения в определённую сторону нажимайте на эти области на экране</string>
     <string name="training.moving2">Или эти для движения по диагонали</string>
     <string name="training.cities">В городах вы можете сделать полезные покупки, в частности преобрести карабль</string>
+    <string name="entity.goldChest.foundIt">Вы нашли сундук полный золота</string>
+    <string name="entity.goldChest.variant1">Золото</string>
+    <string name="entity.goldChest.variant2">Авторитет</string>
 </resources>

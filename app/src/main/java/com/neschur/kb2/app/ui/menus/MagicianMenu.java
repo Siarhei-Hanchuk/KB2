@@ -46,6 +46,11 @@ public class MagicianMenu extends Menu {
     }
 
     @Override
+    public int getItemImageId(int i) {
+        return 0;
+    }
+
+    @Override
     public boolean select(int i) {
         switch (menuMode) {
             case 0:

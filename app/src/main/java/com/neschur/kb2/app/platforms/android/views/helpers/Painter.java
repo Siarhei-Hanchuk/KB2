@@ -82,4 +82,12 @@ public class Painter {
         canvas.drawCircle(x, y, 200, p);
     }
 
+    public int getXOffset() {
+        return xOffset;
+    }
+
+    public int getYOffset() {
+        return yOffset;
+    }
+
 }

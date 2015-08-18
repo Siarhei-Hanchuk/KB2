@@ -1,6 +1,7 @@
 package com.neschur.kb2.app.ui.menus;
 
 import com.neschur.kb2.app.I18n;
+import com.neschur.kb2.app.R;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.GoldChest;
 import com.neschur.kb2.app.models.Game;
@@ -13,12 +14,24 @@ public class GoldChestMenu extends Menu {
         this.chest = (GoldChest) entity;
     }
 
+    public String getTitle() {
+        return i18n.translate("entity_goldChest_foundIt");
+    }
+
     @Override
     public String getItemDescription(int i) {
         if (i == 0)
-            return i18n.translate("entity_goldchest_menu_item1", chest.getGold());
+            return i18n.translate("entity_goldChest_variant1", chest.getGold());
         else
-            return i18n.translate("entity_goldchest_menu_item2", chest.getAuthority());
+            return i18n.translate("entity_goldChest_variant2", chest.getAuthority());
+    }
+
+    @Override
+    public int getItemImageId(int i) {
+        if (i == 0)
+            return R.drawable.status_money_0;
+        else
+            return R.drawable.status_army;
     }
 
     @Override
@@ -26,8 +39,10 @@ public class GoldChestMenu extends Menu {
         switch (i) {
             case 0:
                 player.changeMoney(+chest.getGold());
+                break;
             case 1:
                 player.changeAuthority(+chest.getAuthority());
+                break;
         }
         chest.destroy();
         return true;

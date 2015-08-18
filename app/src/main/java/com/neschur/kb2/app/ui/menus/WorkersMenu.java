@@ -19,6 +19,11 @@ public class WorkersMenu extends Menu {
     }
 
     @Override
+    public int getItemImageId(int i) {
+        return 0;
+    }
+
+    @Override
     public boolean select(int i) {
         game.selectWorker(i);
         return true;

@@ -1,5 +1,7 @@
 package com.neschur.kb2.app.ui.menus;
 
+import android.graphics.Bitmap;
+
 import com.neschur.kb2.app.I18n;
 import com.neschur.kb2.app.models.Game;
 import com.neschur.kb2.app.models.Player;
@@ -19,6 +21,8 @@ public abstract class Menu {
     public abstract int getCount();
 
     public abstract String getItemDescription(int i);
+
+    public abstract int getItemImageId(int i);
 
     public abstract boolean select(int i);
 

@@ -16,6 +16,7 @@ import com.neschur.kb2.app.entities.ArmyShop;
 import com.neschur.kb2.app.entities.City;
 import com.neschur.kb2.app.entities.Entity;
 import com.neschur.kb2.app.entities.Fighting;
+import com.neschur.kb2.app.ui.menus.GoldChestMenu;
 import com.neschur.kb2.app.ui.menus.Menu;
 import com.neschur.kb2.app.ui.menus.MenuFactory;
 import com.neschur.kb2.app.ui.messages.Message;
@@ -78,7 +79,10 @@ public class ViewFactoryImpl implements ViewFactory {
         Message message = messageFactory.getMessage(entity);
         ViewImpl view = null;
         if (menu != null) {
-            view = new MenuView(context, controller, menu);
+            if(menu instanceof GoldChestMenu)
+                view = new Menu2View(context, controller, menu);
+            else
+                view = new MenuView(context, controller, menu);
         }
         if (message != null) {
             view = new MessageView(context, controller, message);

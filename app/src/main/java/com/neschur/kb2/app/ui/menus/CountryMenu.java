@@ -14,6 +14,11 @@ public class CountryMenu extends Menu {
     }
 
     @Override
+    public int getItemImageId(int i) {
+        return 0;
+    }
+
+    @Override
     public boolean select(int i) {
         game.changeCountry(i);
         return true;

@@ -218,4 +218,7 @@
     <string name="training.moving">Move</string>
     <string name="training.moving2">Move2</string>
     <string name="training.cities">cities</string>
+    <string name="entity.goldChest.foundIt">You are found this</string>
+    <string name="entity.goldChest.variant1">var1</string>
+    <string name="entity.goldChest.variant2">var2</string>
 </resources>
