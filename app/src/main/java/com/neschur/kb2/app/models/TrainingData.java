@@ -1,6 +1,8 @@
-package com.neschur.kb2.app;
+package com.neschur.kb2.app.models;
 
-public class TrainingData {
+import java.io.Serializable;
+
+public class TrainingData implements Serializable {
     private boolean step1 = false;
     private boolean step2 = true;
     private boolean cities = true;

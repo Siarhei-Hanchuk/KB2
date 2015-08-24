@@ -8,7 +8,7 @@ import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
 import com.neschur.kb2.app.R;
-import com.neschur.kb2.app.TrainingData;
+import com.neschur.kb2.app.models.TrainingData;
 import com.neschur.kb2.app.controllers.MainViewController;
 import com.neschur.kb2.app.models.GameGrid;
 import com.neschur.kb2.app.platforms.android.views.helpers.Click;

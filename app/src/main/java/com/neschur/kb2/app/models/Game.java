@@ -1,7 +1,6 @@
 package com.neschur.kb2.app.models;
 
 import com.neschur.kb2.app.R;
-import com.neschur.kb2.app.TrainingData;
 import com.neschur.kb2.app.controllers.GameCallback;
 import com.neschur.kb2.app.countries.Country;
 import com.neschur.kb2.app.countries.World;
