@@ -42,7 +42,7 @@ public class Captain extends EntityImpl implements Fighting, Moving {
         int squadCount = (new Random()).nextInt(MAX_ARMY) + 1;
         for (int i = 0; i < squadCount; i++) {
             Warrior warrior = WarriorFactory.createRandomFromGroup(group);
-            WarriorSquad squad = new WarriorSquad(warrior, authority / warrior.getDamage());
+            WarriorSquad squad = new WarriorSquad(warrior, authority / warrior.getDefence());
             warriors[i] = squad;
         }
     }
