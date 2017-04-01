@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">KB2</string>
     <string name="entity.goldchest.menu.item1">Забрать золото(золотой запас +#{?})</string>
     <string name="entity.goldchest.menu.item2">Раздать воинам(авторитет +#{?})</string>
     <string name="entity.goldChest.messages.salary">Недельная плата+</string>
@@ -42,13 +41,12 @@
     <string name="entity.guidePost.message2">Ку-ку.</string>
     <string name="entity.guidePost.message3">Присядь, Рыцарь, Отдохни.</string>
     <string name="entity.guidePost.message4">Нужно найти город</string>
-    <string name="entity.guidePost.message5">I am a fine statue!</string>
     <string name="entity.guidePost.message6">Здешние города пусты.</string>
     <string name="entity.guidePost.message7">Вы можете жить на проценты: АЛЛЕГРО быстрее инфляции.</string>
     <string name="entity.guidePost.message8">Это гиблое место.</string>
     <string name="entity.guidePost.message9">Отпусти животных из своего войска.</string>
     <string name="entity.guidePost.message10">Здесь будет город-сад!</string>
-    <string name="entity.guidePost.message11">Здесь поиться Твой предшественник.</string>
+    <string name="entity.guidePost.message11">Здесь покоится Твой предшественник.</string>
     <string name="entity.guidePost.message12">Надпись неразборчива.</string>
     <string name="entity.guidePost.message13">Зайдите завтра.</string>
     <string name="entity.magician.menu.item1">Работники</string>
@@ -100,8 +98,8 @@
     <string name="player.attrs.authority">Авторитет</string>
     <string name="player.attrs.salary">Недельная прибавка</string>
     <string name="player.attrs.armySalary">Расходы на армию</string>
-    <string name="player.attrs.magickPower">Волешбная сила</string>
-    <string name="player.attrs.maxMagickCount">Макс.количество волшебств</string>
+    <string name="player.attrs.magickPower">Волшебная сила</string>
+    <string name="player.attrs.maxMagickCount">Макс. количество волшебств</string>
     <string name="player.attrs.tornadoCount">Кол-во СМЕРЧЕЙ</string>
     <string name="player.attrs.ancientMapCount">Кол-во частей древней карты</string>
     <string name="player.attrs.weeks">Недель осталось</string>
@@ -121,7 +119,7 @@
     <string name="magic.hiking_magic3">Переход к замку</string>
     <string name="magic.hiking_magic4">Переход к городу</string>
     <string name="magic.hiking_magic5">Дать армию</string>
-    <string name="magic.hiking_magic6">Квариавторитет</string>
+    <string name="magic.hiking_magic6">Квазиавторитет</string>
     <string name="magic.hiking_magic7">Дать волшебство</string>
     <string name="magic.battle_magic1">Телепорт</string>
     <string name="magic.battle_magic2">Размножение</string>
@@ -142,7 +140,7 @@
     <string name="weekEnd.messages.salary">Недельная прибавка</string>
     <string name="weekEnd.messages.armySalary">Расходы на армию</string>
     <string name="weekEnd.messages.armyRefresh">#{?} активизируются.</string>
-    <string name="weekEnd.messages.armyRefresh2">Наступает благоприятный период по расположению звёзд для этих войнов.</string>
+    <string name="weekEnd.messages.armyRefresh2">Наступает благоприятный период по расположению звёзд для этих воинов.</string>
     <string name="weekEnd.messages.armyRefresh3">Все их жилища перенаселяются.</string>
     <string name="weekEnd.messages.cityRefresh">Город #{?} заполнился работниками.</string>
     <string name="entity.city.names.name1">БАВАРИЯ</string>
@@ -217,7 +215,7 @@
     <string name="yes">Да</string>
     <string name="training.moving">Для передвижения в определённую сторону нажимайте на эти области на экране</string>
     <string name="training.moving2">Или эти для движения по диагонали</string>
-    <string name="training.cities">В городах вы можете сделать полезные покупки, в частности преобрести карабль</string>
+    <string name="training.cities">В городах вы можете сделать полезные покупки, в частности приобрести карабль</string>
     <string name="entity.goldChest.foundIt">Вы нашли сундук полный золота</string>
     <string name="entity.goldChest.variant1">Золото</string>
     <string name="entity.goldChest.variant2">Авторитет</string>
