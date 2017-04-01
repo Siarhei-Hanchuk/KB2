@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name" translatable="false">KB2</string>
     <string name="entity.goldchest.menu.item1">Забрать золото(золотой запас +#{?})</string>
     <string name="entity.goldchest.menu.item2">Раздать воинам(авторитет +#{?})</string>
     <string name="entity.goldChest.messages.salary">Недельная плата+</string>

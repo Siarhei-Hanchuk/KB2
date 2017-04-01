@@ -213,12 +213,12 @@
     <string name="entity.sorcerer.message10">Перенес Вас в другое место</string>
     <string name="entity.sorcerer.message11">Потопил Ваш корабль</string>
     <string name="entity.sorcerer.message12">Заставил Вас всё забыть</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="training.moving">Move</string>
-    <string name="training.moving2">Move2</string>
-    <string name="training.cities">cities</string>
-    <string name="entity.goldChest.foundIt">You are found this</string>
-    <string name="entity.goldChest.variant1">var1</string>
-    <string name="entity.goldChest.variant2">var2</string>
+    <string name="no">Нет</string>
+    <string name="yes">Да</string>
+    <string name="training.moving">Для передвижения в определённую сторону нажимайте на эти области на экране</string>
+    <string name="training.moving2">Или эти для движения по диагонали</string>
+    <string name="training.cities">В городах вы можете сделать полезные покупки, в частности преобрести карабль</string>
+    <string name="entity.goldChest.foundIt">Вы нашли сундук полный золота</string>
+    <string name="entity.goldChest.variant1">Золото</string>
+    <string name="entity.goldChest.variant2">Авторитет</string>
 </resources>
