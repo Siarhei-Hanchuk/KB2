@@ -27,8 +27,10 @@ public class MainMenuControllerImpl extends ApplicationController implements Mai
     @Override
     public void loadGame() {
         Game game = getStorage().loadGame("save1");
-        setGame(game);
-        new MainViewControllerImpl();
+        if(game != null) {
+            game.setCallbacks(new MainViewControllerImpl());
+            setGame(game);
+        }
     }
 
     @Override

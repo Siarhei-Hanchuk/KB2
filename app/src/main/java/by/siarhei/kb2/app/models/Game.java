@@ -27,7 +27,7 @@ public class Game implements Serializable {
     public static final int MODE_GAME = 1;
     public static final int MODE_TEST = 2;
 
-    final transient private GameCallback callbacks;
+    transient private GameCallback callbacks;
 
     private final World world;
     private final Player player;
@@ -240,6 +240,10 @@ public class Game implements Serializable {
 
     public TrainingData getTrainingData() {
         return trainingData;
+    }
+
+    public void setCallbacks(GameCallback callbacks) {
+        this.callbacks = callbacks;
     }
 
 }
