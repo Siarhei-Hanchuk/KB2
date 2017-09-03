@@ -7,6 +7,9 @@ import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.models.TrainingData;
 import by.siarhei.kb2.app.controllers.MainViewController;
@@ -17,7 +20,7 @@ import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
 class MainView extends ViewImpl {
     private final MainViewController mainViewController;
     private boolean trainingMode = false;
-    private int trainingStep = 0;
+//    private int trainingStep = 0;
 
     public MainView(Context context, MainViewController mainViewController) {
         super(context, mainViewController);
@@ -28,7 +31,7 @@ class MainView extends ViewImpl {
     public boolean onTouchEvent(@NonNull MotionEvent event) {
         if(trainingMode) {
             trainingMode = false;
-            trainingStep++;
+//            trainingStep++;
             refresh();
             super.onTouchEvent(event);
         }
@@ -119,10 +122,7 @@ class MainView extends ViewImpl {
                 }
             }
 
-            Paint paint = new Paint(getDefaultPaint());
-            paint.setColor(Color.GRAY);
-            painter.drawRect(10, 10, 500, textHeight() * 2, paint);
-            painter.drawText(i18n.translate(R.string.training_cities), 10, 10 + textHeight(), getDefaultPaint());
+            drawTrainingText(painter, R.string.training_cities);
 
             trainingData.doneCities();
             trainingMode = true;
@@ -135,10 +135,7 @@ class MainView extends ViewImpl {
             painter.drawTrainingCircle(4, 0);
             painter.drawTrainingCircle(0, 4);
 
-            Paint paint = new Paint(getDefaultPaint());
-            paint.setColor(Color.GRAY);
-            painter.drawRect(10, 10, 500, textHeight() * 2, paint);
-            painter.drawText(i18n.translate(R.string.training_moving2), 10, 10 + textHeight(), getDefaultPaint());
+            drawTrainingText(painter, R.string.training_moving);
 
             trainingData.doneStep2();
             trainingMode = true;
@@ -150,13 +147,54 @@ class MainView extends ViewImpl {
             painter.drawTrainingCircle(4, 2);
             painter.drawTrainingCircle(2, 4);
 
-            Paint paint = new Paint(getDefaultPaint());
-            paint.setColor(Color.GRAY);
-            painter.drawRect(10, 10, 500, textHeight() * 2, paint);
-            painter.drawText(i18n.translate(R.string.training_moving), 10, 10 + textHeight(), getDefaultPaint());
+            drawTrainingText(painter, R.string.training_moving);
 
             trainingData.doneStep1();
             trainingMode = true;
         }
+    }
+
+    private void drawTrainingText(Painter painter, int textId) {
+        Paint textPaint = getDefaultPaint();
+        int helpTextHeight = 40;
+        textPaint.setTextSize(helpTextHeight);
+        String text = i18n.translate(textId);
+        List<String> textArray = splitText(textPaint, text);
+
+        Paint paint = new Paint(getDefaultPaint());
+        paint.setColor(Color.GRAY);
+        paint.setTextSize(5);
+        painter.drawRect(10, 10,
+                stepX() * 5 - 10,
+                (helpTextHeight + 20) * (textArray.size() + 1) - 20, paint);
+
+        int y = 0;
+        for (String line : textArray) {
+            y++;
+            painter.drawText(line, 20, (helpTextHeight + 20) * y, textPaint);
+        }
+    }
+
+    private List<String> splitText(Paint paint, String text) {
+        float textWidth = paint.measureText(text);
+        float screenWidth = stepX() * 5;
+        List<String> result = new ArrayList<String>();
+        String[] words = text.split(" ");
+
+        int i = 0;
+        while(i < words.length) {
+            String newLine = new String();
+            boolean x = paint.measureText(newLine + words[i] + " ") < screenWidth;
+            while (i < words.length && paint.measureText(newLine + words[i] + " ") < screenWidth) {
+                newLine = newLine + words[i] + " ";
+                i++;
+            }
+            if(newLine == "") {
+                newLine = words[i];
+                i++;
+            }
+            result.add(newLine);
+        }
+        return result;
     }
 }
