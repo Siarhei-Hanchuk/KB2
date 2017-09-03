@@ -1,6 +1,6 @@
 package by.siarhei.kb2.app.countries;
 
-import com.neschur.kb2.app.R;
+import by.siarhei.kb2.app.R;
 
 class Country1 extends Country {
 

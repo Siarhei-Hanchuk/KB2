@@ -21,7 +21,7 @@ public class GoldChestMessage extends Message {
             case 0:
                 return i18n.translate("entity_goldChest_messages_salary");
             case 1:
-                return i18n.translate("entity_goldChest_messages_magickUp");
+                return i18n.translate("entity_goldChest_messages_magicUp");
             case 2:
                 return i18n.translate("entity_goldChest_messages_randomMagic");
         }

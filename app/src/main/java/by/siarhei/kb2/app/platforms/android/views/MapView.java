@@ -7,7 +7,7 @@ import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
-import com.neschur.kb2.app.R;
+import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.controllers.PlayerViewsController;
 import by.siarhei.kb2.app.countries.Country;
 import by.siarhei.kb2.app.models.MapPoint;
@@ -119,7 +119,7 @@ class MapView extends ViewImpl {
             case R.drawable.guidepost:
                 paint.setColor(Color.GRAY);
                 break;
-            case R.drawable.goldchest:
+            case R.drawable.gold_chest:
                 paint.setColor(Color.CYAN);
                 break;
             case R.drawable.nave:

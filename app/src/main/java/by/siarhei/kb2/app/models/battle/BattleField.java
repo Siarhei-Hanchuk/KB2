@@ -1,6 +1,6 @@
 package by.siarhei.kb2.app.models.battle;
 
-import com.neschur.kb2.app.R;
+import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.controllers.BattleController;
 import by.siarhei.kb2.app.entities.Fighting;
 import by.siarhei.kb2.app.models.Glade;

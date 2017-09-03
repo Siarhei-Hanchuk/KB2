@@ -1,10 +1,9 @@
 package by.siarhei.kb2.app.countries;
 
-import com.neschur.kb2.app.R;
+import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.countries.generators.BaseGenerator;
 import by.siarhei.kb2.app.countries.generators.EntityGenerator;
 import by.siarhei.kb2.app.entities.ArmyShop;
-import by.siarhei.kb2.app.entities.Captain;
 import by.siarhei.kb2.app.entities.Castle;
 import by.siarhei.kb2.app.entities.CastlesOwner;
 import by.siarhei.kb2.app.entities.City;

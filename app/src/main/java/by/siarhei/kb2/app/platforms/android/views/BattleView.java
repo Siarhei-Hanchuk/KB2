@@ -10,7 +10,7 @@ import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 
-import com.neschur.kb2.app.R;
+import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.controllers.BattleController;
 import by.siarhei.kb2.app.models.battle.MapPointBattle;
 import by.siarhei.kb2.app.models.battle.WarriorEntity;

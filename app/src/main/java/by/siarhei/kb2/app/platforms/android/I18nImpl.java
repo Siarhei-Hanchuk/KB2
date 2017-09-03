@@ -3,7 +3,7 @@ package by.siarhei.kb2.app.platforms.android;
 import android.content.res.Resources;
 
 import by.siarhei.kb2.app.I18n;
-import com.neschur.kb2.app.R;
+import by.siarhei.kb2.app.R;
 
 class I18nImpl implements I18n {
     private final Resources resources;
@@ -39,7 +39,7 @@ class I18nImpl implements I18n {
             return key;
         }
         for (String item : replaces) {
-            result = result.replaceFirst("#\\{\\?\\}", item);
+            result = result.replace("#{?}", item);
         }
         return result;
 

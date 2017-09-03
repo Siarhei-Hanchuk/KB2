@@ -7,8 +7,8 @@ import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
-import com.neschur.kb2.app.BuildConfig;
-import com.neschur.kb2.app.R;
+import by.siarhei.kb2.app.BuildConfig;
+import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.controllers.MainMenuController;
 import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
 

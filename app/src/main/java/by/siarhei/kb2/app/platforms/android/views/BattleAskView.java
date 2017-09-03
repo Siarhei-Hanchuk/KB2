@@ -6,7 +6,7 @@ import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
-import com.neschur.kb2.app.R;
+import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.controllers.BattleAskController;
 import by.siarhei.kb2.app.entities.Castle;
 import by.siarhei.kb2.app.entities.Fighting;

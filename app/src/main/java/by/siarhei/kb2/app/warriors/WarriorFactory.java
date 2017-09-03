@@ -1,6 +1,6 @@
 package by.siarhei.kb2.app.warriors;
 
-import com.neschur.kb2.app.R;
+import by.siarhei.kb2.app.R;
 
 import java.util.Random;
 

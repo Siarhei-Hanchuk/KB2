@@ -8,7 +8,7 @@ public interface Entity {
 
     default int getID(Player player) {
         return getID();
-    };
+    }
 
     void destroy();
 

@@ -1,92 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" translatable="false">KB2</string>
-    <string name="entity.goldchest.menu.item1">Pick up gold(gold reserve +#{?})</string>
-    <string name="entity.goldchest.menu.item2">Give to troops(authority +#{?})</string>
-    <string name="entity.goldChest.messages.salary">Weekly fee+</string>
-    <string name="entity.goldChest.messages.magickUp">Max Number of Sorcery +1</string>
-    <string name="countries.country1">Plainland</string>
-    <string name="countries.country2">Swampland</string>
-    <string name="countries.country3">Forestland</string>
-    <string name="countries.country4">Alpia</string>
-    <string name="countries.country5">Sahara</string>
+    <string name="entity.goldChest.menu.item1" tools:ignore="UnusedResources">Pick up gold(gold reserve +#{?})</string>
+    <string name="entity.goldChest.menu.item2" tools:ignore="UnusedResources">Give to troops(authority +#{?})</string>
+    <string name="entity.goldChest.messages.salary" tools:ignore="UnusedResources">Weekly fee+</string>
+    <string name="entity.goldChest.messages.magicUp" tools:ignore="UnusedResources">Max Number of Sorcery +1</string>
+    <string name="countries.country1" tools:ignore="UnusedResources">Plainland</string>
+    <string name="countries.country2" tools:ignore="UnusedResources">Swampland</string>
+    <string name="countries.country3" tools:ignore="UnusedResources">Forestland</string>
+    <string name="countries.country4" tools:ignore="UnusedResources">Alpia</string>
+    <string name="countries.country5" tools:ignore="UnusedResources">Sahara</string>
     <string name="entity.mapNext.message">You found the map before the new country</string>
     <string name="entity.city.menu.item1">To sign a contract</string>
     <string name="entity.city.menu.item7">Products</string>
     <string name="entity.city.menu.item6">Workers</string>
-    <string name="entity.city.menu.item5">Buy a battering ram</string>
-    <string name="entity.city.menu.item4">%sorcery%</string>
+    <string name="entity.city.menu.item5" tools:ignore="UnusedResources">Buy a battering ram</string>
+    <string name="entity.city.menu.item4" tools:ignore="UnusedResources">%sorcery%</string>
     <string name="entity.city.menu.item3">Ask about the castle</string>
-    <string name="entity.city.menu.item2">Buy the ship</string>
+    <string name="entity.city.menu.item2" tools:ignore="UnusedResources">Buy the ship</string>
     <string name="entity.city.menu.item2a">Sell the ship</string>
-    <string name="entity.city.menu.workers.item1">Carpenters</string>
-    <string name="entity.city.menu.workers.item2">Loggers</string>
-    <string name="entity.city.menu.workers.item3">Diggers</string>
-    <string name="entity.city.menu.workers.item4">Rockshaper</string>
-    <string name="entity.spell.message0">Symbols Spells erased on this paper</string>
-    <string name="entity.spell.message1">You lose all workers</string>
-    <string name="entity.spell.message2">Your ship is sunk</string>
-    <string name="entity.spell.message3">Memory became you to change</string>
-    <string name="entity.spell.message4">Вы теряете армию</string>
-    <string name="entity.spell.message5">Your gold reserves have not you</string>
-    <string name="entity.spell.message6">The owner of the earth have grown BIG EARS</string>
-    <string name="entity.spell.message7">Your troops decreased</string>
-    <string name="entity.spell.message8">The spell to transfer you to another place</string>
-    <string name="entity.spell.message9">Your authority in the troops is growing</string>
-    <string name="entity.spell.message10">Your gold reserve doubled</string>
-    <string name="entity.spell.message11">Your soldiers are more skillful</string>
-    <string name="entity.spell.message12">You have found the spell to call the Wizard</string>
-    <string name="entity.spell.message13">This paper is very necessary to one of the owners of land</string>
-    <string name="entity.spell.message14">Cities are filled with workers</string>
-    <string name="entity.guidePost.message1">Find RITUAL stone.</string>
-    <string name="entity.guidePost.message2">Koo-ku.</string>
-    <string name="entity.guidePost.message3">Sit, Knight, Rest.</string>
-    <string name="entity.guidePost.message4">You need to find a city</string>
-    <string name="entity.guidePost.message5" translatable="false">I am a fine statue!</string>
-    <string name="entity.guidePost.message6">The local cities are empty.</string>
-    <string name="entity.guidePost.message7">You can live on interest: ALLEGRO faster than inflation.</string>
-    <string name="entity.guidePost.message8">It is a bad place.</string>
-    <string name="entity.guidePost.message9">Let the animals out of their troops.</string>
-    <string name="entity.guidePost.message10">There will be a garden city here!</string>
-    <string name="entity.guidePost.message11">Here lie Your predecessor.</string>
-    <string name="entity.guidePost.message12">The inscription is illegible.</string>
-    <string name="entity.guidePost.message13">Check in tomorrow.</string>
-    <string name="entity.magician.menu.item1">Workers</string>
-    <string name="entity.magician.menu.item2">Magic power</string>
-    <string name="entity.magician.menu.item3">Move to another continent</string>
-    <string name="entity.magician.menu.item4">Ask for a spell</string>
-    <string name="entity.magician.menu.item4a">Where is the castle on contract?</string>
-    <string name="entity.magician.menu.item5">Give a Tornado</string>
-    <string name="entity.magician.menu.item6a">Part of the ancient map</string>
-    <string name="entity.magician.menu.item6b">Change the sorcery</string>
-    <string name="entity.magician.menu.item6c">Refresh workers</string>
-    <string name="entity.magician.menu.item6d">Refresh warriors</string>
-    <string name="entity.magician.menu.item6e">Strengthen Warriors</string>
-    <string name="army.names.peasant">Peasants</string>
-    <string name="army.names.aborigine">The natives</string>
-    <string name="army.names.boar">Boars</string>
-    <string name="army.names.skeleton">Skeletons</string>
-    <string name="army.names.woodgoblin">Woodgoblins</string>
-    <string name="army.names.elf">Elves</string>
-    <string name="army.names.dwarf">Dwarfs</string>
-    <string name="army.names.gorilla">Gorillas</string>
-    <string name="army.names.zombie">Zombies</string>
-    <string name="army.names.rknight">RKnights</string>
-    <string name="army.names.druid">Druids</string>
-    <string name="army.names.cannibal">Cannibals</string>
-    <string name="army.names.ghost">Ghosts</string>
-    <string name="army.names.lion">Lions</string>
-    <string name="army.names.snake">Snakes</string>
-    <string name="army.names.troll">Trolls</string>
-    <string name="army.names.vampire">Vampires</string>
-    <string name="army.names.giant">Giants</string>
-    <string name="army.names.elephant">Elephants</string>
-    <string name="army.names.knight">Knights</string>
-    <string name="army.names.centaur">Centaurs</string>
-    <string name="army.names.dinosaur">Dinosaurs</string>
-    <string name="army.names.daemon">Demons</string>
-    <string name="army.names.cyclops">Dragons</string>
-    <string name="army.names.dragon">Cyclops</string>
+    <string name="entity.city.menu.workers.item1" tools:ignore="UnusedResources">Carpenters</string>
+    <string name="entity.city.menu.workers.item2" tools:ignore="UnusedResources">Loggers</string>
+    <string name="entity.city.menu.workers.item3" tools:ignore="UnusedResources">Diggers</string>
+    <string name="entity.city.menu.workers.item4" tools:ignore="UnusedResources">Rockshaper</string>
+    <string name="entity.spell.message0" tools:ignore="UnusedResources">Symbols Spells erased on this paper</string>
+    <string name="entity.spell.message1" tools:ignore="UnusedResources">You lose all workers</string>
+    <string name="entity.spell.message2" tools:ignore="UnusedResources">Your ship is sunk</string>
+    <string name="entity.spell.message3" tools:ignore="UnusedResources">Memory became you to change</string>
+    <string name="entity.spell.message4" tools:ignore="UnusedResources">Вы теряете армию</string>
+    <string name="entity.spell.message5" tools:ignore="UnusedResources">Your gold reserves have not you</string>
+    <string name="entity.spell.message6" tools:ignore="UnusedResources">The owner of the earth have grown BIG EARS</string>
+    <string name="entity.spell.message7" tools:ignore="UnusedResources">Your troops decreased</string>
+    <string name="entity.spell.message8" tools:ignore="UnusedResources">The spell to transfer you to another place</string>
+    <string name="entity.spell.message9" tools:ignore="UnusedResources">Your authority in the troops is growing</string>
+    <string name="entity.spell.message10" tools:ignore="UnusedResources">Your gold reserve doubled</string>
+    <string name="entity.spell.message11" tools:ignore="UnusedResources">Your soldiers are more skillful</string>
+    <string name="entity.spell.message12" tools:ignore="UnusedResources">You have found the spell to call the Wizard</string>
+    <string name="entity.spell.message13" tools:ignore="UnusedResources">This paper is very necessary to one of the owners of land</string>
+    <string name="entity.spell.message14" tools:ignore="UnusedResources">Cities are filled with workers</string>
+    <string name="entity.guidePost.message1" tools:ignore="UnusedResources">Find RITUAL stone.</string>
+    <string name="entity.guidePost.message2" tools:ignore="UnusedResources">Koo-ku.</string>
+    <string name="entity.guidePost.message3" tools:ignore="UnusedResources">Sit, Knight, Rest.</string>
+    <string name="entity.guidePost.message4" tools:ignore="UnusedResources">You need to find a city</string>
+    <string name="entity.guidePost.message5" translatable="false" tools:ignore="UnusedResources">I am a fine statue!</string>
+    <string name="entity.guidePost.message6" tools:ignore="UnusedResources">The local cities are empty.</string>
+    <string name="entity.guidePost.message7" tools:ignore="UnusedResources">You can live on interest: ALLEGRO faster than inflation.</string>
+    <string name="entity.guidePost.message8" tools:ignore="UnusedResources">It is a bad place.</string>
+    <string name="entity.guidePost.message9" tools:ignore="UnusedResources">Let the animals out of their troops.</string>
+    <string name="entity.guidePost.message10" tools:ignore="UnusedResources">There will be a garden city here!</string>
+    <string name="entity.guidePost.message11" tools:ignore="UnusedResources">Here lie Your predecessor.</string>
+    <string name="entity.guidePost.message12" tools:ignore="UnusedResources">The inscription is illegible.</string>
+    <string name="entity.guidePost.message13" tools:ignore="UnusedResources">Check in tomorrow.</string>
+    <string name="entity.magician.menu.item1" tools:ignore="UnusedResources">Workers</string>
+    <string name="entity.magician.menu.item2" tools:ignore="UnusedResources">Magic power</string>
+    <string name="entity.magician.menu.item3" tools:ignore="UnusedResources">Move to another continent</string>
+    <string name="entity.magician.menu.item4" tools:ignore="UnusedResources">Ask for a spell</string>
+    <string name="entity.magician.menu.item4a" tools:ignore="UnusedResources">Where is the castle on contract?</string>
+    <string name="entity.magician.menu.item5" tools:ignore="UnusedResources">Give a Tornado</string>
+    <string name="entity.magician.menu.item6a" tools:ignore="UnusedResources">Part of the ancient map</string>
+    <string name="entity.magician.menu.item6b" tools:ignore="UnusedResources">Change the sorcery</string>
+    <string name="entity.magician.menu.item6c" tools:ignore="UnusedResources">Refresh workers</string>
+    <string name="entity.magician.menu.item6d" tools:ignore="UnusedResources">Refresh warriors</string>
+    <string name="entity.magician.menu.item6e" tools:ignore="UnusedResources">Strengthen Warriors</string>
+    <string name="army.names.peasant" tools:ignore="UnusedResources">Peasants</string>
+    <string name="army.names.aborigine" tools:ignore="UnusedResources">The natives</string>
+    <string name="army.names.boar" tools:ignore="UnusedResources">Boars</string>
+    <string name="army.names.skeleton" tools:ignore="UnusedResources">Skeletons</string>
+    <string name="army.names.woodgoblin" tools:ignore="UnusedResources">Woodgoblins</string>
+    <string name="army.names.elf" tools:ignore="UnusedResources">Elves</string>
+    <string name="army.names.dwarf" tools:ignore="UnusedResources">Dwarfs</string>
+    <string name="army.names.gorilla" tools:ignore="UnusedResources">Gorillas</string>
+    <string name="army.names.zombie" tools:ignore="UnusedResources">Zombies</string>
+    <string name="army.names.rknight" tools:ignore="UnusedResources">RKnights</string>
+    <string name="army.names.druid" tools:ignore="UnusedResources">Druids</string>
+    <string name="army.names.cannibal" tools:ignore="UnusedResources">Cannibals</string>
+    <string name="army.names.ghost" tools:ignore="UnusedResources">Ghosts</string>
+    <string name="army.names.lion" tools:ignore="UnusedResources">Lions</string>
+    <string name="army.names.snake" tools:ignore="UnusedResources">Snakes</string>
+    <string name="army.names.troll" tools:ignore="UnusedResources">Trolls</string>
+    <string name="army.names.vampire" tools:ignore="UnusedResources">Vampires</string>
+    <string name="army.names.giant" tools:ignore="UnusedResources">Giants</string>
+    <string name="army.names.elephant" tools:ignore="UnusedResources">Elephants</string>
+    <string name="army.names.knight" tools:ignore="UnusedResources">Knights</string>
+    <string name="army.names.centaur" tools:ignore="UnusedResources">Centaurs</string>
+    <string name="army.names.dinosaur" tools:ignore="UnusedResources">Dinosaurs</string>
+    <string name="army.names.daemon" tools:ignore="UnusedResources">Demons</string>
+    <string name="army.names.cyclops" tools:ignore="UnusedResources">Dragons</string>
+    <string name="army.names.dragon" tools:ignore="UnusedResources">Cyclops</string>
     <string name="entity.armyShop.ui.thereIs">Have</string>
     <string name="entity.armyShop.ui.price">Cost</string>
     <string name="entity.armyShop.ui.step">Step</string>
@@ -97,14 +97,14 @@
     <string name="entity.armyShop.ui.afford">You can hire</string>
     <string name="entity.armyShop.ui.howMany">How many?</string>
     <string name="player.attrs.money">Gold</string>
-    <string name="player.attrs.authority">Authority</string>
-    <string name="player.attrs.salary">Weekly increase</string>
-    <string name="player.attrs.armySalary">Expenditure on the army</string>
-    <string name="player.attrs.magickPower">Magic power</string>
-    <string name="player.attrs.maxMagickCount">Maximum number of magic</string>
-    <string name="player.attrs.tornadoCount">Count of TORNADO</string>
-    <string name="player.attrs.ancientMapCount">Number of parts of an ancient map</string>
-    <string name="player.attrs.weeks">A week left</string>
+    <string name="player.attrs.authority" tools:ignore="UnusedResources">Authority</string>
+    <string name="player.attrs.salary" tools:ignore="UnusedResources">Weekly increase</string>
+    <string name="player.attrs.armySalary" tools:ignore="UnusedResources">Expenditure on the army</string>
+    <string name="player.attrs.magicPower" tools:ignore="UnusedResources">Magic power</string>
+    <string name="player.attrs.maxMagicCount" tools:ignore="UnusedResources">Maximum number of magic</string>
+    <string name="player.attrs.tornadoCount" tools:ignore="UnusedResources">Count of TORNADO</string>
+    <string name="player.attrs.ancientMapCount" tools:ignore="UnusedResources">Number of parts of an ancient map</string>
+    <string name="player.attrs.weeks" tools:ignore="UnusedResources">A week left</string>
     <string name="mainMenu.exit">Exit</string>
     <string name="mainMenu.load_game">Load game</string>
     <string name="mainMenu.new_game">New game</string>
@@ -112,113 +112,113 @@
     <string name="mainMenu.training">Training</string>
     <string name="mainMenu.save_game">Save game</string>
     <string name="mainMenu.save_game.saved">Saved</string>
-    <string name="workers.item1">Carpenters</string>
-    <string name="workers.item2">Loggers</string>
-    <string name="workers.item3">Diggers</string>
-    <string name="workers.item4">Rockshaper</string>
-    <string name="magic.hiking_magic1">Stop time</string>
-    <string name="magic.hiking_magic2">QUIETLY!</string>
-    <string name="magic.hiking_magic3">Go to the castle</string>
-    <string name="magic.hiking_magic4">Go to the city</string>
-    <string name="magic.hiking_magic5">Give army</string>
-    <string name="magic.hiking_magic6">Quasi-authoritativeness</string>
-    <string name="magic.hiking_magic7">Writing Magic</string>
-    <string name="magic.battle_magic1">Teleport</string>
-    <string name="magic.battle_magic2">Duplication</string>
-    <string name="magic.battle_magic3">Ball lightning</string>
-    <string name="magic.battle_magic4">Frost</string>
-    <string name="magic.battle_magic5">Cudgel</string>
-    <string name="magic.battle_magic6">Resurrection</string>
-    <string name="magic.battle_magic7">Infection</string>
+    <string name="workers.item1" tools:ignore="UnusedResources">Carpenters</string>
+    <string name="workers.item2" tools:ignore="UnusedResources">Loggers</string>
+    <string name="workers.item3" tools:ignore="UnusedResources">Diggers</string>
+    <string name="workers.item4" tools:ignore="UnusedResources">Rockshaper</string>
+    <string name="magic.hiking_magic1" tools:ignore="UnusedResources">Stop time</string>
+    <string name="magic.hiking_magic2" tools:ignore="UnusedResources">QUIETLY!</string>
+    <string name="magic.hiking_magic3" tools:ignore="UnusedResources">Go to the castle</string>
+    <string name="magic.hiking_magic4" tools:ignore="UnusedResources">Go to the city</string>
+    <string name="magic.hiking_magic5" tools:ignore="UnusedResources">Give army</string>
+    <string name="magic.hiking_magic6" tools:ignore="UnusedResources">Quasi-authoritativeness</string>
+    <string name="magic.hiking_magic7" tools:ignore="UnusedResources">Writing Magic</string>
+    <string name="magic.battle_magic1" tools:ignore="UnusedResources">Teleport</string>
+    <string name="magic.battle_magic2" tools:ignore="UnusedResources">Duplication</string>
+    <string name="magic.battle_magic3" tools:ignore="UnusedResources">Ball lightning</string>
+    <string name="magic.battle_magic4" tools:ignore="UnusedResources">Frost</string>
+    <string name="magic.battle_magic5" tools:ignore="UnusedResources">Cudgel</string>
+    <string name="magic.battle_magic6" tools:ignore="UnusedResources">Resurrection</string>
+    <string name="magic.battle_magic7" tools:ignore="UnusedResources">Infection</string>
     <string name="battle.begin.castle">Castle</string>
     <string name="battle.begin.ask">Are you going to fight?</string>
     <string name="battle.begin.ask.yes">Yes</string>
     <string name="battle.begin.ask.no">No</string>
     <string name="weekEnd.messages.title">FINANCIAL REPORT OF THE PAST WEEK</string>
-    <string name="weekEnd.messages.money">Total</string>
-    <string name="weekEnd.messages.salary">Weekly increase</string>
-    <string name="weekEnd.messages.armySalary">Expenditure on the army</string>
-    <string name="weekEnd.messages.armyRefresh">#{?} Are activated</string>
-    <string name="weekEnd.messages.armyRefresh2">There comes a favorable period for the location of the stars for these warriors.</string>
-    <string name="weekEnd.messages.armyRefresh3">All their dwellings are overpopulated</string>
-    <string name="weekEnd.messages.cityRefresh">City #{?} filled with workers.</string>
-    <string name="entity.city.names.name1">БАВАРИЯ</string>
-    <string name="entity.city.names.name2">БОРМАШОВ</string>
-    <string name="entity.city.names.name3">ГНИЛОВКА</string>
-    <string name="entity.city.names.name4">ГУРЬЕВ</string>
-    <string name="entity.city.names.name5">ЕЛОВОЕ</string>
-    <string name="entity.city.names.name6">ЖЛОБСК</string>
-    <string name="entity.city.names.name7">ЗИГЗЮГСК</string>
-    <string name="entity.city.names.name8">ИВАНОВКА</string>
-    <string name="entity.city.names.name9">КОРОБОВ</string>
-    <string name="entity.city.names.name10">ЛЕВАДА</string>
-    <string name="entity.city.names.name11">ЛЫСЕВСК</string>
-    <string name="entity.city.names.name12">МОСКАЛЕВ</string>
-    <string name="entity.city.names.name13">ОКРАИНКА</string>
-    <string name="entity.city.names.name14">ОСНОВА</string>
-    <string name="entity.city.names.name15">ПИХАТКИ</string>
-    <string name="entity.city.names.name16">РОГАНЬ</string>
-    <string name="entity.city.names.name17">САЛАТОВ</string>
-    <string name="entity.city.names.name18">СЕНТР</string>
-    <string name="entity.city.names.name19">СОХАТЫЙ</string>
-    <string name="entity.city.names.name20">ТЮРИНКА</string>
-    <string name="entity.city.names.name21">УЖАЛОВСК</string>
-    <string name="entity.city.names.name22">УРЮЙСК</string>
-    <string name="entity.city.names.name23">ХАРЬКОВ</string>
-    <string name="entity.city.names.name24">ШИШКИНО</string>
-    <string name="entity.city.names.name25">ЩУЧЬЕ</string>
-    <string name="entity.city.names.name26">ЭННСК</string>
-    <string name="entity.city.names.name27">ЮЖНЫЙ</string>
-    <string name="entity.city.names.name28">ЯНТАРНЫЙ</string>
-    <string name="entity.castle.names.name1">AKКРА</string>
-    <string name="entity.castle.names.name2">БАМАКО</string>
-    <string name="entity.castle.names.name3">БИСАУ</string>
-    <string name="entity.castle.names.name4">ГЛАЗГО</string>
-    <string name="entity.castle.names.name5">ГРИНВИЧ</string>
-    <string name="entity.castle.names.name6">ГРИНВИЧ</string>
-    <string name="entity.castle.names.name7">ДОВЕР</string>
-    <string name="entity.castle.names.name8">ИФ</string>
-    <string name="entity.castle.names.name9">КАЗБЕК</string>
-    <string name="entity.castle.names.name10">КАНБЕРРА</string>
-    <string name="entity.castle.names.name11">КОНАКРИ</string>
-    <string name="entity.castle.names.name12">ЛА-ПАС</string>
-    <string name="entity.castle.names.name13">ЛОРШЕ</string>
-    <string name="entity.castle.names.name14">МАРШЕЛЬ</string>
-    <string name="entity.castle.names.name15">МОНБЛАН</string>
-    <string name="entity.castle.names.name16">НДЖАМЕНА</string>
-    <string name="entity.castle.names.name17">ПОРТАЛИС</string>
-    <string name="entity.castle.names.name18">РАБАТ</string>
-    <string name="entity.castle.names.name19">РАНГУН</string>
-    <string name="entity.castle.names.name20">СУКРЕ</string>
-    <string name="entity.castle.names.name21">СФИНКС</string>
-    <string name="entity.castle.names.name22">ТЕНЕГАР</string>
-    <string name="entity.castle.names.name23">ТОЛЕДО</string>
-    <string name="entity.castle.names.name24">ТРИЕСТ</string>
-    <string name="entity.castle.names.name25">ХАРАФАТ</string>
-    <string name="entity.castle.names.name26">ХАРТУМ</string>
-    <string name="entity.castle.names.name27">ЭР-РИЯД</string>
-    <string name="entity.castle.names.name28">ЯСЕР</string>
-    <string name="entity.sorcerer.message1">Reduced the time allotted to you</string>
-    <string name="entity.sorcerer.message2">Decreased your magic power</string>
-    <string name="entity.sorcerer.message3">Decreased your authority</string>
-    <string name="entity.sorcerer.message4">Stole your workers</string>
-    <string name="entity.sorcerer.message5">Stole your gold</string>
-    <string name="entity.sorcerer.message6">Stole your army</string>
-    <string name="entity.sorcerer.message7">Has taken away a map of the Earth</string>
-    <string name="entity.sorcerer.message8">Took away your magic</string>
-    <string name="entity.sorcerer.message9">Moved you to another continent</string>
-    <string name="entity.sorcerer.message10">Moved you to another place</string>
-    <string name="entity.sorcerer.message11">Drown your ship</string>
-    <string name="entity.sorcerer.message12">Made you forget everything</string>
+    <string name="weekEnd.messages.money" tools:ignore="UnusedResources">Total</string>
+    <string name="weekEnd.messages.salary" tools:ignore="UnusedResources">Weekly increase</string>
+    <string name="weekEnd.messages.armySalary" tools:ignore="UnusedResources">Expenditure on the army</string>
+    <string name="weekEnd.messages.armyRefresh" tools:ignore="UnusedResources">#{?} Are activated</string>
+    <string name="weekEnd.messages.armyRefresh2" tools:ignore="UnusedResources">There comes a favorable period for the location of the stars for these warriors.</string>
+    <string name="weekEnd.messages.armyRefresh3" tools:ignore="UnusedResources">All their dwellings are overpopulated</string>
+    <string name="weekEnd.messages.cityRefresh" tools:ignore="UnusedResources">City #{?} filled with workers.</string>
+    <string name="entity.city.names.name1" tools:ignore="UnusedResources">БАВАРИЯ</string>
+    <string name="entity.city.names.name2" tools:ignore="UnusedResources">БОРМАШОВ</string>
+    <string name="entity.city.names.name3" tools:ignore="UnusedResources">ГНИЛОВКА</string>
+    <string name="entity.city.names.name4" tools:ignore="UnusedResources">ГУРЬЕВ</string>
+    <string name="entity.city.names.name5" tools:ignore="UnusedResources">ЕЛОВОЕ</string>
+    <string name="entity.city.names.name6" tools:ignore="UnusedResources">ЖЛОБСК</string>
+    <string name="entity.city.names.name7" tools:ignore="UnusedResources">ЗИГЗЮГСК</string>
+    <string name="entity.city.names.name8" tools:ignore="UnusedResources">ИВАНОВКА</string>
+    <string name="entity.city.names.name9" tools:ignore="UnusedResources">КОРОБОВ</string>
+    <string name="entity.city.names.name10" tools:ignore="UnusedResources">ЛЕВАДА</string>
+    <string name="entity.city.names.name11" tools:ignore="UnusedResources">ЛЫСЕВСК</string>
+    <string name="entity.city.names.name12" tools:ignore="UnusedResources">МОСКАЛЕВ</string>
+    <string name="entity.city.names.name13" tools:ignore="UnusedResources">ОКРАИНКА</string>
+    <string name="entity.city.names.name14" tools:ignore="UnusedResources">ОСНОВА</string>
+    <string name="entity.city.names.name15" tools:ignore="UnusedResources">ПИХАТКИ</string>
+    <string name="entity.city.names.name16" tools:ignore="UnusedResources">РОГАНЬ</string>
+    <string name="entity.city.names.name17" tools:ignore="UnusedResources">САЛАТОВ</string>
+    <string name="entity.city.names.name18" tools:ignore="UnusedResources">СЕНТР</string>
+    <string name="entity.city.names.name19" tools:ignore="UnusedResources">СОХАТЫЙ</string>
+    <string name="entity.city.names.name20" tools:ignore="UnusedResources">ТЮРИНКА</string>
+    <string name="entity.city.names.name21" tools:ignore="UnusedResources">УЖАЛОВСК</string>
+    <string name="entity.city.names.name22" tools:ignore="UnusedResources">УРЮЙСК</string>
+    <string name="entity.city.names.name23" tools:ignore="UnusedResources">ХАРЬКОВ</string>
+    <string name="entity.city.names.name24" tools:ignore="UnusedResources">ШИШКИНО</string>
+    <string name="entity.city.names.name25" tools:ignore="UnusedResources">ЩУЧЬЕ</string>
+    <string name="entity.city.names.name26" tools:ignore="UnusedResources">ЭННСК</string>
+    <string name="entity.city.names.name27" tools:ignore="UnusedResources">ЮЖНЫЙ</string>
+    <string name="entity.city.names.name28" tools:ignore="UnusedResources">ЯНТАРНЫЙ</string>
+    <string name="entity.castle.names.name1" tools:ignore="UnusedResources">AKКРА</string>
+    <string name="entity.castle.names.name2" tools:ignore="UnusedResources">БАМАКО</string>
+    <string name="entity.castle.names.name3" tools:ignore="UnusedResources">БИСАУ</string>
+    <string name="entity.castle.names.name4" tools:ignore="UnusedResources">ГЛАЗГО</string>
+    <string name="entity.castle.names.name5" tools:ignore="UnusedResources">ГРИНВИЧ</string>
+    <string name="entity.castle.names.name6" tools:ignore="UnusedResources">ГРИНВИЧ</string>
+    <string name="entity.castle.names.name7" tools:ignore="UnusedResources">ДОВЕР</string>
+    <string name="entity.castle.names.name8" tools:ignore="UnusedResources">ИФ</string>
+    <string name="entity.castle.names.name9" tools:ignore="UnusedResources">КАЗБЕК</string>
+    <string name="entity.castle.names.name10" tools:ignore="UnusedResources">КАНБЕРРА</string>
+    <string name="entity.castle.names.name11" tools:ignore="UnusedResources">КОНАКРИ</string>
+    <string name="entity.castle.names.name12" tools:ignore="UnusedResources">ЛА-ПАС</string>
+    <string name="entity.castle.names.name13" tools:ignore="UnusedResources">ЛОРШЕ</string>
+    <string name="entity.castle.names.name14" tools:ignore="UnusedResources">МАРШЕЛЬ</string>
+    <string name="entity.castle.names.name15" tools:ignore="UnusedResources">МОНБЛАН</string>
+    <string name="entity.castle.names.name16" tools:ignore="UnusedResources">НДЖАМЕНА</string>
+    <string name="entity.castle.names.name17" tools:ignore="UnusedResources">ПОРТАЛИС</string>
+    <string name="entity.castle.names.name18" tools:ignore="UnusedResources">РАБАТ</string>
+    <string name="entity.castle.names.name19" tools:ignore="UnusedResources">РАНГУН</string>
+    <string name="entity.castle.names.name20" tools:ignore="UnusedResources">СУКРЕ</string>
+    <string name="entity.castle.names.name21" tools:ignore="UnusedResources">СФИНКС</string>
+    <string name="entity.castle.names.name22" tools:ignore="UnusedResources">ТЕНЕГАР</string>
+    <string name="entity.castle.names.name23" tools:ignore="UnusedResources">ТОЛЕДО</string>
+    <string name="entity.castle.names.name24" tools:ignore="UnusedResources">ТРИЕСТ</string>
+    <string name="entity.castle.names.name25" tools:ignore="UnusedResources">ХАРАФАТ</string>
+    <string name="entity.castle.names.name26" tools:ignore="UnusedResources">ХАРТУМ</string>
+    <string name="entity.castle.names.name27" tools:ignore="UnusedResources">ЭР-РИЯД</string>
+    <string name="entity.castle.names.name28" tools:ignore="UnusedResources">ЯСЕР</string>
+    <string name="entity.sorcerer.message1" tools:ignore="UnusedResources">Reduced the time allotted to you</string>
+    <string name="entity.sorcerer.message2" tools:ignore="UnusedResources">Decreased your magic power</string>
+    <string name="entity.sorcerer.message3" tools:ignore="UnusedResources">Decreased your authority</string>
+    <string name="entity.sorcerer.message4" tools:ignore="UnusedResources">Stole your workers</string>
+    <string name="entity.sorcerer.message5" tools:ignore="UnusedResources">Stole your gold</string>
+    <string name="entity.sorcerer.message6" tools:ignore="UnusedResources">Stole your army</string>
+    <string name="entity.sorcerer.message7" tools:ignore="UnusedResources">Has taken away a map of the Earth</string>
+    <string name="entity.sorcerer.message8" tools:ignore="UnusedResources">Took away your magic</string>
+    <string name="entity.sorcerer.message9" tools:ignore="UnusedResources">Moved you to another continent</string>
+    <string name="entity.sorcerer.message10" tools:ignore="UnusedResources">Moved you to another place</string>
+    <string name="entity.sorcerer.message11" tools:ignore="UnusedResources">Drown your ship</string>
+    <string name="entity.sorcerer.message12" tools:ignore="UnusedResources">Made you forget everything</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="training.moving">To move to a certain direction, click on these areas on the screen</string>
     <string name="training.moving2">Or these for diagonal movement</string>
     <string name="training.cities">In cities you can make useful purchases, in particular purchase a ship</string>
-    <string name="entity.goldChest.foundIt">You found the chest full of gold</string>
-    <string name="entity.goldChest.variant1">Gold</string>
-    <string name="entity.goldChest.variant2">Authority</string>
+    <string name="entity.goldChest.foundIt" tools:ignore="UnusedResources">You found the chest full of gold</string>
+    <string name="entity.goldChest.variant1" tools:ignore="UnusedResources">Gold</string>
+    <string name="entity.goldChest.variant2" tools:ignore="UnusedResources">Authority</string>
     <string name="battle.begin.noArmy">Without troops to fight? Mocked!</string>
-    <string name="battle.finish.fail">You lost, your authority decreased by #{?} And the enemy threw you unknown</string>
-    <string name="battle.finish.win">You won, you got gold #{?} And your credibility increased by #{?}</string>
+    <string name="battle.finish.fail" tools:ignore="UnusedResources">You lost, your authority decreased by #{?} And the enemy threw you unknown</string>
+    <string name="battle.finish.win" tools:ignore="UnusedResources">You won, you got gold #{?} And your credibility increased by #{?}</string>
 </resources>

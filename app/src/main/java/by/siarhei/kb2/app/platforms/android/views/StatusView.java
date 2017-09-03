@@ -34,8 +34,8 @@ public class StatusView extends ViewImpl {
         drawItem(painter, 3, "money", player.getMoney());
         drawItem(painter, 4, "salary", player.getSalary());
         drawItem(painter, 5, "armySalary", 0);
-        drawItem(painter, 7, "magickPower", player.getMagic().getMagicPower());
-        drawItem(painter, 8, "maxMagickCount", player.getMagic().getMagicMaxCount());
+        drawItem(painter, 7, "magicPower", player.getMagic().getMagicPower());
+        drawItem(painter, 8, "maxMagicCount", player.getMagic().getMagicMaxCount());
         drawItem(painter, 10, "tornadoCount", player.getMagic().getTornado());
         drawItem(painter, 11, "ancientMapCount", 0);
         drawItem(painter, 13, "weeks", viewController.getGame().getWeeks());

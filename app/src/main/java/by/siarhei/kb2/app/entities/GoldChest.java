@@ -1,6 +1,6 @@
 package by.siarhei.kb2.app.entities;
 
-import com.neschur.kb2.app.R;
+import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.models.MapPoint;
 
 import java.util.Random;
@@ -17,7 +17,7 @@ public class GoldChest extends EntityImpl {
 
     @Override
     public int getID() {
-        return R.drawable.goldchest;
+        return R.drawable.gold_chest;
     }
 
     public boolean isBonus() {

@@ -1,7 +1,7 @@
 package by.siarhei.kb2.app.ui.messages;
 
 import by.siarhei.kb2.app.I18n;
-import com.neschur.kb2.app.R;
+import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.entities.Entity;
 import by.siarhei.kb2.app.models.Game;
 

@@ -1,6 +1,6 @@
 package by.siarhei.kb2.app.entities;
 
-import com.neschur.kb2.app.R;
+import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.models.MapPoint;
 import by.siarhei.kb2.app.models.iterators.ArmyShopsOwner;
 import by.siarhei.kb2.app.warriors.Warrior;
