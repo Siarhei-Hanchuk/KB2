@@ -134,17 +134,23 @@ public class Game implements Serializable {
             if (currentWorker > -1) {
                 if (currentWorker == 0 && mp.getLand() == R.drawable.water) {
                     mp.setLand(R.drawable.plot);
-                }
+                    currentWorker = -1;
+                } else
                 if (currentWorker == 1 && mp.getLand() == R.drawable.forest) {
                     mp.setLand(R.drawable.land);
-                }
+                    currentWorker = -1;
+                } else
                 if (currentWorker == 2 && mp.getLand() == R.drawable.land) {
                     mp.setLand(R.drawable.water);
-                }
+                    currentWorker = -1;
+                } else
                 if (currentWorker == 3 && mp.getLand() == R.drawable.stone) {
                     mp.setLand(R.drawable.land);
+                    currentWorker = -1;
+                } else {
+                    player.changeWorker(currentWorker, +1);
+                    currentWorker = -1;
                 }
-                currentWorker = -1;
             } else if (player.inNave()) {
                 if (mp.getLand() == R.drawable.land || mp.getLand() == R.drawable.sand) {
                     player.setNave(null);
