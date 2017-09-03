@@ -78,11 +78,5 @@ public class World implements Serializable, ArmyShopsOwner, CitiesOwner {
         }
         return new EntityIterator<>(iterators);
     }
-
-    public void activateCaptains() {
-        for (Country aCountry : country) {
-            aCountry.activateCaptains();
-        }
-    }
 }
 

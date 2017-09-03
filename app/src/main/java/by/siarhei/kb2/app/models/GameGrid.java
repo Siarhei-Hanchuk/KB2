@@ -34,7 +34,7 @@ public class GameGrid {
             for (int j = 0; j < STEP_Y; j++) {
                 MapPoint mp = player.getCountry().getMapPoint(x + (i - 2), y + (j - 2));
                 if (mp.getEntity() != null) {
-                    grid[i][j] = mp.getEntity().getID();
+                    grid[i][j] = mp.getEntity().getID(player);
                 } else {
                     grid[i][j] = -1;
                 }

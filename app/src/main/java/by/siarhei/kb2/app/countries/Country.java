@@ -136,17 +136,5 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
             metro = metro1;
         return getLandNearPoint(metro.getMapPoint());
     }
-
-    public void activateCaptains() {
-        for (int i = 0; i < MAX_MAP_SIZE; i++) {
-            for (int j = 0; j < MAX_MAP_SIZE; j++) {
-                Entity entity = map[i][j].getEntity();
-                if(entity instanceof Captain) {
-                    ((Captain)entity).activate();
-                }
-
-            }
-        }
-    }
 }
 

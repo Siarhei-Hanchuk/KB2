@@ -35,7 +35,6 @@ public class Game implements Serializable {
     private int weeks = 999;
     private int days = 200;
     private int currentWorker = -1;
-    private boolean captainActive = false;
     private final int mode;
     private final TrainingData trainingData = new TrainingData();
 
@@ -74,7 +73,7 @@ public class Game implements Serializable {
                         continue;
                     }
                     movedEntity.put(entity, true);
-                    if ((entity instanceof Captain && ((Captain)entity).isActive())
+                    if ((entity instanceof Captain && player.isCaptainsActivated())
                             || entity instanceof Sorcerer) {
                         if(player.distanceToEntity(entity) <= 1 &&
                                 ((Moving) entity).canMoveTo(player.getMapPoint())) {
@@ -177,9 +176,8 @@ public class Game implements Serializable {
     }
 
     private void tryActivateCaptains() {
-        if(!captainActive && player.hasArmy()) {
-            captainActive = true;
-            world.activateCaptains();
+        if(!player.isCaptainsActivated() && player.hasArmy()) {
+            player.activateCaptains();
         }
     }
 

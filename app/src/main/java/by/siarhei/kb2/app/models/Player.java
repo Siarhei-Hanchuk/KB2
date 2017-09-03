@@ -24,6 +24,7 @@ public class Player implements Serializable {
     private int salary = 0;
     private int x;
     private int y;
+    private boolean captainsActivated = false;
 
     public Player(Country _country, int mode) {
         memory = new Memory();
@@ -266,5 +267,17 @@ public class Player implements Serializable {
                 Math.abs(getX() - entity.getMapPoint().getX()),
                 Math.abs(getY() - entity.getMapPoint().getY())
         );
+    }
+
+    public boolean isCaptainsActivated() {
+        return captainsActivated;
+    }
+
+    public void activateCaptains() {
+        captainsActivated = true;
+    }
+
+    public void deactivateCaptains() {
+        captainsActivated = false;
     }
 }

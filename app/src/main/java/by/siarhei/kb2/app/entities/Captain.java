@@ -1,20 +1,21 @@
 package by.siarhei.kb2.app.entities;
 
 import com.neschur.kb2.app.R;
+
+import java.util.Random;
+
 import by.siarhei.kb2.app.models.MapPoint;
 import by.siarhei.kb2.app.models.Mover;
+import by.siarhei.kb2.app.models.Player;
 import by.siarhei.kb2.app.warriors.Warrior;
 import by.siarhei.kb2.app.warriors.WarriorFactory;
 import by.siarhei.kb2.app.warriors.WarriorSquad;
-
-import java.util.Random;
 
 public class Captain extends EntityImpl implements Fighting, Moving {
     private static final int MAX_ARMY = 5;
     private final WarriorSquad[] warriors = new WarriorSquad[MAX_ARMY];
     private final Mover mover;
     private int authority;
-    private boolean activated = false;
 
     public Captain(MapPoint point) {
         super(point);
@@ -23,7 +24,12 @@ public class Captain extends EntityImpl implements Fighting, Moving {
 
     @Override
     public int getID() {
-        return activated ? R.drawable.captain : R.drawable.captain_0;
+        return R.drawable.captain_0;
+    }
+
+    @Override
+    public int getID(Player player) {
+        return player.isCaptainsActivated() ? R.drawable.captain : R.drawable.captain_0;
     }
 
     @Override
@@ -60,13 +66,5 @@ public class Captain extends EntityImpl implements Fighting, Moving {
     @Override
     public boolean canMoveTo(MapPoint point) {
         return mover.canMoveTo(point);
-    }
-
-    public void activate() {
-        activated = true;
-    }
-
-    public boolean isActive() {
-        return activated;
     }
 }
