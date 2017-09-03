@@ -29,11 +29,8 @@ class Menu2View extends ViewImpl {
         double y = event.getY();
         double x = event.getX();
         int item = -1;
-        if(x > painter.getXOffset() && y > stepY() * 2) {
+        if(x > painter.getXOffset() && y > stepY() * 2 && y < stepY() * 3) {
             item = ((int) x - painter.getXOffset()) / stepX();
-            System.out.println(x);
-            System.out.println(x - painter.getXOffset());
-            System.out.println(item);
         }
         select(item);
         return super.onTouchEvent(event);
@@ -69,7 +66,7 @@ class Menu2View extends ViewImpl {
 
     private void select(int item) {
         boolean result = false;
-        if (item < menu.getCount()) {
+        if (item < menu.getCount() && item > -1) {
             result = menu.select(item);
             refresh();
         }
