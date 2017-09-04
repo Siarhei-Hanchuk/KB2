@@ -108,6 +108,7 @@ public class Game implements Serializable {
             }
         }
         callbacks.weekFinish(war.getTextId(), city);
+        getPlayer().changeMoney(getPlayer().getSalary());
     }
 
     public void weekUpdate() {
