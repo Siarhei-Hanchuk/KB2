@@ -45,6 +45,11 @@ public class Castle extends EntityImpl implements Fighting, CastlesOwner {
     }
 
     @Override
+    public void defeat() {
+
+    }
+
+    @Override
     public Iterator<Castle> getCastles() {
         final Castle self = this;
 

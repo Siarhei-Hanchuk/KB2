@@ -54,6 +54,11 @@ public class Captain extends EntityImpl implements Fighting, Moving {
     }
 
     @Override
+    public void defeat() {
+        this.destroy();
+    }
+
+    @Override
     public void moveInDirection(MapPoint point) {
         mover.moveInDirection(this, point);
     }

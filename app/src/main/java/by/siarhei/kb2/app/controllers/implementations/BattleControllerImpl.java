@@ -49,6 +49,7 @@ public class BattleControllerImpl extends ApplicationController implements Battl
         if (win) {
             getGame().getPlayer().changeAuthority(authority);
             getGame().getPlayer().changeMoney(money);
+            fighting.defeat();
         } else {
             getGame().getPlayer().changeAuthority(-authority);
             MapPoint land = getGame().getPlayer().getCountry().getRandomLand();

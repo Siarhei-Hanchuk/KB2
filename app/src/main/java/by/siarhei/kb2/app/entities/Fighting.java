@@ -8,4 +8,6 @@ public interface Fighting {
     int getAuthority();
 
     void generateArmy(int authority, int group);
+
+    void defeat();
 }
