@@ -212,17 +212,20 @@ public class BattleField implements Glade {
     }
 
     private void tryFinishPhase() {
+        boolean finish = true;
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
                 if (isEntity(x, y) && isFriendly(x, y)) {
                     if (map[x][y].getEntity().getStep() > 0)
-                        return;
+                        finish = false;
                 }
             }
         }
-        battleController.updateView();
-        aiControl();
-        newPhase();
+        if(finish) {
+            battleController.updateView();
+            aiControl();
+        }
+        newPhase(finish);
     }
 
     private void aiControl() {
@@ -244,14 +247,15 @@ public class BattleField implements Glade {
         return friendlyCount;
     }
 
-    private void newPhase() {
+    private void newPhase(boolean reset) {
         setSelected(null);
         int friendlyCount = 0;
         int enemyCount = 0;
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
                 if (isEntity(x, y)) {
-                    map[x][y].getEntity().resetStep();
+                    if(reset)
+                        map[x][y].getEntity().resetStep();
                     if (isFriendly(x, y)) {
                         friendlyCount++;
                     } else {
