@@ -24,13 +24,14 @@ public class BattleAskView extends ViewImpl {
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
-        if (event.getY() > getHeight() / 2 && playerHasArmy()) {
+        boolean captainsWasActivated = isCaptainsActivated();
+        if (event.getY() > getHeight() / 2 && captainsWasActivated) {
             if (event.getX() < getWidth() / 2)
                 controller.startBattle();
             else
                 controller.viewClose();
         }
-        if (!playerHasArmy()) {
+        if (!captainsWasActivated) {
             controller.viewClose();
         }
         return super.onTouchEvent(event);
@@ -49,7 +50,7 @@ public class BattleAskView extends ViewImpl {
                     0, menuItemHeight(), getDefaultPaint());
         }
 
-        if (playerHasArmy()) {
+        if (isCaptainsActivated()) {
             painter.drawText(i18n.translate(R.string.battle_begin_ask),
                     0, menuItemHeight() * 2, getDefaultPaint(), Painter.ALIGN_CENTER);
 
@@ -64,7 +65,7 @@ public class BattleAskView extends ViewImpl {
         }
     }
 
-    private boolean playerHasArmy() {
-        return controller.getGame().getPlayer().hasArmy();
+    private boolean isCaptainsActivated() {
+        return controller.getGame().getPlayer().isCaptainsActivated();
     }
 }

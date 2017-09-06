@@ -4,6 +4,7 @@ import by.siarhei.kb2.app.View;
 import by.siarhei.kb2.app.controllers.ApplicationController;
 import by.siarhei.kb2.app.controllers.ArmyShopViewController;
 import by.siarhei.kb2.app.controllers.BattleAskController;
+import by.siarhei.kb2.app.controllers.BattleController;
 import by.siarhei.kb2.app.controllers.MagicViewController;
 import by.siarhei.kb2.app.controllers.PlayerViewsController;
 import by.siarhei.kb2.app.entities.ArmyShop;
@@ -52,6 +53,8 @@ public class PlayerViewsControllerImpl extends ApplicationController
 
     @Override
     public void startBattle() {
-        new BattleControllerImpl(this, (Fighting) entity);
+        BattleController controller = new BattleControllerImpl(this, (Fighting) entity);
+        if(!getPlayer().hasArmy())
+            controller.battleFinish(false);
     }
 }

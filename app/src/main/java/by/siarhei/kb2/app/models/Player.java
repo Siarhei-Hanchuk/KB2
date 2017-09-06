@@ -24,7 +24,8 @@ public class Player implements Serializable {
     private int salary = 0;
     private int x;
     private int y;
-    private boolean captainsActivated = false;
+    private int captainsActivated;
+    private int captainsActivatedTimeout;
 
     public Player(Country _country, int mode) {
         memory = new Memory();
@@ -56,6 +57,8 @@ public class Player implements Serializable {
 
     private void easy() {
         money = 20000;
+        captainsActivatedTimeout = Game.WEEK_LENGTH * 5;
+        captainsActivated = captainsActivatedTimeout;
         authority = 50;
         workers[0] = 4;
         workers[1] = 6;
@@ -67,6 +70,8 @@ public class Player implements Serializable {
 
     private void hard() {
         money = 0;
+        captainsActivatedTimeout = Game.WEEK_LENGTH;
+        captainsActivated = captainsActivatedTimeout;
         authority = 50;
         workers[0] = 2;
         workers[1] = 2;
@@ -270,14 +275,17 @@ public class Player implements Serializable {
     }
 
     public boolean isCaptainsActivated() {
-        return captainsActivated;
-    }
-
-    public void activateCaptains() {
-        captainsActivated = true;
+        return captainsActivated < 1;
     }
 
     public void deactivateCaptains() {
-        captainsActivated = false;
+        captainsActivated = captainsActivatedTimeout;
+    }
+
+    public void tryActivateCaptains() {
+        if(captainsActivated > 0)
+            captainsActivated --;
+            if(hasArmy())
+                captainsActivated = 0;
     }
 }

@@ -27,13 +27,15 @@ public class Game implements Serializable {
     public static final int MODE_GAME = 1;
     public static final int MODE_TEST = 2;
 
+    public static final int WEEK_LENGTH = 200;
+
     transient private GameCallback callbacks;
 
     private final World world;
     private final Player player;
     private Nave nave;
     private int weeks = 999;
-    private int days = 200;
+    private int days = WEEK_LENGTH;
     private int currentWorker = -1;
     private final int mode;
     private final TrainingData trainingData = new TrainingData();
@@ -115,7 +117,7 @@ public class Game implements Serializable {
         if (days > 0) {
             days--;
         } else {
-            days = 200;
+            days = WEEK_LENGTH;
             weeks--;
             weekFinish();
         }
@@ -170,16 +172,10 @@ public class Game implements Serializable {
             return true;
         }
 
-        tryActivateCaptains();
         moveEntities();
         weekUpdate();
+        player.tryActivateCaptains();
         return true;
-    }
-
-    private void tryActivateCaptains() {
-        if(!player.isCaptainsActivated() && player.hasArmy()) {
-            player.activateCaptains();
-        }
     }
 
     private void actionWithObject(MapPoint mp) {
