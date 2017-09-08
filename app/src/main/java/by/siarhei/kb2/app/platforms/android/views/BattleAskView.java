@@ -54,6 +54,9 @@ public class BattleAskView extends ViewImpl {
             painter.drawText(i18n.translate(R.string.battle_begin_ask),
                     0, menuItemHeight() * 2, getDefaultPaint(), Painter.ALIGN_CENTER);
 
+            painter.drawText(i18n.translate(getCaptainPowerString()),
+                    0, menuItemHeight() * 3, getDefaultPaint(), Painter.ALIGN_CENTER);
+
             painter.drawText(i18n.translate(R.string.battle_begin_ask_yes),
                     0, getHeight() - menuItemHeight() * 2, getDefaultPaint());
 
@@ -67,5 +70,20 @@ public class BattleAskView extends ViewImpl {
 
     private boolean isCaptainsActivated() {
         return controller.getGame().getPlayer().isCaptainsActivated();
+    }
+
+    private int getCaptainPowerString() {
+        int ratio = controller.getGame().getPlayer().getAuthority() / fighting.getAuthority();
+        if (ratio < 0.2) {
+            return R.string.battle_begin_ask_level1;
+        } else if(ratio < 0.8) {
+            return R.string.battle_begin_ask_level2;
+        } else if(ratio < 1.2) {
+            return R.string.battle_begin_ask_level3;
+        } else if(ratio < 1.8) {
+            return R.string.battle_begin_ask_level4;
+        } else {
+            return R.string.battle_begin_ask_level5;
+        }
     }
 }

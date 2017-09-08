@@ -221,4 +221,9 @@
     <string name="battle.begin.noArmy">Without troops to fight? Mocked!</string>
     <string name="battle.finish.fail" tools:ignore="UnusedResources">You lost, your authority decreased by #{?} And the enemy threw you unknown</string>
     <string name="battle.finish.win" tools:ignore="UnusedResources">You won, you got gold #{?} And your credibility increased by #{?}</string>
+    <string name="battle.begin.ask.level1">I\'ll crush you like a bug</string>
+    <string name="battle.begin.ask.level2">I saw and stronger</string>
+    <string name="battle.begin.ask.level3">You are a worthy opponent</string>
+    <string name="battle.begin.ask.level4">It will not be easy to defeat you</string>
+    <string name="battle.begin.ask.level5">Can I surrender?</string>
 </resources>
