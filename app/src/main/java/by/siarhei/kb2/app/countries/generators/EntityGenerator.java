@@ -154,7 +154,7 @@ public class EntityGenerator implements CitiesOwner, ArmyShopsOwner, Serializabl
 
     public void captains(int minAuthority, int maxAuthority) {
         int count = 0;
-        while (count < 15) {
+        while (count < 40) {
             if (tryPlaceCaptain(random.nextInt(Country.MAX_MAP_SIZE),
                     random.nextInt(Country.MAX_MAP_SIZE), minAuthority, maxAuthority))
                 count++;
