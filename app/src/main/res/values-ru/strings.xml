@@ -217,8 +217,8 @@
     <string name="training.moving2">Или эти для движения по диагонали</string>
     <string name="training.cities">В городах вы можете сделать полезные покупки, в частности приобрести карабль</string>
     <string name="entity.goldChest.foundIt" tools:ignore="UnusedResources">Вы нашли сундук полный золота</string>
-    <string name="entity.goldChest.variant1" tools:ignore="UnusedResources">Золото</string>
-    <string name="entity.goldChest.variant2" tools:ignore="UnusedResources">Авторитет</string>
+    <string name="entity.goldChest.variant1" tools:ignore="UnusedResources">Золото(#{?})</string>
+    <string name="entity.goldChest.variant2" tools:ignore="UnusedResources">Авторитет(#{?})</string>
     <string name="battle.begin.ask.level1">Я раздавлю тебя как букашку</string>
     <string name="battle.begin.ask.level2">Видал я и посильнее</string>
     <string name="battle.begin.ask.level3">Ты достойный противник</string>

@@ -58,7 +58,8 @@ class Menu2View extends ViewImpl {
             painter.drawBitmap(image, stepX() * i, stepY() * 2);
         }
         if(menu.withExit()) {
-            painter.drawText(i18n.translate("exit"), stepX() * i, stepY() * 2 - textHeight() / 1.5f, paint);
+            String text = i18n.translate("mainMenu_exit");
+            painter.drawText(text , stepX() * (i + 1) - paint.measureText(text), stepY() * 2 - textHeight() / 1.5f, paint);
             Bitmap image = imageCache.getImage(R.drawable.status_back);
             painter.drawBitmap(image, stepX() * i, stepY() * 2);
         }

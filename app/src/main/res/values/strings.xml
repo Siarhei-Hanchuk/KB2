@@ -216,8 +216,8 @@
     <string name="training.moving2">Or these for diagonal movement</string>
     <string name="training.cities">In cities you can make useful purchases, in particular purchase a ship</string>
     <string name="entity.goldChest.foundIt" tools:ignore="UnusedResources">You found the chest full of gold</string>
-    <string name="entity.goldChest.variant1" tools:ignore="UnusedResources">Gold</string>
-    <string name="entity.goldChest.variant2" tools:ignore="UnusedResources">Authority</string>
+    <string name="entity.goldChest.variant1" tools:ignore="UnusedResources">Gold(#{?})</string>
+    <string name="entity.goldChest.variant2" tools:ignore="UnusedResources">Authority(#{?})</string>
     <string name="battle.begin.noArmy">Without troops to fight? Mocked!</string>
     <string name="battle.finish.fail" tools:ignore="UnusedResources">You lost, your authority decreased by #{?} And the enemy threw you unknown</string>
     <string name="battle.finish.win" tools:ignore="UnusedResources">You won, you got gold #{?} And your credibility increased by #{?}</string>
