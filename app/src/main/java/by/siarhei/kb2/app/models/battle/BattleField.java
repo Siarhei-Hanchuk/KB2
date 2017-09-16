@@ -6,9 +6,12 @@ import by.siarhei.kb2.app.entities.Fighting;
 import by.siarhei.kb2.app.models.Glade;
 import by.siarhei.kb2.app.models.Mover;
 import by.siarhei.kb2.app.models.Player;
+import by.siarhei.kb2.app.platforms.android.MainActivity;
 
 public class BattleField implements Glade {
-    private final MapPointBattle[][] map = new MapPointBattle[6][5];
+    private final int XSize = 6;
+    private final int YSize = 5;
+    private final MapPointBattle[][] map = new MapPointBattle[XSize][YSize];
     private final Player player;
     private final Fighting fighting;
     private final BattleAi ai;
@@ -39,8 +42,8 @@ public class BattleField implements Glade {
 
 
     public void prepareField() {
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 5; j++) {
+        for (int i = 0; i < XSize; i++) {
+            for (int j = 0; j < YSize; j++) {
                 map[i][j] = new MapPointBattle(this, i, j);
                 map[i][j].setLand(R.drawable.land);
             }
@@ -48,7 +51,7 @@ public class BattleField implements Glade {
     }
 
     private void prepareArmy() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < YSize; i++) {
             if (player.getWarriorSquad(i) != null)
                 new WarriorEntity(getMapPoint(0, i),
                         player.getWarriorSquad(i).getWarrior(),
@@ -100,6 +103,10 @@ public class BattleField implements Glade {
     }
 
     private void selectEntity(int x, int y) {
+        if (!inBorders(x,y)) {
+            MainActivity.showToast("Out of battlefield zone");
+            return;
+        }
         if (map[x][y].getEntity() != null &&
                 map[x][y].getEntity().isFriendly() &&
                 map[x][y].getEntity().getStep() > 0) {
@@ -119,16 +126,16 @@ public class BattleField implements Glade {
     }
 
     private void clearMoveArea() {
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 5; j++) {
+        for (int i = 0; i < XSize; i++) {
+            for (int j = 0; j < YSize; j++) {
                 map[i][j].setMove(false);
             }
         }
     }
 
     private void shotGoals() {
-        for (int x = 0; x < 6; x++) {
-            for (int y = 0; y < 5; y++) {
+        for (int x = 0; x < XSize; x++) {
+            for (int y = 0; y < YSize; y++) {
                 if (isEntity(x, y) && !isFriendly(x, y)) {
                     map[x][y].setMove(true);
                 }
@@ -137,8 +144,8 @@ public class BattleField implements Glade {
     }
 
     private void moveAreaFly() {
-        for (int x = 0; x < 6; x++) {
-            for (int y = 0; y < 5; y++) {
+        for (int x = 0; x < XSize; x++) {
+            for (int y = 0; y < YSize; y++) {
                 if (isLand(x, y) || (isEntity(x, y) && !isFriendly(x, y))) {
                     map[x][y].setMove(true);
                 }
@@ -151,7 +158,7 @@ public class BattleField implements Glade {
     }
 
     private void snake(int x, int y, int step, boolean ignoreEntity) {
-        if (step < 0 || x < 0 || x > 5 || y < 0 || y > 4 ||
+        if (step < 0 || x < 0 || x > (XSize - 1) || y < 0 || y > (YSize - 1) ||
                 !isLand(x, y))
             return;
         step--;
@@ -198,7 +205,7 @@ public class BattleField implements Glade {
 
     @Override
     public boolean inBorders(int x, int y) {
-        return (x > -1 && y > -1 && x < 6 && y < 5);
+        return (x > -1 && y > -1 && x < XSize && y < YSize);
     }
 
     @Override
@@ -213,8 +220,8 @@ public class BattleField implements Glade {
 
     private void tryFinishPhase() {
         boolean finish = true;
-        for (int x = 0; x < 6; x++) {
-            for (int y = 0; y < 5; y++) {
+        for (int x = 0; x < XSize; x++) {
+            for (int y = 0; y < YSize; y++) {
                 if (isEntity(x, y) && isFriendly(x, y)) {
                     if (map[x][y].getEntity().getStep() > 0)
                         finish = false;
@@ -238,8 +245,8 @@ public class BattleField implements Glade {
 
     private int friendlyCount() {
         int friendlyCount = 0;
-        for (int x = 0; x < 6; x++) {
-            for (int y = 0; y < 5; y++) {
+        for (int x = 0; x < XSize; x++) {
+            for (int y = 0; y < YSize; y++) {
                 if (isEntity(x, y) && isFriendly(x, y))
                     friendlyCount++;
             }
@@ -251,8 +258,8 @@ public class BattleField implements Glade {
         setSelected(null);
         int friendlyCount = 0;
         int enemyCount = 0;
-        for (int x = 0; x < 6; x++) {
-            for (int y = 0; y < 5; y++) {
+        for (int x = 0; x < XSize; x++) {
+            for (int y = 0; y < YSize; y++) {
                 if (isEntity(x, y)) {
                     if(reset)
                         map[x][y].getEntity().resetStep();
