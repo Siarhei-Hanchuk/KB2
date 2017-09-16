@@ -49,7 +49,7 @@ public class WeekEndView extends ViewImpl {
         drawItem(painter, 7, "armyRefresh", i18n.translate("army_names_" + armyTextId));
         drawItem(painter, 8, "armyRefresh2", null);
         drawItem(painter, 10, "armyRefresh3", null);
-        drawItem(painter, 12, "cityRefresh", i18n.translate("entity.city_names_name" + city.getNameId()));
+        drawItem(painter, 12, "cityRefresh", i18n.translate("entity_city_names_name" + city.getNameId()));
     }
 
     private void drawItem(Painter painter, int n, String attr, Object value) {

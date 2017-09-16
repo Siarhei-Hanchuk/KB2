@@ -34,8 +34,8 @@ public class MainMenuControllerImpl extends ApplicationController implements Mai
     }
 
     @Override
-    public void saveGame() {
-        getStorage().saveGame(getGame(), "save1");
+    public boolean saveGame() {
+        return getStorage().saveGame(getGame(), "save1");
     }
 
     @Override
