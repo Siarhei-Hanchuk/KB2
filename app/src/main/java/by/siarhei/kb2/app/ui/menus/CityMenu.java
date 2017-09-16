@@ -19,6 +19,10 @@ public class CityMenu extends Menu {
         this.city = (City) city;
     }
 
+    public String getCityName() {
+        return i18n.translate("entity_city_names_name" + Integer.toString(city.getNameId()));
+    }
+
     @Override
     public String getItemDescription(int i) {
         switch (menuMode) {

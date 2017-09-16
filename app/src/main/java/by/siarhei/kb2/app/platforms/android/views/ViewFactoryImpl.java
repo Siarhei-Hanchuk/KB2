@@ -16,6 +16,8 @@ import by.siarhei.kb2.app.entities.ArmyShop;
 import by.siarhei.kb2.app.entities.City;
 import by.siarhei.kb2.app.entities.Entity;
 import by.siarhei.kb2.app.entities.Fighting;
+import by.siarhei.kb2.app.platforms.android.MainActivity;
+import by.siarhei.kb2.app.ui.menus.CityMenu;
 import by.siarhei.kb2.app.ui.menus.GoldChestMenu;
 import by.siarhei.kb2.app.ui.menus.Menu;
 import by.siarhei.kb2.app.ui.menus.MenuFactory;
@@ -81,8 +83,13 @@ public class ViewFactoryImpl implements ViewFactory {
         if (menu != null) {
             if(menu instanceof GoldChestMenu)
                 view = new Menu2View(context, controller, menu);
-            else
+            else {
                 view = new MenuView(context, controller, menu);
+                if (menu instanceof CityMenu) {
+                    MainActivity.showToast(((CityMenu) menu).getCityName());
+                }
+            }
+
         }
         if (message != null) {
             view = new MessageView(context, controller, message);
