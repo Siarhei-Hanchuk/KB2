@@ -5,6 +5,7 @@
     <string name="entity.goldChest.menu.item2" tools:ignore="UnusedResources">Give to troops(authority +#{?})</string>
     <string name="entity.goldChest.messages.salary" tools:ignore="UnusedResources">Weekly fee+</string>
     <string name="entity.goldChest.messages.magicUp" tools:ignore="UnusedResources">Max Number of Sorcery +1</string>
+    <string name="entity.goldChest.messages.randomMagic" tools:ignore="UnusedResources">Random spell +1</string>
     <string name="countries.country1" tools:ignore="UnusedResources">Plainland</string>
     <string name="countries.country2" tools:ignore="UnusedResources">Swampland</string>
     <string name="countries.country3" tools:ignore="UnusedResources">Forestland</string>
@@ -142,6 +143,7 @@
     <string name="weekEnd.messages.armyRefresh2" tools:ignore="UnusedResources">There comes a favorable period for the location of the stars for these warriors.</string>
     <string name="weekEnd.messages.armyRefresh3" tools:ignore="UnusedResources">All their dwellings are overpopulated</string>
     <string name="weekEnd.messages.cityRefresh" tools:ignore="UnusedResources">City #{?} filled with workers.</string>
+    <string name="entity.city.names.name0" tools:ignore="UnusedResources">АКСАКАЛОВКА</string>
     <string name="entity.city.names.name1" tools:ignore="UnusedResources">БАВАРИЯ</string>
     <string name="entity.city.names.name2" tools:ignore="UnusedResources">БОРМАШОВ</string>
     <string name="entity.city.names.name3" tools:ignore="UnusedResources">ГНИЛОВКА</string>

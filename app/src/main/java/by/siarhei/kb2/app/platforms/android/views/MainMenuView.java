@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import by.siarhei.kb2.app.BuildConfig;
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.controllers.MainMenuController;
+import by.siarhei.kb2.app.platforms.android.MainActivity;
 import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
 
 class MainMenuView extends ViewImpl {
@@ -70,10 +71,13 @@ class MainMenuView extends ViewImpl {
                 mainController.newTraining();
             } else if (event.getY() < menuItemHeight() * 4) {
                 mainController.loadGame();
+                MainActivity.showToast("Game was loaded");
             } else if (event.getY() < menuItemHeight() * 5) {
                 if (mainController.isCurrentGame()) {
-                    mainController.saveGame();
-                    saved = true;
+                    if (mainController.saveGame()){
+                        MainActivity.showToast("Game was saved");
+                        saved = true;
+                    };
                 }
             } else if (event.getY() < menuItemHeight() * 6) {
                 mainController.exit();
