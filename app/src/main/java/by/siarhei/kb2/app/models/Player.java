@@ -7,10 +7,7 @@ import by.siarhei.kb2.app.warriors.Warrior;
 import by.siarhei.kb2.app.warriors.WarriorSquad;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-// It is real pain to change this class because once you've changed it -
-// old saves not works anymore. Be aware!
+
 public class Player implements Serializable {
     public static final int MAX_ARMY = 10;
     private final WarriorSquad[] warriors = new WarriorSquad[MAX_ARMY]; // TODO - List
@@ -262,26 +259,6 @@ public class Player implements Serializable {
         return false;
     }
 
-    public void applyCasualties(HashMap<String, Integer> casualties) {
-        ArrayList<WarriorSquad> newWarriorSquadList = new ArrayList<>();
-        for (WarriorSquad warriorSquad: warriors) {
-            if (warriorSquad != null) {
-                String warriorTextId = warriorSquad.getWarrior().getTextId();
-                if (casualties.keySet().contains(warriorTextId)){
-                    warriorSquad.changeCount(-casualties.get(warriorTextId));
-                    if (warriorSquad.getCount() > 0) {
-                        newWarriorSquadList.add(warriorSquad);
-                    }
-                } else { //squad was not harmed, copy as is
-                    newWarriorSquadList.add(warriorSquad);
-                }
-            }
-        }
-        for (int i = 0; i < warriors.length; i++) {
-            warriors[i] = i < newWarriorSquadList.size() ? newWarriorSquadList.get(i) : null;
-        }
-    }
-
     public Magic getMagic() {
         return magic;
     }
@@ -308,7 +285,7 @@ public class Player implements Serializable {
     public void tryActivateCaptains() {
         if(captainsActivated > 0)
             captainsActivated --;
-            if(hasArmy())
-                captainsActivated = 0;
+        if(hasArmy())
+            captainsActivated = 0;
     }
 }

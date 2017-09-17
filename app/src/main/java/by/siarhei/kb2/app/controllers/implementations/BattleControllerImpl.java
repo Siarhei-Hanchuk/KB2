@@ -1,5 +1,6 @@
 package by.siarhei.kb2.app.controllers.implementations;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import by.siarhei.kb2.app.View;
 import by.siarhei.kb2.app.controllers.ApplicationController;
@@ -7,8 +8,10 @@ import by.siarhei.kb2.app.controllers.BattleController;
 import by.siarhei.kb2.app.controllers.ViewController;
 import by.siarhei.kb2.app.entities.Fighting;
 import by.siarhei.kb2.app.models.MapPoint;
+import by.siarhei.kb2.app.models.Player;
 import by.siarhei.kb2.app.models.battle.BattleField;
 import by.siarhei.kb2.app.models.battle.MapPointBattle;
+import by.siarhei.kb2.app.warriors.WarriorSquad;
 
 public class BattleControllerImpl extends ApplicationController implements BattleController {
     private final BattleField battleField;
@@ -43,6 +46,32 @@ public class BattleControllerImpl extends ApplicationController implements Battl
         return battleField.getSelectedY();
     }
 
+    private void applyCasualties(HashMap<String, Integer> casualties) {
+        // i though it should be placed in player entity
+        // but it will result with player model hash change
+        // and old version's saves will be broken. So it will be here
+        Player player = getGame().getPlayer();
+        ArrayList<WarriorSquad> newWarriorSquadList = new ArrayList<>();
+        for (int i = 0; i < Player.MAX_ARMY; i++) {
+            WarriorSquad warriorSquad = player.getWarriorSquad(i);
+            if (warriorSquad != null) {
+                String warriorTextId = warriorSquad.getWarrior().getTextId();
+                if (casualties.keySet().contains(warriorTextId)){
+                    warriorSquad.changeCount(-casualties.get(warriorTextId));
+                    if (warriorSquad.getCount() > 0) {
+                        newWarriorSquadList.add(warriorSquad);
+                    }
+                } else { //squad was not harmed, copy as is
+                    newWarriorSquadList.add(warriorSquad);
+                }
+            }
+        }
+        player.clearArmy();
+        for (WarriorSquad warriorSquad: newWarriorSquadList){
+            player.pushArmy(warriorSquad.getWarrior(), warriorSquad.getCount());
+        }
+    }
+
     @Override
     public void battleFinish(boolean win, HashMap<String, Integer> casualties) {
         int authority = fighting.getAuthority() / 40; //??
@@ -50,7 +79,7 @@ public class BattleControllerImpl extends ApplicationController implements Battl
         if (win) {
             getGame().getPlayer().changeAuthority(authority);
             getGame().getPlayer().changeMoney(money);
-            getGame().getPlayer().applyCasualties(casualties);
+            applyCasualties(casualties);
             fighting.defeat();
         } else {
             getGame().getPlayer().changeAuthority(-authority);
