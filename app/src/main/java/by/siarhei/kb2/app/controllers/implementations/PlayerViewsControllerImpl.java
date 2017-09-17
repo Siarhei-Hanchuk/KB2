@@ -1,5 +1,6 @@
 package by.siarhei.kb2.app.controllers.implementations;
 
+import java.util.HashMap;
 import by.siarhei.kb2.app.View;
 import by.siarhei.kb2.app.controllers.ApplicationController;
 import by.siarhei.kb2.app.controllers.ArmyShopViewController;
@@ -55,6 +56,6 @@ public class PlayerViewsControllerImpl extends ApplicationController
     public void startBattle() {
         BattleController controller = new BattleControllerImpl(this, (Fighting) entity);
         if(!getPlayer().hasArmy())
-            controller.battleFinish(false);
+            controller.battleFinish(false, new HashMap<>());
     }
 }

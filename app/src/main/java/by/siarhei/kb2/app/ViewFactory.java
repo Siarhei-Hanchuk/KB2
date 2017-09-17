@@ -1,5 +1,6 @@
 package by.siarhei.kb2.app;
 
+import java.util.HashMap;
 import by.siarhei.kb2.app.controllers.BattleController;
 import by.siarhei.kb2.app.controllers.MagicViewController;
 import by.siarhei.kb2.app.controllers.MainMenuController;
@@ -25,6 +26,9 @@ public interface ViewFactory {
 
     View getViewBattleMessageView(ViewController controller, boolean result,
                                   int authority, int money);
+
+    View getViewBattleResultsView(ViewController viewController,
+                                  HashMap<String, Integer> casualties, boolean result, int authority, int money);
 
     View getWeekEndView(ViewController controller, String armyTextId, City city);
 }

@@ -1,5 +1,6 @@
 package by.siarhei.kb2.app.controllers.implementations;
 
+import java.util.HashMap;
 import by.siarhei.kb2.app.View;
 import by.siarhei.kb2.app.controllers.ApplicationController;
 import by.siarhei.kb2.app.controllers.BattleController;
@@ -43,12 +44,13 @@ public class BattleControllerImpl extends ApplicationController implements Battl
     }
 
     @Override
-    public void battleFinish(boolean win) {
+    public void battleFinish(boolean win, HashMap<String, Integer> casualties) {
         int authority = fighting.getAuthority() / 40; //??
         int money = fighting.getAuthority() * 40; //??
         if (win) {
             getGame().getPlayer().changeAuthority(authority);
             getGame().getPlayer().changeMoney(money);
+            getGame().getPlayer().applyCasualties(casualties);
             fighting.defeat();
         } else {
             getGame().getPlayer().changeAuthority(-authority);
@@ -57,7 +59,8 @@ public class BattleControllerImpl extends ApplicationController implements Battl
             getGame().getPlayer().clearArmy();
             getGame().getPlayer().deactivateCaptains();
         }
-        setContentView(getViewFactory().getViewBattleMessageView(this, win, authority, money));
+        setContentView(getViewFactory().getViewBattleResultsView(
+                this, casualties, win, authority, money));
     }
 
     @Override
