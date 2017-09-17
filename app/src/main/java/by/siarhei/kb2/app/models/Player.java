@@ -278,7 +278,7 @@ public class Player implements Serializable {
             }
         }
         for (int i = 0; i < warriors.length; i++) {
-            warriors[i] = newWarriorSquadList.size() < i ? newWarriorSquadList.get(i) : null;
+            warriors[i] = i < newWarriorSquadList.size() ? newWarriorSquadList.get(i) : null;
         }
     }
 
