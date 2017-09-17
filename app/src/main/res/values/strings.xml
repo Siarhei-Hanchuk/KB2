@@ -108,11 +108,13 @@
     <string name="player.attrs.weeks" tools:ignore="UnusedResources">A week left</string>
     <string name="mainMenu.exit">Exit</string>
     <string name="mainMenu.load_game">Load game</string>
+    <string name="mainMenu.load_game.loaded">Game was loaded</string>
+    <string name="mainMenu.load_game.notLoaded">Game was NOT loaded!!!</string>
     <string name="mainMenu.new_game">New game</string>
     <string name="mainMenu.resume">Continue</string>
     <string name="mainMenu.training">Training</string>
     <string name="mainMenu.save_game">Save game</string>
-    <string name="mainMenu.save_game.saved">Saved</string>
+    <string name="mainMenu.save_game.saved">Game was saved</string>
     <string name="workers.item1" tools:ignore="UnusedResources">Carpenters</string>
     <string name="workers.item2" tools:ignore="UnusedResources">Loggers</string>
     <string name="workers.item3" tools:ignore="UnusedResources">Diggers</string>
@@ -221,8 +223,9 @@
     <string name="entity.goldChest.variant1" tools:ignore="UnusedResources">Gold(#{?})</string>
     <string name="entity.goldChest.variant2" tools:ignore="UnusedResources">Authority(#{?})</string>
     <string name="battle.begin.noArmy">Without troops to fight? Mocked!</string>
-    <string name="battle.finish.fail" tools:ignore="UnusedResources">You lost, your authority decreased by #{?} And the enemy threw you unknown</string>
+    <string name="battle.finish.fail" tools:ignore="UnusedResources">You lost, your authority decreased by #{?} And the enemy threw you unknown. You lose whole army</string>
     <string name="battle.finish.win" tools:ignore="UnusedResources">You won, you got gold #{?} And your credibility increased by #{?}</string>
+    <string name="battle.finish.casualties" tools:ignore="UnusedResources">Battle casualties</string>
     <string name="battle.begin.ask.level1">I\'ll crush you like a bug</string>
     <string name="battle.begin.ask.level2">I saw and stronger</string>
     <string name="battle.begin.ask.level3">You are a worthy opponent</string>

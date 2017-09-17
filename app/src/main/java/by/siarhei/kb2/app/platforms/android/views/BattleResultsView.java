@@ -55,8 +55,9 @@ public class BattleResultsView  extends ViewImpl  {
         Paint redPaint = new Paint();
         redPaint.setColor(Color.RED);
         redPaint.setTextSize(textHeight());
-
-        painter.drawText("Battle casualties", stepX()*1.8f, 350, redPaint);
+        text = i18n.translate("battle_finish_casualties");
+        textLength = getDefaultPaint().measureText(text);
+        painter.drawText(text, (realWidth-textLength)/2, 350, redPaint);
         int i = 0;
         for(String id: casualties.keySet()) {
             Warrior warrior = WarriorFactory.create(id);
