@@ -6,6 +6,8 @@ import by.siarhei.kb2.app.models.Mover;
 import by.siarhei.kb2.app.warriors.Warrior;
 
 public class WarriorEntity implements Entity, Warrior {
+    private final int XSize = 6;
+    private final int YSize = 5;
     private final Mover mover;
     private final Warrior warrior;
     private MapPoint point;
@@ -125,8 +127,9 @@ public class WarriorEntity implements Entity, Warrior {
     public boolean flyTo(MapPoint point) {
         int x = point.getX();
         int y = point.getY();
-        for (int i = (x - 1 < 0) ? 0 : x - 1; i <= ((x + 1 < 6) ? x + 1 : 6); i++) {
-            for (int j = (y - 1 < 0) ? 0 : y - 1; j <= ((y + 1 < 5) ? y + 1 : 5); j++) {
+
+        for (int i = (x - 1 < 0) ? 0 : x - 1; i < ((x + 2 <= XSize) ? x + 2 : XSize); i++) {
+            for (int j = (y - 1 < 0) ? 0 : y - 1; j < ((y + 2 <= YSize) ? y + 2 : YSize); j++) {
                 if (mover.teleport(this, point.getGlade().getMapPoint(i, j))) {
                     return true;
                 }
