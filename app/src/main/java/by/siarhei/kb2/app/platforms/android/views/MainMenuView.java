@@ -70,8 +70,11 @@ class MainMenuView extends ViewImpl {
             } else if (event.getY() < menuItemHeight() * 3) {
                 mainController.newTraining();
             } else if (event.getY() < menuItemHeight() * 4) {
-                mainController.loadGame();
-                MainActivity.showToast("Game was loaded");
+                if (mainController.loadGame()){
+                    MainActivity.showToast("Game was loaded");
+                } else {
+                    MainActivity.showToast("Game was NOT loaded!!!");
+                }
             } else if (event.getY() < menuItemHeight() * 5) {
                 if (mainController.isCurrentGame()) {
                     if (mainController.saveGame()){

@@ -5,7 +5,7 @@ public interface MainMenuController extends ViewController {
 
     boolean saveGame();
 
-    void loadGame();
+    boolean loadGame();
 
     void newGame();
 

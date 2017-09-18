@@ -285,7 +285,7 @@ public class Player implements Serializable {
     public void tryActivateCaptains() {
         if(captainsActivated > 0)
             captainsActivated --;
-            if(hasArmy())
-                captainsActivated = 0;
+        if(hasArmy())
+            captainsActivated = 0;
     }
 }

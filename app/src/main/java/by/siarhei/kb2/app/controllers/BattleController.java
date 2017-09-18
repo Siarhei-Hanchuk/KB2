@@ -1,5 +1,6 @@
 package by.siarhei.kb2.app.controllers;
 
+import java.util.HashMap;
 import by.siarhei.kb2.app.models.battle.MapPointBattle;
 
 public interface BattleController extends ViewController {
@@ -11,7 +12,7 @@ public interface BattleController extends ViewController {
 
     int getSelectedY();
 
-    void battleFinish(boolean win);
+    void battleFinish(boolean win, HashMap<String, Integer> casualties);
 
     void updateView();
 

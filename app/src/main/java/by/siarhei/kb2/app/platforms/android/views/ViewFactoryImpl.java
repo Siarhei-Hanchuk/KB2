@@ -1,7 +1,7 @@
 package by.siarhei.kb2.app.platforms.android.views;
 
+import java.util.HashMap;
 import android.content.Context;
-
 import by.siarhei.kb2.app.View;
 import by.siarhei.kb2.app.ViewFactory;
 import by.siarhei.kb2.app.controllers.ArmyShopViewController;
@@ -108,6 +108,13 @@ public class ViewFactoryImpl implements ViewFactory {
                                              boolean result, int authority, int money) {
         return new MessageView(context, controller,
                 messageFactory.getBattleMessage(result, authority, money));
+    }
+
+    @Override
+    public ViewImpl getViewBattleResultsView(ViewController viewController,
+                                             HashMap<String, Integer> casualties, boolean result, int authority, int money) {
+        return new BattleResultsView(context, viewController,
+                messageFactory.getBattleMessage(result, authority, money), casualties);
     }
 
     @Override

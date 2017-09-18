@@ -1,5 +1,6 @@
 package by.siarhei.kb2.app.models.battle;
 
+import java.util.HashMap;
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.controllers.BattleController;
 import by.siarhei.kb2.app.entities.Fighting;
@@ -7,6 +8,7 @@ import by.siarhei.kb2.app.models.Glade;
 import by.siarhei.kb2.app.models.Mover;
 import by.siarhei.kb2.app.models.Player;
 import by.siarhei.kb2.app.platforms.android.MainActivity;
+import by.siarhei.kb2.app.warriors.WarriorSquad;
 
 public class BattleField implements Glade {
     private final int XSize = 6;
@@ -18,6 +20,7 @@ public class BattleField implements Glade {
     private final BattleController battleController;
     private final Mover mover;
     private WarriorEntity selected;
+    private WarriorSquad initPlayerArmyAtBattleField[] = new WarriorSquad[YSize];
 
     public BattleField(Player player, Fighting fighting, BattleController battleController) {
         this.player = player;
@@ -51,11 +54,18 @@ public class BattleField implements Glade {
     }
 
     private void prepareArmy() {
+        Integer plSquadsIndex = 0;
+        for (int squadIndex = 0; squadIndex < player.MAX_ARMY && plSquadsIndex < YSize; squadIndex++) {
+            if (player.getWarriorSquad(squadIndex) != null) {
+                initPlayerArmyAtBattleField[plSquadsIndex] = player.getWarriorSquad(squadIndex);
+                plSquadsIndex++;
+            }
+        }
         for (int i = 0; i < YSize; i++) {
-            if (player.getWarriorSquad(i) != null)
+            if (initPlayerArmyAtBattleField[i] != null)
                 new WarriorEntity(getMapPoint(0, i),
-                        player.getWarriorSquad(i).getWarrior(),
-                        player.getWarriorSquad(i).getCount(),
+                        initPlayerArmyAtBattleField[i].getWarrior(),
+                        initPlayerArmyAtBattleField[i].getCount(),
                         true);
             if (fighting.getWarriorSquad(i) != null)
                 new WarriorEntity(getMapPoint(5, i),
@@ -271,12 +281,40 @@ public class BattleField implements Glade {
                 }
             }
         }
-        if (friendlyCount == 0) {
-            battleController.battleFinish(false);
+        if (friendlyCount == 0 || enemyCount == 0) {
+            battleController.battleFinish(enemyCount == 0, countPlayerCasualties());
         }
-        if (enemyCount == 0) {
-            battleController.battleFinish(true);
+    }
+
+    private HashMap<String, Integer> countPlayerCasualties() {
+        HashMap<String, Integer> survivors = new HashMap<>();
+        for (int x = 0; x < XSize; x++) {
+            for (int y = 0; y < YSize; y++) {
+                if (isEntity(x, y) && isFriendly(x, y)) {
+                    survivors.put(getEntity(x,y).getTextId(), getEntity(x, y).getCount());
+                }
+            }
         }
+        HashMap<String, Integer> army = new HashMap<>();
+        for (int index = 0; index < YSize; index ++) {
+            WarriorSquad warriorSquad = initPlayerArmyAtBattleField[index];
+            if (warriorSquad != null) {
+                army.put(warriorSquad.getWarrior().getTextId(), warriorSquad.getCount());
+            }
+        }
+
+        HashMap<String, Integer> casualties = new HashMap<>();
+        for (String id: army.keySet()) {
+            if (survivors.keySet().contains(id)) {
+                int squadCasualty = army.get(id) - survivors.get(id);
+                if (squadCasualty > 0) { // add to casualties only if have casualties
+                    casualties.put(id, squadCasualty);
+                }
+            } else { //not found - whole squad is dead
+                casualties.put(id, army.get(id));
+            }
+        }
+        return casualties;
     }
 
     public void setSelected(WarriorEntity selected) {
