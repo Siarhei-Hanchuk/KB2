@@ -71,14 +71,14 @@ class MainMenuView extends ViewImpl {
                 mainController.newTraining();
             } else if (event.getY() < menuItemHeight() * 4) {
                 if (mainController.loadGame()){
-                    MainActivity.showToast("Game was loaded");
+                    MainActivity.showToast(i18n.translate("mainMenu_load_game_loaded"));
                 } else {
-                    MainActivity.showToast("Game was NOT loaded!!!");
+                    MainActivity.showToast(i18n.translate("mainMenu_load_game_notLoaded"));
                 }
             } else if (event.getY() < menuItemHeight() * 5) {
                 if (mainController.isCurrentGame()) {
                     if (mainController.saveGame()){
-                        MainActivity.showToast("Game was saved");
+                        MainActivity.showToast(i18n.translate("mainMenu_save_game_saved"));
                         saved = true;
                     };
                 }

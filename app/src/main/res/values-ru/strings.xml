@@ -106,11 +106,13 @@
     <string name="player.attrs.weeks" tools:ignore="UnusedResources">Недель осталось</string>
     <string name="mainMenu.exit">Выход</string>
     <string name="mainMenu.load_game">Загрузить игру</string>
+    <string name="mainMenu.load_game.loaded">Игра загружена</string>
+    <string name="mainMenu.load_game.notLoaded">Игра НЕ загружена!!!</string>
     <string name="mainMenu.new_game">Новая игра</string>
     <string name="mainMenu.resume">Продолжить</string>
     <string name="mainMenu.training">Тренировка</string>
     <string name="mainMenu.save_game">Сохранить игру</string>
-    <string name="mainMenu.save_game.saved">Сохранено</string>
+    <string name="mainMenu.save_game.saved">Игра сохранена</string>
     <string name="workers.item1" tools:ignore="UnusedResources">Плотники</string>
     <string name="workers.item2" tools:ignore="UnusedResources">Лесорубы</string>
     <string name="workers.item3" tools:ignore="UnusedResources">Землекопы</string>
@@ -135,7 +137,8 @@
     <string name="battle.begin.ask.yes">Да</string>
     <string name="battle.begin.ask.no">Нет</string>
     <string name="battle.finish.win" tools:ignore="UnusedResources">Вы победили, вам досталось золота #{?} и ваш авторитет возрос на #{?}</string>
-    <string name="battle.finish.fail" tools:ignore="UnusedResources">Вы проиграли, ваш авторитет уменьшился на #{?} и противник забросил вас неизвестно куда</string>
+    <string name="battle.finish.fail" tools:ignore="UnusedResources">Вы проиграли, ваш авторитет уменьшился на #{?} и противник забросил вас неизвестно куда. Вся ваша армия потеряна</string>
+    <string name="battle.finish.casualties" tools:ignore="UnusedResources">Боевые потери</string>
     <string name="weekEnd.messages.title">ФИНАНСОВЫЙ ОТЧЁТ ПРОШЛОЙ НЕДЕЛИ</string>
     <string name="weekEnd.messages.money" tools:ignore="UnusedResources">Имеется всего</string>
     <string name="weekEnd.messages.salary" tools:ignore="UnusedResources">Недельная прибавка</string>
@@ -173,6 +176,7 @@
     <string name="entity.city.names.name26" tools:ignore="UnusedResources">ЭННСК</string>
     <string name="entity.city.names.name27" tools:ignore="UnusedResources">ЮЖНЫЙ</string>
     <string name="entity.city.names.name28" tools:ignore="UnusedResources">ЯНТАРНЫЙ</string>
+    <string name="entity.castle.names.name0" tools:ignore="UnusedResources">АВАЛОН</string>
     <string name="entity.castle.names.name1" tools:ignore="UnusedResources">AKКРА</string>
     <string name="entity.castle.names.name2" tools:ignore="UnusedResources">БАМАКО</string>
     <string name="entity.castle.names.name3" tools:ignore="UnusedResources">БИСАУ</string>
