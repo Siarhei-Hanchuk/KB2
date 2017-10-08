@@ -17,6 +17,8 @@ class MainMenuView extends ViewImpl {
     private final MainMenuController mainController;
     private boolean saved = false;
 
+    private int xOffset;
+
     public MainMenuView(Context context, MainMenuController mainController) {
         super(context, mainController);
         this.mainController = mainController;
@@ -30,65 +32,95 @@ class MainMenuView extends ViewImpl {
         canvas.drawColor(Color.BLACK);
         Paint paint = getDefaultPaint();
 
+        xOffset = painter.getXOffset();
+
+        int yDelta = getWidth() / 2;
+
         if (mainController.isCurrentGame()) {
-            painter.drawText(i18n.translate(R.string.mainMenu_resume),
-                    0, menuItemHeight(), paint);
+            paintMenuItem(painter, paint, 0, 2, R.string.mainMenu_resume);
         }
-        painter.drawText(i18n.translate(R.string.mainMenu_new_game),
-                0, 2 * menuItemHeight(), paint);
-        painter.drawText(i18n.translate(R.string.mainMenu_training),
-                0, 3 * menuItemHeight(), paint);
+
+        paintMenuItem(painter, paint, 0, 4, R.string.mainMenu_new_game);
+
+        paintMenuItem(painter, paint, 0, 6, R.string.mainMenu_training);
+
         painter.drawText(i18n.translate(R.string.mainMenu_load_game),
-                0, 4 * menuItemHeight(), paint);
+                yDelta , 2 * menuItemHeight(), paint);
+
         if (mainController.isCurrentGame()) {
             if (!saved) {
                 painter.drawText(i18n.translate(R.string.mainMenu_save_game),
-                        0, 5 * menuItemHeight(), paint);
+                        yDelta , 4 * menuItemHeight(), paint);
             } else {
                 painter.drawText(i18n.translate(R.string.mainMenu_save_game) + " - " +
                                 i18n.translate(R.string.mainMenu_save_game_saved),
-                        0, 5 * menuItemHeight(), paint);
+                        yDelta , 4 * menuItemHeight(), paint);
                 saved = false;
             }
         }
+
         painter.drawText(i18n.translate(R.string.mainMenu_exit),
-                0, 6 * menuItemHeight(), paint);
+                yDelta , 6 * menuItemHeight(), paint);
 
         if (BuildConfig.DEBUG)
-            painter.drawText("Test", 0, 7 * menuItemHeight(), paint);
+            painter.drawText("Test", 0, 8 * menuItemHeight(), paint);
+
     }
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
-        if (event.getX() < getWidth() / 2) {
-            if (event.getY() < menuItemHeight()) {
-                if (mainController.isCurrentGame()) {
+        int yItem = (int)(event.getY() / menuItemHeight());
+        int xItem = (int)(event.getX());
+        boolean firstColumn = true;
+        if(xItem > getWidth() / 2) {
+            xItem = xItem - getWidth() / 2;
+            firstColumn = false;
+        }
+        xItem = (xItem > 0) ? 1 : 0;
+        xItem = xItem - xOffset;
+        if(firstColumn) {
+            switch (yItem) {
+                case 1:
                     mainController.viewClose();
-                }
-            } else if (event.getY() < menuItemHeight() * 2) {
-                mainController.newGame();
-            } else if (event.getY() < menuItemHeight() * 3) {
-                mainController.newTraining();
-            } else if (event.getY() < menuItemHeight() * 4) {
-                if (mainController.loadGame()){
-                    MainActivity.showToast(i18n.translate("mainMenu_load_game_loaded"));
-                } else {
-                    MainActivity.showToast(i18n.translate("mainMenu_load_game_notLoaded"));
-                }
-            } else if (event.getY() < menuItemHeight() * 5) {
-                if (mainController.isCurrentGame()) {
-                    if (mainController.saveGame()){
-                        MainActivity.showToast(i18n.translate("mainMenu_save_game_saved"));
-                        saved = true;
-                    };
-                }
-            } else if (event.getY() < menuItemHeight() * 6) {
-                mainController.exit();
-            } else if (event.getY() < menuItemHeight() * 7) {
-                mainController.newTestGame();
+                    break;
+                case 3:
+                    mainController.newGame();
+                    break;
+                case 5:
+                    mainController.newTraining();
+                    break;
+                case 7:
+                    if(BuildConfig.DEBUG)
+                        mainController.newTestGame();
+                    break;
             }
-
+        } else {
+            switch (yItem) {
+                case 1:
+                    if (mainController.loadGame()){
+                        MainActivity.showToast(i18n.translate("mainMenu_load_game_loaded"));
+                    } else {
+                        MainActivity.showToast(i18n.translate("mainMenu_load_game_notLoaded"));
+                    }
+                    break;
+                case 3:
+                    if (mainController.isCurrentGame()) {
+                        if (mainController.saveGame()){
+                            MainActivity.showToast(i18n.translate("mainMenu_save_game_saved"));
+                            saved = true;
+                        };
+                    }
+                    break;
+                case 5:
+                    mainController.exit();
+                    break;
+            }
         }
         return super.onTouchEvent(event);
+    }
+
+    private void paintMenuItem(Painter painter, Paint paint, int x, int y, int stringId) {
+        painter.drawText(i18n.translate(stringId),
+                x, y * menuItemHeight(), paint);
     }
 }
