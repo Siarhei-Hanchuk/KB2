@@ -4,6 +4,7 @@ import by.siarhei.kb2.app.countries.Country;
 import by.siarhei.kb2.app.entities.Entity;
 import by.siarhei.kb2.app.entities.Nave;
 import by.siarhei.kb2.app.warriors.Warrior;
+import by.siarhei.kb2.app.warriors.WarriorFactory;
 import by.siarhei.kb2.app.warriors.WarriorSquad;
 
 import java.io.Serializable;
@@ -38,6 +39,11 @@ public class Player implements Serializable {
                 point = country.getMapPoint(5, 5);
                 easy();
                 availableCountry = 5;
+                for (int i = 0; i < 10; i++) {
+                    Warrior warrior = WarriorFactory.createRandomFromGroup(1);
+                    WarriorSquad squad = new WarriorSquad(warrior, 1);
+                    warriors[i] = squad;
+                }
                 break;
             case Game.MODE_TRAINING:
                 point = country.getLandNearCity();
@@ -287,5 +293,13 @@ public class Player implements Serializable {
             captainsActivated --;
         if(hasArmy())
             captainsActivated = 0;
+    }
+
+    public void fireArmy(int i) {
+        warriors[i] = null;
+        for (int j = i + 1; j < warriors.length; j++) {
+            warriors[j-1] = warriors[j];
+            warriors[j] = null;
+        }
     }
 }

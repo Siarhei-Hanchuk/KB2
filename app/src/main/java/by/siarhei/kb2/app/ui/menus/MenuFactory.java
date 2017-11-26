@@ -33,4 +33,8 @@ public class MenuFactory {
     public Menu getCountryMenu() {
         return new CountryMenu(gameOwner.getGame(), gameOwner.i18n());
     }
+
+    public Menu getArmyFireMenu() {
+        return new ArmyFireMenu(gameOwner.getGame(), gameOwner.i18n());
+    }
 }
