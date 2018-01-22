@@ -8,9 +8,12 @@ import by.siarhei.kb2.app.controllers.MainViewController;
 import by.siarhei.kb2.app.controllers.ViewController;
 import by.siarhei.kb2.app.entities.City;
 import by.siarhei.kb2.app.entities.Entity;
+import by.siarhei.kb2.app.platforms.android.views.ViewImpl;
 
 public interface ViewFactory {
     View getWorkersMenuView(ViewController controller);
+
+    ViewImpl getArmyFireView(ViewController controller);
 
     View getPlayersView(MagicViewController controller, String viewName);
 

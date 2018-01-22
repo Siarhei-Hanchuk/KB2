@@ -24,7 +24,8 @@ public abstract class ApplicationController implements ViewController, GameOwner
         i18n = _platformController.getI18n();
     }
 
-    protected ViewFactory getViewFactory() {
+    @Override
+    public ViewFactory getViewFactory() {
         return viewFactory;
     }
 
@@ -37,7 +38,8 @@ public abstract class ApplicationController implements ViewController, GameOwner
         ApplicationController.game = game;
     }
 
-    protected void setContentView(View view) {
+    @Override
+    public void setContentView(View view) {
         platformController.setContentView(view);
     }
 

@@ -41,6 +41,11 @@ public class ViewFactoryImpl implements ViewFactory {
     }
 
     @Override
+    public ViewImpl getArmyFireView(ViewController controller) {
+        return new MenuView(context, controller, menuFactory.getArmyFireMenu());
+    }
+
+    @Override
     public View getPlayersView(MagicViewController controller, String viewName) {
         switch (viewName) {
             case "magic":

@@ -196,8 +196,8 @@ public class Game implements Serializable {
         return nave != null;
     }
 
-    public void createNave(int x, int y) {
-        nave = new Nave(world.getCountry(0).getMapPoint(x, y));
+    public void createNave(Country country, int x, int y) {
+        nave = new Nave(country.getMapPoint(x, y));
     }
 
     public void destroyNave() {
