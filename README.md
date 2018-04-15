@@ -1,6 +1,6 @@
-Open source clone DOS game KB2
+Open source clone of KB2 MS-DOS game
 
-Game published into [Google Play](https://play.google.com/store/apps/details?id=by.siarhei.kb2)
+Game has been published into [Google Play](https://play.google.com/store/apps/details?id=by.siarhei.kb2)
 
-License [GPlv3](https://github.com/Neschur/KB2/blob/master/LICENSE)
+License: [GPlv3](https://github.com/Neschur/KB2/blob/master/LICENSE)
 
