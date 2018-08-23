@@ -2,15 +2,16 @@ package by.siarhei.kb2.app.controllers.implementations;
 
 import by.siarhei.kb2.app.View;
 import by.siarhei.kb2.app.controllers.ApplicationController;
-import by.siarhei.kb2.app.controllers.GameCallback;
+import by.siarhei.kb2.app.controllers.listeners.ActivationEntityListener;
 import by.siarhei.kb2.app.controllers.MainViewController;
+import by.siarhei.kb2.app.controllers.listeners.WeekFinishListener;
 import by.siarhei.kb2.app.entities.City;
 import by.siarhei.kb2.app.entities.Entity;
 import by.siarhei.kb2.app.models.Game;
 import by.siarhei.kb2.app.models.GameGrid;
 
 public class MainViewControllerImpl extends ApplicationController implements MainViewController,
-        GameCallback {
+        ActivationEntityListener, WeekFinishListener {
     private final View view;
     private GameGrid gameGrid;
 

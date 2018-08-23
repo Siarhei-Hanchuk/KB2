@@ -1,7 +1,8 @@
 package by.siarhei.kb2.app.models;
 
 import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.controllers.GameCallback;
+import by.siarhei.kb2.app.controllers.listeners.ActivationEntityListener;
+import by.siarhei.kb2.app.controllers.listeners.WeekFinishListener;
 import by.siarhei.kb2.app.countries.Country;
 import by.siarhei.kb2.app.countries.World;
 import by.siarhei.kb2.app.entities.ArmyShop;
@@ -29,7 +30,8 @@ public class Game implements Serializable {
 
     public static final int WEEK_LENGTH = 200;
 
-    transient private GameCallback callbacks;
+    transient private ActivationEntityListener activationEntityListener;
+    transient private WeekFinishListener weekUpdateListener;
 
     private final World world;
     private final Player player;
@@ -40,9 +42,8 @@ public class Game implements Serializable {
     private final int mode;
     private final TrainingData trainingData = new TrainingData();
 
-    public Game(GameCallback callbacks, int mode) {
+    public Game(int mode) {
         this.mode = mode;
-        this.callbacks = callbacks;
         world = new World(mode);
         player = new Player(world.getCountry(0), mode);
         if (mode == MODE_GAME) {
@@ -50,6 +51,14 @@ public class Game implements Serializable {
         } else if (mode == MODE_TRAINING) {
             weeks = 600 - 1;
         }
+    }
+
+    public void onWeekUpdate(WeekFinishListener weekUpdateListener) {
+        this.weekUpdateListener = weekUpdateListener;
+    }
+
+    public void onEntityActivate(ActivationEntityListener activationEntityListener) {
+        this.activationEntityListener = activationEntityListener;
     }
 
     public int getMode() {
@@ -109,7 +118,7 @@ public class Game implements Serializable {
                 break;
             }
         }
-        callbacks.weekFinish(war.getTextId(), city);
+        weekUpdateListener.weekFinish(war.getTextId(), city);
         getPlayer().changeMoney(getPlayer().getSalary());
     }
 
@@ -186,9 +195,9 @@ public class Game implements Serializable {
             player.move(player.getCountry().getLinkedMetroPoint((Metro) mp.getEntity()));
         } else if (mp.getEntity() instanceof Castle) {
             if (player.getY() > mp.getY())
-                callbacks.activateEntity(mp.getEntity());
+                activationEntityListener.activateEntity(mp.getEntity());
         } else {
-            callbacks.activateEntity(mp.getEntity());
+            activationEntityListener.activateEntity(mp.getEntity());
         }
     }
 
@@ -242,9 +251,4 @@ public class Game implements Serializable {
     public TrainingData getTrainingData() {
         return trainingData;
     }
-
-    public void setCallbacks(GameCallback callbacks) {
-        this.callbacks = callbacks;
-    }
-
 }
