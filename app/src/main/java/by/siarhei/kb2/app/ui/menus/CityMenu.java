@@ -44,7 +44,7 @@ public class CityMenu extends Menu {
                             return menuItem("magic_hiking_magic" + (city.getMagic() - 7 + 1),
                                     PRICE_MAGIC[city.getMagic()]);
                     case 4:
-                        if (player.isWallkick())
+                        if (player.hasWallDestroyer())
                             return "-";
                         return menuItem("entity_city_menu_item5", PRICE_WALLKICK);
                     case 5:
@@ -94,9 +94,9 @@ public class CityMenu extends Menu {
                         if (player.changeMoney(-PRICE_MAGIC[city.getMagic()]))
                             player.getMagic().upMagic(city.getMagic());
                     case 4:
-                        if (!player.isWallkick()) {
+                        if (!player.hasWallDestroyer()) {
                             player.changeMoney(-PRICE_WALLKICK);
-                            player.setWallkick();
+                            player.setWallDestroyer();
                         }
                         return false;
                     case 5:

@@ -16,7 +16,7 @@ public class Player implements Serializable {
     private final byte[] relationshipWithOwner = {0, 0, 0, 0, 0};
     private final Memory memory;
     private Magic magic;
-    private boolean wallkick = false;
+    private boolean wallDestroyer = false;
     private int money;
     private int authority;
     private Country country;
@@ -141,12 +141,12 @@ public class Player implements Serializable {
         return money;
     }
 
-    public boolean isWallkick() {
-        return wallkick;
+    public boolean hasWallDestroyer() {
+        return wallDestroyer;
     }
 
-    public void setWallkick() {
-        this.wallkick = true;
+    public void setWallDestroyer() {
+        this.wallDestroyer = true;
     }
 
     private Nave getNave() {
