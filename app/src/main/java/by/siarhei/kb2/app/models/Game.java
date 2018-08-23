@@ -40,7 +40,6 @@ public class Game implements Serializable {
     private int days = WEEK_LENGTH;
     private int currentWorker = -1;
     private final int mode;
-    private final TrainingData trainingData = new TrainingData();
 
     public Game(int mode) {
         this.mode = mode;
@@ -246,9 +245,5 @@ public class Game implements Serializable {
         Country country = getWorld().getCountry(n);
         country.createMaps();
         player.changeCountry(country);
-    }
-
-    public TrainingData getTrainingData() {
-        return trainingData;
     }
 }

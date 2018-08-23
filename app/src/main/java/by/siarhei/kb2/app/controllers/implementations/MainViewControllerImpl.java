@@ -9,11 +9,13 @@ import by.siarhei.kb2.app.entities.City;
 import by.siarhei.kb2.app.entities.Entity;
 import by.siarhei.kb2.app.models.Game;
 import by.siarhei.kb2.app.models.GameGrid;
+import by.siarhei.kb2.app.models.TrainingData;
 
 public class MainViewControllerImpl extends ApplicationController implements MainViewController,
         ActivationEntityListener, WeekFinishListener {
     private final View view;
     private GameGrid gameGrid;
+    private final TrainingData trainingData = new TrainingData();
 
     public MainViewControllerImpl() {
         view = getViewFactory().getMainView(this);
@@ -165,5 +167,9 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
     private void playerMove(int dx, int dy) {
         if (getGame().move(dx, dy))
             view.refresh();
+    }
+
+    public TrainingData getTrainingData() {
+        return trainingData;
     }
 }

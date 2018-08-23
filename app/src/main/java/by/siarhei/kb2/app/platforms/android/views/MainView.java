@@ -110,7 +110,7 @@ class MainView extends ViewImpl {
             return;
         }
         Painter painter = getPainter(canvas);
-        TrainingData trainingData = mainViewController.getGame().getTrainingData();
+        TrainingData trainingData = mainViewController.getTrainingData();
 
         if(!trainingData.citiesDid()) {
             GameGrid grid = mainViewController.getGameGrid();

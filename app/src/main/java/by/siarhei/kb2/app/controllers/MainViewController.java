@@ -1,6 +1,7 @@
 package by.siarhei.kb2.app.controllers;
 
 import by.siarhei.kb2.app.models.GameGrid;
+import by.siarhei.kb2.app.models.TrainingData;
 
 public interface MainViewController extends ViewController {
     GameGrid getGameGrid();
@@ -24,4 +25,6 @@ public interface MainViewController extends ViewController {
     void touchLeft();
 
     boolean isTrainingMode();
+
+    TrainingData getTrainingData();
 }
