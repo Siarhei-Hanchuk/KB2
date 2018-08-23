@@ -13,58 +13,20 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class World implements Serializable, ArmyShopsOwner, CitiesOwner {
-    private Country[] country;
+    private Country[] countries;
 
-    public World(int mode) {
-        EntityGenerator.reset();
-        switch (mode) {
-            case Game.MODE_TEST:
-                testWorld();
-                break;
-            case Game.MODE_GAME:
-                hardWorld();
-                break;
-            case Game.MODE_TRAINING:
-                defaultWorld();
-                break;
-        }
+    public World(Country[] countries) {
+        this.countries = countries;
     }
 
     public Country getCountry(int i) {
-        return country[i];
-    }
-
-    private void testWorld() {
-        country = new Country[5];
-        country[0] = new CountryTest();
-        country[1] = new Country2(true);
-        country[2] = new Country3(true);
-        country[3] = new Country4(true);
-        country[4] = new Country5(true);
-    }
-
-    private void hardWorld() {
-        country = new Country[5];
-        country[0] = new Country1(true);
-        country[1] = new Country2(true);
-        country[2] = new Country3(true);
-        country[3] = new Country4(true);
-        country[4] = new Country5(true);
-    }
-
-    private void defaultWorld() {
-        country = new Country[5];
-        country[0] = new Country1(false);
-        country[1] = new Country2(false);
-        country[2] = new Country3(false);
-        country[3] = new Country4(false);
-        country[4] = new Country5(false);
+        return countries[i];
     }
 
     @Override
     public Iterator<ArmyShop> getArmyShops() {
         ArrayList<Iterator<ArmyShop>> iterators = new ArrayList<>();
-        for (ArmyShopsOwner shop : country) {
+        for (ArmyShopsOwner shop : countries) {
             iterators.add(shop.getArmyShops());
         }
         return new EntityIterator<>(iterators);
@@ -73,7 +35,7 @@ public class World implements Serializable, ArmyShopsOwner, CitiesOwner {
     @Override
     public Iterator<City> getCities() {
         ArrayList<Iterator<City>> iterators = new ArrayList<>();
-        for (CitiesOwner city : country) {
+        for (CitiesOwner city : countries) {
             iterators.add(city.getCities());
         }
         return new EntityIterator<>(iterators);

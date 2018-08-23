@@ -8,7 +8,7 @@ import by.siarhei.kb2.app.entities.CastleRight;
 import by.siarhei.kb2.app.entities.City;
 import by.siarhei.kb2.app.entities.GoldChest;
 
-class CountryTest extends Country {
+public class CountryTest extends Country {
     public CountryTest() {
         super();
         this.id = 0;

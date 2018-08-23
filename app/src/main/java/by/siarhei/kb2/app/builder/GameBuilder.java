@@ -4,12 +4,10 @@ import by.siarhei.kb2.app.countries.World;
 import by.siarhei.kb2.app.models.Game;
 import by.siarhei.kb2.app.models.Player;
 
-import static by.siarhei.kb2.app.models.Game.MODE_GAME;
-
 public class GameBuilder {
     public static Game build(int mode) {
 
-        World world = new World(mode);
+        World world = WorldBuilder.build(mode);
         Player player = new Player(world.getCountry(0), mode);
         int weeks = 999;
         if (mode == Game.MODE_GAME) {

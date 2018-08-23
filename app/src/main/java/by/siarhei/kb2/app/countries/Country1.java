@@ -2,7 +2,7 @@ package by.siarhei.kb2.app.countries;
 
 import by.siarhei.kb2.app.R;
 
-class Country1 extends Country {
+public class Country1 extends Country {
 
     public Country1(boolean hard) {
         super();
