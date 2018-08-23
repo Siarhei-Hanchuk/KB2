@@ -16,6 +16,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
     private final View view;
     private GameGrid gameGrid;
     private final TrainingData trainingData = new TrainingData();
+    private int mode;
 
     public MainViewControllerImpl() {
         view = getViewFactory().getMainView(this);
@@ -161,7 +162,8 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
 
     @Override
     public boolean isTrainingMode() {
-        return getGame().getMode() == Game.MODE_TRAINING;
+//        return getGame().getMode() == Game.MODE_TRAINING;
+        return false;
     }
 
     private void playerMove(int dx, int dy) {

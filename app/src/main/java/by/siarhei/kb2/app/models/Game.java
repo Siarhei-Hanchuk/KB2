@@ -33,23 +33,17 @@ public class Game implements Serializable {
     transient private ActivationEntityListener activationEntityListener;
     transient private WeekFinishListener weekUpdateListener;
 
-    private final World world;
-    private final Player player;
+    final private World world;
+    final private Player player;
     private Nave nave;
-    private int weeks = 999;
+    private int weeks;
     private int days = WEEK_LENGTH;
     private int currentWorker = -1;
-    private final int mode;
 
-    public Game(int mode) {
-        this.mode = mode;
-        world = new World(mode);
-        player = new Player(world.getCountry(0), mode);
-        if (mode == MODE_GAME) {
-            weeks = 200 - 1;
-        } else if (mode == MODE_TRAINING) {
-            weeks = 600 - 1;
-        }
+    public Game(World world, Player player, int weeks) {
+        this.world = world;
+        this.player = player;
+        this.weeks = weeks;
     }
 
     public void onWeekUpdate(WeekFinishListener weekUpdateListener) {
@@ -58,10 +52,6 @@ public class Game implements Serializable {
 
     public void onEntityActivate(ActivationEntityListener activationEntityListener) {
         this.activationEntityListener = activationEntityListener;
-    }
-
-    public int getMode() {
-        return mode;
     }
 
     public Player getPlayer() {

@@ -1,5 +1,8 @@
 package by.siarhei.kb2.app.controllers.implementations;
 
+import java.security.cert.CertPathBuilder;
+
+import by.siarhei.kb2.app.builder.GameBuilder;
 import by.siarhei.kb2.app.controllers.ApplicationController;
 import by.siarhei.kb2.app.controllers.listeners.ActivationEntityListener;
 import by.siarhei.kb2.app.controllers.MainMenuController;
@@ -55,7 +58,7 @@ public class MainMenuControllerImpl extends ApplicationController implements Mai
 
     private Game createGame(int mode) {
         MainViewControllerImpl controller = new MainViewControllerImpl();
-        Game game = new Game(mode);
+        Game game = GameBuilder.build(mode);
         game.onWeekUpdate(controller);
         game.onEntityActivate(controller);
         return game;
