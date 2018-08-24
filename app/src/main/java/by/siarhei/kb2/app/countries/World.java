@@ -1,9 +1,7 @@
 package by.siarhei.kb2.app.countries;
 
-import by.siarhei.kb2.app.countries.generators.EntityGenerator;
 import by.siarhei.kb2.app.entities.ArmyShop;
 import by.siarhei.kb2.app.entities.City;
-import by.siarhei.kb2.app.models.Game;
 import by.siarhei.kb2.app.models.iterators.ArmyShopsOwner;
 import by.siarhei.kb2.app.models.iterators.CitiesOwner;
 import by.siarhei.kb2.app.models.iterators.EntityIterator;

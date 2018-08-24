@@ -1,20 +1,20 @@
-package by.siarhei.kb2.app.countries.generators;
+package by.siarhei.kb2.app.builder.generators;
+
+import java.io.Serializable;
+import java.util.Random;
 
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.countries.Country;
 import by.siarhei.kb2.app.models.Glade;
 import by.siarhei.kb2.app.models.MapPoint;
 
-import java.io.Serializable;
-import java.util.Random;
-
 public class BaseGenerator implements Serializable {
     private final Random random;
     private final MapPoint[][] map;
 
-    public BaseGenerator(Glade country) {
+    public BaseGenerator(MapPoint[][] map) {
         this.random = new Random();
-        this.map = country.getMapPoints();
+        this.map = map;
     }
 
     public void base() {

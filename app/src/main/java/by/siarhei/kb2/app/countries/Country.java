@@ -1,8 +1,12 @@
 package by.siarhei.kb2.app.countries;
 
+import java.io.Serializable;
+import java.util.Iterator;
+import java.util.Random;
+
 import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.countries.generators.BaseGenerator;
-import by.siarhei.kb2.app.countries.generators.EntityGenerator;
+import by.siarhei.kb2.app.builder.generators.BaseGenerator;
+import by.siarhei.kb2.app.builder.generators.EntityGenerator;
 import by.siarhei.kb2.app.entities.ArmyShop;
 import by.siarhei.kb2.app.entities.Castle;
 import by.siarhei.kb2.app.entities.CastlesOwner;
@@ -14,35 +18,31 @@ import by.siarhei.kb2.app.models.MapPoint;
 import by.siarhei.kb2.app.models.iterators.ArmyShopsOwner;
 import by.siarhei.kb2.app.models.iterators.CitiesOwner;
 
-import java.io.Serializable;
-import java.util.Iterator;
-import java.util.Random;
-
-public abstract class Country implements Glade, Serializable, ArmyShopsOwner, CitiesOwner,
+public class Country implements Glade, Serializable, ArmyShopsOwner, CitiesOwner,
         CastlesOwner {
     public final static int MAX_MAP_SIZE = 65;
     final MapPoint[][] map;
     final BaseGenerator baseGenerator;
     final EntityGenerator entityGenerator;
     private final Random random;
-    int id;
-    private Metro metro1;
-    private Metro metro2;
+    final int id;
+//    private Metro metro1;
+//    private Metro metro2;
 
-    Country() {
-        random = new Random();
-
-        map = new MapPoint[MAX_MAP_SIZE][MAX_MAP_SIZE];
-        for (int i = 0; i < MAX_MAP_SIZE; i++) {
-            for (int j = 0; j < MAX_MAP_SIZE; j++) {
-                map[i][j] = new MapPoint(this, i, j);
-            }
-        }
-
-        baseGenerator = new BaseGenerator(this);
-        entityGenerator = new EntityGenerator(this);
-
-        baseGenerator.base();
+    public Country(Random random,
+                   MapPoint[][] map,
+                   BaseGenerator baseGenerator,
+                   EntityGenerator entityGenerator,
+//                   Metro metro1,
+//                   Metro metro2,
+                   int id) {
+        this.random = random;
+        this.map = map;
+        this.baseGenerator = baseGenerator;
+        this.entityGenerator = entityGenerator;
+//        this.metro1 = metro1;
+//        this.metro2 = metro2;
+        this.id = id;
     }
 
     @Override
@@ -93,11 +93,11 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
     public boolean inBorders(int x, int y) {
         return (x > 0 && y > 0 && x < MAX_MAP_SIZE && y < MAX_MAP_SIZE);
     }
-
-    public void createMetro() {
-        metro1 = entityGenerator.metro();
-        metro2 = entityGenerator.metro();
-    }
+//
+//    public void createMetro() {
+//        metro1 = entityGenerator.metro();
+//        metro2 = entityGenerator.metro();
+//    }
 
     public void createMaps() {
         entityGenerator.updateSpell();
@@ -129,11 +129,13 @@ public abstract class Country implements Glade, Serializable, ArmyShopsOwner, Ci
     }
 
     public MapPoint getLinkedMetroPoint(Metro metro) {
-        if (metro == metro1)
-            metro = metro2;
-        else
-            metro = metro1;
-        return getLandNearPoint(metro.getMapPoint());
+//        TODO:
+//        if (metro == metro1)
+//            metro = metro2;
+//        else
+//            metro = metro1;
+//        return getLandNearPoint(metro.getMapPoint());
+        return null;
     }
 }
 

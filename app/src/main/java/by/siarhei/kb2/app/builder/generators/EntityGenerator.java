@@ -1,4 +1,9 @@
-package by.siarhei.kb2.app.countries.generators;
+package by.siarhei.kb2.app.builder.generators;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Random;
 
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.countries.Country;
@@ -20,11 +25,6 @@ import by.siarhei.kb2.app.models.iterators.ArmyShopsOwner;
 import by.siarhei.kb2.app.models.iterators.CitiesOwner;
 import by.siarhei.kb2.app.models.iterators.EntityIterator;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Random;
-
 public class EntityGenerator implements CitiesOwner, ArmyShopsOwner, Serializable {
     private static byte[] cityNamesMask;
     private static byte[] castleNamesMask;
@@ -35,9 +35,13 @@ public class EntityGenerator implements CitiesOwner, ArmyShopsOwner, Serializabl
     private final ArrayList<Castle> castles = new ArrayList<>();
     private Spell spell;
 
-    public EntityGenerator(Glade country) {
+    public EntityGenerator(MapPoint[][] map) {
         this.random = new Random();
-        this.map = country.getMapPoints();
+        this.map = map;
+
+
+        cityNamesMask = new byte[28];
+        castleNamesMask = new byte[28];
     }
 
     public static void reset() {
@@ -98,14 +102,14 @@ public class EntityGenerator implements CitiesOwner, ArmyShopsOwner, Serializabl
         }
     }
 
-    public void goldChests(int frequency, int mode) {
+    public void goldChests(int frequency, int wealth) {
         for (int i = 5; i < Country.MAX_MAP_SIZE - 5; i++) {
             for (int j = 5; j < Country.MAX_MAP_SIZE - 5; j++) {
                 if (((map[i][j].getLand() == R.drawable.land)
                         || (map[i][j].getLand() == R.drawable.sand))
                         && (map[i][j].getEntity() == null)) {
                     if (random.nextInt(frequency) == 1) {
-                        map[i][j].setEntity(new GoldChest(map[i][j], mode));
+                        map[i][j].setEntity(new GoldChest(map[i][j], wealth));
                     }
                 }
             }

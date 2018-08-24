@@ -1,19 +1,26 @@
 package by.siarhei.kb2.app.builder;
 
 import by.siarhei.kb2.app.countries.Country;
-import by.siarhei.kb2.app.countries.Country1;
-import by.siarhei.kb2.app.countries.Country2;
-import by.siarhei.kb2.app.countries.Country3;
-import by.siarhei.kb2.app.countries.Country4;
-import by.siarhei.kb2.app.countries.Country5;
-import by.siarhei.kb2.app.countries.CountryTest;
 import by.siarhei.kb2.app.countries.World;
-import by.siarhei.kb2.app.countries.generators.EntityGenerator;
 import by.siarhei.kb2.app.models.Game;
 
 public class WorldBuilder {
+    private static final int[] defaultWorldSchema = {
+            CountryBuilder.COUNTRY_ONE,
+            CountryBuilder.COUNTRY_TWO,
+            CountryBuilder.COUNTRY_THREE,
+            CountryBuilder.COUNTRY_FOUR,
+            CountryBuilder.COUNTRY_FIVE
+    };
+    private static final int[] testWorldSchema = {
+            CountryBuilder.COUNTRY_TEST,
+            CountryBuilder.COUNTRY_TWO,
+            CountryBuilder.COUNTRY_THREE,
+            CountryBuilder.COUNTRY_FOUR,
+            CountryBuilder.COUNTRY_FIVE
+    };
+
     static World build(int mode) {
-        EntityGenerator.reset();
         Country[] countries;
         switch (mode) {
             case Game.MODE_TEST:
@@ -31,32 +38,23 @@ public class WorldBuilder {
     }
 
     private static Country[] testWorld() {
-        Country[] countries = new Country[5];
-        countries[0] = new CountryTest();
-        countries[1] = new Country2(true);
-        countries[2] = new Country3(true);
-        countries[3] = new Country4(true);
-        countries[4] = new Country5(true);
-        return countries;
+        return buildWorld(5, testWorldSchema, false);
     }
 
     private static Country[] hardWorld() {
-        Country[] countries = new Country[5];
-        countries[0] = new Country1(true);
-        countries[1] = new Country2(true);
-        countries[2] = new Country3(true);
-        countries[3] = new Country4(true);
-        countries[4] = new Country5(true);
-        return countries;
+        return buildWorld(5, defaultWorldSchema, true);
     }
 
     private static Country[] defaultWorld() {
-        Country[] countries = new Country[5];
-        countries[0] = new Country1(false);
-        countries[1] = new Country2(false);
-        countries[2] = new Country3(false);
-        countries[3] = new Country4(false);
-        countries[4] = new Country5(false);
+        return buildWorld(5, defaultWorldSchema, false);
+    }
+
+    private static Country[] buildWorld(int size, int ccc[], boolean hardMode) {
+        Country[] countries = new Country[size];
+        for (int i = 0; i < size; i++) {
+            CountryBuilder countryBuilder = new CountryBuilder();
+            countries[i] = countryBuilder.build(ccc[i], hardMode);
+        }
         return countries;
     }
 }
