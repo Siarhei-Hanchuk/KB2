@@ -1,12 +1,11 @@
 package by.siarhei.kb2.app.countries;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
 import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.builder.generators.BaseGenerator;
-import by.siarhei.kb2.app.builder.generators.EntityGenerator;
 import by.siarhei.kb2.app.entities.ArmyShop;
 import by.siarhei.kb2.app.entities.Castle;
 import by.siarhei.kb2.app.entities.CastlesOwner;
@@ -17,31 +16,21 @@ import by.siarhei.kb2.app.models.Glade;
 import by.siarhei.kb2.app.models.MapPoint;
 import by.siarhei.kb2.app.models.iterators.ArmyShopsOwner;
 import by.siarhei.kb2.app.models.iterators.CitiesOwner;
+import by.siarhei.kb2.app.models.iterators.EntityIterator;
 
-public class Country implements Glade, Serializable, ArmyShopsOwner, CitiesOwner,
-        CastlesOwner {
+public class Country implements Glade, Serializable, ArmyShopsOwner, CitiesOwner, CastlesOwner {
     public final static int MAX_MAP_SIZE = 65;
     final MapPoint[][] map;
-    final BaseGenerator baseGenerator;
-    final EntityGenerator entityGenerator;
     private final Random random;
     final int id;
-//    private Metro metro1;
-//    private Metro metro2;
 
-    public Country(Random random,
-                   MapPoint[][] map,
-                   BaseGenerator baseGenerator,
-                   EntityGenerator entityGenerator,
-//                   Metro metro1,
-//                   Metro metro2,
-                   int id) {
+    // TODO: fulfill lists
+    private final ArrayList<City> cities = new ArrayList<>();
+    private final ArrayList<ArmyShop> armyShops = new ArrayList<>();
+
+    public Country(Random random, MapPoint[][] map, int id) {
         this.random = random;
         this.map = map;
-        this.baseGenerator = baseGenerator;
-        this.entityGenerator = entityGenerator;
-//        this.metro1 = metro1;
-//        this.metro2 = metro2;
         this.id = id;
     }
 
@@ -57,12 +46,20 @@ public class Country implements Glade, Serializable, ArmyShopsOwner, CitiesOwner
 
     @Override
     public Iterator<ArmyShop> getArmyShops() {
-        return entityGenerator.getArmyShops();
+        ArrayList<Iterator<ArmyShop>> iterators = new ArrayList<>();
+        for (ArmyShopsOwner armyShop : armyShops) {
+            iterators.add(armyShop.getArmyShops());
+        }
+        return new EntityIterator<>(iterators);
     }
 
     @Override
     public Iterator<City> getCities() {
-        return entityGenerator.getCities();
+        ArrayList<Iterator<City>> iterators = new ArrayList<>();
+        for (CitiesOwner city : cities) {
+            iterators.add(city.getCities());
+        }
+        return new EntityIterator<>(iterators);
     }
 
     @Override
@@ -93,14 +90,10 @@ public class Country implements Glade, Serializable, ArmyShopsOwner, CitiesOwner
     public boolean inBorders(int x, int y) {
         return (x > 0 && y > 0 && x < MAX_MAP_SIZE && y < MAX_MAP_SIZE);
     }
-//
-//    public void createMetro() {
-//        metro1 = entityGenerator.metro();
-//        metro2 = entityGenerator.metro();
-//    }
 
     public void createMaps() {
-        entityGenerator.updateSpell();
+        // TODO:
+//        entityGenerator.updateSpell();
     }
 
     public MapPoint getLandNearCity() {

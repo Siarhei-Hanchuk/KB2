@@ -25,7 +25,7 @@ import by.siarhei.kb2.app.models.iterators.ArmyShopsOwner;
 import by.siarhei.kb2.app.models.iterators.CitiesOwner;
 import by.siarhei.kb2.app.models.iterators.EntityIterator;
 
-public class EntityGenerator implements CitiesOwner, ArmyShopsOwner, Serializable {
+public class EntityGenerator implements Serializable {
     private static byte[] cityNamesMask;
     private static byte[] castleNamesMask;
     private final Random random;
@@ -242,21 +242,21 @@ public class EntityGenerator implements CitiesOwner, ArmyShopsOwner, Serializabl
         }
     }
 
-    @Override
-    public Iterator<City> getCities() {
-        ArrayList<Iterator<City>> iterators = new ArrayList<>();
-        for (CitiesOwner city : cities) {
-            iterators.add(city.getCities());
-        }
-        return new EntityIterator<>(iterators);
-    }
-
-    @Override
-    public Iterator<ArmyShop> getArmyShops() {
-        ArrayList<Iterator<ArmyShop>> iterators = new ArrayList<>();
-        for (ArmyShopsOwner armyShop : armyShops) {
-            iterators.add(armyShop.getArmyShops());
-        }
-        return new EntityIterator<>(iterators);
-    }
+//    @Override
+//    public Iterator<City> getCities() {
+//        ArrayList<Iterator<City>> iterators = new ArrayList<>();
+//        for (CitiesOwner city : cities) {
+//            iterators.add(city.getCities());
+//        }
+//        return new EntityIterator<>(iterators);
+//    }
+//
+//    @Override
+//    public Iterator<ArmyShop> getArmyShops() {
+//        ArrayList<Iterator<ArmyShop>> iterators = new ArrayList<>();
+//        for (ArmyShopsOwner armyShop : armyShops) {
+//            iterators.add(armyShop.getArmyShops());
+//        }
+//        return new EntityIterator<>(iterators);
+//    }
 }

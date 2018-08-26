@@ -80,7 +80,7 @@ public class CountryBuilder {
         Metro metro1 = entityGenerator.metro();
         Metro metro2 = entityGenerator.metro();
 
-        return new Country(random, map, baseGenerator, entityGenerator, 0);
+        return new Country(random, map, 0);
     }
 
     private Country build2(boolean hardMode) {
@@ -112,7 +112,7 @@ public class CountryBuilder {
             baseGenerator.landscape(0.03, R.drawable.stone);
         }
 
-        return new Country(random, map, baseGenerator, entityGenerator, 1);
+        return new Country(random, map, 1);
     }
 
     private Country build3(boolean hardMode) {
@@ -136,7 +136,7 @@ public class CountryBuilder {
             baseGenerator.landscape( 0.5, R.drawable.forest);
         }
 
-        return new Country(random, map, baseGenerator, entityGenerator, 2);
+        return new Country(random, map, 2);
     }
 
     private Country build4(boolean hardMode) {
@@ -160,7 +160,7 @@ public class CountryBuilder {
         }
 
 
-        return new Country(random, map, baseGenerator, entityGenerator, 3);
+        return new Country(random, map, 3);
     }
 
     private Country build5(boolean hardMode) {
@@ -182,7 +182,7 @@ public class CountryBuilder {
             stones(map, 0.6);
         }
 
-        return new Country(random, map, baseGenerator, entityGenerator, 4);
+        return new Country(random, map, 4);
     }
 
     public Country buildTest() {
@@ -207,7 +207,7 @@ public class CountryBuilder {
 
         new City(map[6][5], 0, castle);
 
-        return new Country(random, map, baseGenerator, entityGenerator, 0);
+        return new Country(random, map, 0);
     }
 
     private void generateBaseField() {
