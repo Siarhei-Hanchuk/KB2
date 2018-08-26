@@ -21,11 +21,11 @@ public abstract class EntityImpl implements Entity, Serializable {
         point.setEntity(null);
     }
 
-    public Country getCountry() {
-        if (point.getGlade() instanceof Country)
-            return (Country) point.getGlade();
-        return null;
-    }
+//    public Country getCountry() {
+//        if (point.getGlade() instanceof Country)
+//            return (Country) point.getGlade();
+//        return null;
+//    }
 
     public int getX() {
         return point.getX();

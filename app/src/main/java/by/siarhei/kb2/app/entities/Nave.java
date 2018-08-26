@@ -14,16 +14,9 @@ public class Nave extends EntityImpl {
         return R.drawable.nave;
     }
 
-    public void move(int x, int y) {
-        move(x, y, null);
-    }
-
     public void move(int x, int y, Country country) {
         point.setEntity(null);
-        if (country != null)
-            point = country.getMapPoint(x, y);
-        else
-            point = getCountry().getMapPoint(x, y);
+        point = country.getMapPoint(x, y);
         point.setEntity(this);
     }
 }

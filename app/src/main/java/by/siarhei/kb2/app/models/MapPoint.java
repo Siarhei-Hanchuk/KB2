@@ -28,9 +28,9 @@ public class MapPoint implements Serializable {
         return entity;
     }
 
-    public Glade getGlade() {
-        return glade;
-    }
+//    public Glade getGlade() {
+//        return glade;
+//    }
 
     public int getY() {
         return y;

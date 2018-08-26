@@ -1,5 +1,6 @@
 package by.siarhei.kb2.app.models;
 
+import by.siarhei.kb2.app.EntityMover;
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.controllers.listeners.ActivationEntityListener;
 import by.siarhei.kb2.app.controllers.listeners.WeekFinishListener;
@@ -79,7 +80,9 @@ public class Game implements Serializable {
                                 ((Moving) entity).canMoveTo(player.getMapPoint())) {
                             actionWithObject(glade.getMapPoint(x, y));
                         } else {
-                            ((Moving) entity).moveInDirection(player.getMapPoint());
+//                            ((Moving) entity).moveInDirection(player.getMapPoint());
+                            Mover mover = new Mover(glade);
+                            mover.moveInDirection(entity, player.getMapPoint());
                         }
                     } else if (entity instanceof Magician) {
                         ((Moving) entity).moveInRandomDirection();

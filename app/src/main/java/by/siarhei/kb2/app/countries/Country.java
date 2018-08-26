@@ -103,7 +103,7 @@ public class Country implements Glade, Serializable, ArmyShopsOwner, CitiesOwner
     public MapPoint getLandNearPoint(MapPoint point) {
         for (int x = point.getX() - 1; x <= point.getX() + 1; x++) {
             for (int y = point.getY() - 1; y <= point.getY() + 1; y++) {
-                if (point.getGlade().getMapPoint(x, y).getLand() == R.drawable.land) {
+                if (getMapPoint(x, y).getLand() == R.drawable.land) {
                     return getMapPoint(x, y);
                 }
             }
