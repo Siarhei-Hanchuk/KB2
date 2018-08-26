@@ -1,5 +1,6 @@
 package by.siarhei.kb2.app.entities;
 
+import by.siarhei.kb2.app.EntityMover;
 import by.siarhei.kb2.app.R;
 
 import java.util.Random;
@@ -11,15 +12,13 @@ import by.siarhei.kb2.app.warriors.Warrior;
 import by.siarhei.kb2.app.warriors.WarriorFactory;
 import by.siarhei.kb2.app.warriors.WarriorSquad;
 
-public class Captain extends EntityImpl implements Fighting, Moving {
+public class Captain extends EntityImpl implements Fighting {
     private static final int MAX_ARMY = 5;
     private final WarriorSquad[] warriors = new WarriorSquad[MAX_ARMY];
-    private final Mover mover;
     private int authority;
 
     public Captain(MapPoint point) {
         super(point);
-        mover = new Mover(point.getGlade());
     }
 
     @Override
@@ -56,20 +55,5 @@ public class Captain extends EntityImpl implements Fighting, Moving {
     @Override
     public void defeat() {
         this.destroy();
-    }
-
-    @Override
-    public void moveInDirection(MapPoint point) {
-        mover.moveInDirection(this, point);
-    }
-
-    @Override
-    public void moveInRandomDirection() {
-        mover.moveInRandomDirection(this);
-    }
-
-    @Override
-    public boolean canMoveTo(MapPoint point) {
-        return mover.canMoveTo(point);
     }
 }

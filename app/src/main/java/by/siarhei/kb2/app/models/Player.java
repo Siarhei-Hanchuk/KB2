@@ -91,7 +91,7 @@ public class Player implements Serializable {
         this.x = x;
         this.y = y;
         if (getNave() != null) {
-            getNave().move(x, y);
+            getNave().move(x, y, getCountry());
         }
         memory.update(getCountry().getId(), x, y);
     }

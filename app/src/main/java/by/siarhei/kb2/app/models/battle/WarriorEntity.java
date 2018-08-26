@@ -17,7 +17,9 @@ public class WarriorEntity implements Entity, Warrior {
     private int defence;
 
     public WarriorEntity(MapPoint point, Warrior warrior, int count, boolean friendly) {
-        mover = new Mover(point.getGlade());
+        //TODO:
+//        mover = new Mover(point.getGlade());
+        mover = null;
         point.setEntity(this);
         this.point = point;
         this.warrior = warrior;
@@ -125,16 +127,18 @@ public class WarriorEntity implements Entity, Warrior {
     }
 
     public boolean flyTo(MapPoint point) {
-        int x = point.getX();
-        int y = point.getY();
-
-        for (int i = (x - 1 < 0) ? 0 : x - 1; i < ((x + 2 <= XSize) ? x + 2 : XSize); i++) {
-            for (int j = (y - 1 < 0) ? 0 : y - 1; j < ((y + 2 <= YSize) ? y + 2 : YSize); j++) {
-                if (mover.teleport(this, point.getGlade().getMapPoint(i, j))) {
-                    return true;
-                }
-            }
-        }
+//        TODO:
+//        int x = point.getX();
+//        int y = point.getY();
+//
+//        for (int i = (x - 1 < 0) ? 0 : x - 1; i < ((x + 2 <= XSize) ? x + 2 : XSize); i++) {
+//            for (int j = (y - 1 < 0) ? 0 : y - 1; j < ((y + 2 <= YSize) ? y + 2 : YSize); j++) {
+//                if (mover.teleport(this, point.getGlade().getMapPoint(i, j))) {
+//                    return true;
+//                }
+//            }
+//        }
+//        return false;
         return false;
     }
 

@@ -126,10 +126,12 @@ public class CityMenu extends Menu {
         int y;
         for (x = city.getX() - 1; x <= city.getX() + 1; x++) {
             for (y = city.getY() - 1; y <= city.getY() + 1; y++) {
-                if (city.getCountry().getMapPoint(x, y).getLand() == R.drawable.water) {
-                    game.createNave(city.getCountry(), x, y);
-                    return;
-                }
+//                TODO:
+//                if (city.getCountry().getMapPoint(x, y).getLand() == R.drawable.water) {
+//                    game.createNave(city.getCountry(), x, y);
+//                    return;
+//                }
+                return;
             }
         }
     }
