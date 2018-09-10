@@ -34,20 +34,20 @@ public class WarriorEntity implements Entity, Warrior {
         return warrior.getId();
     }
 
-    @Override
-    public void destroy() {
-        point.setEntity(null);
-    }
-
-    @Override
-    public MapPoint getMapPoint() {
-        return point;
-    }
-
-    @Override
-    public void setMapPoint(MapPoint point) {
-        this.point = point;
-    }
+//    @Override
+//    public void destroy() {
+//        point.setEntity(null);
+//    }
+//
+//    @Override
+//    public MapPoint getMapPoint() {
+//        return point;
+//    }
+//
+//    @Override
+//    public void setMapPoint(MapPoint point) {
+//        this.point = point;
+//    }
 
     @Override
     public String getTextId() {
@@ -111,8 +111,9 @@ public class WarriorEntity implements Entity, Warrior {
     public void takeAttack(int damage) {
         defence -= damage;
         count = defence / warrior.getDefence();
-        if (count < 1)
-            destroy();
+        // TODO:
+//        if (count < 1)
+//            destroy();
     }
 
     public int getCount() {
@@ -142,9 +143,9 @@ public class WarriorEntity implements Entity, Warrior {
         return false;
     }
 
-    public void moveInDirection(MapPoint point) {
-        mover.moveInDirection(this, point);
-        this.reduceStep(1);
-    }
+//    public void moveInDirection(MapPoint point) {
+//        mover.moveInDirection(this, point);
+//        this.reduceStep(1);
+//    }
 
 }

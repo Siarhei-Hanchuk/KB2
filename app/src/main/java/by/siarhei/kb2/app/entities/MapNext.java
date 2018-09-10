@@ -6,7 +6,7 @@ import by.siarhei.kb2.app.models.MapPoint;
 public class MapNext extends EntityImpl {
 
     public MapNext(MapPoint point) {
-        super(point);
+        super();
     }
 
     @Override

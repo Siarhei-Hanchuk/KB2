@@ -10,9 +10,9 @@ public interface Entity {
         return getID();
     }
 
-    void destroy();
-
-    MapPoint getMapPoint();
-
-    void setMapPoint(MapPoint point);
+//    void destroy();
+//
+//    MapPoint getMapPoint();
+//
+//    void setMapPoint(MapPoint point);
 }

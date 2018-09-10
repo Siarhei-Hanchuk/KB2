@@ -32,23 +32,24 @@ public class BattleAi {
         }
     }
 
+//    TODO - check
     private void step(WarriorEntity war) {
-        MapPointBattle attackedPoint = findUserWar(true);
-        if (attackedPoint == null)
-            attackedPoint = findNearestUserWar(war);
-        if (war.isShoot()) {
-            war.attack(attackedPoint.getEntity());
-        } else if (war.isFly()) {
-            if (distance(war, attackedPoint) == 1)
-                war.attack(attackedPoint.getEntity());
-            else
-                war.flyTo(attackedPoint);
-        } else {
-            if (distance(war, attackedPoint) == 1 && war.getStep() > 0) {
-                war.attack(attackedPoint.getEntity());
-            }
-            war.moveInDirection(attackedPoint);
-        }
+//        MapPointBattle attackedPoint = findUserWar(true);
+//        if (attackedPoint == null)
+//            attackedPoint = findNearestUserWar(war);
+//        if (war.isShoot()) {
+//            war.attack(attackedPoint.getEntity());
+//        } else if (war.isFly()) {
+//            if (distance(war, attackedPoint) == 1)
+//                war.attack(attackedPoint.getEntity());
+//            else
+//                war.flyTo(attackedPoint);
+//        } else {
+//            if (distance(war, attackedPoint) == 1 && war.getStep() > 0) {
+//                war.attack(attackedPoint.getEntity());
+//            }
+//            war.moveInDirection(attackedPoint);
+//        }
     }
 
     private MapPointBattle findUserWar(boolean shoot) {
@@ -85,7 +86,9 @@ public class BattleAi {
     }
 
     private int distance(WarriorEntity selected, MapPoint point) {
-        return Math.max(Math.abs(selected.getMapPoint().getX() - point.getX()),
-                Math.abs(selected.getMapPoint().getY() - point.getY()));
+        // TODO:
+        return 0;
+//        return Math.max(Math.abs(selected.getMapPoint().getX() - point.getX()),
+//                Math.abs(selected.getMapPoint().getY() - point.getY()));
     }
 }

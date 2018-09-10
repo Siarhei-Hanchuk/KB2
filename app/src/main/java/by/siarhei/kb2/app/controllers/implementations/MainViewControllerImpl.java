@@ -163,6 +163,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
     @Override
     public boolean isTrainingMode() {
 //        return getGame().getMode() == Game.MODE_TRAINING;
+        // TODO
         return false;
     }
 

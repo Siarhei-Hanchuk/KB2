@@ -7,8 +7,8 @@ import by.siarhei.kb2.app.models.Mover;
 public class Magician extends EntityImpl {
     private static final int[] usedMagicianCount = {0, 0, 0, 0, 0};
 
-    public Magician(MapPoint point) {
-        super(point);
+    public Magician() {
+        super();
     }
 
     @Override

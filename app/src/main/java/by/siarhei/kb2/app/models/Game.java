@@ -76,14 +76,16 @@ public class Game implements Serializable {
                     movedEntity.put(entity, true);
                     if ((entity instanceof Captain && player.isCaptainsActivated())
                             || entity instanceof Sorcerer) {
-                        if(player.distanceToEntity(entity) <= 1 &&
-                                ((Moving) entity).canMoveTo(player.getMapPoint())) {
-                            actionWithObject(glade.getMapPoint(x, y));
-                        } else {
-//                            ((Moving) entity).moveInDirection(player.getMapPoint());
-                            Mover mover = new Mover(glade);
-                            mover.moveInDirection(entity, player.getMapPoint());
-                        }
+                        // TODO - fix
+//                        if(player.distanceToEntity(entity) <= 1 &&
+//                                ((Moving) entity).canMoveTo(player.getMapPoint())) {
+//                            actionWithObject(glade.getMapPoint(x, y));
+//                        } else {
+////                            ((Moving) entity).moveInDirection(player.getMapPoint());
+//                            Mover mover = new Mover(glade);
+//                            // TODO - check
+//                            mover.moveInDirection(entity, glade.getMapPoint(x, y), player.getMapPoint());
+//                        }
                     } else if (entity instanceof Magician) {
                         ((Moving) entity).moveInRandomDirection();
                     }
@@ -202,7 +204,8 @@ public class Game implements Serializable {
     }
 
     public void destroyNave() {
-        nave.destroy();
+        // TODO:
+//        nave.destroy();
         nave = null;
     }
 

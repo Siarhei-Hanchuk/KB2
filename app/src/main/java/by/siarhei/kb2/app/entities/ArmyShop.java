@@ -13,7 +13,7 @@ public class ArmyShop extends EntityImpl implements ArmyShopsOwner {
     private int count;
 
     public ArmyShop(MapPoint point, int... groups) {
-        super(point);
+        super();
         warrior = WarriorFactory.createRandomFromGroup(groups);
         resetCount();
     }

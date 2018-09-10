@@ -5,7 +5,7 @@ import by.siarhei.kb2.app.models.MapPoint;
 
 public class CastleLeft extends EntityImpl {
     public CastleLeft(MapPoint point) {
-        super(point);
+        super();
     }
 
     @Override

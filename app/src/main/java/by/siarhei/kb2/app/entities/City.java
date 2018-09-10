@@ -14,7 +14,7 @@ public class City extends EntityImpl implements CitiesOwner {
     private int magic;
 
     public City(MapPoint point, int nameId, Castle castle) {
-        super(point);
+        super();
         this.nameId = nameId;
         this.castle = castle;
         resetWorkers();

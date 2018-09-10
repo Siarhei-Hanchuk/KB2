@@ -44,7 +44,8 @@ public class GoldChestMenu extends Menu {
                 player.changeAuthority(+chest.getAuthority());
                 break;
         }
-        chest.destroy();
+        // TODO:
+//        chest.destroy();
         return true;
     }
 

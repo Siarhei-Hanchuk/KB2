@@ -41,6 +41,7 @@ public class GoldChestMessage extends Message {
                 player.getMagic().upRandomMagic();
                 break;
         }
-        entity.destroy();
+        // TODO:
+//        entity.destroy();
     }
 }

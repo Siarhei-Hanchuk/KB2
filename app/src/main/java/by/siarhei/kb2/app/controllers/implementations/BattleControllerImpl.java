@@ -32,8 +32,9 @@ public class BattleControllerImpl extends ApplicationController implements Battl
 
     @Override
     public void select(int x, int y) {
-        battleField.select(x, y);
-        updateView();
+        // TODO - check
+//        battleField.select(x, y);
+//        updateView();
     }
 
     @Override

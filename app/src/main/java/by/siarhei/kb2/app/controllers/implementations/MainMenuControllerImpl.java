@@ -1,10 +1,7 @@
 package by.siarhei.kb2.app.controllers.implementations;
 
-import java.security.cert.CertPathBuilder;
-
-import by.siarhei.kb2.app.builder.GameBuilder;
+import by.siarhei.kb2.app.builders.GameBuilder;
 import by.siarhei.kb2.app.controllers.ApplicationController;
-import by.siarhei.kb2.app.controllers.listeners.ActivationEntityListener;
 import by.siarhei.kb2.app.controllers.MainMenuController;
 import by.siarhei.kb2.app.models.Game;
 

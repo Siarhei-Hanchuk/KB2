@@ -69,6 +69,7 @@ public class SpellMessage extends Message {
                 // TODO
                 return;
         }
-        entity.destroy();
+//        TODO:
+//        entity.destroy();
     }
 }
