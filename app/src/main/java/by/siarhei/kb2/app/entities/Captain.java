@@ -18,7 +18,7 @@ public class Captain extends EntityImpl implements Fighting {
     private int authority;
 
     public Captain(MapPoint point) {
-        super(point);
+        super();
     }
 
     @Override
@@ -54,6 +54,7 @@ public class Captain extends EntityImpl implements Fighting {
 
     @Override
     public void defeat() {
-        this.destroy();
+        // TODO:
+//        this.destroy();
     }
 }

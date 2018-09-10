@@ -5,7 +5,7 @@ import by.siarhei.kb2.app.models.MapPoint;
 
 public class Metro extends EntityImpl {
     public Metro(MapPoint point) {
-        super(point);
+        super();
     }
 
     @Override

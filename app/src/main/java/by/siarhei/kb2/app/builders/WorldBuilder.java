@@ -1,4 +1,4 @@
-package by.siarhei.kb2.app.builder;
+package by.siarhei.kb2.app.builders;
 
 import by.siarhei.kb2.app.countries.Country;
 import by.siarhei.kb2.app.countries.World;

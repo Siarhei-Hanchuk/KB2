@@ -65,28 +65,32 @@ public class MagicianMenu extends Menu {
                             player.getMagic().upMagicPower();
                             magician.upUsedMagicianCount(countryId);
                         }
-                        magician.destroy();
+//                        TODO:
+//                        magician.destroy();
                         return true;
                     case 2:
                         if (player.changeMoney(-PRICE_MOVE_TO_COUNTRY)) {
                             menuMode = 2;
                             magician.upUsedMagicianCount(countryId);
                         }
-                        magician.destroy();
+                        // TODO:
+//                        magician.destroy();
                         return true;
                     case 4:
                         if (player.changeMoney(-PRICE_TORNADO)) {
                             player.getMagic().changeTornado(+1);
                             magician.upUsedMagicianCount(countryId);
                         }
-                        magician.destroy();
+                        // TODO:
+//                        magician.destroy();
                         return true;
                 }
             case 1:
                 player.changeMoney(-PRICE_WORKERS);
                 player.changeWorker(i, +player.getMagic().getMagicPower());
                 magician.upUsedMagicianCount(countryId);
-                magician.destroy();
+                // TODO:
+//                magician.destroy();
                 return true;
         }
         return false;

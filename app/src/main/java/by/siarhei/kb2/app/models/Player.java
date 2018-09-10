@@ -274,10 +274,12 @@ public class Player implements Serializable {
     }
 
     public int distanceToEntity(Entity entity) {
-        return Math.max(
-                Math.abs(getX() - entity.getMapPoint().getX()),
-                Math.abs(getY() - entity.getMapPoint().getY())
-        );
+        // TODO:
+        return 0;
+//        return Math.max(
+//                Math.abs(getX() - entity.getMapPoint().getX()),
+//                Math.abs(getY() - entity.getMapPoint().getY())
+//        );
     }
 
     public boolean isCaptainsActivated() {

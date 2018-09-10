@@ -6,7 +6,7 @@ import by.siarhei.kb2.app.models.Mover;
 
 public class Sorcerer extends EntityImpl {
     public Sorcerer(MapPoint point) {
-        super(point);
+        super();
     }
 
     @Override

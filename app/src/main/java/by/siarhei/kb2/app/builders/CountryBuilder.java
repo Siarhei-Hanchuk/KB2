@@ -1,10 +1,10 @@
-package by.siarhei.kb2.app.builder;
+package by.siarhei.kb2.app.builders;
 
 import java.util.Random;
 
 import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.builder.generators.BaseGenerator;
-import by.siarhei.kb2.app.builder.generators.EntityGenerator;
+import by.siarhei.kb2.app.builders.generators.BaseGenerator;
+import by.siarhei.kb2.app.builders.generators.EntityGenerator;
 import by.siarhei.kb2.app.countries.Country;
 import by.siarhei.kb2.app.entities.ArmyShop;
 import by.siarhei.kb2.app.entities.Captain;
@@ -37,6 +37,8 @@ public class CountryBuilder {
     }
 
     public Country build(int id, boolean hardMode) {
+        System.out.println("XXXXXXXXXXXXXXXXXXXXXXXX");
+        System.out.println(id);
         switch (id) {
             case COUNTRY_ONE:
                 return build1(hardMode);
@@ -191,21 +193,24 @@ public class CountryBuilder {
         Metro metro1 = entityGenerator.metro();
         Metro metro2 = entityGenerator.metro();
 
-        new ArmyShop(map[5][8], 0);
-        new ArmyShop(map[5][9], 0);
-        new ArmyShop(map[5][10], 0);
+        map[5][8].setEntity(new ArmyShop(null, 0));
+        map[5][9].setEntity(new ArmyShop(null, 0));
+        map[5][9].setEntity(new ArmyShop(null, 0));
 
-        Captain captain = new Captain(map[8][5]);
+        Captain captain = new Captain(null);
+        map[8][5].setEntity(captain);
         captain.generateArmy(28, 0);
 
-        Castle castle = new Castle(map[8][8], 0);
-        new CastleRight(map[9][8]);
-        new CastleLeft(map[7][8]);
+        Castle castle = new Castle(null, 0);
+        map[8][8].setEntity((castle));
+
+        map[9][8].setEntity(new CastleRight(null));
+        map[7][8].setEntity(new CastleLeft(null));
         castle.generateArmy(50, 0);
 
-        new GoldChest(map[5][6], 1);
+        map[5][6].setEntity(new GoldChest(null, 1));
 
-        new City(map[6][5], 0, castle);
+        map[6][5].setEntity(new City(null, 0, castle));
 
         return new Country(random, map, 0);
     }

@@ -13,23 +13,22 @@ public class Mover implements Serializable {
     }
 
     private boolean teleport(Entity entity, int x, int y) {
-        return glade.inBorders(x, y) && teleport(entity, glade.getMapPoint(x, y));
+        // TODO:
+        return glade.inBorders(x, y) && teleport(entity, null, glade.getMapPoint(x, y));
     }
 
-    public boolean teleport(Entity entity, MapPoint to) {
-        MapPoint from = entity.getMapPoint();
+    public boolean teleport(Entity entity, MapPoint from, MapPoint to) {
         if (to.isLand() && !to.isEntity()) {
             from.setEntity(null);
             to.setEntity(entity);
-            entity.setMapPoint(to);
             return true;
         }
         return false;
     }
 
-    public void moveInDirection(Entity entity, MapPoint to) {
-        int x = entity.getMapPoint().getX();
-        int y = entity.getMapPoint().getY();
+    public void moveInDirection(Entity entity, MapPoint from, MapPoint to) {
+        int x = from.getX();
+        int y = from.getY();
         int directionX = (int) Math.signum(to.getX() - x);
         int directionY = (int) Math.signum(to.getY() - y);
         if (!teleport(entity, x + directionX, y + directionY)) {
@@ -46,10 +45,9 @@ public class Mover implements Serializable {
         return (point.getEntity() == null && point.isLand());
     }
 
-    public void moveInRandomDirection(Entity entity) {
+    public void moveInRandomDirection(Entity entity, MapPoint from) {
         Random random = new Random();
-        MapPoint from = entity.getMapPoint();
         MapPoint to = glade.getMapPoint(from.getX() + (-1 + random.nextInt(3)), from.getY() + (-1 + random.nextInt(3)));
-        moveInDirection(entity, to);
+        moveInDirection(entity, from, to);
     }
 }

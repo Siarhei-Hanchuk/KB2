@@ -11,7 +11,7 @@ public class GoldChest extends EntityImpl {
     private int gold;
 
     public GoldChest(MapPoint point, int wealth) {
-        super(point);
+        super();
         this.wealth = wealth;
     }
 

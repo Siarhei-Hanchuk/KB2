@@ -1,8 +1,7 @@
-package by.siarhei.kb2.app.builder.generators;
+package by.siarhei.kb2.app.builders.generators;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Random;
 
 import by.siarhei.kb2.app.R;
@@ -19,11 +18,7 @@ import by.siarhei.kb2.app.entities.GuidePost;
 import by.siarhei.kb2.app.entities.MapNext;
 import by.siarhei.kb2.app.entities.Metro;
 import by.siarhei.kb2.app.entities.Spell;
-import by.siarhei.kb2.app.models.Glade;
 import by.siarhei.kb2.app.models.MapPoint;
-import by.siarhei.kb2.app.models.iterators.ArmyShopsOwner;
-import by.siarhei.kb2.app.models.iterators.CitiesOwner;
-import by.siarhei.kb2.app.models.iterators.EntityIterator;
 
 public class EntityGenerator implements Serializable {
     private static byte[] cityNamesMask;
@@ -210,7 +205,8 @@ public class EntityGenerator implements Serializable {
 
     public void updateSpell() {
         if (spell != null) {
-            spell.destroy();
+            // TODO:
+//            spell.destroy();
             spell = null;
         }
         if (Math.random() < 0.1) {

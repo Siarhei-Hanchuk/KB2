@@ -6,7 +6,7 @@ import by.siarhei.kb2.app.models.MapPoint;
 public class GuidePost extends EntityImpl {
 
     public GuidePost(MapPoint point) {
-        super(point);
+        super();
     }
 
     @Override

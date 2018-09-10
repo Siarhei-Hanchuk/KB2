@@ -5,7 +5,7 @@ import by.siarhei.kb2.app.models.MapPoint;
 
 public class Spell extends EntityImpl {
     public Spell(MapPoint point) {
-        super(point);
+        super();
     }
 
     @Override

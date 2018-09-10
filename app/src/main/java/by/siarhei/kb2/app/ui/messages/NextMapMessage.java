@@ -13,7 +13,7 @@ public class NextMapMessage extends Message {
     @Override
     public void action() {
         player.upAvailableCountry();
-        entity.destroy();
+//        entity.destroy();
     }
 
     @Override

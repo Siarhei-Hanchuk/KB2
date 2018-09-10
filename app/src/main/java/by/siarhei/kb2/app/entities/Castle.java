@@ -15,7 +15,7 @@ public class Castle extends EntityImpl implements Fighting, CastlesOwner {
     private int authority;
 
     public Castle(MapPoint point, int nameId) {
-        super(point);
+        super();
         this.nameId = nameId;
     }
 

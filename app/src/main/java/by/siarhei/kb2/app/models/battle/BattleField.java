@@ -5,6 +5,7 @@ import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.controllers.BattleController;
 import by.siarhei.kb2.app.entities.Fighting;
 import by.siarhei.kb2.app.models.Glade;
+import by.siarhei.kb2.app.models.MapPoint;
 import by.siarhei.kb2.app.models.Mover;
 import by.siarhei.kb2.app.models.Player;
 import by.siarhei.kb2.app.platforms.android.MainActivity;
@@ -75,20 +76,20 @@ public class BattleField implements Glade {
         }
     }
 
-    public void select(int x, int y) {
+    public void select(MapPoint from, int x, int y) {
         if (selected != null) {
             if (map[x][y].isMove()) {
-                move(x, y);
+                move(from, x, y);
             }
         } else {
             selectEntity(x, y);
         }
     }
 
-    private void move(int x, int y) {
+    private void move(MapPoint from, int x, int y) {
         if (isLand(x, y) && !isEntity(x, y)) {
             selected.reduceStep(distance(selected, x, y));
-            mover.teleport(selected, getMapPoint(x, y));
+            mover.teleport(selected, from, getMapPoint(x, y));
             if (selected.getStep() > 0) {
                 moveArea(x, y, selected);
             } else {
@@ -186,17 +187,21 @@ public class BattleField implements Glade {
     }
 
     public int getSelectedX() {
-        if (selected != null)
-            return selected.getMapPoint().getX();
-        else
-            return -1;
+//        TODO:
+//        if (selected != null)
+//            return selected.getMapPoint().getX();
+//        else
+//            return -1;
+        return -1;
     }
 
     public int getSelectedY() {
-        if (selected != null)
-            return selected.getMapPoint().getY();
-        else
-            return -1;
+//        TODO:
+//        if (selected != null)
+//            return selected.getMapPoint().getY();
+//        else
+//            return -1;
+        return -1;
     }
 
     @Override
@@ -224,8 +229,10 @@ public class BattleField implements Glade {
     }
 
     private int distance(WarriorEntity selected, int x, int y) {
-        return Math.max(Math.abs(selected.getMapPoint().getX() - x),
-                Math.abs(selected.getMapPoint().getY() - y));
+        // TODO:
+//        return Math.max(Math.abs(selected.getMapPoint().getX() - x),
+//                Math.abs(selected.getMapPoint().getY() - y));
+        return 0;
     }
 
     private void tryFinishPhase() {
