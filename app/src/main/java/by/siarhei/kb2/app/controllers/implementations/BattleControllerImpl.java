@@ -6,12 +6,13 @@ import by.siarhei.kb2.app.View;
 import by.siarhei.kb2.app.controllers.ApplicationController;
 import by.siarhei.kb2.app.controllers.BattleController;
 import by.siarhei.kb2.app.controllers.ViewController;
-import by.siarhei.kb2.app.entities.Fighting;
-import by.siarhei.kb2.app.models.MapPoint;
-import by.siarhei.kb2.app.models.Player;
-import by.siarhei.kb2.app.models.battle.BattleField;
-import by.siarhei.kb2.app.models.battle.MapPointBattle;
-import by.siarhei.kb2.app.warriors.WarriorSquad;
+import by.siarhei.kb2.app.server.entities.Fighting;
+import by.siarhei.kb2.app.server.models.Game;
+import by.siarhei.kb2.app.server.models.MapPoint;
+import by.siarhei.kb2.app.server.models.Player;
+import by.siarhei.kb2.app.server.models.battle.BattleField;
+import by.siarhei.kb2.app.server.models.battle.MapPointBattle;
+import by.siarhei.kb2.app.server.warriors.WarriorSquad;
 
 public class BattleControllerImpl extends ApplicationController implements BattleController {
     private final BattleField battleField;
@@ -106,5 +107,11 @@ public class BattleControllerImpl extends ApplicationController implements Battl
     @Override
     public void viewClose() {
         new MainViewControllerImpl();
+    }
+
+    // TODO - remove
+    @Override
+    public Game getGame() {
+        return null;
     }
 }

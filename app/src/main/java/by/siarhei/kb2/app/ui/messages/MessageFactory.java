@@ -1,12 +1,12 @@
 package by.siarhei.kb2.app.ui.messages;
 
 import by.siarhei.kb2.app.controllers.GameOwner;
-import by.siarhei.kb2.app.entities.Entity;
-import by.siarhei.kb2.app.entities.GoldChest;
-import by.siarhei.kb2.app.entities.GuidePost;
-import by.siarhei.kb2.app.entities.MapNext;
-import by.siarhei.kb2.app.entities.Sorcerer;
-import by.siarhei.kb2.app.entities.Spell;
+import by.siarhei.kb2.app.server.entities.Entity;
+import by.siarhei.kb2.app.server.entities.GoldChest;
+import by.siarhei.kb2.app.server.entities.GuidePost;
+import by.siarhei.kb2.app.server.entities.MapNext;
+import by.siarhei.kb2.app.server.entities.Sorcerer;
+import by.siarhei.kb2.app.server.entities.Spell;
 
 public class MessageFactory {
     private final GameOwner gameOwner;

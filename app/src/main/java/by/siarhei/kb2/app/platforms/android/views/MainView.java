@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.models.TrainingData;
+import by.siarhei.kb2.app.server.models.TrainingData;
 import by.siarhei.kb2.app.controllers.MainViewController;
-import by.siarhei.kb2.app.models.GameGrid;
+import by.siarhei.kb2.app.server.GameGrid;
 import by.siarhei.kb2.app.platforms.android.views.helpers.Click;
 import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
 
@@ -29,6 +29,7 @@ class MainView extends ViewImpl {
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
+        System.out.println("onTouchEvent");
         if(trainingMode) {
             trainingMode = false;
 //            trainingStep++;
@@ -37,8 +38,8 @@ class MainView extends ViewImpl {
         }
 
         Click click = getClick(event);
-        if (mainViewController.getGame() == null)
-            return super.onTouchEvent(event);
+//        if (mainViewController.getGame() == null)
+//            return super.onTouchEvent(event);
         int x = click.getX();
         int y = click.getY();
         if (x > this.stepX() * 5) {

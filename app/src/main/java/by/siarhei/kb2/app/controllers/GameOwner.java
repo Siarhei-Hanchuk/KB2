@@ -1,7 +1,7 @@
 package by.siarhei.kb2.app.controllers;
 
 import by.siarhei.kb2.app.I18n;
-import by.siarhei.kb2.app.models.Game;
+import by.siarhei.kb2.app.server.models.Game;
 
 public interface GameOwner {
     Game getGame();

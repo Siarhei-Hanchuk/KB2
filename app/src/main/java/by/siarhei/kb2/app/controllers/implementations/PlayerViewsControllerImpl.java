@@ -8,11 +8,12 @@ import by.siarhei.kb2.app.controllers.BattleAskController;
 import by.siarhei.kb2.app.controllers.BattleController;
 import by.siarhei.kb2.app.controllers.MagicViewController;
 import by.siarhei.kb2.app.controllers.PlayerViewsController;
-import by.siarhei.kb2.app.entities.ArmyShop;
-import by.siarhei.kb2.app.entities.Entity;
-import by.siarhei.kb2.app.entities.Fighting;
-import by.siarhei.kb2.app.models.Player;
-import by.siarhei.kb2.app.warriors.WarriorFactory;
+import by.siarhei.kb2.app.server.entities.ArmyShop;
+import by.siarhei.kb2.app.server.entities.Entity;
+import by.siarhei.kb2.app.server.entities.Fighting;
+import by.siarhei.kb2.app.server.models.Game;
+import by.siarhei.kb2.app.server.models.Player;
+import by.siarhei.kb2.app.server.warriors.WarriorFactory;
 
 public class PlayerViewsControllerImpl extends ApplicationController
         implements PlayerViewsController, MagicViewController, ArmyShopViewController,
@@ -57,5 +58,11 @@ public class PlayerViewsControllerImpl extends ApplicationController
         BattleController controller = new BattleControllerImpl(this, (Fighting) entity);
         if(!getPlayer().hasArmy())
             controller.battleFinish(false, new HashMap<>());
+    }
+
+    // TODO - remove
+    @Override
+    public Game getGame() {
+        return null;
     }
 }

@@ -1,7 +1,7 @@
 package by.siarhei.kb2.app.controllers;
 
 import java.util.HashMap;
-import by.siarhei.kb2.app.models.battle.MapPointBattle;
+import by.siarhei.kb2.app.server.models.battle.MapPointBattle;
 
 public interface BattleController extends ViewController {
     MapPointBattle[][] getMap();

@@ -1,8 +1,8 @@
 package by.siarhei.kb2.app.ui.menus;
 
 import by.siarhei.kb2.app.I18n;
-import by.siarhei.kb2.app.models.Game;
-import by.siarhei.kb2.app.warriors.WarriorSquad;
+import by.siarhei.kb2.app.server.models.Game;
+import by.siarhei.kb2.app.server.warriors.WarriorSquad;
 
 public class ArmyFireMenu extends Menu {
     ArmyFireMenu(Game game, I18n i18n) {

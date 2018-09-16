@@ -1,9 +1,9 @@
 package by.siarhei.kb2.app.ui.messages;
 
 import by.siarhei.kb2.app.I18n;
-import by.siarhei.kb2.app.entities.Entity;
-import by.siarhei.kb2.app.entities.GoldChest;
-import by.siarhei.kb2.app.models.Game;
+import by.siarhei.kb2.app.server.entities.Entity;
+import by.siarhei.kb2.app.server.entities.GoldChest;
+import by.siarhei.kb2.app.server.models.Game;
 
 import java.util.Random;
 

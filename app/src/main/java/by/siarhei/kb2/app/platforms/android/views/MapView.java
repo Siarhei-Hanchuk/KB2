@@ -9,9 +9,9 @@ import android.view.MotionEvent;
 
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.controllers.PlayerViewsController;
-import by.siarhei.kb2.app.countries.Country;
-import by.siarhei.kb2.app.models.MapPoint;
-import by.siarhei.kb2.app.models.Player;
+import by.siarhei.kb2.app.server.countries.Country;
+import by.siarhei.kb2.app.server.models.MapPoint;
+import by.siarhei.kb2.app.server.models.Player;
 import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
 
 class MapView extends ViewImpl {
