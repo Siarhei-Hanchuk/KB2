@@ -13,6 +13,7 @@ import by.siarhei.kb2.app.server.entities.CastleLeft;
 import by.siarhei.kb2.app.server.entities.CastleRight;
 import by.siarhei.kb2.app.server.entities.City;
 import by.siarhei.kb2.app.server.entities.GoldChest;
+import by.siarhei.kb2.app.server.entities.GuidePost;
 import by.siarhei.kb2.app.server.entities.Metro;
 import by.siarhei.kb2.app.server.models.MapPoint;
 
@@ -196,6 +197,7 @@ public class CountryBuilder {
         map[5][8].setEntity(new ArmyShop(null, 0));
         map[5][9].setEntity(new ArmyShop(null, 0));
         map[5][9].setEntity(new ArmyShop(null, 0));
+        map[7][5].setEntity(new GuidePost(null));
 
         Captain captain = new Captain(null);
         map[8][5].setEntity(captain);
