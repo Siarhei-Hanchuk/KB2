@@ -7,11 +7,9 @@ import by.siarhei.kb2.app.server.countries.Country;
 import by.siarhei.kb2.app.server.countries.World;
 import by.siarhei.kb2.app.server.entities.ArmyShop;
 import by.siarhei.kb2.app.server.entities.Captain;
-import by.siarhei.kb2.app.server.entities.Castle;
 import by.siarhei.kb2.app.server.entities.City;
 import by.siarhei.kb2.app.server.entities.Entity;
 import by.siarhei.kb2.app.server.entities.Magician;
-import by.siarhei.kb2.app.server.entities.Metro;
 import by.siarhei.kb2.app.server.entities.Moving;
 import by.siarhei.kb2.app.server.entities.Nave;
 import by.siarhei.kb2.app.server.entities.Sorcerer;
@@ -30,6 +28,9 @@ public class Game implements Serializable {
 
     public static final int WEEK_LENGTH = 200;
 
+    public static final int VIEW_MODE_GRID = 0;
+    public static final int VIEW_MODE_MESSAGE = 1;
+
     transient private ActivationEntityListener activationEntityListener;
     transient private WeekFinishListener weekUpdateListener;
 
@@ -39,6 +40,9 @@ public class Game implements Serializable {
     private int weeks;
     private int days = WEEK_LENGTH;
     private int currentWorker = -1;
+
+    // TODO - move outside
+    private int viewMode = VIEW_MODE_GRID;
 
     public Game(World world, Player player, int weeks) {
         this.world = world;
@@ -181,17 +185,19 @@ public class Game implements Serializable {
     }
 
     private void actionWithObject(MapPoint mp) {
-        if (mp.getEntity() instanceof Nave) {
-            player.setNave((Nave) mp.getEntity());
-            player.move(mp);
-        } else if (mp.getEntity() instanceof Metro) {
-            player.move(player.getCountry().getLinkedMetroPoint((Metro) mp.getEntity()));
-        } else if (mp.getEntity() instanceof Castle) {
-            if (player.getY() > mp.getY())
-                activationEntityListener.activateEntity(mp.getEntity());
-        } else {
-            activationEntityListener.activateEntity(mp.getEntity());
-        }
+        viewMode = Game.VIEW_MODE_MESSAGE;
+// TODO - check
+//        if (mp.getEntity() instanceof Nave) {
+//            player.setNave((Nave) mp.getEntity());
+//            player.move(mp);
+//        } else if (mp.getEntity() instanceof Metro) {
+//            player.move(player.getCountry().getLinkedMetroPoint((Metro) mp.getEntity()));
+//        } else if (mp.getEntity() instanceof Castle) {
+//            if (player.getY() > mp.getY())
+//                activationEntityListener.activateEntity(mp.getEntity());
+//        } else {
+//            activationEntityListener.activateEntity(mp.getEntity());
+//        }
     }
 
     public boolean getNave() {
@@ -240,5 +246,9 @@ public class Game implements Serializable {
         Country country = getWorld().getCountry(n);
         country.createMaps();
         player.changeCountry(country);
+    }
+
+    public int getViewMode() {
+        return viewMode;
     }
 }

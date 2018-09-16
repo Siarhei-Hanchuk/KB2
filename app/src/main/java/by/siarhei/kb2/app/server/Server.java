@@ -2,7 +2,6 @@ package by.siarhei.kb2.app.server;
 
 import by.siarhei.kb2.app.server.builders.GameBuilder;
 import by.siarhei.kb2.app.server.models.Game;
-import by.siarhei.kb2.app.server.models.MapPoint;
 
 public class Server {
     private static Server server = null;
@@ -12,14 +11,10 @@ public class Server {
         this.game = game;
     }
 
-    public void request(Request data) {
-        MapPoint mp = game.getPlayer().getMapPoint();
-        System.out.print("Move:");
-        System.out.print(mp.getX() + data.getX());
-        System.out.print(" ");
-        System.out.println(mp.getY() + data.getY());
+    public boolean request(Request data) {
+        game.move(data.getX(), data.getY());
 
-        game.getPlayer().move(mp.getX() + data.getX(), mp.getX() + data.getY());
+        return true;
     }
 
     public static Server getServer() {
@@ -31,7 +26,19 @@ public class Server {
         return server;
     }
 
-    public static GameGrid getGameGrid() {
-        return new GameGrid(getServer().game);
+//    public static GameGrid getGameGrid() {
+//        return new GameGrid(getServer().game);
+//    }
+
+    public static ServerView getView() {
+        ServerView view = new ServerView ();
+        view.setGameGrid(new GameGrid(getServer().game));
+        view.setViewMode(getServer().game.getViewMode());
+        return view;
+    }
+
+    public static void create(int mode) {
+        Game game = GameBuilder.build(mode);
+        server = new Server(game);
     }
 }

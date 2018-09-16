@@ -8,6 +8,7 @@ import by.siarhei.kb2.app.controllers.listeners.WeekFinishListener;
 import by.siarhei.kb2.app.server.GameGrid;
 import by.siarhei.kb2.app.server.Request;
 import by.siarhei.kb2.app.server.Server;
+import by.siarhei.kb2.app.server.ServerView;
 import by.siarhei.kb2.app.server.entities.City;
 import by.siarhei.kb2.app.server.entities.Entity;
 import by.siarhei.kb2.app.server.models.Game;
@@ -15,19 +16,20 @@ import by.siarhei.kb2.app.server.models.TrainingData;
 
 public class MainViewControllerImpl extends ApplicationController implements MainViewController,
         ActivationEntityListener, WeekFinishListener {
-    private final View view;
+//    private final View view;
 //    private GameGrid gameGrid;
     private final TrainingData trainingData = new TrainingData();
     private int mode;
 
     public MainViewControllerImpl() {
-        view = getViewFactory().getMainView(this);
-        setContentView(view);
+//        view = getViewFactory().getMainView(this);
+//        setContentView(view);
     }
 
     @Override
     public GameGrid getGameGrid() {
-        GameGrid gameGrid = Server.getGameGrid();
+        ServerView view = Server.getView();
+        GameGrid gameGrid = view.getGameGrid();
         gameGrid.update();
         return gameGrid;
     }
@@ -90,14 +92,14 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
                 switch (i) {
                     case 0:
                         grid.setMode(1);
-                        view.refresh();
+//                        view.refresh();
                         break;
                     case 1:
                         setContentView(getViewFactory().getWorkersMenuView(this));
                         break;
                     case 2:
                         grid.setMode(2);
-                        view.refresh();
+//                        view.refresh();
                         break;
                     case 3:
                         new PlayerViewsControllerImpl("status");
@@ -105,7 +107,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
                         break;
                     case 4:
                         grid.setMode(3);
-                        view.refresh();
+//                        view.refresh();
                         break;
                 }
                 break;
@@ -121,7 +123,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
                         break;
                     case 4:
                         grid.setMode(0);
-                        view.refresh();
+//                        view.refresh();
                         break;
                 }
                 break;
@@ -133,7 +135,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
                         break;
                     case 4:
                         grid.setMode(0);
-                        view.refresh();
+//                        view.refresh();
                         break;
                 }
                 break;
@@ -149,7 +151,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
                         break;
                     case 2:
                         grid.setMode(0);
-                        view.refresh();
+//                        view.refresh();
                         break;
                 }
                 break;
@@ -158,7 +160,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
 
     @Override
     public void viewClose() {
-        setContentView(view);
+//        setContentView(view);
     }
 
     @Override
@@ -173,7 +175,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
         Request request = new Request();
         request.setMoveTo(dx, dy);
         Server.getServer().request(request);
-        view.refresh();
+//        view.refresh();
     }
 
     public TrainingData getTrainingData() {

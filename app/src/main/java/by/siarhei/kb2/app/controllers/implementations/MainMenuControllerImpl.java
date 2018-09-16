@@ -62,8 +62,8 @@ public class MainMenuControllerImpl extends ApplicationController implements Mai
     }
 
     private void createGame(int mode) {
-        MainViewControllerImpl controller = new MainViewControllerImpl();
-//        server = Server.create(mode);
+        Server.create(mode);
+        new MainViewControllerImpl();
     }
 
     // TODO - remove
