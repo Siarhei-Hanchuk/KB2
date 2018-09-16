@@ -1,10 +1,10 @@
 package by.siarhei.kb2.app.ui.menus;
 
 import by.siarhei.kb2.app.controllers.GameOwner;
-import by.siarhei.kb2.app.entities.City;
-import by.siarhei.kb2.app.entities.Entity;
-import by.siarhei.kb2.app.entities.GoldChest;
-import by.siarhei.kb2.app.entities.Magician;
+import by.siarhei.kb2.app.server.entities.City;
+import by.siarhei.kb2.app.server.entities.Entity;
+import by.siarhei.kb2.app.server.entities.GoldChest;
+import by.siarhei.kb2.app.server.entities.Magician;
 
 public class MenuFactory {
     private final GameOwner gameOwner;

@@ -10,11 +10,11 @@ import android.view.MotionEvent;
 
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.controllers.ArmyShopViewController;
-import by.siarhei.kb2.app.entities.ArmyShop;
-import by.siarhei.kb2.app.models.Player;
+import by.siarhei.kb2.app.server.entities.ArmyShop;
+import by.siarhei.kb2.app.server.models.Player;
 import by.siarhei.kb2.app.platforms.android.views.helpers.Click;
 import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
-import by.siarhei.kb2.app.warriors.Warrior;
+import by.siarhei.kb2.app.server.warriors.Warrior;
 
 class ArmyShopView extends ViewImpl {
     private final ArmyShop shop;

@@ -5,16 +5,18 @@ import by.siarhei.kb2.app.controllers.ApplicationController;
 import by.siarhei.kb2.app.controllers.listeners.ActivationEntityListener;
 import by.siarhei.kb2.app.controllers.MainViewController;
 import by.siarhei.kb2.app.controllers.listeners.WeekFinishListener;
-import by.siarhei.kb2.app.entities.City;
-import by.siarhei.kb2.app.entities.Entity;
-import by.siarhei.kb2.app.models.Game;
-import by.siarhei.kb2.app.models.GameGrid;
-import by.siarhei.kb2.app.models.TrainingData;
+import by.siarhei.kb2.app.server.GameGrid;
+import by.siarhei.kb2.app.server.Request;
+import by.siarhei.kb2.app.server.Server;
+import by.siarhei.kb2.app.server.entities.City;
+import by.siarhei.kb2.app.server.entities.Entity;
+import by.siarhei.kb2.app.server.models.Game;
+import by.siarhei.kb2.app.server.models.TrainingData;
 
 public class MainViewControllerImpl extends ApplicationController implements MainViewController,
         ActivationEntityListener, WeekFinishListener {
     private final View view;
-    private GameGrid gameGrid;
+//    private GameGrid gameGrid;
     private final TrainingData trainingData = new TrainingData();
     private int mode;
 
@@ -25,8 +27,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
 
     @Override
     public GameGrid getGameGrid() {
-        if (gameGrid == null)
-            gameGrid = new GameGrid(getGame());
+        GameGrid gameGrid = Server.getGameGrid();
         gameGrid.update();
         return gameGrid;
     }
@@ -168,11 +169,19 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
     }
 
     private void playerMove(int dx, int dy) {
-        if (getGame().move(dx, dy))
-            view.refresh();
+//        if (getGame().move(dx, dy))
+        Request request = new Request();
+        request.setMoveTo(dx, dy);
+        Server.getServer().request(request);
+        view.refresh();
     }
 
     public TrainingData getTrainingData() {
         return trainingData;
+    }
+
+    @Override
+    public Game getGame() {
+        return null;
     }
 }

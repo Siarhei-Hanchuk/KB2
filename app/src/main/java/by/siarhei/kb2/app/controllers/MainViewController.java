@@ -1,7 +1,7 @@
 package by.siarhei.kb2.app.controllers;
 
-import by.siarhei.kb2.app.models.GameGrid;
-import by.siarhei.kb2.app.models.TrainingData;
+import by.siarhei.kb2.app.server.GameGrid;
+import by.siarhei.kb2.app.server.models.TrainingData;
 
 public interface MainViewController extends ViewController {
     GameGrid getGameGrid();

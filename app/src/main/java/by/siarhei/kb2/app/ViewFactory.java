@@ -6,8 +6,8 @@ import by.siarhei.kb2.app.controllers.MagicViewController;
 import by.siarhei.kb2.app.controllers.MainMenuController;
 import by.siarhei.kb2.app.controllers.MainViewController;
 import by.siarhei.kb2.app.controllers.ViewController;
-import by.siarhei.kb2.app.entities.City;
-import by.siarhei.kb2.app.entities.Entity;
+import by.siarhei.kb2.app.server.entities.City;
+import by.siarhei.kb2.app.server.entities.Entity;
 
 public interface ViewFactory {
     View getWorkersMenuView(ViewController controller);

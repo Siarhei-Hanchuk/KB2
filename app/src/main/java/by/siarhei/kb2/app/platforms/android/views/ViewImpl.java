@@ -12,7 +12,7 @@ import android.view.SurfaceView;
 import by.siarhei.kb2.app.I18n;
 import by.siarhei.kb2.app.View;
 import by.siarhei.kb2.app.controllers.ViewController;
-import by.siarhei.kb2.app.models.GameGrid;
+import by.siarhei.kb2.app.server.GameGrid;
 import by.siarhei.kb2.app.platforms.android.views.helpers.Click;
 import by.siarhei.kb2.app.platforms.android.views.helpers.DrawThread;
 import by.siarhei.kb2.app.platforms.android.views.helpers.Drawable;

@@ -4,13 +4,13 @@ import by.siarhei.kb2.app.I18n;
 import by.siarhei.kb2.app.Storage;
 import by.siarhei.kb2.app.View;
 import by.siarhei.kb2.app.ViewFactory;
-import by.siarhei.kb2.app.models.Game;
+import by.siarhei.kb2.app.server.Server;
 
-public abstract class ApplicationController implements ViewController, GameOwner {
+public abstract class ApplicationController implements ViewController {
     private static PlatformController platformController;
     private static Storage storage;
     private static ViewFactory viewFactory;
-    private static Game game;
+    private static Server server;
     private static I18n i18n;
 
     protected ApplicationController() {
@@ -29,13 +29,13 @@ public abstract class ApplicationController implements ViewController, GameOwner
         return viewFactory;
     }
 
-    @Override
-    public Game getGame() {
-        return game;
+//    @Override
+    public Server getServer() {
+        return server;
     }
 
-    protected void setGame(Game game) {
-        ApplicationController.game = game;
+    protected void setServer(Server server) {
+        ApplicationController.server = server;
     }
 
     @Override

@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
 import by.siarhei.kb2.app.controllers.PlayerViewsController;
-import by.siarhei.kb2.app.models.Player;
+import by.siarhei.kb2.app.server.models.Player;
 import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
 
 public class StatusView extends ViewImpl {

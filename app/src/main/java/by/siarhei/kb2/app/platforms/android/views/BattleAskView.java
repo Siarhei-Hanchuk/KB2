@@ -8,8 +8,8 @@ import android.view.MotionEvent;
 
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.controllers.BattleAskController;
-import by.siarhei.kb2.app.entities.Castle;
-import by.siarhei.kb2.app.entities.Fighting;
+import by.siarhei.kb2.app.server.entities.Castle;
+import by.siarhei.kb2.app.server.entities.Fighting;
 import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
 
 public class BattleAskView extends ViewImpl {

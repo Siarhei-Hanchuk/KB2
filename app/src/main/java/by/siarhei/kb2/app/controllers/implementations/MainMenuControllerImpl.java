@@ -1,11 +1,13 @@
 package by.siarhei.kb2.app.controllers.implementations;
 
-import by.siarhei.kb2.app.builders.GameBuilder;
 import by.siarhei.kb2.app.controllers.ApplicationController;
 import by.siarhei.kb2.app.controllers.MainMenuController;
-import by.siarhei.kb2.app.models.Game;
+import by.siarhei.kb2.app.server.models.Game;
+import by.siarhei.kb2.app.server.Server;
 
 public class MainMenuControllerImpl extends ApplicationController implements MainMenuController {
+    private Server server = null;
+
     public MainMenuControllerImpl() {
         setContentView(getViewFactory().getMainMenuView(this));
     }
@@ -17,12 +19,15 @@ public class MainMenuControllerImpl extends ApplicationController implements Mai
 
     @Override
     public void newGame() {
-        setGame(createGame(Game.MODE_TEST));
+//        TODO - check
+        createGame(Game.MODE_GAME);
     }
 
     @Override
     public void newTraining() {
-        setGame(createGame(Game.MODE_TEST));
+        //        TODO - check
+//        setGame(createGame(Game.MODE_TEST));
+        createGame(Game.MODE_TRAINING);
     }
 
     @Override
@@ -32,7 +37,8 @@ public class MainMenuControllerImpl extends ApplicationController implements Mai
             MainViewControllerImpl controller = new MainViewControllerImpl();
             game.onWeekUpdate(controller);
             game.onEntityActivate(controller);
-            setGame(game);
+//            TODO
+//            setGame(game);
             return true;
         }
         return false;
@@ -50,14 +56,19 @@ public class MainMenuControllerImpl extends ApplicationController implements Mai
 
     @Override
     public void newTestGame() {
-        setGame(createGame(Game.MODE_TEST));
+        // TODO - check
+//        setGame(createGame(Game.MODE_TEST));
+        createGame(Game.MODE_TEST);
     }
 
-    private Game createGame(int mode) {
+    private void createGame(int mode) {
         MainViewControllerImpl controller = new MainViewControllerImpl();
-        Game game = GameBuilder.build(mode);
-        game.onWeekUpdate(controller);
-        game.onEntityActivate(controller);
-        return game;
+//        server = Server.create(mode);
+    }
+
+    // TODO - remove
+    @Override
+    public Game getGame() {
+        return null;
     }
 }

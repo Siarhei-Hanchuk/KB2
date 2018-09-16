@@ -8,11 +8,11 @@ import android.view.MotionEvent;
 
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.controllers.MagicViewController;
-import by.siarhei.kb2.app.models.GameGrid;
-import by.siarhei.kb2.app.models.Magic;
+import by.siarhei.kb2.app.server.GameGrid;
+import by.siarhei.kb2.app.server.models.Magic;
 import by.siarhei.kb2.app.platforms.android.views.helpers.ImageCache;
 import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
-import by.siarhei.kb2.app.warriors.WarriorFactory;
+import by.siarhei.kb2.app.server.warriors.WarriorFactory;
 
 import java.util.HashMap;
 

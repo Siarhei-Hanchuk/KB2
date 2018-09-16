@@ -9,9 +9,9 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import by.siarhei.kb2.app.controllers.PlayerViewsController;
-import by.siarhei.kb2.app.models.Player;
+import by.siarhei.kb2.app.server.models.Player;
 import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
-import by.siarhei.kb2.app.warriors.WarriorSquad;
+import by.siarhei.kb2.app.server.warriors.WarriorSquad;
 
 class ArmyView extends ViewImpl {
     private final Player player;
