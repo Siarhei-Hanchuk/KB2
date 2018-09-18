@@ -5,9 +5,8 @@ import android.graphics.Color;
 import android.support.annotation.NonNull;
 
 import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.platforms.android.views.XMainView;
+import by.siarhei.kb2.app.platforms.android.XMainView;
 import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
-import by.siarhei.kb2.app.server.GameGrid;
 import by.siarhei.kb2.app.server.Server;
 import by.siarhei.kb2.app.server.ServerView;
 import by.siarhei.kb2.app.ui.menus.Menu;

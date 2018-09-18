@@ -12,8 +12,6 @@ import by.siarhei.kb2.app.View;
 import by.siarhei.kb2.app.controllers.ApplicationController;
 import by.siarhei.kb2.app.controllers.PlatformController;
 import by.siarhei.kb2.app.controllers.implementations.MainMenuControllerImpl;
-import by.siarhei.kb2.app.controllers.implementations.MainViewControllerImpl;
-import by.siarhei.kb2.app.platforms.android.views.XMainView;
 import by.siarhei.kb2.app.server.Server;
 
 public class MainActivity extends Activity {
@@ -34,11 +32,8 @@ public class MainActivity extends Activity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-//        Server
         PlatformController platformController = new PlatformControllerImpl(this);
         ApplicationController.initApp(platformController);
-//        new MainViewControllerImpl();
-//        new MainMenuControllerImpl();
         Server.setI18n(ApplicationController.i18n);
         View view = new XMainView(this);
         platformController.setContentView(view);

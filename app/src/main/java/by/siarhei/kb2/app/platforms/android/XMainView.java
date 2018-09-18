@@ -1,4 +1,4 @@
-package by.siarhei.kb2.app.platforms.android.views;
+package by.siarhei.kb2.app.platforms.android;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -13,6 +13,7 @@ import by.siarhei.kb2.app.View;
 import by.siarhei.kb2.app.platforms.android.drawers.GameDrawer;
 import by.siarhei.kb2.app.platforms.android.drawers.MenuDrawer;
 import by.siarhei.kb2.app.platforms.android.drawers.MessageDrawer;
+import by.siarhei.kb2.app.platforms.android.drawers.WeekFinishedDrawer;
 import by.siarhei.kb2.app.platforms.android.touchers.GameToucher;
 import by.siarhei.kb2.app.platforms.android.views.helpers.Click;
 import by.siarhei.kb2.app.platforms.android.views.helpers.DrawThread;
@@ -144,32 +145,35 @@ public class XMainView extends SurfaceView implements SurfaceHolder.Callback, Dr
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
         ServerView serverView = Server.getServer().getView();
-        if(serverView.getViewMode() == GameDispatcher.VIEW_MODE_GRID) {
-            GameToucher.touchEvent(event, this);
-        }
+        Request request = new Request();
 
-        if(serverView.getViewMode() == GameDispatcher.VIEW_MODE_MESSAGE) {
-            Request request = new Request();
-            request.setAction(Request.ACTION_OK);
-            Server.getServer().request(request);
-        }
+        switch (serverView.getViewMode()) {
+            case GameDispatcher.VIEW_MODE_GRID:
+                GameToucher.touchEvent(event, this);
+                break;
+            case GameDispatcher.VIEW_MODE_MESSAGE:
+            case GameDispatcher.VIEW_MODE_WEEK_FINISHED:
+                request.setAction(Request.ACTION_OK);
+                Server.getServer().request(request);
+                break;
+            case GameDispatcher.VIEW_MODE_MENU:
+                Menu menu = Server.getServer().getView().getMenu();
+                double y = event.getY();
+                int item = (int) y / menuItemHeight();
 
-        if(serverView.getViewMode() == GameDispatcher.VIEW_MODE_MENU) {
-            Menu menu = Server.getServer().getView().getMenu();
-            double y = event.getY();
-            int item = (int) y / menuItemHeight();
-            Request request = new Request();
+                int count = menu.getCount();
+                if(menu.withExit()) {
+                    count++;
+                }
+                if (item < count) {
+                    request.setAction(Request.ACTION_SELECT);
+                    request.setMenuItem(item);
+                }
 
-            int count = menu.getCount();
-            if(menu.withExit()) {
-                count++;
-            }
-            if (item < count) {
-                request.setAction(Request.ACTION_SELECT);
-                request.setMenuItem(item);
-            }
-
-            Server.getServer().request(request);
+                Server.getServer().request(request);
+                break;
+            default:
+                break;
         }
 
         refresh();
@@ -190,6 +194,10 @@ public class XMainView extends SurfaceView implements SurfaceHolder.Callback, Dr
 
         if(serverView.getViewMode() == GameDispatcher.VIEW_MODE_MENU) {
             MenuDrawer.draw(canvas, serverView, this);
+        }
+
+        if(serverView.getViewMode() == GameDispatcher.VIEW_MODE_WEEK_FINISHED) {
+            WeekFinishedDrawer.draw(canvas, serverView, this);
         }
     }
 }

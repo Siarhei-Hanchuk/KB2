@@ -9,9 +9,6 @@ import by.siarhei.kb2.app.ViewFactory;
 import by.siarhei.kb2.app.controllers.GameOwner;
 import by.siarhei.kb2.app.controllers.PlatformController;
 import by.siarhei.kb2.app.platforms.android.views.ViewFactoryImpl;
-import by.siarhei.kb2.app.platforms.android.views.ViewImpl;
-import by.siarhei.kb2.app.platforms.android.views.ViewImpl2;
-import by.siarhei.kb2.app.platforms.android.views.XMainView;
 
 class PlatformControllerImpl implements PlatformController {
     private final Activity activity;
