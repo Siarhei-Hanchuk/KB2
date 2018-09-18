@@ -2,7 +2,7 @@ package by.siarhei.kb2.app.ui.messages;
 
 import by.siarhei.kb2.app.I18n;
 import by.siarhei.kb2.app.server.entities.Entity;
-import by.siarhei.kb2.app.server.entities.GoldChest;
+import by.siarhei.kb2.app.server.entities.GoldenChest;
 import by.siarhei.kb2.app.server.Game;
 
 import java.util.Random;
@@ -32,7 +32,7 @@ public class GoldChestMessage extends Message {
     public void action() {
         switch (mode) {
             case 0:
-                player.changeSalary(((GoldChest) entity).getSalary());
+                player.changeSalary(((GoldenChest) entity).getSalary());
                 break;
             case 1:
                 player.getMagic().upMagicMaxCount();

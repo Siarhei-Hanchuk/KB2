@@ -3,7 +3,7 @@ package by.siarhei.kb2.app.ui.menus;
 import by.siarhei.kb2.app.controllers.GameOwner;
 import by.siarhei.kb2.app.server.entities.City;
 import by.siarhei.kb2.app.server.entities.Entity;
-import by.siarhei.kb2.app.server.entities.GoldChest;
+import by.siarhei.kb2.app.server.entities.GoldenChest;
 import by.siarhei.kb2.app.server.entities.Magician;
 
 public class MenuFactory {
@@ -14,13 +14,13 @@ public class MenuFactory {
     }
 
     public Menu getMenu(Entity entity) {
-        if (entity instanceof City) {
-            return new CityMenu(entity, gameOwner.getGame(), gameOwner.i18n());
-        }
+//        if (entity instanceof City) {
+//            return new CityMenu(entity, gameOwner.getGame(), gameOwner.i18n());
+//        }
         if (entity instanceof Magician) {
             return new MagicianMenu(entity, gameOwner.getGame(), gameOwner.i18n());
         }
-        if (entity instanceof GoldChest && !((GoldChest) entity).isBonus()) {
+        if (entity instanceof GoldenChest && !((GoldenChest) entity).isBonus()) {
             return new GoldChestMenu(entity, gameOwner.getGame(), gameOwner.i18n());
         }
         return null;

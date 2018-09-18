@@ -27,7 +27,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
 
     @Override
     public GameGrid getGameGrid() {
-        ServerView view = Server.getView();
+        ServerView view = Server.getServer().getView();
         GameGrid gameGrid = view.getGameGrid();
         gameGrid.update();
         return gameGrid;
@@ -172,6 +172,7 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
     private void playerMove(int dx, int dy) {
 //        if (getGame().move(dx, dy))
         Request request = new Request();
+        request.setAction(Request.ACTION_MOVE);
         request.setMoveTo(dx, dy);
         Server.getServer().request(request);
 //        view.refresh();

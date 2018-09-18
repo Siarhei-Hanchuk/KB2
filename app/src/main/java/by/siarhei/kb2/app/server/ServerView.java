@@ -4,28 +4,26 @@ import by.siarhei.kb2.app.ui.menus.Menu;
 import by.siarhei.kb2.app.ui.messages.Message;
 
 public class ServerView {
-    private GameGrid gameGrid;
+    private transient GameGrid gameGrid;
     private int viewMode;
-    private Message message;
-    private Menu menu;
+    private transient Message message;
+    private transient Menu menu;
+    private int money;
 
-    public ServerView() {
+    private transient Game game;
+    private transient GameDispatcher gameDispatcher;
+
+    public ServerView(Game game, GameDispatcher gameDispatcher) {
+        this.gameDispatcher = gameDispatcher;
+        this.game = game;
     }
 
     public GameGrid getGameGrid() {
         return gameGrid;
     }
 
-    public void setGameGrid(GameGrid gameGrid) {
-        this.gameGrid = gameGrid;
-    }
-
     public int getViewMode() {
         return viewMode;
-    }
-
-    public void setViewMode(int viewMode) {
-        this.viewMode = viewMode;
     }
 
     public Message getMessage() {
@@ -36,11 +34,15 @@ public class ServerView {
         return menu;
     }
 
-    public void setMessage(Message message) {
-        this.message = message;
+    public int getMoney() {
+        return money;
     }
 
-    public void setMenu(Menu menu) {
-        this.menu = menu;
+    public void refresh() {
+        gameGrid = new GameGrid(game);
+        menu = gameDispatcher.getMenu();
+        message = gameDispatcher.getMessage();
+        viewMode = gameDispatcher.getViewMode();
+        money = game.getPlayer().getMoney();
     }
 }

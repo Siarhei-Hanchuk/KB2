@@ -3,15 +3,15 @@ package by.siarhei.kb2.app.ui.menus;
 import by.siarhei.kb2.app.I18n;
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.server.entities.Entity;
-import by.siarhei.kb2.app.server.entities.GoldChest;
+import by.siarhei.kb2.app.server.entities.GoldenChest;
 import by.siarhei.kb2.app.server.Game;
 
 public class GoldChestMenu extends Menu {
-    private final GoldChest chest;
+    private final GoldenChest chest;
 
     GoldChestMenu(Entity entity, Game game, I18n i18n) {
         super(game, i18n);
-        this.chest = (GoldChest) entity;
+        this.chest = (GoldenChest) entity;
     }
 
     public String getTitle() {

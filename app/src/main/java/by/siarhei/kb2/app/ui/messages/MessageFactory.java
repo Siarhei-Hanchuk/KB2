@@ -2,7 +2,7 @@ package by.siarhei.kb2.app.ui.messages;
 
 import by.siarhei.kb2.app.controllers.GameOwner;
 import by.siarhei.kb2.app.server.entities.Entity;
-import by.siarhei.kb2.app.server.entities.GoldChest;
+import by.siarhei.kb2.app.server.entities.GoldenChest;
 import by.siarhei.kb2.app.server.entities.GuidePost;
 import by.siarhei.kb2.app.server.entities.MapNext;
 import by.siarhei.kb2.app.server.entities.Sorcerer;
@@ -22,7 +22,7 @@ public class MessageFactory {
             return new SpellMessage(entity, gameOwner.getGame(), gameOwner.i18n());
         if (entity instanceof GuidePost)
             return new GuidePostMessage(entity, gameOwner.getGame(), gameOwner.i18n());
-        if (entity instanceof GoldChest && ((GoldChest) entity).isBonus())
+        if (entity instanceof GoldenChest && ((GoldenChest) entity).isBonus())
             return new GoldChestMessage(entity, gameOwner.getGame(), gameOwner.i18n());
         if (entity instanceof Sorcerer)
             return new SorcererMessage(entity, gameOwner.getGame(), gameOwner.i18n());

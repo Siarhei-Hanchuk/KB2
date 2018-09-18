@@ -22,7 +22,7 @@ public class CityMenu extends Menu {
 //            case 0:
                 switch (i) {
                     case 1:
-                        if (game.getNave()) {
+                        if (game.naveExists()) {
                             game.destroyNave();
                         } else {
                             buyNave();

@@ -33,13 +33,6 @@ public class Game implements Serializable {
 
     public static final int WEEK_LENGTH = 200;
 
-    public static final int VIEW_MODE_GRID = 0;
-    public static final int VIEW_MODE_MESSAGE = 1;
-    public static final int VIEW_MODE_MENU = 2;
-
-    private Message message;
-    private Menu menu;
-
     transient private ActivationEntityListener activationEntityListener;
     transient private WeekFinishListener weekUpdateListener;
 
@@ -51,7 +44,6 @@ public class Game implements Serializable {
     private int currentWorker = -1;
 
     // TODO - move outside
-    private int viewMode = VIEW_MODE_GRID;
 
     public Game(World world, Player player, int weeks) {
         this.world = world;
@@ -104,6 +96,22 @@ public class Game implements Serializable {
                 }
             }
         }
+    }
+
+    public boolean naveExists() {
+        for(int c = 0; c < 5; c++) {
+            Country country = world.getCountry(c);
+            for (int i = 0; i < Country.MAX_MAP_SIZE; i++) {
+                for (int j = 0; j < Country.MAX_MAP_SIZE; j++) {
+                    Entity entity = country.getMapPoint(i, j).getEntity();
+                    if(entity instanceof Nave) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 
     private void weekFinish() {
@@ -174,7 +182,10 @@ public class Game implements Serializable {
                     player.move(x + dx, y + dy);
                 }
                 if (mp.getLand() == R.drawable.water || mp.getLand() == R.drawable.plot) {
+                    Entity nave = player.getMapPoint().getEntity();
+                    player.getMapPoint().setEntity(null);
                     player.move(x + dx, y + dy);
+                    player.getMapPoint().setEntity(nave);
                 }
             } else {
                 if (mp.getLand() == R.drawable.land || mp.getLand() == R.drawable.plot
@@ -193,43 +204,21 @@ public class Game implements Serializable {
         return mp;
     }
 
-    // TODO - move outside
-    private void actionWithObject(MapPoint mp) {
-
-        if(mp.getEntity() instanceof City) {
-            viewMode = Game.VIEW_MODE_MENU;
-            this.menu = Server.getMenuFactory().getMenu(mp.getEntity());
-        } else {
-            viewMode = Game.VIEW_MODE_MESSAGE;
-            this.message = Server.getMessageFactory().getMessage(mp.getEntity());
-            System.out.println("FFFFF");
-        }
-// TODO - check
-//        if (mp.getEntity() instanceof Nave) {
-//            player.setNave((Nave) mp.getEntity());
-//            player.move(mp);
-//        } else if (mp.getEntity() instanceof Metro) {
-//            player.move(player.getCountry().getLinkedMetroPoint((Metro) mp.getEntity()));
-//        } else if (mp.getEntity() instanceof Castle) {
-//            if (player.getY() > mp.getY())
-//                activationEntityListener.activateEntity(mp.getEntity());
-//        } else {
-//            activationEntityListener.activateEntity(mp.getEntity());
-//        }
-    }
-
-    public boolean getNave() {
-        return nave != null;
-    }
-
     public void createNave(Country country, int x, int y) {
-        nave = new Nave(country.getMapPoint(x, y));
+        country.getMapPoint(x, y).setEntity(new Nave(null));
     }
 
     public void destroyNave() {
-        // TODO:
-//        nave.destroy();
-        nave = null;
+        for(int c = 0; c < 5; c++) {
+            Country country = world.getCountry(c);
+            for (int i = 0; i < Country.MAX_MAP_SIZE; i++) {
+                for (int j = 0; j < Country.MAX_MAP_SIZE; j++) {
+                    if(country.getMapPoint(i, j).getEntity() instanceof Nave) {
+                        country.getMapPoint(i, j).setEntity(null);
+                    }
+                }
+            }
+        }
     }
 
     public void buyArmy(ArmyShop armyShop, int count) {
@@ -264,21 +253,5 @@ public class Game implements Serializable {
         Country country = getWorld().getCountry(n);
         country.createMaps();
         player.changeCountry(country);
-    }
-
-    public int getViewMode() {
-        return viewMode;
-    }
-
-    public void setViewMode(int viewMode) {
-        this.viewMode = viewMode;
-    }
-
-    public Message getMessage() {
-        return message;
-    }
-
-    public Menu getMenu() {
-        return menu;
     }
 }
