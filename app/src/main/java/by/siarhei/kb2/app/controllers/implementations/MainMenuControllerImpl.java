@@ -32,15 +32,15 @@ public class MainMenuControllerImpl extends ApplicationController implements Mai
 
     @Override
     public boolean loadGame() {
-        Game game = getStorage().loadGame("save1");
-        if(game != null) {
-            MainViewControllerImpl controller = new MainViewControllerImpl();
-            game.onWeekUpdate(controller);
-            game.onEntityActivate(controller);
-//            TODO
-//            setGame(game);
-            return true;
-        }
+//        Game game = getStorage().loadGame("save1");
+//        if(game != null) {
+//            MainViewControllerImpl controller = new MainViewControllerImpl();
+//            game.onWeekUpdate(controller);
+//            game.onEntityActivate(controller);
+////            TODO
+////            setGame(game);
+//            return true;
+//        }
         return false;
     }
 

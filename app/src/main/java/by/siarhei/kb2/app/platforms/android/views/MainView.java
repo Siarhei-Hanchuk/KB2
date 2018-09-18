@@ -23,7 +23,7 @@ class MainView extends ViewImpl {
 //    private int trainingStep = 0;
 
     public MainView(Context context, MainViewControllerImpl mainViewController) {
-        super(context, mainViewController);
+        super(context, null);
         this.mainViewController = mainViewController;
     }
 
@@ -87,7 +87,7 @@ class MainView extends ViewImpl {
         Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 
-        GameGrid grid = mainViewController.getGameGrid();
+        GameGrid grid = null;//mainViewController.getGameGrid();
 
         for (int x = 0; x < GameGrid.STEP_X; x++) {
             for (int y = 0; y < GameGrid.STEP_Y; y++) {
@@ -106,52 +106,52 @@ class MainView extends ViewImpl {
     }
 
     private void showTraining(@NonNull Canvas canvas) {
-        if(!mainViewController.isTrainingMode()){
-            return;
-        }
-        Painter painter = getPainter(canvas);
-//        TrainingData trainingData = mainViewController.getTrainingData();
-
-        if(!trainingData.citiesDid()) {
-            GameGrid grid = mainViewController.getGameGrid();
-            for (int x = 0; x < GameGrid.STEP_X; x++) {
-                for (int y = 0; y < GameGrid.STEP_Y; y++) {
-                    if(grid.getImageBuyXY(x, y) == R.drawable.city) {
-                        painter.drawTrainingCircle(x, y);
-                    }
-                }
-            }
-
-            drawTrainingText(painter, R.string.training_cities);
-
-            trainingData.doneCities();
-            trainingMode = true;
-        }
-
-
-        if(!trainingData.step2Did()) {
-            painter.drawTrainingCircle(0, 0);
-            painter.drawTrainingCircle(4, 4);
-            painter.drawTrainingCircle(4, 0);
-            painter.drawTrainingCircle(0, 4);
-
-            drawTrainingText(painter, R.string.training_moving);
-
-            trainingData.doneStep2();
-            trainingMode = true;
-        }
-
-        if(!trainingData.step1Did()) {
-            painter.drawTrainingCircle(0, 2);
-            painter.drawTrainingCircle(2, 0);
-            painter.drawTrainingCircle(4, 2);
-            painter.drawTrainingCircle(2, 4);
-
-            drawTrainingText(painter, R.string.training_moving);
-
-            trainingData.doneStep1();
-            trainingMode = true;
-        }
+//        if(!mainViewController.isTrainingMode()){
+//            return;
+//        }
+//        Painter painter = getPainter(canvas);
+////        TrainingData trainingData = mainViewController.getTrainingData();
+//
+//        if(!trainingData.citiesDid()) {
+//            GameGrid grid = mainViewController.getGameGrid();
+//            for (int x = 0; x < GameGrid.STEP_X; x++) {
+//                for (int y = 0; y < GameGrid.STEP_Y; y++) {
+//                    if(grid.getImageBuyXY(x, y) == R.drawable.city) {
+//                        painter.drawTrainingCircle(x, y);
+//                    }
+//                }
+//            }
+//
+//            drawTrainingText(painter, R.string.training_cities);
+//
+//            trainingData.doneCities();
+//            trainingMode = true;
+//        }
+//
+//
+//        if(!trainingData.step2Did()) {
+//            painter.drawTrainingCircle(0, 0);
+//            painter.drawTrainingCircle(4, 4);
+//            painter.drawTrainingCircle(4, 0);
+//            painter.drawTrainingCircle(0, 4);
+//
+//            drawTrainingText(painter, R.string.training_moving);
+//
+//            trainingData.doneStep2();
+//            trainingMode = true;
+//        }
+//
+//        if(!trainingData.step1Did()) {
+//            painter.drawTrainingCircle(0, 2);
+//            painter.drawTrainingCircle(2, 0);
+//            painter.drawTrainingCircle(4, 2);
+//            painter.drawTrainingCircle(2, 4);
+//
+//            drawTrainingText(painter, R.string.training_moving);
+//
+//            trainingData.doneStep1();
+//            trainingMode = true;
+//        }
     }
 
     private void drawTrainingText(Painter painter, int textId) {

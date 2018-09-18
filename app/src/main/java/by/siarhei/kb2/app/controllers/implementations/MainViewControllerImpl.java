@@ -12,28 +12,10 @@ import by.siarhei.kb2.app.server.entities.Entity;
 import by.siarhei.kb2.app.server.Game;
 import by.siarhei.kb2.app.server.models.TrainingData;
 
-public class MainViewControllerImpl extends ApplicationController implements
-        ActivationEntityListener, WeekFinishListener {
+public class MainViewControllerImpl {
 
     public MainViewControllerImpl() {
 
-    }
-
-    public GameGrid getGameGrid() {
-        ServerView view = Server.getServer().getView();
-        GameGrid gameGrid = view.getGameGrid();
-        gameGrid.update();
-        return gameGrid;
-    }
-
-    @Override
-    public void activateEntity(Entity entity) {
-        new PlayerViewsControllerImpl(entity);
-    }
-
-    @Override
-    public void weekFinish(String armyTextId, City city) {
-        setContentView(getViewFactory().getWeekEndView(this, armyTextId, city));
     }
 
     public void touchDown() {
@@ -69,7 +51,7 @@ public class MainViewControllerImpl extends ApplicationController implements
     }
 
     public void touchMenu(int i) {
-        GameGrid grid = getGameGrid();
+        GameGrid grid = null;//getGameGrid();
         switch (grid.getMode()) {
             case 0:
                 switch (i) {
@@ -78,7 +60,7 @@ public class MainViewControllerImpl extends ApplicationController implements
 //                        view.refresh();
                         break;
                     case 1:
-                        setContentView(getViewFactory().getWorkersMenuView(this));
+//                        setContentView(getViewFactory().getWorkersMenuView(this));
                         break;
                     case 2:
                         grid.setMode(2);
@@ -101,7 +83,7 @@ public class MainViewControllerImpl extends ApplicationController implements
                         grid.setMode(0);
                         break;
                     case 1:
-                        getGame().finishWeek();
+//                        getGame().finishWeek();
                         grid.setMode(0);
                         break;
                     case 4:
@@ -128,9 +110,9 @@ public class MainViewControllerImpl extends ApplicationController implements
                         new PlayerViewsControllerImpl("map");
                         break;
                     case 1:
-                        if (getGame().getPlayer().inNave()) {
-                            setContentView(getViewFactory().getCountryMenuView(this));
-                        }
+//                        if (getGame().getPlayer().inNave()) {
+////                            setContentView(getViewFactory().getCountryMenuView(this));
+//                        }
                         break;
                     case 2:
                         grid.setMode(0);
@@ -141,28 +123,10 @@ public class MainViewControllerImpl extends ApplicationController implements
         }
     }
 
-    @Override
-    public void viewClose() {
-//        setContentView(view);
-    }
-
-    public boolean isTrainingMode() {
-//        return getGame().getMode() == Game.MODE_TRAINING;
-        // TODO
-        return false;
-    }
-
     private void playerMove(int dx, int dy) {
-//        if (getGame().move(dx, dy))
         Request request = new Request();
         request.setAction(Request.ACTION_MOVE);
         request.setMoveTo(dx, dy);
         Server.getServer().request(request);
-//        view.refresh();
-    }
-
-    @Override
-    public Game getGame() {
-        return null;
     }
 }

@@ -40,6 +40,7 @@ public class ServerView {
 
     public void refresh() {
         gameGrid = new GameGrid(game);
+        gameGrid.update();
         menu = gameDispatcher.getMenu();
         message = gameDispatcher.getMessage();
         viewMode = gameDispatcher.getViewMode();
