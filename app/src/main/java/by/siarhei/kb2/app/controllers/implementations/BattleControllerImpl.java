@@ -7,7 +7,7 @@ import by.siarhei.kb2.app.controllers.ApplicationController;
 import by.siarhei.kb2.app.controllers.BattleController;
 import by.siarhei.kb2.app.controllers.ViewController;
 import by.siarhei.kb2.app.server.entities.Fighting;
-import by.siarhei.kb2.app.server.models.Game;
+import by.siarhei.kb2.app.server.Game;
 import by.siarhei.kb2.app.server.models.MapPoint;
 import by.siarhei.kb2.app.server.models.Player;
 import by.siarhei.kb2.app.server.models.battle.BattleField;

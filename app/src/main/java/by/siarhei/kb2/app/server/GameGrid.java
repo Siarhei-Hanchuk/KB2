@@ -2,7 +2,6 @@ package by.siarhei.kb2.app.server;
 
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.server.countries.Country;
-import by.siarhei.kb2.app.server.models.Game;
 import by.siarhei.kb2.app.server.models.MapPoint;
 import by.siarhei.kb2.app.server.models.Player;
 

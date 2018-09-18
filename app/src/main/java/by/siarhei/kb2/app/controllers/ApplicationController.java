@@ -11,7 +11,7 @@ public abstract class ApplicationController implements ViewController {
     private static Storage storage;
     private static ViewFactory viewFactory;
     private static Server server;
-    private static I18n i18n;
+    public static I18n i18n;
 
     protected ApplicationController() {
         if (viewFactory == null)

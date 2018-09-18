@@ -11,7 +11,7 @@ import by.siarhei.kb2.app.controllers.PlayerViewsController;
 import by.siarhei.kb2.app.server.entities.ArmyShop;
 import by.siarhei.kb2.app.server.entities.Entity;
 import by.siarhei.kb2.app.server.entities.Fighting;
-import by.siarhei.kb2.app.server.models.Game;
+import by.siarhei.kb2.app.server.Game;
 import by.siarhei.kb2.app.server.models.Player;
 import by.siarhei.kb2.app.server.warriors.WarriorFactory;
 

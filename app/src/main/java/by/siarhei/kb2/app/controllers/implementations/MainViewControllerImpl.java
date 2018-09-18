@@ -1,6 +1,5 @@
 package by.siarhei.kb2.app.controllers.implementations;
 
-import by.siarhei.kb2.app.View;
 import by.siarhei.kb2.app.controllers.ApplicationController;
 import by.siarhei.kb2.app.controllers.listeners.ActivationEntityListener;
 import by.siarhei.kb2.app.controllers.MainViewController;
@@ -11,7 +10,7 @@ import by.siarhei.kb2.app.server.Server;
 import by.siarhei.kb2.app.server.ServerView;
 import by.siarhei.kb2.app.server.entities.City;
 import by.siarhei.kb2.app.server.entities.Entity;
-import by.siarhei.kb2.app.server.models.Game;
+import by.siarhei.kb2.app.server.Game;
 import by.siarhei.kb2.app.server.models.TrainingData;
 
 public class MainViewControllerImpl extends ApplicationController implements MainViewController,

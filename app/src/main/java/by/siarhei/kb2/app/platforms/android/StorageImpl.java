@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import android.util.Base64;
 
 import by.siarhei.kb2.app.Storage;
-import by.siarhei.kb2.app.server.models.Game;
+import by.siarhei.kb2.app.server.Game;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

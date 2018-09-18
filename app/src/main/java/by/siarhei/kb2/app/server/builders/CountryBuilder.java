@@ -38,8 +38,6 @@ public class CountryBuilder {
     }
 
     public Country build(int id, boolean hardMode) {
-        System.out.println("XXXXXXXXXXXXXXXXXXXXXXXX");
-        System.out.println(id);
         switch (id) {
             case COUNTRY_ONE:
                 return build1(hardMode);

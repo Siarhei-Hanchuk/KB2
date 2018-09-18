@@ -2,7 +2,7 @@ package by.siarhei.kb2.app.controllers.implementations;
 
 import by.siarhei.kb2.app.controllers.ApplicationController;
 import by.siarhei.kb2.app.controllers.MainMenuController;
-import by.siarhei.kb2.app.server.models.Game;
+import by.siarhei.kb2.app.server.Game;
 import by.siarhei.kb2.app.server.Server;
 
 public class MainMenuControllerImpl extends ApplicationController implements MainMenuController {
@@ -63,6 +63,7 @@ public class MainMenuControllerImpl extends ApplicationController implements Mai
 
     private void createGame(int mode) {
         Server.create(mode);
+        Server.setI18n(i18n());
         new MainViewControllerImpl();
     }
 
