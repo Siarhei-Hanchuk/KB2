@@ -1,4 +1,4 @@
-package by.siarhei.kb2.app.server.models;
+package by.siarhei.kb2.app.server;
 
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.controllers.listeners.ActivationEntityListener;
@@ -13,8 +13,13 @@ import by.siarhei.kb2.app.server.entities.Magician;
 import by.siarhei.kb2.app.server.entities.Moving;
 import by.siarhei.kb2.app.server.entities.Nave;
 import by.siarhei.kb2.app.server.entities.Sorcerer;
+import by.siarhei.kb2.app.server.models.Glade;
+import by.siarhei.kb2.app.server.models.MapPoint;
+import by.siarhei.kb2.app.server.models.Player;
 import by.siarhei.kb2.app.server.warriors.Warrior;
 import by.siarhei.kb2.app.server.warriors.WarriorFactory;
+import by.siarhei.kb2.app.ui.menus.Menu;
+import by.siarhei.kb2.app.ui.messages.Message;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -30,6 +35,10 @@ public class Game implements Serializable {
 
     public static final int VIEW_MODE_GRID = 0;
     public static final int VIEW_MODE_MESSAGE = 1;
+    public static final int VIEW_MODE_MENU = 2;
+
+    private Message message;
+    private Menu menu;
 
     transient private ActivationEntityListener activationEntityListener;
     transient private WeekFinishListener weekUpdateListener;
@@ -129,11 +138,11 @@ public class Game implements Serializable {
         }
     }
 
-    public boolean move(int dx, int dy) {
+    public MapPoint move(int dx, int dy) {
         int x = player.getX();
         int y = player.getY();
         if (x + dx < 2 || x + dx > 62 || y + dy < 2 || y + dy > 62) {
-            return false;
+            return player.getCountry().getMapPoint(x, y);
         }
 
         MapPoint mp = player.getCountry().getMapPoint(x + dx, y + dy);
@@ -174,18 +183,27 @@ public class Game implements Serializable {
                 }
             }
         } else {
-            actionWithObject(mp);
-            return true;
+//            actionWithObject(mp);
+            return mp;
         }
 
         moveEntities();
         weekUpdate();
         player.tryActivateCaptains();
-        return true;
+        return mp;
     }
 
+    // TODO - move outside
     private void actionWithObject(MapPoint mp) {
-        viewMode = Game.VIEW_MODE_MESSAGE;
+
+        if(mp.getEntity() instanceof City) {
+            viewMode = Game.VIEW_MODE_MENU;
+            this.menu = Server.getMenuFactory().getMenu(mp.getEntity());
+        } else {
+            viewMode = Game.VIEW_MODE_MESSAGE;
+            this.message = Server.getMessageFactory().getMessage(mp.getEntity());
+            System.out.println("FFFFF");
+        }
 // TODO - check
 //        if (mp.getEntity() instanceof Nave) {
 //            player.setNave((Nave) mp.getEntity());
@@ -250,5 +268,17 @@ public class Game implements Serializable {
 
     public int getViewMode() {
         return viewMode;
+    }
+
+    public void setViewMode(int viewMode) {
+        this.viewMode = viewMode;
+    }
+
+    public Message getMessage() {
+        return message;
+    }
+
+    public Menu getMenu() {
+        return menu;
     }
 }

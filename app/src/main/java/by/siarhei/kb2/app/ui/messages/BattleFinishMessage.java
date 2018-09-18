@@ -1,7 +1,7 @@
 package by.siarhei.kb2.app.ui.messages;
 
 import by.siarhei.kb2.app.I18n;
-import by.siarhei.kb2.app.server.models.Game;
+import by.siarhei.kb2.app.server.Game;
 
 public class BattleFinishMessage extends Message {
     private final boolean result;

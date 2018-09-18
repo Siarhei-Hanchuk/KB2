@@ -29,7 +29,6 @@ class MainView extends ViewImpl {
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
-        System.out.println("onTouchEvent");
         if(trainingMode) {
             trainingMode = false;
 //            trainingStep++;
