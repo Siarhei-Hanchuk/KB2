@@ -4,8 +4,8 @@ import java.util.HashMap;
 import by.siarhei.kb2.app.controllers.BattleController;
 import by.siarhei.kb2.app.controllers.MagicViewController;
 import by.siarhei.kb2.app.controllers.MainMenuController;
-import by.siarhei.kb2.app.controllers.MainViewController;
 import by.siarhei.kb2.app.controllers.ViewController;
+import by.siarhei.kb2.app.controllers.implementations.MainViewControllerImpl;
 import by.siarhei.kb2.app.server.entities.City;
 import by.siarhei.kb2.app.server.entities.Entity;
 
@@ -18,7 +18,7 @@ public interface ViewFactory {
 
     View getMainMenuView(MainMenuController controller);
 
-    View getMainView(MainViewController controller);
+    View getMainView(MainViewControllerImpl controller);
 
     View getBattleView(BattleController controller);
 

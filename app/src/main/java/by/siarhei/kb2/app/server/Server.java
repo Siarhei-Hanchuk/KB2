@@ -66,4 +66,8 @@ public class Server {
     public static void setI18n(I18n i18n) {
         Server.i18n = i18n;
     }
+
+    public static I18n getI18n() {
+        return i18n;
+    }
 }

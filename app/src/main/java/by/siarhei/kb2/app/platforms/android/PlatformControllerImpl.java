@@ -10,6 +10,8 @@ import by.siarhei.kb2.app.controllers.GameOwner;
 import by.siarhei.kb2.app.controllers.PlatformController;
 import by.siarhei.kb2.app.platforms.android.views.ViewFactoryImpl;
 import by.siarhei.kb2.app.platforms.android.views.ViewImpl;
+import by.siarhei.kb2.app.platforms.android.views.ViewImpl2;
+import by.siarhei.kb2.app.platforms.android.views.XMainView;
 
 class PlatformControllerImpl implements PlatformController {
     private final Activity activity;
@@ -35,7 +37,7 @@ class PlatformControllerImpl implements PlatformController {
 
     @Override
     public void setContentView(View view) {
-        activity.setContentView((ViewImpl) view);
+        activity.setContentView((XMainView) view);
     }
 
     @Override
