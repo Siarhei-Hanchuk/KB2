@@ -13,7 +13,7 @@ import by.siarhei.kb2.app.server.entities.CastleLeft;
 import by.siarhei.kb2.app.server.entities.CastleRight;
 import by.siarhei.kb2.app.server.entities.City;
 import by.siarhei.kb2.app.server.entities.Fighting;
-import by.siarhei.kb2.app.server.entities.GoldChest;
+import by.siarhei.kb2.app.server.entities.GoldenChest;
 import by.siarhei.kb2.app.server.entities.GuidePost;
 import by.siarhei.kb2.app.server.entities.MapNext;
 import by.siarhei.kb2.app.server.entities.Metro;
@@ -104,7 +104,7 @@ public class EntityGenerator implements Serializable {
                         || (map[i][j].getLand() == R.drawable.sand))
                         && (map[i][j].getEntity() == null)) {
                     if (random.nextInt(frequency) == 1) {
-                        map[i][j].setEntity(new GoldChest(map[i][j], wealth));
+                        map[i][j].setEntity(new GoldenChest(map[i][j], wealth));
                     }
                 }
             }

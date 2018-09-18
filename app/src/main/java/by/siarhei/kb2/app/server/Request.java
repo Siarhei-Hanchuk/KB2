@@ -1,10 +1,10 @@
 package by.siarhei.kb2.app.server;
 
 public class Request {
-    public static int ACTION_OK = 1;
-    public static int ACTION_SELECT = 2;
-    public static int ACTION_EXIT = 3;
-    public static int ACTION_MOVE = 4;
+    public static final int ACTION_OK = 1;
+    public static final int ACTION_SELECT = 2;
+    public static final int ACTION_EXIT = 3;
+    public static final int ACTION_MOVE = 4;
 
     private int x;
     private int y;

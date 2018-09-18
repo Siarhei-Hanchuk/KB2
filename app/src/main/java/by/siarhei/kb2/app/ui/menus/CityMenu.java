@@ -5,6 +5,7 @@ import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.server.entities.City;
 import by.siarhei.kb2.app.server.entities.Entity;
 import by.siarhei.kb2.app.server.Game;
+import by.siarhei.kb2.app.server.models.MapPoint;
 import by.siarhei.kb2.app.server.warriors.WarriorSquad;
 
 public class CityMenu extends Menu {
@@ -13,10 +14,12 @@ public class CityMenu extends Menu {
     private final int PRICE_NAVE = 500;
     private final int PRICE_WALLKICK = 3000;
     private final City city;
+    private MapPoint mapPoint;
 
-    CityMenu(Entity city, Game game, I18n i18n) {
+    CityMenu(MapPoint mapPoint, Game game, I18n i18n) {
         super(game, i18n);
-        this.city = (City) city;
+        this.city = (City) mapPoint.getEntity();
+        this.mapPoint = mapPoint;
     }
 
     public String getCityName() {
@@ -31,7 +34,7 @@ public class CityMenu extends Menu {
                     case 0:
                         return i18n.translate(R.string.entity_city_menu_item1);
                     case 1:
-                        if (game.getNave())
+                        if (game.naveExists())
                             return i18n.translate(R.string.entity_city_menu_item2a);
                         return menuItem("entity_city_menu_item2", PRICE_NAVE);
                     case 2:
@@ -81,7 +84,7 @@ public class CityMenu extends Menu {
             case 0:
                 switch (i) {
                     case 1:
-                        if (game.getNave()) {
+                        if (game.naveExists()) {
                             game.destroyNave();
                         } else {
                             buyNave();
@@ -102,6 +105,9 @@ public class CityMenu extends Menu {
                     case 5:
                         menuMode = 1;
                         return false;
+                    case 7:
+                        System.out.println("YYY");
+                        return true;
 
                 }
                 return false;
@@ -124,16 +130,16 @@ public class CityMenu extends Menu {
         player.changeMoney(-PRICE_NAVE);
         int x;
         int y;
-//        for (x = city.getX() - 1; x <= city.getX() + 1; x++) {
-//            for (y = city.getY() - 1; y <= city.getY() + 1; y++) {
-//                TODO:
-//                if (city.getCountry().getMapPoint(x, y).getLand() == R.drawable.water) {
-//                    game.createNave(city.getCountry(), x, y);
-//                    return;
-//                }
-//                return;
-//            }
-//        }
+        for (x = mapPoint.getX() - 1; x <= mapPoint.getX() + 1; x++) {
+            for (y = mapPoint.getY() - 1; y <= mapPoint.getY() + 1; y++) {
+                TODO:
+                if (player.getCountry().getMapPoint(x, y).getLand() == R.drawable.water) {
+                    game.createNave(player.getCountry(), x, y);
+                    return;
+                }
+                return;
+            }
+        }
         return;
     }
 

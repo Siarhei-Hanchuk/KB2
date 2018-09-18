@@ -29,7 +29,7 @@ public class SpellMessage extends Message {
                     player.changeWorker(i, -player.getWorker(i));
                 return;
             case 2:
-                if (game.getNave())
+                if (game.naveExists())
                     game.destroyNave();
                 return;
             case 3:

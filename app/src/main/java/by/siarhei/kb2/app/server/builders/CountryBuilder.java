@@ -12,7 +12,7 @@ import by.siarhei.kb2.app.server.entities.Castle;
 import by.siarhei.kb2.app.server.entities.CastleLeft;
 import by.siarhei.kb2.app.server.entities.CastleRight;
 import by.siarhei.kb2.app.server.entities.City;
-import by.siarhei.kb2.app.server.entities.GoldChest;
+import by.siarhei.kb2.app.server.entities.GoldenChest;
 import by.siarhei.kb2.app.server.entities.GuidePost;
 import by.siarhei.kb2.app.server.entities.Metro;
 import by.siarhei.kb2.app.server.models.MapPoint;
@@ -208,7 +208,7 @@ public class CountryBuilder {
         map[7][8].setEntity(new CastleLeft(null));
         castle.generateArmy(50, 0);
 
-        map[5][6].setEntity(new GoldChest(null, 1));
+        map[5][6].setEntity(new GoldenChest(null, 1));
 
         map[6][5].setEntity(new City(null, 0, castle));
 

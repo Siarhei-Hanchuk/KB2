@@ -15,11 +15,11 @@ import by.siarhei.kb2.app.controllers.MainViewController;
 import by.siarhei.kb2.app.controllers.implementations.MainViewControllerImpl;
 import by.siarhei.kb2.app.platforms.android.views.helpers.Click;
 import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
+import by.siarhei.kb2.app.server.GameDispatcher;
 import by.siarhei.kb2.app.server.GameGrid;
 import by.siarhei.kb2.app.server.Request;
 import by.siarhei.kb2.app.server.Server;
 import by.siarhei.kb2.app.server.ServerView;
-import by.siarhei.kb2.app.server.Game;
 import by.siarhei.kb2.app.server.models.TrainingData;
 import by.siarhei.kb2.app.ui.menus.Menu;
 
@@ -35,16 +35,8 @@ public class XMainView extends ViewImpl {
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
-        ServerView serverView = Server.getView();
-        if(serverView.getViewMode() == Game.VIEW_MODE_GRID) {
-// TODO
-//        if(trainingMode) {
-//            trainingMode = false;
-////            trainingStep++;
-//            refresh();
-//            super.onTouchEvent(event);
-//        }
-
+        ServerView serverView = Server.getServer().getView();
+        if(serverView.getViewMode() == GameDispatcher.VIEW_MODE_GRID) {
             Click click = getClick(event);
             int x = click.getX();
             int y = click.getY();
@@ -87,41 +79,27 @@ public class XMainView extends ViewImpl {
             }
         }
 
-        if(serverView.getViewMode() == Game.VIEW_MODE_MESSAGE) {
-            System.out.println("OK-------------------------");
+        if(serverView.getViewMode() == GameDispatcher.VIEW_MODE_MESSAGE) {
             Request request = new Request();
             request.setAction(Request.ACTION_OK);
             Server.getServer().request(request);
         }
 
-        if(serverView.getViewMode() == Game.VIEW_MODE_MENU) {
-            Menu menu = Server.getView().getMenu();
+        if(serverView.getViewMode() == GameDispatcher.VIEW_MODE_MENU) {
+            Menu menu = Server.getServer().getView().getMenu();
             double y = event.getY();
             int item = (int) y / menuItemHeight();
-            boolean result = false;
             Request request = new Request();
 
-            if (item < menu.getCount()) {
+            int count = menu.getCount();
+            if(menu.withExit()) {
+                count++;
+            }
+            if (item < count) {
                 request.setAction(Request.ACTION_SELECT);
                 request.setMenuItem(item);
-//                result = menu.select(item);
-//                refresh();
             }
-            if (menu.withExit()) {
-//                request.setAction(Request.ACTION_EXIT);
-                // TODO: check logic
-//                if (item == menu.getCount() || result)
-//                    if (menu.getMenuMode() > 0) {
-//                        menu.resetMenuMode();
-//                        refresh();
-//                    } else {
-//                        viewController.viewClose();
-//                    }
-            } else {
-                request.setAction(Request.ACTION_EXIT);
-//                if (result)
-//                    viewController.viewClose();
-            }
+
             Server.getServer().request(request);
         }
 
@@ -132,8 +110,8 @@ public class XMainView extends ViewImpl {
     @Override
     public void draw(@NonNull Canvas canvas) {
         super.draw(canvas);
-        ServerView serverView = Server.getView();
-        if(serverView.getViewMode() == Game.VIEW_MODE_GRID) {
+        ServerView serverView = Server.getServer().getView();
+        if(serverView.getViewMode() == GameDispatcher.VIEW_MODE_GRID) {
             Painter painter = getPainter(canvas);
             canvas.drawColor(Color.BLACK);
 
@@ -155,7 +133,7 @@ public class XMainView extends ViewImpl {
             showTraining(canvas);
         }
 
-        if(serverView.getViewMode() == Game.VIEW_MODE_MESSAGE) {
+        if(serverView.getViewMode() == GameDispatcher.VIEW_MODE_MESSAGE) {
             int realWidth = stepX() * 6;
             Painter painter = getPainter(canvas);
             canvas.drawColor(Color.BLACK);
@@ -174,7 +152,7 @@ public class XMainView extends ViewImpl {
             }
         }
 
-        if(serverView.getViewMode() == Game.VIEW_MODE_MENU) {
+        if(serverView.getViewMode() == GameDispatcher.VIEW_MODE_MENU) {
             Painter painter = getPainter(canvas);
             canvas.drawColor(Color.BLACK);
 
@@ -188,12 +166,11 @@ public class XMainView extends ViewImpl {
                 painter.drawText(i18n.translate(R.string.mainMenu_exit), 10,
                         textHeight() + menuItemHeight() * i, getDefaultPaint());
             if (menu.withMoney()) {
-                // TODO
-//                String money = i18n.translate(R.string.player_attrs_money) + ": "
-//                        + viewController.getGame().getPlayer().getMoney();
-//                painter.drawText(money,
-//                        getDefaultPaint().measureText(money) + 1,
-//                        textHeight() + menuItemHeight() * i, getDefaultPaint(), Painter.ALIGN_RIGHT);
+                String money = i18n.translate(R.string.player_attrs_money) + ": "
+                        + serverView.getMoney();
+                painter.drawText(money,
+                        getDefaultPaint().measureText(money) + 1,
+                        textHeight() + menuItemHeight() * i, getDefaultPaint(), Painter.ALIGN_RIGHT);
             }
         }
     }
