@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.controllers.MainViewController;
+import by.siarhei.kb2.app.controllers.implementations.MainViewControllerImpl;
 import by.siarhei.kb2.app.controllers.implementations.MainViewControllerImpl;
 import by.siarhei.kb2.app.platforms.android.views.helpers.Click;
 import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
@@ -24,7 +24,7 @@ import by.siarhei.kb2.app.server.models.TrainingData;
 import by.siarhei.kb2.app.ui.menus.Menu;
 
 public class XMainView extends ViewImpl {
-    private final MainViewController mainViewController;
+    private final MainViewControllerImpl mainViewController;
     private boolean trainingMode = false;
 //    private int trainingStep = 0;
 
@@ -175,54 +175,6 @@ public class XMainView extends ViewImpl {
         }
     }
 
-    private void showTraining(@NonNull Canvas canvas) {
-        if(!mainViewController.isTrainingMode()){
-            return;
-        }
-        Painter painter = getPainter(canvas);
-        TrainingData trainingData = mainViewController.getTrainingData();
-
-        if(!trainingData.citiesDid()) {
-            GameGrid grid = mainViewController.getGameGrid();
-            for (int x = 0; x < GameGrid.STEP_X; x++) {
-                for (int y = 0; y < GameGrid.STEP_Y; y++) {
-                    if(grid.getImageBuyXY(x, y) == R.drawable.city) {
-                        painter.drawTrainingCircle(x, y);
-                    }
-                }
-            }
-
-            drawTrainingText(painter, R.string.training_cities);
-
-            trainingData.doneCities();
-            trainingMode = true;
-        }
-
-
-        if(!trainingData.step2Did()) {
-            painter.drawTrainingCircle(0, 0);
-            painter.drawTrainingCircle(4, 4);
-            painter.drawTrainingCircle(4, 0);
-            painter.drawTrainingCircle(0, 4);
-
-            drawTrainingText(painter, R.string.training_moving);
-
-            trainingData.doneStep2();
-            trainingMode = true;
-        }
-
-        if(!trainingData.step1Did()) {
-            painter.drawTrainingCircle(0, 2);
-            painter.drawTrainingCircle(2, 0);
-            painter.drawTrainingCircle(4, 2);
-            painter.drawTrainingCircle(2, 4);
-
-            drawTrainingText(painter, R.string.training_moving);
-
-            trainingData.doneStep1();
-            trainingMode = true;
-        }
-    }
 
     private void drawTrainingText(Painter painter, int textId) {
         Paint textPaint = getDefaultPaint();

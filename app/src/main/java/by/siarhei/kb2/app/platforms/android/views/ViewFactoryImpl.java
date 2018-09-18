@@ -10,7 +10,7 @@ import by.siarhei.kb2.app.controllers.BattleController;
 import by.siarhei.kb2.app.controllers.GameOwner;
 import by.siarhei.kb2.app.controllers.MagicViewController;
 import by.siarhei.kb2.app.controllers.MainMenuController;
-import by.siarhei.kb2.app.controllers.MainViewController;
+import by.siarhei.kb2.app.controllers.implementations.MainViewControllerImpl;
 import by.siarhei.kb2.app.controllers.ViewController;
 import by.siarhei.kb2.app.server.entities.ArmyShop;
 import by.siarhei.kb2.app.server.entities.City;
@@ -66,7 +66,7 @@ public class ViewFactoryImpl implements ViewFactory {
     }
 
     @Override
-    public ViewImpl getMainView(MainViewController controller) {
+    public ViewImpl getMainView(MainViewControllerImpl controller) {
         return new MainView(context, controller);
     }
 

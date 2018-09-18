@@ -12,17 +12,17 @@ import java.util.List;
 
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.server.models.TrainingData;
-import by.siarhei.kb2.app.controllers.MainViewController;
+import by.siarhei.kb2.app.controllers.implementations.MainViewControllerImpl;
 import by.siarhei.kb2.app.server.GameGrid;
 import by.siarhei.kb2.app.platforms.android.views.helpers.Click;
 import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
 
 class MainView extends ViewImpl {
-    private final MainViewController mainViewController;
+    private final MainViewControllerImpl mainViewController;
     private boolean trainingMode = false;
 //    private int trainingStep = 0;
 
-    public MainView(Context context, MainViewController mainViewController) {
+    public MainView(Context context, MainViewControllerImpl mainViewController) {
         super(context, mainViewController);
         this.mainViewController = mainViewController;
     }
@@ -110,7 +110,7 @@ class MainView extends ViewImpl {
             return;
         }
         Painter painter = getPainter(canvas);
-        TrainingData trainingData = mainViewController.getTrainingData();
+//        TrainingData trainingData = mainViewController.getTrainingData();
 
         if(!trainingData.citiesDid()) {
             GameGrid grid = mainViewController.getGameGrid();

@@ -2,7 +2,6 @@ package by.siarhei.kb2.app.controllers.implementations;
 
 import by.siarhei.kb2.app.controllers.ApplicationController;
 import by.siarhei.kb2.app.controllers.listeners.ActivationEntityListener;
-import by.siarhei.kb2.app.controllers.MainViewController;
 import by.siarhei.kb2.app.controllers.listeners.WeekFinishListener;
 import by.siarhei.kb2.app.server.GameGrid;
 import by.siarhei.kb2.app.server.Request;
@@ -13,19 +12,13 @@ import by.siarhei.kb2.app.server.entities.Entity;
 import by.siarhei.kb2.app.server.Game;
 import by.siarhei.kb2.app.server.models.TrainingData;
 
-public class MainViewControllerImpl extends ApplicationController implements MainViewController,
+public class MainViewControllerImpl extends ApplicationController implements
         ActivationEntityListener, WeekFinishListener {
-//    private final View view;
-//    private GameGrid gameGrid;
-    private final TrainingData trainingData = new TrainingData();
-    private int mode;
 
     public MainViewControllerImpl() {
-//        view = getViewFactory().getMainView(this);
-//        setContentView(view);
+
     }
 
-    @Override
     public GameGrid getGameGrid() {
         ServerView view = Server.getServer().getView();
         GameGrid gameGrid = view.getGameGrid();
@@ -43,47 +36,38 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
         setContentView(getViewFactory().getWeekEndView(this, armyTextId, city));
     }
 
-    @Override
     public void touchDown() {
         playerMove(0, +1);
     }
 
-    @Override
     public void touchUp() {
         playerMove(0, -1);
     }
 
-    @Override
     public void touchRight() {
         playerMove(+1, 0);
     }
 
-    @Override
     public void touchLeft() {
         playerMove(-1, 0);
     }
 
-    @Override
     public void touchUpRight() {
         playerMove(+1, -1);
     }
 
-    @Override
     public void touchUpLeft() {
         playerMove(-1, -1);
     }
 
-    @Override
     public void touchDownRight() {
         playerMove(+1, +1);
     }
 
-    @Override
     public void touchDownLeft() {
         playerMove(-1, +1);
     }
 
-    @Override
     public void touchMenu(int i) {
         GameGrid grid = getGameGrid();
         switch (grid.getMode()) {
@@ -162,7 +146,6 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
 //        setContentView(view);
     }
 
-    @Override
     public boolean isTrainingMode() {
 //        return getGame().getMode() == Game.MODE_TRAINING;
         // TODO
@@ -176,10 +159,6 @@ public class MainViewControllerImpl extends ApplicationController implements Mai
         request.setMoveTo(dx, dy);
         Server.getServer().request(request);
 //        view.refresh();
-    }
-
-    public TrainingData getTrainingData() {
-        return trainingData;
     }
 
     @Override
