@@ -3,7 +3,7 @@ package by.siarhei.kb2.app.platforms.android.touchers;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
-import by.siarhei.kb2.app.platforms.android.views.XMainView;
+import by.siarhei.kb2.app.platforms.android.XMainView;
 import by.siarhei.kb2.app.platforms.android.views.helpers.Click;
 import by.siarhei.kb2.app.server.Request;
 import by.siarhei.kb2.app.server.Server;

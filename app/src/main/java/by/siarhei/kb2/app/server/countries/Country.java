@@ -24,10 +24,6 @@ public class Country implements Glade, Serializable, ArmyShopsOwner, CitiesOwner
     private final Random random;
     final int id;
 
-    // TODO: fulfill lists
-    private final ArrayList<City> cities = new ArrayList<>();
-    private final ArrayList<ArmyShop> armyShops = new ArrayList<>();
-
     public Country(Random random, MapPoint[][] map, int id) {
         this.random = random;
         this.map = map;
@@ -47,8 +43,13 @@ public class Country implements Glade, Serializable, ArmyShopsOwner, CitiesOwner
     @Override
     public Iterator<ArmyShop> getArmyShops() {
         ArrayList<Iterator<ArmyShop>> iterators = new ArrayList<>();
-        for (ArmyShopsOwner armyShop : armyShops) {
-            iterators.add(armyShop.getArmyShops());
+        for (int i = 0; i < Country.MAX_MAP_SIZE; i++) {
+            for (int j = 0; j < Country.MAX_MAP_SIZE; j++) {
+                Entity entity = getMapPoint(i, j).getEntity();
+                if(entity instanceof ArmyShop) {
+                    iterators.add(((ArmyShop) entity).getArmyShops());
+                }
+            }
         }
         return new EntityIterator<>(iterators);
     }
@@ -56,8 +57,13 @@ public class Country implements Glade, Serializable, ArmyShopsOwner, CitiesOwner
     @Override
     public Iterator<City> getCities() {
         ArrayList<Iterator<City>> iterators = new ArrayList<>();
-        for (CitiesOwner city : cities) {
-            iterators.add(city.getCities());
+        for (int i = 0; i < Country.MAX_MAP_SIZE; i++) {
+            for (int j = 0; j < Country.MAX_MAP_SIZE; j++) {
+                Entity entity = getMapPoint(i, j).getEntity();
+                if(entity instanceof City) {
+                    iterators.add(((City) entity).getCities());
+                }
+            }
         }
         return new EntityIterator<>(iterators);
     }

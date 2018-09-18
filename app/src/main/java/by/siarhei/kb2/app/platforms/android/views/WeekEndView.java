@@ -55,7 +55,7 @@ public class WeekEndView extends ViewImpl {
     private void drawItem(Painter painter, int n, String attr, Object value) {
         String text;
         if (value != null) {
-            if (value instanceof Integer) {
+           if (value instanceof Integer) {
                 text = i18n.translate("weekEnd_messages_" + attr) + ": " + value;
             } else {
                 text = i18n.translate("weekEnd_messages_" + attr, (String) value);

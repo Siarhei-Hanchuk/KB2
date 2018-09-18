@@ -13,6 +13,7 @@ public class GameDispatcher {
     public static final int VIEW_MODE_GRID = 1;
     public static final int VIEW_MODE_MESSAGE = 2;
     public static final int VIEW_MODE_MENU = 3;
+    public static final int VIEW_MODE_WEEK_FINISHED = 4;
 
     private int viewMode = VIEW_MODE_GRID;
 
@@ -27,11 +28,16 @@ public class GameDispatcher {
     public void request(Request data) {
         switch (data.getAction()) {
             case Request.ACTION_MOVE:
+                if(game.getDays() == 0) {
+                    game.weekUpdate();
+                    setViewMode(VIEW_MODE_WEEK_FINISHED);
+                    break;
+                }
                 MapPoint mp = game.move(data.getX(), data.getY());
-                System.out.println("M1");
                 if(mp.getEntity() != null) {
-                    System.out.println("M2");
                     actionWithObject(mp);
+                } else {
+                    game.weekUpdate();
                 }
                 break;
 

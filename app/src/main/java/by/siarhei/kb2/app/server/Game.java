@@ -1,8 +1,6 @@
 package by.siarhei.kb2.app.server;
 
 import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.controllers.listeners.ActivationEntityListener;
-import by.siarhei.kb2.app.controllers.listeners.WeekFinishListener;
 import by.siarhei.kb2.app.server.countries.Country;
 import by.siarhei.kb2.app.server.countries.World;
 import by.siarhei.kb2.app.server.entities.ArmyShop;
@@ -18,8 +16,6 @@ import by.siarhei.kb2.app.server.models.MapPoint;
 import by.siarhei.kb2.app.server.models.Player;
 import by.siarhei.kb2.app.server.warriors.Warrior;
 import by.siarhei.kb2.app.server.warriors.WarriorFactory;
-import by.siarhei.kb2.app.ui.menus.Menu;
-import by.siarhei.kb2.app.ui.messages.Message;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -33,30 +29,18 @@ public class Game implements Serializable {
 
     public static final int WEEK_LENGTH = 200;
 
-    transient private ActivationEntityListener activationEntityListener;
-    transient private WeekFinishListener weekUpdateListener;
-
     final private World world;
     final private Player player;
-    private Nave nave;
     private int weeks;
     private int days = WEEK_LENGTH;
     private int currentWorker = -1;
-
-    // TODO - move outside
+    private City updatedCity;
+    private Warrior updatedWarrior;
 
     public Game(World world, Player player, int weeks) {
         this.world = world;
         this.player = player;
         this.weeks = weeks;
-    }
-
-    public void onWeekUpdate(WeekFinishListener weekUpdateListener) {
-        this.weekUpdateListener = weekUpdateListener;
-    }
-
-    public void onEntityActivate(ActivationEntityListener activationEntityListener) {
-        this.activationEntityListener = activationEntityListener;
     }
 
     public Player getPlayer() {
@@ -132,7 +116,8 @@ public class Game implements Serializable {
                 break;
             }
         }
-        weekUpdateListener.weekFinish(war.getTextId(), city);
+        updatedCity = city;
+        updatedWarrior = war;
         getPlayer().changeMoney(getPlayer().getSalary());
     }
 
@@ -199,7 +184,7 @@ public class Game implements Serializable {
         }
 
         moveEntities();
-        weekUpdate();
+//        weekUpdate();
         player.tryActivateCaptains();
         return mp;
     }
@@ -243,15 +228,21 @@ public class Game implements Serializable {
         return weeks;
     }
 
-    public void finishWeek() {
-        weeks--;
-        days = 200;
-        weekFinish();
-    }
-
     public void changeCountry(int n) {
         Country country = getWorld().getCountry(n);
         country.createMaps();
         player.changeCountry(country);
+    }
+
+    public int getDays() {
+        return days;
+    }
+
+    public City getUpdatedCity() {
+        return updatedCity;
+    }
+
+    public Warrior getUpdatedWarrior() {
+        return updatedWarrior;
     }
 }
