@@ -1,7 +1,6 @@
 package by.siarhei.kb2.app.ui.menus;
 
 import by.siarhei.kb2.app.controllers.GameOwner;
-import by.siarhei.kb2.app.server.entities.City;
 import by.siarhei.kb2.app.server.entities.Entity;
 import by.siarhei.kb2.app.server.entities.GoldenChest;
 import by.siarhei.kb2.app.server.entities.Magician;

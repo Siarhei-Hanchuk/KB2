@@ -10,7 +10,7 @@ import android.view.View;
 
 import by.siarhei.kb2.app.controllers.PlayerViewsController;
 import by.siarhei.kb2.app.server.models.Player;
-import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
+import by.siarhei.kb2.app.platforms.android.helpers.Painter;
 import by.siarhei.kb2.app.server.warriors.WarriorSquad;
 
 class ArmyView extends ViewImpl {
@@ -47,12 +47,7 @@ class ArmyView extends ViewImpl {
             }
         });
 
-        this.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return gd.onTouchEvent(event);
-            }
-        });
+        this.setOnTouchListener((v, event) -> gd.onTouchEvent(event));
     }
 
     @Override

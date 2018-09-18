@@ -10,12 +10,10 @@ import android.view.MotionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.server.models.TrainingData;
 import by.siarhei.kb2.app.controllers.implementations.MainViewControllerImpl;
 import by.siarhei.kb2.app.server.GameGrid;
-import by.siarhei.kb2.app.platforms.android.views.helpers.Click;
-import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
+import by.siarhei.kb2.app.platforms.android.helpers.Click;
+import by.siarhei.kb2.app.platforms.android.helpers.Painter;
 
 class MainView extends ViewImpl {
     private final MainViewControllerImpl mainViewController;
@@ -178,7 +176,7 @@ class MainView extends ViewImpl {
     private List<String> splitText(Paint paint, String text) {
         float textWidth = paint.measureText(text);
         float screenWidth = stepX() * 5;
-        List<String> result = new ArrayList<String>();
+        List<String> result = new ArrayList<>();
         String[] words = text.split(" ");
 
         int i = 0;

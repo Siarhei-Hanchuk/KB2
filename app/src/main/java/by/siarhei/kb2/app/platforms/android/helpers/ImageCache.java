@@ -1,4 +1,4 @@
-package by.siarhei.kb2.app.platforms.android.views.helpers;
+package by.siarhei.kb2.app.platforms.android.helpers;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;

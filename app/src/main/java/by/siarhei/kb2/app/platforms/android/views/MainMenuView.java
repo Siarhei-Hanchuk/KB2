@@ -11,7 +11,7 @@ import by.siarhei.kb2.app.BuildConfig;
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.controllers.MainMenuController;
 import by.siarhei.kb2.app.platforms.android.MainActivity;
-import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
+import by.siarhei.kb2.app.platforms.android.helpers.Painter;
 
 class MainMenuView extends ViewImpl {
     private final MainMenuController mainController;
@@ -108,7 +108,7 @@ class MainMenuView extends ViewImpl {
                         if (mainController.saveGame()){
                             MainActivity.showToast(i18n.translate("mainMenu_save_game_saved"));
                             saved = true;
-                        };
+                        }
                     }
                     break;
                 case 5:

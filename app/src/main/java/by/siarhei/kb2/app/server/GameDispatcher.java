@@ -1,7 +1,6 @@
 package by.siarhei.kb2.app.server;
 
 import by.siarhei.kb2.app.server.entities.City;
-import by.siarhei.kb2.app.server.entities.GoldenChest;
 import by.siarhei.kb2.app.server.entities.GuidePost;
 import by.siarhei.kb2.app.server.entities.Nave;
 import by.siarhei.kb2.app.server.models.MapPoint;

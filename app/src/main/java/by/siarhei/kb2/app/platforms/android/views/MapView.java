@@ -12,7 +12,7 @@ import by.siarhei.kb2.app.controllers.PlayerViewsController;
 import by.siarhei.kb2.app.server.countries.Country;
 import by.siarhei.kb2.app.server.models.MapPoint;
 import by.siarhei.kb2.app.server.models.Player;
-import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
+import by.siarhei.kb2.app.platforms.android.helpers.Painter;
 
 class MapView extends ViewImpl {
     private final Player player;

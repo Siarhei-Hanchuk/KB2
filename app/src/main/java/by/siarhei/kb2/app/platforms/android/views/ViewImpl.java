@@ -13,11 +13,11 @@ import by.siarhei.kb2.app.I18n;
 import by.siarhei.kb2.app.View;
 import by.siarhei.kb2.app.controllers.ViewController;
 import by.siarhei.kb2.app.server.GameGrid;
-import by.siarhei.kb2.app.platforms.android.views.helpers.Click;
-import by.siarhei.kb2.app.platforms.android.views.helpers.DrawThread;
-import by.siarhei.kb2.app.platforms.android.views.helpers.Drawable;
-import by.siarhei.kb2.app.platforms.android.views.helpers.ImageCache;
-import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
+import by.siarhei.kb2.app.platforms.android.helpers.Click;
+import by.siarhei.kb2.app.platforms.android.helpers.DrawThread;
+import by.siarhei.kb2.app.platforms.android.helpers.Drawable;
+import by.siarhei.kb2.app.platforms.android.helpers.ImageCache;
+import by.siarhei.kb2.app.platforms.android.helpers.Painter;
 
 public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Callback, Drawable, View {
     private static final int IMAGE_WIDTH = 96;

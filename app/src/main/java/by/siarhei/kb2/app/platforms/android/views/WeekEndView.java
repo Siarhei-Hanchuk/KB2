@@ -10,7 +10,7 @@ import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.controllers.ViewController;
 import by.siarhei.kb2.app.server.entities.City;
 import by.siarhei.kb2.app.server.models.Player;
-import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
+import by.siarhei.kb2.app.platforms.android.helpers.Painter;
 
 public class WeekEndView extends ViewImpl {
     private final Player player;

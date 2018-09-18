@@ -10,7 +10,7 @@ import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.controllers.BattleAskController;
 import by.siarhei.kb2.app.server.entities.Castle;
 import by.siarhei.kb2.app.server.entities.Fighting;
-import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
+import by.siarhei.kb2.app.platforms.android.helpers.Painter;
 
 public class BattleAskView extends ViewImpl {
     private final BattleAskController controller;

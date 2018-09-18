@@ -10,16 +10,14 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import by.siarhei.kb2.app.View;
-import by.siarhei.kb2.app.platforms.android.drawers.GameDrawer;
-import by.siarhei.kb2.app.platforms.android.drawers.MenuDrawer;
-import by.siarhei.kb2.app.platforms.android.drawers.MessageDrawer;
-import by.siarhei.kb2.app.platforms.android.drawers.WeekFinishedDrawer;
+import by.siarhei.kb2.app.platforms.android.drawers.Drawer;
+import by.siarhei.kb2.app.platforms.android.drawers.DrawerFactory;
 import by.siarhei.kb2.app.platforms.android.touchers.GameToucher;
-import by.siarhei.kb2.app.platforms.android.views.helpers.Click;
-import by.siarhei.kb2.app.platforms.android.views.helpers.DrawThread;
-import by.siarhei.kb2.app.platforms.android.views.helpers.Drawable;
-import by.siarhei.kb2.app.platforms.android.views.helpers.ImageCache;
-import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
+import by.siarhei.kb2.app.platforms.android.helpers.Click;
+import by.siarhei.kb2.app.platforms.android.helpers.DrawThread;
+import by.siarhei.kb2.app.platforms.android.helpers.Drawable;
+import by.siarhei.kb2.app.platforms.android.helpers.ImageCache;
+import by.siarhei.kb2.app.platforms.android.helpers.Painter;
 import by.siarhei.kb2.app.server.GameDispatcher;
 import by.siarhei.kb2.app.server.GameGrid;
 import by.siarhei.kb2.app.server.Request;
@@ -183,21 +181,11 @@ public class XMainView extends SurfaceView implements SurfaceHolder.Callback, Dr
     @Override
     public void draw(@NonNull Canvas canvas) {
         super.draw(canvas);
+
         ServerView serverView = Server.getServer().getView();
-        if(serverView.getViewMode() == GameDispatcher.VIEW_MODE_GRID) {
-            GameDrawer.draw(canvas, serverView, this);
-        }
+        DrawerFactory drawerFactory = new DrawerFactory(canvas, this);
+        Drawer drawer = drawerFactory.getDrawer(serverView.getViewMode());
 
-        if(serverView.getViewMode() == GameDispatcher.VIEW_MODE_MESSAGE) {
-            MessageDrawer.draw(canvas, serverView, this);
-        }
-
-        if(serverView.getViewMode() == GameDispatcher.VIEW_MODE_MENU) {
-            MenuDrawer.draw(canvas, serverView, this);
-        }
-
-        if(serverView.getViewMode() == GameDispatcher.VIEW_MODE_WEEK_FINISHED) {
-            WeekFinishedDrawer.draw(canvas, serverView, this);
-        }
+        drawer.draw(serverView);
     }
 }
