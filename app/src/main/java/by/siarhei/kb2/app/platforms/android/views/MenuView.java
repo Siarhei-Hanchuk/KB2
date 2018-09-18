@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.controllers.ViewController;
-import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
+import by.siarhei.kb2.app.platforms.android.helpers.Painter;
 import by.siarhei.kb2.app.ui.menus.Menu;
 
 class MenuView extends ViewImpl {

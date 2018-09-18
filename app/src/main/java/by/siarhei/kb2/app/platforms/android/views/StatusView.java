@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 
 import by.siarhei.kb2.app.controllers.PlayerViewsController;
 import by.siarhei.kb2.app.server.models.Player;
-import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
+import by.siarhei.kb2.app.platforms.android.helpers.Painter;
 
 public class StatusView extends ViewImpl {
     private final Player player;

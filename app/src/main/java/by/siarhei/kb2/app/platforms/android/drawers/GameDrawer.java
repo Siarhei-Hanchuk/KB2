@@ -2,15 +2,18 @@ package by.siarhei.kb2.app.platforms.android.drawers;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.support.annotation.NonNull;
 
 import by.siarhei.kb2.app.platforms.android.XMainView;
-import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
+import by.siarhei.kb2.app.platforms.android.helpers.Painter;
 import by.siarhei.kb2.app.server.GameGrid;
 import by.siarhei.kb2.app.server.ServerView;
 
-public class GameDrawer {
-    public static void draw(@NonNull Canvas canvas, ServerView serverView, XMainView mainView) {
+public class GameDrawer extends Drawer {
+    public GameDrawer(Canvas canvas, XMainView mainView) {
+        super(canvas, mainView);
+    }
+
+    public void draw(ServerView serverView) {
         Painter painter = mainView.getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 

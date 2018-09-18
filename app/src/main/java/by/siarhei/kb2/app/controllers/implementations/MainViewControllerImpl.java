@@ -1,16 +1,8 @@
 package by.siarhei.kb2.app.controllers.implementations;
 
-import by.siarhei.kb2.app.controllers.ApplicationController;
-import by.siarhei.kb2.app.controllers.listeners.ActivationEntityListener;
-import by.siarhei.kb2.app.controllers.listeners.WeekFinishListener;
 import by.siarhei.kb2.app.server.GameGrid;
 import by.siarhei.kb2.app.server.Request;
 import by.siarhei.kb2.app.server.Server;
-import by.siarhei.kb2.app.server.ServerView;
-import by.siarhei.kb2.app.server.entities.City;
-import by.siarhei.kb2.app.server.entities.Entity;
-import by.siarhei.kb2.app.server.Game;
-import by.siarhei.kb2.app.server.models.TrainingData;
 
 public class MainViewControllerImpl {
 

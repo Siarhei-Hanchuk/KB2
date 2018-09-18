@@ -1,8 +1,5 @@
 package by.siarhei.kb2.app.server;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import by.siarhei.kb2.app.DebugLogger;
 import by.siarhei.kb2.app.I18n;
 import by.siarhei.kb2.app.server.builders.GameBuilder;

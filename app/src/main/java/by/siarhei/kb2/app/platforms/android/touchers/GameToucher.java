@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
 import by.siarhei.kb2.app.platforms.android.XMainView;
-import by.siarhei.kb2.app.platforms.android.views.helpers.Click;
+import by.siarhei.kb2.app.platforms.android.helpers.Click;
 import by.siarhei.kb2.app.server.Request;
 import by.siarhei.kb2.app.server.Server;
 
@@ -15,7 +15,7 @@ public class GameToucher {
         int y = click.getY();
         if (x > mainView.stepX() * 5) {
             int item = (y / mainView.stepY());
-//            mainViewController.touchMenu(item);
+//            touchMenu(item);
         } else {
             int height_2_5 = mainView.stepY() * 2;
             int height_3_5 = mainView.stepY() * 3;
@@ -91,6 +91,8 @@ public class GameToucher {
         request.setMoveTo(dx, dy);
         Server.getServer().request(request);
     }
+
+//    private static touchMenu(item)
 
     public static Click getClick(@NonNull MotionEvent event, XMainView mainView) {
         int[] offsets = mainView.calcOffsets();

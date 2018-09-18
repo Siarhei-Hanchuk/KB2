@@ -10,7 +10,7 @@ import android.view.MotionEvent;
 import java.util.HashMap;
 
 import by.siarhei.kb2.app.controllers.ViewController;
-import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
+import by.siarhei.kb2.app.platforms.android.helpers.Painter;
 import by.siarhei.kb2.app.ui.messages.Message;
 import by.siarhei.kb2.app.server.warriors.Warrior;
 import by.siarhei.kb2.app.server.warriors.WarriorFactory;

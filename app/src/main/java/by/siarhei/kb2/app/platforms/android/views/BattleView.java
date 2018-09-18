@@ -14,8 +14,8 @@ import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.controllers.BattleController;
 import by.siarhei.kb2.app.server.models.battle.MapPointBattle;
 import by.siarhei.kb2.app.server.models.battle.WarriorEntity;
-import by.siarhei.kb2.app.platforms.android.views.helpers.Click;
-import by.siarhei.kb2.app.platforms.android.views.helpers.Painter;
+import by.siarhei.kb2.app.platforms.android.helpers.Click;
+import by.siarhei.kb2.app.platforms.android.helpers.Painter;
 
 public class BattleView extends ViewImpl {
     private final BattleController battleController;

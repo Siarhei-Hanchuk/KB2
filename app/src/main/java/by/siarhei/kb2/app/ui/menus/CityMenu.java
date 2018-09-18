@@ -3,7 +3,6 @@ package by.siarhei.kb2.app.ui.menus;
 import by.siarhei.kb2.app.I18n;
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.server.entities.City;
-import by.siarhei.kb2.app.server.entities.Entity;
 import by.siarhei.kb2.app.server.Game;
 import by.siarhei.kb2.app.server.models.MapPoint;
 import by.siarhei.kb2.app.server.warriors.WarriorSquad;
