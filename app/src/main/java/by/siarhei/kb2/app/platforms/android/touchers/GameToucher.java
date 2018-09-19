@@ -15,7 +15,7 @@ public class GameToucher {
         int y = click.getY();
         if (x > mainView.stepX() * 5) {
             int item = (y / mainView.stepY());
-//            touchMenu(item);
+            touchMenu(item);
         } else {
             int height_2_5 = mainView.stepY() * 2;
             int height_3_5 = mainView.stepY() * 3;
@@ -92,7 +92,12 @@ public class GameToucher {
         Server.getServer().request(request);
     }
 
-//    private static touchMenu(item)
+    private static void touchMenu(int item) {
+        Request request = new Request();
+        request.setAction(Request.ACTION_OPEN_GAME_MENU);
+        request.setMenuItem(item);
+        Server.getServer().request(request);
+    }
 
     public static Click getClick(@NonNull MotionEvent event, XMainView mainView) {
         int[] offsets = mainView.calcOffsets();

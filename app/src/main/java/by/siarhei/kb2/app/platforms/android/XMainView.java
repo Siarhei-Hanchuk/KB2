@@ -12,12 +12,14 @@ import android.view.SurfaceView;
 import by.siarhei.kb2.app.View;
 import by.siarhei.kb2.app.platforms.android.drawers.Drawer;
 import by.siarhei.kb2.app.platforms.android.drawers.DrawerFactory;
+import by.siarhei.kb2.app.platforms.android.touchers.ArmyShopToucher;
 import by.siarhei.kb2.app.platforms.android.touchers.GameToucher;
 import by.siarhei.kb2.app.platforms.android.helpers.Click;
 import by.siarhei.kb2.app.platforms.android.helpers.DrawThread;
 import by.siarhei.kb2.app.platforms.android.helpers.Drawable;
 import by.siarhei.kb2.app.platforms.android.helpers.ImageCache;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
+import by.siarhei.kb2.app.platforms.android.touchers.Menu2Toucher;
 import by.siarhei.kb2.app.server.GameDispatcher;
 import by.siarhei.kb2.app.server.GameGrid;
 import by.siarhei.kb2.app.server.Request;
@@ -169,6 +171,12 @@ public class XMainView extends SurfaceView implements SurfaceHolder.Callback, Dr
                 }
 
                 Server.getServer().request(request);
+                break;
+            case GameDispatcher.VIEW_MODE_ARMY_SHOP:
+                ArmyShopToucher.touchEvent(event, this);
+                break;
+            case GameDispatcher.VIEW_MODE_MENU2:
+                Menu2Toucher.touchEvent(event, this);
                 break;
             default:
                 break;

@@ -5,6 +5,8 @@ public class Request {
     public static final int ACTION_SELECT = 2;
     public static final int ACTION_EXIT = 3;
     public static final int ACTION_MOVE = 4;
+    public static final int ACTION_BUY_ARMY = 5;
+    public static final int ACTION_OPEN_GAME_MENU = 6;
 
     private int x;
     private int y;

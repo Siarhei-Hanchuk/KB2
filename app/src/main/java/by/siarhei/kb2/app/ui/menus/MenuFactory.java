@@ -13,14 +13,8 @@ public class MenuFactory {
     }
 
     public Menu getMenu(Entity entity) {
-//        if (entity instanceof City) {
-//            return new CityMenu(entity, gameOwner.getGame(), gameOwner.i18n());
-//        }
         if (entity instanceof Magician) {
             return new MagicianMenu(entity, gameOwner.getGame(), gameOwner.i18n());
-        }
-        if (entity instanceof GoldenChest && !((GoldenChest) entity).isBonus()) {
-            return new GoldChestMenu(entity, gameOwner.getGame(), gameOwner.i18n());
         }
         return null;
     }

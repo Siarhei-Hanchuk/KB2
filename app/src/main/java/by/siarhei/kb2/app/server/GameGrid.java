@@ -167,8 +167,8 @@ public class GameGrid {
             case 2:
                 makeStatus2();
                 break;
-            case 3:
-                makeStatus3();
+            case GameDispatcher.GAME_MENU_MODE_MAP:
+                makeStatusMap();
                 break;
         }
     }
@@ -222,7 +222,7 @@ public class GameGrid {
         grid[5][4] = R.drawable.status_back;
     }
 
-    private void makeStatus3() {
+    private void makeStatusMap() {
         grid[5][0] = R.drawable.status_map;
         grid[5][1] = R.drawable.status_countries;
         grid[5][2] = R.drawable.status_back;

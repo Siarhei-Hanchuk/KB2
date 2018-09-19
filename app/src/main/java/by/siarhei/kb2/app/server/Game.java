@@ -179,12 +179,10 @@ public class Game implements Serializable {
                 }
             }
         } else {
-//            actionWithObject(mp);
             return mp;
         }
 
         moveEntities();
-//        weekUpdate();
         player.tryActivateCaptains();
         return mp;
     }

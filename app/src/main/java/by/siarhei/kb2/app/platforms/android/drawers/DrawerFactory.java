@@ -22,8 +22,12 @@ public class DrawerFactory {
                 return new MessageDrawer(canvas, mainView);
             case GameDispatcher.VIEW_MODE_MENU:
                 return new MenuDrawer(canvas, mainView);
+            case GameDispatcher.VIEW_MODE_MENU2:
+                return new Menu2Drawer(canvas, mainView);
             case GameDispatcher.VIEW_MODE_WEEK_FINISHED:
                 return new WeekFinishedDrawer(canvas, mainView);
+            case GameDispatcher.VIEW_MODE_ARMY_SHOP:
+                return new ArmyShopDrawer(canvas, mainView);
             default:
                 return null;
         }

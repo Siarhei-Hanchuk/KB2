@@ -86,21 +86,14 @@ public class ViewFactoryImpl implements ViewFactory {
         Message message = messageFactory.getMessage(entity);
         ViewImpl view = null;
         if (menu != null) {
-            if(menu instanceof GoldChestMenu)
-                view = new Menu2View(context, controller, menu);
-            else {
-                view = new MenuView(context, controller, menu);
-                if (menu instanceof CityMenu) {
-                    MainActivity.showToast(((CityMenu) menu).getCityName());
-                }
+            view = new MenuView(context, controller, menu);
+            if (menu instanceof CityMenu) {
+                MainActivity.showToast(((CityMenu) menu).getCityName());
             }
 
         }
         if (message != null) {
             view = new MessageView(context, controller, message);
-        }
-        if (entity instanceof ArmyShop) {
-            view = new ArmyShopView(context, (ArmyShopViewController) controller, (ArmyShop) entity);
         }
         if (entity instanceof Fighting) {
             view = new BattleAskView(context, (BattleAskController) controller, (Fighting) entity);

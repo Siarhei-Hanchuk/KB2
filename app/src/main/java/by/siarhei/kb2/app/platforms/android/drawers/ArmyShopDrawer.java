@@ -1,103 +1,68 @@
-package by.siarhei.kb2.app.platforms.android.views;
+package by.siarhei.kb2.app.platforms.android.drawers;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
-import android.view.MotionEvent;
 
+import by.siarhei.kb2.app.I18n;
 import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.controllers.ArmyShopViewController;
-import by.siarhei.kb2.app.server.entities.ArmyShop;
-import by.siarhei.kb2.app.server.models.Player;
-import by.siarhei.kb2.app.platforms.android.helpers.Click;
+import by.siarhei.kb2.app.platforms.android.XMainView;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
+import by.siarhei.kb2.app.server.Server;
+import by.siarhei.kb2.app.server.ServerView;
 import by.siarhei.kb2.app.server.warriors.Warrior;
 
-class ArmyShopView extends ViewImpl {
-    private final ArmyShop shop;
-    private final Player player;
-    private final Warrior warrior;
-    private final ArmyShopViewController armyShopViewController;
-    private int buttonSize;
-
-    public ArmyShopView(Context context, ArmyShopViewController armyShopViewController, ArmyShop shop) {
-        super(context, armyShopViewController);
-
-        this.shop = shop;
-        this.player = armyShopViewController.getPlayer();
-        this.warrior = shop.getWarrior();
-        this.armyShopViewController = armyShopViewController;
+public class ArmyShopDrawer extends Drawer {
+    public ArmyShopDrawer(Canvas canvas, XMainView mainView) {
+        super(canvas, mainView);
     }
 
-    @Override
-    public boolean onTouchEvent(@NonNull MotionEvent event) {
-        Click click = getClick(event);
-        if (click.in(buttonSize * 2, buttonSize, buttonSize * 2, buttonSize,
-                Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM)) {
-            armyShopViewController.buyArmy(shop, 1);
-        } else if (click.in(buttonSize, 0, buttonSize * 2, buttonSize,
-                Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM)) {
-            armyShopViewController.buyArmy(shop, 10);
-        } else if (click.in(buttonSize * 2, buttonSize, buttonSize, 0,
-                Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM)) {
-            armyShopViewController.buyArmy(shop, 100);
-        } else  if (click.in(buttonSize, 0, buttonSize, 0,
-                Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM)) {
-            armyShopViewController.buyArmy(shop, 1000);
-        } else {
-            viewController.viewClose();
-        }
-        return false;
-    }
-
-    @Override
-    public void draw(@NonNull Canvas canvas) {
-        super.draw(canvas);
-
-        Painter painter = getPainter(canvas);
+    public void draw(ServerView serverView) {
+        Painter painter = mainView.getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 
-        Paint paint = new Paint(getDefaultPaint());
+        Paint paint = new Paint(mainView.getDefaultPaint());
         Paint smallFont = new Paint(paint);
-        smallFont.setTextSize(textHeight() / 2);
+        smallFont.setTextSize(mainView.textHeight() / 2);
 
-        this.buttonSize = getHeight() / 5;
+        int buttonSize = mainView.getHeight() / 5;
+        I18n i18n = Server.getI18n();
         int buttonBorderSize = 5;
-        Bitmap image = getImageCache().getImage(warrior.getId());
+        Warrior warrior = serverView.getArmyShop().getWarrior();
+
+        Bitmap image = mainView.getImageCache().getImage(warrior.getId());
 
         painter.drawBitmap(image, 0, 0);
         painter.drawText(i18n.translate("army_names_" + warrior.getTextId()),
-                stepX() + 10, textHeight(), paint);
+                mainView.stepX() + 10, mainView.textHeight(), paint);
         painter.drawText(i18n.translate(R.string.entity_armyShop_ui_thereIs)
-                        + ": " + shop.getCount(),
-                stepX() + 10, menuItemHeight(), smallFont);
+                        + ": " + serverView.getArmyShop().getCount(),
+                mainView.stepX() + 10, mainView.menuItemHeight(), smallFont);
         painter.drawText(i18n.translate(R.string.entity_armyShop_ui_price)
                         + ": " + warrior.getPriceInShop(),
-                stepX() + 10, (int) (menuItemHeight() * 1.5), smallFont);
+                mainView.stepX() + 10, (int) (mainView.menuItemHeight() * 1.5), smallFont);
 
-        String playerMoney = i18n.translate(R.string.player_attrs_money) + ": " + player.getMoney();
-        painter.drawText(playerMoney, 0, textHeight() * 2, paint, Painter.ALIGN_RIGHT);
+        String playerMoney = i18n.translate(R.string.player_attrs_money) + ": " + serverView.getMoney();
+        painter.drawText(playerMoney, 0, mainView.textHeight() * 2, paint, Painter.ALIGN_RIGHT);
 
         painter.drawText(i18n.translate(R.string.entity_armyShop_ui_step) + ": " + warrior.getStep(),
-                0, stepY() + textHeight(), paint);
+                0, mainView.stepY() + mainView.textHeight(), paint);
         painter.drawText(i18n.translate(R.string.entity_armyShop_ui_defense) + ": " + warrior.getDefence(),
-                0, stepY() + textHeight() * 2, paint);
+                0, mainView.stepY() + mainView.textHeight() * 2, paint);
         painter.drawText(i18n.translate(R.string.entity_armyShop_ui_damage) + ": " + warrior.getDamage(),
-                0, stepY() + textHeight() * 3, paint);
+                0, mainView.stepY() + mainView.textHeight() * 3, paint);
         painter.drawText(i18n.translate(R.string.entity_armyShop_ui_fly) +
                         ": " + (warrior.isFly() ? i18n.translate(R.string.yes) : i18n.translate(R.string.no)),
-                0, stepY() + textHeight() * 4, paint);
+                0, mainView.stepY() + mainView.textHeight() * 4, paint);
         painter.drawText(i18n.translate(R.string.entity_armyShop_ui_shoot) +
                         ": " + (warrior.isShoot() ? i18n.translate(R.string.yes) : i18n.translate(R.string.no)),
-                0, stepY() + textHeight() * 5, paint);
+                0, mainView.stepY() + mainView.textHeight() * 5, paint);
 
-        String how = i18n.translate(R.string.entity_armyShop_ui_afford) + ": " + player.armyAfford(warrior);
+        String how = i18n.translate(R.string.entity_armyShop_ui_afford) + ": " + serverView.getPlayer().armyAfford(warrior);
         painter.drawText(how,
                 0,
-                getHeight() - buttonSize * 2 - 10 - menuItemHeight(),
+                mainView.getHeight() - buttonSize * 2 - 10 - mainView.menuItemHeight(),
                 smallFont, Painter.ALIGN_RIGHT);
         painter.drawText(i18n.translate(R.string.entity_armyShop_ui_howMany),
                 0,
