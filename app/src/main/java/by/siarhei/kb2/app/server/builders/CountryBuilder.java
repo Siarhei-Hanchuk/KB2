@@ -192,25 +192,25 @@ public class CountryBuilder {
         Metro metro1 = entityGenerator.metro();
         Metro metro2 = entityGenerator.metro();
 
-        map[5][8].setEntity(new ArmyShop(null, 0));
-        map[5][9].setEntity(new ArmyShop(null, 0));
-        map[5][9].setEntity(new ArmyShop(null, 0));
-        map[7][5].setEntity(new GuidePost(null));
+        map[5][8].setEntity(new ArmyShop(0));
+        map[5][9].setEntity(new ArmyShop(0));
+        map[5][9].setEntity(new ArmyShop(0));
+        map[7][5].setEntity(new GuidePost());
 
-        Captain captain = new Captain(null);
+        Captain captain = new Captain();
         map[8][5].setEntity(captain);
         captain.generateArmy(28, 0);
 
-        Castle castle = new Castle(null, 0);
+        Castle castle = new Castle(0);
         map[8][8].setEntity((castle));
 
-        map[9][8].setEntity(new CastleRight(null));
-        map[7][8].setEntity(new CastleLeft(null));
+        map[9][8].setEntity(new CastleRight());
+        map[7][8].setEntity(new CastleLeft());
         castle.generateArmy(50, 0);
 
-        map[5][6].setEntity(new GoldenChest(null, 1));
+        map[5][6].setEntity(new GoldenChest(1));
 
-        map[6][5].setEntity(new City(null, 0, castle));
+        map[6][5].setEntity(new City(0, castle));
 
         return new Country(random, map, 0);
     }

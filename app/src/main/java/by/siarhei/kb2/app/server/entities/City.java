@@ -7,14 +7,13 @@ import by.siarhei.kb2.app.server.models.iterators.CitiesOwner;
 import java.util.Iterator;
 import java.util.Random;
 
-public class City extends EntityImpl implements CitiesOwner {
+public class City implements Entity, CitiesOwner {
     private final int nameId;
     private final Castle castle;
     private int[] workers;
     private int magic;
 
-    public City(MapPoint point, int nameId, Castle castle) {
-        super();
+    public City(int nameId, Castle castle) {
         this.nameId = nameId;
         this.castle = castle;
         resetWorkers();

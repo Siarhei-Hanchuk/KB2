@@ -8,14 +8,13 @@ import by.siarhei.kb2.app.server.warriors.WarriorSquad;
 
 import java.util.Iterator;
 
-public class Castle extends EntityImpl implements Fighting, CastlesOwner {
+public class Castle implements Entity, Fighting, CastlesOwner {
     private static final int ARMY_COUNT = 5;
     private final WarriorSquad[] warriors = new WarriorSquad[ARMY_COUNT];
     private final int nameId;
     private int authority;
 
-    public Castle(MapPoint point, int nameId) {
-        super();
+    public Castle(int nameId) {
         this.nameId = nameId;
     }
 

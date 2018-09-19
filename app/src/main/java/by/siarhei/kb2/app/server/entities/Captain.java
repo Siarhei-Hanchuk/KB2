@@ -10,14 +10,10 @@ import by.siarhei.kb2.app.server.warriors.Warrior;
 import by.siarhei.kb2.app.server.warriors.WarriorFactory;
 import by.siarhei.kb2.app.server.warriors.WarriorSquad;
 
-public class Captain extends EntityImpl implements Fighting {
+public class Captain implements Entity, Fighting {
     private static final int MAX_ARMY = 5;
     private final WarriorSquad[] warriors = new WarriorSquad[MAX_ARMY];
     private int authority;
-
-    public Captain(MapPoint point) {
-        super();
-    }
 
     @Override
     public int getID() {

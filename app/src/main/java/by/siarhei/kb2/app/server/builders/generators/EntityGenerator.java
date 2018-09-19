@@ -81,7 +81,7 @@ public class EntityGenerator implements Serializable {
                 break;
             }
         }
-        return new City(mp, nameId, castle);
+        return new City(nameId, castle);
     }
 
     public void guidePosts() {
@@ -91,7 +91,7 @@ public class EntityGenerator implements Serializable {
             int x = random.nextInt(54) + 5;
             if ((map[x][y].getLand() == R.drawable.land)
                     || (map[x][y].getLand() == R.drawable.sand)) {
-                map[x][y].setEntity(new GuidePost(map[x][y]));
+                map[x][y].setEntity(new GuidePost());
             }
             count++;
         }
@@ -104,7 +104,7 @@ public class EntityGenerator implements Serializable {
                         || (map[i][j].getLand() == R.drawable.sand))
                         && (map[i][j].getEntity() == null)) {
                     if (random.nextInt(frequency) == 1) {
-                        map[i][j].setEntity(new GoldenChest(map[i][j], wealth));
+                        map[i][j].setEntity(new GoldenChest(wealth));
                     }
                 }
             }
@@ -141,9 +141,9 @@ public class EntityGenerator implements Serializable {
                     break;
                 }
             }
-            Castle castle = new Castle(map[x][y], nameId);
-            new CastleRight(map[x + 1][y]);
-            new CastleLeft(map[x - 1][y]);
+            Castle castle = new Castle(nameId);
+            new CastleRight();
+            new CastleLeft();
             tryPlaceCaptain(x, y + 1, 1000, 2000);
             return castle;
         }
@@ -162,7 +162,7 @@ public class EntityGenerator implements Serializable {
 
     private boolean tryPlaceCaptain(int x, int y, int minAuthority, int maxAuthority) {
         if (map[x][y].getLand() == R.drawable.land && map[x][y].getEntity() == null) {
-            Fighting captain = new Captain(map[x][y]);
+            Fighting captain = new Captain();
             int authority = minAuthority + random.nextInt(maxAuthority - minAuthority);
             captain.generateArmy(authority, 0);
             return true;
@@ -182,15 +182,15 @@ public class EntityGenerator implements Serializable {
     }
 
     private ArmyShop createArmy(MapPoint mp, int... groups) {
-        return new ArmyShop(mp, groups);
+        return new ArmyShop(groups);
     }
 
     public void mapNext() {
-        new MapNext(getEmptyLand());
+        new MapNext();
     }
 
     public Metro metro() {
-        return new Metro(getEmptyLand());
+        return new Metro();
     }
 
     private MapPoint getEmptyLand() {
@@ -210,7 +210,8 @@ public class EntityGenerator implements Serializable {
             spell = null;
         }
         if (Math.random() < 0.1) {
-            spell = new Spell(getEmptyLand());
+            // TODO - spell position
+            spell = new Spell();
         }
     }
 

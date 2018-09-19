@@ -8,12 +8,11 @@ import by.siarhei.kb2.app.server.warriors.WarriorFactory;
 
 import java.util.Iterator;
 
-public class ArmyShop extends EntityImpl implements ArmyShopsOwner {
+public class ArmyShop implements Entity, ArmyShopsOwner {
     private final Warrior warrior;
     private int count;
 
-    public ArmyShop(MapPoint point, int... groups) {
-        super();
+    public ArmyShop(int... groups) {
         warrior = WarriorFactory.createRandomFromGroup(groups);
         resetCount();
     }

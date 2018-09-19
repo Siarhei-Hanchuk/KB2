@@ -2,12 +2,8 @@ package by.siarhei.kb2.app.server.entities;
 
 import by.siarhei.kb2.app.R;
 
-public class Magician extends EntityImpl {
+public class Magician implements Entity {
     private static final int[] usedMagicianCount = {0, 0, 0, 0, 0};
-
-    public Magician() {
-        super();
-    }
 
     @Override
     public int getID() {

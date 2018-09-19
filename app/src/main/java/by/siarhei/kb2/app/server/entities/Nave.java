@@ -4,11 +4,7 @@ import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.server.countries.Country;
 import by.siarhei.kb2.app.server.models.MapPoint;
 
-public class Nave extends EntityImpl {
-    public Nave(MapPoint point) {
-        super();
-    }
-
+public class Nave implements Entity {
     @Override
     public int getID() {
         return R.drawable.nave;

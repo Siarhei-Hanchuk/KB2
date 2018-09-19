@@ -8,10 +8,4 @@ public interface Entity {
     default int getID(Player player) {
         return getID();
     }
-
-//    void destroy();
-//
-//    MapPoint getMapPoint();
-//
-//    void setMapPoint(MapPoint point);
 }

@@ -5,13 +5,12 @@ import by.siarhei.kb2.app.server.models.MapPoint;
 
 import java.util.Random;
 
-public class GoldenChest extends EntityImpl {
+public class GoldenChest implements Entity {
     private final int wealth;
     private int bonus = 0;
     private int gold;
 
-    public GoldenChest(MapPoint point, int wealth) {
-        super();
+    public GoldenChest(int wealth) {
         this.wealth = wealth;
     }
 

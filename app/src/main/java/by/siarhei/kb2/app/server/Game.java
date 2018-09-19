@@ -190,7 +190,7 @@ public class Game implements Serializable {
     }
 
     public void createNave(Country country, int x, int y) {
-        country.getMapPoint(x, y).setEntity(new Nave(null));
+        country.getMapPoint(x, y).setEntity(new Nave());
     }
 
     public void destroyNave() {
