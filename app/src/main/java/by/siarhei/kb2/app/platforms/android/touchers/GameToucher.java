@@ -98,9 +98,4 @@ public class GameToucher {
         request.setMenuItem(item);
         Server.getServer().request(request);
     }
-
-    public static Click getClick(@NonNull MotionEvent event, XMainView mainView) {
-        int[] offsets = mainView.calcOffsets();
-        return new Click(event, offsets[0], offsets[1], mainView.getWidth(), mainView.getHeight());
-    }
 }

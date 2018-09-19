@@ -151,11 +151,6 @@ public class XMainView extends SurfaceView implements SurfaceHolder.Callback, Dr
             case GameDispatcher.VIEW_MODE_GRID:
                 GameToucher.touchEvent(event, this);
                 break;
-            case GameDispatcher.VIEW_MODE_MESSAGE:
-            case GameDispatcher.VIEW_MODE_WEEK_FINISHED:
-                request.setAction(Request.ACTION_OK);
-                Server.getServer().request(request);
-                break;
             case GameDispatcher.VIEW_MODE_MENU:
                 Menu menu = Server.getServer().getView().getMenu();
                 double y = event.getY();
@@ -179,6 +174,8 @@ public class XMainView extends SurfaceView implements SurfaceHolder.Callback, Dr
                 Menu2Toucher.touchEvent(event, this);
                 break;
             default:
+                request.setAction(Request.ACTION_OK);
+                Server.getServer().request(request);
                 break;
         }
 

@@ -28,6 +28,11 @@ public class DrawerFactory {
                 return new WeekFinishedDrawer(canvas, mainView);
             case GameDispatcher.VIEW_MODE_ARMY_SHOP:
                 return new ArmyShopDrawer(canvas, mainView);
+            case GameDispatcher.VIEW_MODE_STATUS:
+                return new StatusDrawer(canvas, mainView);
+            case GameDispatcher.VIEW_MODE_PLAYER_ARMY:
+                return new PlayerArmyDrawer(canvas, mainView);
+
             default:
                 return null;
         }

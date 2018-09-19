@@ -17,17 +17,17 @@ public class GameDispatcher {
     public static final int VIEW_MODE_WEEK_FINISHED = 4;
     public static final int VIEW_MODE_ARMY_SHOP = 5;
     public static final int VIEW_MODE_MENU2 = 6;
-    public static final int VIEW_MODE_GAME_MENU = 7;
+    public static final int VIEW_MODE_STATUS = 7;
+    public static final int VIEW_MODE_PLAYER_ARMY = 8;
 
-    public static final int GAME_MENU_MODE_MAIN = 0;
-    public static final int GAME_MENU_MODE_X1 = 1;
-    public static final int GAME_MENU_MODE_WORKERS = 2;
-    public static final int GAME_MENU_MODE_MAGIC = 3;
-    public static final int GAME_MENU_MODE_STATUS = 3;
-    public static final int GAME_MENU_MODE_MAP = 4;
+    public static final int GAME_MENU_MAIN = -1;
+    public static final int GAME_MENU_OTHER = 0;
+    public static final int GAME_MENU_MAGIC = 2;
+    public static final int GAME_MENU_STATUS = 3;
+    public static final int GAME_MENU_MAP = 4;
 
     private int viewMode = VIEW_MODE_GRID;
-    private int gameMenuMode = GAME_MENU_MODE_MAIN;
+    private int gameMenuMode = GAME_MENU_MAIN;
 
     private transient Message message;
     private transient Menu menu;
@@ -71,7 +71,66 @@ public class GameDispatcher {
                 setViewMode(VIEW_MODE_GRID);
                 break;
             case Request.ACTION_OPEN_GAME_MENU:
-                gameMenuMode = GAME_MENU_MODE_MAP;
+                gameMenuClick(data.getMenuItem());
+                break;
+        }
+    }
+
+    private void gameMenuClick(int item) {
+        switch (gameMenuMode) {
+            case GAME_MENU_MAIN:
+                if(item == GAME_MENU_MAP || item == GAME_MENU_OTHER || item == GAME_MENU_MAGIC)
+                    gameMenuMode = item;
+                if(item == GAME_MENU_STATUS)
+                    setViewMode(VIEW_MODE_STATUS);
+                break;
+            case GAME_MENU_MAP:
+                switch (item) {
+                    case 0:
+                        //
+                        break;
+                    case 1:
+                        //
+                        break;
+                    case 2:
+                        gameMenuMode = GAME_MENU_MAIN;
+                }
+                break;
+            case GAME_MENU_OTHER:
+                switch (item) {
+                    case 0:
+                        setViewMode(VIEW_MODE_PLAYER_ARMY);
+                        break;
+                    case 1:
+                        //
+                        break;
+                    case 2:
+                        //
+                        break;
+                    case 3:
+                        //
+                        break;
+                    case 4:
+                        gameMenuMode = GAME_MENU_MAIN;
+                }
+                break;
+            case GAME_MENU_MAGIC:
+                switch (item) {
+                    case 0:
+                        //
+                        break;
+                    case 1:
+                        //
+                        break;
+                    case 2:
+                        //
+                        break;
+                    case 3:
+                        //
+                        break;
+                    case 4:
+                        gameMenuMode = GAME_MENU_MAIN;
+                }
                 break;
         }
     }

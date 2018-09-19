@@ -158,16 +158,16 @@ public class GameGrid {
 
     private void makeStatus() {
         switch (mode) {
-            case 0:
+            case GameDispatcher.GAME_MENU_MAIN:
                 makeStatus0();
                 break;
-            case 1:
-                makeStatus1();
+            case GameDispatcher.GAME_MENU_OTHER:
+                makeStatusStatus();
                 break;
-            case 2:
-                makeStatus2();
+            case GameDispatcher.GAME_MENU_MAGIC:
+                makeStatusMagic();
                 break;
-            case GameDispatcher.GAME_MENU_MODE_MAP:
+            case GameDispatcher.GAME_MENU_MAP:
                 makeStatusMap();
                 break;
         }
@@ -206,7 +206,7 @@ public class GameGrid {
         grid[5][4] = R.drawable.status_ancientmap_0;
     }
 
-    private void makeStatus1() {
+    private void makeStatusStatus() {
         grid[5][0] = R.drawable.status_army;
         grid[5][1] = R.drawable.status_week;
         grid[5][2] = R.drawable.status_contract_0;
@@ -214,7 +214,7 @@ public class GameGrid {
         grid[5][4] = R.drawable.status_back;
     }
 
-    private void makeStatus2() {
+    private void makeStatusMagic() {
         grid[5][0] = R.drawable.status_magic;
         grid[5][1] = R.drawable.status_tornado;
         grid[5][2] = R.drawable.guidepost;

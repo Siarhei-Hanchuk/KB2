@@ -40,11 +40,11 @@ public class Player implements Serializable {
                 point = country.getMapPoint(5, 5);
                 easy();
                 availableCountry = 5;
-//                for (int i = 0; i < 10; i++) {
-//                    Warrior warrior = WarriorFactory.createRandomFromGroup(1);
-//                    WarriorSquad squad = new WarriorSquad(warrior, 1);
-//                    warriors[i] = squad;
-//                }
+                for (int i = 0; i < 3; i++) {
+                    Warrior warrior = WarriorFactory.createRandomFromGroup(1);
+                    WarriorSquad squad = new WarriorSquad(warrior, 1);
+                    warriors[i] = squad;
+                }
                 break;
             case Game.MODE_TRAINING:
                 point = country.getLandNearCity();

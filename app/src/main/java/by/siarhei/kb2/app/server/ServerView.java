@@ -22,6 +22,7 @@ public class ServerView {
     private transient GameDispatcher gameDispatcher;
     private transient Player player;
     private ArmyShop armyShop;
+    private int leftWeeks;
 
     public ServerView(Game game, GameDispatcher gameDispatcher) {
         this.gameDispatcher = gameDispatcher;
@@ -62,6 +63,7 @@ public class ServerView {
         salary = game.getPlayer().getSalary();
         armyShop = gameDispatcher.getCurrentArmyShop();
         player = game.getPlayer();
+        leftWeeks = game.getWeeks();
     }
 
     public int getAuthority() {
@@ -86,5 +88,9 @@ public class ServerView {
 
     public ArmyShop getArmyShop() {
         return armyShop;
+    }
+
+    public int getLeftWeeks() {
+        return leftWeeks;
     }
 }
