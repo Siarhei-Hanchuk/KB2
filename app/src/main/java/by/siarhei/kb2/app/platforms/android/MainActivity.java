@@ -35,7 +35,7 @@ public class MainActivity extends Activity {
         PlatformController platformController = new PlatformControllerImpl(this);
         ApplicationController.initApp(platformController);
         Server.setI18n(ApplicationController.i18n);
-        View view = new XMainView(this);
+        View view = new MainView(this);
         platformController.setContentView(view);
         activity = this;
     }

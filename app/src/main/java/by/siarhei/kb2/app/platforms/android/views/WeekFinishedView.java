@@ -1,20 +1,22 @@
-package by.siarhei.kb2.app.platforms.android.drawers;
+package by.siarhei.kb2.app.platforms.android.views;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 
 import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.platforms.android.XMainView;
+import by.siarhei.kb2.app.platforms.android.MainView;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
+import by.siarhei.kb2.app.platforms.android.views.RootView;
 import by.siarhei.kb2.app.server.Server;
 import by.siarhei.kb2.app.server.ServerView;
 
-public class WeekFinishedDrawer extends Drawer {
-    public WeekFinishedDrawer(Canvas canvas, XMainView mainView) {
-        super(canvas, mainView);
+public class WeekFinishedView extends RootView {
+    public WeekFinishedView(MainView mainView) {
+        super(mainView);
     }
 
-    public void draw(ServerView serverView) {
+    public void draw(@NonNull Canvas canvas, ServerView serverView) {
         Painter painter = mainView.getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 
@@ -34,7 +36,7 @@ public class WeekFinishedDrawer extends Drawer {
         drawItem(mainView, painter, 12, "cityRefresh", Server.getI18n().translate("entity_city_names_name" + serverView.getUpdatedCity().getNameId()));
     }
 
-    private static void drawItem(XMainView mainView, Painter painter, int n, String attr, Object value) {
+    private static void drawItem(MainView mainView, Painter painter, int n, String attr, Object value) {
         String text;
         if (value != null) {
             if (value instanceof Integer) {

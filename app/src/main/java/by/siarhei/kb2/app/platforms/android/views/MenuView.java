@@ -1,74 +1,62 @@
-package by.siarhei.kb2.app.platforms.android.views;
+package by.siarhei.kb2.app.platforms.android.drawers;
 
-import android.content.Context;
+import android.app.usage.UsageEvents;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
 import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.controllers.ViewController;
+import by.siarhei.kb2.app.platforms.android.MainView;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
+import by.siarhei.kb2.app.platforms.android.views.RootView;
+import by.siarhei.kb2.app.server.Request;
+import by.siarhei.kb2.app.server.Server;
+import by.siarhei.kb2.app.server.ServerView;
 import by.siarhei.kb2.app.ui.menus.Menu;
 
-class MenuView extends ViewImpl {
-    private final Menu menu;
-
-    public MenuView(Context context, ViewController viewController, Menu menu) {
-        super(context, viewController);
-        this.menu = menu;
+public class MenuView extends RootView {
+    public MenuView(MainView mainView) {
+        super(mainView);
     }
 
-    @Override
-    public boolean onTouchEvent(@NonNull MotionEvent event) {
-        double y = event.getY();
-        int item = (int) y / menuItemHeight();
-        select(item);
-        return super.onTouchEvent(event);
-    }
-
-    @Override
-    public void draw(@NonNull Canvas canvas) {
-        super.draw(canvas);
-
-        Painter painter = getPainter(canvas);
+    public void draw(@NonNull Canvas canvas, ServerView serverView) {
+        Painter painter = mainView.getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 
+        Menu menu = serverView.getMenu();
         int i;
         for (i = 0; i < menu.getCount(); i++) {
             painter.drawText(menu.getItemDescription(i), 10,
-                    textHeight() + menuItemHeight() * i, getDefaultPaint());
+                    mainView.textHeight() + mainView.menuItemHeight() * i, mainView.getDefaultPaint());
         }
         if (menu.withExit())
-            painter.drawText(i18n.translate(R.string.mainMenu_exit), 10,
-                    textHeight() + menuItemHeight() * i, getDefaultPaint());
+            painter.drawText(Server.getI18n().translate(R.string.mainMenu_exit), 10,
+                    mainView.textHeight() + mainView.menuItemHeight() * i, mainView.getDefaultPaint());
         if (menu.withMoney()) {
             String money = i18n.translate(R.string.player_attrs_money) + ": "
-                    + viewController.getGame().getPlayer().getMoney();
+                    + serverView.getMoney();
             painter.drawText(money,
-                    getDefaultPaint().measureText(money) + 1,
-                    textHeight() + menuItemHeight() * i, getDefaultPaint(), Painter.ALIGN_RIGHT);
+                    mainView.getDefaultPaint().measureText(money) + 1,
+                    mainView.textHeight() + mainView.menuItemHeight() * i, mainView.getDefaultPaint(), Painter.ALIGN_RIGHT);
         }
     }
 
-    private void select(int item) {
-        boolean result = false;
-        if (item < menu.getCount()) {
-            result = menu.select(item);
-            refresh();
+    @Override
+    public void onTouchEvent(@NonNull MotionEvent event){
+        Menu menu = Server.getServer().getView().getMenu();
+        double y = event.getY();
+        int item = (int) y / menuItemHeight();
+
+        int count = menu.getCount();
+        if(menu.withExit()) {
+            count++;
         }
-        if (menu.withExit()) {
-            if (item == menu.getCount() || result)
-                if (menu.getMenuMode() > 0) {
-                    menu.resetMenuMode();
-                    refresh();
-                } else {
-                    viewController.viewClose();
-                }
-        } else {
-            if (result)
-                viewController.viewClose();
+        if (item < count) {
+            Request request = new Request();
+            request.setAction(Request.ACTION_SELECT);
+            request.setMenuItem(item);
+            Server.getServer().request(request);
         }
     }
-
 }

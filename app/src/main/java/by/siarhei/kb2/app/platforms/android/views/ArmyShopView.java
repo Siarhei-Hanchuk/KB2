@@ -1,24 +1,28 @@
-package by.siarhei.kb2.app.platforms.android.drawers;
+package by.siarhei.kb2.app.platforms.android.views;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.support.annotation.NonNull;
+import android.view.MotionEvent;
 
 import by.siarhei.kb2.app.I18n;
 import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.platforms.android.XMainView;
+import by.siarhei.kb2.app.platforms.android.MainView;
+import by.siarhei.kb2.app.platforms.android.helpers.Click;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
+import by.siarhei.kb2.app.server.Request;
 import by.siarhei.kb2.app.server.Server;
 import by.siarhei.kb2.app.server.ServerView;
 import by.siarhei.kb2.app.server.warriors.Warrior;
 
-public class ArmyShopDrawer extends Drawer {
-    public ArmyShopDrawer(Canvas canvas, XMainView mainView) {
-        super(canvas, mainView);
+public class ArmyShopView extends RootView {
+    public ArmyShopView(MainView mainView) {
+        super(mainView);
     }
 
-    public void draw(ServerView serverView) {
+    public void draw(@NonNull Canvas canvas, ServerView serverView) {
         Painter painter = mainView.getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 
@@ -109,5 +113,40 @@ public class ArmyShopDrawer extends Drawer {
                 buttonSize / 2,
                 buttonSize / 2,
                 smallFont, Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM);
+    }
+
+    @Override
+    public void onTouchEvent(@NonNull MotionEvent event) {
+        Click click = mainView.getClick(event);
+        int buttonSize = mainView.getHeight() / 5;
+
+        if (click.in(buttonSize * 2, buttonSize, buttonSize * 2, buttonSize,
+                Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM)) {
+            buyRequest(1);
+        } else if (click.in(buttonSize, 0, buttonSize * 2, buttonSize,
+                Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM)) {
+            buyRequest(10);
+        } else if (click.in(buttonSize * 2, buttonSize, buttonSize, 0,
+                Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM)) {
+            buyRequest(100);
+        } else  if (click.in(buttonSize, 0, buttonSize, 0,
+                Painter.ALIGN_RIGHT + Painter.ALIGN_BOTTOM)) {
+            buyRequest(1000);
+        } else {
+            exitRequest();
+        }
+    }
+
+    private void buyRequest(int count) {
+        Request request = new Request();
+        request.setAction(Request.ACTION_BUY_ARMY);
+        request.setMenuItem(count);
+        Server.getServer().request(request);
+    }
+
+    private void exitRequest() {
+        Request request = new Request();
+        request.setAction(Request.ACTION_OK);
+        Server.getServer().request(request);
     }
 }

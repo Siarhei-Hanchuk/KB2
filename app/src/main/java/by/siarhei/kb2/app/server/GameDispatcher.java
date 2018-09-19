@@ -19,6 +19,7 @@ public class GameDispatcher {
     public static final int VIEW_MODE_MENU2 = 6;
     public static final int VIEW_MODE_STATUS = 7;
     public static final int VIEW_MODE_PLAYER_ARMY = 8;
+    public static final int VIEW_MODE_MAP = 9;
 
     public static final int GAME_MENU_MAIN = -1;
     public static final int GAME_MENU_OTHER = 0;
@@ -87,7 +88,7 @@ public class GameDispatcher {
             case GAME_MENU_MAP:
                 switch (item) {
                     case 0:
-                        //
+                        setViewMode(VIEW_MODE_MAP);
                         break;
                     case 1:
                         //

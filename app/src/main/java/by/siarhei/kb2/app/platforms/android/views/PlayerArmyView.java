@@ -1,21 +1,21 @@
-package by.siarhei.kb2.app.platforms.android.drawers;
+package by.siarhei.kb2.app.platforms.android.views;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 
-import by.siarhei.kb2.app.platforms.android.XMainView;
+import by.siarhei.kb2.app.platforms.android.MainView;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
-import by.siarhei.kb2.app.server.Server;
+import by.siarhei.kb2.app.platforms.android.views.RootView;
 import by.siarhei.kb2.app.server.ServerView;
-import by.siarhei.kb2.app.server.models.Player;
 import by.siarhei.kb2.app.server.warriors.WarriorSquad;
 
-public class PlayerArmyDrawer extends Drawer {
-    public PlayerArmyDrawer(Canvas canvas, XMainView mainView) {
-        super(canvas, mainView);
+public class PlayerArmyView extends RootView {
+    public PlayerArmyView(MainView mainView) {
+        super(mainView);
     }
 
-    public void draw(ServerView serverView) {
+    public void draw(@NonNull Canvas canvas, ServerView serverView) {
         Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 

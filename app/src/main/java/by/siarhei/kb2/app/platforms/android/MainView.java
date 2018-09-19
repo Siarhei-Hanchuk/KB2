@@ -10,24 +10,18 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import by.siarhei.kb2.app.View;
-import by.siarhei.kb2.app.platforms.android.drawers.Drawer;
-import by.siarhei.kb2.app.platforms.android.drawers.DrawerFactory;
-import by.siarhei.kb2.app.platforms.android.touchers.ArmyShopToucher;
-import by.siarhei.kb2.app.platforms.android.touchers.GameToucher;
+import by.siarhei.kb2.app.platforms.android.views.XViewFactory;
 import by.siarhei.kb2.app.platforms.android.helpers.Click;
 import by.siarhei.kb2.app.platforms.android.helpers.DrawThread;
 import by.siarhei.kb2.app.platforms.android.helpers.Drawable;
 import by.siarhei.kb2.app.platforms.android.helpers.ImageCache;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
-import by.siarhei.kb2.app.platforms.android.touchers.Menu2Toucher;
-import by.siarhei.kb2.app.server.GameDispatcher;
+import by.siarhei.kb2.app.platforms.android.views.RootView;
 import by.siarhei.kb2.app.server.GameGrid;
-import by.siarhei.kb2.app.server.Request;
 import by.siarhei.kb2.app.server.Server;
 import by.siarhei.kb2.app.server.ServerView;
-import by.siarhei.kb2.app.ui.menus.Menu;
 
-public class XMainView extends SurfaceView implements SurfaceHolder.Callback, Drawable, View {
+public class MainView extends SurfaceView implements SurfaceHolder.Callback, Drawable, View {
     private static final int IMAGE_WIDTH = 96;
     private static final int IMAGE_HEIGHT = 82;
 
@@ -35,16 +29,14 @@ public class XMainView extends SurfaceView implements SurfaceHolder.Callback, Dr
     private Paint defaultPaint = null;
     protected Context context;
 
-    public XMainView(Context context) {
+    public MainView(Context context) {
         super(context);
         this.context = context;
         getHolder().addCallback(this);
     }
 
     @Override
-    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
-    }
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) { }
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
@@ -144,40 +136,7 @@ public class XMainView extends SurfaceView implements SurfaceHolder.Callback, Dr
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
-        ServerView serverView = Server.getServer().getView();
-        Request request = new Request();
-
-        switch (serverView.getViewMode()) {
-            case GameDispatcher.VIEW_MODE_GRID:
-                GameToucher.touchEvent(event, this);
-                break;
-            case GameDispatcher.VIEW_MODE_MENU:
-                Menu menu = Server.getServer().getView().getMenu();
-                double y = event.getY();
-                int item = (int) y / menuItemHeight();
-
-                int count = menu.getCount();
-                if(menu.withExit()) {
-                    count++;
-                }
-                if (item < count) {
-                    request.setAction(Request.ACTION_SELECT);
-                    request.setMenuItem(item);
-                }
-
-                Server.getServer().request(request);
-                break;
-            case GameDispatcher.VIEW_MODE_ARMY_SHOP:
-                ArmyShopToucher.touchEvent(event, this);
-                break;
-            case GameDispatcher.VIEW_MODE_MENU2:
-                Menu2Toucher.touchEvent(event, this);
-                break;
-            default:
-                request.setAction(Request.ACTION_OK);
-                Server.getServer().request(request);
-                break;
-        }
+        getView().onTouchEvent(event);
 
         refresh();
         return super.onTouchEvent(event);
@@ -187,10 +146,12 @@ public class XMainView extends SurfaceView implements SurfaceHolder.Callback, Dr
     public void draw(@NonNull Canvas canvas) {
         super.draw(canvas);
 
-        ServerView serverView = Server.getServer().getView();
-        DrawerFactory drawerFactory = new DrawerFactory(canvas, this);
-        Drawer drawer = drawerFactory.getDrawer(serverView.getViewMode());
+        getView().draw(canvas, Server.getServer().getView());
+    }
 
-        drawer.draw(serverView);
+    private RootView getView() {
+        ServerView serverView = Server.getServer().getView();
+        XViewFactory viewFactory = new XViewFactory(this);
+        return viewFactory.getView(serverView.getViewMode());
     }
 }

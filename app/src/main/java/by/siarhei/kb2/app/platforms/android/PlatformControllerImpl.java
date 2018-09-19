@@ -34,7 +34,7 @@ class PlatformControllerImpl implements PlatformController {
 
     @Override
     public void setContentView(View view) {
-        activity.setContentView((XMainView) view);
+        activity.setContentView((MainView) view);
     }
 
     @Override

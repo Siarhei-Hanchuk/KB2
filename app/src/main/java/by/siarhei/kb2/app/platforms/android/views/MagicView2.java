@@ -1,6 +1,5 @@
 package by.siarhei.kb2.app.platforms.android.views;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
@@ -9,13 +8,10 @@ import android.view.MotionEvent;
 import java.util.HashMap;
 
 import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.controllers.MagicViewController;
-import by.siarhei.kb2.app.platforms.android.XMainView;
-import by.siarhei.kb2.app.platforms.android.drawers.Drawer;
+import by.siarhei.kb2.app.platforms.android.MainView;
 import by.siarhei.kb2.app.platforms.android.helpers.ImageCache;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
 import by.siarhei.kb2.app.server.GameGrid;
-import by.siarhei.kb2.app.server.Server;
 import by.siarhei.kb2.app.server.ServerView;
 import by.siarhei.kb2.app.server.models.Magic;
 import by.siarhei.kb2.app.server.warriors.WarriorFactory;
@@ -25,8 +21,8 @@ class MagicView2 extends RootView {
     private final HashMap<Integer, String> armyIdCache = new HashMap<>();
     private int mode = 0;
 
-    public MagicView2(Canvas canvas, XMainView mainView) {
-        super(canvas, mainView);
+    public MagicView2(MainView mainView) {
+        super(mainView);
     }
 
     @Override
@@ -50,7 +46,7 @@ class MagicView2 extends RootView {
 
 
     @Override
-    public void draw(ServerView serverView) {
+    public void draw(@NonNull Canvas canvas, ServerView serverView) {
         Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 

@@ -1,40 +1,30 @@
 package by.siarhei.kb2.app.platforms.android.views;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.NonNull;
-import android.view.MotionEvent;
 
 import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.controllers.PlayerViewsController;
+import by.siarhei.kb2.app.platforms.android.MainView;
+import by.siarhei.kb2.app.server.ServerView;
 import by.siarhei.kb2.app.server.countries.Country;
 import by.siarhei.kb2.app.server.models.MapPoint;
 import by.siarhei.kb2.app.server.models.Player;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
 
-class MapView extends ViewImpl {
-    private final Player player;
+class MapView extends RootView {
 
-    public MapView(Context context, PlayerViewsController playerViewsController) {
-        super(context, playerViewsController);
-        this.player = playerViewsController.getPlayer();
+    public MapView(MainView mainView) {
+        super(mainView);
     }
 
     @Override
-    public boolean onTouchEvent(@NonNull MotionEvent event) {
-        viewController.viewClose();
-        return super.onTouchEvent(event);
-    }
-
-    @Override
-    public void draw(@NonNull Canvas canvas) {
-        super.draw(canvas);
-
+    public void draw(@NonNull Canvas canvas, ServerView serverView) {
         Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 
+        Player player = serverView.getPlayer();
         int pointSize = canvas.getHeight() / Country.MAX_MAP_SIZE;
         Country country = player.getCountry();
         boolean memory[][] = player.getMemory().getMap(country.getId());
