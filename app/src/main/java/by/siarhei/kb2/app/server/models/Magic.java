@@ -10,6 +10,7 @@ public class Magic implements Serializable {
     private int magicPower;
     private int magicMaxCount;
     private int tornado = 0;
+    public static final int GIVE_ARMY_MAGIC = 11;
 
     public Magic(int magicPower, int magicMaxCount) {
         this.magicPower = magicPower;
@@ -56,5 +57,12 @@ public class Magic implements Serializable {
             battleMagics[n]++;
         else
             campingMagics[n - 7]++;
+    }
+
+    public void downMagic(int n) {
+        if (n < 7)
+            battleMagics[n]--;
+        else
+            campingMagics[n - 7]--;
     }
 }

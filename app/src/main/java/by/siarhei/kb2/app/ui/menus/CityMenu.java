@@ -105,17 +105,20 @@ public class CityMenu extends Menu {
                         menuMode = 1;
                         return false;
                     case 7:
-                        System.out.println("YYY");
                         return true;
 
                 }
                 return false;
             case 1:
-                if (city.getWorkers(i) > 0) {
-                    if (player.changeMoney(-PRICE_WORKERS[i])) {
-                        player.changeWorker(i, 1);
-                        city.changeWorkers(i, -1);
+                if(i < 4) {
+                    if (city.getWorkers(i) > 0) {
+                        if (player.changeMoney(-PRICE_WORKERS[i])) {
+                            player.changeWorker(i, 1);
+                            city.changeWorkers(i, -1);
+                        }
                     }
+                } else {
+                    menuMode = 0;
                 }
                 return false;
             case 2:

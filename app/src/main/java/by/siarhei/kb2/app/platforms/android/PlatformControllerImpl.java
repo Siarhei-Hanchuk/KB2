@@ -8,7 +8,6 @@ import by.siarhei.kb2.app.View;
 import by.siarhei.kb2.app.ViewFactory;
 import by.siarhei.kb2.app.controllers.GameOwner;
 import by.siarhei.kb2.app.controllers.PlatformController;
-import by.siarhei.kb2.app.platforms.android.views.ViewFactoryImpl;
 
 class PlatformControllerImpl implements PlatformController {
     private final Activity activity;
@@ -24,7 +23,7 @@ class PlatformControllerImpl implements PlatformController {
 
     @Override
     public ViewFactory getViewFactory(GameOwner gameOwner) {
-        return new ViewFactoryImpl(activity, gameOwner);
+        return null;
     }
 
     @Override

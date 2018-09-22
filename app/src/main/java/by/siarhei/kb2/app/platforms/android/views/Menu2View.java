@@ -49,7 +49,8 @@ public class Menu2View extends RootView {
         }
     }
 
-    public void onTouchEvent(@NonNull MotionEvent event) {
+    @Override
+    public boolean onTouchEvent(@NonNull MotionEvent event) {
         Painter painter = mainView.getPainter(null);
         double y = event.getY();
         double x = event.getX();
@@ -58,6 +59,8 @@ public class Menu2View extends RootView {
             item = ((int) x - painter.getXOffset()) / mainView.stepX();
         }
         selectRequest(item);
+
+        return true;
     }
 
     private void selectRequest(int item) {

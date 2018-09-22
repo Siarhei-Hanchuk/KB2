@@ -1,4 +1,4 @@
-package by.siarhei.kb2.app.platforms.android.drawers;
+package by.siarhei.kb2.app.platforms.android.views;
 
 import android.graphics.Canvas;
 import android.graphics.Color;

@@ -8,7 +8,11 @@ import android.view.MotionEvent;
 
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.controllers.MagicViewController;
+import by.siarhei.kb2.app.platforms.android.MainView;
 import by.siarhei.kb2.app.server.GameGrid;
+import by.siarhei.kb2.app.server.Request;
+import by.siarhei.kb2.app.server.Server;
+import by.siarhei.kb2.app.server.ServerView;
 import by.siarhei.kb2.app.server.models.Magic;
 import by.siarhei.kb2.app.platforms.android.helpers.ImageCache;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
@@ -16,43 +20,43 @@ import by.siarhei.kb2.app.server.warriors.WarriorFactory;
 
 import java.util.HashMap;
 
-class MagicView extends ViewImpl {
-    private final Magic magic;
-    private final HashMap<Integer, String> armyIdCache = new HashMap<>();
-    private final MagicViewController magicViewController;
+class MagicView extends RootView {
+    private Magic magic;
     private int mode = 0;
+    private final HashMap<Integer, String> armyIdCache = new HashMap<>();
 
-    public MagicView(Context context, MagicViewController magicViewController) {
-        super(context, magicViewController);
-        this.magic = magicViewController.getPlayer().getMagic();
-        this.magicViewController = magicViewController;
+    public MagicView(MainView mainView) {
+        super(mainView);
     }
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
         if (mode == 0) {
+            System.out.println("M0");
             int item = (int) event.getY() / menuItemHeight();
             if (item == 4) {
+                System.out.println("MS");
                 mode = 1;
-                refresh();
-            } else {
-                viewController.viewClose();
+                return false;
             }
         } else if (mode == 1) {
-            int x = (int) event.getX() / stepX() + 1;
-            int y = (int) event.getY() / stepY() + 1;
-            magicViewController.takeArmy(armyIdCache.get(x * y));
-            viewController.viewClose();
+            System.out.println("M1");
+            int x = (int) event.getX() / stepX();
+            int y = (int) event.getY() / stepY();
+            Request request = new Request();
+            request.setAction(Request.ACTION_GIVE_ARMY);
+            request.setData(armyIdCache.get(y * 5 + x));
+            Server.getServer().request(request);
         }
-        return super.onTouchEvent(event);
+        return true;
     }
 
     @Override
-    public void draw(@NonNull Canvas canvas) {
-        super.draw(canvas);
-
+    public void draw(@NonNull Canvas canvas, ServerView serverView) {
         Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
+
+        Magic magic = serverView.getPlayer().getMagic();
 
         if (mode != 1) {
             for (int i = 1; i < 8; i++) {

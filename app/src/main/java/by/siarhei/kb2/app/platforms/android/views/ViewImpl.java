@@ -1,4 +1,4 @@
-package by.siarhei.kb2.app.platforms.android;
+package by.siarhei.kb2.app.platforms.android.views;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -9,36 +9,36 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import by.siarhei.kb2.app.I18n;
 import by.siarhei.kb2.app.View;
-import by.siarhei.kb2.app.platforms.android.views.XViewFactory;
+import by.siarhei.kb2.app.controllers.ViewController;
+import by.siarhei.kb2.app.server.GameGrid;
 import by.siarhei.kb2.app.platforms.android.helpers.Click;
 import by.siarhei.kb2.app.platforms.android.helpers.DrawThread;
 import by.siarhei.kb2.app.platforms.android.helpers.Drawable;
 import by.siarhei.kb2.app.platforms.android.helpers.ImageCache;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
-import by.siarhei.kb2.app.platforms.android.views.RootView;
-import by.siarhei.kb2.app.server.GameGrid;
-import by.siarhei.kb2.app.server.Server;
-import by.siarhei.kb2.app.server.ServerView;
 
-public class MainView extends SurfaceView implements SurfaceHolder.Callback, Drawable, View {
+public abstract class ViewImpl extends SurfaceView implements SurfaceHolder.Callback, Drawable, View {
     private static final int IMAGE_WIDTH = 96;
     private static final int IMAGE_HEIGHT = 82;
 
+    final ViewController viewController;
+    final I18n i18n;
     private DrawThread drawThread;
     private Paint defaultPaint = null;
-    protected Context context;
 
-    private RootView view;
-
-    public MainView(Context context) {
+    ViewImpl(Context context, ViewController viewController) {
         super(context);
-        this.context = context;
         getHolder().addCallback(this);
+        this.viewController = viewController;
+        this.i18n = viewController.i18n();
     }
 
     @Override
-    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) { }
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+
+    }
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
@@ -61,12 +61,12 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback, Dra
         }
     }
 
-    public Click getClick(@NonNull MotionEvent event) {
+    Click getClick(@NonNull MotionEvent event) {
         int[] offsets = calcOffsets();
         return new Click(event, offsets[0], offsets[1], getWidth(), getHeight());
     }
 
-    public Painter getPainter(@NonNull Canvas canvas) {
+    Painter getPainter(@NonNull Canvas canvas) {
         int[] offsets = calcOffsets();
         return new Painter(canvas, offsets[0], offsets[1], getWidth(), getHeight());
     }
@@ -94,23 +94,23 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback, Dra
         return (scaleX > scaleY) ? scaleY : scaleX;
     }
 
-    public int stepX() {
+    int stepX() {
         return (int) (IMAGE_WIDTH * getScale());
     }
 
-    public int stepY() {
+    int stepY() {
         return (int) (IMAGE_HEIGHT * getScale());
     }
 
-    public int textHeight() {
+    int textHeight() {
         return (int) (menuItemHeight() * 0.6);
     }
 
-    public int menuItemHeight() {
+    int menuItemHeight() {
         return (int) (getHeight() / 8.0);
     }
 
-    public Paint getDefaultPaint() {
+    Paint getDefaultPaint() {
         if (defaultPaint == null) {
             defaultPaint = new Paint();
             defaultPaint.setColor(Color.WHITE);
@@ -119,7 +119,7 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback, Dra
         return defaultPaint;
     }
 
-    public int[] calcOffsets() {
+    private int[] calcOffsets() {
         double scaleX = (double) getWidth() / (IMAGE_WIDTH * GameGrid.STEP_X);
         double scaleY = (double) getHeight() / (IMAGE_HEIGHT * GameGrid.STEP_Y);
         int[] offsets = new int[2];
@@ -132,37 +132,8 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback, Dra
         return offsets;
     }
 
-    public ImageCache getImageCache() {
+    ImageCache getImageCache() {
         return ImageCache.getInstance(getResources(), stepX(), stepY());
     }
 
-    @Override
-    public boolean onTouchEvent(@NonNull MotionEvent event) {
-        boolean needRefresh = getView().onTouchEvent(event);
-
-        if(needRefresh) {
-            view = null;
-        }
-        refresh();
-
-        return super.onTouchEvent(event);
-    }
-
-    @Override
-    public void draw(@NonNull Canvas canvas) {
-        super.draw(canvas);
-
-        getView().draw(canvas, Server.getServer().getView());
-    }
-
-    private RootView getView() {
-        if(view != null) {
-            return view;
-        }
-        ServerView serverView = Server.getServer().getView();
-        XViewFactory viewFactory = new XViewFactory(this);
-        view = viewFactory.getView(serverView.getViewMode());
-        System.out.println(view);
-        return view;
-    }
 }

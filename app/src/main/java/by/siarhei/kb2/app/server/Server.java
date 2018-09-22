@@ -3,8 +3,8 @@ package by.siarhei.kb2.app.server;
 import by.siarhei.kb2.app.DebugLogger;
 import by.siarhei.kb2.app.I18n;
 import by.siarhei.kb2.app.server.builders.GameBuilder;
-import by.siarhei.kb2.app.ui.menus.MenuFactory3;
-import by.siarhei.kb2.app.ui.messages.MessageFactory3;
+import by.siarhei.kb2.app.ui.menus.MenuFactory;
+import by.siarhei.kb2.app.ui.messages.MessageFactory;
 
 public class Server {
     private static Server server = null;
@@ -52,12 +52,12 @@ public class Server {
         server = new Server(game);
     }
 
-    public static MessageFactory3 getMessageFactory() {
-        return new MessageFactory3(getServer().game, i18n);
+    public static MessageFactory getMessageFactory() {
+        return new MessageFactory(getServer().game, i18n);
     }
 
-    public static MenuFactory3 getMenuFactory() {
-        return new MenuFactory3(getServer().game, i18n);
+    public static MenuFactory getMenuFactory() {
+        return new MenuFactory(getServer().game, i18n);
     }
 
     public static void setI18n(I18n i18n) {

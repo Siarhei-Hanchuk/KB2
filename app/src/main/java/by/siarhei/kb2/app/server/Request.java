@@ -7,11 +7,13 @@ public class Request {
     public static final int ACTION_MOVE = 4;
     public static final int ACTION_BUY_ARMY = 5;
     public static final int ACTION_OPEN_GAME_MENU = 6;
+    public static final int ACTION_GIVE_ARMY = 7;
 
     private int x;
     private int y;
     private int action = 0;
     private int menuItem = 0;
+    private String data;
 
     public Request() {
 
@@ -44,5 +46,13 @@ public class Request {
 
     public int getMenuItem() {
         return menuItem;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
 }

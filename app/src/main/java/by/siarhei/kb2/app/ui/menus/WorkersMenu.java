@@ -25,7 +25,8 @@ public class WorkersMenu extends Menu {
 
     @Override
     public boolean select(int i) {
-        game.selectWorker(i);
+        if(i < 4)
+            game.selectWorker(i);
         return true;
     }
 }

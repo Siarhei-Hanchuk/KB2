@@ -1,11 +1,6 @@
 package by.siarhei.kb2.app.platforms.android.views;
 
-import android.graphics.Canvas;
-
 import by.siarhei.kb2.app.platforms.android.MainView;
-import by.siarhei.kb2.app.platforms.android.drawers.MenuView;
-import by.siarhei.kb2.app.platforms.android.drawers.MessageView;
-import by.siarhei.kb2.app.platforms.android.drawers.StatusView;
 import by.siarhei.kb2.app.server.GameDispatcher;
 
 public class XViewFactory {
@@ -16,6 +11,8 @@ public class XViewFactory {
     }
 
     public RootView getView(int viewMode) {
+        System.out.print("f: ");
+        System.out.println(viewMode);
         switch (viewMode) {
             case GameDispatcher.VIEW_MODE_GRID:
                 return new GameView(mainView);
@@ -35,6 +32,8 @@ public class XViewFactory {
                 return new PlayerArmyView(mainView);
             case GameDispatcher.VIEW_MODE_MAP:
                 return new MapView(mainView);
+            case GameDispatcher.VIEW_MODE_MAGIC:
+                return new MagicView(mainView);
             default:
                 return null;
         }

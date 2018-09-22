@@ -86,8 +86,8 @@
     <string name="army.names.centaur" tools:ignore="UnusedResources">Centaurs</string>
     <string name="army.names.dinosaur" tools:ignore="UnusedResources">Dinosaurs</string>
     <string name="army.names.daemon" tools:ignore="UnusedResources">Demons</string>
-    <string name="army.names.cyclops" tools:ignore="UnusedResources">Dragons</string>
-    <string name="army.names.dragon" tools:ignore="UnusedResources">Cyclops</string>
+    <string name="army.names.cyclops" tools:ignore="UnusedResources">Cyclops</string>
+    <string name="army.names.dragon" tools:ignore="UnusedResources">Dragons</string>
     <string name="entity.armyShop.ui.thereIs">Have</string>
     <string name="entity.armyShop.ui.price">Cost</string>
     <string name="entity.armyShop.ui.step">Step</string>

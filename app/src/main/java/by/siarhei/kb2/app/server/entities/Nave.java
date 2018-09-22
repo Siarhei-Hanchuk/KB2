@@ -10,10 +10,10 @@ public class Nave implements Entity {
         return R.drawable.nave;
     }
 
-    public void move(int x, int y, Country country) {
-        // TODO:
-//        point.setEntity(null);
-//        point = country.getMapPoint(x, y);
-//        point.setEntity(this);
-    }
+//    public void move(int x, int y, Country country) {
+//        // TODO:
+////        point.setEntity(null);
+////        point = country.getMapPoint(x, y);
+////        point.setEntity(this);
+//    }
 }

@@ -25,10 +25,11 @@ public abstract class RootView {
 
     public abstract void draw(@NonNull Canvas canvas, ServerView serverView);
 
-    public void onTouchEvent(@NonNull MotionEvent event) {
+    public boolean onTouchEvent(@NonNull MotionEvent event) {
         Request request = new Request();
         request.setAction(Request.ACTION_OK);
         Server.getServer().request(request);
+        return true;
     }
 
     protected Painter getPainter(Canvas canvas) {

@@ -1,4 +1,4 @@
-package by.siarhei.kb2.app.platforms.android.drawers;
+package by.siarhei.kb2.app.platforms.android.views;
 
 import android.app.usage.UsageEvents;
 import android.graphics.Canvas;
@@ -43,7 +43,7 @@ public class MenuView extends RootView {
     }
 
     @Override
-    public void onTouchEvent(@NonNull MotionEvent event){
+    public boolean onTouchEvent(@NonNull MotionEvent event){
         Menu menu = Server.getServer().getView().getMenu();
         double y = event.getY();
         int item = (int) y / menuItemHeight();
@@ -58,5 +58,7 @@ public class MenuView extends RootView {
             request.setMenuItem(item);
             Server.getServer().request(request);
         }
+
+        return true;
     }
 }

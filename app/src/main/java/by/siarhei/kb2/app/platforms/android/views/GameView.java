@@ -40,7 +40,8 @@ public class GameView extends RootView {
         }
     }
 
-    public void onTouchEvent(@NonNull MotionEvent event) {
+    @Override
+    public boolean onTouchEvent(@NonNull MotionEvent event) {
         Click click = mainView.getClick(event);
         int x = click.getX();
         int y = click.getY();
@@ -81,6 +82,8 @@ public class GameView extends RootView {
                 touchLeft();
             }
         }
+
+        return true;
     }
 
 

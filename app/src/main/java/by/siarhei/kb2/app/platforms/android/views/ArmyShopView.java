@@ -116,7 +116,7 @@ public class ArmyShopView extends RootView {
     }
 
     @Override
-    public void onTouchEvent(@NonNull MotionEvent event) {
+    public boolean onTouchEvent(@NonNull MotionEvent event) {
         Click click = mainView.getClick(event);
         int buttonSize = mainView.getHeight() / 5;
 
@@ -135,6 +135,8 @@ public class ArmyShopView extends RootView {
         } else {
             exitRequest();
         }
+
+        return true;
     }
 
     private void buyRequest(int count) {

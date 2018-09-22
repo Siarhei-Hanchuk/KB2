@@ -1,13 +1,17 @@
 package by.siarhei.kb2.app.server;
 
+import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.server.entities.ArmyShop;
 import by.siarhei.kb2.app.server.entities.City;
 import by.siarhei.kb2.app.server.entities.GoldenChest;
 import by.siarhei.kb2.app.server.entities.GuidePost;
 import by.siarhei.kb2.app.server.entities.Nave;
+import by.siarhei.kb2.app.server.models.Magic;
 import by.siarhei.kb2.app.server.models.MapPoint;
 import by.siarhei.kb2.app.server.models.Player;
+import by.siarhei.kb2.app.server.warriors.WarriorFactory;
 import by.siarhei.kb2.app.ui.menus.Menu;
+import by.siarhei.kb2.app.ui.menus.MenuFactory;
 import by.siarhei.kb2.app.ui.messages.Message;
 
 public class GameDispatcher {
@@ -20,9 +24,11 @@ public class GameDispatcher {
     public static final int VIEW_MODE_STATUS = 7;
     public static final int VIEW_MODE_PLAYER_ARMY = 8;
     public static final int VIEW_MODE_MAP = 9;
+    public static final int VIEW_MODE_MAGIC = 10;
 
     public static final int GAME_MENU_MAIN = -1;
     public static final int GAME_MENU_OTHER = 0;
+    public static final int GAME_MENU_WORKERS = 1;
     public static final int GAME_MENU_MAGIC = 2;
     public static final int GAME_MENU_STATUS = 3;
     public static final int GAME_MENU_MAP = 4;
@@ -54,17 +60,14 @@ public class GameDispatcher {
                     game.weekUpdate();
                 }
                 break;
-
             case Request.ACTION_OK:
                 setViewMode(VIEW_MODE_GRID);
                 break;
-
             case Request.ACTION_SELECT:
                 Menu menu = getMenu();
                 if(menu.select(data.getMenuItem()))
                     setViewMode(VIEW_MODE_GRID);
                 break;
-
             case Request.ACTION_BUY_ARMY:
                 game.buyArmy(currentArmyShop, data.getMenuItem());
                 break;
@@ -74,16 +77,27 @@ public class GameDispatcher {
             case Request.ACTION_OPEN_GAME_MENU:
                 gameMenuClick(data.getMenuItem());
                 break;
+            case Request.ACTION_GIVE_ARMY:
+                // TODO - move to model
+                game.getPlayer().pushArmy(WarriorFactory.create(data.getData()), 1);
+                game.getPlayer().getMagic().downMagic(Magic.GIVE_ARMY_MAGIC);
+                setViewMode(VIEW_MODE_GRID);
+                break;
         }
     }
 
     private void gameMenuClick(int item) {
+        System.out.println(item);
         switch (gameMenuMode) {
             case GAME_MENU_MAIN:
                 if(item == GAME_MENU_MAP || item == GAME_MENU_OTHER || item == GAME_MENU_MAGIC)
                     gameMenuMode = item;
                 if(item == GAME_MENU_STATUS)
                     setViewMode(VIEW_MODE_STATUS);
+                if(item == GAME_MENU_WORKERS) {
+                    menu = Server.getMenuFactory().getWorkersMenu();
+                    setViewMode(VIEW_MODE_MENU);
+                }
                 break;
             case GAME_MENU_MAP:
                 switch (item) {
@@ -91,7 +105,14 @@ public class GameDispatcher {
                         setViewMode(VIEW_MODE_MAP);
                         break;
                     case 1:
-                        //
+
+                        if(game.getPlayer().getMapPoint().getLand() == R.drawable.water) {
+                            menu = Server.getMenuFactory().getCountryMenu();
+                            setViewMode(VIEW_MODE_MENU);
+                        } else {
+                            message = Server.getMessageFactory().getCountySelectorUnavailableMessage();
+                            setViewMode(VIEW_MODE_MESSAGE);
+                        }
                         break;
                     case 2:
                         gameMenuMode = GAME_MENU_MAIN;
@@ -118,7 +139,7 @@ public class GameDispatcher {
             case GAME_MENU_MAGIC:
                 switch (item) {
                     case 0:
-                        //
+                        setViewMode(VIEW_MODE_MAGIC);
                         break;
                     case 1:
                         //

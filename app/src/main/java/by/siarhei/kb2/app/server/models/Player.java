@@ -91,9 +91,6 @@ public class Player implements Serializable {
     public void move(int x, int y) {
         this.x = x;
         this.y = y;
-        if (getNave() != null) {
-            getNave().move(x, y, getCountry());
-        }
         memory.update(getCountry().getId(), x, y);
     }
 
@@ -105,9 +102,6 @@ public class Player implements Serializable {
         this.country = country;
         x = 2;
         y = 2;
-        if (inNave()) {
-            nave.move(2, 2, country);
-        }
     }
 
     public Memory getMemory() {
