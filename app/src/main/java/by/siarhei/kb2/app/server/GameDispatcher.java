@@ -87,7 +87,6 @@ public class GameDispatcher {
     }
 
     private void gameMenuClick(int item) {
-        System.out.println(item);
         switch (gameMenuMode) {
             case GAME_MENU_MAIN:
                 if(item == GAME_MENU_MAP || item == GAME_MENU_OTHER || item == GAME_MENU_MAGIC)
@@ -159,7 +158,6 @@ public class GameDispatcher {
 
     private void actionWithObject(MapPoint mp) {
         if(mp.getEntity() instanceof GoldenChest) {
-            System.out.println("M3");
             viewMode = VIEW_MODE_MENU2;
             this.menu = Server.getMenuFactory().getMenu(mp);
             return;

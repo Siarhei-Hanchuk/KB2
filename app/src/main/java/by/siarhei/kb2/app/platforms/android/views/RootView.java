@@ -63,4 +63,6 @@ public abstract class RootView {
     protected Resources getResources() {
         return mainView.getResources();
     }
+
+    protected int getWidth() { return mainView.getWidth(); }
 }

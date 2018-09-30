@@ -106,17 +106,17 @@ public class Game implements Serializable {
                 shopsIterator.next().resetCount();
         }
 
-        City city = null;
-        Iterator<City> citiesIterator = world.getCities();
+        MapPoint cityMapPoint = null;
+        Iterator<MapPoint> citiesIterator = world.getMapPointsList(City.class);
         int n = (new Random()).nextInt(25);
         for (int i = 0; citiesIterator.hasNext(); i++) {
-            city = citiesIterator.next();
+            cityMapPoint = citiesIterator.next();
             if (i == n) {
-                city.resetWorkers();
+                ((City) cityMapPoint.getEntity()).resetWorkers();
                 break;
             }
         }
-        updatedCity = city;
+        updatedCity = ((City) cityMapPoint.getEntity());
         updatedWarrior = war;
         getPlayer().changeMoney(getPlayer().getSalary());
     }

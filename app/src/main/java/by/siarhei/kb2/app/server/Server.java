@@ -30,10 +30,10 @@ public class Server {
     }
 
     public static Server getServer() {
-        if(server == null) {
-            Game game = GameBuilder.build(Game.MODE_TEST);
-            server = new Server(game);
-        }
+//        if(server == null) {
+//            Game game = GameBuilder.build(Game.MODE_TEST);
+//            server = new Server(game);
+//        }
 
         return server;
     }

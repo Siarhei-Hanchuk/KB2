@@ -17,8 +17,9 @@ import by.siarhei.kb2.app.server.models.MapPoint;
 import by.siarhei.kb2.app.server.models.iterators.ArmyShopsOwner;
 import by.siarhei.kb2.app.server.models.iterators.CitiesOwner;
 import by.siarhei.kb2.app.server.models.iterators.EntityIterator;
+import by.siarhei.kb2.app.server.models.iterators.MapPointsOwner;
 
-public class Country implements Glade, Serializable, ArmyShopsOwner, CitiesOwner, CastlesOwner {
+public class Country implements Glade, Serializable, ArmyShopsOwner, MapPointsOwner, CastlesOwner {
     public final static int MAX_MAP_SIZE = 65;
     final MapPoint[][] map;
     private final Random random;
@@ -55,13 +56,13 @@ public class Country implements Glade, Serializable, ArmyShopsOwner, CitiesOwner
     }
 
     @Override
-    public Iterator<City> getCities() {
-        ArrayList<Iterator<City>> iterators = new ArrayList<>();
+    public Iterator<MapPoint> getMapPointsList(Class type) {
+        ArrayList<Iterator<MapPoint>> iterators = new ArrayList<>();
         for (int i = 0; i < Country.MAX_MAP_SIZE; i++) {
             for (int j = 0; j < Country.MAX_MAP_SIZE; j++) {
                 Entity entity = getMapPoint(i, j).getEntity();
-                if(entity instanceof City) {
-                    iterators.add(((City) entity).getCities());
+                if(type.isInstance(entity)) {
+                    iterators.add(getMapPoint(i, j).getMapPointsList(type));
                 }
             }
         }
@@ -103,14 +104,16 @@ public class Country implements Glade, Serializable, ArmyShopsOwner, CitiesOwner
     }
 
     public MapPoint getLandNearCity() {
-//        TODO:
-        return null;
-//        return getLandNearPoint(getCities().next().getMapPoint());
+        return getLandNearPoint(getMapPointsList(City.class).next());
     }
 
     public MapPoint getLandNearPoint(MapPoint point) {
-        for (int x = point.getX() - 1; x <= point.getX() + 1; x++) {
-            for (int y = point.getY() - 1; y <= point.getY() + 1; y++) {
+        int pointX = point.getX();
+        int pointY = point.getY();
+        for (int x = pointX - 1; x <= pointX + 1; x++) {
+            for (int y = pointY - 1; y <= pointY + 1; y++) {
+                if(x == pointX && y == pointY)
+                    continue;
                 if (getMapPoint(x, y).getLand() == R.drawable.land) {
                     return getMapPoint(x, y);
                 }

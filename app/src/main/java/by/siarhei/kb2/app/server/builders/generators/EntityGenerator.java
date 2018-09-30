@@ -81,7 +81,9 @@ public class EntityGenerator implements Serializable {
                 break;
             }
         }
-        return new City(nameId, castle);
+        City city = new City(nameId, castle);
+        mp.setEntity(city);
+        return city;
     }
 
     public void guidePosts() {
@@ -142,8 +144,9 @@ public class EntityGenerator implements Serializable {
                 }
             }
             Castle castle = new Castle(nameId);
-            new CastleRight();
-            new CastleLeft();
+            map[x][y].setEntity(castle);
+            map[x - 1][y].setEntity(new CastleLeft());
+            map[x + 1][y].setEntity(new CastleRight());
             tryPlaceCaptain(x, y + 1, 1000, 2000);
             return castle;
         }
@@ -162,7 +165,8 @@ public class EntityGenerator implements Serializable {
 
     private boolean tryPlaceCaptain(int x, int y, int minAuthority, int maxAuthority) {
         if (map[x][y].getLand() == R.drawable.land && map[x][y].getEntity() == null) {
-            Fighting captain = new Captain();
+            Captain captain = new Captain();
+            map[x][y].setEntity(captain);
             int authority = minAuthority + random.nextInt(maxAuthority - minAuthority);
             captain.generateArmy(authority, 0);
             return true;
@@ -182,7 +186,9 @@ public class EntityGenerator implements Serializable {
     }
 
     private ArmyShop createArmy(MapPoint mp, int... groups) {
-        return new ArmyShop(groups);
+        ArmyShop armyShop = new ArmyShop(groups);
+        mp.setEntity(armyShop);
+        return armyShop;
     }
 
     public void mapNext() {

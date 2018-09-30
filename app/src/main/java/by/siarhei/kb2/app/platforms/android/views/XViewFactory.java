@@ -11,8 +11,6 @@ public class XViewFactory {
     }
 
     public RootView getView(int viewMode) {
-        System.out.print("f: ");
-        System.out.println(viewMode);
         switch (viewMode) {
             case GameDispatcher.VIEW_MODE_GRID:
                 return new GameView(mainView);

@@ -11,23 +11,30 @@ import by.siarhei.kb2.app.BuildConfig;
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.controllers.MainMenuController;
 import by.siarhei.kb2.app.platforms.android.MainActivity;
+import by.siarhei.kb2.app.platforms.android.MainView;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
+import by.siarhei.kb2.app.server.Game;
+import by.siarhei.kb2.app.server.Server;
+import by.siarhei.kb2.app.server.ServerView;
 
-class MainMenuView extends ViewImpl {
-    private final MainMenuController mainController;
+public class MainMenuView extends RootView {
+    private final byte ACTION_START_GAME = 1;
+    private final byte ACTION_START_TRAINING = 2;
+    private final byte ACTION_START_TEST_GAME = 3;
+    private final byte ACTION_SAVE= 4;
+    private final byte ACTION_LOAD= 5;
+    private final byte ACTION_EXIT = 7;
+
     private boolean saved = false;
 
     private int xOffset;
 
-    public MainMenuView(Context context, MainMenuController mainController) {
-        super(context, mainController);
-        this.mainController = mainController;
+    public MainMenuView(MainView mainView) {
+        super(mainView);
     }
 
     @Override
-    public void draw(@NonNull Canvas canvas) {
-        super.draw(canvas);
-
+    public void draw(@NonNull Canvas canvas, ServerView serverView) {
         Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
         Paint paint = getDefaultPaint();
@@ -36,7 +43,7 @@ class MainMenuView extends ViewImpl {
 
         int yDelta = getWidth() / 2;
 
-        if (mainController.isCurrentGame()) {
+        if (Server.getServer() != null) {
             paintMenuItem(painter, paint, 0, 2, R.string.mainMenu_resume);
         }
 
@@ -47,7 +54,7 @@ class MainMenuView extends ViewImpl {
         painter.drawText(i18n.translate(R.string.mainMenu_load_game),
                 yDelta , 2 * menuItemHeight(), paint);
 
-        if (mainController.isCurrentGame()) {
+        if (Server.getServer() != null) {
             if (!saved) {
                 painter.drawText(i18n.translate(R.string.mainMenu_save_game),
                         yDelta , 4 * menuItemHeight(), paint);
@@ -81,46 +88,71 @@ class MainMenuView extends ViewImpl {
         if(firstColumn) {
             switch (yItem) {
                 case 1:
-                    mainController.viewClose();
-                    break;
+                    return true;
                 case 3:
-                    mainController.newGame();
-                    break;
+                    menuAction(ACTION_START_GAME);
+                    return true;
                 case 5:
-                    mainController.newTraining();
-                    break;
+                    menuAction(ACTION_START_TRAINING);
+                    return true;
                 case 7:
-                    if(BuildConfig.DEBUG)
-                        mainController.newTestGame();
+                    if(BuildConfig.DEBUG) {
+                        menuAction(ACTION_START_TEST_GAME);
+                        return true;
+                    }
                     break;
             }
         } else {
             switch (yItem) {
                 case 1:
-                    if (mainController.loadGame()){
+                    if (menuAction(ACTION_LOAD)){
                         MainActivity.showToast(i18n.translate("mainMenu_load_game_loaded"));
                     } else {
                         MainActivity.showToast(i18n.translate("mainMenu_load_game_notLoaded"));
                     }
                     break;
                 case 3:
-                    if (mainController.isCurrentGame()) {
-                        if (mainController.saveGame()){
+                    if (Server.getServer() != null) {
+                        if (menuAction(ACTION_SAVE)){
                             MainActivity.showToast(i18n.translate("mainMenu_save_game_saved"));
                             saved = true;
                         }
                     }
                     break;
                 case 5:
-                    mainController.exit();
+                    menuAction(ACTION_EXIT);
                     break;
             }
         }
-        return super.onTouchEvent(event);
+        return false;
     }
 
     private void paintMenuItem(Painter painter, Paint paint, int x, int y, int stringId) {
         painter.drawText(i18n.translate(stringId),
                 x, y * menuItemHeight(), paint);
+    }
+
+    private boolean menuAction(int item) {
+        switch (item) {
+            case ACTION_START_TEST_GAME:
+                Server.create(Game.MODE_TEST);
+                break;
+            case ACTION_START_GAME:
+                Server.create(Game.MODE_GAME);
+                break;
+            case ACTION_START_TRAINING:
+                Server.create(Game.MODE_TRAINING);
+                break;
+            case ACTION_EXIT:
+                MainActivity.getActivity().finish();
+                System.exit(0);
+                break;
+            case ACTION_SAVE:
+                return false;
+            case ACTION_LOAD:
+                return false;
+        }
+
+        return true;
     }
 }

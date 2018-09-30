@@ -1,11 +1,14 @@
 package by.siarhei.kb2.app.server.models;
 
 import by.siarhei.kb2.app.R;
+import by.siarhei.kb2.app.server.entities.City;
 import by.siarhei.kb2.app.server.entities.Entity;
+import by.siarhei.kb2.app.server.models.iterators.MapPointsOwner;
 
 import java.io.Serializable;
+import java.util.Iterator;
 
-public class MapPoint implements Serializable {
+public class MapPoint implements Serializable, MapPointsOwner {
     private final Glade glade;
     private final int x;
     private final int y;
@@ -54,5 +57,35 @@ public class MapPoint implements Serializable {
 
     public void setEntity(Entity entity) {
         this.entity = entity;
+    }
+
+    @Override
+    public Iterator<MapPoint> getMapPointsList(Class type) {
+        final MapPoint self = this;
+
+        return new Iterator<MapPoint>() {
+            private boolean hasNext = true;
+
+            @Override
+            public boolean hasNext() {
+                if(type.isInstance(entity))
+                    return hasNext;
+                else
+                    return false;
+            }
+
+            @Override
+            public MapPoint next() {
+                hasNext = false;
+                if(type.isInstance(entity))
+                    return self;
+                else
+                    return null;
+            }
+
+            @Override
+            public void remove() {
+            }
+        };
     }
 }

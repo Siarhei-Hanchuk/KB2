@@ -62,7 +62,6 @@ public class CountryBuilder {
         baseGenerator.river(30);
         baseGenerator.river(20);
         baseGenerator.river(40);
-
         entityGenerator.citiesAndCastles();
         entityGenerator.guidePosts();
         entityGenerator.goldChests(40, 0);

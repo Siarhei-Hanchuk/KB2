@@ -32,15 +32,12 @@ class MagicView extends RootView {
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
         if (mode == 0) {
-            System.out.println("M0");
             int item = (int) event.getY() / menuItemHeight();
             if (item == 4) {
-                System.out.println("MS");
                 mode = 1;
                 return false;
             }
         } else if (mode == 1) {
-            System.out.println("M1");
             int x = (int) event.getX() / stepX();
             int y = (int) event.getY() / stepY();
             Request request = new Request();

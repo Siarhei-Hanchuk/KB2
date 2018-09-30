@@ -236,7 +236,6 @@ public class Player implements Serializable {
         int count = 0;
         for (int i = 0; i < MAX_ARMY; i++) {
             if (warriors[i] != null) {
-                System.out.println(warriors[i].getWarrior().getTextId());
                 count++;
             }
         }

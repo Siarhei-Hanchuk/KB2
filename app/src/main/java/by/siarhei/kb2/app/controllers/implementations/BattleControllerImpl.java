@@ -106,7 +106,7 @@ public class BattleControllerImpl extends ApplicationController implements Battl
 
     @Override
     public void viewClose() {
-        new MainViewControllerImpl();
+//        new MainViewControllerImpl();
     }
 
     // TODO - remove
