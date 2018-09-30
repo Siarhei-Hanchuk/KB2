@@ -2,8 +2,10 @@ package by.siarhei.kb2.app.controllers.implementations;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import by.siarhei.kb2.app.I18n;
 import by.siarhei.kb2.app.View;
-import by.siarhei.kb2.app.controllers.ApplicationController;
+import by.siarhei.kb2.app.ViewFactory;
 import by.siarhei.kb2.app.controllers.BattleController;
 import by.siarhei.kb2.app.controllers.ViewController;
 import by.siarhei.kb2.app.server.entities.Fighting;
@@ -14,7 +16,7 @@ import by.siarhei.kb2.app.server.models.battle.BattleField;
 import by.siarhei.kb2.app.server.models.battle.MapPointBattle;
 import by.siarhei.kb2.app.server.warriors.WarriorSquad;
 
-public class BattleControllerImpl extends ApplicationController implements BattleController {
+public class BattleControllerImpl implements BattleController {
     private final BattleField battleField;
     private final View battleView;
     private final Fighting fighting;
@@ -109,9 +111,24 @@ public class BattleControllerImpl extends ApplicationController implements Battl
 //        new MainViewControllerImpl();
     }
 
+    @Override
+    public ViewFactory getViewFactory() {
+        return null;
+    }
+
+    @Override
+    public void setContentView(View view) {
+
+    }
+
     // TODO - remove
     @Override
     public Game getGame() {
+        return null;
+    }
+
+    @Override
+    public I18n i18n() {
         return null;
     }
 }

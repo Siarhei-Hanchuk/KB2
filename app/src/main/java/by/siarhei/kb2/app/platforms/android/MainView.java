@@ -11,7 +11,7 @@ import android.view.SurfaceView;
 
 import by.siarhei.kb2.app.View;
 import by.siarhei.kb2.app.platforms.android.views.MainMenuView;
-import by.siarhei.kb2.app.platforms.android.views.XViewFactory;
+import by.siarhei.kb2.app.platforms.android.views.ViewFactory;
 import by.siarhei.kb2.app.platforms.android.helpers.Click;
 import by.siarhei.kb2.app.platforms.android.helpers.DrawThread;
 import by.siarhei.kb2.app.platforms.android.helpers.Drawable;
@@ -155,11 +155,11 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback, Dra
     public void draw(@NonNull Canvas canvas) {
         super.draw(canvas);
 
-        if(menuMode) {
-            new MainMenuView(this).draw(canvas, null);
-        } else {
-            getView().draw(canvas, Server.getServer().getView());
-        }
+        ServerView view = null;
+        if(!menuMode)
+            view = Server.getServer().getView();
+
+        getView().draw(canvas, view);
     }
 
     private RootView getView() {
@@ -170,7 +170,7 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback, Dra
             return view;
         }
         ServerView serverView = Server.getServer().getView();
-        XViewFactory viewFactory = new XViewFactory(this);
+        ViewFactory viewFactory = new ViewFactory(this);
         view = viewFactory.getView(serverView.getViewMode());
         return view;
     }

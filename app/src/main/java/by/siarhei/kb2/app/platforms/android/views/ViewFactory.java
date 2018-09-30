@@ -3,10 +3,10 @@ package by.siarhei.kb2.app.platforms.android.views;
 import by.siarhei.kb2.app.platforms.android.MainView;
 import by.siarhei.kb2.app.server.GameDispatcher;
 
-public class XViewFactory {
+public class ViewFactory {
     private final MainView mainView;
 
-    public XViewFactory(MainView mainView) {
+    public ViewFactory(MainView mainView) {
         this.mainView = mainView;
     }
 

@@ -8,7 +8,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import by.siarhei.kb2.app.controllers.ApplicationController;
 import by.siarhei.kb2.app.controllers.PlatformController;
 import by.siarhei.kb2.app.server.Server;
 
@@ -35,11 +34,9 @@ public class MainActivity extends Activity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        PlatformController platformController = new PlatformControllerImpl(this);
-        ApplicationController.initApp(platformController);
-        Server.setI18n(ApplicationController.i18n);
+        Server.setI18n(new I18nImpl(getResources()));
         view = new MainView(this);
-        platformController.setContentView(view);
+        this.setContentView(view);
         activity = this;
     }
 
