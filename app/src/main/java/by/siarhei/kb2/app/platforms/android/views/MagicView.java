@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
 import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.controllers.MagicViewController;
 import by.siarhei.kb2.app.platforms.android.MainView;
 import by.siarhei.kb2.app.server.GameGrid;
 import by.siarhei.kb2.app.server.Request;

@@ -9,38 +9,34 @@ import android.view.MotionEvent;
 
 import java.util.HashMap;
 
-import by.siarhei.kb2.app.controllers.ViewController;
+import by.siarhei.kb2.app.platforms.android.MainView;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
+import by.siarhei.kb2.app.server.ServerView;
 import by.siarhei.kb2.app.ui.messages.Message;
 import by.siarhei.kb2.app.server.warriors.Warrior;
 import by.siarhei.kb2.app.server.warriors.WarriorFactory;
 
 
-public class BattleResultsView  extends ViewImpl  {
-    private final Message message;
-    private HashMap<String, Integer> casualties;
+public class BattleResultsView extends RootView  {
+    //  private HashMap<String, Integer> casualties;
 
-    public BattleResultsView(Context context, ViewController viewController, Message message,
-                             HashMap<String, Integer> casualties) {
-        super(context, viewController);
-        this.message = message;
-        this.casualties = casualties;
+    public BattleResultsView(MainView mainView) {
+        super(mainView);
     }
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
-        closeMessage();
+//        closeMessage();
         return super.onTouchEvent(event);
     }
 
     @Override
-    public void draw(@NonNull Canvas canvas) {
-        super.draw(canvas);
+    public void draw(@NonNull Canvas canvas, ServerView serverView) {
         int realWidth = stepX() * 6;
         Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 
-        String text = message.getText();
+        String text = serverView.getMessage().getText();
         float textLength = getDefaultPaint().measureText(text);
         if (textLength < realWidth ) {
             painter.drawText(text, 10, 100, getDefaultPaint());
@@ -59,22 +55,20 @@ public class BattleResultsView  extends ViewImpl  {
         textLength = getDefaultPaint().measureText(text);
         painter.drawText(text, (realWidth-textLength)/2, 400, redPaint);
         int i = 0;
-        for(String id: casualties.keySet()) {
-            Warrior warrior = WarriorFactory.create(id);
-            int newX = (i % 2)*3;
-            int newY = i / 2 +2;
-            painter.drawBitmap(getImageCache().getImage(warrior.getId())
-                    , newX*stepX(), stepY() * newY);
-            painter.drawText(i18n.translate("army_names_" + id),
-                    (newX+1)*stepX() + 10, stepY() * newY + textHeight(), getDefaultPaint());
-            painter.drawText(Integer.toString(casualties.get(id)),
-                    (newX+1)*stepX() + 10, stepY() * newY + stepY(), getDefaultPaint());
-            i++;
-        }
-    }
 
-    private void closeMessage() {
-        message.action();
-        viewController.viewClose();
+        // TODO - check
+//        HashMap<String, Integer> casualties;
+//        for(String id: casualties.keySet()) {
+//            Warrior warrior = WarriorFactory.create(id);
+//            int newX = (i % 2)*3;
+//            int newY = i / 2 +2;
+//            painter.drawBitmap(getImageCache().getImage(warrior.getId())
+//                    , newX*stepX(), stepY() * newY);
+//            painter.drawText(i18n.translate("army_names_" + id),
+//                    (newX+1)*stepX() + 10, stepY() * newY + textHeight(), getDefaultPaint());
+//            painter.drawText(Integer.toString(casualties.get(id)),
+//                    (newX+1)*stepX() + 10, stepY() * newY + stepY(), getDefaultPaint());
+//            i++;
+//        }
     }
 }

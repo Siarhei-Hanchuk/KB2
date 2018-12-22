@@ -8,7 +8,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import by.siarhei.kb2.app.controllers.PlatformController;
 import by.siarhei.kb2.app.server.Server;
 
 public class MainActivity extends Activity {

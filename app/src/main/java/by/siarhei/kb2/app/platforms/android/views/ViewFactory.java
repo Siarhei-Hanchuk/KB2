@@ -1,7 +1,7 @@
 package by.siarhei.kb2.app.platforms.android.views;
 
 import by.siarhei.kb2.app.platforms.android.MainView;
-import by.siarhei.kb2.app.server.GameDispatcher;
+import by.siarhei.kb2.app.server.dispatchers.GameDispatcher;
 
 public class ViewFactory {
     private final MainView mainView;
@@ -32,6 +32,12 @@ public class ViewFactory {
                 return new MapView(mainView);
             case GameDispatcher.VIEW_MODE_MAGIC:
                 return new MagicView(mainView);
+            case GameDispatcher.VIEW_MODE_BATTLE_QUESTION:
+                return new BattleAskView(mainView);
+            case GameDispatcher.VIEW_MODE_BATTLE_RESULT:
+                return new BattleResultsView(mainView);
+            case GameDispatcher.VIEW_MODE_BATTLE:
+                return new BattleView(mainView);
             default:
                 return null;
         }

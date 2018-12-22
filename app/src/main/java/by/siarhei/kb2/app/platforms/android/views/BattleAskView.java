@@ -1,48 +1,41 @@
 package by.siarhei.kb2.app.platforms.android.views;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
 import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.controllers.BattleAskController;
+import by.siarhei.kb2.app.platforms.android.MainView;
+import by.siarhei.kb2.app.server.Request;
+import by.siarhei.kb2.app.server.Server;
+import by.siarhei.kb2.app.server.ServerView;
 import by.siarhei.kb2.app.server.entities.Castle;
 import by.siarhei.kb2.app.server.entities.Fighting;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
 
-public class BattleAskView extends ViewImpl {
-    private final BattleAskController controller;
-    private final Fighting fighting;
-
-    public BattleAskView(Context context, BattleAskController controller, Fighting fighting) {
-        super(context, controller);
-        this.controller = controller;
-        this.fighting = fighting;
+public class BattleAskView extends RootView {
+    public BattleAskView(MainView mainView) {
+        super(mainView);
     }
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
-        boolean captainsWasActivated = isCaptainsActivated();
-        if (event.getY() > getHeight() / 2 && captainsWasActivated) {
+        Request request = new Request();
+        if (event.getY() > getHeight() / 2) {
             if (event.getX() < getWidth() / 2)
-                controller.startBattle();
+                request.setAction(Request.ACTION_ACCEPT_BATTLE);
             else
-                controller.viewClose();
+                request.setAction(Request.ACTION_DECLINE_BATTLE);
         }
-        if (!captainsWasActivated) {
-            controller.viewClose();
-        }
-        return super.onTouchEvent(event);
+        return Server.getServer().request(request);
     }
 
     @Override
-    public void draw(@NonNull Canvas canvas) {
-        super.draw(canvas);
-
+    public void draw(@NonNull Canvas canvas, ServerView serverView) {
         Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
+        Fighting fighting = serverView.getFighting();
 
         if (fighting instanceof Castle) {
             painter.drawText(i18n.translate(R.string.battle_begin_castle) + " " +
@@ -50,11 +43,11 @@ public class BattleAskView extends ViewImpl {
                     0, menuItemHeight(), getDefaultPaint());
         }
 
-        if (isCaptainsActivated()) {
+        if (isCaptainsActivated(serverView)) {
             painter.drawText(i18n.translate(R.string.battle_begin_ask),
                     0, menuItemHeight() * 2, getDefaultPaint(), Painter.ALIGN_CENTER);
 
-            painter.drawText(i18n.translate(getCaptainPowerString()),
+            painter.drawText(i18n.translate(getCaptainPowerString(serverView)),
                     0, menuItemHeight() * 3, getDefaultPaint(), Painter.ALIGN_CENTER);
 
             painter.drawText(i18n.translate(R.string.battle_begin_ask_yes),
@@ -68,12 +61,13 @@ public class BattleAskView extends ViewImpl {
         }
     }
 
-    private boolean isCaptainsActivated() {
-        return controller.getGame().getPlayer().isCaptainsActivated();
+    private boolean isCaptainsActivated(ServerView serverView) {
+//        return controller.getGame().getPlayer().isCaptainsActivated();
+        return true;
     }
 
-    private int getCaptainPowerString() {
-        int ratio = controller.getGame().getPlayer().getAuthority() / fighting.getAuthority();
+    private int getCaptainPowerString(ServerView serverView) {
+        int ratio = serverView.getAuthority() / serverView.getFighting().getAuthority();
         if (ratio < 0.2) {
             return R.string.battle_begin_ask_level1;
         } else if(ratio < 0.8) {
