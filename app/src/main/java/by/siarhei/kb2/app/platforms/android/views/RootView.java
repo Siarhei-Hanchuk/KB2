@@ -65,4 +65,6 @@ public abstract class RootView {
     }
 
     protected int getWidth() { return mainView.getWidth(); }
+
+    protected int getHeight() { return mainView.getHeight(); }
 }

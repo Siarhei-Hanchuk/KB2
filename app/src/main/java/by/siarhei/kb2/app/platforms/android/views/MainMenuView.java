@@ -1,6 +1,5 @@
 package by.siarhei.kb2.app.platforms.android.views;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -9,7 +8,6 @@ import android.view.MotionEvent;
 
 import by.siarhei.kb2.app.BuildConfig;
 import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.controllers.MainMenuController;
 import by.siarhei.kb2.app.platforms.android.MainActivity;
 import by.siarhei.kb2.app.platforms.android.MainView;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
