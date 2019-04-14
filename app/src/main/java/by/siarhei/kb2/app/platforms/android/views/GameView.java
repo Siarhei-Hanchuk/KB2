@@ -8,11 +8,10 @@ import android.view.MotionEvent;
 import by.siarhei.kb2.app.platforms.android.MainView;
 import by.siarhei.kb2.app.platforms.android.helpers.Click;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
-import by.siarhei.kb2.app.platforms.android.views.RootView;
 import by.siarhei.kb2.app.server.GameGrid;
 import by.siarhei.kb2.app.server.Request;
 import by.siarhei.kb2.app.server.Server;
-import by.siarhei.kb2.app.server.ServerView;
+import by.siarhei.kb2.app.server.Response;
 
 public class GameView extends RootView {
     public GameView(MainView mainView) {
@@ -20,11 +19,11 @@ public class GameView extends RootView {
     }
 
     @Override
-    public void draw(@NonNull Canvas canvas, ServerView serverView) {
+    public void draw(@NonNull Canvas canvas, Response response) {
         Painter painter = mainView.getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 
-        GameGrid grid = serverView.getGameGrid();
+        GameGrid grid = response.getGameGrid();
 
         for (int x = 0; x < GameGrid.STEP_X; x++) {
             for (int y = 0; y < GameGrid.STEP_Y; y++) {

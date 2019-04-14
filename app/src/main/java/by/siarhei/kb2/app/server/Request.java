@@ -8,6 +8,11 @@ public class Request {
     public static final int ACTION_BUY_ARMY = 5;
     public static final int ACTION_OPEN_GAME_MENU = 6;
     public static final int ACTION_GIVE_ARMY = 7;
+    public static final int ACTION_ACCEPT_BATTLE = 8;
+    public static final int ACTION_DECLINE_BATTLE = 9;
+    public static final int ACTION_BATTLE_MOVE = 10;
+//    public static final int ACTION_BATTLE_MOVE_TO = 11;
+//    public static final int ACTION_BATTLE_ATTACK_AT = 12;
 
     private int x;
     private int y;

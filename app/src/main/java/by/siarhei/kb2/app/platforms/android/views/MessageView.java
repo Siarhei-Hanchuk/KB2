@@ -6,20 +6,19 @@ import android.support.annotation.NonNull;
 
 import by.siarhei.kb2.app.platforms.android.MainView;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
-import by.siarhei.kb2.app.platforms.android.views.RootView;
-import by.siarhei.kb2.app.server.ServerView;
+import by.siarhei.kb2.app.server.Response;
 
 public class MessageView extends RootView {
     public MessageView(MainView mainView) {
         super(mainView);
     }
 
-    public void draw(@NonNull Canvas canvas, ServerView serverView) {
+    public void draw(@NonNull Canvas canvas, Response response) {
         int realWidth = mainView.stepX() * 6;
         Painter painter = mainView.getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 
-        String text = serverView.getMessage().getText();
+        String text = response.getMessage().getText();
         float textLength = mainView.getDefaultPaint().measureText(text);
         if (textLength < realWidth) {
             painter.drawText(text, 10, 100, mainView.getDefaultPaint());

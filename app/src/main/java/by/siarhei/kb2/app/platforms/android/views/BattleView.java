@@ -1,6 +1,5 @@
 package by.siarhei.kb2.app.platforms.android.views;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -11,17 +10,20 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 
 import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.controllers.BattleController;
 import by.siarhei.kb2.app.platforms.android.MainView;
-import by.siarhei.kb2.app.server.ServerView;
-import by.siarhei.kb2.app.server.models.MapPoint;
+import by.siarhei.kb2.app.platforms.android.helpers.Click;
+import by.siarhei.kb2.app.server.GameGrid;
+import by.siarhei.kb2.app.server.Request;
+import by.siarhei.kb2.app.server.Response;
+import by.siarhei.kb2.app.server.Server;
 import by.siarhei.kb2.app.server.models.battle.MapPointBattle;
 import by.siarhei.kb2.app.server.models.battle.WarriorEntity;
-import by.siarhei.kb2.app.platforms.android.helpers.Click;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
 
 public class BattleView extends RootView {
-//    private final BattleController battleController;
+    private static final int IMAGE_WIDTH = 96;
+    private static final int IMAGE_HEIGHT = 82;
+
     private Paint countPaint;
     private Paint countPaintBg;
 
@@ -31,31 +33,35 @@ public class BattleView extends RootView {
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
-//        Click click = getClick(event);
-//        int x = click.getX() / stepX();
-//        int y = click.getY() / stepY();
-//        battleController.select(x, y);
+        Click click = getClick(event);
+        int x = click.getX() / stepX();
+        int y = click.getY() / stepY();
 
-        return false;
+        Request request = new Request();
+        request.setAction(Request.ACTION_BATTLE_MOVE);
+        request.setMoveTo(x, y);
+        Server.getServer().request(request);
+
+        return true;
     }
 
     @Override
-    public void draw(@NonNull Canvas canvas, ServerView serverView) {
+    public void draw(@NonNull Canvas canvas, Response response) {
         Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 
-        drawLand(painter, null);
+        MapPointBattle[][] map = response.getBattleField().getMapPoints();
+        drawLand(painter, map);
 
-//        MapPointBattle[][] map = battleController.getMap();
-//        for (int x = 0; x < 6; x++) {
-//            for (int y = 0; y < 5; y++) {
-//                if (map[x][y].isMove())
-//                    drawMoveCircle(painter, x, y);
-//                if (map[x][y].getEntity() != null) {
-//                    drawWarrior(painter, x, y);
-//                }
-//            }
-//        }
+        for (int x = 0; x < 6; x++) {
+            for (int y = 0; y < 5; y++) {
+                if (map[x][y].isMove())
+                    drawMoveCircle(painter, x, y, map);
+                if (map[x][y].getEntity() != null) {
+                    drawWarrior(painter, x, y, map);
+                }
+            }
+        }
 
         drawSelected(painter);
     }
@@ -63,14 +69,14 @@ public class BattleView extends RootView {
     private void drawLand(Painter painter, MapPointBattle[][] mapPoints) {
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
-                painter.drawBitmap(getImageCache().getImage(getMap()[x][y].getLand()),
+                painter.drawBitmap(getImageCache().getImage(mapPoints[x][y].getLand()),
                         stepX() * x, stepY() * y);
             }
         }
     }
 
-    private void drawMoveCircle(Painter painter, int x, int y) {
-        MapPointBattle point = getMap()[x][y];
+    private void drawMoveCircle(Painter painter, int x, int y, MapPointBattle[][] map) {
+        MapPointBattle point = map[x][y];
         if (point.getEntity() != null) {
             if (!point.getEntity().isFriendly())
                 painter.drawBitmap(getImageCache().getImage(R.drawable.battle_attack),
@@ -81,8 +87,8 @@ public class BattleView extends RootView {
         }
     }
 
-    private void drawWarrior(Painter painter, int x, int y) {
-        MapPointBattle point = getMap()[x][y];
+    private void drawWarrior(Painter painter, int x, int y, MapPointBattle[][] map) {
+        MapPointBattle point = map[x][y];
         WarriorEntity warrior = point.getEntity();
         Bitmap image = getImageCache().getImage(point.getEntity().getID());
         if (!warrior.isFriendly()) {
@@ -118,11 +124,6 @@ public class BattleView extends RootView {
         return dst;
     }
 
-    private MapPointBattle[][] getMap() {
-//        return battleController.getMap();
-        return null;
-    }
-
     private Paint getCountPaint() {
         if (countPaint == null) {
             countPaint = new Paint();
@@ -138,5 +139,23 @@ public class BattleView extends RootView {
             countPaintBg.setColor(Color.BLACK);
         }
         return countPaintBg;
+    }
+
+    public Click getClick(@NonNull MotionEvent event) {
+        int[] offsets = calcOffsets();
+        return new Click(event, offsets[0], offsets[1], getWidth(), getHeight());
+    }
+
+    public int[] calcOffsets() {
+        double scaleX = (double) getWidth() / (IMAGE_WIDTH * GameGrid.STEP_X);
+        double scaleY = (double) getHeight() / (IMAGE_HEIGHT * GameGrid.STEP_Y);
+        int[] offsets = new int[2];
+        if (scaleX > scaleY) {
+            offsets[0] = (getWidth() - stepX() * GameGrid.STEP_X) / 2;
+        } else {
+            offsets[0] = (getHeight() - stepX() * GameGrid.STEP_Y) / 2;
+        }
+
+        return offsets;
     }
 }

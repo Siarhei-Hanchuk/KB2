@@ -12,7 +12,7 @@ import by.siarhei.kb2.app.platforms.android.helpers.ImageCache;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
 import by.siarhei.kb2.app.server.Request;
 import by.siarhei.kb2.app.server.Server;
-import by.siarhei.kb2.app.server.ServerView;
+import by.siarhei.kb2.app.server.Response;
 
 public abstract class RootView {
     protected final MainView mainView;
@@ -23,7 +23,7 @@ public abstract class RootView {
         this.i18n = Server.getI18n();
     }
 
-    public abstract void draw(@NonNull Canvas canvas, ServerView serverView);
+    public abstract void draw(@NonNull Canvas canvas, Response response);
 
     public boolean onTouchEvent(@NonNull MotionEvent event) {
         Request request = new Request();

@@ -18,16 +18,14 @@ public class BattleField implements Glade {
     private final Player player;
     private final Fighting fighting;
     private final BattleAi ai;
-    private final BattleController battleController;
     private final Mover mover;
     private WarriorEntity selected;
     private WarriorSquad initPlayerArmyAtBattleField[] = new WarriorSquad[YSize];
 
-    public BattleField(Player player, Fighting fighting, BattleController battleController) {
+    public BattleField(Player player, Fighting fighting) {
         this.player = player;
         this.fighting = fighting;
         this.ai = new BattleAi(this);
-        this.battleController = battleController;
         this.mover = new Mover(this);
 
         prepareField();
@@ -76,20 +74,14 @@ public class BattleField implements Glade {
         }
     }
 
-    public void select(MapPoint from, int x, int y) {
-        if (selected != null) {
-            if (map[x][y].isMove()) {
-                move(from, x, y);
-            }
-        } else {
-            selectEntity(x, y);
+    public boolean moveTo(int x, int y) {
+        if (!map[x][y].isMove()) {
+            return false;
         }
-    }
-
-    private void move(MapPoint from, int x, int y) {
+        MapPoint mapPoint = mapPointBySelected();
         if (isLand(x, y) && !isEntity(x, y)) {
-            selected.reduceStep(distance(selected, x, y));
-            mover.teleport(selected, from, getMapPoint(x, y));
+            selected.reduceStep(distance(mapPoint, x, y));
+            mover.teleport(selected, mapPoint, getMapPoint(x, y));
             if (selected.getStep() > 0) {
                 moveArea(x, y, selected);
             } else {
@@ -100,12 +92,12 @@ public class BattleField implements Glade {
             attack(x, y);
         }
 
-        tryFinishPhase();
+        return tryFinishPhase();
     }
 
     private void attack(int x, int y) {
         if (isEntity(x, y) && !isFriendly(x, y)) {
-            if (distance(selected, x, y) == 1 || selected.isShoot()) {
+            if (distance(mapPointBySelected(), x, y) == 1 || selected.isShoot()) {
                 selected.attack(map[x][y].getEntity());
                 clearMoveArea();
                 selected = null;
@@ -113,7 +105,7 @@ public class BattleField implements Glade {
         }
     }
 
-    private void selectEntity(int x, int y) {
+    public void selectEntity(int x, int y) {
         if (!inBorders(x,y)) {
             MainActivity.showToast("Out of battlefield zone");
             return;
@@ -130,8 +122,9 @@ public class BattleField implements Glade {
         clearMoveArea();
         if (war.isFly())
             moveAreaFly();
-        else
+        else {
             snake(x, y, war.getStep());
+        }
         if (war.isShoot())
             shotGoals();
     }
@@ -228,14 +221,12 @@ public class BattleField implements Glade {
         return map[x][y].getEntity();
     }
 
-    private int distance(WarriorEntity selected, int x, int y) {
-        // TODO:
-//        return Math.max(Math.abs(selected.getMapPoint().getX() - x),
-//                Math.abs(selected.getMapPoint().getY() - y));
-        return 0;
+    private int distance(MapPoint from, int x, int y) {
+        return Math.max(Math.abs(from.getX() - x),
+                Math.abs(from.getY() - y));
     }
 
-    private void tryFinishPhase() {
+    private boolean tryFinishPhase() {
         boolean finish = true;
         for (int x = 0; x < XSize; x++) {
             for (int y = 0; y < YSize; y++) {
@@ -246,18 +237,15 @@ public class BattleField implements Glade {
             }
         }
         if(finish) {
-            battleController.updateView();
-            aiControl();
+            newPhase(true);
+            return true;
         }
-        newPhase(finish);
+        return false;
     }
 
-    private void aiControl() {
-        do {
-            battleController.updateView(1000);
-            ai.move();
-        } while (!ai.isFinished() && friendlyCount() > 0);
-        battleController.updateView();
+    public boolean aiControl() {
+        ai.move();
+        return ai.isFinished() || friendlyCount() == 0;
     }
 
     private int friendlyCount() {
@@ -289,7 +277,7 @@ public class BattleField implements Glade {
             }
         }
         if (friendlyCount == 0 || enemyCount == 0) {
-            battleController.battleFinish(enemyCount == 0, countPlayerCasualties());
+//            battleController.battleFinish(enemyCount == 0, countPlayerCasualties());
         }
     }
 
@@ -326,5 +314,21 @@ public class BattleField implements Glade {
 
     public void setSelected(WarriorEntity selected) {
         this.selected = selected;
+    }
+
+    private MapPoint mapPointBySelected() {
+        for (int x = 0; x < XSize; x++) {
+            for (int y = 0; y < YSize; y++) {
+                if (isEntity(x, y) && getMapPoint(x, y).getEntity() == selected) {
+                    return getMapPoint(x, y);
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public boolean hasSelected() {
+        return selected != null;
     }
 }

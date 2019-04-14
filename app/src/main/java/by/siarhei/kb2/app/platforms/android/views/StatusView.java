@@ -6,9 +6,8 @@ import android.support.annotation.NonNull;
 
 import by.siarhei.kb2.app.platforms.android.MainView;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
-import by.siarhei.kb2.app.platforms.android.views.RootView;
 import by.siarhei.kb2.app.server.Server;
-import by.siarhei.kb2.app.server.ServerView;
+import by.siarhei.kb2.app.server.Response;
 import by.siarhei.kb2.app.server.models.Player;
 
 public class StatusView extends RootView {
@@ -16,11 +15,11 @@ public class StatusView extends RootView {
         super(mainView);
     }
 
-    public void draw(@NonNull Canvas canvas, ServerView serverView) {
+    public void draw(@NonNull Canvas canvas, Response response) {
         Painter painter = mainView.getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 
-        Player player = serverView.getPlayer();
+        Player player = response.getPlayer();
 
         drawItem(painter, 1, "authority", player.getAuthority());
         drawItem(painter, 3, "money", player.getMoney());
@@ -30,7 +29,7 @@ public class StatusView extends RootView {
         drawItem(painter, 8, "maxMagicCount", player.getMagic().getMagicMaxCount());
         drawItem(painter, 10, "tornadoCount", player.getMagic().getTornado());
         drawItem(painter, 11, "ancientMapCount", 0);
-        drawItem(painter, 13, "weeks", serverView.getLeftWeeks());
+        drawItem(painter, 13, "weeks", response.getLeftWeeks());
     }
 
     private void drawItem(Painter painter, int n, String attr, int value) {

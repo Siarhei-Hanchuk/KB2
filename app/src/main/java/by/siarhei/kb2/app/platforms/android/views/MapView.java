@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.platforms.android.MainView;
-import by.siarhei.kb2.app.server.ServerView;
+import by.siarhei.kb2.app.server.Response;
 import by.siarhei.kb2.app.server.countries.Country;
 import by.siarhei.kb2.app.server.models.MapPoint;
 import by.siarhei.kb2.app.server.models.Player;
@@ -20,11 +20,11 @@ class MapView extends RootView {
     }
 
     @Override
-    public void draw(@NonNull Canvas canvas, ServerView serverView) {
+    public void draw(@NonNull Canvas canvas, Response response) {
         Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 
-        Player player = serverView.getPlayer();
+        Player player = response.getPlayer();
         int pointSize = canvas.getHeight() / Country.MAX_MAP_SIZE;
         Country country = player.getCountry();
         boolean memory[][] = player.getMemory().getMap(country.getId());

@@ -7,7 +7,7 @@ import by.siarhei.kb2.app.server.entities.GuidePost;
 import by.siarhei.kb2.app.server.entities.MapNext;
 import by.siarhei.kb2.app.server.entities.Sorcerer;
 import by.siarhei.kb2.app.server.entities.Spell;
-import by.siarhei.kb2.app.server.Game;
+import by.siarhei.kb2.app.server.models.Game;
 
 public class MessageFactory {
     private final Game game;

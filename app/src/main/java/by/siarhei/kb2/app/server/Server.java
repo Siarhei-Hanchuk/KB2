@@ -3,6 +3,7 @@ package by.siarhei.kb2.app.server;
 import by.siarhei.kb2.app.DebugLogger;
 import by.siarhei.kb2.app.I18n;
 import by.siarhei.kb2.app.server.builders.GameBuilder;
+import by.siarhei.kb2.app.server.models.Game;
 import by.siarhei.kb2.app.ui.menus.MenuFactory;
 import by.siarhei.kb2.app.ui.messages.MessageFactory;
 
@@ -12,13 +13,13 @@ public class Server {
 
     private Game game;
     private GameDispatcher gameDispatcher;
-    private ServerView serverView;
+    private Response mResponse;
     private boolean viewCached = false;
 
     private Server(Game game) {
         this.game = game;
         this.gameDispatcher = new GameDispatcher(game);
-        this.serverView = new ServerView(game, gameDispatcher);
+        this.mResponse = new Response(game, gameDispatcher);
     }
 
     public boolean request(Request data) {
@@ -38,13 +39,13 @@ public class Server {
         return server;
     }
 
-    public ServerView getView() {
+    public Response getView() {
         if(!viewCached) {
             viewCached = true;
-            serverView.refresh();
-            DebugLogger.logView(serverView);
+            mResponse.refresh();
+            DebugLogger.logView(mResponse);
         }
-        return serverView;
+        return mResponse;
     }
 
     public static void create(int mode) {

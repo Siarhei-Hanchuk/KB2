@@ -9,7 +9,7 @@ import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.platforms.android.MainView;
 import by.siarhei.kb2.app.server.Request;
 import by.siarhei.kb2.app.server.Server;
-import by.siarhei.kb2.app.server.ServerView;
+import by.siarhei.kb2.app.server.Response;
 import by.siarhei.kb2.app.server.entities.Castle;
 import by.siarhei.kb2.app.server.entities.Fighting;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
@@ -32,10 +32,10 @@ public class BattleAskView extends RootView {
     }
 
     @Override
-    public void draw(@NonNull Canvas canvas, ServerView serverView) {
+    public void draw(@NonNull Canvas canvas, Response response) {
         Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
-        Fighting fighting = serverView.getFighting();
+        Fighting fighting = response.getFighting();
 
         if (fighting instanceof Castle) {
             painter.drawText(i18n.translate(R.string.battle_begin_castle) + " " +
@@ -43,11 +43,11 @@ public class BattleAskView extends RootView {
                     0, menuItemHeight(), getDefaultPaint());
         }
 
-        if (isCaptainsActivated(serverView)) {
+        if (isCaptainsActivated(response)) {
             painter.drawText(i18n.translate(R.string.battle_begin_ask),
                     0, menuItemHeight() * 2, getDefaultPaint(), Painter.ALIGN_CENTER);
 
-            painter.drawText(i18n.translate(getCaptainPowerString(serverView)),
+            painter.drawText(i18n.translate(getCaptainPowerString(response)),
                     0, menuItemHeight() * 3, getDefaultPaint(), Painter.ALIGN_CENTER);
 
             painter.drawText(i18n.translate(R.string.battle_begin_ask_yes),
@@ -61,13 +61,13 @@ public class BattleAskView extends RootView {
         }
     }
 
-    private boolean isCaptainsActivated(ServerView serverView) {
+    private boolean isCaptainsActivated(Response response) {
 //        return controller.getGame().getPlayer().isCaptainsActivated();
         return true;
     }
 
-    private int getCaptainPowerString(ServerView serverView) {
-        int ratio = serverView.getAuthority() / serverView.getFighting().getAuthority();
+    private int getCaptainPowerString(Response response) {
+        int ratio = response.getAuthority() / response.getFighting().getAuthority();
         if (ratio < 0.2) {
             return R.string.battle_begin_ask_level1;
         } else if(ratio < 0.8) {

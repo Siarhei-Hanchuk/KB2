@@ -1,6 +1,5 @@
 package by.siarhei.kb2.app.server.models;
 
-import by.siarhei.kb2.app.server.Game;
 import by.siarhei.kb2.app.server.countries.Country;
 import by.siarhei.kb2.app.server.entities.Entity;
 import by.siarhei.kb2.app.server.entities.Nave;

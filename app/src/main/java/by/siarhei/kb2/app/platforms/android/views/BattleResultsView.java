@@ -1,20 +1,14 @@
 package by.siarhei.kb2.app.platforms.android.views;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
-import java.util.HashMap;
-
 import by.siarhei.kb2.app.platforms.android.MainView;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
-import by.siarhei.kb2.app.server.ServerView;
-import by.siarhei.kb2.app.ui.messages.Message;
-import by.siarhei.kb2.app.server.warriors.Warrior;
-import by.siarhei.kb2.app.server.warriors.WarriorFactory;
+import by.siarhei.kb2.app.server.Response;
 
 
 public class BattleResultsView extends RootView  {
@@ -31,12 +25,12 @@ public class BattleResultsView extends RootView  {
     }
 
     @Override
-    public void draw(@NonNull Canvas canvas, ServerView serverView) {
+    public void draw(@NonNull Canvas canvas, Response response) {
         int realWidth = stepX() * 6;
         Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 
-        String text = serverView.getMessage().getText();
+        String text = response.getMessage().getText();
         float textLength = getDefaultPaint().measureText(text);
         if (textLength < realWidth ) {
             painter.drawText(text, 10, 100, getDefaultPaint());

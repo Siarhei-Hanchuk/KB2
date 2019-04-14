@@ -2,12 +2,15 @@ package by.siarhei.kb2.app.server;
 
 import by.siarhei.kb2.app.server.entities.ArmyShop;
 import by.siarhei.kb2.app.server.entities.City;
+import by.siarhei.kb2.app.server.entities.Fighting;
+import by.siarhei.kb2.app.server.models.Game;
 import by.siarhei.kb2.app.server.models.Player;
+import by.siarhei.kb2.app.server.models.battle.BattleField;
 import by.siarhei.kb2.app.server.warriors.Warrior;
 import by.siarhei.kb2.app.ui.menus.Menu;
 import by.siarhei.kb2.app.ui.messages.Message;
 
-public class ServerView {
+public class Response {
     private transient GameGrid gameGrid;
     private int viewMode;
     private transient Message message;
@@ -17,6 +20,7 @@ public class ServerView {
     private int salary;
     private Warrior updatedWarrior;
     private City updatedCity;
+    private Fighting fighting;
 
     private transient Game game;
     private transient GameDispatcher gameDispatcher;
@@ -24,7 +28,9 @@ public class ServerView {
     private ArmyShop armyShop;
     private int leftWeeks;
 
-    public ServerView(Game game, GameDispatcher gameDispatcher) {
+    private transient BattleField battleField;
+
+    public Response(Game game, GameDispatcher gameDispatcher) {
         this.gameDispatcher = gameDispatcher;
         this.game = game;
     }
@@ -64,6 +70,7 @@ public class ServerView {
         armyShop = gameDispatcher.getCurrentArmyShop();
         player = game.getPlayer();
         leftWeeks = game.getWeeks();
+        fighting = gameDispatcher.getCurrentFighting();
     }
 
     public int getAuthority() {
@@ -92,5 +99,13 @@ public class ServerView {
 
     public int getLeftWeeks() {
         return leftWeeks;
+    }
+
+    public Fighting getFighting() {
+        return fighting;
+    }
+
+    public BattleField getBattleField() {
+        return game.getBattleField();
     }
 }
