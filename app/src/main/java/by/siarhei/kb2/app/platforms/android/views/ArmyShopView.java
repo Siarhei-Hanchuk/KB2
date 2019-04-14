@@ -14,7 +14,7 @@ import by.siarhei.kb2.app.platforms.android.helpers.Click;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
 import by.siarhei.kb2.app.server.Request;
 import by.siarhei.kb2.app.server.Server;
-import by.siarhei.kb2.app.server.ServerView;
+import by.siarhei.kb2.app.server.Response;
 import by.siarhei.kb2.app.server.warriors.Warrior;
 
 public class ArmyShopView extends RootView {
@@ -22,7 +22,7 @@ public class ArmyShopView extends RootView {
         super(mainView);
     }
 
-    public void draw(@NonNull Canvas canvas, ServerView serverView) {
+    public void draw(@NonNull Canvas canvas, Response response) {
         Painter painter = mainView.getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 
@@ -33,7 +33,7 @@ public class ArmyShopView extends RootView {
         int buttonSize = mainView.getHeight() / 5;
         I18n i18n = Server.getI18n();
         int buttonBorderSize = 5;
-        Warrior warrior = serverView.getArmyShop().getWarrior();
+        Warrior warrior = response.getArmyShop().getWarrior();
 
         Bitmap image = mainView.getImageCache().getImage(warrior.getId());
 
@@ -41,13 +41,13 @@ public class ArmyShopView extends RootView {
         painter.drawText(i18n.translate("army_names_" + warrior.getTextId()),
                 mainView.stepX() + 10, mainView.textHeight(), paint);
         painter.drawText(i18n.translate(R.string.entity_armyShop_ui_thereIs)
-                        + ": " + serverView.getArmyShop().getCount(),
+                        + ": " + response.getArmyShop().getCount(),
                 mainView.stepX() + 10, mainView.menuItemHeight(), smallFont);
         painter.drawText(i18n.translate(R.string.entity_armyShop_ui_price)
                         + ": " + warrior.getPriceInShop(),
                 mainView.stepX() + 10, (int) (mainView.menuItemHeight() * 1.5), smallFont);
 
-        String playerMoney = i18n.translate(R.string.player_attrs_money) + ": " + serverView.getMoney();
+        String playerMoney = i18n.translate(R.string.player_attrs_money) + ": " + response.getMoney();
         painter.drawText(playerMoney, 0, mainView.textHeight() * 2, paint, Painter.ALIGN_RIGHT);
 
         painter.drawText(i18n.translate(R.string.entity_armyShop_ui_step) + ": " + warrior.getStep(),
@@ -63,7 +63,7 @@ public class ArmyShopView extends RootView {
                         ": " + (warrior.isShoot() ? i18n.translate(R.string.yes) : i18n.translate(R.string.no)),
                 0, mainView.stepY() + mainView.textHeight() * 5, paint);
 
-        String how = i18n.translate(R.string.entity_armyShop_ui_afford) + ": " + serverView.getPlayer().armyAfford(warrior);
+        String how = i18n.translate(R.string.entity_armyShop_ui_afford) + ": " + response.getPlayer().armyAfford(warrior);
         painter.drawText(how,
                 0,
                 mainView.getHeight() - buttonSize * 2 - 10 - mainView.menuItemHeight(),

@@ -11,9 +11,9 @@ import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.platforms.android.MainActivity;
 import by.siarhei.kb2.app.platforms.android.MainView;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
-import by.siarhei.kb2.app.server.Game;
+import by.siarhei.kb2.app.server.models.Game;
 import by.siarhei.kb2.app.server.Server;
-import by.siarhei.kb2.app.server.ServerView;
+import by.siarhei.kb2.app.server.Response;
 
 public class MainMenuView extends RootView {
     private final byte ACTION_START_GAME = 1;
@@ -32,7 +32,7 @@ public class MainMenuView extends RootView {
     }
 
     @Override
-    public void draw(@NonNull Canvas canvas, ServerView serverView) {
+    public void draw(@NonNull Canvas canvas, Response response) {
         Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
         Paint paint = getDefaultPaint();

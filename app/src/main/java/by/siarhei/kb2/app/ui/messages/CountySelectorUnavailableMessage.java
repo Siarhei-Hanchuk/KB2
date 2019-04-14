@@ -1,10 +1,7 @@
 package by.siarhei.kb2.app.ui.messages;
 
-import java.util.Random;
-
 import by.siarhei.kb2.app.I18n;
-import by.siarhei.kb2.app.server.Game;
-import by.siarhei.kb2.app.server.entities.Entity;
+import by.siarhei.kb2.app.server.models.Game;
 
 public class CountySelectorUnavailableMessage extends Message {
     private static final int COUNT = 13;

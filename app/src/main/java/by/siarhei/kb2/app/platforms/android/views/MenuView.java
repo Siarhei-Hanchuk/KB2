@@ -1,6 +1,5 @@
 package by.siarhei.kb2.app.platforms.android.views;
 
-import android.app.usage.UsageEvents;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
@@ -9,10 +8,9 @@ import android.view.MotionEvent;
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.platforms.android.MainView;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
-import by.siarhei.kb2.app.platforms.android.views.RootView;
 import by.siarhei.kb2.app.server.Request;
 import by.siarhei.kb2.app.server.Server;
-import by.siarhei.kb2.app.server.ServerView;
+import by.siarhei.kb2.app.server.Response;
 import by.siarhei.kb2.app.ui.menus.Menu;
 
 public class MenuView extends RootView {
@@ -20,11 +18,11 @@ public class MenuView extends RootView {
         super(mainView);
     }
 
-    public void draw(@NonNull Canvas canvas, ServerView serverView) {
+    public void draw(@NonNull Canvas canvas, Response response) {
         Painter painter = mainView.getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 
-        Menu menu = serverView.getMenu();
+        Menu menu = response.getMenu();
         int i;
         for (i = 0; i < menu.getCount(); i++) {
             painter.drawText(menu.getItemDescription(i), 10,
@@ -35,7 +33,7 @@ public class MenuView extends RootView {
                     mainView.textHeight() + mainView.menuItemHeight() * i, mainView.getDefaultPaint());
         if (menu.withMoney()) {
             String money = i18n.translate(R.string.player_attrs_money) + ": "
-                    + serverView.getMoney();
+                    + response.getMoney();
             painter.drawText(money,
                     mainView.getDefaultPaint().measureText(money) + 1,
                     mainView.textHeight() + mainView.menuItemHeight() * i, mainView.getDefaultPaint(), Painter.ALIGN_RIGHT);

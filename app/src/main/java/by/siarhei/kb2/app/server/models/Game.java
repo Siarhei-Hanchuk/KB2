@@ -1,4 +1,4 @@
-package by.siarhei.kb2.app.server;
+package by.siarhei.kb2.app.server.models;
 
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.server.countries.Country;
@@ -7,6 +7,7 @@ import by.siarhei.kb2.app.server.entities.ArmyShop;
 import by.siarhei.kb2.app.server.entities.Captain;
 import by.siarhei.kb2.app.server.entities.City;
 import by.siarhei.kb2.app.server.entities.Entity;
+import by.siarhei.kb2.app.server.entities.Fighting;
 import by.siarhei.kb2.app.server.entities.Magician;
 import by.siarhei.kb2.app.server.entities.Moving;
 import by.siarhei.kb2.app.server.entities.Nave;
@@ -14,6 +15,7 @@ import by.siarhei.kb2.app.server.entities.Sorcerer;
 import by.siarhei.kb2.app.server.models.Glade;
 import by.siarhei.kb2.app.server.models.MapPoint;
 import by.siarhei.kb2.app.server.models.Player;
+import by.siarhei.kb2.app.server.models.battle.BattleField;
 import by.siarhei.kb2.app.server.warriors.Warrior;
 import by.siarhei.kb2.app.server.warriors.WarriorFactory;
 
@@ -36,6 +38,7 @@ public class Game implements Serializable {
     private int currentWorker = -1;
     private City updatedCity;
     private Warrior updatedWarrior;
+    private BattleField battleField;
 
     public Game(World world, Player player, int weeks) {
         this.world = world;
@@ -248,5 +251,13 @@ public class Game implements Serializable {
 
     public Warrior getUpdatedWarrior() {
         return updatedWarrior;
+    }
+
+    public void startBattle(Fighting fighting) {
+        battleField = new BattleField(player, fighting);
+    }
+
+    public BattleField getBattleField() {
+        return battleField;
     }
 }

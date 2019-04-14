@@ -5,7 +5,7 @@ import by.siarhei.kb2.app.server.entities.City;
 import by.siarhei.kb2.app.server.entities.Entity;
 import by.siarhei.kb2.app.server.entities.GoldenChest;
 import by.siarhei.kb2.app.server.entities.Magician;
-import by.siarhei.kb2.app.server.Game;
+import by.siarhei.kb2.app.server.models.Game;
 import by.siarhei.kb2.app.server.models.MapPoint;
 
 public class MenuFactory {

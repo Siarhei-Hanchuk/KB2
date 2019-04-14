@@ -8,12 +8,12 @@ import by.siarhei.kb2.app.server.entities.Fighting;
 import by.siarhei.kb2.app.server.entities.GoldenChest;
 import by.siarhei.kb2.app.server.entities.GuidePost;
 import by.siarhei.kb2.app.server.entities.Nave;
+import by.siarhei.kb2.app.server.models.Game;
 import by.siarhei.kb2.app.server.models.Magic;
 import by.siarhei.kb2.app.server.models.MapPoint;
 import by.siarhei.kb2.app.server.models.Player;
 import by.siarhei.kb2.app.server.warriors.WarriorFactory;
 import by.siarhei.kb2.app.ui.menus.Menu;
-import by.siarhei.kb2.app.ui.menus.MenuFactory;
 import by.siarhei.kb2.app.ui.messages.Message;
 
 public class GameDispatcher {
@@ -46,9 +46,11 @@ public class GameDispatcher {
     private transient Game game;
     private ArmyShop currentArmyShop;
     private Fighting currentFighting;
+    private boolean lock = false;
 
     public GameDispatcher(Game game) {
         this.game = game;
+        this.lock = false;
     }
 
     public void request(Request data) {
@@ -90,10 +92,27 @@ public class GameDispatcher {
                 viewMode = VIEW_MODE_GRID;
                 break;
             case Request.ACTION_ACCEPT_BATTLE:
-                viewMode = VIEW_MODE_BATTLE;
+                startBattle(currentFighting);
                 break;
             case Request.ACTION_DECLINE_BATTLE:
                 viewMode = VIEW_MODE_GRID;
+                break;
+            case Request.ACTION_BATTLE_MOVE:
+                if(game.getBattleField().hasSelected()) {
+                    boolean aiSwitchedOn = game.getBattleField().moveTo(data.getX(), data.getY());
+                    if(aiSwitchedOn) {
+                        lock = false;
+                        // TODO - thread
+                        Runnable myRunnable = new Runnable() {
+                            public void run() {
+//                                game.getBattleField().
+//                                System.out.println("Runnable running");
+                            }
+                        };
+                    }
+                } else {
+                    game.getBattleField().selectEntity(data.getX(), data.getY());
+                }
                 break;
         }
     }
@@ -214,7 +233,6 @@ public class GameDispatcher {
 //        }
     }
 
-
     public int getViewMode() {
         return viewMode;
     }
@@ -238,4 +256,10 @@ public class GameDispatcher {
     public Fighting getCurrentFighting() {
         return currentFighting;
     }
+
+    private void startBattle(Fighting fighting) {
+        viewMode = VIEW_MODE_BATTLE;
+        game.startBattle(fighting);
+    }
+
 }

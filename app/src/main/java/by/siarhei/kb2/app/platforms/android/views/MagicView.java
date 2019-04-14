@@ -1,6 +1,5 @@
 package by.siarhei.kb2.app.platforms.android.views;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
@@ -11,7 +10,7 @@ import by.siarhei.kb2.app.platforms.android.MainView;
 import by.siarhei.kb2.app.server.GameGrid;
 import by.siarhei.kb2.app.server.Request;
 import by.siarhei.kb2.app.server.Server;
-import by.siarhei.kb2.app.server.ServerView;
+import by.siarhei.kb2.app.server.Response;
 import by.siarhei.kb2.app.server.models.Magic;
 import by.siarhei.kb2.app.platforms.android.helpers.ImageCache;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
@@ -48,11 +47,11 @@ class MagicView extends RootView {
     }
 
     @Override
-    public void draw(@NonNull Canvas canvas, ServerView serverView) {
+    public void draw(@NonNull Canvas canvas, Response response) {
         Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 
-        Magic magic = serverView.getPlayer().getMagic();
+        Magic magic = response.getPlayer().getMagic();
 
         if (mode != 1) {
             for (int i = 1; i < 8; i++) {

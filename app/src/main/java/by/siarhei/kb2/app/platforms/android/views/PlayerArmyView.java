@@ -6,8 +6,7 @@ import android.support.annotation.NonNull;
 
 import by.siarhei.kb2.app.platforms.android.MainView;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
-import by.siarhei.kb2.app.platforms.android.views.RootView;
-import by.siarhei.kb2.app.server.ServerView;
+import by.siarhei.kb2.app.server.Response;
 import by.siarhei.kb2.app.server.warriors.WarriorSquad;
 
 public class PlayerArmyView extends RootView {
@@ -15,12 +14,12 @@ public class PlayerArmyView extends RootView {
         super(mainView);
     }
 
-    public void draw(@NonNull Canvas canvas, ServerView serverView) {
+    public void draw(@NonNull Canvas canvas, Response response) {
         Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 
         for (int i = 0; i < 5; i++) {
-            WarriorSquad squad = serverView.getPlayer().getWarriorSquad(i);
+            WarriorSquad squad = response.getPlayer().getWarriorSquad(i);
             if (squad == null)
                 continue;
 
@@ -33,7 +32,7 @@ public class PlayerArmyView extends RootView {
         }
 
         for (int i = 5; i < 10; i++) {
-            WarriorSquad squad = serverView.getPlayer().getWarriorSquad(i);
+            WarriorSquad squad = response.getPlayer().getWarriorSquad(i);
             if (squad == null)
                 continue;
 

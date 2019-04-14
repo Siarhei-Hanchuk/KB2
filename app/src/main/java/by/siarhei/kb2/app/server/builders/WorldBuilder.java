@@ -2,7 +2,7 @@ package by.siarhei.kb2.app.server.builders;
 
 import by.siarhei.kb2.app.server.countries.Country;
 import by.siarhei.kb2.app.server.countries.World;
-import by.siarhei.kb2.app.server.Game;
+import by.siarhei.kb2.app.server.models.Game;
 
 public class WorldBuilder {
     private static final int[] defaultWorldSchema = {

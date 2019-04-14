@@ -20,7 +20,7 @@ import by.siarhei.kb2.app.platforms.android.helpers.Painter;
 import by.siarhei.kb2.app.platforms.android.views.RootView;
 import by.siarhei.kb2.app.server.GameGrid;
 import by.siarhei.kb2.app.server.Server;
-import by.siarhei.kb2.app.server.ServerView;
+import by.siarhei.kb2.app.server.Response;
 
 public class MainView extends SurfaceView implements SurfaceHolder.Callback, Drawable, View {
     private static final int IMAGE_WIDTH = 96;
@@ -155,7 +155,7 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback, Dra
     public void draw(@NonNull Canvas canvas) {
         super.draw(canvas);
 
-        ServerView view = null;
+        Response view = null;
         if(!menuMode)
             view = Server.getServer().getView();
 
@@ -169,9 +169,9 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback, Dra
         if(view != null) {
             return view;
         }
-        ServerView serverView = Server.getServer().getView();
+        Response response = Server.getServer().getView();
         ViewFactory viewFactory = new ViewFactory(this);
-        view = viewFactory.getView(serverView.getViewMode());
+        view = viewFactory.getView(response.getViewMode());
         return view;
     }
 
