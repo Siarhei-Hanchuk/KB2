@@ -4,3 +4,8 @@ Game has been published into [Google Play](https://play.google.com/store/apps/de
 
 License: [GPlv3](https://github.com/Neschur/KB2/blob/master/LICENSE)
 
+# Under construction!
+
+Not project is on deep refactoring phase.
+
+There are a lot of legacy, unused or strange code.
