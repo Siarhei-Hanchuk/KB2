@@ -9,14 +9,12 @@ import java.io.Serializable;
 import java.util.Iterator;
 
 public class MapPoint implements Serializable, MapPointsOwner {
-    private final Glade glade;
     private final int x;
     private final int y;
     private int land;
     private Entity entity;
 
     public MapPoint(Glade glade, int x, int y) {
-        this.glade = glade;
         this.x = x;
         this.y = y;
         land = -1;
@@ -30,10 +28,6 @@ public class MapPoint implements Serializable, MapPointsOwner {
     public Entity getEntity() {
         return entity;
     }
-
-//    public Glade getGlade() {
-//        return glade;
-//    }
 
     public int getY() {
         return y;

@@ -16,7 +16,7 @@ public class WarriorEntity implements Entity, Warrior {
     private int count;
     private int defence;
 
-    public WarriorEntity(MapPoint point, Warrior warrior, int count, boolean friendly) {
+    public WarriorEntity(Warrior warrior, int count, boolean friendly) {
         //TODO:
 //        mover = new Mover(point.getGlade());
         mover = null;

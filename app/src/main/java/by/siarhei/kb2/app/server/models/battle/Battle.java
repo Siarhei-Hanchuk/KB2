@@ -37,19 +37,20 @@ public class Battle {
     }
 
     private void playerAction(int x, int y) {
-        if(battleField.hasSelected()) {
+        if(battleField.getSelected() != null) {
             moveTo(x, y);
         } else {
             battleField.selectEntity(x, y);
+            moveArea.build(x, y, battleField.getSelected());
         }
 
         tryFinishPhase();
     }
 
-    public boolean moveTo(int x, int y) {
+    private void moveTo(int x, int y) {
         MapPointBattle targetPoint = battleField.getMapPoint(x, y);
         if (!targetPoint.isMove()) {
-            return false;
+            return;
         }
 
         MapPointBattle selectedPoint = battleField.getSelected();
@@ -67,8 +68,6 @@ public class Battle {
         } else {
             attack(x, y, moveArea);
         }
-
-        return false;
     }
 
     private void attack(int x, int y, MoveArea moveArea) {
