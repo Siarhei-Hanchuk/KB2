@@ -9,7 +9,7 @@ public interface Glade {
 
     boolean isEntity(int x, int y);
 
-    boolean isLand(int x, int y);
+//    boolean isLand(int x, int y);
 
     Entity getEntity(int x, int y);
 

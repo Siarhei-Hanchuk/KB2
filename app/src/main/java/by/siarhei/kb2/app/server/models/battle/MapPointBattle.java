@@ -1,5 +1,6 @@
 package by.siarhei.kb2.app.server.models.battle;
 
+import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.server.entities.Entity;
 import by.siarhei.kb2.app.server.models.Glade;
 import by.siarhei.kb2.app.server.models.MapPoint;
@@ -28,5 +29,13 @@ public class MapPointBattle extends MapPoint {
     @Override
     public void setEntity(Entity entity) {
         this.entity = (WarriorEntity) entity;
+    }
+
+    public boolean isLand() {
+        return getLand() == R.drawable.land;
+    }
+
+    public boolean isPlayerEntity() {
+        return isEntity() && getEntity().isPlayerEntity();
     }
 }

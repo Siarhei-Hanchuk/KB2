@@ -2,13 +2,13 @@ package by.siarhei.kb2.app.server.models.battle;
 
 import java.util.HashMap;
 import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.controllers.BattleController;
 import by.siarhei.kb2.app.server.entities.Fighting;
 import by.siarhei.kb2.app.server.models.Glade;
 import by.siarhei.kb2.app.server.models.MapPoint;
 import by.siarhei.kb2.app.server.models.Mover;
 import by.siarhei.kb2.app.server.models.Player;
 import by.siarhei.kb2.app.platforms.android.MainActivity;
+import by.siarhei.kb2.app.server.warriors.Warrior;
 import by.siarhei.kb2.app.server.warriors.WarriorSquad;
 
 public class BattleField implements Glade {
@@ -17,16 +17,16 @@ public class BattleField implements Glade {
     private final MapPointBattle[][] map = new MapPointBattle[XSize][YSize];
     private final Player player;
     private final Fighting fighting;
-    private final BattleAi ai;
+//    private final BattleAi ai;
     private final Mover mover;
-    private WarriorEntity selected;
+    private MapPointBattle selected;
     private WarriorSquad initPlayerArmyAtBattleField[] = new WarriorSquad[YSize];
-    private boolean aiPhase = false;
+//    private boolean aiPhase = false;
 
     public BattleField(Player player, Fighting fighting) {
         this.player = player;
         this.fighting = fighting;
-        this.ai = new BattleAi(this);
+//        this.ai = new BattleAi(this);
         this.mover = new Mover(this);
 
         prepareField();
@@ -74,109 +74,32 @@ public class BattleField implements Glade {
         }
     }
 
-    public boolean moveTo(int x, int y) {
-        if (!map[x][y].isMove()) {
-            return false;
-        }
-        MapPoint mapPoint = mapPointBySelected();
-        if (isLand(x, y) && !isEntity(x, y)) {
-            selected.reduceStep(distance(mapPoint, x, y));
-            mover.teleport(selected, mapPoint, getMapPoint(x, y));
-            if (selected.getStep() > 0) {
-                moveArea(x, y, selected);
-            } else {
-                clearMoveArea();
-                selected = null;
-            }
-        } else {
-            attack(x, y);
+//    private void attack(int x, int y) {
+//        if (isEntity(x, y) && !isPlayerEntity(x, y)) {
+//            if (distance(mapPointBySelected(), x, y) == 1 || selected.getEntity().isShoot()) {
+//                selected.getEntity().attack(map[x][y].getEntity());
+//                clearMoveArea();
+//                selected = null;
+//            }
+//        }
+//    }
+
+    public MapPointBattle selectEntity(int x, int y) {
+        if (!inBorders(x,y)) return null;
+
+        MapPointBattle mapPoint = map[x][y];
+
+        if (mapPoint.getEntity() == null) return null;
+
+        WarriorEntity entity = mapPoint.getEntity();
+
+        if (entity.isPlayerEntity() && entity.getStep() > 0) {
+            selected = mapPoint;
+            return selected;
+//            moveArea(x, y, selected);
         }
 
-        return tryFinishPhase();
-    }
-
-    private void attack(int x, int y) {
-        if (isEntity(x, y) && !isFriendly(x, y)) {
-            if (distance(mapPointBySelected(), x, y) == 1 || selected.isShoot()) {
-                selected.attack(map[x][y].getEntity());
-                clearMoveArea();
-                selected = null;
-            }
-        }
-    }
-
-    public void selectEntity(int x, int y) {
-        if (!inBorders(x,y)) {
-            MainActivity.showToast("Out of battlefield zone");
-            return;
-        }
-        if (map[x][y].getEntity() != null &&
-                map[x][y].getEntity().isFriendly() &&
-                map[x][y].getEntity().getStep() > 0) {
-            selected = map[x][y].getEntity();
-            moveArea(x, y, selected);
-        }
-    }
-
-    private void moveArea(int x, int y, WarriorEntity war) {
-        clearMoveArea();
-        if (war.isFly())
-            moveAreaFly();
-        else {
-            snake(x, y, war.getStep());
-        }
-        if (war.isShoot())
-            shotGoals();
-    }
-
-    private void clearMoveArea() {
-        for (int i = 0; i < XSize; i++) {
-            for (int j = 0; j < YSize; j++) {
-                map[i][j].setMove(false);
-            }
-        }
-    }
-
-    private void shotGoals() {
-        for (int x = 0; x < XSize; x++) {
-            for (int y = 0; y < YSize; y++) {
-                if (isEntity(x, y) && !isFriendly(x, y)) {
-                    map[x][y].setMove(true);
-                }
-            }
-        }
-    }
-
-    private void moveAreaFly() {
-        for (int x = 0; x < XSize; x++) {
-            for (int y = 0; y < YSize; y++) {
-                if (isLand(x, y) || (isEntity(x, y) && !isFriendly(x, y))) {
-                    map[x][y].setMove(true);
-                }
-            }
-        }
-    }
-
-    private void snake(int x, int y, int step) {
-        snake(x, y, step, true);
-    }
-
-    private void snake(int x, int y, int step, boolean ignoreEntity) {
-        if (step < 0 || x < 0 || x > (XSize - 1) || y < 0 || y > (YSize - 1) ||
-                !isLand(x, y))
-            return;
-        step--;
-        map[x][y].setMove(true);
-        if (!isEntity(x, y) || ignoreEntity) {
-            snake(x + 1, y, step, false);
-            snake(x - 1, y, step, false);
-            snake(x, y + 1, step, false);
-            snake(x, y - 1, step, false);
-            snake(x + 1, y + 1, step, false);
-            snake(x - 1, y - 1, step, false);
-            snake(x - 1, y + 1, step, false);
-            snake(x + 1, y - 1, step, false);
-        }
+        return null;
     }
 
     @Override
@@ -184,13 +107,8 @@ public class BattleField implements Glade {
         return map[x][y].getEntity() != null;
     }
 
-    public boolean isFriendly(int x, int y) {
-        return map[x][y].getEntity().isFriendly();
-    }
-
-    @Override
-    public boolean isLand(int x, int y) {
-        return map[x][y].getLand() == R.drawable.land;
+    public boolean isPlayerEntity(int x, int y) {
+        return map[x][y].getEntity().isPlayerEntity();
     }
 
     @Override
@@ -203,76 +121,32 @@ public class BattleField implements Glade {
         return map[x][y].getEntity();
     }
 
-    private int distance(MapPoint from, int x, int y) {
+    public int distance(MapPoint from, int x, int y) {
         return Math.max(Math.abs(from.getX() - x),
                 Math.abs(from.getY() - y));
     }
 
-    private boolean tryFinishPhase() {
-        boolean finish = true;
-        for (int x = 0; x < XSize; x++) {
-            for (int y = 0; y < YSize; y++) {
-                if (isEntity(x, y) && isFriendly(x, y)) {
-                    if (map[x][y].getEntity().getStep() > 0)
-                        finish = false;
-                }
-            }
-        }
-        if(finish) {
-            newPhase(true);
-            this.aiPhase = true;
-            return true;
-        }
-        return false;
-    }
-
-    public boolean aiControl() {
-        ai.move();
-        this.aiPhase = !ai.isFinished();
-        if(!this.aiPhase) {
-            newPhase(true);
-        }
-        return !this.aiPhase || friendlyCount() == 0;
+    public int distance(MapPoint from, MapPoint to) {
+        return Math.max(Math.abs(from.getX() - to.getX()),
+                Math.abs(from.getY() - to.getY()));
     }
 
     private int friendlyCount() {
         int friendlyCount = 0;
         for (int x = 0; x < XSize; x++) {
             for (int y = 0; y < YSize; y++) {
-                if (isEntity(x, y) && isFriendly(x, y))
+                if (isEntity(x, y) && isPlayerEntity(x, y))
                     friendlyCount++;
             }
         }
         return friendlyCount;
     }
 
-    private void newPhase(boolean reset) {
-        setSelected(null);
-        int friendlyCount = 0;
-        int enemyCount = 0;
-        for (int x = 0; x < XSize; x++) {
-            for (int y = 0; y < YSize; y++) {
-                if (isEntity(x, y)) {
-                    if(reset)
-                        map[x][y].getEntity().resetStep();
-                    if (isFriendly(x, y)) {
-                        friendlyCount++;
-                    } else {
-                        enemyCount++;
-                    }
-                }
-            }
-        }
-        if (friendlyCount == 0 || enemyCount == 0) {
-//            battleController.battleFinish(enemyCount == 0, countPlayerCasualties());
-        }
-    }
-
     private HashMap<String, Integer> countPlayerCasualties() {
         HashMap<String, Integer> survivors = new HashMap<>();
         for (int x = 0; x < XSize; x++) {
             for (int y = 0; y < YSize; y++) {
-                if (isEntity(x, y) && isFriendly(x, y)) {
+                if (isEntity(x, y) && isPlayerEntity(x, y)) {
                     survivors.put(getEntity(x,y).getTextId(), getEntity(x, y).getCount());
                 }
             }
@@ -299,18 +173,18 @@ public class BattleField implements Glade {
         return casualties;
     }
 
-    public void setSelected(WarriorEntity selected) {
+    public void setSelected(MapPointBattle selected) {
         this.selected = selected;
     }
 
-    public boolean isAiPhase() {
-        return aiPhase;
-    }
+//    public boolean isAiPhase() {
+//        return aiPhase;
+//    }
 
     private MapPoint mapPointBySelected() {
         for (int x = 0; x < XSize; x++) {
             for (int y = 0; y < YSize; y++) {
-                if (isEntity(x, y) && getMapPoint(x, y).getEntity() == selected) {
+                if (isEntity(x, y) && getMapPoint(x, y) == selected) {
                     return getMapPoint(x, y);
                 }
             }
@@ -321,5 +195,9 @@ public class BattleField implements Glade {
 
     public boolean hasSelected() {
         return selected != null;
+    }
+
+    public MapPointBattle getSelected() {
+        return this.selected;
     }
 }

@@ -15,6 +15,7 @@ import by.siarhei.kb2.app.server.entities.Sorcerer;
 import by.siarhei.kb2.app.server.models.Glade;
 import by.siarhei.kb2.app.server.models.MapPoint;
 import by.siarhei.kb2.app.server.models.Player;
+import by.siarhei.kb2.app.server.models.battle.Battle;
 import by.siarhei.kb2.app.server.models.battle.BattleField;
 import by.siarhei.kb2.app.server.warriors.Warrior;
 import by.siarhei.kb2.app.server.warriors.WarriorFactory;
@@ -259,5 +260,9 @@ public class Game implements Serializable {
 
     public BattleField getBattleField() {
         return battleField;
+    }
+
+    public Battle getBattle() {
+        return new Battle(battleField);
     }
 }

@@ -83,7 +83,6 @@ public class Country implements Glade, Serializable, ArmyShopsOwner, MapPointsOw
         return map[x][y].getEntity() != null;
     }
 
-    @Override
     public boolean isLand(int x, int y) {
         return map[x][y].getLand() == R.drawable.land;
     }

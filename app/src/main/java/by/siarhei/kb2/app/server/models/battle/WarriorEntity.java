@@ -89,7 +89,7 @@ public class WarriorEntity implements Entity, Warrior {
         return warrior.isFly();
     }
 
-    public boolean isFriendly() {
+    public boolean isPlayerEntity() {
         return friendly;
     }
 

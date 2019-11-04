@@ -12,6 +12,7 @@ import by.siarhei.kb2.app.server.models.Game;
 import by.siarhei.kb2.app.server.models.Magic;
 import by.siarhei.kb2.app.server.models.MapPoint;
 import by.siarhei.kb2.app.server.models.Player;
+import by.siarhei.kb2.app.server.models.battle.Battle;
 import by.siarhei.kb2.app.server.models.battle.BattleField;
 import by.siarhei.kb2.app.server.warriors.WarriorFactory;
 import by.siarhei.kb2.app.ui.menus.Menu;
@@ -99,18 +100,12 @@ public class GameDispatcher {
                 viewMode = VIEW_MODE_GRID;
                 break;
             case Request.ACTION_BATTLE_MOVE:
-                BattleField battleField = game.getBattleField();
+//                BattleField battleField = game.getBattleField();
+                Battle battle = game.getBattle();
 
-                if (battleField.isAiPhase()) {
-                    System.out.print("RET: {isAI");
-                    battleField.aiControl();
-                } else {
-                    if(battleField.hasSelected()) {
-                        battleField.moveTo(data.getX(), data.getY());
-                    } else {
-                        game.getBattleField().selectEntity(data.getX(), data.getY());
-                    }
-                }
+
+                battle.interact(data.getX(), data.getY());
+
                 break;
         }
     }
@@ -259,5 +254,4 @@ public class GameDispatcher {
         viewMode = VIEW_MODE_BATTLE;
         game.startBattle(fighting);
     }
-
 }

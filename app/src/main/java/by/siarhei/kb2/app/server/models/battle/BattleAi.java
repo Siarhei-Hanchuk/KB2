@@ -4,16 +4,16 @@ import by.siarhei.kb2.app.server.models.MapPoint;
 import by.siarhei.kb2.app.server.models.Mover;
 
 public class BattleAi {
-    private final BattleField bf;
+    private final BattleField battleField;
 
-    public BattleAi(BattleField bf) {
-        this.bf = bf;
+    public BattleAi(BattleField battleField ) {
+        this.battleField = battleField ;
     }
 
     public boolean isFinished() {
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
-                if (bf.isEntity(x, y) && !bf.isFriendly(x, y) && bf.getEntity(x, y).getStep() > 0) {
+                if (battleField.isEntity(x, y) && !battleField.isPlayerEntity(x, y) && battleField.getEntity(x, y).getStep() > 0) {
                     return false;
                 }
             }
@@ -24,18 +24,17 @@ public class BattleAi {
     public void move() {
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
-                if(!bf.isEntity(x, y) || bf.isFriendly(x, y)) {
+                if(!battleField.isEntity(x, y) || battleField.isPlayerEntity(x, y)) {
                     continue;
                 }
-                WarriorEntity entity = bf.getEntity(x, y);
+                WarriorEntity entity = battleField.getEntity(x, y);
                 System.out.print(entity.getStep());
                 System.out.print(" ");
                 System.out.println(entity.getTextId());
                 if (entity.getStep() > 0) {
-                    bf.setSelected(bf.getEntity(x, y));
-                    MapPoint mapPoint = bf.getMapPoint(x, y);
-//                    System.out.println(((WarriorEntity)bf.getEntity(x, y)).getTextId());
-                    step(mapPoint, bf.getEntity(x, y));
+                    battleField.setSelected(battleField.getMapPoint(x, y));
+                    MapPoint mapPoint = battleField.getMapPoint(x, y);
+                    step(mapPoint, battleField.getEntity(x, y));
                     return;
                 }
             }
@@ -58,7 +57,7 @@ public class BattleAi {
             if (distance(from, attackedPoint) == 1 && war.getStep() > 0) {
                 war.attack(attackedPoint.getEntity());
             } else {
-                Mover mover = new Mover(this.bf);
+                Mover mover = new Mover(this.battleField);
                 mover.moveInDirection(war, from, attackedPoint);
                 war.step--;
             }
@@ -68,12 +67,12 @@ public class BattleAi {
     private MapPointBattle findUserWar(boolean shoot) {
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
-                if (bf.isEntity(x, y) && bf.isFriendly(x, y)) {
+                if (battleField.isEntity(x, y) && battleField.isPlayerEntity(x, y)) {
                     if (shoot) {
-                        if (bf.getEntity(x, y).isShoot())
-                            return bf.getMapPoint(x, y);
+                        if (battleField.getEntity(x, y).isShoot())
+                            return battleField.getMapPoint(x, y);
                     } else {
-                        return bf.getMapPoint(x, y);
+                        return battleField.getMapPoint(x, y);
                     }
                 }
             }
@@ -86,11 +85,11 @@ public class BattleAi {
         MapPointBattle dst = null;
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 5; j++) {
-                if (bf.isEntity(i, j) && bf.isFriendly(i, j)) {
-                    int d = distance(from, bf.getMapPoint(i, j));
+                if (battleField.isEntity(i, j) && battleField.isPlayerEntity(i, j)) {
+                    int d = distance(from, battleField.getMapPoint(i, j));
                     if (d < distance) {
                         distance = d;
-                        dst = bf.getMapPoint(i, j);
+                        dst = battleField.getMapPoint(i, j);
                     }
                 }
             }

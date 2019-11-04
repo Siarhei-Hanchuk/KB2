@@ -78,7 +78,7 @@ public class BattleView extends RootView {
     private void drawMoveCircle(Painter painter, int x, int y, MapPointBattle[][] map) {
         MapPointBattle point = map[x][y];
         if (point.getEntity() != null) {
-            if (!point.getEntity().isFriendly())
+            if (!point.getEntity().isPlayerEntity())
                 painter.drawBitmap(getImageCache().getImage(R.drawable.battle_attack),
                         stepX() * x, stepY() * y);
         } else {
@@ -91,7 +91,7 @@ public class BattleView extends RootView {
         MapPointBattle point = map[x][y];
         WarriorEntity warrior = point.getEntity();
         Bitmap image = getImageCache().getImage(point.getEntity().getID());
-        if (!warrior.isFriendly()) {
+        if (!warrior.isPlayerEntity()) {
             image = flipImage(image);
         }
         painter.drawBitmap(image, stepX() * x, stepY() * y);
