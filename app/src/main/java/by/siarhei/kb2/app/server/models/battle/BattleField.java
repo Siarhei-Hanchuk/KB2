@@ -21,6 +21,7 @@ public class BattleField implements Glade {
     private final Mover mover;
     private WarriorEntity selected;
     private WarriorSquad initPlayerArmyAtBattleField[] = new WarriorSquad[YSize];
+    private boolean aiPhase = false;
 
     public BattleField(Player player, Fighting fighting) {
         this.player = player;
@@ -41,7 +42,6 @@ public class BattleField implements Glade {
     public MapPointBattle[][] getMapPoints() {
         return map;
     }
-
 
     public void prepareField() {
         for (int i = 0; i < XSize; i++) {
@@ -179,24 +179,6 @@ public class BattleField implements Glade {
         }
     }
 
-    public int getSelectedX() {
-//        TODO:
-//        if (selected != null)
-//            return selected.getMapPoint().getX();
-//        else
-//            return -1;
-        return -1;
-    }
-
-    public int getSelectedY() {
-//        TODO:
-//        if (selected != null)
-//            return selected.getMapPoint().getY();
-//        else
-//            return -1;
-        return -1;
-    }
-
     @Override
     public boolean isEntity(int x, int y) {
         return map[x][y].getEntity() != null;
@@ -238,6 +220,7 @@ public class BattleField implements Glade {
         }
         if(finish) {
             newPhase(true);
+            this.aiPhase = true;
             return true;
         }
         return false;
@@ -245,7 +228,11 @@ public class BattleField implements Glade {
 
     public boolean aiControl() {
         ai.move();
-        return ai.isFinished() || friendlyCount() == 0;
+        this.aiPhase = !ai.isFinished();
+        if(!this.aiPhase) {
+            newPhase(true);
+        }
+        return !this.aiPhase || friendlyCount() == 0;
     }
 
     private int friendlyCount() {
@@ -314,6 +301,10 @@ public class BattleField implements Glade {
 
     public void setSelected(WarriorEntity selected) {
         this.selected = selected;
+    }
+
+    public boolean isAiPhase() {
+        return aiPhase;
     }
 
     private MapPoint mapPointBySelected() {

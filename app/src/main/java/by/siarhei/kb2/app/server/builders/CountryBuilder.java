@@ -16,6 +16,9 @@ import by.siarhei.kb2.app.server.entities.GoldenChest;
 import by.siarhei.kb2.app.server.entities.GuidePost;
 import by.siarhei.kb2.app.server.entities.Metro;
 import by.siarhei.kb2.app.server.models.MapPoint;
+import by.siarhei.kb2.app.server.warriors.Warrior;
+import by.siarhei.kb2.app.server.warriors.WarriorFactory;
+import by.siarhei.kb2.app.server.warriors.WarriorSquad;
 
 public class CountryBuilder {
     public final static int MAX_MAP_SIZE = 65;
@@ -198,7 +201,12 @@ public class CountryBuilder {
 
         Captain captain = new Captain();
         map[8][5].setEntity(captain);
-        captain.generateArmy(28, 0);
+//        captain.generateArmy(28, 0);
+//        Warrior warriors[] = new Warrior[3];
+        Warrior warrior = WarriorFactory.create("boar");
+        WarriorSquad squad = new WarriorSquad(warrior, 10);
+        captain.authority = 10;
+        captain.warriors[1] = squad;
 
         Castle castle = new Castle(0);
         map[8][8].setEntity((castle));

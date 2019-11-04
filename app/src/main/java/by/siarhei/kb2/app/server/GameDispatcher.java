@@ -12,6 +12,7 @@ import by.siarhei.kb2.app.server.models.Game;
 import by.siarhei.kb2.app.server.models.Magic;
 import by.siarhei.kb2.app.server.models.MapPoint;
 import by.siarhei.kb2.app.server.models.Player;
+import by.siarhei.kb2.app.server.models.battle.BattleField;
 import by.siarhei.kb2.app.server.warriors.WarriorFactory;
 import by.siarhei.kb2.app.ui.menus.Menu;
 import by.siarhei.kb2.app.ui.messages.Message;
@@ -98,20 +99,17 @@ public class GameDispatcher {
                 viewMode = VIEW_MODE_GRID;
                 break;
             case Request.ACTION_BATTLE_MOVE:
-                if(game.getBattleField().hasSelected()) {
-                    boolean aiSwitchedOn = game.getBattleField().moveTo(data.getX(), data.getY());
-                    if(aiSwitchedOn) {
-                        lock = false;
-                        // TODO - thread
-                        Runnable myRunnable = new Runnable() {
-                            public void run() {
-//                                game.getBattleField().
-//                                System.out.println("Runnable running");
-                            }
-                        };
-                    }
+                BattleField battleField = game.getBattleField();
+
+                if (battleField.isAiPhase()) {
+                    System.out.print("RET: {isAI");
+                    battleField.aiControl();
                 } else {
-                    game.getBattleField().selectEntity(data.getX(), data.getY());
+                    if(battleField.hasSelected()) {
+                        battleField.moveTo(data.getX(), data.getY());
+                    } else {
+                        game.getBattleField().selectEntity(data.getX(), data.getY());
+                    }
                 }
                 break;
         }

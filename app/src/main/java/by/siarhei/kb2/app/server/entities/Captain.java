@@ -12,8 +12,9 @@ import by.siarhei.kb2.app.server.warriors.WarriorSquad;
 
 public class Captain implements Entity, Fighting {
     private static final int MAX_ARMY = 5;
-    private final WarriorSquad[] warriors = new WarriorSquad[MAX_ARMY];
-    private int authority;
+    // TODO public
+    public final WarriorSquad[] warriors = new WarriorSquad[MAX_ARMY];
+    public int authority;
 
     @Override
     public int getID() {

@@ -78,17 +78,17 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback, Dra
         drawThread.refresh();
     }
 
-    @Override
-    public void refresh(int delay) {
-        if (delay > 0) {
-            try {
-                Thread.sleep(delay);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-        }
-        drawThread.refresh();
-    }
+//    @Override
+//    public void refresh(int delay) {
+//        if (delay > 0) {
+//            try {
+//                Thread.sleep(delay);
+//            } catch (InterruptedException ex) {
+//                Thread.currentThread().interrupt();
+//            }
+//        }
+//        drawThread.refresh();
+//    }
 
     private double getScale() {
         double scaleX = (double) getWidth() / (IMAGE_WIDTH * GameGrid.STEP_X);

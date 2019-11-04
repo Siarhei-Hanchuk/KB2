@@ -12,9 +12,9 @@ public class Mover implements Serializable {
         this.glade = glade;
     }
 
-    private boolean teleport(Entity entity, int x, int y) {
+    private boolean teleport(Entity entity, MapPoint from, int x, int y) {
         // TODO:
-        return glade.inBorders(x, y) && teleport(entity, null, glade.getMapPoint(x, y));
+        return glade.inBorders(x, y) && teleport(entity, from, glade.getMapPoint(x, y));
     }
 
     public boolean teleport(Entity entity, MapPoint from, MapPoint to) {
@@ -31,13 +31,13 @@ public class Mover implements Serializable {
         int y = from.getY();
         int directionX = (int) Math.signum(to.getX() - x);
         int directionY = (int) Math.signum(to.getY() - y);
-        if (!teleport(entity, x + directionX, y + directionY)) {
+        if (!teleport(entity, from, x + directionX, y + directionY)) {
             if (directionX == 0)
-                if (!teleport(entity, x + 1, y + directionY))
-                    teleport(entity, x - 1, y + directionY);
+                if (!teleport(entity, from, x + 1, y + directionY))
+                    teleport(entity, from, x - 1, y + directionY);
             if (directionY == 0)
-                if (!teleport(entity, x + directionX, y + 1))
-                    teleport(entity, x + directionX, y - 1);
+                if (!teleport(entity, from,x + directionX, y + 1))
+                    teleport(entity, from,x + directionX, y - 1);
         }
     }
 

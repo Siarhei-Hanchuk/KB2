@@ -12,7 +12,7 @@ public class WarriorEntity implements Entity, Warrior {
     private final Warrior warrior;
     private MapPoint point;
     private boolean friendly;
-    private int step;
+    public int step;
     private int count;
     private int defence;
 
@@ -140,6 +140,7 @@ public class WarriorEntity implements Entity, Warrior {
 //            }
 //        }
 //        return false;
+        step = 0;
         return false;
     }
 
