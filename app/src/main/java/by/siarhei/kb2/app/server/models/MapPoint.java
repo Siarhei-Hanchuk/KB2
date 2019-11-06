@@ -14,7 +14,7 @@ public class MapPoint implements Serializable, MapPointsOwner {
     private int land;
     private Entity entity;
 
-    public MapPoint(Glade glade, int x, int y) {
+    public MapPoint(int x, int y) {
         this.x = x;
         this.y = y;
         land = -1;

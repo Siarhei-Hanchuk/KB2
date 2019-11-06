@@ -17,19 +17,19 @@ public class MoveArea {
             for (int y = 0; y < YSize; y++) {
                 MapPointBattle mapPoint = battleField.getMapPoint(x, y);
                 if (mapPoint.isLand() || (mapPoint.isEntity() && !mapPoint.isPlayerEntity())) {
-                    mapPoint.setMove(true);
+                    mapPoint.setMovable(true);
                 }
             }
         }
     }
 
-    public void build(int x, int y, MapPointBattle mapPoint) {
+    public void build(MapPointBattle mapPoint) {
         clearMoveArea();
         Warrior war = mapPoint.getEntity();
         if (war.isFly())
             moveAreaFly();
         else {
-            snake(x, y, war.getStep());
+            snake(mapPoint.getX(), mapPoint.getY(), war.getStep());
         }
         if (war.isShoot())
             shotGoals();
@@ -38,7 +38,7 @@ public class MoveArea {
     public void clearMoveArea() {
         for (int i = 0; i < XSize; i++) {
             for (int j = 0; j < YSize; j++) {
-                battleField.getMapPoint(i, j).setMove(false);
+                battleField.getMapPoint(i, j).setMovable(false);
             }
         }
     }
@@ -49,7 +49,7 @@ public class MoveArea {
                 MapPointBattle mapPoint = battleField.getMapPoint(x, y);
 
                 if (mapPoint.isEntity() && !mapPoint.isPlayerEntity()) {
-                    mapPoint.setMove(true);
+                    mapPoint.setMovable(true);
                 }
             }
         }
@@ -65,7 +65,7 @@ public class MoveArea {
             return;
         step--;
         MapPointBattle mapPoint = battleField.getMapPoint(x, y);
-        mapPoint.setMove(true);
+        mapPoint.setMovable(true);
         if (!mapPoint.isEntity() || ignoreEntity) {
             snake(x + 1, y, step, false);
             snake(x - 1, y, step, false);

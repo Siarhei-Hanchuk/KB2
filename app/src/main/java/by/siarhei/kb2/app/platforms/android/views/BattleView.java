@@ -55,7 +55,7 @@ public class BattleView extends RootView {
 
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
-                if (map[x][y].isMove())
+                if (map[x][y].isMovable())
                     drawMoveCircle(painter, x, y, map);
                 if (map[x][y].getEntity() != null) {
                     drawWarrior(painter, x, y, map);

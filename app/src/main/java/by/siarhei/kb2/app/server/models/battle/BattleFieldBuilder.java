@@ -5,7 +5,7 @@ import by.siarhei.kb2.app.server.entities.Fighting;
 import by.siarhei.kb2.app.server.models.Player;
 import by.siarhei.kb2.app.server.warriors.WarriorSquad;
 
-public class ArmyBuilder {
+public class BattleFieldBuilder {
     private final int XSize = 6;
     private final int YSize = 5;
 
@@ -13,22 +13,22 @@ public class ArmyBuilder {
     private final Fighting fighting;
     private final MapPointBattle[][] map = new MapPointBattle[XSize][YSize];
 
-    public ArmyBuilder(Player player, Fighting fighting) {
+    public BattleFieldBuilder(Player player, Fighting fighting) {
         this.player = player;
         this.fighting = fighting;
     }
 
-    public MapPointBattle[][] prepare() {
+    public MapPointBattle[][] build() {
         prepareField();
         prepareArmy();
 
         return map;
     }
 
-    public void prepareField() {
+    private void prepareField() {
         for (int i = 0; i < XSize; i++) {
             for (int j = 0; j < YSize; j++) {
-                map[i][j] = new MapPointBattle(null, i, j);
+                map[i][j] = new MapPointBattle(i, j);
                 map[i][j].setLand(R.drawable.land);
             }
         }

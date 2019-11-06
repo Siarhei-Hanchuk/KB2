@@ -12,12 +12,10 @@ import by.siarhei.kb2.app.server.entities.Magician;
 import by.siarhei.kb2.app.server.entities.Moving;
 import by.siarhei.kb2.app.server.entities.Nave;
 import by.siarhei.kb2.app.server.entities.Sorcerer;
-import by.siarhei.kb2.app.server.models.Glade;
-import by.siarhei.kb2.app.server.models.MapPoint;
-import by.siarhei.kb2.app.server.models.Player;
-import by.siarhei.kb2.app.server.models.battle.ArmyBuilder;
+import by.siarhei.kb2.app.server.models.battle.BattleFieldBuilder;
 import by.siarhei.kb2.app.server.models.battle.Battle;
 import by.siarhei.kb2.app.server.models.battle.BattleField;
+import by.siarhei.kb2.app.server.models.battle.MapPointBattle;
 import by.siarhei.kb2.app.server.warriors.Warrior;
 import by.siarhei.kb2.app.server.warriors.WarriorFactory;
 
@@ -256,8 +254,9 @@ public class Game implements Serializable {
     }
 
     public void startBattle(Fighting fighting) {
-        ArmyBuilder armyBuilder = new ArmyBuilder(player, fighting);
-        battleField = new BattleField(armyBuilder.prepare());
+        BattleFieldBuilder fieldBuilder = new BattleFieldBuilder(player, fighting);
+        MapPointBattle[][] mapPoints = fieldBuilder.build();
+        battleField = new BattleField(mapPoints);
     }
 
     public BattleField getBattleField() {

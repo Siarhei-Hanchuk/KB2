@@ -1,5 +1,7 @@
 package by.siarhei.kb2.app.server.models.battle;
 
+import java.util.Iterator;
+
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.server.entities.Entity;
 import by.siarhei.kb2.app.server.models.Glade;
@@ -9,15 +11,15 @@ public class MapPointBattle extends MapPoint {
     private boolean move = false;
     private WarriorEntity entity;
 
-    public MapPointBattle(Glade glade, int x, int y) {
-        super(glade, x, y);
+    public MapPointBattle(int x, int y) {
+        super(x, y);
     }
 
-    public boolean isMove() {
+    public boolean isMovable() {
         return move;
     }
 
-    public void setMove(boolean move) {
+    public void setMovable(boolean move) {
         this.move = move;
     }
 
@@ -37,5 +39,28 @@ public class MapPointBattle extends MapPoint {
 
     public boolean isPlayerEntity() {
         return isEntity() && getEntity().isPlayerEntity();
+    }
+
+    public Iterator<MapPointBattle> getMapPointsList() {
+        final MapPointBattle self = this;
+
+        return new Iterator<MapPointBattle>() {
+            private boolean hasNext = true;
+
+            @Override
+            public boolean hasNext() {
+                return hasNext;
+            }
+
+            @Override
+            public MapPointBattle next() {
+                hasNext = false;
+                return self;
+            }
+
+            @Override
+            public void remove() {
+            }
+        };
     }
 }

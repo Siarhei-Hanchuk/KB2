@@ -1,15 +1,18 @@
 package by.siarhei.kb2.app.server.models.battle;
 
+import java.util.Iterator;
+
 import by.siarhei.kb2.app.server.models.Mover;
+import by.siarhei.kb2.app.server.models.battle.interactors.AiInteractorImpl;
+import by.siarhei.kb2.app.server.models.battle.interactors.PlayerInteractorImpl;
 
 public class Battle {
-    private final int XSize = 6;
-    private final int YSize = 5;
-
-    private BattleField battleField;
-    private Mover mover;
-    private MoveArea moveArea;
+    private final BattleField battleField;
+    private final Mover mover;
+    private final MoveArea moveArea;
     private final BattleAi ai;
+    private final Interactor aiInteractor;
+    private final Interactor playerInteractor;
 
     private boolean aiPhase = false;
 
@@ -18,6 +21,9 @@ public class Battle {
         this.mover = new Mover(battleField);
         this.moveArea = new MoveArea(battleField);
         this.ai = new BattleAi(battleField);
+
+        this.aiInteractor = new AiInteractorImpl(battleField);
+        this.playerInteractor = new PlayerInteractorImpl(battleField);
     }
 
     public void interact(int x, int y) {
@@ -30,49 +36,59 @@ public class Battle {
 
     private void aiControl() {
         ai.move();
-        this.aiPhase = !ai.isFinished();
-        if(!this.aiPhase) {
-            finishPhase();
-        };
+        if(ai.isFinished()) {
+            finishAiTurn();
+        }
+    }
+
+    private void finishAiTurn() {
+        this.aiPhase = false;
+        finishPhase();
     }
 
     private void playerAction(int x, int y) {
-        if(battleField.getSelected() != null) {
-            moveTo(x, y);
+        if(battleField.getSelectedPoint() == null) {
+            selectOf(x, y);
         } else {
-            battleField.selectEntity(x, y);
-            moveArea.build(x, y, battleField.getSelected());
+            tryMoveTo(x, y);
+            tryFinishPhase();
         }
-
-        tryFinishPhase();
     }
 
-    private void moveTo(int x, int y) {
+    private void selectOf(int x, int y) {
+        battleField.selectEntity(x, y);
+        moveArea.build(battleField.getSelectedPoint());
+    }
+
+    private void tryMoveTo(int x, int y) {
         MapPointBattle targetPoint = battleField.getMapPoint(x, y);
-        if (!targetPoint.isMove()) {
+        if (!targetPoint.isMovable()) {
             return;
         }
 
-        MapPointBattle selectedPoint = battleField.getSelected();
-        WarriorEntity entity = selectedPoint.getEntity();
+        moveTo(targetPoint);
+    }
+
+    private void moveTo(MapPointBattle targetPoint) {
+        MapPointBattle selectedPoint = battleField.getSelectedPoint();
+        WarriorEntity entity = targetPoint.getEntity();
         if (selectedPoint.isLand() && entity  == null) {
             entity.reduceStep(battleField.distance(selectedPoint, targetPoint));
             mover.teleport(entity, selectedPoint, targetPoint);
 
             if (entity.getStep() > 0) {
-                moveArea.build(x, y, selectedPoint);
+                moveArea.build(selectedPoint);
             } else {
                 moveArea.clearMoveArea();
                 finishWithSelected();
             }
         } else {
-            attack(x, y, moveArea);
+            attack(targetPoint, moveArea);
         }
     }
 
-    private void attack(int x, int y, MoveArea moveArea) {
-        MapPointBattle toPoint = battleField.getMapPoint(x, y);
-        MapPointBattle fromPoint = battleField.getSelected();
+    private void attack(MapPointBattle toPoint, MoveArea moveArea) {
+        MapPointBattle fromPoint = battleField.getSelectedPoint();
         if (toPoint.isEntity() && !toPoint.isPlayerEntity()) {
             if (battleField.distance(fromPoint, toPoint) == 1 || fromPoint.getEntity().isShoot()) {
                 fromPoint.getEntity().attack(toPoint.getEntity());
@@ -86,34 +102,35 @@ public class Battle {
         battleField.setSelected(null);
     }
 
-    private boolean tryFinishPhase() {
+    private void tryFinishPhase() {
         boolean finish = true;
-        for (int x = 0; x < XSize; x++) {
-            for (int y = 0; y < YSize; y++) {
-                MapPointBattle mapPoint = battleField.getMapPoint(x, y);
-                if (mapPoint.isEntity() && mapPoint.isPlayerEntity()) {
-                    if (mapPoint.getEntity().getStep() > 0)
-                        finish = false;
-                }
+        Iterator<MapPointBattle> mapPoints = battleField.getMapPointsList();
+
+        while(mapPoints.hasNext()) {
+            MapPointBattle mapPoint = mapPoints.next();
+            if (mapPoint.isEntity() && mapPoint.isPlayerEntity()) {
+                if (mapPoint.getEntity().getStep() > 0)
+                    finish = false;
             }
         }
+
         if(finish) {
             finishPhase();
             this.aiPhase = true;
-            return true;
         }
-        return false;
     }
 
     private void finishPhase() {
-        for (int x = 0; x < XSize; x++) {
-            for (int y = 0; y < YSize; y++) {
-                MapPointBattle mapPointBattle = battleField.getMapPoint(x, y);
-                if (mapPointBattle.isEntity()) {
-                    mapPointBattle.getEntity().resetStep();
-                }
+        Iterator<MapPointBattle> mapPoints = battleField.getMapPointsList();
+        while(mapPoints.hasNext()) {
+            MapPointBattle mapPoint = mapPoints.next();
+            if (mapPoint.isEntity()) {
+                mapPoint.getEntity().resetStep();
             }
         }
     }
 
+    private void attackEntity(WarriorEntity fromEntity, WarriorEntity toEntity) {
+
+    }
 }

@@ -225,7 +225,7 @@ public class CountryBuilder {
     private void generateBaseField() {
         for (int i = 0; i < MAX_MAP_SIZE; i++) {
             for (int j = 0; j < MAX_MAP_SIZE; j++) {
-                map[i][j] = new MapPoint(null, i, j);
+                map[i][j] = new MapPoint(i, j);
             }
         }
 

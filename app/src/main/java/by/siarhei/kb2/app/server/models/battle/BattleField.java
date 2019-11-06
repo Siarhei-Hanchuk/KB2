@@ -1,13 +1,20 @@
 package by.siarhei.kb2.app.server.models.battle;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+
 import by.siarhei.kb2.app.R;
+import by.siarhei.kb2.app.server.countries.Country;
+import by.siarhei.kb2.app.server.entities.Entity;
 import by.siarhei.kb2.app.server.entities.Fighting;
 import by.siarhei.kb2.app.server.models.Glade;
 import by.siarhei.kb2.app.server.models.MapPoint;
 import by.siarhei.kb2.app.server.models.Mover;
 import by.siarhei.kb2.app.server.models.Player;
 import by.siarhei.kb2.app.platforms.android.MainActivity;
+import by.siarhei.kb2.app.server.models.iterators.EntityIterator;
+import by.siarhei.kb2.app.server.models.iterators.MapPointsOwner;
 import by.siarhei.kb2.app.server.warriors.Warrior;
 import by.siarhei.kb2.app.server.warriors.WarriorSquad;
 
@@ -16,7 +23,6 @@ public class BattleField implements Glade {
     private final int YSize = 5;
     private final MapPointBattle[][] map;
     private MapPointBattle selected;
-//    private WarriorSquad initPlayerArmyAtBattleField[] = new WarriorSquad[YSize];
 
     public BattleField(MapPointBattle[][] map) {
         this.map = map;
@@ -116,7 +122,30 @@ public class BattleField implements Glade {
         this.selected = selected;
     }
 
-    public MapPointBattle getSelected() {
+    public MapPointBattle getSelectedPoint() {
         return this.selected;
+    }
+
+    public Iterator<MapPointBattle> getMapPointsList() {
+        return new Iterator<MapPointBattle>() {
+            private int x = 0;
+            private int y = 0;
+            @Override
+            public boolean hasNext() {
+                return y < YSize;
+            }
+
+            @Override
+            public MapPointBattle next() {
+                MapPointBattle point = map[x][y];
+                if(x < XSize) {
+                    x++;
+                } else {
+                    x = 0;
+                    y++;
+                }
+                return point;
+            }
+        };
     }
 }
