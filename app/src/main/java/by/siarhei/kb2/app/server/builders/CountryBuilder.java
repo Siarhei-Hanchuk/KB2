@@ -203,10 +203,9 @@ public class CountryBuilder {
         map[8][5].setEntity(captain);
 //        captain.generateArmy(28, 0);
 //        Warrior warriors[] = new Warrior[3];
-        Warrior warrior = WarriorFactory.create("boar");
-        WarriorSquad squad = new WarriorSquad(warrior, 10);
-        captain.authority = 10;
-        captain.warriors[1] = squad;
+        captain.warriors[0] = new WarriorSquad(WarriorFactory.create("woodgoblin"), 10);
+        captain.warriors[1] = new WarriorSquad(WarriorFactory.create("elf"), 10);
+        captain.authority = 100;
 
         Castle castle = new Castle(0);
         map[8][8].setEntity((castle));

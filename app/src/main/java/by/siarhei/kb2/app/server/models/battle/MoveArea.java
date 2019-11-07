@@ -1,5 +1,7 @@
 package by.siarhei.kb2.app.server.models.battle;
 
+import android.support.annotation.NonNull;
+
 import by.siarhei.kb2.app.server.warriors.Warrior;
 
 public class MoveArea {
@@ -23,6 +25,7 @@ public class MoveArea {
         }
     }
 
+    @NonNull
     public void build(MapPointBattle mapPoint) {
         clearMoveArea();
         Warrior war = mapPoint.getEntity();

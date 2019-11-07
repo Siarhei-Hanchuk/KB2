@@ -7,15 +7,12 @@ import by.siarhei.kb2.app.server.warriors.Warrior;
 
 public class WarriorEntity implements Entity, Warrior {
     private final Warrior warrior;
-    private MapPoint point;
     private boolean friendly;
     public int step;
     private int count;
     private int defence;
 
     public WarriorEntity(Warrior warrior, int count, boolean friendly) {
-        point.setEntity(this);
-        this.point = point;
         this.warrior = warrior;
         this.count = count;
         this.friendly = friendly;
@@ -72,17 +69,21 @@ public class WarriorEntity implements Entity, Warrior {
         return friendly;
     }
 
+    public boolean isEnemy(WarriorEntity entity) {
+        return friendly != entity.friendly;
+    }
+
     @Override
     public int getStep() {
         return step;
     }
 
-    void reduceStep(int step) {
+    public void reduceStep(int step) {
         if (!warrior.isFly())
             this.step -= step;
     }
 
-    void attack(WarriorEntity warrior) {
+    public void attack(WarriorEntity warrior) {
         warrior.takeAttack(this.warrior.getDamage() * count);
         step = 0;
     }
@@ -90,9 +91,6 @@ public class WarriorEntity implements Entity, Warrior {
     private void takeAttack(int damage) {
         defence -= damage;
         count = defence / warrior.getDefence();
-        // TODO:
-//        if (count < 1)
-//            destroy();
     }
 
     public int getCount() {
@@ -107,18 +105,6 @@ public class WarriorEntity implements Entity, Warrior {
     }
 
     boolean flyTo(MapPoint point) {
-//        TODO:
-//        int x = point.getX();
-//        int y = point.getY();
-//
-//        for (int i = (x - 1 < 0) ? 0 : x - 1; i < ((x + 2 <= XSize) ? x + 2 : XSize); i++) {
-//            for (int j = (y - 1 < 0) ? 0 : y - 1; j < ((y + 2 <= YSize) ? y + 2 : YSize); j++) {
-//                if (mover.teleport(this, point.getGlade().getMapPoint(i, j))) {
-//                    return true;
-//                }
-//            }
-//        }
-//        return false;
         step = 0;
         return false;
     }

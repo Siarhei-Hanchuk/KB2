@@ -23,6 +23,7 @@ public class BattleField implements Glade {
     private final int YSize = 5;
     private final MapPointBattle[][] map;
     private MapPointBattle selected;
+    private boolean aiTurn = false;
 
     public BattleField(MapPointBattle[][] map) {
         this.map = map;
@@ -42,12 +43,12 @@ public class BattleField implements Glade {
         if (!inBorders(x,y)) return;
 
         MapPointBattle mapPoint = map[x][y];
-
         if (mapPoint.getEntity() == null) return;
 
         WarriorEntity entity = mapPoint.getEntity();
 
         if (entity.isPlayerEntity() && entity.getStep() > 0) {
+            System.out.println("select!!!");
             selected = mapPoint;
         }
     }
@@ -118,8 +119,20 @@ public class BattleField implements Glade {
 //        return casualties;
 //    }
 
-    public void setSelected(MapPointBattle selected) {
-        this.selected = selected;
+    public void setSelected(WarriorEntity entity) {
+        if(entity == null) {
+            this.selected = null;
+            return;
+        }
+
+        Iterator<MapPointBattle> iterator = getMapPointsList();
+        while(iterator.hasNext()) {
+            MapPointBattle point = iterator.next();
+            if(point.getEntity() == entity) {
+                this.selected = point;
+                return;
+            }
+        }
     }
 
     public MapPointBattle getSelectedPoint() {
@@ -137,8 +150,11 @@ public class BattleField implements Glade {
 
             @Override
             public MapPointBattle next() {
+                if(y >= YSize)
+                    return null;
+
                 MapPointBattle point = map[x][y];
-                if(x < XSize) {
+                if(x < XSize - 1) {
                     x++;
                 } else {
                     x = 0;
@@ -147,5 +163,29 @@ public class BattleField implements Glade {
                 return point;
             }
         };
+    }
+
+    public void setAiTurn(boolean aiTurn) {
+        this.aiTurn = aiTurn;
+    }
+
+    public boolean isAiTurn() {
+        return this.aiTurn;
+    }
+
+    public boolean finished() {
+        boolean playerHasAnyone = false;
+        boolean aiHasAnyone = false;
+
+        Iterator<MapPointBattle> mapPoints = getMapPointsList();
+        while(mapPoints.hasNext()) {
+            MapPointBattle point = mapPoints.next();
+            if(point.isEntity()) {
+                playerHasAnyone = playerHasAnyone|| point.getEntity().isPlayerEntity();
+                aiHasAnyone = aiHasAnyone || !point.getEntity().isPlayerEntity();
+            }
+        }
+
+        return !(playerHasAnyone && aiHasAnyone);
     }
 }

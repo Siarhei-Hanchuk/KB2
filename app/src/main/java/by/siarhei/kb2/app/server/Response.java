@@ -28,8 +28,6 @@ public class Response {
     private ArmyShop armyShop;
     private int leftWeeks;
 
-    private transient BattleField battleField;
-
     public Response(Game game, GameDispatcher gameDispatcher) {
         this.gameDispatcher = gameDispatcher;
         this.game = game;
