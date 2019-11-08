@@ -2,7 +2,7 @@ package by.siarhei.kb2.app.server.models.battle;
 
 import java.util.Iterator;
 
-public class Battle {
+public class Battle implements Interactor {
     private final BattleField battleField;
     private final Interactor ai;
     private final Interactor player;
@@ -14,13 +14,19 @@ public class Battle {
         this.player = new PlayerControl(battleField);
     }
 
-    public void interact(int x, int y) {
+    @Override
+    public void action(int x, int y) {
         if (battleField.isAiTurn()) {
             aiAction(x, y);
         } else {
             playerAction(x, y);
         }
         cleanUpDied();
+    }
+
+    @Override
+    public boolean finished() {
+        return battleField.finished();
     }
 
     private void aiAction(int x, int y) {

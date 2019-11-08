@@ -1,14 +1,12 @@
 package by.siarhei.kb2.app.server.models.battle;
 
 import by.siarhei.kb2.app.server.entities.Entity;
-import by.siarhei.kb2.app.server.models.MapPoint;
-import by.siarhei.kb2.app.server.models.Mover;
 import by.siarhei.kb2.app.server.warriors.Warrior;
 
 public class WarriorEntity implements Entity, Warrior {
     private final Warrior warrior;
-    private boolean friendly;
-    public int step;
+    private final boolean friendly;
+    private int step;
     private int count;
     private int defence;
 
@@ -69,8 +67,8 @@ public class WarriorEntity implements Entity, Warrior {
         return friendly;
     }
 
-    public boolean isEnemy(WarriorEntity entity) {
-        return friendly != entity.friendly;
+    public boolean isOwn(WarriorEntity entity) {
+        return friendly == entity.friendly;
     }
 
     @Override
@@ -102,10 +100,5 @@ public class WarriorEntity implements Entity, Warrior {
             this.step = 6;
         else
             this.step = warrior.getStep();
-    }
-
-    boolean flyTo(MapPoint point) {
-        step = 0;
-        return false;
     }
 }

@@ -2,7 +2,7 @@ package by.siarhei.kb2.app.server.models.battle;
 
 import by.siarhei.kb2.app.server.models.Mover;
 
-public class EntityActor {
+class EntityActor {
     private final MapPointBattle from;
     private final MapPointBattle to;
     private final BattleField battleField;
@@ -20,19 +20,16 @@ public class EntityActor {
     }
 
     public void tryMoveTo() {
-        if (!to.isMovable()) return;
-
-        aimTo();
-    }
-
-    private void aimTo() {
-        if (!to.isLand() || (to.isEntity() && to.getEntity().isEnemy(entity))) {
+        System.out.println("t1");
+        if (!to.isLand() || (to.isEntity() && to.getEntity().isOwn(entity))) {
             return;
         }
-
+        System.out.println("t2");
         if (to.getEntity() == null) {
+            System.out.println("t3a");
             moveTo();
         } else {
+            System.out.println("t3b");
             attack();
         }
     }
@@ -43,7 +40,7 @@ public class EntityActor {
     }
 
     private void attack() {
-        if (!to.isEntity() || !to.getEntity().isEnemy(entity)) return;
+        if (!to.isEntity() || to.getEntity().isOwn(entity)) return;
 
         if (isAbleToAttack()) {
             getEntity().attack(to.getEntity());

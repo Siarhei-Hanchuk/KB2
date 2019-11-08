@@ -4,11 +4,11 @@ import android.support.annotation.NonNull;
 
 import by.siarhei.kb2.app.server.warriors.Warrior;
 
-public class MoveArea {
+class MoveArea {
     private final int XSize = 6;
     private final int YSize = 5;
 
-    private BattleField battleField;
+    private final BattleField battleField;
 
     public MoveArea(BattleField battleField) {
         this.battleField = battleField;
@@ -25,7 +25,6 @@ public class MoveArea {
         }
     }
 
-    @NonNull
     public void build(MapPointBattle mapPoint) {
         clearMoveArea();
         Warrior war = mapPoint.getEntity();

@@ -1,22 +1,10 @@
 package by.siarhei.kb2.app.server.models.battle;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 
-import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.server.countries.Country;
-import by.siarhei.kb2.app.server.entities.Entity;
 import by.siarhei.kb2.app.server.entities.Fighting;
 import by.siarhei.kb2.app.server.models.Glade;
 import by.siarhei.kb2.app.server.models.MapPoint;
-import by.siarhei.kb2.app.server.models.Mover;
-import by.siarhei.kb2.app.server.models.Player;
-import by.siarhei.kb2.app.platforms.android.MainActivity;
-import by.siarhei.kb2.app.server.models.iterators.EntityIterator;
-import by.siarhei.kb2.app.server.models.iterators.MapPointsOwner;
-import by.siarhei.kb2.app.server.warriors.Warrior;
-import by.siarhei.kb2.app.server.warriors.WarriorSquad;
 
 public class BattleField implements Glade {
     private final int XSize = 6;
@@ -24,9 +12,11 @@ public class BattleField implements Glade {
     private final MapPointBattle[][] map;
     private MapPointBattle selected;
     private boolean aiTurn = false;
+    private final Fighting fighting;
 
-    public BattleField(MapPointBattle[][] map) {
+    public BattleField(MapPointBattle[][] map, Fighting fighting) {
         this.map = map;
+        this.fighting = fighting;
     }
 
     @Override
@@ -187,5 +177,9 @@ public class BattleField implements Glade {
         }
 
         return !(playerHasAnyone && aiHasAnyone);
+    }
+
+    public Fighting getFighting() {
+        return fighting;
     }
 }

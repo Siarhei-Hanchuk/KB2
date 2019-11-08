@@ -4,7 +4,6 @@ import java.util.Iterator;
 
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.server.entities.Entity;
-import by.siarhei.kb2.app.server.models.Glade;
 import by.siarhei.kb2.app.server.models.MapPoint;
 
 public class MapPointBattle extends MapPoint {

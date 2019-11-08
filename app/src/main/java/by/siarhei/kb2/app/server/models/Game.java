@@ -15,6 +15,7 @@ import by.siarhei.kb2.app.server.entities.Sorcerer;
 import by.siarhei.kb2.app.server.models.battle.BattleFieldBuilder;
 import by.siarhei.kb2.app.server.models.battle.Battle;
 import by.siarhei.kb2.app.server.models.battle.BattleField;
+import by.siarhei.kb2.app.server.models.battle.BattleResult;
 import by.siarhei.kb2.app.server.models.battle.MapPointBattle;
 import by.siarhei.kb2.app.server.warriors.Warrior;
 import by.siarhei.kb2.app.server.warriors.WarriorFactory;
@@ -39,6 +40,7 @@ public class Game implements Serializable {
     private City updatedCity;
     private Warrior updatedWarrior;
     private BattleField battleField;
+    private Battle battle;
 
     public Game(World world, Player player, int weeks) {
         this.world = world;
@@ -256,7 +258,8 @@ public class Game implements Serializable {
     public void startBattle(Fighting fighting) {
         BattleFieldBuilder fieldBuilder = new BattleFieldBuilder(player, fighting);
         MapPointBattle[][] mapPoints = fieldBuilder.build();
-        battleField = new BattleField(mapPoints);
+        battleField = new BattleField(mapPoints, fighting);
+        battle = new Battle(battleField);
     }
 
     public BattleField getBattleField() {
@@ -264,6 +267,13 @@ public class Game implements Serializable {
     }
 
     public Battle getBattle() {
-        return new Battle(battleField);
+        return battle;
+    }
+
+    public BattleResult finishBattle() {
+        BattleResult battleResult = new BattleResult(battleField);
+        player.changeMoney(battleResult.getGold());
+        player.changeAuthority(battleResult.getAuthority());
+        return battleResult;
     }
 }

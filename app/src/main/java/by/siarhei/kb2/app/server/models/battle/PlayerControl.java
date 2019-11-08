@@ -46,8 +46,10 @@ public class PlayerControl implements Interactor {
     }
 
     private void tryMoveTo(int x, int y) {
-        MapPointBattle from = battleField.getSelectedPoint();
         MapPointBattle to = battleField.getMapPoint(x, y);
+        if (!to.isMovable()) return;
+
+        MapPointBattle from = battleField.getSelectedPoint();
         WarriorEntity entity = from.getEntity();
         EntityActor actor = new EntityActor(battleField, from, to);
         actor.tryMoveTo();

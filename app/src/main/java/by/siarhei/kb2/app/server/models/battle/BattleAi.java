@@ -42,6 +42,7 @@ public class BattleAi implements Interactor {
             }
             WarriorEntity entity = point.getEntity();
             if (entity.getStep() > 0) {
+                System.out.println("FOUND");
                 actWithPoint(point);
                 return;
             }
@@ -50,7 +51,13 @@ public class BattleAi implements Interactor {
 
     private void actWithPoint(MapPointBattle from) {
         MapPointBattle attackedPoint = findNearestUserWar(from);
-        EntityActor actor = new EntityActor(battleField, from, attackedPoint);
+        EntityActor actor;
+        if(from.getEntity().isShoot()) {
+            actor = new EntityActor(battleField, from, attackedPoint);
+        } else {
+            MapPointBattle movePoint = pointInDirection(from, attackedPoint);
+            actor = new EntityActor(battleField, from, movePoint);
+        }
         actor.tryMoveTo();
     }
 
@@ -69,5 +76,13 @@ public class BattleAi implements Interactor {
             }
         }
         return dst;
+    }
+
+    private MapPointBattle pointInDirection(MapPoint from, MapPoint to) {
+        int x = from.getX();
+        int y = from.getY();
+        int directionX = (int) Math.signum(to.getX() - x);
+        int directionY = (int) Math.signum(to.getY() - y);
+        return battleField.getMapPoint(x + directionX, y + directionY);
     }
 }

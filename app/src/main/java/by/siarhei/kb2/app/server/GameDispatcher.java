@@ -13,7 +13,7 @@ import by.siarhei.kb2.app.server.models.Magic;
 import by.siarhei.kb2.app.server.models.MapPoint;
 import by.siarhei.kb2.app.server.models.Player;
 import by.siarhei.kb2.app.server.models.battle.Battle;
-import by.siarhei.kb2.app.server.models.battle.BattleField;
+import by.siarhei.kb2.app.server.models.battle.BattleResult;
 import by.siarhei.kb2.app.server.warriors.WarriorFactory;
 import by.siarhei.kb2.app.ui.menus.Menu;
 import by.siarhei.kb2.app.ui.messages.Message;
@@ -100,12 +100,12 @@ public class GameDispatcher {
                 viewMode = VIEW_MODE_GRID;
                 break;
             case Request.ACTION_BATTLE_MOVE:
-//                BattleField battleField = game.getBattleField();
                 Battle battle = game.getBattle();
-
-
-                battle.interact(data.getX(), data.getY());
-
+                if(battle.finished()) {
+                    battleResult();
+                } else {
+                    battle.action(data.getX(), data.getY());
+                }
                 break;
         }
     }
@@ -253,5 +253,11 @@ public class GameDispatcher {
     private void startBattle(Fighting fighting) {
         viewMode = VIEW_MODE_BATTLE;
         game.startBattle(fighting);
+    }
+
+    private void battleResult() {
+        viewMode = VIEW_MODE_MESSAGE;
+        BattleResult battleResult = game.finishBattle();
+        this.message = battleResult.getMessage();
     }
 }

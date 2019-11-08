@@ -35,16 +35,16 @@ public class BattleFieldBuilder {
     }
 
     private void prepareArmy() {
-        WarriorSquad initArmy[] = new WarriorSquad[YSize];
-        Integer plSquadsIndex = 0;
-        for (int squadIndex = 0; squadIndex < player.MAX_ARMY && plSquadsIndex < YSize; squadIndex++) {
+        WarriorSquad[] initArmy = new WarriorSquad[YSize];
+        int plSquadsIndex = 0;
+        for (int squadIndex = 0; squadIndex < Player.MAX_ARMY && plSquadsIndex < YSize; squadIndex++) {
             if (player.getWarriorSquad(squadIndex) != null) {
                 initArmy[plSquadsIndex] = player.getWarriorSquad(squadIndex);
                 plSquadsIndex++;
             }
         }
         for (int i = 0; i < YSize; i++) {
-            WarriorEntity entity = null;
+            WarriorEntity entity;
             if (initArmy[i] != null) {
                 entity = new WarriorEntity(
                         initArmy[i].getWarrior(),
