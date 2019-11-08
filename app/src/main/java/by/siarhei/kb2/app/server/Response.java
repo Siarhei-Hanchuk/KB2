@@ -104,6 +104,6 @@ public class Response {
     }
 
     public BattleField getBattleField() {
-        return game.getBattleField();
+        return game.getBattle().getBattleField();
     }
 }

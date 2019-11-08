@@ -28,9 +28,9 @@ public class BattleResult {
     }
 
     private boolean isWinner() {
-        Iterator<MapPointBattle> iterator = battleField.getMapPointsList();
+        Iterator<MapPoint> iterator = battleField.getMapPointsList();
         while (iterator.hasNext()) {
-            MapPointBattle point = iterator.next();
+            MapPoint point = iterator.next();
 
             if(point.isEntity() && !point.getEntity().isPlayerEntity()) {
                 return false;

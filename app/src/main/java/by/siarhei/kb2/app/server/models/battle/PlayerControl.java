@@ -2,7 +2,7 @@ package by.siarhei.kb2.app.server.models.battle;
 
 import java.util.Iterator;
 
-public class PlayerControl implements Interactor {
+public class PlayerControl implements BattleParticipant {
     private final BattleField battleField;
     private final MoveArea moveArea;
 
@@ -24,10 +24,10 @@ public class PlayerControl implements Interactor {
 
     @Override
     public boolean finished() {
-        Iterator<MapPointBattle> mapPoints = battleField.getMapPointsList();
+        Iterator<MapPoint> mapPoints = battleField.getMapPointsList();
 
         while(mapPoints.hasNext()) {
-            MapPointBattle mapPoint = mapPoints.next();
+            MapPoint mapPoint = mapPoints.next();
             if (mapPoint.isEntity() && mapPoint.isPlayerEntity()) {
                 if (mapPoint.getEntity().getStep() > 0) {
                     return false;
@@ -46,11 +46,11 @@ public class PlayerControl implements Interactor {
     }
 
     private void tryMoveTo(int x, int y) {
-        MapPointBattle to = battleField.getMapPoint(x, y);
+        MapPoint to = battleField.getMapPoint(x, y);
         if (!to.isMovable()) return;
 
-        MapPointBattle from = battleField.getSelectedPoint();
-        WarriorEntity entity = from.getEntity();
+        MapPoint from = battleField.getSelectedPoint();
+        Entity entity = from.getEntity();
         EntityActor actor = new EntityActor(battleField, from, to);
         actor.tryMoveTo();
         if(entity.getStep() <= 0) {

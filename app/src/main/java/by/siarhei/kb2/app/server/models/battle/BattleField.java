@@ -4,38 +4,37 @@ import java.util.Iterator;
 
 import by.siarhei.kb2.app.server.entities.Fighting;
 import by.siarhei.kb2.app.server.models.Glade;
-import by.siarhei.kb2.app.server.models.MapPoint;
 
 public class BattleField implements Glade {
     private final int XSize = 6;
     private final int YSize = 5;
-    private final MapPointBattle[][] map;
-    private MapPointBattle selected;
+    private final MapPoint[][] map;
+    private MapPoint selected;
     private boolean aiTurn = false;
     private final Fighting fighting;
 
-    public BattleField(MapPointBattle[][] map, Fighting fighting) {
+    BattleField(MapPoint[][] map, Fighting fighting) {
         this.map = map;
         this.fighting = fighting;
     }
 
     @Override
-    public MapPointBattle getMapPoint(int x, int y) {
+    public MapPoint getMapPoint(int x, int y) {
         return map[x][y];
     }
 
     @Override
-    public MapPointBattle[][] getMapPoints() {
+    public MapPoint[][] getMapPoints() {
         return map;
     }
 
     public void selectEntity(int x, int y) {
         if (!inBorders(x,y)) return;
 
-        MapPointBattle mapPoint = map[x][y];
+        MapPoint mapPoint = map[x][y];
         if (mapPoint.getEntity() == null) return;
 
-        WarriorEntity entity = mapPoint.getEntity();
+        Entity entity = mapPoint.getEntity();
 
         if (entity.isPlayerEntity() && entity.getStep() > 0) {
             System.out.println("select!!!");
@@ -58,11 +57,11 @@ public class BattleField implements Glade {
     }
 
     @Override
-    public WarriorEntity getEntity(int x, int y) {
+    public Entity getEntity(int x, int y) {
         return map[x][y].getEntity();
     }
 
-    public int distance(MapPoint from, MapPoint to) {
+    public int distance(by.siarhei.kb2.app.server.models.MapPoint from, by.siarhei.kb2.app.server.models.MapPoint to) {
         return Math.max(Math.abs(from.getX() - to.getX()),
                 Math.abs(from.getY() - to.getY()));
     }
@@ -109,15 +108,15 @@ public class BattleField implements Glade {
 //        return casualties;
 //    }
 
-    public void setSelected(WarriorEntity entity) {
+    public void setSelected(Entity entity) {
         if(entity == null) {
             this.selected = null;
             return;
         }
 
-        Iterator<MapPointBattle> iterator = getMapPointsList();
+        Iterator<MapPoint> iterator = getMapPointsList();
         while(iterator.hasNext()) {
-            MapPointBattle point = iterator.next();
+            MapPoint point = iterator.next();
             if(point.getEntity() == entity) {
                 this.selected = point;
                 return;
@@ -125,12 +124,12 @@ public class BattleField implements Glade {
         }
     }
 
-    public MapPointBattle getSelectedPoint() {
+    public MapPoint getSelectedPoint() {
         return this.selected;
     }
 
-    public Iterator<MapPointBattle> getMapPointsList() {
-        return new Iterator<MapPointBattle>() {
+    public Iterator<MapPoint> getMapPointsList() {
+        return new Iterator<MapPoint>() {
             private int x = 0;
             private int y = 0;
             @Override
@@ -139,11 +138,11 @@ public class BattleField implements Glade {
             }
 
             @Override
-            public MapPointBattle next() {
+            public MapPoint next() {
                 if(y >= YSize)
                     return null;
 
-                MapPointBattle point = map[x][y];
+                MapPoint point = map[x][y];
                 if(x < XSize - 1) {
                     x++;
                 } else {
@@ -167,9 +166,9 @@ public class BattleField implements Glade {
         boolean playerHasAnyone = false;
         boolean aiHasAnyone = false;
 
-        Iterator<MapPointBattle> mapPoints = getMapPointsList();
+        Iterator<MapPoint> mapPoints = getMapPointsList();
         while(mapPoints.hasNext()) {
-            MapPointBattle point = mapPoints.next();
+            MapPoint point = mapPoints.next();
             if(point.isEntity()) {
                 playerHasAnyone = playerHasAnyone|| point.getEntity().isPlayerEntity();
                 aiHasAnyone = aiHasAnyone || !point.getEntity().isPlayerEntity();

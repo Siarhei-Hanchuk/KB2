@@ -16,7 +16,8 @@ import by.siarhei.kb2.app.server.models.battle.BattleFieldBuilder;
 import by.siarhei.kb2.app.server.models.battle.Battle;
 import by.siarhei.kb2.app.server.models.battle.BattleField;
 import by.siarhei.kb2.app.server.models.battle.BattleResult;
-import by.siarhei.kb2.app.server.models.battle.MapPointBattle;
+import by.siarhei.kb2.app.server.models.battle.Battler;
+import by.siarhei.kb2.app.server.models.battle.MapPoint;
 import by.siarhei.kb2.app.server.warriors.Warrior;
 import by.siarhei.kb2.app.server.warriors.WarriorFactory;
 
@@ -39,8 +40,7 @@ public class Game implements Serializable {
     private int currentWorker = -1;
     private City updatedCity;
     private Warrior updatedWarrior;
-    private BattleField battleField;
-    private Battle battle;
+    private Battler battler;
 
     public Game(World world, Player player, int weeks) {
         this.world = world;
@@ -111,8 +111,8 @@ public class Game implements Serializable {
                 shopsIterator.next().resetCount();
         }
 
-        MapPoint cityMapPoint = null;
-        Iterator<MapPoint> citiesIterator = world.getMapPointsList(City.class);
+        by.siarhei.kb2.app.server.models.MapPoint cityMapPoint = null;
+        Iterator<by.siarhei.kb2.app.server.models.MapPoint> citiesIterator = world.getMapPointsList(City.class);
         int n = (new Random()).nextInt(25);
         for (int i = 0; citiesIterator.hasNext(); i++) {
             cityMapPoint = citiesIterator.next();
@@ -136,14 +136,14 @@ public class Game implements Serializable {
         }
     }
 
-    public MapPoint move(int dx, int dy) {
+    public by.siarhei.kb2.app.server.models.MapPoint move(int dx, int dy) {
         int x = player.getX();
         int y = player.getY();
         if (x + dx < 2 || x + dx > 62 || y + dy < 2 || y + dy > 62) {
             return player.getCountry().getMapPoint(x, y);
         }
 
-        MapPoint mp = player.getCountry().getMapPoint(x + dx, y + dy);
+        by.siarhei.kb2.app.server.models.MapPoint mp = player.getCountry().getMapPoint(x + dx, y + dy);
 
         if (mp.getEntity() == null) {
             if (currentWorker > -1) {
@@ -256,45 +256,15 @@ public class Game implements Serializable {
     }
 
     public void startBattle(Fighting fighting) {
-        BattleFieldBuilder fieldBuilder = new BattleFieldBuilder(player, fighting);
-        MapPointBattle[][] mapPoints = fieldBuilder.build();
-        battleField = new BattleField(mapPoints, fighting);
-        battle = new Battle(battleField);
-    }
-
-    public BattleField getBattleField() {
-        return battleField;
+        battler = new Battler(player);
+        battler.startBattle(fighting);
     }
 
     public Battle getBattle() {
-        return battle;
+        return battler.getBattle();
     }
 
     public BattleResult finishBattle() {
-        BattleResult battleResult = new BattleResult(battleField);
-        player.changeMoney(battleResult.getGold());
-        player.changeAuthority(battleResult.getAuthority());
-        return battleResult;
-
-        //    @Override
-        //    public void battleFinish(boolean win, HashMap<String, Integer> casualties) {
-        //        int authority = fighting.getAuthority() / 40; //??
-        //        int money = fighting.getAuthority() * 40; //??
-        //        if (win) {
-        //            getGame().getPlayer().changeAuthority(authority);
-        //            getGame().getPlayer().changeMoney(money);
-        //            applyCasualties(casualties);
-        //            fighting.defeat();
-        //        } else {
-        //            getGame().getPlayer().changeAuthority(-authority);
-        //            MapPoint land = getGame().getPlayer().getCountry().getRandomLand();
-        //            getGame().getPlayer().move(land.getX(), land.getY());
-        //            getGame().getPlayer().clearArmy();
-        //            getGame().getPlayer().deactivateCaptains();
-        //        }
-        //        setContentView(getViewFactory().getViewBattleResultsView(
-        //                this, casualties, win, authority, money));
-        //    }
-        //
+        return battler.finishBattle();
     }
 }

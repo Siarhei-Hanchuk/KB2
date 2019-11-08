@@ -2,12 +2,12 @@ package by.siarhei.kb2.app.server.models.battle;
 
 import java.util.Iterator;
 
-public class Battle implements Interactor {
+public class Battle implements BattleParticipant {
     private final BattleField battleField;
-    private final Interactor ai;
-    private final Interactor player;
+    private final BattleParticipant ai;
+    private final BattleParticipant player;
 
-    public Battle(BattleField battleField) {
+    Battle(BattleField battleField) {
         this.battleField = battleField;
 
         this.ai = new BattleAi(battleField);
@@ -29,6 +29,14 @@ public class Battle implements Interactor {
         return battleField.finished();
     }
 
+    public BattleResult getBattleResult() {
+        return new BattleResult(battleField);
+    }
+
+    public BattleField getBattleField() {
+        return battleField;
+    }
+
     private void aiAction(int x, int y) {
         ai.action(x, y);
         if(ai.finished()) {
@@ -46,12 +54,11 @@ public class Battle implements Interactor {
         }
     }
 
-
     // TODO: move deeper
     private void resetEntities() {
-        Iterator<MapPointBattle> mapPoints = battleField.getMapPointsList();
+        Iterator<MapPoint> mapPoints = battleField.getMapPointsList();
         while(mapPoints.hasNext()) {
-            MapPointBattle mapPoint = mapPoints.next();
+            MapPoint mapPoint = mapPoints.next();
             if (mapPoint.isEntity()) {
                 mapPoint.getEntity().resetStep();
             }
@@ -59,11 +66,11 @@ public class Battle implements Interactor {
     }
 
     private void cleanUpDied() {
-        Iterator<MapPointBattle> mapPoints = battleField.getMapPointsList();
+        Iterator<MapPoint> mapPoints = battleField.getMapPointsList();
         while(mapPoints.hasNext()) {
-            MapPointBattle mapPoint = mapPoints.next();
+            MapPoint mapPoint = mapPoints.next();
             if (mapPoint.isEntity()) {
-                WarriorEntity entity = mapPoint.getEntity();
+                Entity entity = mapPoint.getEntity();
                 if(entity.getCount() <= 0) {
                     mapPoint.setEntity(null);
                 }

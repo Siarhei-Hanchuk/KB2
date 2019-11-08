@@ -1,7 +1,5 @@
 package by.siarhei.kb2.app.server.models.battle;
 
-import android.support.annotation.NonNull;
-
 import by.siarhei.kb2.app.server.warriors.Warrior;
 
 class MoveArea {
@@ -17,7 +15,7 @@ class MoveArea {
     private void moveAreaFly() {
         for (int x = 0; x < XSize; x++) {
             for (int y = 0; y < YSize; y++) {
-                MapPointBattle mapPoint = battleField.getMapPoint(x, y);
+                MapPoint mapPoint = battleField.getMapPoint(x, y);
                 if (mapPoint.isLand() || (mapPoint.isEntity() && !mapPoint.isPlayerEntity())) {
                     mapPoint.setMovable(true);
                 }
@@ -25,7 +23,7 @@ class MoveArea {
         }
     }
 
-    public void build(MapPointBattle mapPoint) {
+    public void build(MapPoint mapPoint) {
         clearMoveArea();
         Warrior war = mapPoint.getEntity();
         if (war.isFly())
@@ -48,7 +46,7 @@ class MoveArea {
     private void shotGoals() {
         for (int x = 0; x < XSize; x++) {
             for (int y = 0; y < YSize; y++) {
-                MapPointBattle mapPoint = battleField.getMapPoint(x, y);
+                MapPoint mapPoint = battleField.getMapPoint(x, y);
 
                 if (mapPoint.isEntity() && !mapPoint.isPlayerEntity()) {
                     mapPoint.setMovable(true);
@@ -66,7 +64,7 @@ class MoveArea {
                 !battleField.getMapPoint(x, y).isLand())
             return;
         step--;
-        MapPointBattle mapPoint = battleField.getMapPoint(x, y);
+        MapPoint mapPoint = battleField.getMapPoint(x, y);
         mapPoint.setMovable(true);
         if (!mapPoint.isEntity() || ignoreEntity) {
             snake(x + 1, y, step, false);

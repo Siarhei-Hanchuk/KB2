@@ -16,8 +16,8 @@ import by.siarhei.kb2.app.server.GameGrid;
 import by.siarhei.kb2.app.server.Request;
 import by.siarhei.kb2.app.server.Response;
 import by.siarhei.kb2.app.server.Server;
-import by.siarhei.kb2.app.server.models.battle.MapPointBattle;
-import by.siarhei.kb2.app.server.models.battle.WarriorEntity;
+import by.siarhei.kb2.app.server.models.battle.MapPoint;
+import by.siarhei.kb2.app.server.models.battle.Entity;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
 
 public class BattleView extends RootView {
@@ -50,7 +50,7 @@ public class BattleView extends RootView {
         Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 
-        MapPointBattle[][] map = response.getBattleField().getMapPoints();
+        MapPoint[][] map = response.getBattleField().getMapPoints();
         drawLand(painter, map);
 
         for (int x = 0; x < 6; x++) {
@@ -66,7 +66,7 @@ public class BattleView extends RootView {
         drawSelected(painter);
     }
 
-    private void drawLand(Painter painter, MapPointBattle[][] mapPoints) {
+    private void drawLand(Painter painter, MapPoint[][] mapPoints) {
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 5; y++) {
                 painter.drawBitmap(getImageCache().getImage(mapPoints[x][y].getLand()),
@@ -75,8 +75,8 @@ public class BattleView extends RootView {
         }
     }
 
-    private void drawMoveCircle(Painter painter, int x, int y, MapPointBattle[][] map) {
-        MapPointBattle point = map[x][y];
+    private void drawMoveCircle(Painter painter, int x, int y, MapPoint[][] map) {
+        MapPoint point = map[x][y];
         if (point.getEntity() != null) {
             if (!point.getEntity().isPlayerEntity())
                 painter.drawBitmap(getImageCache().getImage(R.drawable.battle_attack),
@@ -87,9 +87,9 @@ public class BattleView extends RootView {
         }
     }
 
-    private void drawWarrior(Painter painter, int x, int y, MapPointBattle[][] map) {
-        MapPointBattle point = map[x][y];
-        WarriorEntity warrior = point.getEntity();
+    private void drawWarrior(Painter painter, int x, int y, MapPoint[][] map) {
+        MapPoint point = map[x][y];
+        Entity warrior = point.getEntity();
         Bitmap image = getImageCache().getImage(point.getEntity().getID());
         if (!warrior.isPlayerEntity()) {
             image = flipImage(image);

@@ -3,14 +3,14 @@ package by.siarhei.kb2.app.server.models.battle;
 import by.siarhei.kb2.app.server.models.Mover;
 
 class EntityActor {
-    private final MapPointBattle from;
-    private final MapPointBattle to;
+    private final MapPoint from;
+    private final MapPoint to;
     private final BattleField battleField;
     private final Mover mover;
-    private final WarriorEntity entity;
+    private final Entity entity;
 
     // TODO: remove forPlayer
-    public EntityActor(BattleField battleField, MapPointBattle from, MapPointBattle to) {
+    public EntityActor(BattleField battleField, MapPoint from, MapPoint to) {
         this.mover = new Mover(battleField);
 
         this.battleField = battleField;
@@ -47,7 +47,7 @@ class EntityActor {
         }
     }
 
-    private WarriorEntity getEntity() {
+    private Entity getEntity() {
         return entity;
     }
 

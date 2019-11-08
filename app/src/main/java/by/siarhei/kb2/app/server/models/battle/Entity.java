@@ -1,16 +1,15 @@
 package by.siarhei.kb2.app.server.models.battle;
 
-import by.siarhei.kb2.app.server.entities.Entity;
 import by.siarhei.kb2.app.server.warriors.Warrior;
 
-public class WarriorEntity implements Entity, Warrior {
+public class Entity implements by.siarhei.kb2.app.server.entities.Entity, Warrior {
     private final Warrior warrior;
     private final boolean friendly;
     private int step;
     private int count;
     private int defence;
 
-    public WarriorEntity(Warrior warrior, int count, boolean friendly) {
+    public Entity(Warrior warrior, int count, boolean friendly) {
         this.warrior = warrior;
         this.count = count;
         this.friendly = friendly;
@@ -67,7 +66,7 @@ public class WarriorEntity implements Entity, Warrior {
         return friendly;
     }
 
-    public boolean isOwn(WarriorEntity entity) {
+    public boolean isOwn(Entity entity) {
         return friendly == entity.friendly;
     }
 
@@ -81,7 +80,7 @@ public class WarriorEntity implements Entity, Warrior {
             this.step -= step;
     }
 
-    public void attack(WarriorEntity warrior) {
+    public void attack(Entity warrior) {
         warrior.takeAttack(this.warrior.getDamage() * count);
         step = 0;
     }

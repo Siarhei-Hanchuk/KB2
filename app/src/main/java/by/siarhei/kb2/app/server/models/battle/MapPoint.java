@@ -3,14 +3,12 @@ package by.siarhei.kb2.app.server.models.battle;
 import java.util.Iterator;
 
 import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.server.entities.Entity;
-import by.siarhei.kb2.app.server.models.MapPoint;
 
-public class MapPointBattle extends MapPoint {
+public class MapPoint extends by.siarhei.kb2.app.server.models.MapPoint {
     private boolean move = false;
-    private WarriorEntity entity;
+    private Entity entity;
 
-    public MapPointBattle(int x, int y) {
+    public MapPoint(int x, int y) {
         super(x, y);
     }
 
@@ -23,13 +21,13 @@ public class MapPointBattle extends MapPoint {
     }
 
     @Override
-    public WarriorEntity getEntity() {
+    public Entity getEntity() {
         return entity;
     }
 
     @Override
-    public void setEntity(Entity entity) {
-        this.entity = (WarriorEntity) entity;
+    public void setEntity(by.siarhei.kb2.app.server.entities.Entity entity) {
+        this.entity = (Entity) entity;
     }
 
     public boolean isLand() {
@@ -40,10 +38,10 @@ public class MapPointBattle extends MapPoint {
         return isEntity() && getEntity().isPlayerEntity();
     }
 
-    public Iterator<MapPointBattle> getMapPointsList() {
-        final MapPointBattle self = this;
+    public Iterator<MapPoint> getMapPointsList() {
+        final MapPoint self = this;
 
-        return new Iterator<MapPointBattle>() {
+        return new Iterator<MapPoint>() {
             private boolean hasNext = true;
 
             @Override
@@ -52,7 +50,7 @@ public class MapPointBattle extends MapPoint {
             }
 
             @Override
-            public MapPointBattle next() {
+            public MapPoint next() {
                 hasNext = false;
                 return self;
             }

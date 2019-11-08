@@ -11,14 +11,14 @@ public class BattleFieldBuilder {
 
     private final Player player;
     private final Fighting fighting;
-    private final MapPointBattle[][] map = new MapPointBattle[XSize][YSize];
+    private final MapPoint[][] map = new MapPoint[XSize][YSize];
 
-    public BattleFieldBuilder(Player player, Fighting fighting) {
+    BattleFieldBuilder(Player player, Fighting fighting) {
         this.player = player;
         this.fighting = fighting;
     }
 
-    public MapPointBattle[][] build() {
+    public MapPoint[][] build() {
         prepareField();
         prepareArmy();
 
@@ -28,7 +28,7 @@ public class BattleFieldBuilder {
     private void prepareField() {
         for (int i = 0; i < XSize; i++) {
             for (int j = 0; j < YSize; j++) {
-                map[i][j] = new MapPointBattle(i, j);
+                map[i][j] = new MapPoint(i, j);
                 map[i][j].setLand(R.drawable.land);
             }
         }
@@ -44,16 +44,16 @@ public class BattleFieldBuilder {
             }
         }
         for (int i = 0; i < YSize; i++) {
-            WarriorEntity entity;
+            Entity entity;
             if (initArmy[i] != null) {
-                entity = new WarriorEntity(
+                entity = new Entity(
                         initArmy[i].getWarrior(),
                         initArmy[i].getCount(),
                         true);
                 map[0][i].setEntity(entity);
             }
             if (fighting.getWarriorSquad(i) != null) {
-                entity = new WarriorEntity(
+                entity = new Entity(
                         fighting.getWarriorSquad(i).getWarrior(),
                         fighting.getWarriorSquad(i).getCount(),
                         false);
