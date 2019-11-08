@@ -4,7 +4,6 @@ import by.siarhei.kb2.app.R;
 
 import java.util.Random;
 
-import by.siarhei.kb2.app.server.models.MapPoint;
 import by.siarhei.kb2.app.server.models.Player;
 import by.siarhei.kb2.app.server.warriors.Warrior;
 import by.siarhei.kb2.app.server.warriors.WarriorFactory;
@@ -47,9 +46,4 @@ public class Captain implements Entity, Fighting {
         }
     }
 
-    @Override
-    public void defeat() {
-        // TODO:
-//        this.destroy();
-    }
 }

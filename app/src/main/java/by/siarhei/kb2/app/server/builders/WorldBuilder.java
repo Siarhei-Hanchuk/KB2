@@ -4,7 +4,7 @@ import by.siarhei.kb2.app.server.countries.Country;
 import by.siarhei.kb2.app.server.countries.World;
 import by.siarhei.kb2.app.server.models.Game;
 
-public class WorldBuilder {
+class WorldBuilder {
     private static final int[] defaultWorldSchema = {
             CountryBuilder.COUNTRY_ONE,
             CountryBuilder.COUNTRY_TWO,
@@ -49,7 +49,7 @@ public class WorldBuilder {
         return buildWorld(5, defaultWorldSchema, false);
     }
 
-    private static Country[] buildWorld(int size, int ccc[], boolean hardMode) {
+    private static Country[] buildWorld(int size, int[] ccc, boolean hardMode) {
         Country[] countries = new Country[size];
         for (int i = 0; i < size; i++) {
             CountryBuilder countryBuilder = new CountryBuilder();

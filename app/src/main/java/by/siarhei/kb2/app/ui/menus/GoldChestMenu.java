@@ -8,7 +8,7 @@ import by.siarhei.kb2.app.server.models.MapPoint;
 
 public class GoldChestMenu extends Menu {
     private final GoldenChest chest;
-    private MapPoint mapPoint;
+    private final MapPoint mapPoint;
 
     GoldChestMenu(MapPoint mapPoint, Game game, I18n i18n) {
         super(game, i18n);

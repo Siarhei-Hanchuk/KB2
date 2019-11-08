@@ -27,7 +27,7 @@ class MapView extends RootView {
         Player player = response.getPlayer();
         int pointSize = canvas.getHeight() / Country.MAX_MAP_SIZE;
         Country country = player.getCountry();
-        boolean memory[][] = player.getMemory().getMap(country.getId());
+        boolean[][] memory = player.getMemory().getMap(country.getId());
 
         Paint paint = new Paint();
         for (int i = 0; i < Country.MAX_MAP_SIZE; i++) {

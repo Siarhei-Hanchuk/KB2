@@ -9,5 +9,4 @@ public interface Fighting {
 
     void generateArmy(int authority, int group);
 
-    void defeat();
 }

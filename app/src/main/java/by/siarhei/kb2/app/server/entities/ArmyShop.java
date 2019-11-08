@@ -1,7 +1,6 @@
 package by.siarhei.kb2.app.server.entities;
 
 import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.server.models.MapPoint;
 import by.siarhei.kb2.app.server.models.iterators.ArmyShopsOwner;
 import by.siarhei.kb2.app.server.warriors.Warrior;
 import by.siarhei.kb2.app.server.warriors.WarriorFactory;
@@ -30,12 +29,10 @@ public class ArmyShop implements Entity, ArmyShopsOwner {
         return count;
     }
 
-    public boolean pullArmy(int count) {
+    public void pullArmy(int count) {
         if (this.count - count >= 0) {
             this.count -= count;
-            return true;
         }
-        return false;
     }
 
     public void resetCount() {

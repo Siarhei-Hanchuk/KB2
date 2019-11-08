@@ -12,9 +12,7 @@ import by.siarhei.kb2.app.server.entities.Magician;
 import by.siarhei.kb2.app.server.entities.Moving;
 import by.siarhei.kb2.app.server.entities.Nave;
 import by.siarhei.kb2.app.server.entities.Sorcerer;
-import by.siarhei.kb2.app.server.models.battle.BattleFieldBuilder;
 import by.siarhei.kb2.app.server.models.battle.Battle;
-import by.siarhei.kb2.app.server.models.battle.BattleField;
 import by.siarhei.kb2.app.server.models.battle.BattleResult;
 import by.siarhei.kb2.app.server.models.battle.Battler;
 import by.siarhei.kb2.app.server.warriors.Warrior;
@@ -55,7 +53,7 @@ public class Game implements Serializable {
         return world;
     }
 
-    public void moveEntities() {
+    private void moveEntities() {
         HashMap<Entity, Boolean> movedEntity = new HashMap<>();
         Glade glade = player.getCountry();
         for (int x = player.getX() - 2; x <= player.getX() + 2; x++) {

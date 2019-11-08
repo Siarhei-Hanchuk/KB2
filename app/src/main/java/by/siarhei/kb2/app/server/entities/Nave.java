@@ -1,8 +1,6 @@
 package by.siarhei.kb2.app.server.entities;
 
 import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.server.countries.Country;
-import by.siarhei.kb2.app.server.models.MapPoint;
 
 public class Nave implements Entity {
     @Override

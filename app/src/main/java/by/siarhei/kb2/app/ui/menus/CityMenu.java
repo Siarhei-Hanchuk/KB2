@@ -13,7 +13,7 @@ public class CityMenu extends Menu {
     private final int PRICE_NAVE = 500;
     private final int PRICE_WALLKICK = 3000;
     private final City city;
-    private MapPoint mapPoint;
+    private final MapPoint mapPoint;
 
     CityMenu(MapPoint mapPoint, Game game, I18n i18n) {
         super(game, i18n);
@@ -22,7 +22,7 @@ public class CityMenu extends Menu {
     }
 
     public String getCityName() {
-        return i18n.translate("entity_city_names_name" + Integer.toString(city.getNameId()));
+        return i18n.translate("entity_city_names_name" + city.getNameId());
     }
 
     @Override
@@ -134,7 +134,6 @@ public class CityMenu extends Menu {
         int y;
         for (x = mapPoint.getX() - 1; x <= mapPoint.getX() + 1; x++) {
             for (y = mapPoint.getY() - 1; y <= mapPoint.getY() + 1; y++) {
-                TODO:
                 if (player.getCountry().getMapPoint(x, y).getLand() == R.drawable.water) {
                     game.createNave(player.getCountry(), x, y);
                     return;

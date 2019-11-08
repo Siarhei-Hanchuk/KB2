@@ -1,7 +1,6 @@
 package by.siarhei.kb2.app.server.entities;
 
 import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.server.models.MapPoint;
 import by.siarhei.kb2.app.server.warriors.Warrior;
 import by.siarhei.kb2.app.server.warriors.WarriorFactory;
 import by.siarhei.kb2.app.server.warriors.WarriorSquad;
@@ -41,11 +40,6 @@ public class Castle implements Entity, Fighting, CastlesOwner {
             WarriorSquad squad = new WarriorSquad(warrior, authority / warrior.getDamage());
             warriors[i] = squad;
         }
-    }
-
-    @Override
-    public void defeat() {
-
     }
 
     @Override

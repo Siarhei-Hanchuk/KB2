@@ -15,10 +15,10 @@ import by.siarhei.kb2.app.server.Server;
 import by.siarhei.kb2.app.server.Response;
 
 public abstract class RootView {
-    protected final MainView mainView;
-    protected final I18n i18n;
+    final MainView mainView;
+    final I18n i18n;
 
-    public RootView(MainView mainView) {
+    RootView(MainView mainView) {
         this.mainView = mainView;
         this.i18n = Server.getI18n();
     }
@@ -32,39 +32,39 @@ public abstract class RootView {
         return true;
     }
 
-    protected Painter getPainter(Canvas canvas) {
+    Painter getPainter(Canvas canvas) {
         return mainView.getPainter(canvas);
     }
 
-    protected ImageCache getImageCache() {
+    ImageCache getImageCache() {
         return mainView.getImageCache();
     }
 
-    protected int stepX() {
+    int stepX() {
         return mainView.stepX();
     }
 
-    protected int stepY() {
+    int stepY() {
         return mainView.stepY();
     }
 
-    protected Paint getDefaultPaint() {
+    Paint getDefaultPaint() {
         return mainView.getDefaultPaint();
     }
 
-    protected int textHeight() {
+    int textHeight() {
         return mainView.textHeight();
     }
 
-    protected int menuItemHeight() {
+    int menuItemHeight() {
         return mainView.menuItemHeight();
     }
 
-    protected Resources getResources() {
+    Resources getResources() {
         return mainView.getResources();
     }
 
-    protected int getWidth() { return mainView.getWidth(); }
+    int getWidth() { return mainView.getWidth(); }
 
-    protected int getHeight() { return mainView.getHeight(); }
+    int getHeight() { return mainView.getHeight(); }
 }

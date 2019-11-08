@@ -62,8 +62,6 @@ public class BattleView extends RootView {
                 }
             }
         }
-
-        drawSelected(painter);
     }
 
     private void drawLand(Painter painter, MapPoint[][] mapPoints) {
@@ -108,14 +106,6 @@ public class BattleView extends RootView {
                 getCountPaint());
     }
 
-    private void drawSelected(@NonNull Painter painter) {
-//        if (battleController.getSelectedX() >= 0 && battleController.getSelectedY() >= 0) {
-//            painter.drawBitmap(getImageCache().getImage(R.drawable.battle_select),
-//                    stepX() * battleController.getSelectedX(),
-//                    stepY() * battleController.getSelectedY());
-//        }
-    }
-
     private Bitmap flipImage(Bitmap src) {
         Matrix m = new Matrix();
         m.preScale(-1, 1);
@@ -141,12 +131,12 @@ public class BattleView extends RootView {
         return countPaintBg;
     }
 
-    public Click getClick(@NonNull MotionEvent event) {
+    private Click getClick(@NonNull MotionEvent event) {
         int[] offsets = calcOffsets();
         return new Click(event, offsets[0], offsets[1], getWidth(), getHeight());
     }
 
-    public int[] calcOffsets() {
+    private int[] calcOffsets() {
         double scaleX = (double) getWidth() / (IMAGE_WIDTH * GameGrid.STEP_X);
         double scaleY = (double) getHeight() / (IMAGE_HEIGHT * GameGrid.STEP_Y);
         int[] offsets = new int[2];

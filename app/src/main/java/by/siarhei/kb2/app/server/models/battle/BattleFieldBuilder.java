@@ -5,7 +5,7 @@ import by.siarhei.kb2.app.server.entities.Fighting;
 import by.siarhei.kb2.app.server.models.Player;
 import by.siarhei.kb2.app.server.warriors.WarriorSquad;
 
-public class BattleFieldBuilder {
+class BattleFieldBuilder {
     private final int XSize = 6;
     private final int YSize = 5;
 

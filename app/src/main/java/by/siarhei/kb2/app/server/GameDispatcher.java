@@ -35,9 +35,9 @@ public class GameDispatcher {
 
     public static final int GAME_MENU_MAIN = -1;
     public static final int GAME_MENU_OTHER = 0;
-    public static final int GAME_MENU_WORKERS = 1;
+    private static final int GAME_MENU_WORKERS = 1;
     public static final int GAME_MENU_MAGIC = 2;
-    public static final int GAME_MENU_STATUS = 3;
+    private static final int GAME_MENU_STATUS = 3;
     public static final int GAME_MENU_MAP = 4;
 
     private int viewMode = VIEW_MODE_GRID;
@@ -45,14 +45,12 @@ public class GameDispatcher {
 
     private transient Message message;
     private transient Menu menu;
-    private transient Game game;
+    private final transient Game game;
     private ArmyShop currentArmyShop;
     private Fighting currentFighting;
-    private boolean lock = false;
 
     public GameDispatcher(Game game) {
         this.game = game;
-        this.lock = false;
     }
 
     public void request(Request data) {

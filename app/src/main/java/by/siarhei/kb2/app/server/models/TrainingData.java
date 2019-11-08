@@ -2,7 +2,7 @@ package by.siarhei.kb2.app.server.models;
 
 import java.io.Serializable;
 
-public class TrainingData implements Serializable {
+class TrainingData implements Serializable {
     private boolean step1 = false;
     private boolean step2 = true;
     private boolean cities = true;

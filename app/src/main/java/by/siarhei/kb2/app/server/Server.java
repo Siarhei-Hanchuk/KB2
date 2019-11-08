@@ -11,9 +11,9 @@ public class Server {
     private static Server server = null;
     private static I18n i18n;
 
-    private Game game;
-    private GameDispatcher gameDispatcher;
-    private Response mResponse;
+    private final Game game;
+    private final GameDispatcher gameDispatcher;
+    private final Response mResponse;
     private boolean viewCached = false;
 
     private Server(Game game) {

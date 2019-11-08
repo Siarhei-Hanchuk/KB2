@@ -1,7 +1,6 @@
 package by.siarhei.kb2.app.server.models;
 
 import by.siarhei.kb2.app.server.countries.Country;
-import by.siarhei.kb2.app.server.entities.Entity;
 import by.siarhei.kb2.app.server.entities.Nave;
 import by.siarhei.kb2.app.server.warriors.Warrior;
 import by.siarhei.kb2.app.server.warriors.WarriorFactory;
@@ -251,7 +250,7 @@ public class Player implements Serializable {
         }
     }
 
-    public boolean hasArmy() {
+    private boolean hasArmy() {
         for (int i = 0; i < MAX_ARMY; i++) {
             if (warriors[i] != null)
                 return true;
@@ -265,15 +264,6 @@ public class Player implements Serializable {
 
     public MapPoint getMapPoint() {
         return getCountry().getMapPoint(getX(), getY());
-    }
-
-    public int distanceToEntity(Entity entity) {
-        // TODO:
-        return 0;
-//        return Math.max(
-//                Math.abs(getX() - entity.getMapPoint().getX()),
-//                Math.abs(getY() - entity.getMapPoint().getY())
-//        );
     }
 
     public boolean isCaptainsActivated() {

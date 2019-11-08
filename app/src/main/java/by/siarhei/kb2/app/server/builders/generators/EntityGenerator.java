@@ -12,7 +12,6 @@ import by.siarhei.kb2.app.server.entities.Castle;
 import by.siarhei.kb2.app.server.entities.CastleLeft;
 import by.siarhei.kb2.app.server.entities.CastleRight;
 import by.siarhei.kb2.app.server.entities.City;
-import by.siarhei.kb2.app.server.entities.Fighting;
 import by.siarhei.kb2.app.server.entities.GoldenChest;
 import by.siarhei.kb2.app.server.entities.GuidePost;
 import by.siarhei.kb2.app.server.entities.MapNext;

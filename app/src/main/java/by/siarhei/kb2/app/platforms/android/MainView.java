@@ -28,14 +28,12 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback, Dra
 
     private DrawThread drawThread;
     private Paint defaultPaint = null;
-    protected Context context;
     private boolean menuMode = true;
 
     private RootView view;
 
     public MainView(Context context) {
         super(context);
-        this.context = context;
         getHolder().addCallback(this);
     }
 
@@ -121,7 +119,7 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback, Dra
         return defaultPaint;
     }
 
-    public int[] calcOffsets() {
+    private int[] calcOffsets() {
         double scaleX = (double) getWidth() / (IMAGE_WIDTH * GameGrid.STEP_X);
         double scaleY = (double) getHeight() / (IMAGE_HEIGHT * GameGrid.STEP_Y);
         int[] offsets = new int[2];

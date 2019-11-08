@@ -15,15 +15,14 @@ import by.siarhei.kb2.app.server.entities.Metro;
 import by.siarhei.kb2.app.server.models.Glade;
 import by.siarhei.kb2.app.server.models.MapPoint;
 import by.siarhei.kb2.app.server.models.iterators.ArmyShopsOwner;
-import by.siarhei.kb2.app.server.models.iterators.CitiesOwner;
 import by.siarhei.kb2.app.server.models.iterators.EntityIterator;
 import by.siarhei.kb2.app.server.models.iterators.MapPointsOwner;
 
 public class Country implements Glade, Serializable, ArmyShopsOwner, MapPointsOwner, CastlesOwner {
     public final static int MAX_MAP_SIZE = 65;
-    final MapPoint[][] map;
+    private final MapPoint[][] map;
     private final Random random;
-    final int id;
+    private final int id;
 
     public Country(Random random, MapPoint[][] map, int id) {
         this.random = random;
@@ -83,7 +82,7 @@ public class Country implements Glade, Serializable, ArmyShopsOwner, MapPointsOw
         return map[x][y].getEntity() != null;
     }
 
-    public boolean isLand(int x, int y) {
+    private boolean isLand(int x, int y) {
         return map[x][y].getLand() == R.drawable.land;
     }
 
@@ -106,7 +105,7 @@ public class Country implements Glade, Serializable, ArmyShopsOwner, MapPointsOw
         return getLandNearPoint(getMapPointsList(City.class).next());
     }
 
-    public MapPoint getLandNearPoint(MapPoint point) {
+    private MapPoint getLandNearPoint(MapPoint point) {
         int pointX = point.getX();
         int pointY = point.getY();
         for (int x = pointX - 1; x <= pointX + 1; x++) {

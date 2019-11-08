@@ -22,8 +22,8 @@ public class Response {
     private City updatedCity;
     private Fighting fighting;
 
-    private transient Game game;
-    private transient GameDispatcher gameDispatcher;
+    private final transient Game game;
+    private final transient GameDispatcher gameDispatcher;
     private transient Player player;
     private ArmyShop armyShop;
     private int leftWeeks;

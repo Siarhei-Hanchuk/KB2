@@ -8,7 +8,7 @@ public class Battler {
     private final Player player;
     private Fighting fighting;
     private Battle battle;
-    private Game game;
+    private final Game game;
 
     public Battler(Game game) {
         this.player = game.getPlayer();
@@ -40,8 +40,6 @@ public class Battler {
     private void finishBattleWithWin(BattleResult battleResult) {
         game.getPlayer().changeMoney(battleResult.getGold());
         game.getPlayer().changeAuthority(battleResult.getAuthority());
-
-        fighting.defeat();
     }
 
     private void finishBattleWithFail(BattleResult battleResult) {

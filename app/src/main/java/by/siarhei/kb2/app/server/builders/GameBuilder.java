@@ -15,8 +15,7 @@ public class GameBuilder {
         } else if (mode == Game.MODE_TRAINING) {
             weeks = 600 - 1;
         }
-        Game game = new Game(world, player, weeks);
 
-        return game;
+        return new Game(world, player, weeks);
     }
 }

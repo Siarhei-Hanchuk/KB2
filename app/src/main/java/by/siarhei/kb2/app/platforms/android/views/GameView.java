@@ -86,35 +86,35 @@ public class GameView extends RootView {
     }
 
 
-    public void touchDown() {
+    private void touchDown() {
         playerMove(0, +1);
     }
 
-    public void touchUp() {
+    private void touchUp() {
         playerMove(0, -1);
     }
 
-    public void touchRight() {
+    private void touchRight() {
         playerMove(+1, 0);
     }
 
-    public void touchLeft() {
+    private void touchLeft() {
         playerMove(-1, 0);
     }
 
-    public void touchUpRight() {
+    private void touchUpRight() {
         playerMove(+1, -1);
     }
 
-    public void touchUpLeft() {
+    private void touchUpLeft() {
         playerMove(-1, -1);
     }
 
-    public void touchDownRight() {
+    private void touchDownRight() {
         playerMove(+1, +1);
     }
 
-    public void touchDownLeft() {
+    private void touchDownLeft() {
         playerMove(-1, +1);
     }
 

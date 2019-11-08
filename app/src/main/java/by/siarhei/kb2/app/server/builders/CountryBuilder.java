@@ -16,12 +16,11 @@ import by.siarhei.kb2.app.server.entities.GoldenChest;
 import by.siarhei.kb2.app.server.entities.GuidePost;
 import by.siarhei.kb2.app.server.entities.Metro;
 import by.siarhei.kb2.app.server.models.MapPoint;
-import by.siarhei.kb2.app.server.warriors.Warrior;
 import by.siarhei.kb2.app.server.warriors.WarriorFactory;
 import by.siarhei.kb2.app.server.warriors.WarriorSquad;
 
-public class CountryBuilder {
-    public final static int MAX_MAP_SIZE = 65;
+class CountryBuilder {
+    private final static int MAX_MAP_SIZE = 65;
     public final static int COUNTRY_ONE = 1;
     public final static int COUNTRY_TWO = 2;
     public final static int COUNTRY_THREE = 3;
@@ -188,7 +187,7 @@ public class CountryBuilder {
         return new Country(random, map, 4);
     }
 
-    public Country buildTest() {
+    private Country buildTest() {
         generateBaseField();
 
         Metro metro1 = entityGenerator.metro();
