@@ -275,5 +275,26 @@ public class Game implements Serializable {
         player.changeMoney(battleResult.getGold());
         player.changeAuthority(battleResult.getAuthority());
         return battleResult;
+
+        //    @Override
+        //    public void battleFinish(boolean win, HashMap<String, Integer> casualties) {
+        //        int authority = fighting.getAuthority() / 40; //??
+        //        int money = fighting.getAuthority() * 40; //??
+        //        if (win) {
+        //            getGame().getPlayer().changeAuthority(authority);
+        //            getGame().getPlayer().changeMoney(money);
+        //            applyCasualties(casualties);
+        //            fighting.defeat();
+        //        } else {
+        //            getGame().getPlayer().changeAuthority(-authority);
+        //            MapPoint land = getGame().getPlayer().getCountry().getRandomLand();
+        //            getGame().getPlayer().move(land.getX(), land.getY());
+        //            getGame().getPlayer().clearArmy();
+        //            getGame().getPlayer().deactivateCaptains();
+        //        }
+        //        setContentView(getViewFactory().getViewBattleResultsView(
+        //                this, casualties, win, authority, money));
+        //    }
+        //
     }
 }
