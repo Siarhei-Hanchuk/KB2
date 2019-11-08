@@ -1,15 +1,18 @@
 package by.siarhei.kb2.app.server.models.battle;
 
 import by.siarhei.kb2.app.server.entities.Fighting;
+import by.siarhei.kb2.app.server.models.Game;
 import by.siarhei.kb2.app.server.models.Player;
 
 public class Battler {
     private final Player player;
-
+    private Fighting fighting;
     private Battle battle;
+    private Game game;
 
-    public Battler(Player player) {
-        this.player = player;
+    public Battler(Game game) {
+        this.player = game.getPlayer();
+        this.game = game;
     }
 
     public void startBattle(Fighting fighting) {
@@ -17,6 +20,7 @@ public class Battler {
         MapPoint[][] mapPoints = fieldBuilder.build();
         BattleField battleField = new BattleField(mapPoints, fighting);
         battle = new Battle(battleField);
+        this.fighting = fighting;
     }
 
     public Battle getBattle() {
@@ -25,29 +29,26 @@ public class Battler {
 
     public BattleResult finishBattle() {
         BattleResult battleResult = battle.getBattleResult();
-        player.changeMoney(battleResult.getGold());
-        player.changeAuthority(battleResult.getAuthority());
+        if(battleResult.isWinner()) {
+            finishBattleWithWin(battleResult);
+        } else {
+            finishBattleWithFail(battleResult);
+        }
         return battleResult;
+    }
 
-        //    @Override
-        //    public void battleFinish(boolean win, HashMap<String, Integer> casualties) {
-        //        int authority = fighting.getAuthority() / 40; //??
-        //        int money = fighting.getAuthority() * 40; //??
-        //        if (win) {
-        //            getGame().getPlayer().changeAuthority(authority);
-        //            getGame().getPlayer().changeMoney(money);
-        //            applyCasualties(casualties);
-        //            fighting.defeat();
-        //        } else {
-        //            getGame().getPlayer().changeAuthority(-authority);
-        //            MapPoint land = getGame().getPlayer().getCountry().getRandomLand();
-        //            getGame().getPlayer().move(land.getX(), land.getY());
-        //            getGame().getPlayer().clearArmy();
-        //            getGame().getPlayer().deactivateCaptains();
-        //        }
-        //        setContentView(getViewFactory().getViewBattleResultsView(
-        //                this, casualties, win, authority, money));
-        //    }
-        //
+    private void finishBattleWithWin(BattleResult battleResult) {
+        game.getPlayer().changeMoney(battleResult.getGold());
+        game.getPlayer().changeAuthority(battleResult.getAuthority());
+
+        fighting.defeat();
+    }
+
+    private void finishBattleWithFail(BattleResult battleResult) {
+        player.changeAuthority(battleResult.getAuthority());
+
+        game.movePlayerInRandomPoint();
+        game.getPlayer().clearArmy();
+        game.getPlayer().deactivateCaptains();
     }
 }

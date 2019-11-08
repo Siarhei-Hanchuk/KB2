@@ -2,7 +2,7 @@ package by.siarhei.kb2.app.server.models.battle;
 
 import java.util.Iterator;
 
-public class BattleAi implements BattleParticipant {
+public class BattleAi implements Participant {
     private final BattleField battleField;
 
     BattleAi(BattleField battleField ) {
@@ -59,7 +59,7 @@ public class BattleAi implements BattleParticipant {
         actor.tryMoveTo();
     }
 
-    private MapPoint findNearestUserWar(by.siarhei.kb2.app.server.models.MapPoint from) {
+    private MapPoint findNearestUserWar(MapPoint from) {
         int distance = 99;
         MapPoint dst = null;
         for (int i = 0; i < 6; i++) {
@@ -76,7 +76,7 @@ public class BattleAi implements BattleParticipant {
         return dst;
     }
 
-    private MapPoint pointInDirection(by.siarhei.kb2.app.server.models.MapPoint from, by.siarhei.kb2.app.server.models.MapPoint to) {
+    private MapPoint pointInDirection(MapPoint from, MapPoint to) {
         int x = from.getX();
         int y = from.getY();
         int directionX = (int) Math.signum(to.getX() - x);

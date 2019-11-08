@@ -2,11 +2,11 @@ package by.siarhei.kb2.app.server.models.battle;
 
 import java.util.Iterator;
 
-public class PlayerControl implements BattleParticipant {
+class PlayerControl implements Participant {
     private final BattleField battleField;
     private final MoveArea moveArea;
 
-    public PlayerControl(BattleField battleField) {
+    PlayerControl(BattleField battleField) {
         this.battleField = battleField;
         this.moveArea = new MoveArea(battleField);
     }

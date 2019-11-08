@@ -61,7 +61,7 @@ public class BattleField implements Glade {
         return map[x][y].getEntity();
     }
 
-    public int distance(by.siarhei.kb2.app.server.models.MapPoint from, by.siarhei.kb2.app.server.models.MapPoint to) {
+    public int distance(MapPoint from, MapPoint to) {
         return Math.max(Math.abs(from.getX() - to.getX()),
                 Math.abs(from.getY() - to.getY()));
     }

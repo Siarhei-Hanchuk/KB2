@@ -2,10 +2,10 @@ package by.siarhei.kb2.app.server.models.battle;
 
 import java.util.Iterator;
 
-public class Battle implements BattleParticipant {
+public class Battle implements Participant {
     private final BattleField battleField;
-    private final BattleParticipant ai;
-    private final BattleParticipant player;
+    private final Participant ai;
+    private final Participant player;
 
     Battle(BattleField battleField) {
         this.battleField = battleField;

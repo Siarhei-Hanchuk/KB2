@@ -27,7 +27,7 @@ public class BattleResult {
         return Server.getMessageFactory().getBattleMessage(isWinner(), getAuthority(), getGold());
     }
 
-    private boolean isWinner() {
+    public boolean isWinner() {
         Iterator<MapPoint> iterator = battleField.getMapPointsList();
         while (iterator.hasNext()) {
             MapPoint point = iterator.next();

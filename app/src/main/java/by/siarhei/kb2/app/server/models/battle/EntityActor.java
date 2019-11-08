@@ -9,8 +9,7 @@ class EntityActor {
     private final Mover mover;
     private final Entity entity;
 
-    // TODO: remove forPlayer
-    public EntityActor(BattleField battleField, MapPoint from, MapPoint to) {
+    EntityActor(BattleField battleField, MapPoint from, MapPoint to) {
         this.mover = new Mover(battleField);
 
         this.battleField = battleField;
