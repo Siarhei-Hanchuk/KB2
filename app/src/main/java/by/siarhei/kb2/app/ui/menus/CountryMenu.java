@@ -20,7 +20,9 @@ public class CountryMenu extends Menu {
 
     @Override
     public boolean select(int i) {
-        game.changeCountry(i);
+        if(i < player.getAvailableCountry()) {
+            game.changeCountry(i);
+        }
         return true;
     }
 
