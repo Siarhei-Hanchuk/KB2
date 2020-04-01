@@ -16,6 +16,7 @@ import by.siarhei.kb2.app.platforms.android.helpers.ImageCache;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
 import by.siarhei.kb2.app.server.warriors.WarriorFactory;
 
+import java.lang.reflect.Field;
 import java.util.HashMap;
 
 class MagicView extends RootView {
@@ -65,7 +66,8 @@ class MagicView extends RootView {
             for (String army : WarriorFactory.getAllArmyTextIds()) {
                 int imageId = 0;
                 try {
-                    imageId = R.drawable.class.getField("army_" + army).getInt(new R.string());
+                    Field idField = R.drawable.class.getField("army_" + army);
+                    imageId = idField.getInt(idField);
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 } catch (NoSuchFieldException e) {

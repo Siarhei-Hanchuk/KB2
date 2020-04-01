@@ -1,5 +1,7 @@
 package by.siarhei.kb2.app.server;
 
+import java.lang.reflect.Field;
+
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.server.countries.Country;
 import by.siarhei.kb2.app.server.models.Game;
@@ -61,7 +63,8 @@ public class GameGrid {
 
     private int drawableReflection(String drawable) {
         try {
-            return R.drawable.class.getField(drawable).getInt(new R.drawable());
+            Field idField = R.drawable.class.getDeclaredField(drawable);
+            return idField.getInt(idField);
         } catch (NoSuchFieldException e) {
             return 0;
         } catch (IllegalAccessException e) {

@@ -2,6 +2,8 @@ package by.siarhei.kb2.app.platforms.android;
 
 import android.content.res.Resources;
 
+import java.lang.reflect.Field;
+
 import by.siarhei.kb2.app.I18n;
 import by.siarhei.kb2.app.R;
 
@@ -15,7 +17,8 @@ class I18nImpl implements I18n {
     @Override
     public String translate(String key) {
         try {
-            return resources.getString(R.string.class.getField(key).getInt(new R.string()));
+            Field field = R.string.class.getField(key);
+            return resources.getString(field.getInt(field));
         } catch (NoSuchFieldException e) {
             return key;
         } catch (IllegalAccessException e) {
@@ -32,7 +35,8 @@ class I18nImpl implements I18n {
     public String translate(String key, String... replaces) {
         String result;
         try {
-            result = resources.getString(R.string.class.getField(key).getInt(new R.string()));
+            Field field = R.string.class.getField(key);
+            result = resources.getString(field.getInt(field));
         } catch (NoSuchFieldException e) {
             return key;
         } catch (IllegalAccessException e) {
@@ -42,7 +46,6 @@ class I18nImpl implements I18n {
             result = result.replace("#{?}", item);
         }
         return result;
-
     }
 
     @Override
