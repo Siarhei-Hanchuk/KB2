@@ -37,7 +37,7 @@ public class Game implements Serializable {
     private int currentWorker = -1;
     private City updatedCity;
     private Warrior updatedWarrior;
-    private Battler battler;
+    transient private Battler battler;
 
     public Game(World world, Player player, int weeks) {
         this.world = world;

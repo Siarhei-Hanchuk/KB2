@@ -4,6 +4,7 @@ import by.siarhei.kb2.app.DebugLogger;
 import by.siarhei.kb2.app.I18n;
 import by.siarhei.kb2.app.server.builders.GameBuilder;
 import by.siarhei.kb2.app.server.models.Game;
+import by.siarhei.kb2.app.server.saves.Saver;
 import by.siarhei.kb2.app.ui.menus.MenuFactory;
 import by.siarhei.kb2.app.ui.messages.MessageFactory;
 
@@ -13,13 +14,13 @@ public class Server {
 
     private final Game game;
     private final GameDispatcher gameDispatcher;
-    private final Response mResponse;
+    private final Response response;
     private boolean viewCached = false;
 
     private Server(Game game) {
         this.game = game;
         this.gameDispatcher = new GameDispatcher(game);
-        this.mResponse = new Response(game, gameDispatcher);
+        this.response = new Response(game, gameDispatcher);
     }
 
     public boolean request(Request data) {
@@ -31,21 +32,16 @@ public class Server {
     }
 
     public static Server getServer() {
-//        if(server == null) {
-//            Game game = GameBuilder.build(Game.MODE_TEST);
-//            server = new Server(game);
-//        }
-
         return server;
     }
 
     public Response getView() {
         if(!viewCached) {
             viewCached = true;
-            mResponse.refresh();
-            DebugLogger.logView(mResponse);
+            response.refresh();
+            DebugLogger.logView(response);
         }
-        return mResponse;
+        return response;
     }
 
     public static void create(int mode) {
@@ -67,5 +63,14 @@ public class Server {
 
     public static I18n getI18n() {
         return i18n;
+    }
+
+    public static String dumpGame() {
+        return Saver.serialize(getServer().game);
+    }
+
+    public static void loadGame(String data) {
+        Game game = Saver.deserialize(data);
+        server = new Server(game);
     }
 }

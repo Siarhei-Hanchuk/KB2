@@ -8,8 +8,10 @@ import android.view.MotionEvent;
 
 import by.siarhei.kb2.app.BuildConfig;
 import by.siarhei.kb2.app.R;
+import by.siarhei.kb2.app.Storage;
 import by.siarhei.kb2.app.platforms.android.MainActivity;
 import by.siarhei.kb2.app.platforms.android.MainView;
+import by.siarhei.kb2.app.platforms.android.StorageImpl;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
 import by.siarhei.kb2.app.server.models.Game;
 import by.siarhei.kb2.app.server.Server;
@@ -78,11 +80,8 @@ public class MainMenuView extends RootView {
         int xItem = (int)(event.getX());
         boolean firstColumn = true;
         if(xItem > getWidth() / 2) {
-            xItem = xItem - getWidth() / 2;
             firstColumn = false;
         }
-        xItem = (xItem > 0) ? 1 : 0;
-        xItem = xItem - xOffset;
         if(firstColumn) {
             switch (yItem) {
                 case 1:
@@ -146,11 +145,18 @@ public class MainMenuView extends RootView {
                 System.exit(0);
                 break;
             case ACTION_SAVE:
-                return false;
+                Storage storage = new StorageImpl(MainActivity.getActivity());
+                storage.saveGame(Server.dumpGame(), "save0");
+                return true;
             case ACTION_LOAD:
-                return false;
+                Server.getServer().loadGame(getStorage().loadGame("save0"));                ;
+                return true;
         }
 
         return true;
+    }
+
+    private Storage getStorage() {
+        return new StorageImpl(MainActivity.getActivity());
     }
 }
