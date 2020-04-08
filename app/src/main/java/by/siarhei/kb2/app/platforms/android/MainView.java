@@ -146,6 +146,23 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback, Dra
         }
         refresh();
 
+        // Ugly hack for battle animation
+        class MyThread extends Thread {
+            public void run(){
+                while(!Server.getServer().getView().playerControl()) {
+                    try {
+                        MyThread.sleep(1000);
+                    } catch (InterruptedException e) { }
+                    getView().onTouchEvent(event);
+                    refresh();
+                }
+            }
+        }
+        if(!Server.getServer().getView().playerControl()) {
+            MyThread myThread = new MyThread();
+            myThread.start();
+        }
+
         return super.onTouchEvent(event);
     }
 

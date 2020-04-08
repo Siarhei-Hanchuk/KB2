@@ -258,6 +258,10 @@ public class Game implements Serializable {
     }
 
     public Battle getBattle() {
+        if(battler == null) {
+            return null;
+        }
+
         return battler.getBattle();
     }
 

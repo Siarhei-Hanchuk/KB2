@@ -106,4 +106,10 @@ public class Response {
     public BattleField getBattleField() {
         return game.getBattle().getBattleField();
     }
+
+    public boolean playerControl() {
+        if(game.getBattle() == null ) return true;
+
+        return !game.getBattle().getBattleField().isAiTurn() || game.getBattle().finished();
+    }
 }
