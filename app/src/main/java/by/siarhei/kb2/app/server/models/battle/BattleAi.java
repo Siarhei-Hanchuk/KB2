@@ -40,7 +40,6 @@ public class BattleAi implements Participant {
             }
             Entity entity = point.getEntity();
             if (entity.getStep() > 0) {
-                System.out.println("FOUND");
                 actWithPoint(point);
                 return;
             }

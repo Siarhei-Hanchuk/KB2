@@ -19,16 +19,12 @@ class EntityActor {
     }
 
     public void tryMoveTo() {
-        System.out.println("t1");
         if (!to.isLand() || (to.isEntity() && to.getEntity().isOwn(entity))) {
             return;
         }
-        System.out.println("t2");
         if (to.getEntity() == null) {
-            System.out.println("t3a");
             moveTo();
         } else {
-            System.out.println("t3b");
             attack();
         }
     }

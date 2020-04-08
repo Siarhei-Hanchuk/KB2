@@ -37,7 +37,6 @@ public class BattleField implements Glade {
         Entity entity = mapPoint.getEntity();
 
         if (entity.isPlayerEntity() && entity.getStep() > 0) {
-            System.out.println("select!!!");
             selected = mapPoint;
         }
     }

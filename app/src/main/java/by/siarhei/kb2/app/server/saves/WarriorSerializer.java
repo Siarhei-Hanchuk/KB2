@@ -22,8 +22,6 @@ public class WarriorSerializer implements JsonSerializer<Warrior>, JsonDeseriali
                               JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 
         JsonObject jsonObject = jsonElement.getAsJsonObject();
-        System.out.println(jsonObject);
-        System.out.println(jsonObject.get(CLASSNAME));
         JsonPrimitive prim = (JsonPrimitive) jsonObject.get(CLASSNAME);
         String className = prim.getAsString();
         Class klass = getObjectClass(className);

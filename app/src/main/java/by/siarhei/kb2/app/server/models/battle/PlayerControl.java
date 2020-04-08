@@ -14,10 +14,8 @@ class PlayerControl implements Participant {
     @Override
     public void action(int x, int y) {
         if(battleField.getSelectedPoint() == null) {
-            System.out.println("SELECT");
             selectOf(x, y);
         } else {
-            System.out.println("tryMoveTo");
             tryMoveTo(x, y);
         }
     }
