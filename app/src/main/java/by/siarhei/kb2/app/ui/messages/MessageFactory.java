@@ -8,6 +8,7 @@ import by.siarhei.kb2.app.server.entities.MapNext;
 import by.siarhei.kb2.app.server.entities.Sorcerer;
 import by.siarhei.kb2.app.server.entities.Spell;
 import by.siarhei.kb2.app.server.models.Game;
+import by.siarhei.kb2.app.server.models.MapPoint;
 
 public class MessageFactory {
     private final Game game;
@@ -18,17 +19,18 @@ public class MessageFactory {
         this.i18n = i18n;
     }
 
-    public Message getMessage(Entity entity) {
+    public Message getMessage(MapPoint mapPoint) {
+        Entity entity = mapPoint.getEntity();
         if (entity instanceof MapNext)
-            return new NextMapMessage(entity, game, i18n);
+            return new NextMapMessage(mapPoint, game, i18n);
         if (entity instanceof Spell)
-            return new SpellMessage(entity, game, i18n);
+            return new SpellMessage(mapPoint, game, i18n);
         if (entity instanceof GuidePost)
-            return new GuidePostMessage(entity, game, i18n);
+            return new GuidePostMessage(mapPoint, game, i18n);
         if (entity instanceof GoldenChest && ((GoldenChest) entity).isBonus())
-            return new GoldChestMessage(entity, game, i18n);
+            return new GoldChestMessage(mapPoint, game, i18n);
         if (entity instanceof Sorcerer)
-            return new SorcererMessage(entity, game, i18n);
+            return new SorcererMessage(mapPoint, game, i18n);
         return null;
     }
 

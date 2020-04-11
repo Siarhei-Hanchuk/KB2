@@ -1,17 +1,17 @@
 package by.siarhei.kb2.app.ui.messages;
 
 import by.siarhei.kb2.app.I18n;
-import by.siarhei.kb2.app.server.entities.Entity;
 import by.siarhei.kb2.app.server.entities.GoldenChest;
 import by.siarhei.kb2.app.server.models.Game;
+import by.siarhei.kb2.app.server.models.MapPoint;
 
 import java.util.Random;
 
 public class GoldChestMessage extends Message {
     private final int mode;
 
-    GoldChestMessage(Entity entity, Game game, I18n i18n) {
-        super(entity, game, i18n);
+    GoldChestMessage(MapPoint mapPoint, Game game, I18n i18n) {
+        super(mapPoint, game, i18n);
         mode = (new Random()).nextInt(3);
     }
 
@@ -30,9 +30,10 @@ public class GoldChestMessage extends Message {
 
     @Override
     public void action() {
+        System.out.println("TTY");
         switch (mode) {
             case 0:
-                player.changeSalary(((GoldenChest) entity).getSalary());
+                player.changeSalary(((GoldenChest) mapPoint.getEntity()).getSalary());
                 break;
             case 1:
                 player.getMagic().upMagicMaxCount();
@@ -41,6 +42,7 @@ public class GoldChestMessage extends Message {
                 player.getMagic().upRandomMagic();
                 break;
         }
+        mapPoint.setEntity(null);
         // TODO:
 //        entity.destroy();
     }

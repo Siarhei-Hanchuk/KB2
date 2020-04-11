@@ -1,16 +1,16 @@
 package by.siarhei.kb2.app.ui.messages;
 
 import by.siarhei.kb2.app.I18n;
-import by.siarhei.kb2.app.server.entities.Entity;
 import by.siarhei.kb2.app.server.models.Game;
+import by.siarhei.kb2.app.server.models.MapPoint;
 
 import java.util.Random;
 
 public class SpellMessage extends Message {
     private int mode = 0;
 
-    SpellMessage(Entity entity, Game game, I18n i18n) {
-        super(entity, game, i18n);
+    SpellMessage(MapPoint mapPoint, Game game, I18n i18n) {
+        super(mapPoint, game, i18n);
     }
 
     @Override

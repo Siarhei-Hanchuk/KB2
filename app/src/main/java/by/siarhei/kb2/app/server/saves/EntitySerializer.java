@@ -1,6 +1,5 @@
 package by.siarhei.kb2.app.server.saves;
 
-import com.google.gson.InstanceCreator;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;

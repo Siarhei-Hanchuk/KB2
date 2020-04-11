@@ -42,7 +42,7 @@ public class MenuView extends RootView {
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event){
-        Menu menu = Server.getServer().getView().getMenu();
+        Menu menu = Server.getServer().getResponse().getMenu();
         double y = event.getY();
         int item = (int) y / menuItemHeight();
 

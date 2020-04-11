@@ -3,10 +3,13 @@ package by.siarhei.kb2.app.platforms.android.views;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.view.MotionEvent;
 
 import by.siarhei.kb2.app.platforms.android.MainView;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
+import by.siarhei.kb2.app.server.Request;
 import by.siarhei.kb2.app.server.Response;
+import by.siarhei.kb2.app.server.Server;
 
 public class MessageView extends RootView {
     public MessageView(MainView mainView) {
@@ -30,5 +33,14 @@ public class MessageView extends RootView {
                         , 10, 100 * (ix + 1), mainView.getDefaultPaint());
             }
         }
+    }
+
+    @Override
+    public boolean onTouchEvent(@NonNull MotionEvent event){
+        Request request = new Request();
+        request.setAction(Request.ACTION_MESSAGE_OK);
+        Server.getServer().request(request);
+
+        return true;
     }
 }

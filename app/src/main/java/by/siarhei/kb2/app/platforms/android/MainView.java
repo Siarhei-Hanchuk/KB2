@@ -149,7 +149,7 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback, Dra
         // Ugly hack for battle animation
         class MyThread extends Thread {
             public void run(){
-                while(!Server.getServer().getView().playerControl()) {
+                while(!Server.getServer().getResponse().playerControl()) {
                     try {
                         MyThread.sleep(1000);
                     } catch (InterruptedException e) { }
@@ -158,7 +158,7 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback, Dra
                 }
             }
         }
-        if(!Server.getServer().getView().playerControl()) {
+        if(!Server.getServer().getResponse().playerControl()) {
             MyThread myThread = new MyThread();
             myThread.start();
         }
@@ -170,11 +170,11 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback, Dra
     public void draw(@NonNull Canvas canvas) {
         super.draw(canvas);
 
-        Response view = null;
+        Response response = null;
         if(!menuMode)
-            view = Server.getServer().getView();
+            response = Server.getServer().getResponse();
 
-        getView().draw(canvas, view);
+        getView().draw(canvas, response);
     }
 
     private RootView getView() {
@@ -184,7 +184,7 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback, Dra
         if(view != null) {
             return view;
         }
-        Response response = Server.getServer().getView();
+        Response response = Server.getServer().getResponse();
         ViewFactory viewFactory = new ViewFactory(this);
         view = viewFactory.getView(response.getViewMode());
         return view;

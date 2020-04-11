@@ -2,12 +2,12 @@ package by.siarhei.kb2.app.ui.messages;
 
 import by.siarhei.kb2.app.I18n;
 import by.siarhei.kb2.app.R;
-import by.siarhei.kb2.app.server.entities.Entity;
 import by.siarhei.kb2.app.server.models.Game;
+import by.siarhei.kb2.app.server.models.MapPoint;
 
 public class NextMapMessage extends Message {
-    NextMapMessage(Entity entity, Game game, I18n i18n) {
-        super(entity, game, i18n);
+    NextMapMessage(MapPoint mapPoint, Game game, I18n i18n) {
+        super(mapPoint, game, i18n);
     }
 
     @Override

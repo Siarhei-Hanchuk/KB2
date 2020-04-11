@@ -105,6 +105,11 @@ public class GameDispatcher {
                     battle.action(data.getX(), data.getY());
                 }
                 break;
+            case Request.ACTION_MESSAGE_OK:
+                Message message = getMessage();
+                message.action();
+                viewMode = VIEW_MODE_GRID;
+                break;
         }
     }
 
@@ -179,9 +184,14 @@ public class GameDispatcher {
     }
 
     private void actionWithObject(MapPoint mp) {
-        if(mp.getEntity() instanceof GoldenChest) {
+        if(mp.getEntity() instanceof GoldenChest && !((GoldenChest) mp.getEntity()).isBonus()) {
             viewMode = VIEW_MODE_MENU2;
             this.menu = Server.getMenuFactory().getMenu(mp);
+            return;
+        }
+        if(mp.getEntity() instanceof GoldenChest && ((GoldenChest) mp.getEntity()).isBonus()) {
+            viewMode = VIEW_MODE_MESSAGE;
+            this.message = Server.getMessageFactory().getMessage(mp);
             return;
         }
         if(mp.getEntity() instanceof City) {
@@ -191,7 +201,7 @@ public class GameDispatcher {
         }
         if(mp.getEntity() instanceof GuidePost) {
             viewMode = VIEW_MODE_MESSAGE;
-            this.message = Server.getMessageFactory().getMessage(mp.getEntity());
+            this.message = Server.getMessageFactory().getMessage(mp);
             return;
         }
         if(mp.getEntity() instanceof ArmyShop) {

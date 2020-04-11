@@ -35,7 +35,7 @@ public class Server {
         return server;
     }
 
-    public Response getView() {
+    public Response getResponse() {
         if(!viewCached) {
             viewCached = true;
             response.refresh();

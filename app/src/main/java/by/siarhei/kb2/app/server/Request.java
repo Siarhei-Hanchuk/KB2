@@ -11,8 +11,7 @@ public class Request {
     public static final int ACTION_ACCEPT_BATTLE = 8;
     public static final int ACTION_DECLINE_BATTLE = 9;
     public static final int ACTION_BATTLE_MOVE = 10;
-//    public static final int ACTION_BATTLE_MOVE_TO = 11;
-//    public static final int ACTION_BATTLE_ATTACK_AT = 12;
+    public static final int ACTION_MESSAGE_OK = 11;
 
     private int x;
     private int y;
