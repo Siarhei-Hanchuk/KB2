@@ -64,6 +64,8 @@ class CountryBuilder {
         baseGenerator.river(30);
         baseGenerator.river(20);
         baseGenerator.river(40);
+
+        entityGenerator.metro();
         entityGenerator.citiesAndCastles();
         entityGenerator.guidePosts();
         entityGenerator.goldChests(40, 0);
@@ -79,17 +81,11 @@ class CountryBuilder {
             baseGenerator.landscape(0.05, R.drawable.stone);
         }
 
-        Metro metro1 = entityGenerator.metro();
-        Metro metro2 = entityGenerator.metro();
-
         return new Country(random, map, 0);
     }
 
     private Country build2(boolean hardMode) {
         generateBaseField();
-
-        Metro metro1 = entityGenerator.metro();
-        Metro metro2 = entityGenerator.metro();
 
         baseGenerator.river(40);
         baseGenerator.river(50);
@@ -97,6 +93,7 @@ class CountryBuilder {
         baseGenerator.river(50);
         baseGenerator.river(50);
 
+        entityGenerator.metro();
         entityGenerator.citiesAndCastles();
         entityGenerator.guidePosts();
         entityGenerator.goldChests(40, 1);
@@ -123,9 +120,7 @@ class CountryBuilder {
         baseGenerator.river(40);
         baseGenerator.river(30);
 
-        Metro metro1 = entityGenerator.metro();
-        Metro metro2 = entityGenerator.metro();
-
+        entityGenerator.metro();
         entityGenerator.citiesAndCastles();
         entityGenerator.guidePosts();
         entityGenerator.goldChests(40, 2);
@@ -143,12 +138,11 @@ class CountryBuilder {
 
     private Country build4(boolean hardMode) {
         generateBaseField();
-        Metro metro1 = entityGenerator.metro();
-        Metro metro2 = entityGenerator.metro();
 
         baseGenerator.river(40);
         baseGenerator.river(30);
 
+        entityGenerator.metro();
         entityGenerator.citiesAndCastles();
         entityGenerator.guidePosts();
         entityGenerator.goldChests(40, 3);
@@ -167,11 +161,9 @@ class CountryBuilder {
 
     private Country build5(boolean hardMode) {
         generateBaseField();
-        Metro metro1 = entityGenerator.metro();
-        Metro metro2 = entityGenerator.metro();
-
 
         sand(map);
+        entityGenerator.metro();
         baseGenerator.river(10);
         entityGenerator.citiesAndCastles();
         entityGenerator.guidePosts();
@@ -190,12 +182,12 @@ class CountryBuilder {
     private Country buildTest() {
         generateBaseField();
 
-        Metro metro1 = entityGenerator.metro();
-        Metro metro2 = entityGenerator.metro();
+        map[9][7].setEntity(new Metro());
+        map[20][20].setEntity(new Metro());
 
         map[5][8].setEntity(new ArmyShop(0));
         map[5][9].setEntity(new ArmyShop(0));
-        map[5][9].setEntity(new ArmyShop(0));
+        map[5][10].setEntity(new ArmyShop(0));
         map[7][5].setEntity(new GuidePost());
 
         Captain captain = new Captain();

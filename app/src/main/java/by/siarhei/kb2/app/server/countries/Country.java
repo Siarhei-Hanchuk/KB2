@@ -130,13 +130,14 @@ public class Country implements Glade, Serializable, ArmyShopsOwner, MapPointsOw
         return getMapPoint(x, y);
     }
 
-    public MapPoint getLinkedMetroPoint(Metro metro) {
-//        TODO:
-//        if (metro == metro1)
-//            metro = metro2;
-//        else
-//            metro = metro1;
-//        return getLandNearPoint(metro.getMapPoint());
+    public MapPoint getLinkedMetroPoint(Metro sourceMetro) {
+        Iterator<MapPoint> metros = getMapPointsList(Metro.class);
+        while(metros.hasNext()) {
+            MapPoint mp = metros.next();
+            if(mp.getEntity() != sourceMetro) {
+                return getLandNearPoint(mp);
+            }
+        }
         return null;
     }
 }

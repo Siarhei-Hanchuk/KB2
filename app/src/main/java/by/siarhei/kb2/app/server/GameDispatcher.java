@@ -7,6 +7,7 @@ import by.siarhei.kb2.app.server.entities.City;
 import by.siarhei.kb2.app.server.entities.Fighting;
 import by.siarhei.kb2.app.server.entities.GoldenChest;
 import by.siarhei.kb2.app.server.entities.GuidePost;
+import by.siarhei.kb2.app.server.entities.Metro;
 import by.siarhei.kb2.app.server.entities.Nave;
 import by.siarhei.kb2.app.server.models.Game;
 import by.siarhei.kb2.app.server.models.Magic;
@@ -220,13 +221,16 @@ public class GameDispatcher {
             this.currentFighting = (Fighting) mp.getEntity();
             return;
         }
+        if (mp.getEntity() instanceof Metro) {
+            Player player = game.getPlayer();
+            Metro metro = (Metro) mp.getEntity();
+            MapPoint targetPoint = player.getCountry().getLinkedMetroPoint(metro);
+            if (targetPoint != null) {
+                player.move(targetPoint);
+            }
+        }
 // TODO - check
-//        if (mp.getEntity() instanceof Nave) {
-//            player.setNave((Nave) mp.getEntity());
-//            player.move(mp);
-//        } else if (mp.getEntity() instanceof Metro) {
-//            player.move(player.getCountry().getLinkedMetroPoint((Metro) mp.getEntity()));
-//        } else if (mp.getEntity() instanceof Castle) {
+//       if (mp.getEntity() instanceof Castle) {
 //            if (player.getY() > mp.getY())
 //                activationEntityListener.activateEntity(mp.getEntity());
 //        } else {
