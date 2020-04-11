@@ -93,21 +93,19 @@ class MapView extends RootView {
     private void setMapPointColorForEntity(Paint paint, int entityId) {
         switch (entityId) {
             case R.drawable.army_shop:
+            case R.drawable.guidepost:
                 paint.setColor(Color.GRAY);
                 break;
             case R.drawable.captain:
-                paint.setColor(Color.MAGENTA);
-                break;
             case R.drawable.city:
+            case R.drawable.metro:
+            case R.drawable.map:
                 paint.setColor(Color.MAGENTA);
                 break;
             case R.drawable.castle_c:
             case R.drawable.castle_r:
             case R.drawable.castle_l:
                 paint.setColor(Color.rgb(255, 140, 0));
-                break;
-            case R.drawable.guidepost:
-                paint.setColor(Color.GRAY);
                 break;
             case R.drawable.gold_chest:
                 paint.setColor(Color.CYAN);

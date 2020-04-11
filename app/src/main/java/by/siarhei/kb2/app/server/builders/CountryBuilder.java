@@ -209,6 +209,8 @@ class CountryBuilder {
 
         map[6][5].setEntity(new City(0, castle));
 
+        entityGenerator.mapNext();
+
         return new Country(random, map, 0);
     }
 

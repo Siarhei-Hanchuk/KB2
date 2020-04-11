@@ -191,20 +191,12 @@ public class EntityGenerator implements Serializable {
     }
 
     public void mapNext() {
-        new MapNext();
+        getEmptyLand().setEntity(new MapNext());
     }
 
     public void metro() {
-        int count = 0;
-        while (count < 2) {
-            int y = random.nextInt(54) + 5;
-            int x = random.nextInt(54) + 5;
-            if ((map[x][y].getLand() == R.drawable.land)
-                    || (map[x][y].getLand() == R.drawable.sand)) {
-                map[x][y].setEntity(new Metro());
-            }
-            count++;
-        }
+        getEmptyLand().setEntity(new Metro());
+        getEmptyLand().setEntity(new Metro());
     }
 
     private MapPoint getEmptyLand() {

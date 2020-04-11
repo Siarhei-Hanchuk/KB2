@@ -17,7 +17,7 @@ public class Captain implements Entity, Fighting {
 
     @Override
     public int getID() {
-        return R.drawable.captain_0;
+        return R.drawable.captain;
     }
 
     @Override
