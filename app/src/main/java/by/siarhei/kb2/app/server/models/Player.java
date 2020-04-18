@@ -39,8 +39,8 @@ public class Player implements Serializable {
                 easy();
                 availableCountry = 5;
                 for (int i = 0; i < 3; i++) {
-                    Warrior warrior = WarriorFactory.createRandomFromGroup(2);
-                    WarriorSquad squad = new WarriorSquad(warrior, 1);
+                    Warrior warrior = WarriorFactory.createRandomFromGroup(3);
+                    WarriorSquad squad = new WarriorSquad(warrior, 100);
                     warriors[i] = squad;
                 }
                 break;

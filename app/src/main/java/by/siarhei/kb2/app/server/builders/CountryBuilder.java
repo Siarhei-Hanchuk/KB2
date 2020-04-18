@@ -196,6 +196,7 @@ class CountryBuilder {
 //        Warrior warriors[] = new Warrior[3];
         captain.warriors[0] = new WarriorSquad(WarriorFactory.create("woodgoblin"), 10);
         captain.warriors[1] = new WarriorSquad(WarriorFactory.create("elf"), 10);
+        captain.warriors[2] = new WarriorSquad(WarriorFactory.create("gorilla"), 10);
         captain.authority = 100;
 
         Castle castle = new Castle(0);

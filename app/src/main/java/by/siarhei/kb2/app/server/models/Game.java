@@ -252,9 +252,9 @@ public class Game implements Serializable {
         return updatedWarrior;
     }
 
-    public void startBattle(Fighting fighting) {
+    public void startBattle(MapPoint mp) {
         battler = new Battler(this);
-        battler.startBattle(fighting);
+        battler.startBattle(mp);
     }
 
     public Battle getBattle() {

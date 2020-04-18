@@ -50,6 +50,7 @@ public class GameDispatcher {
     private final transient Game game;
     private ArmyShop currentArmyShop;
     private Fighting currentFighting;
+    private MapPoint currentFightingPoint;
 
     public GameDispatcher(Game game) {
         this.game = game;
@@ -220,6 +221,7 @@ public class GameDispatcher {
         if(mp.getEntity() instanceof Captain) {
             viewMode = VIEW_MODE_BATTLE_QUESTION;
             this.currentFighting = (Fighting) mp.getEntity();
+            this.currentFightingPoint = mp;
             return;
         }
         if (mp.getEntity() instanceof Metro) {
@@ -270,7 +272,7 @@ public class GameDispatcher {
 
     private void startBattle(Fighting fighting) {
         viewMode = VIEW_MODE_BATTLE;
-        game.startBattle(fighting);
+        game.startBattle(currentFightingPoint);
     }
 
     private void battleResult() {

@@ -6,7 +6,7 @@ import by.siarhei.kb2.app.server.models.Player;
 
 public class Battler {
     private final Player player;
-    private Fighting fighting;
+    private by.siarhei.kb2.app.server.models.MapPoint fightingPoint;
     private Battle battle;
     private final Game game;
 
@@ -15,12 +15,14 @@ public class Battler {
         this.game = game;
     }
 
-    public void startBattle(Fighting fighting) {
-        BattleFieldBuilder fieldBuilder = new BattleFieldBuilder(player, fighting);
+    public void startBattle(by.siarhei.kb2.app.server.models.MapPoint fightingPoint) {
+        this.fightingPoint = fightingPoint;
+        BattleFieldBuilder fieldBuilder = new BattleFieldBuilder(player, (Fighting) fightingPoint.getEntity());
         MapPoint[][] mapPoints = fieldBuilder.build();
-        BattleField battleField = new BattleField(mapPoints, fighting);
+        BattleField battleField = new BattleField(mapPoints, (Fighting) fightingPoint.getEntity());
         battle = new Battle(battleField);
-        this.fighting = fighting;
+
+
     }
 
     public Battle getBattle() {
@@ -40,6 +42,7 @@ public class Battler {
     private void finishBattleWithWin(BattleResult battleResult) {
         game.getPlayer().changeMoney(battleResult.getGold());
         game.getPlayer().changeAuthority(battleResult.getAuthority());
+        fightingPoint.setEntity(null);
     }
 
     private void finishBattleWithFail(BattleResult battleResult) {

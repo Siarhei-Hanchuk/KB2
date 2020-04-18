@@ -13,6 +13,11 @@ class PlayerControl implements Participant {
 
     @Override
     public void action(int x, int y) {
+        // TODO: refactoring
+        if(x < 0 || x > 5 || y < 0 || y > 5) {
+            return;
+        }
+
         if(battleField.getSelectedPoint() == null) {
             selectOf(x, y);
         } else {
