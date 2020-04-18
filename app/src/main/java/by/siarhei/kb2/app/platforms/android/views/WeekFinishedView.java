@@ -2,7 +2,7 @@ package by.siarhei.kb2.app.platforms.android.views;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.platforms.android.MainView;

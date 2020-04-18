@@ -1,5 +1,6 @@
 package by.siarhei.kb2.app.platforms.android;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
@@ -25,6 +26,7 @@ public class MainActivity extends Activity {
         return activity;
     }
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
