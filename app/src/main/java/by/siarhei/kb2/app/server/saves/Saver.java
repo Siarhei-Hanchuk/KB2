@@ -12,8 +12,7 @@ public class Saver {
         return gson().toJson(game);
     }
     public static Game deserialize(String data) {
-        Game game = gson().fromJson(data, Game.class);
-        return game;
+        return gson().fromJson(data, Game.class);
     }
 
     private static Gson gson() {

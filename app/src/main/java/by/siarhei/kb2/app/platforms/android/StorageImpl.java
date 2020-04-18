@@ -14,9 +14,9 @@ public class StorageImpl implements Storage {
     }
 
     @Override
-    public boolean saveGame(String data, String key) {
+    public void saveGame(String data, String key) {
 
-        return saveObject(key, data);
+        saveObject(key, data);
     }
 
     @Override
@@ -24,12 +24,10 @@ public class StorageImpl implements Storage {
         return (String) loadObject(key);
     }
 
-    private boolean saveObject(String key, String string) {
+    private void saveObject(String key, String string) {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(key, string);
         editor.apply();
-
-        return true;
     }
 
     private Object loadObject(String key) {

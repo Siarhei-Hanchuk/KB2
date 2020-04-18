@@ -13,7 +13,7 @@ import java.lang.reflect.Type;
 
 import by.siarhei.kb2.app.server.warriors.Warrior;
 
-public class WarriorSerializer implements JsonSerializer<Warrior>, JsonDeserializer {
+class WarriorSerializer implements JsonSerializer<Warrior>, JsonDeserializer {
     private static final String CLASSNAME = "class";
     private static final String DATA = "data";
 

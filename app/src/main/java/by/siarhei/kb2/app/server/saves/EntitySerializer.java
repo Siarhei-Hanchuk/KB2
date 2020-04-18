@@ -13,7 +13,7 @@ import java.lang.reflect.Type;
 
 import by.siarhei.kb2.app.server.entities.Entity;
 
-public class EntitySerializer implements JsonSerializer<Entity>, JsonDeserializer {
+class EntitySerializer implements JsonSerializer<Entity>, JsonDeserializer {
     private static final String CLASSNAME = "class";
     private static final String DATA = "data";
 

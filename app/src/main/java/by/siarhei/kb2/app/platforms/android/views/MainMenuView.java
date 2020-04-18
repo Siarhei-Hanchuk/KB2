@@ -27,8 +27,6 @@ public class MainMenuView extends RootView {
 
     private boolean saved = false;
 
-    private int xOffset;
-
     public MainMenuView(MainView mainView) {
         super(mainView);
     }
@@ -39,7 +37,7 @@ public class MainMenuView extends RootView {
         canvas.drawColor(Color.BLACK);
         Paint paint = getDefaultPaint();
 
-        xOffset = painter.getXOffset();
+        int xOffset = painter.getXOffset();
 
         int yDelta = getWidth() / 2;
 
@@ -149,7 +147,7 @@ public class MainMenuView extends RootView {
                 storage.saveGame(Server.dumpGame(), "save0");
                 return true;
             case ACTION_LOAD:
-                Server.getServer().loadGame(getStorage().loadGame("save0"));                ;
+                Server.loadGame(getStorage().loadGame("save0"));
                 return true;
         }
 
