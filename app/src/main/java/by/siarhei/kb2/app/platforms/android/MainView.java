@@ -45,6 +45,8 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback, Dra
         drawThread = new DrawThread(getHolder(), this);
         drawThread.setRunning(true);
         drawThread.start();
+
+        Sound.setContext(getContext());
     }
 
     @Override
