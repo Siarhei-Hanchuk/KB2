@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.platforms.android.MainView;
+import by.siarhei.kb2.app.platforms.android.Sound;
 import by.siarhei.kb2.app.server.Response;
 import by.siarhei.kb2.app.server.countries.Country;
 import by.siarhei.kb2.app.server.models.MapPoint;
@@ -21,6 +22,8 @@ class MapView extends RootView {
 
     @Override
     public void draw(@NonNull Canvas canvas, Response response) {
+        Sound.play(R.raw.gold);
+
         Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 

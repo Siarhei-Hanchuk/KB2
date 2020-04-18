@@ -5,7 +5,9 @@ import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
+import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.platforms.android.MainView;
+import by.siarhei.kb2.app.platforms.android.Sound;
 import by.siarhei.kb2.app.platforms.android.helpers.Click;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
 import by.siarhei.kb2.app.server.GameGrid;
@@ -81,6 +83,7 @@ public class GameView extends RootView {
                 touchLeft();
             }
         }
+        Sound.play(R.raw.step);
 
         return true;
     }
