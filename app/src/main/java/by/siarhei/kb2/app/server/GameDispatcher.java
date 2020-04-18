@@ -11,6 +11,7 @@ import by.siarhei.kb2.app.server.entities.GuidePost;
 import by.siarhei.kb2.app.server.entities.MapNext;
 import by.siarhei.kb2.app.server.entities.Metro;
 import by.siarhei.kb2.app.server.entities.Nave;
+import by.siarhei.kb2.app.server.entities.Spell;
 import by.siarhei.kb2.app.server.models.Game;
 import by.siarhei.kb2.app.server.models.Magic;
 import by.siarhei.kb2.app.server.models.MapPoint;
@@ -236,13 +237,11 @@ public class GameDispatcher {
             this.message = Server.getMessageFactory().getMessage(mp);
             return;
         }
-// TODO - check
-//       if (mp.getEntity() instanceof Castle) {
-//            if (player.getY() > mp.getY())
-//                activationEntityListener.activateEntity(mp.getEntity());
-//        } else {
-//            activationEntityListener.activateEntity(mp.getEntity());
-//        }
+        if (mp.getEntity() instanceof Spell) {
+            viewMode = VIEW_MODE_MESSAGE;
+            this.message = Server.getMessageFactory().getMessage(mp);
+            return;
+        }
     }
 
     public int getViewMode() {

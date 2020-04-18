@@ -100,14 +100,17 @@ public class Game implements Serializable {
         return false;
     }
 
-    private void weekFinish() {
+    private void updateRandomArmyShop() {
         Iterator<ArmyShop> shopsIterator = world.getArmyShops();
         Warrior war = WarriorFactory.createRandom();
         while (shopsIterator.hasNext()) {
             if (shopsIterator.next().getID() == war.getId())
                 shopsIterator.next().resetCount();
         }
+        updatedWarrior = war;
+    }
 
+    private void updateRandomCity() {
         MapPoint cityMapPoint = null;
         Iterator<MapPoint> citiesIterator = world.getMapPointsList(City.class);
         int n = (new Random()).nextInt(25);
@@ -119,8 +122,20 @@ public class Game implements Serializable {
             }
         }
         updatedCity = ((City) cityMapPoint.getEntity());
-        updatedWarrior = war;
+    }
+
+    private void weekFinish() {
+        updateRandomArmyShop();
+        updateRandomCity();
         getPlayer().changeMoney(getPlayer().getSalary());
+
+//        generateSpellMap();
+    }
+
+    private void generateSpellMap() {
+        for (int i = 0; i < 5; i++) {
+            world.getCountry(i).updateSpells();
+        }
     }
 
     public void weekUpdate() {
@@ -230,7 +245,6 @@ public class Game implements Serializable {
 
     public void changeCountry(int n) {
         Country country = getWorld().getCountry(n);
-        country.createMaps();
         if(player.inNave()) {
             Entity nave = player.getMapPoint().getEntity();
             player.getMapPoint().setEntity(null);

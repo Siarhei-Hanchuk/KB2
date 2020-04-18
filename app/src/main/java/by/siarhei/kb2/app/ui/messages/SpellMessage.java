@@ -21,6 +21,7 @@ public class SpellMessage extends Message {
 
     @Override
     public void action() {
+        mapPoint.setEntity(null);
         switch (mode) {
             case 0:
                 return;
@@ -69,7 +70,5 @@ public class SpellMessage extends Message {
                 // TODO
                 return;
         }
-//        TODO:
-//        entity.destroy();
     }
 }

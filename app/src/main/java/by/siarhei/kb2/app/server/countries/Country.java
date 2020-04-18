@@ -12,6 +12,7 @@ import by.siarhei.kb2.app.server.entities.CastlesOwner;
 import by.siarhei.kb2.app.server.entities.City;
 import by.siarhei.kb2.app.server.entities.Entity;
 import by.siarhei.kb2.app.server.entities.Metro;
+import by.siarhei.kb2.app.server.entities.Spell;
 import by.siarhei.kb2.app.server.models.Glade;
 import by.siarhei.kb2.app.server.models.MapPoint;
 import by.siarhei.kb2.app.server.models.iterators.ArmyShopsOwner;
@@ -96,9 +97,13 @@ public class Country implements Glade, Serializable, ArmyShopsOwner, MapPointsOw
         return (x > 0 && y > 0 && x < MAX_MAP_SIZE && y < MAX_MAP_SIZE);
     }
 
-    public void createMaps() {
-        // TODO:
-//        entityGenerator.updateSpell();
+    public void updateSpells() {
+        Iterator<MapPoint> iterator = getMapPointsList(Spell.class);
+        while(iterator.hasNext()) {
+            MapPoint mp = iterator.next();
+            mp.setEntity(null);
+        }
+        getRandomLand().setEntity(new Spell());
     }
 
     public MapPoint getLandNearCity() {
