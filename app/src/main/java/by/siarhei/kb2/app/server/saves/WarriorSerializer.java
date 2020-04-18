@@ -24,8 +24,8 @@ public class WarriorSerializer implements JsonSerializer<Warrior>, JsonDeseriali
         JsonObject jsonObject = jsonElement.getAsJsonObject();
         JsonPrimitive prim = (JsonPrimitive) jsonObject.get(CLASSNAME);
         String className = prim.getAsString();
-        Class klass = getObjectClass(className);
-        return jsonDeserializationContext.deserialize(jsonObject.get(DATA), klass);
+        Class classValue = getObjectClass(className);
+        return jsonDeserializationContext.deserialize(jsonObject.get(DATA), classValue);
     }
 
     @Override

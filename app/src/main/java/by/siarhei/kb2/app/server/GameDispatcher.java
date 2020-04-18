@@ -221,7 +221,7 @@ public class GameDispatcher {
             player.move(mp);
             return;
         }
-        if(mp.getEntity() instanceof Captain || (mp.getEntity() instanceof Castle && !((Castle) mp.getEntity()).getStriken())) {
+        if(mp.getEntity() instanceof Captain || (mp.getEntity() instanceof Castle && !((Castle) mp.getEntity()).getStricken())) {
             viewMode = VIEW_MODE_BATTLE_QUESTION;
             this.currentFightingPoint = mp;
             return;

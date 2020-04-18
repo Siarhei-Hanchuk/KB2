@@ -79,7 +79,7 @@ public class Castle implements Entity, Fighting, CastlesOwner {
         this.stricken = true;
     }
 
-    public boolean getStriken() {
+    public boolean getStricken() {
         return stricken;
     }
 }
