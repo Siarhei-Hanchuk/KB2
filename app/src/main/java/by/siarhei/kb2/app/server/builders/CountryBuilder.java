@@ -14,7 +14,9 @@ import by.siarhei.kb2.app.server.entities.CastleRight;
 import by.siarhei.kb2.app.server.entities.City;
 import by.siarhei.kb2.app.server.entities.GoldenChest;
 import by.siarhei.kb2.app.server.entities.GuidePost;
+import by.siarhei.kb2.app.server.entities.Magician;
 import by.siarhei.kb2.app.server.entities.Metro;
+import by.siarhei.kb2.app.server.entities.Sorcerer;
 import by.siarhei.kb2.app.server.entities.Spell;
 import by.siarhei.kb2.app.server.models.MapPoint;
 import by.siarhei.kb2.app.server.warriors.WarriorFactory;
@@ -189,29 +191,26 @@ class CountryBuilder {
         map[5][8].setEntity(new ArmyShop(0));
         map[5][9].setEntity(new ArmyShop(0));
         map[5][10].setEntity(new ArmyShop(0));
-        map[7][5].setEntity(new GuidePost());
 
         Captain captain = new Captain();
-        map[8][5].setEntity(captain);
-//        captain.generateArmy(28, 0);
-//        Warrior warriors[] = new Warrior[3];
+        captain.authority = 100;
         captain.warriors[0] = new WarriorSquad(WarriorFactory.create("woodgoblin"), 10);
         captain.warriors[1] = new WarriorSquad(WarriorFactory.create("elf"), 10);
         captain.warriors[2] = new WarriorSquad(WarriorFactory.create("gorilla"), 10);
-        captain.authority = 100;
+        map[8][5].setEntity(captain);
 
         Castle castle = new Castle(0);
+        castle.generateArmy(50, 0);
         map[8][8].setEntity((castle));
-
         map[9][8].setEntity(new CastleRight());
         map[7][8].setEntity(new CastleLeft());
-        castle.generateArmy(50, 0);
 
         map[5][6].setEntity(new GoldenChest(1));
-
         map[6][5].setEntity(new City(0, castle));
-
         map[5][7].setEntity(new Spell());
+        map[7][5].setEntity(new GuidePost());
+        map[8][7].setEntity(new Sorcerer());
+        map[7][7].setEntity(new Magician());
 
         entityGenerator.mapNext();
 

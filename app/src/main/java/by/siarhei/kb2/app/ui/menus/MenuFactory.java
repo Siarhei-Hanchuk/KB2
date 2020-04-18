@@ -23,7 +23,7 @@ public class MenuFactory {
             return new CityMenu(mapPoint, game, i18n);
         }
         if (entity instanceof Magician) {
-            return new MagicianMenu(entity, game, i18n);
+            return new MagicianMenu(mapPoint, game, i18n);
         }
         if (entity instanceof GoldenChest && !((GoldenChest) entity).isBonus()) {
             return new GoldChestMenu(mapPoint, game, i18n);

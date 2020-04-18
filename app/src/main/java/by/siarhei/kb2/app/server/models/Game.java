@@ -77,7 +77,7 @@ public class Game implements Serializable {
 //                            mover.moveInDirection(entity, glade.getMapPoint(x, y), player.getMapPoint());
 //                        }
                     } else if (entity instanceof Magician) {
-                        ((Moving) entity).moveInRandomDirection();
+//                        ((Moving) entity).moveInRandomDirection();
                     }
                 }
             }
@@ -129,7 +129,7 @@ public class Game implements Serializable {
         updateRandomCity();
         getPlayer().changeMoney(getPlayer().getSalary());
 
-//        generateSpellMap();
+        generateSpellMap();
     }
 
     private void generateSpellMap() {

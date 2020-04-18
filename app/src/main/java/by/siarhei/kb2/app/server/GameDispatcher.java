@@ -8,9 +8,11 @@ import by.siarhei.kb2.app.server.entities.City;
 import by.siarhei.kb2.app.server.entities.Fighting;
 import by.siarhei.kb2.app.server.entities.GoldenChest;
 import by.siarhei.kb2.app.server.entities.GuidePost;
+import by.siarhei.kb2.app.server.entities.Magician;
 import by.siarhei.kb2.app.server.entities.MapNext;
 import by.siarhei.kb2.app.server.entities.Metro;
 import by.siarhei.kb2.app.server.entities.Nave;
+import by.siarhei.kb2.app.server.entities.Sorcerer;
 import by.siarhei.kb2.app.server.entities.Spell;
 import by.siarhei.kb2.app.server.models.Game;
 import by.siarhei.kb2.app.server.models.Magic;
@@ -240,6 +242,16 @@ public class GameDispatcher {
         if (mp.getEntity() instanceof Spell) {
             viewMode = VIEW_MODE_MESSAGE;
             this.message = Server.getMessageFactory().getMessage(mp);
+            return;
+        }
+        if (mp.getEntity() instanceof Sorcerer) {
+            viewMode = VIEW_MODE_MESSAGE;
+            this.message = Server.getMessageFactory().getMessage(mp);
+            return;
+        }
+        if (mp.getEntity() instanceof Magician) {
+            viewMode = VIEW_MODE_MENU;
+            this.menu = Server.getMenuFactory().getMenu(mp);
             return;
         }
     }

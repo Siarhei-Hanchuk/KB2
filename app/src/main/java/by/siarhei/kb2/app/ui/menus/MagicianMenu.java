@@ -5,6 +5,7 @@ import by.siarhei.kb2.app.server.countries.Country;
 import by.siarhei.kb2.app.server.entities.Entity;
 import by.siarhei.kb2.app.server.entities.Magician;
 import by.siarhei.kb2.app.server.models.Game;
+import by.siarhei.kb2.app.server.models.MapPoint;
 
 public class MagicianMenu extends Menu {
     private final int PRICE_MAGIC_POWER = 5000;
@@ -12,14 +13,17 @@ public class MagicianMenu extends Menu {
     private final int PRICE_MOVE_TO_COUNTRY = 5000;
     private final int PRICE_TORNADO = 10000;
     private final Magician magician;
+    private final MapPoint mapPoint;
 
-    MagicianMenu(Entity magician, Game game, I18n i18n) {
+    MagicianMenu(MapPoint mapPoint, Game game, I18n i18n) {
         super(game, i18n);
-        this.magician = (Magician) magician;
+        this.mapPoint = mapPoint;
+        this.magician = (Magician) mapPoint.getEntity();
     }
 
     @Override
     public String getItemDescription(int i) {
+        mapPoint.setEntity(null);
         switch (menuMode) {
             case 0:
                 switch (i) {

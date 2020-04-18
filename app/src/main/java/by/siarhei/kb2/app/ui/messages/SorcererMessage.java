@@ -21,38 +21,39 @@ public class SorcererMessage extends Message {
 
     @Override
     public void action() {
+        mapPoint.setEntity(null);
         switch (mode) {
-            case 0:
-                // TODO
             case 1:
-                // TODO player.getMagic().magicPower
+                // TODO
             case 2:
+                // TODO player.getMagic().magicPower
+            case 3:
                 player.changeAuthority(-player.getAuthority() / 2);
                 break;
-            case 3:
+            case 4:
                 for (int i = 0; i < 4; i++)
                     player.changeWorker(i, -player.getWorker(i));
                 break;
-            case 4:
+            case 5:
                 player.changeMoney(-player.getMoney());
                 break;
-            case 5:
+            case 6:
                 player.clearArmy();
                 break;
-            case 6:
-                // TODO player.getMagic().
             case 7:
                 // TODO player.getMagic().
             case 8:
+                // TODO player.getMagic().
+            case 9:
                 player.move(game.getWorld().getCountry((new Random()).nextInt(5)).getRandomLand());
                 break;
-            case 9:
+            case 10:
                 player.move(player.getCountry().getRandomLand());
                 break;
-            case 10:
+            case 11:
                 game.destroyNave();
                 break;
-            case 11:
+            case 12:
                 player.getMemory().clear();
                 break;
         }
