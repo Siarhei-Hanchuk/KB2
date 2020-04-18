@@ -3,6 +3,7 @@ package by.siarhei.kb2.app.server;
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.server.entities.ArmyShop;
 import by.siarhei.kb2.app.server.entities.Captain;
+import by.siarhei.kb2.app.server.entities.Castle;
 import by.siarhei.kb2.app.server.entities.City;
 import by.siarhei.kb2.app.server.entities.Fighting;
 import by.siarhei.kb2.app.server.entities.GoldenChest;
@@ -49,7 +50,6 @@ public class GameDispatcher {
     private transient Menu menu;
     private final transient Game game;
     private ArmyShop currentArmyShop;
-    private Fighting currentFighting;
     private MapPoint currentFightingPoint;
 
     public GameDispatcher(Game game) {
@@ -95,7 +95,7 @@ public class GameDispatcher {
                 viewMode = VIEW_MODE_GRID;
                 break;
             case Request.ACTION_ACCEPT_BATTLE:
-                startBattle(currentFighting);
+                startBattle();
                 break;
             case Request.ACTION_DECLINE_BATTLE:
                 viewMode = VIEW_MODE_GRID;
@@ -218,9 +218,8 @@ public class GameDispatcher {
             player.move(mp);
             return;
         }
-        if(mp.getEntity() instanceof Captain) {
+        if(mp.getEntity() instanceof Captain || (mp.getEntity() instanceof Castle && !((Castle) mp.getEntity()).getStriken())) {
             viewMode = VIEW_MODE_BATTLE_QUESTION;
-            this.currentFighting = (Fighting) mp.getEntity();
             this.currentFightingPoint = mp;
             return;
         }
@@ -267,10 +266,14 @@ public class GameDispatcher {
     }
 
     public Fighting getCurrentFighting() {
-        return currentFighting;
+        if(currentFightingPoint == null || currentFightingPoint.getEntity() == null) {
+            return null;
+        }
+
+        return (Fighting) currentFightingPoint.getEntity();
     }
 
-    private void startBattle(Fighting fighting) {
+    private void startBattle() {
         viewMode = VIEW_MODE_BATTLE;
         game.startBattle(currentFightingPoint);
     }

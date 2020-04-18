@@ -12,6 +12,7 @@ public class Castle implements Entity, Fighting, CastlesOwner {
     private final WarriorSquad[] warriors = new WarriorSquad[ARMY_COUNT];
     private final int nameId;
     private int authority;
+    private boolean stricken = false;
 
     public Castle(int nameId) {
         this.nameId = nameId;
@@ -19,7 +20,11 @@ public class Castle implements Entity, Fighting, CastlesOwner {
 
     @Override
     public int getID() {
-        return R.drawable.castle_c;
+        if(!stricken) {
+            return R.drawable.castle_c;
+        } else {
+            return R.drawable.castle_c_stricken;
+        }
     }
 
     @Override
@@ -68,5 +73,13 @@ public class Castle implements Entity, Fighting, CastlesOwner {
 
     public int getNameId() {
         return nameId;
+    }
+
+    public void setStricken() {
+        this.stricken = true;
+    }
+
+    public boolean getStriken() {
+        return stricken;
     }
 }

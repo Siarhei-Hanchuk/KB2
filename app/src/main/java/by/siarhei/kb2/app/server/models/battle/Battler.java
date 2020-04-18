@@ -1,5 +1,7 @@
 package by.siarhei.kb2.app.server.models.battle;
 
+import by.siarhei.kb2.app.server.entities.Captain;
+import by.siarhei.kb2.app.server.entities.Castle;
 import by.siarhei.kb2.app.server.entities.Fighting;
 import by.siarhei.kb2.app.server.models.Game;
 import by.siarhei.kb2.app.server.models.Player;
@@ -42,7 +44,11 @@ public class Battler {
     private void finishBattleWithWin(BattleResult battleResult) {
         game.getPlayer().changeMoney(battleResult.getGold());
         game.getPlayer().changeAuthority(battleResult.getAuthority());
-        fightingPoint.setEntity(null);
+        if(fightingPoint.getEntity() instanceof Captain) {
+            fightingPoint.setEntity(null);
+        } else {
+            ((Castle) fightingPoint.getEntity()).setStricken();
+        }
     }
 
     private void finishBattleWithFail(BattleResult battleResult) {
