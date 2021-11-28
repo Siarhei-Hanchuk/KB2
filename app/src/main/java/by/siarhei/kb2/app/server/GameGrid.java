@@ -2,6 +2,7 @@ package by.siarhei.kb2.app.server;
 
 import java.lang.reflect.Field;
 
+import by.siarhei.kb2.app.BuildConfig;
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.server.countries.Country;
 import by.siarhei.kb2.app.server.models.Game;
@@ -174,6 +175,15 @@ public class GameGrid {
             case GameDispatcher.GAME_MENU_MAP:
                 makeStatusMap();
                 break;
+            case GameDispatcher.GAME_MENU_CHEATS:
+                makeCheatsMenu(0);
+                break;
+            case GameDispatcher.GAME_MENU_CHEATS_1:
+                makeCheatsMenu(1);
+                break;
+            case GameDispatcher.GAME_MENU_CHEATS_2:
+                makeCheatsMenu(2);
+                break;
         }
     }
 
@@ -230,8 +240,38 @@ public class GameGrid {
         grid[5][0] = R.drawable.status_map;
         grid[5][1] = R.drawable.status_countries;
         grid[5][2] = R.drawable.status_back;
-        grid[5][3] = -1;
+        if (BuildConfig.DEBUG)
+            grid[5][3] = R.drawable.cheats_intro;
+        else
+            grid[5][3] = -1;
         grid[5][4] = -1;
+    }
+
+    private void makeCheatsMenu(int group) {
+        switch (group) {
+            case 0:
+                grid[5][0] = R.drawable.cheats_a;
+                grid[5][1] = R.drawable.cheats_b;
+                grid[5][2] = -1; // R.drawable.cheats_c;
+                grid[5][3] = -1; // R.drawable.cheats_magic_power;
+                grid[5][4] = R.drawable.status_back;
+                break;
+            case 1:
+                grid[5][0] = R.drawable.cheats_money;
+                grid[5][1] = R.drawable.cheats_authority;
+                grid[5][2] = R.drawable.cheats_countries;
+                grid[5][3] = -1; // R.drawable.cheats_magic_power;
+                grid[5][4] = R.drawable.status_back;
+                break;
+            case 2:
+                grid[5][0] = R.drawable.cheats_magician;
+                grid[5][1] = -1;
+                grid[5][2] = -1;
+                grid[5][3] = -1;
+                grid[5][4] = R.drawable.status_back;
+                break;
+        }
+
     }
 
     public int getMode() {

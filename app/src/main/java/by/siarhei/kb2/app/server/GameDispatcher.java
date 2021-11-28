@@ -1,5 +1,6 @@
 package by.siarhei.kb2.app.server;
 
+import by.siarhei.kb2.app.BuildConfig;
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.server.entities.ArmyShop;
 import by.siarhei.kb2.app.server.entities.Captain;
@@ -45,6 +46,10 @@ public class GameDispatcher {
     public static final int GAME_MENU_MAGIC = 2;
     private static final int GAME_MENU_STATUS = 3;
     public static final int GAME_MENU_MAP = 4;
+    public static final int GAME_MENU_CHEATS = 5;
+    public static final int GAME_MENU_CHEATS_1 = 6;
+    public static final int GAME_MENU_CHEATS_2 = 7;
+    public static final int GAME_MENU_CHEATS_3 = 8;
 
     private int viewMode = VIEW_MODE_GRID;
     private int gameMenuMode = GAME_MENU_MAIN;
@@ -137,7 +142,6 @@ public class GameDispatcher {
                         viewMode = VIEW_MODE_MAP;
                         break;
                     case 1:
-
                         if(game.getPlayer().getMapPoint().getLand() == R.drawable.water) {
                             menu = Server.getMenuFactory().getCountryMenu();
                             viewMode = VIEW_MODE_MENU;
@@ -148,6 +152,11 @@ public class GameDispatcher {
                         break;
                     case 2:
                         gameMenuMode = GAME_MENU_MAIN;
+                        break;
+                    case 3:
+                        if (BuildConfig.DEBUG)
+                            gameMenuMode = GAME_MENU_CHEATS;
+                        break;
                 }
                 break;
             case GAME_MENU_OTHER:
@@ -166,6 +175,7 @@ public class GameDispatcher {
                         break;
                     case 4:
                         gameMenuMode = GAME_MENU_MAIN;
+                        break;
                 }
                 break;
             case GAME_MENU_MAGIC:
@@ -184,8 +194,54 @@ public class GameDispatcher {
                         break;
                     case 4:
                         gameMenuMode = GAME_MENU_MAIN;
+                        break;
                 }
                 break;
+            case GAME_MENU_CHEATS:
+                switch (item) {
+                    case 0:
+                        gameMenuMode = GAME_MENU_CHEATS_1;
+                        break;
+                    case 1:
+                        gameMenuMode = GAME_MENU_CHEATS_2;
+                        break;
+//                    case 2:
+//                        gameMenuMode = GAME_MENU_CHEATS_3;
+//                        break;
+//                    case 3:
+//                        gameMenuMode = GAME_MENU_CHEATS_4;
+//                        break;
+                    case 4:
+                        gameMenuMode = GAME_MENU_MAIN;
+                        break;
+                }
+            case GAME_MENU_CHEATS_1:
+                switch (item) {
+                    case 0:
+                        game.getPlayer().changeMoney(10000);
+                        break;
+                    case 1:
+                        game.getPlayer().changeAuthority(1000);
+                        break;
+                    case 2:
+                        game.getPlayer().upAvailableCountry();
+                        game.getPlayer().upAvailableCountry();
+                        game.getPlayer().upAvailableCountry();
+                        game.getPlayer().upAvailableCountry();
+                        break;
+                    case 4:
+                        gameMenuMode = GAME_MENU_MAIN;
+                        break;
+                }
+            case GAME_MENU_CHEATS_2:
+                switch (item) {
+                    case 0:
+//                        game.getWorld().getCountry(0).
+                        break;
+                    case 4:
+                        gameMenuMode = GAME_MENU_MAIN;
+                        break;
+                }
         }
     }
 
