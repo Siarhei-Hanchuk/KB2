@@ -11,40 +11,46 @@ public class MagicianMenu extends Menu {
     private final int PRICE_WORKERS = 1000;
     private final int PRICE_MOVE_TO_COUNTRY = 5000;
     private final int PRICE_TORNADO = 10000;
-    private final Magician magician;
+    private final int ITEM_WORKERS = 0;
+    private final int ITEM_MAGIC_POWER = 1;
+    private final int ITEM_MOVE_TO_COUNTRY = 2;
+    private final int ITEM_ASK_FOR_SPELL = 3;
+    private final int ITEM_TORNADO = 4;
+    private final int MODE_MAIN = 0;
+    private final int MODE_WORKERS = 1;
+    private final int MODE_COUNTRIES = 2;
     private final MapPoint mapPoint;
 
     MagicianMenu(MapPoint mapPoint, Game game, I18n i18n) {
         super(game, i18n);
         this.mapPoint = mapPoint;
-        this.magician = (Magician) mapPoint.getEntity();
     }
 
     @Override
     public String getItemDescription(int i) {
         mapPoint.setEntity(null);
         switch (menuMode) {
-            case 0:
+            case MODE_MAIN:
                 switch (i) {
-                    case 0:
+                    case ITEM_WORKERS:
                         return menuItem("entity_magician_menu_item1", PRICE_WORKERS);
-                    case 1:
+                    case ITEM_MAGIC_POWER:
                         return menuItem("entity_magician_menu_item2", PRICE_MAGIC_POWER);
-                    case 2:
+                    case ITEM_MOVE_TO_COUNTRY:
                         return menuItem("entity_magician_menu_item3", PRICE_MOVE_TO_COUNTRY);
-                    case 3:
+                    case ITEM_ASK_FOR_SPELL:
                         return menuItem("entity_magician_menu_item4");
-                    case 4:
+                    case ITEM_TORNADO:
                         return menuItem("entity_magician_menu_item5", PRICE_TORNADO);
                     case 5:
                         return "-";
                     default:
                         return null;
                 }
-            case 1:
-                return menuItem("entity_menus_city_workers_item" + (i + 1));
-            case 2:
-                return i18n.translate("countries_country" + (i - 1));
+            case MODE_WORKERS:
+                return menuItem("workers_item" + (i + 1));
+            case MODE_COUNTRIES:
+                return i18n.translate("countries_country" + (i + 1));
         }
         return null;
     }
@@ -58,42 +64,42 @@ public class MagicianMenu extends Menu {
     public boolean select(int i) {
         int countryId = player.getCountry().getId();
         switch (menuMode) {
-            case 0:
+            case MODE_MAIN:
                 switch (i) {
-                    case 0:
-                        menuMode = 1;
-                        return false;
-                    case 1:
+                    case ITEM_WORKERS:
+                        if (player.changeMoney(-PRICE_WORKERS)) {
+                            player.getMagicianStatus().upUsedMagicianCount(countryId);
+                            menuMode = MODE_WORKERS;
+                            return false;
+                        }
+                        return true;
+                    case ITEM_MAGIC_POWER:
                         if (player.changeMoney(-PRICE_MAGIC_POWER)) {
                             player.getMagic().upMagicPower();
-                            magician.upUsedMagicianCount(countryId);
+                            player.getMagicianStatus().upUsedMagicianCount(countryId);
                         }
-//                        TODO:
-//                        magician.destroy();
                         return true;
-                    case 2:
+                    case ITEM_MOVE_TO_COUNTRY:
                         if (player.changeMoney(-PRICE_MOVE_TO_COUNTRY)) {
-                            menuMode = 2;
-                            magician.upUsedMagicianCount(countryId);
+                            menuMode = MODE_COUNTRIES;
+                            player.getMagicianStatus().upUsedMagicianCount(countryId);
+                            return false;
                         }
-                        // TODO:
-//                        magician.destroy();
                         return true;
-                    case 4:
+                    case ITEM_TORNADO:
                         if (player.changeMoney(-PRICE_TORNADO)) {
                             player.getMagic().changeTornado(+1);
-                            magician.upUsedMagicianCount(countryId);
+                            player.getMagicianStatus().upUsedMagicianCount(countryId);
                         }
-                        // TODO:
-//                        magician.destroy();
                         return true;
                 }
-            case 1:
-                player.changeMoney(-PRICE_WORKERS);
-                player.changeWorker(i, +player.getMagic().getMagicPower());
-                magician.upUsedMagicianCount(countryId);
-                // TODO:
-//                magician.destroy();
+            case MODE_WORKERS:
+                int number = Math.min(player.getMagic().getMagicPower(), 1);
+                player.changeWorker(i, +number);
+
+                return true;
+            case MODE_COUNTRIES:
+                game.changeCountry(i);
                 return true;
         }
         return false;
@@ -102,13 +108,13 @@ public class MagicianMenu extends Menu {
     @Override
     public int getCount() {
         switch (menuMode) {
-            case 0:
+            case MODE_MAIN:
                 Country country = game.getPlayer().getCountry();
-                return Math.min(magician.getUsedMagicianCount(country.getId()) + 1, 6);
-            case 1:
+                return Math.min(player.getMagicianStatus().getUsedMagicianCount(country.getId()) + 1, 6);
+            case MODE_WORKERS:
                 return 4;
-            case 2:
-                return 5;
+            case MODE_COUNTRIES:
+                return Math.min(maxAvailableCountry(), 5);
         }
         return 0;
     }
@@ -121,5 +127,9 @@ public class MagicianMenu extends Menu {
     @Override
     public boolean withMoney() {
         return true;
+    }
+
+    public int maxAvailableCountry() {
+        return player.getAvailableCountry() + 1;
     }
 }

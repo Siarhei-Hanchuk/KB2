@@ -15,6 +15,7 @@ public class Player implements Serializable {
     private final byte[] relationshipWithOwner = {0, 0, 0, 0, 0};
     private final Memory memory;
     private Magic magic;
+    private MagicianStatus magicianStatus;
     private boolean wallDestroyer = false;
     private int money;
     private int authority;
@@ -71,6 +72,7 @@ public class Player implements Serializable {
         workers[3] = 3;
         salary = 500;
         magic = new Magic(1, 4);
+        magicianStatus = new MagicianStatus();
     }
 
     private void hard() {
@@ -84,6 +86,7 @@ public class Player implements Serializable {
         workers[3] = 0;
         salary = 500;
         magic = new Magic(0, 2);
+        magicianStatus = new MagicianStatus();
     }
 
     public void move(int x, int y) {
@@ -96,10 +99,10 @@ public class Player implements Serializable {
         move(point.getX(), point.getY());
     }
 
-    public void changeCountry(Country country) {
+    public void changeCountry(Country country, int x, int y) {
         this.country = country;
-        x = 2;
-        y = 2;
+        this.x = x;
+        this.y = y;
     }
 
     public Memory getMemory() {
@@ -287,5 +290,9 @@ public class Player implements Serializable {
             warriors[j-1] = warriors[j];
             warriors[j] = null;
         }
+    }
+
+    public MagicianStatus getMagicianStatus() {
+        return magicianStatus;
     }
 }

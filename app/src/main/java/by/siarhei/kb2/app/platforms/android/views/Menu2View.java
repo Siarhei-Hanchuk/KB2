@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import androidx.annotation.NonNull;
+
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 
 import by.siarhei.kb2.app.R;
@@ -59,6 +61,13 @@ public class Menu2View extends RootView {
         }
         selectRequest(item);
 
+        return true;
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, @NonNull KeyEvent event) {
+        int item = keyCode - KeyEvent.KEYCODE_0 - 1;
+        selectRequest(item);
         return true;
     }
 

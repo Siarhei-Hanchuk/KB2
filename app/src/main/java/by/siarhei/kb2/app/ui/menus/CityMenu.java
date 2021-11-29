@@ -130,15 +130,12 @@ public class CityMenu extends Menu {
 
     private void buyNave() {
         player.changeMoney(-PRICE_NAVE);
-        int x;
-        int y;
-        for (x = mapPoint.getX() - 1; x <= mapPoint.getX() + 1; x++) {
-            for (y = mapPoint.getY() - 1; y <= mapPoint.getY() + 1; y++) {
+        for (int x = mapPoint.getX() - 1; x <= mapPoint.getX() + 1; x++) {
+            for (int y = mapPoint.getY() - 1; y <= mapPoint.getY() + 1; y++) {
                 if (player.getCountry().getMapPoint(x, y).getLand() == R.drawable.water) {
                     game.createNave(player.getCountry(), x, y);
                     return;
                 }
-                return;
             }
         }
         return;

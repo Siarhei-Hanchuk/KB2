@@ -253,20 +253,20 @@ public class GameGrid {
                 grid[5][0] = R.drawable.cheats_a;
                 grid[5][1] = R.drawable.cheats_b;
                 grid[5][2] = -1; // R.drawable.cheats_c;
-                grid[5][3] = -1; // R.drawable.cheats_magic_power;
+                grid[5][3] = -1;
                 grid[5][4] = R.drawable.status_back;
                 break;
             case 1:
                 grid[5][0] = R.drawable.cheats_money;
                 grid[5][1] = R.drawable.cheats_authority;
                 grid[5][2] = R.drawable.cheats_countries;
-                grid[5][3] = -1; // R.drawable.cheats_magic_power;
+                grid[5][3] = R.drawable.cheats_magic_power;
                 grid[5][4] = R.drawable.status_back;
                 break;
             case 2:
                 grid[5][0] = R.drawable.cheats_magician;
-                grid[5][1] = -1;
-                grid[5][2] = -1;
+                grid[5][1] = R.drawable.cheats_workers;
+                grid[5][2] = R.drawable.cheats_to_city;
                 grid[5][3] = -1;
                 grid[5][4] = R.drawable.status_back;
                 break;

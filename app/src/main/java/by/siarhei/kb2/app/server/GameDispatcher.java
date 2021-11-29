@@ -215,6 +215,7 @@ public class GameDispatcher {
                         gameMenuMode = GAME_MENU_MAIN;
                         break;
                 }
+                break;
             case GAME_MENU_CHEATS_1:
                 switch (item) {
                     case 0:
@@ -229,19 +230,36 @@ public class GameDispatcher {
                         game.getPlayer().upAvailableCountry();
                         game.getPlayer().upAvailableCountry();
                         break;
+                    case 3:
+                        game.getPlayer().getMagic().upMagicPower();
+                        break;
                     case 4:
                         gameMenuMode = GAME_MENU_MAIN;
                         break;
                 }
+                break;
             case GAME_MENU_CHEATS_2:
                 switch (item) {
                     case 0:
-//                        game.getWorld().getCountry(0).
+                        MapPoint playerMP = game.getPlayer().getMapPoint();
+                        MapPoint freeLand = game.getPlayer().getCountry().getLandNearPoint(playerMP);
+                        freeLand.setEntity(new Magician());
+                        break;
+                    case 1:
+                        game.getPlayer().changeWorker(0, 20);
+                        game.getPlayer().changeWorker(1, 20);
+                        game.getPlayer().changeWorker(2, 20);
+                        game.getPlayer().changeWorker(3, 20);
+                        break;
+                    case 2:
+                        MapPoint land = game.getPlayer().getCountry().getLandNearCity();
+                        game.getPlayer().move(land);
                         break;
                     case 4:
                         gameMenuMode = GAME_MENU_MAIN;
                         break;
                 }
+                break;
         }
     }
 

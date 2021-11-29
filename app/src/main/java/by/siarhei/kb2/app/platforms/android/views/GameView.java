@@ -3,6 +3,8 @@ package by.siarhei.kb2.app.platforms.android.views;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import androidx.annotation.NonNull;
+
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 
 import by.siarhei.kb2.app.R;
@@ -54,71 +56,87 @@ public class GameView extends RootView {
             int height_3_5 = mainView.stepY() * 3;
             int width_2_5 = mainView.stepX() * 2;
             int width_3_5 = mainView.stepX() * 3;
+            int vertical = 0;
+            int horizontal = 0;
             if (y > height_3_5) {
-                if (x > width_2_5 && x < width_3_5) {
-                    touchDown();
-                }
-                if (x < width_2_5) {
-                    touchDownLeft();
-                }
-                if (x > width_3_5) {
-                    touchDownRight();
-                }
+                vertical = +1;
             }
             if (y < height_2_5) {
-                if (x > width_2_5 && x < width_3_5) {
-                    touchUp();
-                }
-                if (x < width_2_5) {
-                    touchUpLeft();
-                }
-                if (x > width_3_5) {
-                    touchUpRight();
-                }
+                vertical = -1;
             }
-            if (x > width_3_5 && y > height_2_5 && y < height_3_5) {
-                touchRight();
+            if (x < width_2_5) {
+                horizontal = -1;
             }
-            if (x < width_2_5 && y > height_2_5 && y < height_3_5) {
-                touchLeft();
+            if (x > width_3_5) {
+                horizontal = +1;
             }
+            playerStep(horizontal, vertical);
         }
-        Sound.play(R.raw.step);
 
         return true;
     }
 
 
-    private void touchDown() {
-        playerMove(0, +1);
+    @Override
+    public boolean onKeyUp(int keyCode, @NonNull KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN || keyCode == KeyEvent.KEYCODE_2) {
+            playerStep(0, +1);
+            return true;
+        }
+        if (keyCode == KeyEvent.KEYCODE_DPAD_UP || keyCode == KeyEvent.KEYCODE_8) {
+            playerStep(0, -1);
+            return true;
+        }
+        if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT || keyCode == KeyEvent.KEYCODE_6) {
+            playerStep(+1, 0);
+            return true;
+        }
+        if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT || keyCode == KeyEvent.KEYCODE_4) {
+            playerStep(-1, 0);
+            return true;
+        }
+        if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN_LEFT || keyCode == KeyEvent.KEYCODE_1) {
+            playerStep(-1, +1);
+            return true;
+        }
+        if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN_RIGHT || keyCode == KeyEvent.KEYCODE_3) {
+            playerStep(+1, +1);
+            return true;
+        }
+        if (keyCode == KeyEvent.KEYCODE_DPAD_UP_LEFT || keyCode == KeyEvent.KEYCODE_7) {
+            playerStep(-1, -1);
+            return true;
+        }
+        if (keyCode == KeyEvent.KEYCODE_DPAD_UP_RIGHT || keyCode == KeyEvent.KEYCODE_9) {
+            playerStep(+1, -1);
+            return true;
+        }
+        if (keyCode == KeyEvent.KEYCODE_Q) {
+            touchMenu(0);
+            return true;
+        }
+        if (keyCode == KeyEvent.KEYCODE_W) {
+            touchMenu(1);
+            return true;
+        }
+        if (keyCode == KeyEvent.KEYCODE_E) {
+            touchMenu(2);
+            return true;
+        }
+        if (keyCode == KeyEvent.KEYCODE_R) {
+            touchMenu(3);
+            return true;
+        }
+        if (keyCode == KeyEvent.KEYCODE_T) {
+            touchMenu(4);
+            return true;
+        }
+        return super.onKeyUp(keyCode, event);
     }
 
-    private void touchUp() {
-        playerMove(0, -1);
-    }
-
-    private void touchRight() {
-        playerMove(+1, 0);
-    }
-
-    private void touchLeft() {
-        playerMove(-1, 0);
-    }
-
-    private void touchUpRight() {
-        playerMove(+1, -1);
-    }
-
-    private void touchUpLeft() {
-        playerMove(-1, -1);
-    }
-
-    private void touchDownRight() {
-        playerMove(+1, +1);
-    }
-
-    private void touchDownLeft() {
-        playerMove(-1, +1);
+    private void playerStep(int dx, int dy) {
+        playerMove(dx, dy);
+        Sound.play(R.raw.step);
     }
 
     private void playerMove(int dx, int dy) {

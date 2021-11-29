@@ -5,6 +5,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import androidx.annotation.NonNull;
+
+import android.os.Build;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -77,18 +80,6 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback, Dra
     public void refresh() {
         drawThread.refresh();
     }
-
-//    @Override
-//    public void refresh(int delay) {
-//        if (delay > 0) {
-//            try {
-//                Thread.sleep(delay);
-//            } catch (InterruptedException ex) {
-//                Thread.currentThread().interrupt();
-//            }
-//        }
-//        drawThread.refresh();
-//    }
 
     private double getScale() {
         double scaleX = (double) getWidth() / (IMAGE_WIDTH * GameGrid.STEP_X);
@@ -195,5 +186,16 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback, Dra
     public void switchOnMenu() {
         menuMode = true;
         refresh();
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        boolean needRefresh = getView().onKeyUp(keyCode, event);
+        if(needRefresh) {
+            view = null;
+            menuMode = false;
+            refresh();
+        }
+        return false;
     }
 }

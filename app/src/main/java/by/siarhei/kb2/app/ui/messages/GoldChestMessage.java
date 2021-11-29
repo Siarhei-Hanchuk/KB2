@@ -30,7 +30,6 @@ public class GoldChestMessage extends Message {
 
     @Override
     public void action() {
-        System.out.println("TTY");
         switch (mode) {
             case 0:
                 player.changeSalary(((GoldenChest) mapPoint.getEntity()).getSalary());

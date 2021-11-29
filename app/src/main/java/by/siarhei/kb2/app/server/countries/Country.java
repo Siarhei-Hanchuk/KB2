@@ -126,7 +126,7 @@ public class Country implements Glade, Serializable, ArmyShopsOwner, MapPointsOw
         return getLandNearPoint(getMapPointsList(City.class).next());
     }
 
-    private MapPoint getLandNearPoint(MapPoint point) {
+    public MapPoint getLandNearPoint(MapPoint point) {
         int pointX = point.getX();
         int pointY = point.getY();
         for (int x = pointX - 1; x <= pointX + 1; x++) {

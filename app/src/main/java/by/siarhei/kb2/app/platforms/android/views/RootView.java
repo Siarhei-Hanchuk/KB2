@@ -4,6 +4,8 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import androidx.annotation.NonNull;
+
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 
 import by.siarhei.kb2.app.I18n;
@@ -30,6 +32,10 @@ public abstract class RootView {
         request.setAction(Request.ACTION_OK);
         Server.getServer().request(request);
         return true;
+    }
+
+    public boolean onKeyUp(int keyCode, @NonNull KeyEvent event) {
+        return false;
     }
 
     Painter getPainter(Canvas canvas) {

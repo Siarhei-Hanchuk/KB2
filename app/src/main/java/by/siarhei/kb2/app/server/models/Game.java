@@ -246,10 +246,12 @@ public class Game implements Serializable {
         if(player.inNave()) {
             Entity nave = player.getMapPoint().getEntity();
             player.getMapPoint().setEntity(null);
-            player.changeCountry(country);
+            player.changeCountry(country, 2, 2);
             player.getMapPoint().setEntity(nave);
+        } else {
+            MapPoint mp = world.getCountry(n).getRandomLand();
+            player.changeCountry(country, mp.getX(), mp.getY());
         }
-
     }
 
     public int getDays() {

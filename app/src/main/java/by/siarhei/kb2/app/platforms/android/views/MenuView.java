@@ -3,7 +3,11 @@ package by.siarhei.kb2.app.platforms.android.views;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import androidx.annotation.NonNull;
+
+import android.view.KeyEvent;
 import android.view.MotionEvent;
+
+import java.security.Key;
 
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.platforms.android.MainView;
@@ -42,10 +46,26 @@ public class MenuView extends RootView {
 
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event){
-        Menu menu = Server.getServer().getResponse().getMenu();
         double y = event.getY();
         int item = (int) y / menuItemHeight();
+        menuItemSelect(item);
 
+        return true;
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, @NonNull KeyEvent event) {
+        int item = keyCode - KeyEvent.KEYCODE_0 - 1;
+        Menu menu = Server.getServer().getResponse().getMenu();
+        if ((keyCode == KeyEvent.KEYCODE_ESCAPE || keyCode == KeyEvent.KEYCODE_GRAVE) && menu.withExit()) {
+            item = menu.getCount();
+        }
+        menuItemSelect(item);
+        return true;
+    }
+
+    private void menuItemSelect(int item) {
+        Menu menu = Server.getServer().getResponse().getMenu();
         int count = menu.getCount();
         if(menu.withExit()) {
             count++;
@@ -56,7 +76,5 @@ public class MenuView extends RootView {
             request.setMenuItem(item);
             Server.getServer().request(request);
         }
-
-        return true;
     }
 }
