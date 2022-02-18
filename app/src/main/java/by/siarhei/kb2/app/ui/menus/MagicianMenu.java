@@ -100,6 +100,9 @@ public class MagicianMenu extends Menu {
                 return true;
             case MODE_COUNTRIES:
                 game.changeCountry(i);
+                if(i == game.getPlayer().getAvailableCountry()) {
+                    game.getPlayer().upAvailableCountry();
+                }
                 return true;
         }
         return false;
