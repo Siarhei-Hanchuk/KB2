@@ -8,6 +8,7 @@ import by.siarhei.kb2.app.server.entities.Captain;
 import by.siarhei.kb2.app.server.entities.City;
 import by.siarhei.kb2.app.server.entities.Entity;
 import by.siarhei.kb2.app.server.entities.Magician;
+import by.siarhei.kb2.app.server.entities.Moving;
 import by.siarhei.kb2.app.server.entities.Nave;
 import by.siarhei.kb2.app.server.entities.Sorcerer;
 import by.siarhei.kb2.app.server.models.battle.Battle;
@@ -54,8 +55,10 @@ public class Game implements Serializable {
     private void moveEntities() {
         HashMap<Entity, Boolean> movedEntity = new HashMap<>();
         Glade glade = player.getCountry();
+        Mover mover = new Mover(glade);
         for (int x = player.getX() - 2; x <= player.getX() + 2; x++) {
             for (int y = player.getY() - 2; y <= player.getY() + 2; y++) {
+                MapPoint mapPoint = glade.getMapPoint(x, y);
                 Entity entity = glade.getMapPoint(x, y).getEntity();
                 if (entity != null) {
                     if(movedEntity.get(entity) != null) {
@@ -65,21 +68,24 @@ public class Game implements Serializable {
                     if ((entity instanceof Captain && player.isCaptainsActivated())
                             || entity instanceof Sorcerer) {
                         // TODO - fix
-//                        if(player.distanceToEntity(entity) <= 1 &&
-//                                ((Moving) entity).canMoveTo(player.getMapPoint())) {
-//                            actionWithObject(glade.getMapPoint(x, y));
-//                        } else {
-////                            ((Moving) entity).moveInDirection(player.getMapPoint());
-//                            Mover mover = new Mover(glade);
-//                            // TODO - check
-//                            mover.moveInDirection(entity, glade.getMapPoint(x, y), player.getMapPoint());
-//                        }
+                        if(distanceBetween(player.getMapPoint(), mapPoint) <= 1) {
+                            actionWithObject()
+                        } else {
+                            mover.moveInDirection(entity, glade.getMapPoint(x, y), player.getMapPoint());
+                        }
                     } else if (entity instanceof Magician) {
-//                        ((Moving) entity).moveInRandomDirection();
+                        mover.moveInRandomDirection(entity, mapPoint);
                     }
                 }
             }
         }
+    }
+
+    private double distanceBetween(MapPoint mp1, MapPoint mp2) {
+        double x = Math.pow(mp1.getX() - mp2.getX(), 2);
+        double y = Math.pow(mp1.getY() - mp2.getY(), 2);
+
+        return Math.sqrt(x + y);
     }
 
     public boolean naveExists() {
@@ -199,6 +205,7 @@ public class Game implements Serializable {
 
         moveEntities();
         player.tryActivateCaptains();
+//        moveCaptains();
         return mp;
     }
 
