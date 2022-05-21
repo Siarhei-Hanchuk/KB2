@@ -69,7 +69,7 @@ public class Game implements Serializable {
                             || entity instanceof Sorcerer) {
                         // TODO - fix
                         if(distanceBetween(player.getMapPoint(), mapPoint) <= 1) {
-                            actionWithObject()
+//                            actionWithObject()
                         } else {
                             mover.moveInDirection(entity, glade.getMapPoint(x, y), player.getMapPoint());
                         }
