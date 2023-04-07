@@ -72,6 +72,7 @@ public class GameView extends RootView {
             }
             playerStep(horizontal, vertical);
         }
+        Sound.play(R.raw.step);
 
         return true;
     }
