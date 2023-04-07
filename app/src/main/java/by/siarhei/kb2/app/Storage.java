@@ -4,4 +4,6 @@ public interface Storage {
     void saveGame(String data, String key);
 
     String loadGame(String key);
+
+    boolean savedGameExists(String key);
 }

@@ -62,8 +62,7 @@ public class BattleAskView extends RootView {
     }
 
     private boolean isCaptainsActivated(Response response) {
-//        return controller.getGame().getPlayer().isCaptainsActivated();
-        return true;
+        return response.getPlayer().isCaptainsActivated();
     }
 
     private int getCaptainPowerString(Response response) {

@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 
 import by.siarhei.kb2.app.R;
 import by.siarhei.kb2.app.platforms.android.MainView;
+import by.siarhei.kb2.app.platforms.android.Sound;
 import by.siarhei.kb2.app.platforms.android.helpers.ImageCache;
 import by.siarhei.kb2.app.platforms.android.helpers.Painter;
 import by.siarhei.kb2.app.server.Request;
@@ -27,11 +28,14 @@ public class Menu2View extends RootView {
         Painter painter = mainView.getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 
+        // TODO: don't hardcode the sound
+        Sound.play(R.raw.gold);
+
         GoldChestMenu menu = (GoldChestMenu) response.getMenu();
         painter.drawText(menu.getTitle(), 0,
                 mainView.textHeight(), mainView.getDefaultPaint(), Painter.ALIGN_CENTER);
 
-        ImageCache imageCache = mainView.getImageCache();//ImageCache.getInstance(getResources(), (int)(stepX() * 1.5), (int)(stepY()*1.5));
+        ImageCache imageCache = mainView.getImageCache();
 
         Paint paint = new Paint(mainView.getDefaultPaint());
         paint.setTextSize(mainView.textHeight() / 2);

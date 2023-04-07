@@ -15,13 +15,17 @@ public class StorageImpl implements Storage {
 
     @Override
     public void saveGame(String data, String key) {
-
         saveObject(key, data);
     }
 
     @Override
     public String loadGame(String key) {
         return (String) loadObject(key);
+    }
+
+    @Override
+    public boolean savedGameExists(String key) {
+        return prefs.contains(key);
     }
 
     private void saveObject(String key, String string) {

@@ -163,6 +163,8 @@ public class Player implements Serializable {
 
     public void changeAuthority(int d) {
         authority += d;
+        if (authority < 0)
+            authority = 0;
     }
 
     public void upAvailableCountry() {

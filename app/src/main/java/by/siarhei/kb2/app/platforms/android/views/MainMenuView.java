@@ -24,6 +24,7 @@ public class MainMenuView extends RootView {
     private final byte ACTION_SAVE= 4;
     private final byte ACTION_LOAD= 5;
     private final byte ACTION_EXIT = 7;
+    private final String DEFAULT_SAVE_NAME = "save0";
 
     private boolean saved = false;
 
@@ -49,8 +50,11 @@ public class MainMenuView extends RootView {
 
         paintMenuItem(painter, paint, 0, 6, R.string.mainMenu_training);
 
-        painter.drawText(i18n.translate(R.string.mainMenu_load_game),
-                yDelta , 2 * menuItemHeight(), paint);
+        Storage storage = new StorageImpl(MainActivity.getActivity());
+        if (storage.savedGameExists(DEFAULT_SAVE_NAME)) {
+            painter.drawText(i18n.translate(R.string.mainMenu_load_game),
+                    yDelta, 2 * menuItemHeight(), paint);
+        }
 
         if (Server.getServer() != null) {
             if (!saved) {
@@ -144,10 +148,10 @@ public class MainMenuView extends RootView {
                 break;
             case ACTION_SAVE:
                 Storage storage = new StorageImpl(MainActivity.getActivity());
-                storage.saveGame(Server.dumpGame(), "save0");
+                storage.saveGame(Server.dumpGame(), DEFAULT_SAVE_NAME);
                 return true;
             case ACTION_LOAD:
-                Server.loadGame(getStorage().loadGame("save0"));
+                Server.loadGame(getStorage().loadGame(DEFAULT_SAVE_NAME));
                 return true;
         }
 
