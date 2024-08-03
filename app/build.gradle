@@ -1,14 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdk 33
-    buildToolsVersion '31.0.0'
+    compileSdk 34
     defaultConfig {
         applicationId 'by.siarhei.kb2'
         minSdk 23
-        targetSdk 33
-        versionCode 10
-        versionName '0.10.1'
+        targetSdk 34
+        versionCode 11
+        versionName '0.11.0'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -20,8 +19,8 @@ android {
     productFlavors {
     }
     compileOptions {
-        sourceCompatibility = '1.8'
-        targetCompatibility = '1.8'
+        sourceCompatibility = "17"
+        targetCompatibility = "17"
     }
     namespace 'by.siarhei.kb2.app'
 }
