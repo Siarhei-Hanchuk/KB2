@@ -22,6 +22,8 @@ class MapView extends RootView {
 
     @Override
     public void draw(@NonNull Canvas canvas, Response response) {
+        Sound.play(R.raw.gold);
+
         Painter painter = getPainter(canvas);
         canvas.drawColor(Color.BLACK);
 
