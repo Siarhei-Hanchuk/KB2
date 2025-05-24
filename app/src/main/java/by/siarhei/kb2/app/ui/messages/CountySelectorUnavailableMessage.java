@@ -12,7 +12,7 @@ public class CountySelectorUnavailableMessage extends Message {
 
     @Override
     public String getText() {
-        return i18n.translate("county_selector_unavailable_message");
+        return i18n.translate("countries_unavailable");
     }
 
     @Override

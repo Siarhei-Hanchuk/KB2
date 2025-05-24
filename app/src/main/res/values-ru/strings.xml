@@ -5,6 +5,7 @@
     <string name="entity.goldChest.messages.salary" tools:ignore="UnusedResources">Недельная плата+</string>
     <string name="entity.goldChest.messages.magicUp" tools:ignore="UnusedResources">Макс кол-во волшебств +1</string>
     <string name="entity.goldChest.messages.randomMagic" tools:ignore="UnusedResources">Случайное заклинание +1</string>
+    <string name="countries.unavailable" tools:ignore="UnusedResources">Вы можете путешествовать только на корабле</string>
     <string name="countries.country1" tools:ignore="UnusedResources">Равнолесье</string>
     <string name="countries.country2" tools:ignore="UnusedResources">Заболотие</string>
     <string name="countries.country3" tools:ignore="UnusedResources">Тайгания</string>

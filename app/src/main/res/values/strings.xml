@@ -232,4 +232,5 @@
     <string name="battle.begin.ask.level3">You are a worthy opponent</string>
     <string name="battle.begin.ask.level4">It will not be easy to defeat you</string>
     <string name="battle.begin.ask.level5">Can I surrender?</string>
+    <string name="countries.unavailable">You can trevel only on ship</string>
 </resources>
